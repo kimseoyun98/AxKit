@@ -696,23 +696,58 @@ axpublish / Components 페이지:
 
 ### Step 3-C. 컴포넌트 Code Generation
 
-Figma Component와 1:1 대응하는 재사용 코드 파일 생성.
+Figma Component와 1:1 대응하는 재사용 TSX 컴포넌트 파일 생성.
+**프레임워크: Next.js (App Router) + TypeScript + Tailwind CSS**
+
+> **재사용 기준:** Figma 전체 스캔 후 **2회 이상** 등장하는 요소만 컴포넌트화.
+> 단 1회 등장하는 섹션(예: Hero, 특정 페이지 전용 배너)은 해당 page.tsx에 인라인으로 작성.
+
+**프로젝트 초기화 (최초 1회):**
+```bash
+npx create-next-app@latest [프로젝트명] \
+  --typescript \
+  --tailwind \
+  --app \
+  --src-dir \
+  --import-alias "@/*"
+```
 
 **파일 구조:**
 ```
-components/
-├── atoms/
-│   ├── button.html
-│   ├── input.html
-│   └── badge.html
-├── molecules/
-│   ├── card.html
-│   ├── dropdown.html
-│   └── tab.html
-└── organisms/
-    ├── gnb.html       ← Desktop + Mobile 통합
-    ├── footer.html
-    └── modal.html
+src/
+├── app/
+│   ├── globals.css        ← tokens.css + theme.css import
+│   ├── layout.tsx         ← GNB + Footer 포함 (전체 공통 레이아웃)
+│   ├── page.tsx           ← 홈
+│   ├── about/
+│   │   └── page.tsx
+│   └── [화면명]/
+│       └── page.tsx
+├── components/
+│   ├── atoms/
+│   │   ├── Button.tsx     ← 2회 이상 사용
+│   │   ├── Input.tsx
+│   │   └── Badge.tsx
+│   ├── molecules/
+│   │   ├── Card.tsx
+│   │   ├── Dropdown.tsx
+│   │   └── Tab.tsx
+│   └── organisms/
+│       ├── GNB.tsx        ← 모든 페이지 공통
+│       ├── Footer.tsx
+│       └── Modal.tsx
+└── styles/
+    ├── tokens.css         ← Seed Design 시맨틱 토큰
+    └── theme.css          ← 프로젝트 Primary/Secondary
+```
+
+**globals.css CSS 로드 순서:**
+```css
+@import './tokens.css';   /* 1. Seed Design 기본 토큰 */
+@import './theme.css';    /* 2. 프로젝트 컬러 override */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 ```
 
 **클래스 작성 순서 (모든 컴포넌트 공통):**
@@ -720,41 +755,89 @@ components/
 Layout → Box Model → Typography → Color → Border → Effect → Interaction
 ```
 
-**Button 예시:**
-```html
-<!-- Primary Button — Large -->
-<button class="
-  inline-flex items-center justify-center gap-[8px]
-  px-[20px] h-[48px]
-  text-label-1 font-semibold text-static-white
-  bg-primary-normal rounded-md
-  transition-colors duration-[150ms]
-  hover:bg-primary-strong active:bg-primary-heavy
-  disabled:bg-interaction-disable disabled:text-interaction-inactive
-  disabled:cursor-not-allowed
-">버튼 레이블</button>
+**Button.tsx 예시:**
+```tsx
+type ButtonProps = {
+  label: string
+  variant?: 'primary' | 'secondary' | 'ghost'
+  size?: 'sm' | 'md' | 'lg'
+  disabled?: boolean
+  onClick?: () => void
+}
+
+export default function Button({
+  label,
+  variant = 'primary',
+  size = 'md',
+  disabled,
+  onClick,
+}: ButtonProps) {
+  const base = 'inline-flex items-center justify-center rounded-md font-semibold transition-colors duration-150 disabled:cursor-not-allowed disabled:bg-interaction-disable disabled:text-interaction-inactive'
+  const sizes = { sm: 'px-4 h-9 text-sm', md: 'px-5 h-12 text-sm', lg: 'px-6 h-14 text-base' }
+  const variants = {
+    primary:   'bg-primary-normal text-static-white hover:bg-primary-strong active:bg-primary-heavy',
+    secondary: 'bg-secondary-normal text-static-white hover:bg-secondary-strong active:bg-secondary-heavy',
+    ghost:     'bg-transparent border border-line-solid-normal text-label-normal hover:bg-fill-normal',
+  }
+
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={`${base} ${sizes[size]} ${variants[variant]}`}
+    >
+      {label}
+    </button>
+  )
+}
 ```
 
-**GNB 예시 (Mobile-first):**
-```html
-<header class="
-  fixed top-0 left-0 right-0 z-[100]
-  flex items-center justify-between
-  px-[20px] h-[56px]
-  bg-bg-normal border-b border-line-solid-n
-  lg:h-[64px]
-">
-  <a href="/" class="text-title-3 font-bold text-label-strong">로고</a>
-  <button class="lg:hidden text-label-normal">☰</button>
-  <nav class="hidden lg:flex items-center gap-[32px]">
-    <a class="text-label-1 text-label-normal hover:text-label-strong">링크</a>
-  </nav>
-</header>
+**GNB.tsx 예시 (Mobile-first):**
+```tsx
+'use client'
+import { useState } from 'react'
+import Link from 'next/link'
+
+export default function GNB() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-5 h-14 bg-bg-normal border-b border-line-solid-normal lg:h-16">
+      <Link href="/" className="text-title-3 font-bold text-label-strong">로고</Link>
+      <button className="lg:hidden text-label-normal" onClick={() => setOpen(!open)}>☰</button>
+      <nav className="hidden lg:flex items-center gap-8">
+        <Link className="text-sm text-label-normal hover:text-label-strong" href="/">홈</Link>
+      </nav>
+    </header>
+  )
+}
+```
+
+**layout.tsx 예시:**
+```tsx
+import type { Metadata } from 'next'
+import GNB from '@/components/organisms/GNB'
+import Footer from '@/components/organisms/Footer'
+import '@/styles/globals.css'
+
+export const metadata: Metadata = { title: '[프로젝트명]' }
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="ko">
+      <body className="bg-bg-normal text-label-normal">
+        <GNB />
+        <main className="pt-14 lg:pt-16">{children}</main>
+        <Footer />
+      </body>
+    </html>
+  )
+}
 ```
 
 컴포넌트별 완료 보고:
 ```
-✅ [Tier X] [컴포넌트명] — Figma ✔️ / Code ✔️
+✅ [Tier X] [컴포넌트명].tsx — Figma ✔️ / Code ✔️
    → 다음: [다음 컴포넌트명]
 ```
 
@@ -776,37 +859,45 @@ Layout → Box Model → Typography → Color → Border → Effect → Interact
 ```
 ## Phase 4. 컴포넌트 조립 및 레이아웃 배치 (Page Assembly)
 
-### 페이지 셸 표준 구조
+### 페이지 셸 표준 구조 (Next.js App Router)
 
-```html
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>[프로젝트명]</title>
+각 화면은 `app/[화면명]/page.tsx` 파일로 생성.
+컴포넌트는 Phase 3에서 만든 것을 import해서 조립. 재사용 안 되는 섹션은 인라인 작성.
 
-  <!-- axpublish 토큰 로드 순서: 반드시 이 순서 지킬 것 -->
-  <link rel="stylesheet" href="./tokens.css">    <!-- 1. Seed Design 기본 시스템 -->
-  <link rel="stylesheet" href="./theme.css">     <!-- 2. 프로젝트 Primary/Secondary override -->
-  <link rel="stylesheet" href="./src/style.css"> <!-- 3. 프로젝트 커스텀 스타일 -->
-</head>
-<body class="bg-bg-normal text-label-normal font-sans">
+```tsx
+// app/page.tsx (홈 예시)
+import Button from '@/components/atoms/Button'
+import Card from '@/components/molecules/Card'
 
-  <!-- Phase 2에서 확정된 섹션 순서대로 조립 -->
+export default function HomePage() {
+  return (
+    <>
+      {/* Hero — 홈에만 있으므로 인라인 */}
+      <section className="w-full pt-24 pb-20 bg-bg-normal">
+        <div className="max-w-[1440px] mx-auto px-5">
+          <h1 className="text-display-1 font-bold text-label-strong">제목</h1>
+          <p className="mt-4 text-body-1 text-label-alternative">설명</p>
+          <Button label="시작하기" variant="primary" />
+        </div>
+      </section>
 
-</body>
-</html>
+      {/* 카드 그리드 — Card 컴포넌트 재사용 */}
+      <section className="w-full py-16">
+        <div className="max-w-[1440px] mx-auto px-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <Card title="제목" description="설명" />
+        </div>
+      </section>
+    </>
+  )
+}
 ```
 
-### 섹션 조립 규칙
+### 섹션 컨테이너 규칙
 
-모든 섹션은 표준 컨테이너 래퍼 사용:
-
-```html
-<section>
-  <div class="w-full max-w-[1440px] mx-auto px-[20px]">
-    <!-- 섹션 콘텐츠 -->
+```tsx
+<section className="w-full py-16">
+  <div className="max-w-[1440px] mx-auto px-5">
+    {/* 섹션 콘텐츠 */}
   </div>
 </section>
 ```
@@ -817,7 +908,7 @@ Layout → Box Model → Typography → Color → Border → Effect → Interact
 ✅ Phase 4 완료
 
 - X개 섹션 조립 완료
-- 생성 파일: index.html
+- 생성 파일: app/[화면명]/page.tsx
 → Phase 5 최종 QA를 시작합니다.
 ```
 
