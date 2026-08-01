@@ -1,0 +1,13 @@
+{
+  "name": "axpublish-init",
+  "version": "1.0.0",
+  "description": "AI Design-to-Code Pipeline bootstrapper — Figma MCP + Seed Design + Tailwind",
+  "bin": {
+    "axpublish-init": "./bin/init.js"
+  },
+  "keywords": ["figma", "design-system", "ai", "publishing", "tailwind", "seed-design"],
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

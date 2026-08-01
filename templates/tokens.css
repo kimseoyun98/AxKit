@@ -1,0 +1,413 @@
+/*
+ * ============================================================
+ *  tokens.css — Seed Design System (axlab 적용)
+ *
+ *  출처: Figma Variables Export (Pretendard JP 기반)
+ *  구조:
+ *    LAYER 1. Atomic     — Primitive 팔레트
+ *    LAYER 2. Semantic   — 역할 기반 토큰 (light mode)
+ *    LAYER 3. Typography — 폰트 스타일 변수 (반응형 포함)
+ *    LAYER 4. Shadow     — 그림자 레이어
+ *    LAYER 5. Frame      — Radius / Spacing
+ *
+ *  반응형 규칙:
+ *    Mobile  < 768px  : Display ~ Heading 축소
+ *    Tablet  768–1279px : 중간값
+ *    Desktop ≥ 1280px : Figma 원본값 (full size)
+ *
+ *  컨테이너 padding: 모든 뷰포트 20px (Figma 원본 기준)
+ * ============================================================
+ */
+
+/* ════════════════════════════════════════════════════════════
+ *  DEFAULT (Desktop ≥ 1280px) — Figma 원본값
+ * ════════════════════════════════════════════════════════════ */
+:root {
+
+  /* ─── 폰트 패밀리 ─────────────────────────────────────── */
+  --font-sans:     'Pretendard JP', 'Pretendard', sans-serif;
+  --font-fallback: 'Inter', sans-serif;
+
+
+  /* ════════════════════════════════════════════════════════
+   *  LAYER 1. ATOMIC (Primitive)
+   * ════════════════════════════════════════════════════════ */
+
+  /* Common */
+  --atomic-common-0:   #000000;
+  --atomic-common-100: #ffffff;
+
+  /* Cool Neutral (주 그레이 팔레트) */
+  --atomic-cn-5:  #0f0f10;
+  --atomic-cn-7:  #141415;
+  --atomic-cn-10: #171719;
+  --atomic-cn-15: #1b1c1e;
+  --atomic-cn-17: #212225;
+  --atomic-cn-20: #292a2d;
+  --atomic-cn-22: #2e2f33;
+  --atomic-cn-23: #333438;
+  --atomic-cn-25: #37383c;
+  --atomic-cn-30: #46474c;
+  --atomic-cn-40: #5a5c63;
+  --atomic-cn-50: #70737c;
+  --atomic-cn-60: #878a93;
+  --atomic-cn-70: #989ba2;
+  --atomic-cn-80: #aeb0b6;
+  --atomic-cn-90: #c2c4c8;
+  --atomic-cn-95: #dbdcdf;
+  --atomic-cn-96: #e1e2e4;
+  --atomic-cn-97: #eaebec;
+  --atomic-cn-98: #f4f4f5;
+  --atomic-cn-99: #f7f7f8;
+
+  /* Blue (Brand Primary) */
+  --atomic-blue-10: #001536;
+  --atomic-blue-20: #002966;
+  --atomic-blue-30: #003e9c;
+  --atomic-blue-40: #0054d1;
+  --atomic-blue-45: #005eeb;
+  --atomic-blue-50: #0066ff;
+  --atomic-blue-55: #1a75ff;
+  --atomic-blue-60: #3385ff;
+  --atomic-blue-65: #4f95ff;
+  --atomic-blue-70: #69a5ff;
+  --atomic-blue-80: #9ec5ff;
+  --atomic-blue-90: #c9defe;
+  --atomic-blue-95: #eaf2fe;
+  --atomic-blue-99: #f7fbff;
+
+  /* Status Atomics */
+  --atomic-red-40:    #e52222;
+  --atomic-red-50:    #ff4242;
+  --atomic-green-40:  #009632;
+  --atomic-green-50:  #00bf40;
+  --atomic-orange-50: #ff9200;
+
+  /* Accent Atomics */
+  --atomic-lime-37:      #429e00;
+  --atomic-lime-50:      #58cf04;
+  --atomic-cyan-40:      #0098b2;
+  --atomic-cyan-50:      #00bdde;
+  --atomic-lightblue-40: #008dcf;
+  --atomic-lightblue-50: #00aeff;
+  --atomic-violet-45:    #5b37ed;
+  --atomic-violet-50:    #6541f2;
+  --atomic-purple-40:    #ad36e3;
+  --atomic-purple-50:    #cb59ff;
+  --atomic-pink-46:      #e846cd;
+  --atomic-pink-50:      #f553da;
+  --atomic-redorange-48: #f55a00;
+  --atomic-redorange-50: #ff5e00;
+  --atomic-orange-39:    #d17600;
+
+
+  /* ════════════════════════════════════════════════════════
+   *  LAYER 2. SEMANTIC TOKENS
+   * ════════════════════════════════════════════════════════ */
+
+  /* Primary */
+  --color-primary-normal: #0066ff;
+  --color-primary-strong: #005eeb;
+  --color-primary-heavy:  #0054d1;
+
+  /* Label (Text) — 6단계 */
+  --color-label-strong:      #000000;
+  --color-label-normal:      #171719;
+  --color-label-neutral:     rgba(46, 47, 51, .88);
+  --color-label-alternative: rgba(55, 56, 60, .61);
+  --color-label-assistive:   rgba(55, 56, 60, .28);
+  --color-label-disable:     rgba(55, 56, 60, .16);
+
+  /* Background */
+  --color-bg-normal:         #ffffff;
+  --color-bg-normal-alt:     #f7f7f8;
+  --color-bg-elevated:       #ffffff;
+  --color-bg-elevated-alt:   #f7f7f8;
+  --color-bg-trans-normal:   rgba(255, 255, 255, .08);
+  --color-bg-trans-alt:      rgba(255, 255, 255, .28);
+
+  /* Interaction */
+  --color-interaction-inactive: #989ba2;
+  --color-interaction-disable:  #f4f4f5;
+
+  /* Line / Border — Normal (rgba, 겹침 허용) */
+  --color-line-normal:        rgba(112, 115, 124, .22);
+  --color-line-normal-n:      rgba(112, 115, 124, .16);
+  --color-line-normal-alt:    rgba(112, 115, 124, .08);
+  --color-line-normal-s:      rgba(112, 115, 124, .52);
+
+  /* Line / Border — Solid (불투명) */
+  --color-line-solid:         #e1e2e4;
+  --color-line-solid-n:       #eaebec;
+  --color-line-solid-alt:     #f4f4f5;
+  --color-line-solid-s:       #aeb0b6;
+
+  /* Fill (미묘한 오버레이 배경) */
+  --color-fill-normal: rgba(112, 115, 124, .08);
+  --color-fill-strong: rgba(112, 115, 124, .16);
+  --color-fill-alt:    rgba(112, 115, 124, .05);
+
+  /* Status */
+  --color-status-positive:   #00bf40;
+  --color-status-cautionary: #ff9200;
+  --color-status-negative:   #ff4242;
+
+  /* Static */
+  --color-static-white: #ffffff;
+  --color-static-black: #000000;
+
+  /* Material */
+  --color-material-dimmer: rgba(23, 23, 25, .52);
+
+  /* Inverse */
+  --color-inverse-primary:    #3385ff;
+  --color-inverse-background: #1b1c1e;
+  --color-inverse-label:      #f7f7f8;
+
+  /* Accent Background */
+  --color-accent-bg-redorange: #ff5e00;
+  --color-accent-bg-lime:      #58cf04;
+  --color-accent-bg-cyan:      #00bdde;
+  --color-accent-bg-lightblue: #00aeff;
+  --color-accent-bg-violet:    #6541f2;
+  --color-accent-bg-purple:    #cb59ff;
+  --color-accent-bg-pink:      #f553da;
+
+  /* Accent Foreground */
+  --color-accent-fg-red:       #e52222;
+  --color-accent-fg-redorange: #f55a00;
+  --color-accent-fg-orange:    #d17600;
+  --color-accent-fg-lime:      #429e00;
+  --color-accent-fg-green:     #009632;
+  --color-accent-fg-cyan:      #0098b2;
+  --color-accent-fg-lightblue: #008dcf;
+  --color-accent-fg-blue:      #005eeb;
+  --color-accent-fg-violet:    #5b37ed;
+  --color-accent-fg-purple:    #ad36e3;
+  --color-accent-fg-pink:      #e846cd;
+
+
+  /* ════════════════════════════════════════════════════════
+   *  LAYER 3. TYPOGRAPHY — Desktop 기준값 (Figma 원본)
+   *  letter-spacing: px → em 변환 (ls / fontSize)
+   * ════════════════════════════════════════════════════════ */
+
+  /* Display 1 — 56px */
+  --font-size-display-1:    56px;
+  --font-lh-display-1:      72px;
+  --font-ls-display-1:      -0.032em;
+
+  /* Display 2 — 40px */
+  --font-size-display-2:    40px;
+  --font-lh-display-2:      52px;
+  --font-ls-display-2:      -0.028em;
+
+  /* Display 3 — 36px */
+  --font-size-display-3:    36px;
+  --font-lh-display-3:      48px;
+  --font-ls-display-3:      -0.027em;
+
+  /* Title 1 — 32px */
+  --font-size-title-1:      32px;
+  --font-lh-title-1:        44px;
+  --font-ls-title-1:        -0.025em;
+
+  /* Title 2 — 28px */
+  --font-size-title-2:      28px;
+  --font-lh-title-2:        38px;
+  --font-ls-title-2:        -0.024em;
+
+  /* Title 3 — 24px */
+  --font-size-title-3:      24px;
+  --font-lh-title-3:        32px;
+  --font-ls-title-3:        -0.023em;
+
+  /* Heading 1 — 22px */
+  --font-size-heading-1:    22px;
+  --font-lh-heading-1:      30px;
+  --font-ls-heading-1:      -0.019em;
+
+  /* Heading 2 — 20px */
+  --font-size-heading-2:    20px;
+  --font-lh-heading-2:      28px;
+  --font-ls-heading-2:      -0.012em;
+
+  /* Headline 1 — 18px */
+  --font-size-headline-1:   18px;
+  --font-lh-headline-1:     26px;
+  --font-ls-headline-1:     -0.0002em;
+
+  /* Headline 2 — 17px */
+  --font-size-headline-2:   17px;
+  --font-lh-headline-2:     24px;
+  --font-ls-headline-2:     0em;
+
+  /* ─── Body 이하: 모든 뷰포트 고정 (반응형 없음) ─── */
+
+  /* Body 1 — 16px */
+  --font-size-body-1:       16px;
+  --font-lh-body-1:         24px;
+  --font-lh-body-1-reading: 26px;
+  --font-ls-body-1:         0.0057em;
+
+  /* Body 2 — 15px */
+  --font-size-body-2:       15px;
+  --font-lh-body-2:         22px;
+  --font-lh-body-2-reading: 24px;
+  --font-ls-body-2:         0.0096em;
+
+  /* Label 1 — 14px */
+  --font-size-label-1:       14px;
+  --font-lh-label-1:         20px;
+  --font-lh-label-1-reading: 22px;
+  --font-ls-label-1:         0.0145em;
+
+  /* Label 2 — 13px */
+  --font-size-label-2:       13px;
+  --font-lh-label-2:         18px;
+  --font-ls-label-2:         0.0194em;
+
+  /* Caption 1 — 12px */
+  --font-size-caption-1:     12px;
+  --font-lh-caption-1:       16px;
+  --font-ls-caption-1:       0.0252em;
+
+  /* Caption 2 — 11px */
+  --font-size-caption-2:     11px;
+  --font-lh-caption-2:       14px;
+  --font-ls-caption-2:       0.031em;
+
+
+  /* ════════════════════════════════════════════════════════
+   *  LAYER 4. SHADOW
+   * ════════════════════════════════════════════════════════ */
+
+  --shadow-xsmall:
+    0px 1px 2px -1px rgba(23, 23, 23, .10);
+
+  --shadow-small:
+    0px 4px 6px -1px  rgba(23, 23, 23, .06),
+    0px 2px 4px -2px  rgba(23, 23, 23, .06);
+
+  --shadow-medium:
+    0px 10px 15px -3px rgba(23, 23, 23, .07),
+    0px 4px  6px  -2px rgba(23, 23, 23, .07);
+
+  --shadow-large:
+    0px 16px 24px -6px rgba(23, 23, 23, .08),
+    0px 6px  10px -4px rgba(23, 23, 23, .08);
+
+  --shadow-xlarge:
+    0px 24px 38px -10px rgba(23, 23, 23, .12),
+    0px 10px 15px -5px  rgba(23, 23, 23, .10);
+
+  --shadow-spread-sm: 0px 0px 60px rgba(23, 23, 23, .10);
+  --shadow-spread-md: 0px 15px 75px rgba(23, 23, 23, .16);
+
+
+  /* ════════════════════════════════════════════════════════
+   *  LAYER 5. FRAME TOKENS
+   * ════════════════════════════════════════════════════════ */
+
+  --radius-small:  12px;
+  --radius-medium: 14px;
+  --radius-large:  16px;
+  --radius-xlarge: 20px;
+
+  /* 컨테이너 패딩 — 모든 뷰포트 20px (Figma 원본 기준) */
+  --layout-padding: 20px;
+
+  /* 컴포넌트 Spacing */
+  --space-gap-normal:  20px;
+  --space-card-tiny:   6px;
+}
+
+
+/* ════════════════════════════════════════════════════════════
+ *  TABLET (768px – 1279px)
+ *  Display/Title/Heading 중간 스케일
+ * ════════════════════════════════════════════════════════════ */
+@media (min-width: 768px) and (max-width: 1279px) {
+
+  :root {
+    /* Display */
+    --font-size-display-1: 44px;
+    --font-lh-display-1:   58px;
+
+    --font-size-display-2: 34px;
+    --font-lh-display-2:   44px;
+
+    --font-size-display-3: 30px;
+    --font-lh-display-3:   40px;
+
+    /* Title */
+    --font-size-title-1: 28px;
+    --font-lh-title-1:   38px;
+
+    --font-size-title-2: 24px;
+    --font-lh-title-2:   32px;
+
+    --font-size-title-3: 22px;
+    --font-lh-title-3:   30px;
+
+    /* Heading */
+    --font-size-heading-1: 20px;
+    --font-lh-heading-1:   28px;
+
+    --font-size-heading-2: 18px;
+    --font-lh-heading-2:   26px;
+
+    /* Headline */
+    --font-size-headline-1: 17px;
+    --font-lh-headline-1:   24px;
+
+    /* Body 이하 고정 */
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════
+ *  MOBILE (< 768px)
+ *  Display/Title/Heading 최소 스케일
+ *  Body 이하 변경 없음
+ * ════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+  :root {
+    /* Display → 모바일에서 Title 수준으로 축소 */
+    --font-size-display-1: 32px;
+    --font-lh-display-1:   44px;
+
+    --font-size-display-2: 26px;
+    --font-lh-display-2:   36px;
+
+    --font-size-display-3: 24px;
+    --font-lh-display-3:   32px;
+
+    /* Title */
+    --font-size-title-1: 22px;
+    --font-lh-title-1:   30px;
+
+    --font-size-title-2: 20px;
+    --font-lh-title-2:   28px;
+
+    --font-size-title-3: 18px;
+    --font-lh-title-3:   26px;
+
+    /* Heading */
+    --font-size-heading-1: 17px;
+    --font-lh-heading-1:   24px;
+
+    --font-size-heading-2: 16px;
+    --font-lh-heading-2:   24px;
+
+    /* Headline */
+    --font-size-headline-1: 16px;
+    --font-lh-headline-1:   24px;
+
+    --font-size-headline-2: 15px;
+    --font-lh-headline-2:   22px;
+
+    /* Body 이하 고정 — 변경 없음 */
+  }
+}
