@@ -76,9 +76,9 @@
   기준 rem이라 로컬 font-size가 바뀌어도 값이 같이 줄어들지 않는다. (`em` 단위로
   넣으면 요소 자신의 font-size에 비례해 버려서 실제 패턴과 어긋난다 — 흔한 실수)
 
-`seed-tokens.css`는 이 원리에 따라 `--font-size-*`(clamp)·`--font-lh-*`(unitless)·
-`--font-ls-*`(rem 고정)를 `:root`에 한 번만 정의한다. 미디어쿼리 오버라이드 자체가
-필요 없다 — Caption처럼 완전히 고정인 스타일만 clamp() 없이 고정 px로 둔다.
+`seed-tokens.css`는 `--seed-font-size-t*`·`--seed-line-height-t*`를 정의하고,
+t9~t16은 미디어쿼리 3단계(Mobile/Tablet/Desktop)로 화면별 고정값을 override한다.
+필요 없는 부분은 — Caption처럼 완전히 고정인 스타일만 clamp() 없이 고정 px로 둔다.
 
 ### 2-1. 반응형 규칙 원칙
 
