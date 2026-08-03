@@ -417,26 +417,26 @@
   <a href="#overview" class="sidebar-link active">개요</a>
   <a href="#why" class="sidebar-link">왜 만들었나</a>
 
-  <div class="sidebar-section">Pipeline</div>
-  <a href="#how" class="sidebar-link">작동 방식</a>
-  <a href="#phases" class="sidebar-link">6-Phase 워크플로우</a>
-  <a href="#figma-write" class="sidebar-link">Figma MCP Write</a>
-  <a href="#components" class="sidebar-link">컴포넌트 라이브러리</a>
+  <div class="sidebar-section">Design System</div>
+  <a href="#ds-colors" class="sidebar-link">Color</a>
+  <a href="#ds-typography" class="sidebar-link">Typography</a>
+  <a href="#ds-responsive" class="sidebar-link">Spacing · Grid</a>
+  <a href="#ds-tokens" class="sidebar-link">Foundations</a>
+
+  <div class="sidebar-section">Figma</div>
+  <a href="#figma-write" class="sidebar-link">Variable Collection</a>
+  <a href="#figma-write" class="sidebar-link">MCP Write</a>
+  <a href="#phases" class="sidebar-link">6-Phase Pipeline</a>
 
   <div class="sidebar-section">System</div>
+  <a href="#how" class="sidebar-link">작동 방식</a>
   <a href="#files" class="sidebar-link">파일 구성</a>
-  <div class="sidebar-section">Design System</div>
-  <a href="#ds-colors" class="sidebar-link">컬러 시스템</a>
-  <a href="#ds-typography" class="sidebar-link">타이포그래피</a>
-  <a href="#ds-responsive" class="sidebar-link">반응형 규칙</a>
-  <a href="#ds-tokens" class="sidebar-link">토큰 레퍼런스</a>
-
-  <div class="sidebar-section">Example</div>
-  <a href="#journey" class="sidebar-link">사용자 여정 예시</a>
+  <a href="#components" class="sidebar-link">컴포넌트 라이브러리</a>
 
   <div class="sidebar-section">배포</div>
   <a href="#start" class="sidebar-link">npm 패키지</a>
-  <a href="#start" class="sidebar-link" style="font-family:monospace; font-size:11px; padding-left:28px;">axpublish-init@1.0.0</a>
+  <a href="#journey" class="sidebar-link">사용자 여정 예시</a>
+  <a href="#start" class="sidebar-link" style="font-family:monospace; font-size:11px; padding-left:28px;">axpublish-init@1.5.0</a>
 </aside>
 
 <main>
@@ -804,7 +804,7 @@ Link:           Default / Hover / Visited</code></pre>
 
   <!-- DESIGN SYSTEM COLORS -->
   <section id="ds-colors">
-    <h2>컬러 시스템</h2>
+    <h2>Color</h2>
     <p>Seed Design 기반 시맨틱 토큰. <code>tokens.css</code>에 기본값이 정의되고, <code>theme.css</code>가 브랜드 컬러로 override합니다.</p>
 
     <div class="ds-section-label">Brand Colors</div>
@@ -871,32 +871,7 @@ Link:           Default / Hover / Visited</code></pre>
       </div>
     </div>
 
-    <div class="ds-section-label">Accent (강조색)</div>
-    <div class="swatch-group">
-      <div class="swatch-group-title">Foreground (Vivid) — 텍스트, 아이콘, 뱃지 텍스트용</div>
-      <div class="swatch-row">
-        <div class="swatch"><div class="swatch-color" style="background:#FF5E00"></div><div class="swatch-name">Red Orange</div><div class="swatch-hex">#FF5E00</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#FF9200"></div><div class="swatch-name">Orange</div><div class="swatch-hex">#FF9200</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#58CF04"></div><div class="swatch-name">Lime</div><div class="swatch-hex">#58CF04</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#00BDDE"></div><div class="swatch-name">Cyan</div><div class="swatch-hex">#00BDDE</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#00AEFF"></div><div class="swatch-name">Light Blue</div><div class="swatch-hex">#00AEFF</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#6541F2"></div><div class="swatch-name">Violet</div><div class="swatch-hex">#6541F2</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#CB59FF"></div><div class="swatch-name">Purple</div><div class="swatch-hex">#CB59FF</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#F553DA"></div><div class="swatch-name">Pink</div><div class="swatch-hex">#F553DA</div></div>
-      </div>
-    </div>
-    <div class="swatch-group">
-      <div class="swatch-group-title">Background (Tint 95) — 섹션 배경, 뱃지 배경용 (Figma 실측값)</div>
-      <div class="swatch-row">
-        <div class="swatch"><div class="swatch-color" style="background:#FEEEE5"></div><div class="swatch-name">Red Orange</div><div class="swatch-hex">#FEEEE5</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#E6FFD4"></div><div class="swatch-name">Lime</div><div class="swatch-hex">#E6FFD4</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#DEFAFF"></div><div class="swatch-name">Cyan</div><div class="swatch-hex">#DEFAFF</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#E5F6FE"></div><div class="swatch-name">Light Blue</div><div class="swatch-hex">#E5F6FE</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#F0ECFE"></div><div class="swatch-name">Violet</div><div class="swatch-hex">#F0ECFE</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#F9EDFF"></div><div class="swatch-name">Purple</div><div class="swatch-hex">#F9EDFF</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#FEECFB"></div><div class="swatch-name">Pink</div><div class="swatch-hex">#FEECFB</div></div>
-      </div>
-    </div>
+
 
     <div class="ds-section-label">Opacity (투명도 스케일)</div>
     <div class="swatch-group">
@@ -1163,7 +1138,7 @@ node generate-theme.js --primary <span class="cs">"#0066FF"</span> --output ./sr
 
   <!-- DESIGN SYSTEM RESPONSIVE -->
   <section id="ds-responsive">
-    <h2>반응형 규칙</h2>
+    <h2>Spacing · Grid</h2>
 
     <div class="bp-diagram">
       <div class="bp-bar-wrap">
@@ -1215,7 +1190,7 @@ node generate-theme.js --primary <span class="cs">"#0066FF"</span> --output ./sr
 
   <!-- DESIGN SYSTEM TOKENS -->
   <section id="ds-tokens">
-    <h2>토큰 레퍼런스</h2>
+    <h2>Foundations</h2>
     <p><code>tokens.css</code>에 정의된 전체 토큰 목록. 프로젝트에서 필요한 것만 골라 쓰면 됩니다.</p>
 
     <h3>Radius (7단계)</h3>
