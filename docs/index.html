@@ -429,6 +429,7 @@
   <a href="#ds-colors" class="sidebar-link">컬러 시스템</a>
   <a href="#ds-typography" class="sidebar-link">타이포그래피</a>
   <a href="#ds-responsive" class="sidebar-link">반응형 규칙</a>
+  <a href="#ds-tokens" class="sidebar-link">토큰 레퍼런스</a>
 
   <div class="sidebar-section">Example</div>
   <a href="#journey" class="sidebar-link">사용자 여정 예시</a>
@@ -851,17 +852,66 @@ Link:           Default / Hover / Visited</code></pre>
       </div>
     </div>
 
+    <div class="ds-section-label">Neutral (순수 회색)</div>
+    <div class="swatch-group">
+      <div class="swatch-group-title">--atomic-n-* — 콜 틴트 없는 순수 gray (UI 크롬, 아이콘 등)</div>
+      <div class="swatch-row" style="flex-wrap:nowrap; gap:4px;">
+        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#0F0F0F"></div><div class="swatch-name" style="font-size:9px">5</div></div>
+        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#171717"></div><div class="swatch-name" style="font-size:9px">10</div></div>
+        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#2A2A2A"></div><div class="swatch-name" style="font-size:9px">20</div></div>
+        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#474747"></div><div class="swatch-name" style="font-size:9px">30</div></div>
+        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#5C5C5C"></div><div class="swatch-name" style="font-size:9px">40</div></div>
+        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#737373"></div><div class="swatch-name" style="font-size:9px">50</div></div>
+        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#8A8A8A"></div><div class="swatch-name" style="font-size:9px">60</div></div>
+        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#9B9B9B"></div><div class="swatch-name" style="font-size:9px">70</div></div>
+        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#B0B0B0"></div><div class="swatch-name" style="font-size:9px">80</div></div>
+        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#C4C4C4"></div><div class="swatch-name" style="font-size:9px">90</div></div>
+        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#DCDCDC"></div><div class="swatch-name" style="font-size:9px">95</div></div>
+        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#F7F7F7; border:1px solid #E0E0E0"></div><div class="swatch-name" style="font-size:9px">99</div></div>
+      </div>
+    </div>
+
     <div class="ds-section-label">Accent (강조색)</div>
     <div class="swatch-group">
-      <div class="swatch-group-title">Background</div>
+      <div class="swatch-group-title">Foreground (Vivid) — 텍스트, 아이콘, 뱃지 텍스트용</div>
       <div class="swatch-row">
-        <div class="swatch"><div class="swatch-color" style="background:#FFF0EC"></div><div class="swatch-name">Red Orange</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#F0FBEA"></div><div class="swatch-name">Lime</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#E6FAFA"></div><div class="swatch-name">Cyan</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#EAF3FF"></div><div class="swatch-name">Light Blue</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#F3EEFF"></div><div class="swatch-name">Violet</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#F8EEFF"></div><div class="swatch-name">Purple</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#FFECF5"></div><div class="swatch-name">Pink</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FF5E00"></div><div class="swatch-name">Red Orange</div><div class="swatch-hex">#FF5E00</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FF9200"></div><div class="swatch-name">Orange</div><div class="swatch-hex">#FF9200</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#58CF04"></div><div class="swatch-name">Lime</div><div class="swatch-hex">#58CF04</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#00BDDE"></div><div class="swatch-name">Cyan</div><div class="swatch-hex">#00BDDE</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#00AEFF"></div><div class="swatch-name">Light Blue</div><div class="swatch-hex">#00AEFF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#6541F2"></div><div class="swatch-name">Violet</div><div class="swatch-hex">#6541F2</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#CB59FF"></div><div class="swatch-name">Purple</div><div class="swatch-hex">#CB59FF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F553DA"></div><div class="swatch-name">Pink</div><div class="swatch-hex">#F553DA</div></div>
+      </div>
+    </div>
+    <div class="swatch-group">
+      <div class="swatch-group-title">Background (Tint 95) — 섹션 배경, 뱃지 배경용 (Figma 실측값)</div>
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-color" style="background:#FEEEE5"></div><div class="swatch-name">Red Orange</div><div class="swatch-hex">#FEEEE5</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E6FFD4"></div><div class="swatch-name">Lime</div><div class="swatch-hex">#E6FFD4</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#DEFAFF"></div><div class="swatch-name">Cyan</div><div class="swatch-hex">#DEFAFF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E5F6FE"></div><div class="swatch-name">Light Blue</div><div class="swatch-hex">#E5F6FE</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F0ECFE"></div><div class="swatch-name">Violet</div><div class="swatch-hex">#F0ECFE</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F9EDFF"></div><div class="swatch-name">Purple</div><div class="swatch-hex">#F9EDFF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FEECFB"></div><div class="swatch-name">Pink</div><div class="swatch-hex">#FEECFB</div></div>
+      </div>
+    </div>
+
+    <div class="ds-section-label">Opacity (투명도 스케일)</div>
+    <div class="swatch-group">
+      <div class="swatch-group-title">--opacity-* — Figma Opacity Variable 컬렉션 원본 (15단계)</div>
+      <div class="swatch-row" style="flex-wrap:nowrap; gap:4px; align-items:flex-end;">
+        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.08; border:1px solid #E0E0E0"></div><div class="swatch-name" style="font-size:9px">8%</div></div>
+        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.16; border:1px solid #E0E0E0"></div><div class="swatch-name" style="font-size:9px">16%</div></div>
+        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.22"></div><div class="swatch-name" style="font-size:9px">22%</div></div>
+        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.28"></div><div class="swatch-name" style="font-size:9px">28%</div></div>
+        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.43"></div><div class="swatch-name" style="font-size:9px">43%</div></div>
+        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.52"></div><div class="swatch-name" style="font-size:9px">52%</div></div>
+        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.61"></div><div class="swatch-name" style="font-size:9px">61%</div></div>
+        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.74"></div><div class="swatch-name" style="font-size:9px">74%</div></div>
+        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.88"></div><div class="swatch-name" style="font-size:9px">88%</div></div>
+        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:1"></div><div class="swatch-name" style="font-size:9px">100%</div></div>
       </div>
     </div>
 
@@ -982,6 +1032,133 @@ node generate-theme.js --primary <span class="cs">"#0066FF"</span> --output ./sr
   </section>
 
   <hr>
+
+  <!-- DESIGN SYSTEM TOKENS -->
+  <section id="ds-tokens">
+    <h2>토큰 레퍼런스</h2>
+    <p><code>tokens.css</code>에 정의된 전체 토큰 목록. 프로젝트에서 필요한 것만 골라 쓰면 됩니다.</p>
+
+    <h3>Radius (7단계)</h3>
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin:16px 0;">
+      <div style="text-align:center">
+        <div style="width:48px;height:48px;background:#0066FF;border-radius:0;display:inline-block"></div>
+        <div style="font-size:10px;margin-top:6px;font-family:monospace">none<br>0px</div>
+      </div>
+      <div style="text-align:center">
+        <div style="width:48px;height:48px;background:#0066FF;border-radius:4px;display:inline-block"></div>
+        <div style="font-size:10px;margin-top:6px;font-family:monospace">xsmall<br>4px</div>
+      </div>
+      <div style="text-align:center">
+        <div style="width:48px;height:48px;background:#0066FF;border-radius:8px;display:inline-block"></div>
+        <div style="font-size:10px;margin-top:6px;font-family:monospace">small<br>8px</div>
+      </div>
+      <div style="text-align:center">
+        <div style="width:48px;height:48px;background:#0066FF;border-radius:12px;display:inline-block"></div>
+        <div style="font-size:10px;margin-top:6px;font-family:monospace">medium<br>12px</div>
+      </div>
+      <div style="text-align:center">
+        <div style="width:48px;height:48px;background:#0066FF;border-radius:16px;display:inline-block"></div>
+        <div style="font-size:10px;margin-top:6px;font-family:monospace">large<br>16px</div>
+      </div>
+      <div style="text-align:center">
+        <div style="width:48px;height:48px;background:#0066FF;border-radius:24px;display:inline-block"></div>
+        <div style="font-size:10px;margin-top:6px;font-family:monospace">xlarge<br>24px</div>
+      </div>
+      <div style="text-align:center">
+        <div style="width:72px;height:48px;background:#0066FF;border-radius:9999px;display:inline-block"></div>
+        <div style="font-size:10px;margin-top:6px;font-family:monospace">pill<br>9999px</div>
+      </div>
+      <div style="text-align:center">
+        <div style="width:48px;height:48px;background:#0066FF;border-radius:50%;display:inline-block"></div>
+        <div style="font-size:10px;margin-top:6px;font-family:monospace">circle<br>50%</div>
+      </div>
+    </div>
+
+    <h3>Z-index 레이어</h3>
+    <div style="display:flex; flex-direction:column; gap:4px; margin:16px 0;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-tooltip</div>
+        <div style="background:#0066FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:200px">600 — 툴팁</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-toast</div>
+        <div style="background:#1A75FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:185px">500 — 토스트</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-modal</div>
+        <div style="background:#3385FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:170px">400 — 모달</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-overlay</div>
+        <div style="background:#69A5FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:155px">300 — 딤 오버레이</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-dropdown</div>
+        <div style="background:#9EC5FF;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:140px">200 — 드롭다운</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-gnb</div>
+        <div style="background:#C9DEFE;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:125px">100 — GNB</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-sticky</div>
+        <div style="background:#EAF2FE;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:110px">10 — sticky</div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-base</div>
+        <div style="background:#F4F4F5;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:95px">0 — 기본</div>
+      </div>
+    </div>
+
+    <h3>Motion (전환 속도 + 이징)</h3>
+    <table>
+      <tr><th>토큰</th><th>값</th><th>용도</th></tr>
+      <tr><td><code>--duration-instant</code></td><td>50ms</td><td>즉각 반응 (ripple)</td></tr>
+      <tr><td><code>--duration-fast</code></td><td>100ms</td><td>버튼 hover, 색상 전환</td></tr>
+      <tr><td><code>--duration-normal</code></td><td>200ms</td><td>기본 트랜지션</td></tr>
+      <tr><td><code>--duration-slow</code></td><td>300ms</td><td>모달 등장, 사이드바 슬라이드</td></tr>
+      <tr><td><code>--duration-gentle</code></td><td>500ms</td><td>타이포 크기 전환 (현재 적용)</td></tr>
+      <tr><td><code>--ease-default</code></td><td>cubic-bezier(.2,0,0,1)</td><td>일반 전환</td></tr>
+      <tr><td><code>--ease-out</code></td><td>cubic-bezier(0,0,0,1)</td><td>등장 (나타날 때)</td></tr>
+      <tr><td><code>--ease-in</code></td><td>cubic-bezier(.2,0,1,1)</td><td>퇴장 (사라질 때)</td></tr>
+      <tr><td><code>--ease-spring</code></td><td>cubic-bezier(.34,1.56,.64,1)</td><td>스프링 (통통 튐)</td></tr>
+    </table>
+
+    <h3>Component Sizing (컴포넌트 높이)</h3>
+    <div style="display:flex; flex-direction:column; gap:8px; margin:16px 0;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:100px;font-size:11px;color:#888;font-family:monospace">Button</div>
+        <div style="display:flex;gap:6px;align-items:flex-end">
+          <div style="background:#0066FF;border-radius:8px;width:60px;height:36px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:600">sm 36</div>
+          <div style="background:#0066FF;border-radius:8px;width:72px;height:48px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600">md 48</div>
+          <div style="background:#0066FF;border-radius:8px;width:84px;height:56px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600">lg 56</div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px; margin-top:4px;">
+        <div style="width:100px;font-size:11px;color:#888;font-family:monospace">Input</div>
+        <div style="display:flex;gap:6px;align-items:flex-end">
+          <div style="border:1.5px solid #0066FF;border-radius:8px;width:80px;height:36px;display:flex;align-items:center;padding:0 10px;font-size:10px;color:#888">sm 36px</div>
+          <div style="border:1.5px solid #0066FF;border-radius:8px;width:100px;height:48px;display:flex;align-items:center;padding:0 12px;font-size:11px;color:#888">md 48px</div>
+        </div>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px; margin-top:4px;">
+        <div style="width:100px;font-size:11px;color:#888;font-family:monospace">GNB</div>
+        <div style="display:flex;gap:6px;align-items:flex-end">
+          <div style="background:#F4F4F5;border-radius:6px;width:100px;height:56px;display:flex;align-items:center;padding:0 12px;font-size:10px;color:#888">Mobile 56px</div>
+          <div style="background:#F4F4F5;border-radius:6px;width:140px;height:64px;display:flex;align-items:center;padding:0 14px;font-size:11px;color:#888">Desktop 64px</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Shadow (5단계)</h3>
+    <div style="display:flex; gap:16px; flex-wrap:wrap; margin:16px 0;">
+      <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 1px 2px -1px rgba(23,23,23,.10);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">xsmall</div>
+      <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 4px 6px -1px rgba(23,23,23,.06),0px 2px 4px -2px rgba(23,23,23,.06);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">small</div>
+      <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 10px 15px -3px rgba(23,23,23,.07),0px 4px 6px -2px rgba(23,23,23,.07);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">medium</div>
+      <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 16px 24px -6px rgba(23,23,23,.08),0px 6px 10px -4px rgba(23,23,23,.08);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">large</div>
+      <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 24px 38px -10px rgba(23,23,23,.12),0px 10px 15px -5px rgba(23,23,23,.10);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">xlarge</div>
+    </div>
+  </section>
 
   <!-- USER JOURNEY EXAMPLE -->
   <section id="journey">
