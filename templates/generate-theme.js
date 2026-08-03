@@ -125,34 +125,38 @@ const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
 /**
  * 베이스 hex로부터 13단계 컬러 스케일 생성
  * @param {string} hex - 기준 hex (#RRGGBB), shade 50에 위치
+ * @param {boolean} vivid - true면 밝아지는 방향(50 초과)에서 채도를 낮추지 않고
+ *   대신 hue를 이동시켜 회색빛 대신 형광/골드 톤으로 밝아지게 함 (Primary 전용).
+ *   false면 기존처럼 밝아질수록 채도를 낮춰 파스텔 톤으로 밝아짐 (Secondary 등).
  * @returns {{ [shade: number]: string }} - 각 shade의 hex 값
  */
-function generateScale(hex) {
+function generateScale(hex, vivid = false) {
   const { r, g, b } = hexToRgb(hex);
   const { h, s, l } = rgbToHsl(r, g, b);
 
-  // shade → { lightness delta, saturation delta }
+  // shade → { lightness delta, saturation delta, hue delta(vivid 모드 전용) }
   const offsets = {
-    10: { lD: -40, sD:   0 },
-    20: { lD: -30, sD:   0 },
-    30: { lD: -20, sD:   0 },
-    40: { lD:  -9, sD:   0 },   // heavy / pressed
-    45: { lD:  -4, sD:   0 },   // strong / hover
-    50: { lD:   0, sD:   0 },   // base (입력값)
-    55: { lD:  +4, sD:   0 },
-    60: { lD: +10, sD:   0 },   // inverse
-    70: { lD: +21, sD:  -5 },
-    80: { lD: +31, sD: -10 },
-    90: { lD: +39, sD: -30 },
-    95: { lD: +45, sD: -50 },
-    99: { lD: +49, sD: -80 },
+    10: { lD: -40, sD:   0, hD:  0 },
+    20: { lD: -30, sD:   0, hD:  0 },
+    30: { lD: -20, sD:   0, hD:  0 },
+    40: { lD:  -9, sD:   0, hD:  0 },   // heavy / pressed
+    45: { lD:  -4, sD:   0, hD:  0 },   // strong / hover
+    50: { lD:   0, sD:   0, hD:  0 },   // base (입력값)
+    55: { lD:  +4, sD: vivid ?   0 : 0,  hD: vivid ?  +2 : 0 },
+    60: { lD: +10, sD: vivid ?   0 : 0,  hD: vivid ?  +5 : 0 },   // inverse
+    70: { lD: +21, sD: vivid ?   0 : -5,  hD: vivid ? +10 : 0 },
+    80: { lD: +31, sD: vivid ?   0 : -10, hD: vivid ? +15 : 0 },
+    90: { lD: +39, sD: vivid ?   0 : -30, hD: vivid ? +20 : 0 },
+    95: { lD: +45, sD: vivid ?   0 : -50, hD: vivid ? +25 : 0 },
+    99: { lD: +49, sD: vivid ?   0 : -80, hD: vivid ? +30 : 0 },
   };
 
   const scale = {};
-  for (const [shade, { lD, sD }] of Object.entries(offsets)) {
+  for (const [shade, { lD, sD, hD }] of Object.entries(offsets)) {
     const newL = clamp(l + lD, 2, 98);
     const newS = clamp(s + sD, 0, 100);
-    scale[shade] = hslToHex(h, newS, newL);
+    const newH = h + hD;
+    scale[shade] = hslToHex(newH, newS, newL);
   }
   return scale;
 }
@@ -163,8 +167,8 @@ function generateScale(hex) {
  * ────────────────────────────────────────────────────────── */
 
 function generateThemeCss(primaryHex, secondaryHex) {
-  const p = generateScale(primaryHex);
-  const s = generateScale(secondaryHex);
+  const p = generateScale(primaryHex, true);
+  const s = generateScale(secondaryHex, false);
   const now = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
 
   return `/*
