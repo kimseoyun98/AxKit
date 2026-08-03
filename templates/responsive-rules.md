@@ -15,7 +15,7 @@
 
 ### 1-1. 브레이크포인트 (수정 금지)
 
-> ⚠️ Tailwind 기본 프리픽스(`md:`/`lg:`/`xl:`)를 쓰지 않는다. `tokens.css`의
+> ⚠️ Tailwind 기본 프리픽스(`md:`/`lg:`/`xl:`)를 쓰지 않는다. `seed-tokens.css`의
 > `@theme { --breakpoint-mb: 1280px; --breakpoint-tb: 768px; }`가 커스텀
 > 브레이크포인트 이름을 정의하고, Tailwind v4는 `--breakpoint-*` 변수 이름의
 > 접미사(`mb`, `tb`)를 그대로 variant 프리픽스로 만든다. (newEromhp 실제 코드와 동일)
@@ -33,7 +33,7 @@
 
 > ⚠️ **패딩은 뷰포트마다 다르다** (이롬넷 레퍼런스 실측: Desktop 64px / Tablet 48px /
 > Mobile 20px). 예전엔 전 뷰포트 20px 균일로 가정했으나 실측 결과 오류로 확인돼 수정.
-> `max-w-[...] mx-auto px-[...]`를 직접 조합하지 말고, `tokens.css`에 정의된
+> `max-w-[...] mx-auto px-[...]`를 직접 조합하지 말고, `seed-tokens.css`에 정의된
 > `container-em` 유틸리티 하나만 쓴다 — max-width·브레이크포인트별 패딩이 전부
 > 포함돼 있다 (newEromhp 실제 코드와 동일).
 
@@ -76,7 +76,7 @@
   기준 rem이라 로컬 font-size가 바뀌어도 값이 같이 줄어들지 않는다. (`em` 단위로
   넣으면 요소 자신의 font-size에 비례해 버려서 실제 패턴과 어긋난다 — 흔한 실수)
 
-`tokens.css`는 이 원리에 따라 `--font-size-*`(clamp)·`--font-lh-*`(unitless)·
+`seed-tokens.css`는 이 원리에 따라 `--font-size-*`(clamp)·`--font-lh-*`(unitless)·
 `--font-ls-*`(rem 고정)를 `:root`에 한 번만 정의한다. 미디어쿼리 오버라이드 자체가
 필요 없다 — Caption처럼 완전히 고정인 스타일만 clamp() 없이 고정 px로 둔다.
 
@@ -103,7 +103,7 @@
 > clamp()라 뷰포트 폭이 바뀔 때마다 자동으로 연속 스케일되고, line-height/letter-spacing은
 > 위 2-0 원리에 따라 별도 처리 없이 같이 맞춰짐.
 
-### 2-2. 뷰포트별 폰트 크기 (tokens.css 기준 — clamp() 양끝값)
+### 2-2. 뷰포트별 폰트 크기 (seed-tokens.css 기준 — clamp() 양끝값)
 
 `✓`= 이롬넷 레퍼런스로 실측 검증됨. `⚠` = 이번 화면에서 미실측, 기존 추정치 유지.
 표의 Tablet 열은 고정 스텝이 아니라 해당 뷰포트 폭에서 clamp()가 계산하는 근사값이다.

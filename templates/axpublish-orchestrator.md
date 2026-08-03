@@ -33,7 +33,7 @@ axpublish는 5명의 AI 직원과 1명의 디자이너(당신)가 함께 일합�
 
 ```
 [R1] 하드코딩 금지
-     색상·폰트·간격 모두 tokens.css 변수로만 작성.
+     색상·폰트·간격 모두 seed-tokens.css + @seed-design/css 변수로만 작성.
      hex나 px 수치 직접 사용 절대 금지.
 
 [R2] 순서 준수
@@ -45,7 +45,7 @@ axpublish는 5명의 AI 직원과 1명의 디자이너(당신)가 함께 일합�
      다음 직원에게 인수인계 선언 후 넘김.
 
 [R4] 모르면 멈춤
-     tokens.css에 없는 값, 디자인 의도가 불분명한 경우
+     seed-tokens.css + @seed-design/css에 없는 값, 디자인 의도가 불분명한 경우
      즉시 디자이너에게 질문. 추측으로 진행하지 않음.
 
 [R5] 컴포넌트 단위
@@ -165,7 +165,7 @@ E1E2E4 계열 (선/구분선)  → --color-line-normal
 16px → --font-size-body-1
 14px → --font-size-label-1
 12px → --font-size-caption-1
-(전체 매핑은 tokens.css 기준)
+(전체 매핑은 seed-tokens.css + @seed-design/css 기준)
 ```
 
 **매핑 불가 항목 발생 시:**
@@ -178,7 +178,7 @@ E1E2E4 계열 (선/구분선)  → --color-line-normal
 
 처리 방법을 알려주세요:
 ① 가장 가까운 토큰으로 대체 → [추천 토큰명]
-② tokens.css에 새 토큰으로 추가
+② seed-tokens.css + @seed-design/css에 새 토큰으로 추가
 ③ 해당 요소는 예외 처리
 ```
 
@@ -238,7 +238,7 @@ Tablet + Mobile 프레임 초안을 Figma에 자동 생성한다.
 프레임: [원본이름] / Tablet
 너비: 768px
 패딩: 48px
-폰트: tokens.css Tablet 값 적용
+폰트: seed-tokens.css + @seed-design/css Tablet 값 적용
 레이아웃: 중간 단계 적용
 ```
 
@@ -249,7 +249,7 @@ Tablet + Mobile 프레임 초안을 Figma에 자동 생성한다.
 프레임: [원본이름] / Mobile
 너비: 375px
 패딩: 20px
-폰트: tokens.css Mobile 값 적용
+폰트: seed-tokens.css + @seed-design/css Mobile 값 적용
 레이아웃: 단컬럼 적용
 ```
 
@@ -306,16 +306,16 @@ Figma에 아래 프레임이 추가되었습니다:
 
 // ✅ 올바른 패턴
 <button className="
-  h-[48px] mb:h-[56px]
-  px-[16px] mb:px-[20px]
-  bg-[var(--color-primary-normal)]
-  hover:bg-[var(--color-primary-strong)]
-  active:bg-[var(--color-primary-heavy)]
-  text-[color:var(--color-label-on-color)]
-  text-[length:var(--font-size-label-1)]
-  leading-[var(--font-lh-label-1)]
+  h-[var(--seed-dimension-x12)] mb:h-[var(--seed-dimension-x14)]
+  px-[var(--seed-dimension-x4)] mb:px-[var(--seed-dimension-x5)]
+  bg-[var(--seed-color-bg-brand-solid)]
+  hover:bg-[var(--seed-color-bg-brand-solid-pressed)]
+  active:bg-[var(--seed-color-bg-brand-solid-pressed)]
+  text-[color:var(--seed-color-fg-neutral-inverted)]
+  text-[length:var(--seed-font-size-t4)]
+  leading-[var(--seed-line-height-t4)]
   tracking-[var(--font-ls-label-1)]
-  rounded-[var(--radius-medium)]
+  rounded-[var(--seed-dimension-x3)]
 ">
 
 // ❌ 금지 패턴
@@ -329,10 +329,10 @@ tb:   = Tablet 이상 (≥768px)
 mb:   = Desktop 이상 (≥1280px)
 
 예) 폰트 크기
-text-[length:var(--font-size-body-1)]         ← Mobile(15px)
-tb:text-[length:var(--font-size-body-1)]      ← Tablet(15px)
-mb:text-[length:var(--font-size-body-1)]      ← Desktop(16px)
-(tokens.css 브레이크포인트가 자동으로 값 변경)
+text-[length:var(--seed-font-size-t5)]         ← Mobile(15px)
+tb:text-[length:var(--seed-font-size-t5)]      ← Tablet(15px)
+mb:text-[length:var(--seed-font-size-t5)]      ← Desktop(16px)
+(seed-tokens.css + @seed-design/css 브레이크포인트가 자동으로 값 변경)
 ```
 
 **컴포넌트 완료 보고:**
@@ -347,7 +347,7 @@ mb:text-[length:var(--font-size-body-1)]      ← Desktop(16px)
 
 **PAUSE 트리거 (이 상황에서는 반드시 멈춤):**
 ```
-① tokens.css에 없는 값이 디자인에 있을 때
+① seed-tokens.css + @seed-design/css에 없는 값이 디자인에 있을 때
 ② 디자인에 hover/active 상태가 없을 때
 ③ 동일 컴포넌트가 페이지마다 다르게 생겼을 때
 ④ 컴포넌트 이름이 Figma에 없거나 불분명할 때
@@ -473,8 +473,8 @@ Figma 디자인과 동일한 완성 페이지를 만든다.
 
 | 파일 | 누가 씀 |
 |------|---------|
-| `tokens.css` | BINDER, BUILDER (항상) |
+| `seed-tokens.css + @seed-design/css` | BINDER, BUILDER (항상) |
 | `theme.css` | BINDER, BUILDER |
 | `responsive-rules.md` | FLEX (반응형 생성), BUILDER (코드 작성) |
 | `figma-semantic-variables.json` | BINDER (Variable 구조 기준) |
-| `generate-theme.js` | 프로젝트 시작 시 1회 실행 |
+| `generate-seed-brand.js` | 프로젝트 시작 시 1회 실행 |

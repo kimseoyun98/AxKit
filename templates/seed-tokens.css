@@ -1,0 +1,54 @@
+/**
+ * axpublish v2.0 — Brand Token Override
+ * powered by @seed-design/css
+ *
+ * 사용법:
+ *   import "@seed-design/css/all.css";   ← Seed 전체 토큰 (기반)
+ *   import "./seed-tokens.css";           ← 브랜드 컬러 덮어씌우기
+ *
+ * 그런 다음 HTML에:
+ *   <html data-seed data-seed-color-scheme="system">
+ *
+ * 토큰 레퍼런스: https://seed-design.io/react/tokens
+ */
+
+/* ────────────────────────────────────────────────────────────────
+   BRAND OVERRIDE
+   Seed의 carrot 팔레트를 내 브랜드 컬러로 덮어씌웁니다.
+   generate-seed-brand.js 로 자동 생성됩니다.
+   ──────────────────────────────────────────────────────────────── */
+[data-seed] {
+  /* ── Primary (carrot override) ── */
+  --seed-color-palette-carrot-100: #EBF2FF;
+  --seed-color-palette-carrot-200: #C7DCFF;
+  --seed-color-palette-carrot-300: #99BFFF;
+  --seed-color-palette-carrot-400: #5C99FF;
+  --seed-color-palette-carrot-500: #3385FF;
+  --seed-color-palette-carrot-600: #0066FF;   /* ← Primary/Normal */
+  --seed-color-palette-carrot-700: #005EEB;   /* ← Primary/Hover */
+  --seed-color-palette-carrot-800: #0054D1;   /* ← Primary/Pressed */
+  --seed-color-palette-carrot-900: #004AB8;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   RESPONSIVE LAYOUT
+   타이포그래피는 Seed의 clamp() 가 자동 처리.
+   레이아웃(padding, max-width)만 브레이크포인트 적용.
+   ──────────────────────────────────────────────────────────────── */
+:root {
+  --layout-gutter:    var(--seed-dimension-x5);   /* 20px */
+  --layout-max-width: 1440px;
+  --layout-padding:   var(--seed-dimension-x5);   /* 20px (mobile) */
+}
+
+@media (min-width: 768px) {
+  :root {
+    --layout-padding: var(--seed-dimension-x12);  /* 48px (tablet) */
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --layout-padding: var(--seed-dimension-x16);  /* 64px (desktop) */
+  }
+}
