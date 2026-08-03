@@ -805,73 +805,53 @@ Link:           Default / Hover / Visited</code></pre>
   <!-- DESIGN SYSTEM COLORS -->
   <section id="ds-colors">
     <h2>Color</h2>
-    <p>Seed Design 기반 시맨틱 토큰. <code>tokens.css</code>에 기본값이 정의되고, <code>theme.css</code>가 브랜드 컬러로 override합니다.</p>
+    <p>두 계층으로 구성됩니다. <strong>Primitive</strong>는 팔레트 스케일 그대로, <strong>Semantic</strong>은 UI 역할에 따라 의미를 부여한 토큰입니다. 컴포넌트에서 직접 쓰는 건 Semantic이고, Primitive는 그 값의 출처입니다.</p>
 
-    <div class="ds-section-label">Brand Colors</div>
-    <div class="swatch-group">
-      <div class="swatch-group-title">Primary — generate-theme.js 자동 생성 (예시: #0066FF)</div>
-      <div class="swatch-row">
-        <div class="swatch"><div class="swatch-color" style="background:#0054D1"></div><div class="swatch-name">Heavy</div><div class="swatch-hex">Pressed</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#005EEB"></div><div class="swatch-name">Strong</div><div class="swatch-hex">Hover</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#0066FF"></div><div class="swatch-name">Normal</div><div class="swatch-hex">Default</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#3385FF"></div><div class="swatch-name">Inverse</div><div class="swatch-hex">Dark BG 위</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#99BFFF"></div><div class="swatch-name">Light</div><div class="swatch-hex">연한 강조</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#EBF2FF"></div><div class="swatch-name">Tint</div><div class="swatch-hex">뱃지 배경</div></div>
-      </div>
-    </div>
+    <!-- ── PRIMITIVE ────────────────────────────────── -->
+    <h3 style="margin-top:32px; padding-top:16px; border-top:2px solid #F0F0F2">Primitive <span style="font-weight:400; color:#888; font-size:12px">원시 팔레트 — <code>--atomic-*</code></span></h3>
+    <p style="font-size:13px; color:#888; margin-top:-8px">Figma: Atomic Variable Collection. 직접 사용 ✕, Semantic 토큰이 이 값을 참조합니다.</p>
 
-    <div class="ds-section-label">Label (텍스트)</div>
+    <div class="ds-section-label">Cool Neutral (주 그레이 팔레트)</div>
     <div class="swatch-group">
-      <div class="swatch-row">
-        <div class="swatch"><div class="swatch-color" style="background:#000000"></div><div class="swatch-name">Strong</div><div class="swatch-hex">#000000</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#171719"></div><div class="swatch-name">Normal</div><div class="swatch-hex">#171719</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#3B3C40"></div><div class="swatch-name">Neutral</div><div class="swatch-hex">α 88%</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#7C7E84"></div><div class="swatch-name">Alternative</div><div class="swatch-hex">α 61%</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#BCBDC2"></div><div class="swatch-name">Assistive</div><div class="swatch-hex">α 28%</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#D9DADC"></div><div class="swatch-name">Disable</div><div class="swatch-hex">α 16%</div></div>
-      </div>
-    </div>
-
-    <div class="ds-section-label">Background</div>
-    <div class="swatch-group">
-      <div class="swatch-row">
-        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border:1px solid #E1E2E4"></div><div class="swatch-name">Normal</div><div class="swatch-hex">#FFFFFF</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#F7F7F8"></div><div class="swatch-name">Alternative</div><div class="swatch-hex">#F7F7F8</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#F0F0F2"></div><div class="swatch-name">Section</div><div class="swatch-hex">섹션 구분</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border:1px solid #E1E2E4; box-shadow:0 2px 8px rgba(0,0,0,0.08)"></div><div class="swatch-name">Elevated</div><div class="swatch-hex">카드 배경</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:rgba(23,23,25,0.08)"></div><div class="swatch-name">Transparent</div><div class="swatch-hex">α 8%</div></div>
-      </div>
-    </div>
-
-    <div class="ds-section-label">Status</div>
-    <div class="swatch-group">
-      <div class="swatch-row">
-        <div class="swatch"><div class="swatch-color" style="background:#00BF40"></div><div class="swatch-name">Positive</div><div class="swatch-hex">#00BF40</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#FF9200"></div><div class="swatch-name">Cautionary</div><div class="swatch-hex">#FF9200</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#FF4242"></div><div class="swatch-name">Negative</div><div class="swatch-hex">#FF4242</div></div>
+      <div class="swatch-group-title">--atomic-cn-* — 미세한 쿨 틴트. Label·Background·Line 모든 시맨틱의 기반</div>
+      <div class="swatch-row" style="flex-wrap:nowrap; gap:3px;">
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#0F0F10"></div><div class="swatch-name" style="font-size:9px">CN-5</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#171719"></div><div class="swatch-name" style="font-size:9px">CN-10</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#1B1C1E"></div><div class="swatch-name" style="font-size:9px">CN-15</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#292A2D"></div><div class="swatch-name" style="font-size:9px">CN-20</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#2E2F33"></div><div class="swatch-name" style="font-size:9px">CN-22</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#46474C"></div><div class="swatch-name" style="font-size:9px">CN-30</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#5A5C63"></div><div class="swatch-name" style="font-size:9px">CN-40</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#70737C"></div><div class="swatch-name" style="font-size:9px">CN-50</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#878A93"></div><div class="swatch-name" style="font-size:9px">CN-60</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#989BA2"></div><div class="swatch-name" style="font-size:9px">CN-70</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#AEB0B6"></div><div class="swatch-name" style="font-size:9px">CN-80</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#C2C4C8"></div><div class="swatch-name" style="font-size:9px">CN-90</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#DBDCDF"></div><div class="swatch-name" style="font-size:9px">CN-95</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#EAEBEC"></div><div class="swatch-name" style="font-size:9px">CN-97</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#F4F4F5"></div><div class="swatch-name" style="font-size:9px">CN-98</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#F7F7F8; border:1px solid #E1E2E4"></div><div class="swatch-name" style="font-size:9px">CN-99</div></div>
       </div>
     </div>
 
     <div class="ds-section-label">Neutral (순수 회색)</div>
     <div class="swatch-group">
-      <div class="swatch-group-title">--atomic-n-* — 콜 틴트 없는 순수 gray (UI 크롬, 아이콘 등)</div>
-      <div class="swatch-row" style="flex-wrap:nowrap; gap:4px;">
-        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#0F0F0F"></div><div class="swatch-name" style="font-size:9px">5</div></div>
-        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#171717"></div><div class="swatch-name" style="font-size:9px">10</div></div>
-        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#2A2A2A"></div><div class="swatch-name" style="font-size:9px">20</div></div>
-        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#474747"></div><div class="swatch-name" style="font-size:9px">30</div></div>
-        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#5C5C5C"></div><div class="swatch-name" style="font-size:9px">40</div></div>
-        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#737373"></div><div class="swatch-name" style="font-size:9px">50</div></div>
-        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#8A8A8A"></div><div class="swatch-name" style="font-size:9px">60</div></div>
-        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#9B9B9B"></div><div class="swatch-name" style="font-size:9px">70</div></div>
-        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#B0B0B0"></div><div class="swatch-name" style="font-size:9px">80</div></div>
-        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#C4C4C4"></div><div class="swatch-name" style="font-size:9px">90</div></div>
-        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#DCDCDC"></div><div class="swatch-name" style="font-size:9px">95</div></div>
-        <div class="swatch" style="width:52px"><div class="swatch-color" style="background:#F7F7F7; border:1px solid #E0E0E0"></div><div class="swatch-name" style="font-size:9px">99</div></div>
+      <div class="swatch-group-title">--atomic-n-* — 쿨 틴트 없는 순수 gray. 아이콘, UI 크롬에 사용</div>
+      <div class="swatch-row" style="flex-wrap:nowrap; gap:3px;">
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#0F0F0F"></div><div class="swatch-name" style="font-size:9px">N-5</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#171717"></div><div class="swatch-name" style="font-size:9px">N-10</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#2A2A2A"></div><div class="swatch-name" style="font-size:9px">N-20</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#474747"></div><div class="swatch-name" style="font-size:9px">N-30</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#5C5C5C"></div><div class="swatch-name" style="font-size:9px">N-40</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#737373"></div><div class="swatch-name" style="font-size:9px">N-50</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#8A8A8A"></div><div class="swatch-name" style="font-size:9px">N-60</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#9B9B9B"></div><div class="swatch-name" style="font-size:9px">N-70</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#B0B0B0"></div><div class="swatch-name" style="font-size:9px">N-80</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#C4C4C4"></div><div class="swatch-name" style="font-size:9px">N-90</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#DCDCDC"></div><div class="swatch-name" style="font-size:9px">N-95</div></div>
+        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#F7F7F7; border:1px solid #E0E0E0"></div><div class="swatch-name" style="font-size:9px">N-99</div></div>
       </div>
     </div>
-
-
 
     <div class="ds-section-label">Opacity (투명도 스케일)</div>
     <div class="swatch-group">
@@ -887,6 +867,55 @@ Link:           Default / Hover / Visited</code></pre>
         <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.74"></div><div class="swatch-name" style="font-size:9px">74%</div></div>
         <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.88"></div><div class="swatch-name" style="font-size:9px">88%</div></div>
         <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:1"></div><div class="swatch-name" style="font-size:9px">100%</div></div>
+      </div>
+    </div>
+
+    <!-- ── SEMANTIC ────────────────────────────────── -->
+    <h3 style="margin-top:40px; padding-top:16px; border-top:2px solid #F0F0F2">Semantic <span style="font-weight:400; color:#888; font-size:12px">역할 기반 토큰 — <code>--color-*</code></span></h3>
+    <p style="font-size:13px; color:#888; margin-top:-8px">Figma: Semantic Variable Collection. 실제 컴포넌트에서 이 토큰을 사용합니다.</p>
+
+    <div class="ds-section-label">Brand / Primary</div>
+    <div class="swatch-group">
+      <div class="swatch-group-title">generate-theme.js로 자동 생성 — Primary hex 입력 시 13단계 출력 (예시: #0066FF)</div>
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-color" style="background:#0054D1"></div><div class="swatch-name">Heavy</div><div class="swatch-hex">Pressed</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#005EEB"></div><div class="swatch-name">Strong</div><div class="swatch-hex">Hover</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#0066FF"></div><div class="swatch-name">Normal</div><div class="swatch-hex">Default</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3385FF"></div><div class="swatch-name">Inverse</div><div class="swatch-hex">Dark BG 위</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#99BFFF"></div><div class="swatch-name">Light</div><div class="swatch-hex">연한 강조</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#EBF2FF"></div><div class="swatch-name">Tint</div><div class="swatch-hex">뱃지 배경</div></div>
+      </div>
+    </div>
+
+    <div class="ds-section-label">Label (텍스트 색상)</div>
+    <div class="swatch-group">
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-color" style="background:#000000"></div><div class="swatch-name">Strong</div><div class="swatch-hex">#000000</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#171719"></div><div class="swatch-name">Normal</div><div class="swatch-hex">CN-10</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3B3C40"></div><div class="swatch-name">Neutral</div><div class="swatch-hex">α 88%</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#7C7E84"></div><div class="swatch-name">Alternative</div><div class="swatch-hex">α 61%</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#BCBDC2"></div><div class="swatch-name">Assistive</div><div class="swatch-hex">α 28%</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#D9DADC"></div><div class="swatch-name">Disable</div><div class="swatch-hex">α 16%</div></div>
+      </div>
+    </div>
+
+    <div class="ds-section-label">Background (배경 색상)</div>
+    <div class="swatch-group">
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border:1px solid #E1E2E4"></div><div class="swatch-name">Normal</div><div class="swatch-hex">#FFFFFF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F7F7F8"></div><div class="swatch-name">Alternative</div><div class="swatch-hex">CN-99</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F0F0F2"></div><div class="swatch-name">Section</div><div class="swatch-hex">섹션 구분</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border:1px solid #E1E2E4; box-shadow:0 2px 8px rgba(0,0,0,0.08)"></div><div class="swatch-name">Elevated</div><div class="swatch-hex">카드 배경</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:rgba(23,23,25,0.08)"></div><div class="swatch-name">Transparent</div><div class="swatch-hex">α 8%</div></div>
+      </div>
+    </div>
+
+    <div class="ds-section-label">Status (상태 색상)</div>
+    <div class="swatch-group">
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-color" style="background:#00BF40"></div><div class="swatch-name">Positive</div><div class="swatch-hex">#00BF40</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FF9200"></div><div class="swatch-name">Cautionary</div><div class="swatch-hex">#FF9200</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FF4242"></div><div class="swatch-name">Negative</div><div class="swatch-hex">#FF4242</div></div>
       </div>
     </div>
 
