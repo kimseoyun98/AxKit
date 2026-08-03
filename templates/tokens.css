@@ -2,7 +2,7 @@
  * ============================================================
  *  tokens.css — Seed Design System (Tailwind CSS v4 네이티브)
  *
- *  출처: Figma Variables Export + 이롬넷(newEromhp) 실제 프로덕션 코드 대조 검증
+ *  출처: Figma Variables Export (Pretendard JP 기반)
  *  스택: Vite + React + TypeScript + Tailwind CSS v4 (@tailwindcss/vite)
  *
  *  ⚠ tailwind.config.js 없음 — v4는 CSS 네이티브로 설정한다. 이 파일을
@@ -10,18 +10,22 @@
  *
  *  구조:
  *    0. Tailwind import + @theme(브레이크포인트)
- *    1. Fluid Typography — clamp() 기반 (뷰포트에 따라 연속 스케일)
+ *    1. Typography — 고정값 3단계 + 브레이크포인트 transition
  *    2. container-em 유틸리티 — 컨테이너 폭/패딩
  *    3. Atomic — Primitive 팔레트
  *    4. Semantic — 역할 기반 토큰
  *    5. Shadow / Frame (Radius, Stroke, Spacing)
  *
- *  클래스 작성 패턴 (newEromhp 실제 코드와 동일):
+ *  타이포그래피 방식:
+ *    - Figma Desktop/Tablet/Mobile 고정값 그대로 3단계 CSS 변수
+ *    - 브레이크포인트 전환 시 font-size가 스르륵 바뀌도록 transition 추가
+ *    - clamp() 없음 — Figma 원본값과 1:1 일치
+ *
+ *  클래스 작성 패턴:
  *    - 색상/그림자: bg-[var(--color-bg-normal-alt)], text-[color:var(--color-label-normal)]
  *    - 폰트 스타일: text-[length:var(--font-size-display-1)] leading-[var(--font-lh-display-1)]
  *                   tracking-[var(--font-ls-display-1)]
- *    - 브레이크포인트: mb:(Desktop, ≥1280) / tb:(≥768) / max-mb:(<1280) / max-tb:(<768)
- *      (Tailwind 기본 md:/lg:가 아니라 아래 @theme의 --breakpoint-* 이름을 그대로 씀)
+ *    - 브레이크포인트: mb:(Desktop ≥1280) / tb:(Tablet ≥768) / max-tb:(Mobile <768)
  * ============================================================
  */
 
@@ -41,120 +45,163 @@
 
 /*
  * ════════════════════════════════════════════════════════════
- *  1. FLUID TYPOGRAPHY — clamp() 기반
+ *  1. TYPOGRAPHY — Figma 고정값 3단계 + transition
  *
- *  공식: clamp(Mobile값, calc(intercept + slope*vw), Desktop값)
- *  앵커: Desktop 1280px 뷰포트 / Mobile 390px 뷰포트
- *        (Figma Layout 컬렉션의 content-min-width와 동일 — 이롬넷과 동일 공식)
+ *  방식: Figma Desktop / Tablet / Mobile 고정값을 그대로 사용.
+ *        clamp() 없음 — Figma 원본값과 1:1 일치.
+ *        브레이크포인트 전환 시 font-size가 0.25s ease로 자연스럽게 변함.
  *
- *  이전엔 3단계(Mobile/Tablet/Desktop) 스텝 값을 미디어쿼리로 전환했으나,
- *  실제 프로덕션(이롬넷)은 뷰포트에 따라 연속적으로 스케일되는 clamp() 방식을
- *  쓰고 있어 이 구조로 전환함 — 미디어쿼리 오버라이드가 필요 없어짐.
+ *  브레이크포인트:
+ *    Desktop  ≥ 1280px  (default)
+ *    Tablet   768~1279px
+ *    Mobile   < 768px
  *
- *  ✓ = 이롬넷 실제 코드(src/index.css --fs-*)와 정확히 대조 검증됨
- *  ⚠ = 이번 화면에서 실측되지 않은 값. 기존 추정치로 slope/intercept만 계산 —
- *      임의로 새 숫자를 만들지 않았음.
- *
- *  line-height(unitless 배수)·letter-spacing(rem 고정값)은 브레이크포인트와
- *  무관하게 유지된다 — font-size가 clamp()로 스케일되면 unitless line-height는
- *  자동으로 같이 스케일되고, letter-spacing은 애초에 로컬 font-size와 무관한
- *  루트 기준(rem) 값이라 고정이 맞다.
+ *  line-height(unitless)·letter-spacing(rem)은 모든 뷰포트에서 동일.
  * ════════════════════════════════════════════════════════════ */
+
+/* ─── Desktop 기본값 ─────────────────────────────────────── */
 :root {
-  /* Display Hero — 40→120px (✓ 이롬넷 --fs-120-40과 정확히 일치) */
-  --font-size-display-hero: clamp(40px, calc(4.944px + 8.989vw), 120px);
-  --font-lh-display-hero:   1.15;      /* ⚠ 추정 — Display 1과 동일 패턴 가정 */
-  --font-ls-display-hero:   -0.125rem; /* ⚠ 추정 */
+  /* Display Hero: Mobile 40px / Tablet 74px / Desktop 120px */
+  --font-size-display-hero: 120px;
+  --font-lh-display-hero:   1.15;
+  --font-ls-display-hero:   -0.125rem;
 
-  /* Display Counter — 60→180px (✓ 이롬넷 --fs-180-60과 정확히 일치) */
-  --font-size-display-counter: clamp(60px, calc(7.416px + 13.483vw), 180px);
-  --font-lh-display-counter:   1.1;  /* ⚠ 추정 — 카운터류는 보통 타이트한 라인하이트 */
-  --font-ls-display-counter:   0rem; /* ⚠ 추정 */
+  /* Display Counter: Mobile 60px / Tablet 111px / Desktop 180px */
+  --font-size-display-counter: 180px;
+  --font-lh-display-counter:   1.1;
+  --font-ls-display-counter:   0rem;
 
-  /* Display 1 — 28→60px (✓ 이롬넷 --fs-60-28과 정확히 일치) */
-  --font-size-display-1: clamp(28px, calc(13.978px + 3.596vw), 60px);
+  /* Display 1: Mobile 28px / Tablet 42px / Desktop 60px */
+  --font-size-display-1: 60px;
   --font-lh-display-1:   1.15;
   --font-ls-display-1:   -0.125rem;
 
-  /* Display 2 — 22→44px (✓ 이롬넷 --fs-44-22와 정확히 일치) */
-  --font-size-display-2: clamp(22px, calc(12.36px + 2.472vw), 44px);
+  /* Display 2: Mobile 22px / Tablet 31px / Desktop 44px */
+  --font-size-display-2: 44px;
   --font-lh-display-2:   1.295;
   --font-ls-display-2:   -0.125rem;
 
-  /* Display 3 — 24→36px (✓ 이롬넷 --fs-36-24와 정확히 일치, 크기 자체는 ⚠ 추정치) */
-  --font-size-display-3: clamp(24px, calc(18.742px + 1.348vw), 36px);
+  /* Display 3: Mobile 24px / Tablet 29px / Desktop 36px */
+  --font-size-display-3: 36px;
   --font-lh-display-3:   1.333;
   --font-ls-display-3:   -0.125rem;
 
-  /* Title 1 — 22→32px (✓ 이롬넷 --fs-32-22와 정확히 일치, 크기 자체는 ⚠ 추정치) */
-  --font-size-title-1: clamp(22px, calc(17.618px + 1.124vw), 32px);
+  /* Title 1: Mobile 22px / Tablet 26px / Desktop 32px */
+  --font-size-title-1: 32px;
   --font-lh-title-1:   1.375;
   --font-ls-title-1:   -0.125rem;
 
-  /* Title 2 — 16→30px (✓ 이롬넷 --fs-30-16과 정확히 일치 — Mobile 16px 확정) */
-  --font-size-title-2: clamp(16px, calc(9.865px + 1.573vw), 30px);
+  /* Title 2: Mobile 16px / Tablet 22px / Desktop 30px */
+  --font-size-title-2: 30px;
   --font-lh-title-2:   1.367;
   --font-ls-title-2:   -0.125rem;
 
-  /* Title 3 — 18→24px (✓ 이롬넷 --fs-24-18과 정확히 일치, 양끝 값 모두 실측) */
-  --font-size-title-3: clamp(18px, calc(15.371px + 0.674vw), 24px);
+  /* Title 3: Mobile 18px / Tablet 21px / Desktop 24px */
+  --font-size-title-3: 24px;
   --font-lh-title-3:   1.333;
   --font-ls-title-3:   -0.14325rem;
 
-  /* Heading 1 — 17→22px (⚠ 추정, 이롬넷 대조 자료 없음) */
-  --font-size-heading-1: clamp(17px, calc(14.809px + 0.562vw), 22px);
+  /* Heading 1: Mobile 17px / Tablet 19px / Desktop 22px */
+  --font-size-heading-1: 22px;
   --font-lh-heading-1:   1.364;
   --font-ls-heading-1:   -0.075rem;
 
-  /* Heading 2 — 15→20px (✓ 이롬넷 --fs-20-15와 정확히 일치 — Mobile 15px 확정) */
-  --font-size-heading-2: clamp(15px, calc(12.809px + 0.562vw), 20px);
+  /* Heading 2: Mobile 15px / Tablet 17px / Desktop 20px */
+  --font-size-heading-2: 20px;
   --font-lh-heading-2:   1.4;
   --font-ls-heading-2:   -0.075rem;
 
-  /* Headline 1 — 15→18px (✓ 이롬넷 --fs-18-15와 정확히 일치, 양끝 값 모두 실측) */
-  --font-size-headline-1: clamp(15px, calc(13.685px + 0.337vw), 18px);
+  /* Headline 1: Mobile 15px / Tablet 16px / Desktop 18px */
+  --font-size-headline-1: 18px;
   --font-lh-headline-1:   1.444;
   --font-ls-headline-1:   0rem;
 
-  /* Headline 2 — 14→17px (✓ 이롬넷 --fs-17-14와 정확히 일치 — Mobile 14px 확정) */
-  --font-size-headline-2: clamp(14px, calc(12.685px + 0.337vw), 17px);
+  /* Headline 2: Mobile 14px / Tablet 15px / Desktop 17px */
+  --font-size-headline-2: 17px;
   --font-lh-headline-2:   1.412;
   --font-ls-headline-2:   0rem;
 
-  /* ─── Body 이하: Caption만 완전 고정, 나머지는 미세하게 반응형 ─── */
-
-  /* Body 1 — 15→16px (✓ 이롬넷 --fs-16-15와 정확히 일치, 양끝 값 모두 실측) */
-  --font-size-body-1:       clamp(15px, calc(14.562px + 0.112vw), 16px);
+  /* Body 1: Mobile 15px / Desktop 16px */
+  --font-size-body-1:       16px;
   --font-lh-body-1:         1.5;
   --font-lh-body-1-reading: 1.625;
   --font-ls-body-1:         0rem;
 
-  /* Body 2 — 14→15px (양끝 값 실측, 이롬넷 대조 var 못 찾음 — 계산은 동일 공식) */
-  --font-size-body-2:       clamp(14px, calc(13.562px + 0.112vw), 15px);
+  /* Body 2: Mobile 14px / Desktop 15px */
+  --font-size-body-2:       15px;
   --font-lh-body-2:         1.467;
   --font-lh-body-2-reading: 1.6;
   --font-ls-body-2:         0rem;
 
-  /* Label 1 — 13→14px (양끝 값 실측, 이롬넷 대조 var 못 찾음 — 계산은 동일 공식) */
-  --font-size-label-1:       clamp(13px, calc(12.562px + 0.112vw), 14px);
+  /* Label 1: Mobile 13px / Desktop 14px */
+  --font-size-label-1:       14px;
   --font-lh-label-1:         1.429;
   --font-lh-label-1-reading: 1.571;
   --font-ls-label-1:         0rem;
 
-  /* Label 2 — 12→13px (⚠ 추정) */
-  --font-size-label-2: clamp(12px, calc(11.562px + 0.112vw), 13px);
+  /* Label 2: Mobile 12px / Desktop 13px */
+  --font-size-label-2: 13px;
   --font-lh-label-2:   1.385;
   --font-ls-label-2:   0rem;
 
-  /* Caption 1 — 12px 고정 (실측: Desktop/Tablet/Mobile 전부 12 — 유일하게 완전 고정, clamp 불필요) */
+  /* Caption — 전 뷰포트 고정 */
   --font-size-caption-1: 12px;
   --font-lh-caption-1:   1.333;
   --font-ls-caption-1:   0rem;
 
-  /* Caption 2 — 11px 고정 (⚠ 추정, Caption 1과 같은 고정 패턴으로 유지) */
   --font-size-caption-2: 11px;
   --font-lh-caption-2:   1.273;
   --font-ls-caption-2:   0rem;
+}
+
+/* ─── Tablet (768~1279px) ────────────────────────────────── */
+@media (width < 1280px) {
+  :root {
+    --font-size-display-hero:    74px;
+    --font-size-display-counter: 111px;
+    --font-size-display-1:       42px;
+    --font-size-display-2:       31px;
+    --font-size-display-3:       29px;
+    --font-size-title-1:         26px;
+    --font-size-title-2:         22px;
+    --font-size-title-3:         21px;
+    --font-size-heading-1:       19px;
+    --font-size-heading-2:       17px;
+    --font-size-headline-1:      16px;
+    --font-size-headline-2:      15px;
+    --font-size-body-1:          15px;
+    --font-size-body-2:          14px;
+    --font-size-label-1:         13px;
+    --font-size-label-2:         12px;
+  }
+}
+
+/* ─── Mobile (< 768px) ───────────────────────────────────── */
+@media (width < 768px) {
+  :root {
+    --font-size-display-hero:    40px;
+    --font-size-display-counter: 60px;
+    --font-size-display-1:       28px;
+    --font-size-display-2:       22px;
+    --font-size-display-3:       24px;
+    --font-size-title-1:         22px;
+    --font-size-title-2:         16px;
+    --font-size-title-3:         18px;
+    --font-size-heading-1:       17px;
+    --font-size-heading-2:       15px;
+    --font-size-headline-1:      15px;
+    --font-size-headline-2:      14px;
+    --font-size-body-1:          15px;
+    --font-size-body-2:          14px;
+    --font-size-label-1:         13px;
+    --font-size-label-2:         12px;
+  }
+}
+
+/* ─── 브레이크포인트 전환 시 스르륵 변환 ─────────────────── */
+h1, h2, h3, h4, h5, h6,
+p, span, a, li, button, label, caption {
+  transition: font-size 0.25s ease;
 }
 
 /*
