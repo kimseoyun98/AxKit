@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-seed data-seed-color-scheme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>axpublish — Documentation</title>
+  <link rel="stylesheet" href="seed.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -473,6 +474,34 @@
     .code-collapse.open .toggle-icon { transform: rotate(180deg); }
     .code-collapse pre { display: none; }
     .code-collapse.open pre { display: block; }
+
+    /* ── Seed 컴포넌트 프리뷰 ── */
+    .sp-demo-row { display:flex; flex-wrap:wrap; gap:16px; align-items:flex-end; }
+    .sp-demo-group { display:flex; flex-direction:column; align-items:flex-start; gap:6px; }
+    .sp-label { font-size:11px; font-weight:600; color:#888; font-family:monospace; }
+    .sp-section-label { font-size:12px; font-weight:700; color:#555; text-transform:uppercase; letter-spacing:.08em; margin-bottom:12px; margin-top:4px; }
+    .sp-color-grid { display:flex; flex-wrap:wrap; gap:12px; }
+    .sp-swatch { display:flex; flex-direction:column; gap:4px; min-width:120px; }
+    .sw-box { width:80px; height:40px; border-radius:8px; background:var(--sw); }
+    .sw-name { font-family:monospace; font-size:10px; color:#333; }
+    .sw-desc { font-size:11px; color:#888; }
+    .sp-spacing-grid { display:flex; flex-direction:column; gap:10px; }
+    .sp-spacing-item { display:flex; align-items:center; gap:12px; }
+    .sp-spacing-bar { height:20px; border-radius:4px; background:var(--seed-color-bg-brand-solid,#0066FF); min-width:2px; }
+    .sp-spacing-item code { font-size:12px; min-width:50px; }
+    .sp-spacing-item span { font-size:12px; color:#888; }
+    /* Seed 버튼 커스텀 브랜드 적용 */
+    [data-seed] {
+      --seed-color-palette-carrot-100: #EBF2FF;
+      --seed-color-palette-carrot-200: #C7DCFF;
+      --seed-color-palette-carrot-300: #99BFFF;
+      --seed-color-palette-carrot-400: #5C99FF;
+      --seed-color-palette-carrot-500: #3385FF;
+      --seed-color-palette-carrot-600: #0066FF;
+      --seed-color-palette-carrot-700: #005EEB;
+      --seed-color-palette-carrot-800: #0054D1;
+      --seed-color-palette-carrot-900: #004AB8;
+    }
   </style>
 </head>
 <body>
@@ -486,6 +515,7 @@
     <div class="sidebar-section">Overview</div>
   <a href="#overview" class="sidebar-link active">개요 &amp; 왜 만들었나</a>
   <a href="#team" class="sidebar-link">퍼블리싱 팀</a>
+  <a href="#seed-preview" class="sidebar-link">Seed 컴포넌트</a>
   <a href="#journey" class="sidebar-link">사용자 여정 예시</a>
 
   <div class="sidebar-section">Design System</div>
@@ -505,7 +535,7 @@
 
   <div class="sidebar-section">시작하기</div>
   <a href="#start" class="sidebar-link">GitHub 클론</a>
-  <a href="#start" class="sidebar-link" style="font-family:monospace; font-size:11px; padding-left:28px;">v1.8.0</a>
+  <a href="#start" class="sidebar-link" style="font-family:monospace; font-size:11px; padding-left:28px;">v2.0.0</a>
 </aside>
 
 <main>
@@ -622,6 +652,181 @@
       </div>
     </section>
 
+
+  
+
+  <!-- SEED COMPONENTS PREVIEW -->
+  <section id="seed-preview">
+    <h2>Seed 컴포넌트 미리보기</h2>
+    <p>실제 <code>@seed-design/css</code>가 적용된 컴포넌트입니다. 이 컴포넌트들을 BUILDER가 Figma 디자인 스펙으로 커스터마이징합니다.</p>
+
+    <div class="tab-group" id="seed-tabs">
+      <div class="tab-list">
+        <button class="tab-btn active" data-tab="sp-buttons">Button</button>
+        <button class="tab-btn" data-tab="sp-colors">Color Tokens</button>
+        <button class="tab-btn" data-tab="sp-typo">Typography</button>
+        <button class="tab-btn" data-tab="sp-spacing">Spacing</button>
+      </div>
+
+      <!-- ── Button ── -->
+      <div class="tab-panel active" data-panel="sp-buttons">
+        <div class="sp-demo-row">
+          <div class="sp-demo-group">
+            <div class="sp-label">brandSolid</div>
+            <button class="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">
+              <span>Brand Solid</span>
+            </button>
+          </div>
+          <div class="sp-demo-group">
+            <div class="sp-label">brandOutline</div>
+            <button class="seed-action-button seed-action-button--variant_brandOutline seed-action-button--size_medium seed-action-button--size_medium-layout_withText">
+              <span>Brand Outline</span>
+            </button>
+          </div>
+          <div class="sp-demo-group">
+            <div class="sp-label">neutralSolid</div>
+            <button class="seed-action-button seed-action-button--variant_neutralSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">
+              <span>Neutral Solid</span>
+            </button>
+          </div>
+          <div class="sp-demo-group">
+            <div class="sp-label">neutralWeak</div>
+            <button class="seed-action-button seed-action-button--variant_neutralWeak seed-action-button--size_medium seed-action-button--size_medium-layout_withText">
+              <span>Neutral Weak</span>
+            </button>
+          </div>
+          <div class="sp-demo-group">
+            <div class="sp-label">neutralOutline</div>
+            <button class="seed-action-button seed-action-button--variant_neutralOutline seed-action-button--size_medium seed-action-button--size_medium-layout_withText">
+              <span>Neutral Outline</span>
+            </button>
+          </div>
+          <div class="sp-demo-group">
+            <div class="sp-label">criticalSolid</div>
+            <button class="seed-action-button seed-action-button--variant_criticalSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">
+              <span>Critical</span>
+            </button>
+          </div>
+          <div class="sp-demo-group">
+            <div class="sp-label">Disabled</div>
+            <button class="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText" disabled>
+              <span>Disabled</span>
+            </button>
+          </div>
+        </div>
+        <div class="sp-demo-row" style="margin-top:20px">
+          <div class="sp-demo-group">
+            <div class="sp-label">xsmall</div>
+            <button class="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_xsmall seed-action-button--size_xsmall-layout_withText"><span>XSmall</span></button>
+          </div>
+          <div class="sp-demo-group">
+            <div class="sp-label">small</div>
+            <button class="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_small seed-action-button--size_small-layout_withText"><span>Small</span></button>
+          </div>
+          <div class="sp-demo-group">
+            <div class="sp-label">medium</div>
+            <button class="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText"><span>Medium</span></button>
+          </div>
+          <div class="sp-demo-group">
+            <div class="sp-label">large</div>
+            <button class="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_large seed-action-button--size_large-layout_withText"><span>Large</span></button>
+          </div>
+        </div>
+        <div class="callout info" style="margin-top:20px">
+          <span class="callout-icon">💡</span>
+          <div class="callout-body">
+            <strong>brandSolid 배경색</strong>은 <code>--seed-color-bg-brand-solid</code> → <code>--seed-color-palette-carrot-600</code>을 참조합니다.
+            <code>seed-tokens.css</code>에서 carrot 팔레트를 override하면 자동으로 내 브랜드 컬러로 교체됩니다.
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Color Tokens ── -->
+      <div class="tab-panel" data-panel="sp-colors">
+        <div class="sp-section-label">Foreground (텍스트/아이콘)</div>
+        <div class="sp-color-grid">
+          <div class="sp-swatch" style="--sw:var(--seed-color-fg-neutral)"><div class="sw-box"></div><div class="sw-name">fg-neutral</div><div class="sw-desc">기본 텍스트</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-fg-neutral-muted)"><div class="sw-box"></div><div class="sw-name">fg-neutral-muted</div><div class="sw-desc">보조 텍스트</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-fg-neutral-subtle)"><div class="sw-box"></div><div class="sw-name">fg-neutral-subtle</div><div class="sw-desc">비활성 텍스트</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-fg-brand)"><div class="sw-box"></div><div class="sw-name">fg-brand</div><div class="sw-desc">브랜드 텍스트</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-fg-disabled)"><div class="sw-box"></div><div class="sw-name">fg-disabled</div><div class="sw-desc">비활성화</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-fg-critical)"><div class="sw-box"></div><div class="sw-name">fg-critical</div><div class="sw-desc">에러/삭제</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-fg-positive)"><div class="sw-box"></div><div class="sw-name">fg-positive</div><div class="sw-desc">성공/완료</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-fg-warning)"><div class="sw-box"></div><div class="sw-name">fg-warning</div><div class="sw-desc">경고</div></div>
+        </div>
+        <div class="sp-section-label" style="margin-top:20px">Background (배경)</div>
+        <div class="sp-color-grid">
+          <div class="sp-swatch" style="--sw:var(--seed-color-bg-layer-default)"><div class="sw-box" style="border:1px solid #eee"></div><div class="sw-name">bg-layer-default</div><div class="sw-desc">기본 배경</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-bg-layer-fill)"><div class="sw-box"></div><div class="sw-name">bg-layer-fill</div><div class="sw-desc">섹션 배경</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-bg-layer-floating)"><div class="sw-box" style="border:1px solid #eee"></div><div class="sw-name">bg-layer-floating</div><div class="sw-desc">카드/모달</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-bg-brand-solid)"><div class="sw-box"></div><div class="sw-name">bg-brand-solid</div><div class="sw-desc">Primary CTA</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-bg-brand-weak)"><div class="sw-box"></div><div class="sw-name">bg-brand-weak</div><div class="sw-desc">Brand 연한 배경</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-bg-disabled)"><div class="sw-box"></div><div class="sw-name">bg-disabled</div><div class="sw-desc">비활성화 배경</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-bg-critical-solid)"><div class="sw-box"></div><div class="sw-name">bg-critical-solid</div><div class="sw-desc">에러 배경</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-bg-overlay)"><div class="sw-box"></div><div class="sw-name">bg-overlay</div><div class="sw-desc">Dimmer</div></div>
+        </div>
+        <div class="sp-section-label" style="margin-top:20px">Stroke (테두리)</div>
+        <div class="sp-color-grid">
+          <div class="sp-swatch" style="--sw:var(--seed-color-stroke-neutral-subtle)"><div class="sw-box"></div><div class="sw-name">stroke-neutral-subtle</div><div class="sw-desc">구분선</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-stroke-neutral-solid)"><div class="sw-box"></div><div class="sw-name">stroke-neutral-solid</div><div class="sw-desc">강한 테두리</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-stroke-brand-solid)"><div class="sw-box"></div><div class="sw-name">stroke-brand-solid</div><div class="sw-desc">브랜드 테두리</div></div>
+          <div class="sp-swatch" style="--sw:var(--seed-color-stroke-critical-solid)"><div class="sw-box"></div><div class="sw-name">stroke-critical-solid</div><div class="sw-desc">에러 테두리</div></div>
+        </div>
+      </div>
+
+      <!-- ── Typography ── -->
+      <div class="tab-panel" data-panel="sp-typo">
+        <p style="font-size:13px;color:#888;margin-bottom:16px">Seed의 <code>clamp()</code> 기반 자동 스케일. 브레이크포인트 없이 화면 크기에 따라 자동 조절됩니다.</p>
+        <table>
+          <tr><th>Token</th><th>Static</th><th>사용 예</th><th>axpublish 대응</th></tr>
+          <tr><td><code>--seed-font-size-t2</code></td><td>12px</td><td>캡션, 태그</td><td>caption-1</td></tr>
+          <tr><td><code>--seed-font-size-t3</code></td><td>13px</td><td>보조 레이블</td><td>label-2</td></tr>
+          <tr><td><code>--seed-font-size-t4</code></td><td>14px</td><td>레이블, 버튼</td><td>label-1</td></tr>
+          <tr><td><code>--seed-font-size-t5</code></td><td>16px</td><td>본문</td><td>body-1</td></tr>
+          <tr><td><code>--seed-font-size-t6</code></td><td>18px</td><td>소제목</td><td>body-1-lg</td></tr>
+          <tr><td><code>--seed-font-size-t8</code></td><td>22px</td><td>헤딩</td><td>heading-1</td></tr>
+          <tr><td><code>--seed-font-size-t9</code></td><td>24px</td><td>소타이틀</td><td>heading-2</td></tr>
+          <tr><td><code>--seed-font-size-t11</code></td><td>28px</td><td>타이틀</td><td>title-2</td></tr>
+          <tr><td><code>--seed-font-size-t12</code></td><td>32px</td><td>큰 타이틀</td><td>title-1</td></tr>
+          <tr><td><code>--seed-font-size-t13</code></td><td>40px</td><td>Display</td><td>display-2</td></tr>
+          <tr><td><code>--seed-font-size-t14</code></td><td>48px</td><td>Large Display</td><td>display-1 (56px)</td></tr>
+        </table>
+        <div style="margin-top:24px;padding:20px;background:var(--seed-color-bg-layer-fill);border-radius:12px">
+          <p style="font-size:var(--seed-font-size-t12);font-weight:700;margin:0 0 8px;line-height:var(--seed-line-height-t12);color:var(--seed-color-fg-neutral)">t12 — 큰 타이틀 32px</p>
+          <p style="font-size:var(--seed-font-size-t8);font-weight:600;margin:0 0 8px;line-height:var(--seed-line-height-t8);color:var(--seed-color-fg-neutral)">t8 — 헤딩 22px</p>
+          <p style="font-size:var(--seed-font-size-t5);margin:0 0 8px;line-height:var(--seed-line-height-t5);color:var(--seed-color-fg-neutral)">t5 — 본문 16px. 이 텍스트는 clamp()로 화면 크기에 따라 자동 조절됩니다.</p>
+          <p style="font-size:var(--seed-font-size-t3);margin:0;line-height:var(--seed-line-height-t3);color:var(--seed-color-fg-neutral-muted)">t3 — 캡션 13px. 보조 설명 텍스트입니다.</p>
+        </div>
+      </div>
+
+      <!-- ── Spacing ── -->
+      <div class="tab-panel" data-panel="sp-spacing">
+        <p style="font-size:13px;color:#888;margin-bottom:16px">4px 배수 기반. <code>--seed-dimension-x{n}</code> = n × 4px</p>
+        <div class="sp-spacing-grid">
+          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:2px"></div><code>x0_5</code><span>2px</span></div>
+          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:4px"></div><code>x1</code><span>4px</span></div>
+          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:8px"></div><code>x2</code><span>8px</span></div>
+          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:12px"></div><code>x3</code><span>12px</span></div>
+          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:16px"></div><code>x4</code><span>16px</span></div>
+          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:20px"></div><code>x5</code><span>20px</span></div>
+          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:24px"></div><code>x6</code><span>24px</span></div>
+          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:32px"></div><code>x8</code><span>32px</span></div>
+          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:48px"></div><code>x12</code><span>48px</span></div>
+          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:56px"></div><code>x14</code><span>56px</span></div>
+          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:64px"></div><code>x16</code><span>64px</span></div>
+        </div>
+        <table style="margin-top:20px">
+          <tr><th>용도</th><th>토큰</th><th>값</th></tr>
+          <tr><td>컴포넌트 내부 기본 간격</td><td><code>--seed-dimension-x3</code></td><td>12px</td></tr>
+          <tr><td>버튼 높이 (medium)</td><td><code>--seed-dimension-x12</code></td><td>48px</td></tr>
+          <tr><td>버튼 높이 (large)</td><td><code>--seed-dimension-x14</code></td><td>56px</td></tr>
+          <tr><td>모바일 좌우 패딩</td><td><code>--seed-dimension-x5</code></td><td>20px</td></tr>
+          <tr><td>탭렛 좌우 패딩</td><td><code>--seed-dimension-x12</code></td><td>48px</td></tr>
+          <tr><td>데스크탑 좌우 패딩</td><td><code>--seed-dimension-x16</code></td><td>64px</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
 
   <section id="journey">
       <h2>사용자 여정 예시</h2>
@@ -1758,15 +1963,15 @@
         </div>
   
         <div class="github-step">
-          <div class="github-step-title"><span class="github-step-num">3</span>브랜드 컬러 적용</div>
+          <div class="github-step-title"><span class="github-step-num">4</span>브랜드 컬러 적용</div>
           <div class="github-cmd">
-            <span>node generate-theme.js --primary "#0066FF" --output ./theme.css</span>
-            <button class="github-cmd-copy" onclick="navigator.clipboard.writeText('node generate-theme.js --primary "#0066FF" --output ./theme.css');this.textContent='✓';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+            <span>node generate-seed-brand.js --primary "#0066FF" --output ./seed-tokens.css</span>
+            <button class="github-cmd-copy" onclick="navigator.clipboard.writeText('node generate-seed-brand.js --primary "#0066FF" --output ./seed-tokens.css');this.textContent='✓';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
           </div>
         </div>
   
         <div class="github-step">
-          <div class="github-step-title"><span class="github-step-num">4</span>AI에 파일 첨부 후 시작</div>
+          <div class="github-step-title"><span class="github-step-num">5</span>AI에 파일 첨부 후 시작</div>
           <p style="font-size:13px; color:#666">Claude / ChatGPT / Gemini에 <code>axpublish-orchestrator.md</code> 파일을 첨부하고, Figma 파일 URL과 함께 <strong>"SCOUT 시작해줘"</strong>라고 입력하면 파이프라인이 시작됩니다.</p>
         </div>
       </div>
