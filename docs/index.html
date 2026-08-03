@@ -485,6 +485,92 @@
       border-radius: 8px !important;
     }
 
+  
+    /* ── TAB & PANEL BLOCK LAYOUT BUG FIX (가로 정렬 깨짐 완전 방지) ── */
+    .tab-group {
+      display: block !important;
+      width: 100% !important;
+      clear: both !important;
+      margin-bottom: 24px !important;
+    }
+    .tab-list {
+      display: flex !important;
+      gap: 8px !important;
+      margin-bottom: 16px !important;
+      overflow-x: auto !important;
+      padding-bottom: 4px !important;
+      width: 100% !important;
+    }
+    .tab-panel {
+      display: block !important;
+      width: 100% !important;
+      clear: both !important;
+      box-sizing: border-box !important;
+    }
+    .tab-panel:not(.active), .tab-panel[hidden] {
+      display: none !important;
+    }
+
+    /* ── TABLE TOKEN TEXT WRAPPING FIX ── */
+    table {
+      width: 100% !important;
+      border-collapse: separate !important;
+      border-spacing: 0 !important;
+      border: 1px solid var(--m3-outline-variant) !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      margin: 16px 0 !important;
+      font-size: 13.5px !important;
+    }
+    table th, table td {
+      white-space: nowrap !important;
+      word-break: keep-all !important;
+      padding: 12px 16px !important;
+      border-bottom: 1px solid var(--m3-outline-variant) !important;
+      text-align: left !important;
+    }
+    table code {
+      white-space: nowrap !important;
+      font-family: 'JetBrains Mono', monospace !important;
+      font-size: 12.5px !important;
+    }
+
+    /* ── ACCORDION BLOCK FIX ── */
+    .accordion {
+      display: block !important;
+      width: 100% !important;
+      border: 1px solid var(--m3-outline-variant) !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+      margin-bottom: 12px !important;
+      background: var(--m3-surface-container-low) !important;
+    }
+    .acc-header {
+      width: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      padding: 16px 20px !important;
+      background: var(--m3-surface-container) !important;
+      border: none !important;
+      font-size: 15px !important;
+      font-weight: 700 !important;
+      color: var(--m3-on-surface) !important;
+      cursor: pointer !important;
+      text-align: left !important;
+    }
+    .acc-body {
+      display: block !important;
+      width: 100% !important;
+      padding: 20px !important;
+      border-top: 1px solid var(--m3-outline-variant) !important;
+      background: var(--m3-surface) !important;
+      box-sizing: border-box !important;
+    }
+    .acc-body[hidden], .acc-body:not(.active) {
+      display: none !important;
+    }
+
   </style>
 </head>
 <body>
@@ -2061,6 +2147,62 @@ axpublish / Seed (Modes: Light / Dark)
           }
         }
       }
+    }
+  });
+
+  
+  // ── data-tab / data-panel 탭 클릭 통합 이벤트 ──
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.tab-btn');
+    if (!btn) return;
+    
+    const tabList = btn.closest('.tab-list') || btn.closest('.tab-group') || btn.parentElement;
+    const targetTab = btn.getAttribute('data-tab');
+    if (!targetTab) return;
+    
+    if (tabList) {
+      tabList.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    }
+    btn.classList.add('active');
+    
+    const section = btn.closest('section') || document;
+    const panels = section.querySelectorAll('.tab-panel');
+    panels.forEach(p => {
+      const panelName = p.getAttribute('data-panel') || p.id;
+      if (panelName === targetTab) {
+        p.classList.add('active');
+        p.hidden = false;
+        p.removeAttribute('hidden');
+        p.style.display = 'block';
+      } else {
+        p.classList.remove('active');
+        p.hidden = true;
+        p.setAttribute('hidden', '');
+        p.style.display = 'none';
+      }
+    });
+  });
+
+  // ── 아코디언 통합 클릭 이벤트 ──
+  document.addEventListener('click', function(e) {
+    const accBtn = e.target.closest('.acc-header') || e.target.closest('.acc-btn');
+    if (!accBtn) return;
+    
+    const accItem = accBtn.closest('.accordion') || accBtn.parentElement;
+    const accBody = accBtn.nextElementSibling || (accItem ? accItem.querySelector('.acc-body') : null);
+    if (!accBody) return;
+    
+    const isHidden = accBody.hasAttribute('hidden') || accBody.hidden || accBody.style.display === 'none';
+    if (isHidden) {
+      accBody.classList.add('active');
+      accBody.hidden = false;
+      accBody.removeAttribute('hidden');
+      accBody.style.display = 'block';
+    } else {
+      accBody.classList.remove('active');
+      accBody.hidden = true;
+      accBody.setAttribute('hidden', '');
+      accBody.style.display = 'none';
     }
   });
 
