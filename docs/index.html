@@ -923,62 +923,242 @@ node generate-theme.js --primary <span class="cs">"#0066FF"</span> --output ./sr
   <!-- DESIGN SYSTEM TYPOGRAPHY -->
   <section id="ds-typography">
     <h2>타이포그래피 스케일</h2>
-    <p>16레벨 타입 시스템. Figma Desktop/Tablet/Mobile 고정값 3단계, 브레이크포인트 전환 시 <code>transition: font-size 0.25s ease</code>로 자연스럽게 변합니다.</p>
+    <p>19레벨 × 3단계(Desktop/Tablet/Mobile) 고정값 시스템. 브레이크포인트 전환 시 <code>transition: font-size 0.5s ease</code>로 자연스럽게 변합니다. letter-spacing은 <code>em</code> 단위로 폰트 크기에 비례합니다.</p>
 
+    <div class="ds-section-label">전체 스케일 — 한눈에 보기</div>
+
+    <table style="font-size:12px; table-layout:fixed;">
+      <colgroup>
+        <col style="width:130px">
+        <col style="width:auto">
+        <col style="width:80px">
+        <col style="width:72px">
+        <col style="width:72px">
+        <col style="width:64px">
+        <col style="width:80px">
+      </colgroup>
+      <tr>
+        <th>토큰</th>
+        <th>용도</th>
+        <th style="text-align:center">Desktop</th>
+        <th style="text-align:center">Tablet</th>
+        <th style="text-align:center">Mobile</th>
+        <th style="text-align:center">LH</th>
+        <th style="text-align:center">LS</th>
+      </tr>
+      <tr>
+        <td><code>display-hero</code></td>
+        <td>랜딩 초대형 카피, 숫자 카운터</td>
+        <td style="text-align:center;font-weight:700">120px</td>
+        <td style="text-align:center;color:#888">74px</td>
+        <td style="text-align:center;color:#888">40px</td>
+        <td style="text-align:center">1.15</td>
+        <td style="text-align:center;color:#3B82F6">−0.032em</td>
+      </tr>
+      <tr>
+        <td><code>display-1</code></td>
+        <td>히어로 메인 카피</td>
+        <td style="text-align:center;font-weight:700">56px</td>
+        <td style="text-align:center;color:#888">42px</td>
+        <td style="text-align:center;color:#888">28px</td>
+        <td style="text-align:center">1.286</td>
+        <td style="text-align:center;color:#3B82F6">−0.032em</td>
+      </tr>
+      <tr>
+        <td><code>display-2</code></td>
+        <td>서브 히어로, 대형 섹션 슬로건</td>
+        <td style="text-align:center;font-weight:700">40px</td>
+        <td style="text-align:center;color:#888">31px</td>
+        <td style="text-align:center;color:#888">22px</td>
+        <td style="text-align:center">1.3</td>
+        <td style="text-align:center;color:#3B82F6">−0.028em</td>
+      </tr>
+      <tr>
+        <td><code>display-3</code></td>
+        <td>섹션 리드 문구, Title보다 강조 필요 시</td>
+        <td style="text-align:center;font-weight:700">36px</td>
+        <td style="text-align:center;color:#888">29px</td>
+        <td style="text-align:center;color:#888">24px</td>
+        <td style="text-align:center">1.333</td>
+        <td style="text-align:center;color:#3B82F6">−0.027em</td>
+      </tr>
+      <tr style="background:rgba(0,102,255,0.03)">
+        <td><code>title-1</code></td>
+        <td>페이지 타이틀, 주요 섹션 헤더</td>
+        <td style="text-align:center;font-weight:700">32px</td>
+        <td style="text-align:center;color:#888">26px</td>
+        <td style="text-align:center;color:#888">22px</td>
+        <td style="text-align:center">1.375</td>
+        <td style="text-align:center;color:#3B82F6">−0.025em</td>
+      </tr>
+      <tr style="background:rgba(0,102,255,0.03)">
+        <td><code>title-2</code></td>
+        <td>카드 제목, 모달 헤더</td>
+        <td style="text-align:center;font-weight:700">28px</td>
+        <td style="text-align:center;color:#888">22px</td>
+        <td style="text-align:center;color:#888">16px</td>
+        <td style="text-align:center">1.358</td>
+        <td style="text-align:center;color:#3B82F6">−0.024em</td>
+      </tr>
+      <tr style="background:rgba(0,102,255,0.03)">
+        <td><code>title-3</code></td>
+        <td>서브섹션, 리스트 그룹 헤더</td>
+        <td style="text-align:center;font-weight:700">24px</td>
+        <td style="text-align:center;color:#888">21px</td>
+        <td style="text-align:center;color:#888">18px</td>
+        <td style="text-align:center">1.333</td>
+        <td style="text-align:center;color:#3B82F6">−0.023em</td>
+      </tr>
+      <tr>
+        <td><code>heading-1</code></td>
+        <td>섹션 소제목 (큰 화면)</td>
+        <td style="text-align:center;font-weight:700">22px</td>
+        <td style="text-align:center;color:#888">19px</td>
+        <td style="text-align:center;color:#888">17px</td>
+        <td style="text-align:center">1.364</td>
+        <td style="text-align:center;color:#3B82F6">−0.019em</td>
+      </tr>
+      <tr>
+        <td><code>heading-2</code></td>
+        <td>섹션 소제목 (작은 화면)</td>
+        <td style="text-align:center;font-weight:700">20px</td>
+        <td style="text-align:center;color:#888">17px</td>
+        <td style="text-align:center;color:#888">15px</td>
+        <td style="text-align:center">1.4</td>
+        <td style="text-align:center;color:#3B82F6">−0.012em</td>
+      </tr>
+      <tr>
+        <td><code>headline-1</code></td>
+        <td>강조 항목 라벨, 탭 (큰 화면)</td>
+        <td style="text-align:center;font-weight:700">18px</td>
+        <td style="text-align:center;color:#888">16px</td>
+        <td style="text-align:center;color:#888">15px</td>
+        <td style="text-align:center">1.444</td>
+        <td style="text-align:center;color:#888">−0.002em</td>
+      </tr>
+      <tr>
+        <td><code>headline-2</code></td>
+        <td>강조 항목 라벨, 탭 (작은 화면)</td>
+        <td style="text-align:center;font-weight:700">17px</td>
+        <td style="text-align:center;color:#888">15px</td>
+        <td style="text-align:center;color:#888">14px</td>
+        <td style="text-align:center">1.412</td>
+        <td style="text-align:center;color:#888">0em</td>
+      </tr>
+      <tr style="background:rgba(0,0,0,0.02)">
+        <td><code>body-1</code></td>
+        <td>기본 본문 (Normal lh1.5 / Reading lh1.625)</td>
+        <td style="text-align:center;font-weight:700">16px</td>
+        <td style="text-align:center;color:#888">15px</td>
+        <td style="text-align:center;color:#888">15px</td>
+        <td style="text-align:center">1.5 / 1.625</td>
+        <td style="text-align:center;color:#888">+0.006em</td>
+      </tr>
+      <tr style="background:rgba(0,0,0,0.02)">
+        <td><code>body-2</code></td>
+        <td>보조 본문 (Normal lh1.467 / Reading lh1.6)</td>
+        <td style="text-align:center;font-weight:700">15px</td>
+        <td style="text-align:center;color:#888">14px</td>
+        <td style="text-align:center;color:#888">14px</td>
+        <td style="text-align:center">1.467 / 1.6</td>
+        <td style="text-align:center;color:#888">+0.010em</td>
+      </tr>
+      <tr>
+        <td><code>label-1</code></td>
+        <td>폼 레이블, 버튼 (Normal lh1.429 / Reading lh1.571)</td>
+        <td style="text-align:center;font-weight:700">14px</td>
+        <td style="text-align:center;color:#888">13px</td>
+        <td style="text-align:center;color:#888">13px</td>
+        <td style="text-align:center">1.429 / 1.571</td>
+        <td style="text-align:center;color:#888">+0.015em</td>
+      </tr>
+      <tr>
+        <td><code>label-2</code></td>
+        <td>하위 레이블, 낮은 중요도 버튼</td>
+        <td style="text-align:center;font-weight:700">13px</td>
+        <td style="text-align:center;color:#888">12px</td>
+        <td style="text-align:center;color:#888">12px</td>
+        <td style="text-align:center">1.385</td>
+        <td style="text-align:center;color:#888">+0.019em</td>
+      </tr>
+      <tr style="background:rgba(0,0,0,0.02)">
+        <td><code>caption-1</code></td>
+        <td>타임스탬프, 메타, 뱃지 텍스트</td>
+        <td style="text-align:center;font-weight:700;color:#888">12px</td>
+        <td style="text-align:center;color:#bbb">12px</td>
+        <td style="text-align:center;color:#bbb">12px</td>
+        <td style="text-align:center">1.333</td>
+        <td style="text-align:center;color:#888">+0.025em</td>
+      </tr>
+      <tr style="background:rgba(0,0,0,0.02)">
+        <td><code>caption-2</code></td>
+        <td>법적 고지, 가장 보조적인 정보</td>
+        <td style="text-align:center;font-weight:700;color:#888">11px</td>
+        <td style="text-align:center;color:#bbb">11px</td>
+        <td style="text-align:center;color:#bbb">11px</td>
+        <td style="text-align:center">1.273</td>
+        <td style="text-align:center;color:#888">+0.031em</td>
+      </tr>
+    </table>
+
+    <div class="ds-section-label" style="margin-top:28px">실제 렌더링 미리보기</div>
     <div class="typo-scale">
       <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">display-hero</div><div class="typo-sizes">120 / 74 / 40px</div></div>
-        <div class="typo-sample" style="font-size:48px; font-weight:700; letter-spacing:-0.03em; line-height:1">Aa</div>
+        <div class="typo-meta"><div class="typo-token">display-1</div><div class="typo-sizes">56 · 42 · 28px / lh1.286 / ls−0.032em</div></div>
+        <div class="typo-sample" style="font-size:40px; font-weight:700; letter-spacing:-0.032em; line-height:1.286">디자인을 코드로</div>
       </div>
       <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">display-1</div><div class="typo-sizes">60 / 42 / 28px</div></div>
-        <div class="typo-sample" style="font-size:36px; font-weight:700; letter-spacing:-0.02em">디자인을 코드로</div>
+        <div class="typo-meta"><div class="typo-token">display-2</div><div class="typo-sizes">40 · 31 · 22px / lh1.3 / ls−0.028em</div></div>
+        <div class="typo-sample" style="font-size:30px; font-weight:700; letter-spacing:-0.028em; line-height:1.3">Design to Code Pipeline</div>
       </div>
       <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">display-2</div><div class="typo-sizes">44 / 31 / 22px</div></div>
-        <div class="typo-sample" style="font-size:28px; font-weight:700; letter-spacing:-0.02em">Design to Code Pipeline</div>
+        <div class="typo-meta"><div class="typo-token">title-1</div><div class="typo-sizes">32 · 26 · 22px / lh1.375 / ls−0.025em</div></div>
+        <div class="typo-sample" style="font-size:24px; font-weight:600; letter-spacing:-0.025em">페이지 타이틀, 주요 섹션 헤더</div>
       </div>
       <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">display-3</div><div class="typo-sizes">36 / 29 / 24px</div></div>
-        <div class="typo-sample" style="font-size:24px; font-weight:700; letter-spacing:-0.02em">Figma → Variable → Code</div>
+        <div class="typo-meta"><div class="typo-token">title-2</div><div class="typo-sizes">28 · 22 · 16px / lh1.358 / ls−0.024em</div></div>
+        <div class="typo-sample" style="font-size:20px; font-weight:600; letter-spacing:-0.024em">카드 제목, 모달 헤더</div>
       </div>
       <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">title-1</div><div class="typo-sizes">32 / 26 / 22px</div></div>
-        <div class="typo-sample" style="font-size:22px; font-weight:600; letter-spacing:-0.02em">섹션 제목에 사용합니다</div>
+        <div class="typo-meta"><div class="typo-token">heading-1</div><div class="typo-sizes">22 · 19 · 17px / lh1.364 / ls−0.019em</div></div>
+        <div class="typo-sample" style="font-size:18px; font-weight:600; letter-spacing:-0.019em">섹션 소제목, 큰 화면</div>
       </div>
       <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">title-2</div><div class="typo-sizes">30 / 22 / 16px</div></div>
-        <div class="typo-sample" style="font-size:20px; font-weight:600; letter-spacing:-0.02em">카드 제목, 모달 헤더</div>
+        <div class="typo-meta"><div class="typo-token">headline-1</div><div class="typo-sizes">18 · 16 · 15px / lh1.444 / ls−0.002em</div></div>
+        <div class="typo-sample" style="font-size:16px; font-weight:500; letter-spacing:-0.002em">강조 항목 라벨, 탭 텍스트</div>
       </div>
       <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">title-3</div><div class="typo-sizes">24 / 21 / 18px</div></div>
-        <div class="typo-sample" style="font-size:18px; font-weight:600; letter-spacing:-0.02em">소제목, 그룹 레이블</div>
+        <div class="typo-meta"><div class="typo-token">body-1 Normal</div><div class="typo-sizes">16 · 15 · 15px / lh1.5 / ls+0.006em</div></div>
+        <div class="typo-sample" style="font-size:14px; font-weight:400; letter-spacing:0.006em; line-height:1.5">일반 본문 텍스트입니다. 짧은 설명, 카드 요약에 사용합니다.</div>
       </div>
       <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">heading-1</div><div class="typo-sizes">22 / 19 / 17px</div></div>
-        <div class="typo-sample" style="font-size:16px; font-weight:600; letter-spacing:-0.01em">강조 본문, 리스트 헤더</div>
+        <div class="typo-meta"><div class="typo-token">body-1 Reading</div><div class="typo-sizes">16 · 15 · 15px / lh1.625 / ls+0.006em</div></div>
+        <div class="typo-sample" style="font-size:14px; font-weight:400; letter-spacing:0.006em; line-height:1.625; color:#555">긴 글 본문에 사용합니다. 채용공고 상세, 블로그 포스트처럼 읽는 시간이 긴 텍스트에서 line-height를 더 넉넉하게 줍니다.</div>
       </div>
       <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">headline-1</div><div class="typo-sizes">18 / 16 / 15px</div></div>
-        <div class="typo-sample" style="font-size:15px; font-weight:500">항목 라벨, 탭 텍스트</div>
+        <div class="typo-meta"><div class="typo-token">label-1</div><div class="typo-sizes">14 · 13 · 13px / lh1.429 / ls+0.015em</div></div>
+        <div class="typo-sample" style="font-size:13px; font-weight:500; letter-spacing:0.015em; color:#888">폼 레이블 · 버튼 텍스트 · UI 요소</div>
       </div>
       <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">body-1</div><div class="typo-sizes">16 / 15 / 15px</div></div>
-        <div class="typo-sample" style="font-size:14px; font-weight:400; line-height:1.6">일반 본문 텍스트. 가독성을 위해 line-height 1.5를 사용합니다.</div>
+        <div class="typo-meta"><div class="typo-token">caption-1</div><div class="typo-sizes">12px 고정 / lh1.333 / ls+0.025em</div></div>
+        <div class="typo-sample" style="font-size:11px; font-weight:400; letter-spacing:0.025em; color:#aaa">타임스탬프 · 메타 정보 · 뱃지 · 보조 설명</div>
       </div>
       <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">body-2</div><div class="typo-sizes">15 / 14 / 14px</div></div>
-        <div class="typo-sample" style="font-size:13px; font-weight:400; line-height:1.6; color:#666">보조 본문, 설명 텍스트로 사용합니다.</div>
-      </div>
-      <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">label-1</div><div class="typo-sizes">14 / 13 / 13px</div></div>
-        <div class="typo-sample" style="font-size:12px; font-weight:500; color:#888">폼 레이블, 버튼 텍스트</div>
-      </div>
-      <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">caption-1</div><div class="typo-sizes">12 / 12 / 12px (고정)</div></div>
-        <div class="typo-sample" style="font-size:11px; font-weight:400; color:#aaa">타임스탬프, 메타 정보, 주석</div>
+        <div class="typo-meta"><div class="typo-token">caption-2</div><div class="typo-sizes">11px 고정 / lh1.273 / ls+0.031em</div></div>
+        <div class="typo-sample" style="font-size:10px; font-weight:400; letter-spacing:0.031em; color:#ccc">법적 고지 · 약관 · 가장 낮은 위계 정보</div>
       </div>
     </div>
+
+    <h3>CSS 사용 패턴</h3>
+    <pre><code><span class="cm">/* Tailwind v4 — 세 변수를 함께 쓰는 것이 원칙 */</span>
+<span class="ck">class</span>=<span class="cs">"text-[length:var(--font-size-title-1)]
+      leading-[var(--font-lh-title-1)]
+      tracking-[var(--font-ls-title-1)]"</span>
+
+<span class="cm">/* Reading 변형 (body/label) */</span>
+<span class="ck">class</span>=<span class="cs">"text-[length:var(--font-size-body-1)]
+      leading-[var(--font-lh-body-1-reading)]
+      tracking-[var(--font-ls-body-1)]"</span></code></pre>
   </section>
 
   <!-- DESIGN SYSTEM RESPONSIVE -->
