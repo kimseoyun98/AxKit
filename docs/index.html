@@ -788,6 +788,16 @@
       margin-top: 2px !important;
     }
 
+  
+    /* ── SLIDER TABS CLICK & Z-INDEX GUARANTEE ── */
+    .char-tab-btn, .journey-tab-btn, .phase-tab-btn, .mcp-tab-btn, .mcp-nav-btn {
+      pointer-events: auto !important;
+      position: relative !important;
+      z-index: 10 !important;
+      cursor: pointer !important;
+      user-select: none !important;
+    }
+
   </style>
 </head>
 <body>
@@ -2081,9 +2091,9 @@ axpublish / Seed (Modes: Light / Dark)
   }
 
   
+  
+  // ── MCP 슬라이더 ──
   let currentMcpIndex = 0;
-  const mcpColors = ['#7C3AED', '#059669', '#EA580C', '#C2410C'];
-
   function mcpSlideGo(index) {
     const slider = document.getElementById('mcp-slider');
     if (!slider) return;
@@ -2091,34 +2101,102 @@ axpublish / Seed (Modes: Light / Dark)
     if (index < 0) index = 0;
     if (index >= slides.length) index = slides.length - 1;
     currentMcpIndex = index;
-    
-    const targetSlide = slides[index];
     slider.scrollTo({
-      left: targetSlide.offsetLeft - slider.offsetLeft,
+      left: slider.clientWidth * index,
       behavior: 'smooth'
     });
     updateMcpTabs(index);
   }
-
-  function mcpSlideNav(direction) {
-    mcpSlideGo(currentMcpIndex + direction);
-  }
-
+  function mcpSlideNav(dir) { mcpSlideGo(currentMcpIndex + dir); }
   function mcpOnScroll() {
     const slider = document.getElementById('mcp-slider');
     if (!slider) return;
-    const slides = slider.querySelectorAll('.mcp-slide');
-    const scrollLeft = slider.scrollLeft;
-    const width = slider.clientWidth;
-    const index = Math.round(scrollLeft / width);
-    if (index !== currentMcpIndex && index >= 0 && index < slides.length) {
-      currentMcpIndex = index;
-      updateMcpTabs(index);
+    const idx = Math.round(slider.scrollLeft / slider.clientWidth);
+    if (idx !== currentMcpIndex && idx >= 0) {
+      currentMcpIndex = idx;
+      updateMcpTabs(idx);
     }
   }
 
-  
-  function updateMcpTabs(activeIndex) {
+  // ── PHASE 슬라이더 ──
+  let currentPhaseIndex = 0;
+  function phaseSlideGo(index) {
+    const slider = document.getElementById('phase-slider');
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.phase-slide');
+    if (index < 0) index = 0;
+    if (index >= slides.length) index = slides.length - 1;
+    currentPhaseIndex = index;
+    slider.scrollTo({
+      left: slider.clientWidth * index,
+      behavior: 'smooth'
+    });
+    updatePhaseTabs(index);
+  }
+  function phaseSlideNav(dir) { phaseSlideGo(currentPhaseIndex + dir); }
+  function phaseOnScroll() {
+    const slider = document.getElementById('phase-slider');
+    if (!slider) return;
+    const idx = Math.round(slider.scrollLeft / slider.clientWidth);
+    if (idx !== currentPhaseIndex && idx >= 0) {
+      currentPhaseIndex = idx;
+      updatePhaseTabs(idx);
+    }
+  }
+
+  // ── CHAR 슬라이더 ──
+  let currentCharIndex = 0;
+  function charSlideGo(index) {
+    const slider = document.getElementById('char-slider');
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.char-slide');
+    if (index < 0) index = 0;
+    if (index >= slides.length) index = slides.length - 1;
+    currentCharIndex = index;
+    slider.scrollTo({
+      left: slider.clientWidth * index,
+      behavior: 'smooth'
+    });
+    updateCharTabs(index);
+  }
+  function charSlideNav(dir) { charSlideGo(currentCharIndex + dir); }
+  function charOnScroll() {
+    const slider = document.getElementById('char-slider');
+    if (!slider) return;
+    const idx = Math.round(slider.scrollLeft / slider.clientWidth);
+    if (idx !== currentCharIndex && idx >= 0) {
+      currentCharIndex = idx;
+      updateCharTabs(idx);
+    }
+  }
+
+  // ── JOURNEY 슬라이더 ──
+  let currentJourneyIndex = 0;
+  function journeySlideGo(index) {
+    const slider = document.getElementById('journey-slider');
+    if (!slider) return;
+    const slides = slider.querySelectorAll('.journey-slide');
+    if (index < 0) index = 0;
+    if (index >= slides.length) index = slides.length - 1;
+    currentJourneyIndex = index;
+    slider.scrollTo({
+      left: slider.clientWidth * index,
+      behavior: 'smooth'
+    });
+    updateJourneyTabs(index);
+  }
+  function journeySlideNav(dir) { journeySlideGo(currentJourneyIndex + dir); }
+  function journeyOnScroll() {
+    const slider = document.getElementById('journey-slider');
+    if (!slider) return;
+    const idx = Math.round(slider.scrollLeft / slider.clientWidth);
+    if (idx !== currentJourneyIndex && idx >= 0) {
+      currentJourneyIndex = idx;
+      updateJourneyTabs(idx);
+    }
+  }
+
+function updateMcpTabs(activeIndex) {
     const tabGroup = document.getElementById('mcp-tab-group');
     if (!tabGroup) return;
     const tabs = tabGroup.querySelectorAll('.mcp-tab-btn');
