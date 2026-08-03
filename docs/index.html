@@ -368,8 +368,9 @@
     <div class="badge-row">
       <span class="badge blue">Figma MCP</span>
       <span class="badge green">Seed Design</span>
-      <span class="badge orange">Tailwind CSS</span>
+      <span class="badge orange">Tailwind v4 CSS Native</span>
       <span class="badge purple">Claude AI</span>
+      <span class="badge">Vite + React</span>
     </div>
     <h1>axpublish</h1>
     <p class="doc-lead">
@@ -399,7 +400,7 @@
       <tr><th>기존 방식</th><th>axpublish</th></tr>
       <tr><td>하드코딩 Figma (#1A2B3C 직접 입력)</td><td>Semantic Variable로 바인딩된 Figma</td></tr>
       <tr><td>AI가 색상을 제각각 해석</td><td>시맨틱 토큰으로 일관 처리</td></tr>
-      <tr><td>반응형 규칙 없음, 매번 수동 정의</td><td>Mobile/Tablet/Desktop 3-tier 자동</td></tr>
+      <tr><td>반응형 규칙 없음, 매번 수동 정의</td><td>clamp() fluid 타이포그래피 — 뷰포트에 따라 자동 스케일</td></tr>
       <tr><td>Primary 컬러 바꾸면 전체 수동 수정</td><td>hex 하나만 바꾸면 Figma + 코드 전체 반영</td></tr>
       <tr><td>버튼을 화면마다 다시 만듦</td><td>컴포넌트 라이브러리를 한 번 만들고 재사용</td></tr>
     </table>
@@ -428,7 +429,7 @@
         <div class="flow-box">MCP WRITE</div>
       </div>
       <div class="flow-sub">
-        <div class="flow-sub-row"><span class="flow-sub-label">├</span><div class="flow-box" style="font-size:12px;">Variable 49개 생성</div></div>
+        <div class="flow-sub-row"><span class="flow-sub-label">├</span><div class="flow-box" style="font-size:12px;">Variable 52개 생성</div></div>
         <div class="flow-sub-row"><span class="flow-sub-label">├</span><div class="flow-box" style="font-size:12px;">레이어 전체 바인딩</div></div>
         <div class="flow-sub-row"><span class="flow-sub-label">├</span><div class="flow-box" style="font-size:12px;">인터랙션 상태 시각화 (hover / pressed / disabled)</div></div>
         <div class="flow-sub-row"><span class="flow-sub-label">└</span><div class="flow-box" style="font-size:12px;">컴포넌트 라이브러리 생성 (Button, GNB, Input, Modal…)</div></div>
@@ -583,7 +584,7 @@ Disabled → <span class="cv">Interaction/Disable</span>       배경 + <span cl
 }
 
 <span class="ck">export default function</span> <span class="cv">Button</span>({ label, variant = <span class="cs">'primary'</span>, size = <span class="cs">'md'</span>, disabled, onClick }: ButtonProps) {
-  <span class="ck">const</span> sizes = { sm: <span class="cs">'px-4 h-9 text-sm'</span>, md: <span class="cs">'px-5 h-12 text-sm'</span>, lg: <span class="cs">'px-6 h-14 text-base'</span> }
+  <span class="ck">const</span> sizes = { sm: <span class="cs">'px-4 h-9 text-sm'</span>, tb: <span class="cs">'px-5 h-12 text-sm'</span>, lg: <span class="cs">'px-6 h-14 text-base'</span> }
   <span class="ck">const</span> variants = {
     primary:   <span class="cs">'bg-primary-normal text-static-white hover:bg-primary-strong active:bg-primary-heavy'</span>,
     secondary: <span class="cs">'bg-secondary-normal text-static-white hover:bg-secondary-strong'</span>,
@@ -633,8 +634,8 @@ Disabled → <span class="cv">Interaction/Disable</span>       배경 + <span cl
       <div class="file-row">
         <span class="file-icon">⚙️</span>
         <div>
-          <div class="file-name-row"><span class="file-name">tailwind.config.js</span><span class="badge orange">Tailwind</span></div>
-          <p class="file-desc">tokens.css의 CSS 변수를 Tailwind 유틸리티 클래스로 매핑. primary, secondary, 타이포그래피 전체 포함.</p>
+          <div class="file-name-row"><span class="file-name">tokens.css</span><span class="badge orange">Tailwind v4</span></div>
+          <p class="file-desc">Tailwind v4 CSS 네이티브 설정 포함. <code>@theme</code>으로 브레이크포인트 정의, <code>@utility</code>로 컨테이너 패턴. <code>tailwind.config.js</code> 없음.</p>
         </div>
       </div>
       <div class="file-row">
@@ -697,8 +698,8 @@ node generate-theme.js \
     <table>
       <tr><th>구간</th><th>범위</th><th>Tailwind prefix</th></tr>
       <tr><td>Mobile</td><td>0 ~ 767px</td><td>(기본값, prefix 없음)</td></tr>
-      <tr><td>Tablet</td><td>768 ~ 1279px</td><td>md:</td></tr>
-      <tr><td>Desktop</td><td>1280px ~</td><td>lg: (xl: 사용 금지)</td></tr>
+      <tr><td>Tablet</td><td>768 ~ 1279px</td><td>tb: / max-mb:</td></tr>
+      <tr><td>Desktop</td><td>1280px ~</td><td>mb:</td></tr>
     </table>
 
     <h3>Auto-layout → CSS 변환</h3>
@@ -776,7 +777,7 @@ Secondary 없음 → Primary 보색(HSL +180°) 자동 설정:
       <div class="journey-body">
         <div class="journey-figma">✅ Phase 0-C — axpublish / Semantic 컬렉션 생성
 
-  Variable 49개 생성 완료
+  Variable 52개 생성 완료
   Primary/Normal → #0066FF ✔️
   Primary/Strong → #4A3EEB ✔️
   Label 6단계, Background 6단계, Line 8단계 ... 전체 ✔️
@@ -1000,11 +1001,11 @@ GitHub 업로드는 자율 진행하시면 됩니다.
       <div class="npm-meta">
         <div class="npm-meta-item">
           <span class="npm-meta-label">Version</span>
-          <span class="npm-meta-value">1.0.0</span>
+          <span class="npm-meta-value">1.1.0</span>
         </div>
         <div class="npm-meta-item">
           <span class="npm-meta-label">Published</span>
-          <span class="npm-meta-value">2026-08-02</span>
+          <span class="npm-meta-value">2026-08-04</span>
         </div>
         <div class="npm-meta-item">
           <span class="npm-meta-label">Package size</span>
