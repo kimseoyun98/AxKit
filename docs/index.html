@@ -528,6 +528,41 @@
         --seed-line-height-t14: 58px; --seed-line-height-t15: 66px; --seed-line-height-t16: 84px;
       }
     }
+
+    /* ── 합쳐진 팀+여정 타임라인 ── */
+    .jt-timeline { display:flex; flex-direction:column; gap:4px; margin-top:8px; }
+    .jt-step { border-radius:10px; overflow:hidden; border:1px solid #e5e7eb; }
+    .jt-header {
+      width:100%; display:flex; align-items:center; gap:10px;
+      padding:10px 14px; background:#fff; border:none; cursor:pointer;
+      text-align:left; transition:background .15s;
+    }
+    .jt-header:hover { background:#f9fafb; }
+    .jt-who {
+      flex-shrink:0; font-size:12px; font-weight:700;
+      padding:3px 10px; border-radius:20px; border:1px solid transparent;
+    }
+    .jt-who-user { background:#F0FDF4; color:#16A34A; border-color:#BBF7D0; }
+    .jt-title { flex:1; font-size:13px; color:#374151; font-weight:500; }
+    .jt-chevron { flex-shrink:0; font-size:10px; color:#9ca3af; transition:transform .2s; }
+    .jt-header[aria-expanded="true"] .jt-chevron { transform:rotate(180deg); }
+    .jt-body { padding:0 14px 14px; background:#fafafa; border-top:1px solid #f0f0f0; }
+    .jt-body .journey-prompt,
+    .jt-body .journey-figma,
+    .jt-body .journey-response { margin-top:10px; }
+    /* 배경 컬러 per role */
+    .jt-scout  .jt-header { background:#fafbff; }
+    .jt-scout  .jt-body   { background:#f5f7ff; }
+    .jt-binder .jt-header { background:#fdfaff; }
+    .jt-binder .jt-body   { background:#f9f5ff; }
+    .jt-flex   .jt-header { background:#f8fffc; }
+    .jt-flex   .jt-body   { background:#f0fdf8; }
+    .jt-builder .jt-header { background:#fffcf8; }
+    .jt-builder .jt-body   { background:#fff8f0; }
+    .jt-assembler .jt-header { background:#fff8f9; }
+    .jt-assembler .jt-body   { background:#fff1f2; }
+    .jt-user .jt-header { background:#f0fdf4; }
+    .jt-user .jt-body   { background:#f0fdf4; }
   </style>
 </head>
 <body>
@@ -540,9 +575,9 @@
 
     <div class="sidebar-section">Overview</div>
   <a href="#overview" class="sidebar-link active">개요 &amp; 왜 만들었나</a>
-  <a href="#team" class="sidebar-link">퍼블리싱 팀</a>
+
   <a href="#seed-preview" class="sidebar-link">Seed 컴포넌트</a>
-  <a href="#journey" class="sidebar-link">사용자 여정 예시</a>
+
 
   <div class="sidebar-section">Design System</div>
   <a href="#ds-colors" class="sidebar-link">Color</a>
@@ -612,476 +647,295 @@
     </section>
 
 
-  <section id="team">
-      <h2>퍼블리싱 팀</h2>
-      <p>axpublish는 역할이 나뉜 5명의 AI 직원이 협업합니다. 각 직원은 자신의 일만 하고, 완료되면 다음 직원에게 인수인계합니다. 디자이너(당신)는 두 번의 검수 포인트에만 개입합니다.</p>
-  
-      <div class="team-flow">
-        <span class="flow-node" style="background:#EEF2FF;color:#4338CA">🔍 SCOUT</span>
-        <span class="flow-arrow">→</span>
-        <span class="flow-node" style="background:#F5F3FF;color:#7C3AED">🎨 BINDER</span>
-        <span class="flow-arrow">→</span>
-        <span class="flow-node" style="background:#ECFDF5;color:#065F46">📐 FLEX</span>
-        <span class="flow-arrow">→</span>
-        <span class="flow-pause">⏸ 디자이너 검수</span>
-        <span class="flow-arrow">→</span>
-        <span class="flow-node" style="background:#FFF7ED;color:#C2410C">🔧 BUILDER</span>
-        <span class="flow-arrow">→</span>
-        <span class="flow-node" style="background:#FFF1F2;color:#BE123C">🏗️ ASSEMBLER</span>
-        <span class="flow-arrow">→</span>
-        <span class="flow-pause">⏸ 최종 검수</span>
+  <section id="team-journey">
+    <h2>퍼블리싱 팀 &amp; 사용자 여정</h2>
+    <p>axpublish는 역할이 다른 5명의 AI가 협업합니다. 아래 여정에서 각 단계를 클릭하면 실제 대화 내용을 볼 수 있습니다.</p>
+
+    <!-- ── 팀 플로우 ── -->
+    <div class="team-flow" style="margin-bottom:16px">
+      <span class="flow-node" style="background:#EEF2FF;color:#4338CA">🔍 SCOUT</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node" style="background:#F5F3FF;color:#7C3AED">🎨 BINDER</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node" style="background:#ECFDF5;color:#065F46">📐 FLEX</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pause">⏸ 디자이너 검수</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node" style="background:#FFF7ED;color:#C2410C">🔧 BUILDER</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-node" style="background:#FFF1F2;color:#BE123C">🏗️ ASSEMBLER</span>
+      <span class="flow-arrow">→</span>
+      <span class="flow-pause">⏸ 최종 검수</span>
+    </div>
+
+    <!-- ── 캐릭터 카드 ── -->
+    <div class="team-grid">
+      <div class="char-card">
+        <div class="char-avatar" style="background:linear-gradient(135deg,#4F46E5,#7C3AED)">🔍</div>
+        <div class="char-name" style="color:#4338CA">SCOUT</div>
+        <div class="char-role">디자인 분석가</div>
+        <div class="char-desc">디자인 파일을 받아 전체를 스캔합니다. 컴포넌트 목록, 색상 현황, Variables 적용 여부를 파악해 팀에 브리핑합니다.</div>
+        <span class="char-tag" style="background:#EEF2FF;color:#4338CA">Figma MCP Read</span>
       </div>
-  
-      <div class="team-grid">
-        <div class="char-card">
-          <div class="char-avatar" style="background:linear-gradient(135deg,#4F46E5,#7C3AED)">🔍</div>
-          <div class="char-name" style="color:#4338CA">SCOUT</div>
-          <div class="char-role">디자인 분석가</div>
-          <div class="char-desc">디자인 파일을 받아 전체를 스캔합니다. 컴포넌트 목록, 색상 현황, Variables 적용 여부를 파악해 팀에 브리핑합니다.</div>
-          <span class="char-tag" style="background:#EEF2FF;color:#4338CA">Figma MCP Read</span>
-        </div>
-        <div class="char-card">
-          <div class="char-avatar" style="background:linear-gradient(135deg,#7C3AED,#A855F7)">🎨</div>
-          <div class="char-name" style="color:#7C3AED">BINDER</div>
-          <div class="char-role">토큰 연결 담당</div>
-          <div class="char-desc">axpublish Variable Collection을 Figma에 생성하고 모든 hex 값을 토큰으로 바인딩합니다. 이후 매핑이 자동화됩니다.</div>
-          <span class="char-tag" style="background:#F5F3FF;color:#7C3AED">Figma MCP Write</span>
-        </div>
-        <div class="char-card">
-          <div class="char-avatar" style="background:linear-gradient(135deg,#059669,#10B981)">📐</div>
-          <div class="char-name" style="color:#065F46">FLEX</div>
-          <div class="char-role">반응형 초안 생성</div>
-          <div class="char-desc">Desktop 프레임으로 responsive-rules.md 기반 Tablet + Mobile 초안을 Figma에 자동 생성합니다. 디자이너 검수 필요.</div>
-          <span class="char-tag" style="background:#ECFDF5;color:#065F46">responsive-rules.md</span>
-        </div>
-        <div class="char-card">
-          <div class="char-avatar" style="background:linear-gradient(135deg,#EA580C,#F97316)">🔧</div>
-          <div class="char-name" style="color:#C2410C">BUILDER</div>
-          <div class="char-role">컴포넌트 코드 제작</div>
-          <div class="char-desc">확정된 3-뷰포인트 디자인을 읽어 컴포넌트 단위로 코드를 생성합니다. axpublish 토큰만 사용. 하드코딩 절대 금지.</div>
-          <span class="char-tag" style="background:#FFF7ED;color:#C2410C">React + Tailwind v4</span>
-        </div>
-        <div class="char-card">
-          <div class="char-avatar" style="background:linear-gradient(135deg,#BE123C,#F43F5E)">🏗️</div>
-          <div class="char-name" style="color:#BE123C">ASSEMBLER</div>
-          <div class="char-role">페이지 조립 담당</div>
-          <div class="char-desc">BUILDER가 만든 컴포넌트를 디자인 레이아웃대로 조립해 완성 페이지를 만듭니다. 최종 검수 후 다음 화면으로 넘어갑니다.</div>
-          <span class="char-tag" style="background:#FFF1F2;color:#BE123C">Page Assembly</span>
-        </div>
+      <div class="char-card">
+        <div class="char-avatar" style="background:linear-gradient(135deg,#7C3AED,#A855F7)">🎨</div>
+        <div class="char-name" style="color:#7C3AED">BINDER</div>
+        <div class="char-role">토큰 연결 담당</div>
+        <div class="char-desc">Seed Variable Collection을 Figma에 생성하고 모든 hex 값을 --seed-color-* 토큰으로 바인딩합니다.</div>
+        <span class="char-tag" style="background:#F5F3FF;color:#7C3AED">Figma MCP Write</span>
       </div>
-  
-      <div class="team-intro">
-        <strong>📌 팀 공통 원칙</strong><br>
-        모든 직원은 <code>seed-tokens.css</code>에 없는 값을 하드코딩하지 않습니다.
-        불확실한 경우 추측으로 진행하지 않고 즉시 디자이너에게 질문합니다.
-        컴포넌트는 하나씩 완성 후 다음으로 넘어갑니다.
+      <div class="char-card">
+        <div class="char-avatar" style="background:linear-gradient(135deg,#059669,#10B981)">📐</div>
+        <div class="char-name" style="color:#065F46">FLEX</div>
+        <div class="char-role">반응형 초안 생성</div>
+        <div class="char-desc">Desktop 프레임으로 responsive-rules.md 기반 Tablet + Mobile 초안을 Figma에 자동 생성합니다. 디자이너 검수 필요.</div>
+        <span class="char-tag" style="background:#ECFDF5;color:#065F46">responsive-rules.md</span>
       </div>
-    </section>
-
-
-  
-
-  <!-- SEED COMPONENTS PREVIEW -->
-  <section id="seed-preview">
-    <h2>Seed 컴포넌트 미리보기</h2>
-    <p>실제 <code>@seed-design/css</code>가 적용된 컴포넌트입니다. 이 컴포넌트들을 BUILDER가 Figma 디자인 스펙으로 커스터마이징합니다.</p>
-
-    <div class="tab-group" id="seed-tabs">
-      <div class="tab-list">
-        <button class="tab-btn active" data-tab="sp-buttons">Button</button>
-        <button class="tab-btn" data-tab="sp-colors">Color Tokens</button>
-        <button class="tab-btn" data-tab="sp-typo">Typography</button>
-        <button class="tab-btn" data-tab="sp-spacing">Spacing</button>
+      <div class="char-card">
+        <div class="char-avatar" style="background:linear-gradient(135deg,#EA580C,#F97316)">🔧</div>
+        <div class="char-name" style="color:#C2410C">BUILDER</div>
+        <div class="char-role">컴포넌트 코드 제작</div>
+        <div class="char-desc">확정된 3-뷰포인트 디자인을 읽어 컴포넌트 단위로 코드를 생성합니다. seed 토큰만 사용. 하드코딩 절대 금지.</div>
+        <span class="char-tag" style="background:#FFF7ED;color:#C2410C">React + Tailwind v4</span>
       </div>
+      <div class="char-card">
+        <div class="char-avatar" style="background:linear-gradient(135deg,#BE123C,#F43F5E)">🏗️</div>
+        <div class="char-name" style="color:#BE123C">ASSEMBLER</div>
+        <div class="char-role">페이지 조립 담당</div>
+        <div class="char-desc">BUILDER가 만든 컴포넌트를 디자인 레이아웃대로 조립해 완성 페이지를 만듭니다. 최종 검수 후 다음 화면으로 넘어갑니다.</div>
+        <span class="char-tag" style="background:#FFF1F2;color:#BE123C">Page Assembly</span>
+      </div>
+    </div>
 
-      <!-- ── Button ── -->
-      <div class="tab-panel active" data-panel="sp-buttons">
-        <div class="sp-demo-row">
-          <div class="sp-demo-group">
-            <div class="sp-label">brandSolid</div>
-            <button class="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">
-              <span>Brand Solid</span>
-            </button>
-          </div>
-          <div class="sp-demo-group">
-            <div class="sp-label">brandOutline</div>
-            <button class="seed-action-button seed-action-button--variant_brandOutline seed-action-button--size_medium seed-action-button--size_medium-layout_withText">
-              <span>Brand Outline</span>
-            </button>
-          </div>
-          <div class="sp-demo-group">
-            <div class="sp-label">neutralSolid</div>
-            <button class="seed-action-button seed-action-button--variant_neutralSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">
-              <span>Neutral Solid</span>
-            </button>
-          </div>
-          <div class="sp-demo-group">
-            <div class="sp-label">neutralWeak</div>
-            <button class="seed-action-button seed-action-button--variant_neutralWeak seed-action-button--size_medium seed-action-button--size_medium-layout_withText">
-              <span>Neutral Weak</span>
-            </button>
-          </div>
-          <div class="sp-demo-group">
-            <div class="sp-label">neutralOutline</div>
-            <button class="seed-action-button seed-action-button--variant_neutralOutline seed-action-button--size_medium seed-action-button--size_medium-layout_withText">
-              <span>Neutral Outline</span>
-            </button>
-          </div>
-          <div class="sp-demo-group">
-            <div class="sp-label">criticalSolid</div>
-            <button class="seed-action-button seed-action-button--variant_criticalSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">
-              <span>Critical</span>
-            </button>
-          </div>
-          <div class="sp-demo-group">
-            <div class="sp-label">Disabled</div>
-            <button class="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText" disabled>
-              <span>Disabled</span>
-            </button>
-          </div>
-        </div>
-        <div class="sp-demo-row" style="margin-top:20px">
-          <div class="sp-demo-group">
-            <div class="sp-label">xsmall</div>
-            <button class="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_xsmall seed-action-button--size_xsmall-layout_withText"><span>XSmall</span></button>
-          </div>
-          <div class="sp-demo-group">
-            <div class="sp-label">small</div>
-            <button class="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_small seed-action-button--size_small-layout_withText"><span>Small</span></button>
-          </div>
-          <div class="sp-demo-group">
-            <div class="sp-label">medium</div>
-            <button class="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText"><span>Medium</span></button>
-          </div>
-          <div class="sp-demo-group">
-            <div class="sp-label">large</div>
-            <button class="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_large seed-action-button--size_large-layout_withText"><span>Large</span></button>
-          </div>
-        </div>
-        <div class="callout info" style="margin-top:20px">
-          <span class="callout-icon">💡</span>
-          <div class="callout-body">
-            <strong>brandSolid 배경색</strong>은 <code>--seed-color-bg-brand-solid</code> → <code>--seed-color-palette-carrot-600</code>을 참조합니다.
-            <code>seed-seed-tokens.css</code>에서 carrot 팔레트를 override하면 자동으로 내 브랜드 컬러로 교체됩니다.
-          </div>
+    <div class="team-intro">
+      <strong>📌 팀 공통 원칙</strong><br>
+      모든 팀원은 <code>seed-tokens.css</code>에 없는 값을 하드코딩하지 않습니다.
+      불확실한 경우 추측으로 진행하지 않고 즉시 디자이너에게 질문합니다.
+    </div>
+
+    <!-- ── 사용자 여정 ── -->
+    <h3 style="margin-top:36px;margin-bottom:8px">사용자 여정 예시</h3>
+    <p style="font-size:13px;color:#888;margin-bottom:20px">각 단계를 클릭하면 실제 대화 내용이 펼쳐집니다. 디자이너는 3번만 개입합니다.</p>
+
+    <div class="jt-timeline">
+
+      <!-- STEP 1 — 디자이너 -->
+      <div class="jt-step jt-user">
+        <button class="jt-header" onclick="jtToggle(this)" aria-expanded="false">
+          <span class="jt-who jt-who-user">👤 디자이너</span>
+          <span class="jt-title">디자인 파일 공유 + 작업 시작</span>
+          <span class="jt-chevron">▼</span>
+        </button>
+        <div class="jt-body" hidden>
+          <div class="journey-prompt">이 Figma 파일 퍼블리싱 해줘. [파일 링크 첨부]</div>
         </div>
       </div>
 
-      <!-- ── Color Tokens ── -->
-      <div class="tab-panel" data-panel="sp-colors">
-        <div class="sp-section-label">Foreground (텍스트/아이콘)</div>
-        <div class="sp-color-grid">
-          <div class="sp-swatch" style="--sw:var(--seed-color-fg-neutral)"><div class="sw-box"></div><div class="sw-name">fg-neutral</div><div class="sw-desc">기본 텍스트</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-fg-neutral-muted)"><div class="sw-box"></div><div class="sw-name">fg-neutral-muted</div><div class="sw-desc">보조 텍스트</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-fg-neutral-subtle)"><div class="sw-box"></div><div class="sw-name">fg-neutral-subtle</div><div class="sw-desc">비활성 텍스트</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-fg-brand)"><div class="sw-box"></div><div class="sw-name">fg-brand</div><div class="sw-desc">브랜드 텍스트</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-fg-disabled)"><div class="sw-box"></div><div class="sw-name">fg-disabled</div><div class="sw-desc">비활성화</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-fg-critical)"><div class="sw-box"></div><div class="sw-name">fg-critical</div><div class="sw-desc">에러/삭제</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-fg-positive)"><div class="sw-box"></div><div class="sw-name">fg-positive</div><div class="sw-desc">성공/완료</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-fg-warning)"><div class="sw-box"></div><div class="sw-name">fg-warning</div><div class="sw-desc">경고</div></div>
-        </div>
-        <div class="sp-section-label" style="margin-top:20px">Background (배경)</div>
-        <div class="sp-color-grid">
-          <div class="sp-swatch" style="--sw:var(--seed-color-bg-layer-default)"><div class="sw-box" style="border:1px solid #eee"></div><div class="sw-name">bg-layer-default</div><div class="sw-desc">기본 배경</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-bg-layer-fill)"><div class="sw-box"></div><div class="sw-name">bg-layer-fill</div><div class="sw-desc">섹션 배경</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-bg-layer-floating)"><div class="sw-box" style="border:1px solid #eee"></div><div class="sw-name">bg-layer-floating</div><div class="sw-desc">카드/모달</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-bg-brand-solid)"><div class="sw-box"></div><div class="sw-name">bg-brand-solid</div><div class="sw-desc">Primary CTA</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-bg-brand-weak)"><div class="sw-box"></div><div class="sw-name">bg-brand-weak</div><div class="sw-desc">Brand 연한 배경</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-bg-disabled)"><div class="sw-box"></div><div class="sw-name">bg-disabled</div><div class="sw-desc">비활성화 배경</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-bg-critical-solid)"><div class="sw-box"></div><div class="sw-name">bg-critical-solid</div><div class="sw-desc">에러 배경</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-bg-overlay)"><div class="sw-box"></div><div class="sw-name">bg-overlay</div><div class="sw-desc">Dimmer</div></div>
-        </div>
-        <div class="sp-section-label" style="margin-top:20px">Stroke (테두리)</div>
-        <div class="sp-color-grid">
-          <div class="sp-swatch" style="--sw:var(--seed-color-stroke-neutral-subtle)"><div class="sw-box"></div><div class="sw-name">stroke-neutral-subtle</div><div class="sw-desc">구분선</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-stroke-neutral-solid)"><div class="sw-box"></div><div class="sw-name">stroke-neutral-solid</div><div class="sw-desc">강한 테두리</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-stroke-brand-solid)"><div class="sw-box"></div><div class="sw-name">stroke-brand-solid</div><div class="sw-desc">브랜드 테두리</div></div>
-          <div class="sp-swatch" style="--sw:var(--seed-color-stroke-critical-solid)"><div class="sw-box"></div><div class="sw-name">stroke-critical-solid</div><div class="sw-desc">에러 테두리</div></div>
+      <!-- STEP 2 — SCOUT -->
+      <div class="jt-step jt-scout">
+        <button class="jt-header" onclick="jtToggle(this)" aria-expanded="false">
+          <span class="jt-who" style="background:#EEF2FF;color:#4338CA;border-color:#C7D2FE">🔍 SCOUT</span>
+          <span class="jt-title">디자인 파일 전체 분석</span>
+          <span class="jt-chevron">▼</span>
+        </button>
+        <div class="jt-body" hidden>
+          <div class="journey-figma">━━━━━━━━━━━━━━━━━━━━━━━
+[SCOUT 분석 완료]
+━━━━━━━━━━━━━━━━━━━━━━━
+📄 화면: 5개 (홈, 목록, 상세, 마이페이지, 공지사항)
+🧩 컴포넌트: 9개
+   Button, Card, GNB, Footer, Badge, Input, Modal, Tag, Tab
+
+🎨 토큰 현황:
+   Variables 적용: ✕ (hex 직접 사용 312개)
+   미적용 폰트: 8개
+
+→ BINDER에게 인수인계합니다.</div>
         </div>
       </div>
 
-      <!-- ── Typography ── -->
-      <div class="tab-panel" data-panel="sp-typo">
-        <p style="font-size:13px;color:#888;margin-bottom:16px"><strong>t1~t8</strong>은 Seed 기본값 고정. <strong>t9~t16</strong>은 Mobile / Tablet / Desktop 3단계 고정값으로 반응형 적용.</p>
-        <table>
-          <tr><th>Token</th><th>Static</th><th>사용 예</th><th>axpublish 대응</th></tr>
-          <tr><td><code>--seed-font-size-t2</code></td><td>12px</td><td>캡션, 태그</td><td>caption-1</td></tr>
-          <tr><td><code>--seed-font-size-t3</code></td><td>13px</td><td>보조 레이블</td><td>label-2</td></tr>
-          <tr><td><code>--seed-font-size-t4</code></td><td>14px</td><td>레이블, 버튼</td><td>label-1</td></tr>
-          <tr><td><code>--seed-font-size-t5</code></td><td>16px</td><td>본문</td><td>body-1</td></tr>
-          <tr><td><code>--seed-font-size-t6</code></td><td>18px</td><td>소제목</td><td>body-1-lg</td></tr>
-          <tr><td><code>--seed-font-size-t8</code></td><td>22px</td><td>헤딩</td><td>heading-1</td></tr>
-          <tr><td><code>--seed-font-size-t9</code></td><td>24px</td><td>소타이틀</td><td>heading-2</td></tr>
-          <tr><td><code>--seed-font-size-t11</code></td><td>28px</td><td>타이틀</td><td>title-2</td></tr>
-          <tr><td><code>--seed-font-size-t12</code></td><td>32px</td><td>큰 타이틀</td><td>title-1</td></tr>
-          <tr><td><code>--seed-font-size-t13</code></td><td>40px</td><td>Display</td><td>display-2</td></tr>
-          <tr><td><code>--seed-font-size-t14</code></td><td>48px</td><td>Large Display</td><td>display-1 (56px)</td></tr>
-        </table>
-        <div style="margin-top:24px;padding:20px;background:var(--seed-color-bg-layer-fill);border-radius:12px">
-          <p style="font-size:var(--seed-font-size-t12);font-weight:700;margin:0 0 8px;line-height:var(--seed-line-height-t12);color:var(--seed-color-fg-neutral)">t12 — 큰 타이틀 32px</p>
-          <p style="font-size:var(--seed-font-size-t8);font-weight:600;margin:0 0 8px;line-height:var(--seed-line-height-t8);color:var(--seed-color-fg-neutral)">t8 — 헤딩 22px</p>
-          <p style="font-size:var(--seed-font-size-t5);margin:0 0 8px;line-height:var(--seed-line-height-t5);color:var(--seed-color-fg-neutral)">t5 — 본문 16px. 이 텍스트는 clamp()로 화면 크기에 따라 자동 조절됩니다.</p>
-          <p style="font-size:var(--seed-font-size-t3);margin:0;line-height:var(--seed-line-height-t3);color:var(--seed-color-fg-neutral-muted)">t3 — 캡션 13px. 보조 설명 텍스트입니다.</p>
+      <!-- STEP 3 — BINDER -->
+      <div class="jt-step jt-binder">
+        <button class="jt-header" onclick="jtToggle(this)" aria-expanded="false">
+          <span class="jt-who" style="background:#F5F3FF;color:#7C3AED;border-color:#DDD6FE">🎨 BINDER</span>
+          <span class="jt-title">Seed Variable Collection 생성 + 바인딩</span>
+          <span class="jt-chevron">▼</span>
+        </button>
+        <div class="jt-body" hidden>
+          <div class="journey-figma">━━━━━━━━━━━━━━━━━━━━━━━
+[BINDER] Variable Collection 생성 완료 (52개)
+━━━━━━━━━━━━━━━━━━━━━━━
+✅ 자동 바인딩: 309개
+   #171719 → --seed-color-fg-neutral ✔
+   #0066FF → --seed-color-bg-brand-solid ✔
+   #F7F7F8 → --seed-color-bg-layer-fill ✔
+   #00BF40 → --seed-color-fg-positive ✔
+   ... 305개
+
+⚠️ 미매핑 PAUSE (3개):
+   #FF6B35 — 그라디언트 배경 (About 섹션)
+   → [A] accent-bg 토큰 신설
+   → [B] accent-bg-red-orange로 대체
+   → [C] 제거
+
+결정해 주시면 나머지 바인딩 완료합니다.</div>
         </div>
       </div>
 
-      <!-- ── Spacing ── -->
-      <div class="tab-panel" data-panel="sp-spacing">
-        <p style="font-size:13px;color:#888;margin-bottom:16px">4px 배수 기반. <code>--seed-dimension-x{n}</code> = n × 4px</p>
-        <div class="sp-spacing-grid">
-          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:2px"></div><code>x0_5</code><span>2px</span></div>
-          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:4px"></div><code>x1</code><span>4px</span></div>
-          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:8px"></div><code>x2</code><span>8px</span></div>
-          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:12px"></div><code>x3</code><span>12px</span></div>
-          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:16px"></div><code>x4</code><span>16px</span></div>
-          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:20px"></div><code>x5</code><span>20px</span></div>
-          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:24px"></div><code>x6</code><span>24px</span></div>
-          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:32px"></div><code>x8</code><span>32px</span></div>
-          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:48px"></div><code>x12</code><span>48px</span></div>
-          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:56px"></div><code>x14</code><span>56px</span></div>
-          <div class="sp-spacing-item"><div class="sp-spacing-bar" style="width:64px"></div><code>x16</code><span>64px</span></div>
+      <!-- STEP 4 — 디자이너 결정 -->
+      <div class="jt-step jt-user">
+        <button class="jt-header" onclick="jtToggle(this)" aria-expanded="false">
+          <span class="jt-who jt-who-user">👤 디자이너 ⏸</span>
+          <span class="jt-title">미매핑 색상 결정</span>
+          <span class="jt-chevron">▼</span>
+        </button>
+        <div class="jt-body" hidden>
+          <div class="journey-prompt">B로 해줘. 바인딩 마저 끝내줘.</div>
         </div>
-        <table style="margin-top:20px">
-          <tr><th>용도</th><th>토큰</th><th>값</th></tr>
-          <tr><td>컴포넌트 내부 기본 간격</td><td><code>--seed-dimension-x3</code></td><td>12px</td></tr>
-          <tr><td>버튼 높이 (medium)</td><td><code>--seed-dimension-x12</code></td><td>48px</td></tr>
-          <tr><td>버튼 높이 (large)</td><td><code>--seed-dimension-x14</code></td><td>56px</td></tr>
-          <tr><td>모바일 좌우 패딩</td><td><code>--seed-dimension-x5</code></td><td>20px</td></tr>
-          <tr><td>탭렛 좌우 패딩</td><td><code>--seed-dimension-x12</code></td><td>48px</td></tr>
-          <tr><td>데스크탑 좌우 패딩</td><td><code>--seed-dimension-x16</code></td><td>64px</td></tr>
-        </table>
+      </div>
+
+      <!-- STEP 5 — BINDER 완료 -->
+      <div class="jt-step jt-binder">
+        <button class="jt-header" onclick="jtToggle(this)" aria-expanded="false">
+          <span class="jt-who" style="background:#F5F3FF;color:#7C3AED;border-color:#DDD6FE">🎨 BINDER</span>
+          <span class="jt-title">바인딩 완료 → FLEX 인수인계</span>
+          <span class="jt-chevron">▼</span>
+        </button>
+        <div class="jt-body" hidden>
+          <div class="journey-figma">✅ 전체 바인딩 완료 (312개)
+→ FLEX에게 인수인계합니다.</div>
+        </div>
+      </div>
+
+      <!-- STEP 6 — FLEX -->
+      <div class="jt-step jt-flex">
+        <button class="jt-header" onclick="jtToggle(this)" aria-expanded="false">
+          <span class="jt-who" style="background:#ECFDF5;color:#065F46;border-color:#A7F3D0">📐 FLEX</span>
+          <span class="jt-title">Tablet + Mobile 반응형 초안 자동 생성</span>
+          <span class="jt-chevron">▼</span>
+        </button>
+        <div class="jt-body" hidden>
+          <div class="journey-response">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[FLEX 완료] ⏸ 디자이너 검수 필요
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+responsive-rules.md 기반으로 생성:
+
+📱 홈 / Tablet  (768px) ✔
+📱 홈 / Mobile  (375px) ✔
+📱 목록 / Tablet ✔  ...전체 5페이지 × 2 = 10개 프레임
+
+⚠️ 자동 추론이라 디자인 의도와 다를 수 있습니다.
+   Figma에서 확인 후 수정해 주세요.
+
+수정 완료 후 → "BUILDER 시작해줘" 라고 해주세요.</div>
+        </div>
+      </div>
+
+      <!-- STEP 7 — 디자이너 검수 -->
+      <div class="jt-step jt-user">
+        <button class="jt-header" onclick="jtToggle(this)" aria-expanded="false">
+          <span class="jt-who jt-who-user">👤 디자이너 ⏸</span>
+          <span class="jt-title">Figma Tablet/Mobile 검수 + 수정</span>
+          <span class="jt-chevron">▼</span>
+        </button>
+        <div class="jt-body" hidden>
+          <div class="journey-prompt">수정 완료. BUILDER 시작해줘.</div>
+        </div>
+      </div>
+
+      <!-- STEP 8 — BUILDER -->
+      <div class="jt-step jt-builder">
+        <button class="jt-header" onclick="jtToggle(this)" aria-expanded="false">
+          <span class="jt-who" style="background:#FFF7ED;color:#C2410C;border-color:#FED7AA">🔧 BUILDER</span>
+          <span class="jt-title">컴포넌트 코드 순차 생성</span>
+          <span class="jt-chevron">▼</span>
+        </button>
+        <div class="jt-body" hidden>
+          <div class="journey-response">━━━━━━━━━━━━━━━━━━━━━━━
+[BUILDER 완료] 컴포넌트 9개 생성
+━━━━━━━━━━━━━━━━━━━━━━━
+src/components/
+  ui/      Button, Badge, Tag, Input
+  layout/  GNB, Footer
+  sections/ Card, Modal, Tab
+
+📊 품질: 토큰 100% / 하드코딩 0개
+
+→ ASSEMBLER에게 인수인계합니다.</div>
+        </div>
+      </div>
+
+      <!-- STEP 9 — ASSEMBLER -->
+      <div class="jt-step jt-assembler">
+        <button class="jt-header" onclick="jtToggle(this)" aria-expanded="false">
+          <span class="jt-who" style="background:#FFF1F2;color:#BE123C;border-color:#FECDD3">🏗️ ASSEMBLER</span>
+          <span class="jt-title">홈 페이지 조립 + 반응형 검증</span>
+          <span class="jt-chevron">▼</span>
+        </button>
+        <div class="jt-body" hidden>
+          <div class="journey-response">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[ASSEMBLER 완료] ⏸ 최종 검수 필요
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+홈 페이지 완성
+
+☑ Mobile(375px): 단컬럼, 20px 패딩
+☑ Tablet(768px): 2열 그리드, 48px 패딩
+☑ Desktop(1280px+): 3열, max-w 1440px
+☑ 하드코딩 0개
+
+로컬 확인: npx serve . → http://localhost:3000
+
+✅ 승인 → "다음 화면 해줘" (목록, 상세...순서대로)
+🔧 수정 → 수정 내용을 말씀해 주세요</div>
+        </div>
+      </div>
+
+      <!-- STEP 10 — 디자이너 승인 반복 -->
+      <div class="jt-step jt-user">
+        <button class="jt-header" onclick="jtToggle(this)" aria-expanded="false">
+          <span class="jt-who jt-who-user">👤 디자이너 ⏸</span>
+          <span class="jt-title">승인 + 다음 화면</span>
+          <span class="jt-chevron">▼</span>
+        </button>
+        <div class="jt-body" hidden>
+          <div class="journey-prompt">홈 좋아. 목록 해줘.</div>
+        </div>
+      </div>
+
+      <div class="step-connector">↓ &nbsp; (BUILDER → ASSEMBLER → 디자이너 검수 반복)</div>
+
+      <!-- STEP 11 — 완료 -->
+      <div class="jt-step jt-assembler">
+        <button class="jt-header" onclick="jtToggle(this)" aria-expanded="false">
+          <span class="jt-who" style="background:#FFF1F2;color:#BE123C;border-color:#FECDD3">🏗️ ASSEMBLER</span>
+          <span class="jt-title">전체 완료 🎉</span>
+          <span class="jt-chevron">▼</span>
+        </button>
+        <div class="jt-body" hidden>
+          <div class="journey-response">🎉 모든 화면 완료
+
+처리 화면: 5개 (홈, 목록, 상세, 마이페이지, 공지사항)
+생성 컴포넌트: 9개 (토큰 사용률 100%)
+반응형 3-tier 전체 적용
+
+GitHub 업로드는 자율 진행하시면 됩니다.
+수정이 필요하면 언제든 알려주세요.</div>
+        </div>
+      </div>
+
+    </div><!-- /jt-timeline -->
+
+    <div class="callout tip" style="margin-top:24px">
+      <span class="callout-icon">💡</span>
+      <div class="callout-body">
+        <strong>디자이너가 직접 개입하는 건 딱 3번</strong>
+        미매핑 색상 결정 → Tablet/Mobile Figma 수정 → 화면별 승인.
+        나머지는 팀원들이 자동 처리하고 보고합니다.
       </div>
     </div>
   </section>
 
-  <section id="journey">
-      <h2>사용자 여정 예시</h2>
-      <p>디자이너가 Desktop 디자인 파일 하나로 시작해서 완성된 반응형 코드까지 도달하는 실제 대화 흐름입니다. <strong>퍼블리싱 팀</strong> 5명이 순서대로 투입됩니다.</p>
   
-      <!-- STEP 1 -->
-      <div class="journey-step">
-        <div class="journey-header">
-          <span class="journey-who who-user">디자이너</span>
-          <span class="journey-title">Figma 파일 + 브랜드 컬러 전달</span>
-        </div>
-        <div class="journey-body">
-          <p>axpublish-orchestrator.md를 AI에 첨부하고 아래 메시지로 시작합니다.</p>
-          <div class="journey-prompt">axpublish-orchestrator.md 읽고 SCOUT 시작해줘.
-  
-  Figma 파일: https://figma.com/design/abc123/my-project
-  Primary 컬러: #0066FF</div>
-        </div>
-      </div>
-  
-      <div class="step-connector">↓</div>
-  
-      <!-- STEP 2 — SCOUT -->
-      <div class="journey-step">
-        <div class="journey-header">
-          <span class="journey-who" style="background:#EEF2FF;color:#4338CA;border-color:#C7D2FE">🔍 SCOUT</span>
-          <span class="journey-title">디자인 파일 스캔 &amp; 분석 완료</span>
-        </div>
-        <div class="journey-body">
-          <div class="journey-response">━━━━━━━━━━━━━━━━━━━━━━━
-  [SCOUT 완료] 디자인 파일 분석
-  ━━━━━━━━━━━━━━━━━━━━━━━
-  📄 화면: 5개 (홈, 목록, 상세, 마이페이지, 공지사항)
-  🧩 컴포넌트: 9개
-     Button, Card, GNB, Footer, Badge, Input, Modal, Tag, Tab
-  
-  🎨 토큰 현황:
-     Variables 적용: ✕ (hex 직접 사용 312개)
-     미적용 폰트: 8개
-  
-  → BINDER에게 인수인계합니다.</div>
-        </div>
-      </div>
-  
-      <div class="step-connector">↓</div>
-  
-      <!-- STEP 3 — BINDER -->
-      <div class="journey-step">
-        <div class="journey-header">
-          <span class="journey-who" style="background:#F5F3FF;color:#7C3AED;border-color:#DDD6FE">🎨 BINDER</span>
-          <span class="journey-title">axpublish Variable Collection 생성 + 바인딩</span>
-        </div>
-        <div class="journey-body">
-          <div class="journey-figma">━━━━━━━━━━━━━━━━━━━━━━━
-  [BINDER] Variable Collection 생성 완료 (52개)
-  ━━━━━━━━━━━━━━━━━━━━━━━
-  ✅ 자동 바인딩: 309개
-     #171719 → --seed-color-fg-neutral ✔
-     #0066FF → --seed-color-bg-brand-solid ✔
-     #F7F7F8 → --seed-color-bg-layer-fill ✔
-     #00BF40 → --seed-color-fg-positive ✔
-     ... 305개
-  
-  ⚠️ 미매핑 PAUSE (3개):
-     #FF6B35 — 그라디언트 배경 (About 섹션)
-     → [A] accent-bg 토큰 신설
-     → [B] accent-bg-red-orange로 대체
-     → [C] 제거
-  
-  결정해 주시면 나머지 바인딩 완료합니다.</div>
-        </div>
-      </div>
-  
-      <div class="step-connector">↓</div>
-  
-      <!-- STEP 4 — 디자이너 결정 -->
-      <div class="journey-step">
-        <div class="journey-header">
-          <span class="journey-who who-user">디자이너 ⏸</span>
-          <span class="journey-title">미매핑 색상 결정</span>
-        </div>
-        <div class="journey-body">
-          <div class="journey-prompt">B로 해줘. 바인딩 마저 끝내줘.</div>
-        </div>
-      </div>
-  
-      <div class="step-connector">↓</div>
-  
-      <!-- STEP 5 — BINDER 완료 → FLEX -->
-      <div class="journey-step">
-        <div class="journey-header">
-          <span class="journey-who" style="background:#F5F3FF;color:#7C3AED;border-color:#DDD6FE">🎨 BINDER</span>
-          <span class="journey-title">바인딩 완료 → FLEX 인수인계</span>
-        </div>
-        <div class="journey-body">
-          <div class="journey-figma">✅ 전체 바인딩 완료 (312개)
-  → FLEX에게 인수인계합니다.</div>
-        </div>
-      </div>
-  
-      <div class="step-connector">↓</div>
-  
-      <!-- STEP 6 — FLEX -->
-      <div class="journey-step">
-        <div class="journey-header">
-          <span class="journey-who" style="background:#ECFDF5;color:#065F46;border-color:#A7F3D0">📐 FLEX</span>
-          <span class="journey-title">Tablet + Mobile 반응형 초안 자동 생성</span>
-        </div>
-        <div class="journey-body">
-          <div class="journey-response">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  [FLEX 완료] ⏸ 디자이너 검수 필요
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  responsive-rules.md 기반으로 생성:
-  
-  📱 홈 / Tablet  (768px) ✔
-  📱 홈 / Mobile  (375px) ✔
-  📱 목록 / Tablet ✔  ...전체 5페이지 × 2 = 10개 프레임
-  
-  ⚠️ 자동 추론이라 디자인 의도와 다를 수 있습니다.
-     Figma에서 확인 후 수정해 주세요.
-  
-  수정 완료 후 → "BUILDER 시작해줘" 라고 해주세요.</div>
-        </div>
-      </div>
-  
-      <div class="step-connector">↓</div>
-  
-      <!-- STEP 7 — 디자이너 검수 -->
-      <div class="journey-step">
-        <div class="journey-header">
-          <span class="journey-who who-user">디자이너 ⏸</span>
-          <span class="journey-title">Figma Tablet/Mobile 검수 + 수정</span>
-        </div>
-        <div class="journey-body">
-          <div class="journey-prompt">수정 완료. BUILDER 시작해줘.</div>
-        </div>
-      </div>
-  
-      <div class="step-connector">↓</div>
-  
-      <!-- STEP 8 — BUILDER -->
-      <div class="journey-step">
-        <div class="journey-header">
-          <span class="journey-who" style="background:#FFF7ED;color:#C2410C;border-color:#FED7AA">🔧 BUILDER</span>
-          <span class="journey-title">컴포넌트 코드 순차 생성</span>
-        </div>
-        <div class="journey-body">
-          <div class="journey-response">━━━━━━━━━━━━━━━━━━━━━━━
-  [BUILDER 완료] 컴포넌트 9개 생성
-  ━━━━━━━━━━━━━━━━━━━━━━━
-  src/components/
-    ui/      Button, Badge, Tag, Input
-    layout/  GNB, Footer
-    sections/ Card, Modal, Tab
-  
-  📊 품질: 토큰 100% / 하드코딩 0개
-  
-  → ASSEMBLER에게 인수인계합니다.</div>
-        </div>
-      </div>
-  
-      <div class="step-connector">↓</div>
-  
-      <!-- STEP 9 — ASSEMBLER -->
-      <div class="journey-step">
-        <div class="journey-header">
-          <span class="journey-who" style="background:#FFF1F2;color:#BE123C;border-color:#FECDD3">🏗️ ASSEMBLER</span>
-          <span class="journey-title">홈 페이지 조립 + 반응형 검증</span>
-        </div>
-        <div class="journey-body">
-          <div class="journey-response">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  [ASSEMBLER 완료] ⏸ 최종 검수 필요
-  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  홈 페이지 완성
-  
-  ☑ Mobile(375px): 단컬럼, 20px 패딩
-  ☑ Tablet(768px): 2열 그리드, 48px 패딩
-  ☑ Desktop(1280px+): 3열, max-w 1440px
-  ☑ 하드코딩 0개
-  
-  로컬 확인: npx serve . → http://localhost:3000
-  
-  ✅ 승인 → "다음 화면 해줘" (목록, 상세...순서대로)
-  🔧 수정 → 수정 내용을 말씀해 주세요</div>
-        </div>
-      </div>
-  
-      <div class="step-connector">↓</div>
-  
-      <!-- STEP 10 — 디자이너 승인 반복 -->
-      <div class="journey-step">
-        <div class="journey-header">
-          <span class="journey-who who-user">디자이너 ⏸</span>
-          <span class="journey-title">승인 + 다음 화면</span>
-        </div>
-        <div class="journey-body">
-          <div class="journey-prompt">홈 좋아. 목록 해줘.</div>
-        </div>
-      </div>
-  
-      <div class="step-connector">↓ &nbsp; (BUILDER → ASSEMBLER → 디자이너 검수 반복)</div>
-  
-      <!-- STEP 11 — 완료 -->
-      <div class="journey-step">
-        <div class="journey-header">
-          <span class="journey-who" style="background:#FFF1F2;color:#BE123C;border-color:#FECDD3">🏗️ ASSEMBLER</span>
-          <span class="journey-title">전체 완료</span>
-        </div>
-        <div class="journey-body">
-          <div class="journey-response">🎉 모든 화면 완료
-  
-  처리 화면: 5개 (홈, 목록, 상세, 마이페이지, 공지사항)
-  생성 컴포넌트: 9개 (토큰 사용률 100%)
-  반응형 3-tier 전체 적용
-  
-  GitHub 업로드는 자율 진행하시면 됩니다.
-  수정이 필요하면 언제든 알려주세요.</div>
-        </div>
-      </div>
-  
-      <div class="callout tip" style="margin-top:24px">
-        <span class="callout-icon">💡</span>
-        <div class="callout-body">
-          <strong>디자이너가 직접 개입하는 건 딱 3번</strong>
-          미매핑 색상 결정 → Tablet/Mobile Figma 수정 → 화면별 승인.
-          나머지는 팀원들이 자동 처리하고 보고합니다.
-        </div>
-      </div>
-    </section>
 
 
   <section id="ds-colors">
@@ -1872,7 +1726,16 @@
     });
   }, { rootMargin: '-20% 0px -70% 0px' });
   sections.forEach(s => observer.observe(s));
-</script>
+
+  function jtToggle(btn) {
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+    const body = btn.nextElementSibling;
+    btn.setAttribute('aria-expanded', !expanded);
+    if (expanded) { body.hidden = true; }
+    else { body.hidden = false; }
+  }
+
+  </script>
 </body>
 </html>
 </main>
