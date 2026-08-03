@@ -483,10 +483,10 @@
     <div class="sidebar-logo-tag">AI Design-to-Code Pipeline</div>
   </div>
 
-  <div class="sidebar-section">Overview</div>
-  <a href="#overview" class="sidebar-link active">개요</a>
-  <a href="#why" class="sidebar-link">왜 만들었나</a>
+    <div class="sidebar-section">Overview</div>
+  <a href="#overview" class="sidebar-link active">개요 &amp; 왜 만들었나</a>
   <a href="#team" class="sidebar-link">퍼블리싱 팀</a>
+  <a href="#journey" class="sidebar-link">사용자 여정 예시</a>
 
   <div class="sidebar-section">Design System</div>
   <a href="#ds-colors" class="sidebar-link">Color</a>
@@ -495,1353 +495,1367 @@
   <a href="#ds-tokens" class="sidebar-link">Foundations</a>
 
   <div class="sidebar-section">Figma</div>
-  <a href="#figma-write" class="sidebar-link">Variable Collection</a>
+  <a href="#how" class="sidebar-link">작동 방식</a>
   <a href="#figma-write" class="sidebar-link">MCP Write</a>
   <a href="#phases" class="sidebar-link">Pipeline</a>
 
   <div class="sidebar-section">System</div>
-  <a href="#how" class="sidebar-link">작동 방식</a>
+  <a href="#components" class="sidebar-link">컴포넌트 라이브러리</a>
   <a href="#files" class="sidebar-link">파일 구성</a>
-  <a href="#journey" class="sidebar-link">사용자 여정 예시</a>
 
   <div class="sidebar-section">시작하기</div>
   <a href="#start" class="sidebar-link">GitHub 클론</a>
-  <a href="#start" class="sidebar-link" style="font-family:monospace; font-size:11px; padding-left:28px;">v1.7.0</a>
+  <a href="#start" class="sidebar-link" style="font-family:monospace; font-size:11px; padding-left:28px;">v1.8.0</a>
 </aside>
 
 <main>
 
   <!-- OVERVIEW -->
+  
+
   <section id="overview">
-    <div class="badge-row">
-      <span class="badge blue">Figma MCP</span>
-      <span class="badge green">Seed Design</span>
-      <span class="badge orange">Tailwind v4 CSS Native</span>
-      <span class="badge purple">Claude AI</span>
-      <span class="badge">Vite + React</span>
-    </div>
-    <h1>axpublish</h1>
-    <p class="doc-lead">
-      디자이너의 Figma 파일을 AI가 읽고, 디자인 토큰을 바인딩하고,
-      반응형 웹 코드로 퍼블리싱하는 <strong>오픈 파이프라인</strong>입니다.
-    </p>
-
-    <div class="callout info">
-      <span class="callout-icon">💡</span>
-      <div class="callout-body">
-        <strong>한 줄 요약</strong>
-        Figma 링크를 주면 AI가 Figma에 토큰을 직접 바인딩하고, 반응형 HTML/CSS 코드까지 만들어 로컬에 내려줍니다.
+      <div class="badge-row">
+        <span class="badge blue">Figma MCP</span>
+        <span class="badge green">Seed Design</span>
+        <span class="badge orange">Tailwind v4 CSS Native</span>
+        <span class="badge purple">Claude AI</span>
+        <span class="badge">Vite + React</span>
       </div>
-    </div>
+      <h1>axpublish</h1>
+      <p class="doc-lead">
+        디자이너의 Figma 파일을 AI가 읽고, 디자인 토큰을 바인딩하고,
+        반응형 웹 코드로 퍼블리싱하는 <strong>오픈 파이프라인</strong>입니다.
+      </p>
+  
+      <div class="callout info">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <strong>한 줄 요약</strong>
+          Figma 링크를 주면 AI가 Figma에 토큰을 직접 바인딩하고, 반응형 HTML/CSS 코드까지 만들어 로컬에 내려줍니다.
+        </div>
+      </div>
+  
+      <h2 id="why">왜 만들었나</h2>
+      <p>
+        웹 디자인을 AI가 퍼블리싱하려면, AI가 디자인을 읽을 수 있는 구조가 먼저 필요합니다.
+        Figma의 하드코딩 파일은 AI가 패턴을 인식하기 어렵습니다.
+      </p>
+      <p>
+        axpublish는 <strong>Seed Design 토큰 시스템</strong>을 기반으로 Figma 파일을 정규화하고,
+        AI가 일관된 규칙으로 코드를 생성할 수 있도록 만든 파이프라인입니다.
+      </p>
+  
+      <table>
+        <tr><th>기존 방식</th><th>axpublish</th></tr>
+        <tr><td>하드코딩 Figma (#1A2B3C 직접 입력)</td><td>Semantic Variable로 바인딩된 Figma</td></tr>
+        <tr><td>AI가 색상을 제각각 해석</td><td>시맨틱 토큰으로 일관 처리</td></tr>
+        <tr><td>반응형 규칙 없음, 매번 수동 정의</td><td>clamp() fluid 타이포그래피 — 뷰포트에 따라 자동 스케일</td></tr>
+        <tr><td>Primary 컬러 바꾸면 전체 수동 수정</td><td>hex 하나만 바꾸면 Figma + 코드 전체 반영</td></tr>
+        <tr><td>버튼을 화면마다 다시 만듦</td><td>컴포넌트 라이브러리를 한 번 만들고 재사용</td></tr>
+      </table>
+    </section>
 
-    <h2 id="why">왜 만들었나</h2>
-    <p>
-      웹 디자인을 AI가 퍼블리싱하려면, AI가 디자인을 읽을 수 있는 구조가 먼저 필요합니다.
-      Figma의 하드코딩 파일은 AI가 패턴을 인식하기 어렵습니다.
-    </p>
-    <p>
-      axpublish는 <strong>Seed Design 토큰 시스템</strong>을 기반으로 Figma 파일을 정규화하고,
-      AI가 일관된 규칙으로 코드를 생성할 수 있도록 만든 파이프라인입니다.
-    </p>
 
-    <table>
-      <tr><th>기존 방식</th><th>axpublish</th></tr>
-      <tr><td>하드코딩 Figma (#1A2B3C 직접 입력)</td><td>Semantic Variable로 바인딩된 Figma</td></tr>
-      <tr><td>AI가 색상을 제각각 해석</td><td>시맨틱 토큰으로 일관 처리</td></tr>
-      <tr><td>반응형 규칙 없음, 매번 수동 정의</td><td>clamp() fluid 타이포그래피 — 뷰포트에 따라 자동 스케일</td></tr>
-      <tr><td>Primary 컬러 바꾸면 전체 수동 수정</td><td>hex 하나만 바꾸면 Figma + 코드 전체 반영</td></tr>
-      <tr><td>버튼을 화면마다 다시 만듦</td><td>컴포넌트 라이브러리를 한 번 만들고 재사용</td></tr>
-    </table>
-  </section>
-
-  <!-- PUBLISHING TEAM -->
   <section id="team">
-    <h2>퍼블리싱 팀</h2>
-    <p>axpublish는 역할이 나뉜 5명의 AI 직원이 협업합니다. 각 직원은 자신의 일만 하고, 완료되면 다음 직원에게 인수인계합니다. 디자이너(당신)는 두 번의 검수 포인트에만 개입합니다.</p>
-
-    <div class="team-flow">
-      <span class="flow-node" style="background:#EEF2FF;color:#4338CA">🔍 SCOUT</span>
-      <span class="flow-arrow">→</span>
-      <span class="flow-node" style="background:#F5F3FF;color:#7C3AED">🎨 BINDER</span>
-      <span class="flow-arrow">→</span>
-      <span class="flow-node" style="background:#ECFDF5;color:#065F46">📐 FLEX</span>
-      <span class="flow-arrow">→</span>
-      <span class="flow-pause">⏸ 디자이너 검수</span>
-      <span class="flow-arrow">→</span>
-      <span class="flow-node" style="background:#FFF7ED;color:#C2410C">🔧 BUILDER</span>
-      <span class="flow-arrow">→</span>
-      <span class="flow-node" style="background:#FFF1F2;color:#BE123C">🏗️ ASSEMBLER</span>
-      <span class="flow-arrow">→</span>
-      <span class="flow-pause">⏸ 최종 검수</span>
-    </div>
-
-    <div class="team-grid">
-      <div class="char-card">
-        <div class="char-avatar" style="background:linear-gradient(135deg,#4F46E5,#7C3AED)">🔍</div>
-        <div class="char-name" style="color:#4338CA">SCOUT</div>
-        <div class="char-role">디자인 분석가</div>
-        <div class="char-desc">디자인 파일을 받아 전체를 스캔합니다. 컴포넌트 목록, 색상 현황, Variables 적용 여부를 파악해 팀에 브리핑합니다.</div>
-        <span class="char-tag" style="background:#EEF2FF;color:#4338CA">Figma MCP Read</span>
+      <h2>퍼블리싱 팀</h2>
+      <p>axpublish는 역할이 나뉜 5명의 AI 직원이 협업합니다. 각 직원은 자신의 일만 하고, 완료되면 다음 직원에게 인수인계합니다. 디자이너(당신)는 두 번의 검수 포인트에만 개입합니다.</p>
+  
+      <div class="team-flow">
+        <span class="flow-node" style="background:#EEF2FF;color:#4338CA">🔍 SCOUT</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node" style="background:#F5F3FF;color:#7C3AED">🎨 BINDER</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node" style="background:#ECFDF5;color:#065F46">📐 FLEX</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-pause">⏸ 디자이너 검수</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node" style="background:#FFF7ED;color:#C2410C">🔧 BUILDER</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-node" style="background:#FFF1F2;color:#BE123C">🏗️ ASSEMBLER</span>
+        <span class="flow-arrow">→</span>
+        <span class="flow-pause">⏸ 최종 검수</span>
       </div>
-      <div class="char-card">
-        <div class="char-avatar" style="background:linear-gradient(135deg,#7C3AED,#A855F7)">🎨</div>
-        <div class="char-name" style="color:#7C3AED">BINDER</div>
-        <div class="char-role">토큰 연결 담당</div>
-        <div class="char-desc">axpublish Variable Collection을 Figma에 생성하고 모든 hex 값을 토큰으로 바인딩합니다. 이후 매핑이 자동화됩니다.</div>
-        <span class="char-tag" style="background:#F5F3FF;color:#7C3AED">Figma MCP Write</span>
-      </div>
-      <div class="char-card">
-        <div class="char-avatar" style="background:linear-gradient(135deg,#059669,#10B981)">📐</div>
-        <div class="char-name" style="color:#065F46">FLEX</div>
-        <div class="char-role">반응형 초안 생성</div>
-        <div class="char-desc">Desktop 프레임으로 responsive-rules.md 기반 Tablet + Mobile 초안을 Figma에 자동 생성합니다. 디자이너 검수 필요.</div>
-        <span class="char-tag" style="background:#ECFDF5;color:#065F46">responsive-rules.md</span>
-      </div>
-      <div class="char-card">
-        <div class="char-avatar" style="background:linear-gradient(135deg,#EA580C,#F97316)">🔧</div>
-        <div class="char-name" style="color:#C2410C">BUILDER</div>
-        <div class="char-role">컴포넌트 코드 제작</div>
-        <div class="char-desc">확정된 3-뷰포인트 디자인을 읽어 컴포넌트 단위로 코드를 생성합니다. axpublish 토큰만 사용. 하드코딩 절대 금지.</div>
-        <span class="char-tag" style="background:#FFF7ED;color:#C2410C">React + Tailwind v4</span>
-      </div>
-      <div class="char-card">
-        <div class="char-avatar" style="background:linear-gradient(135deg,#BE123C,#F43F5E)">🏗️</div>
-        <div class="char-name" style="color:#BE123C">ASSEMBLER</div>
-        <div class="char-role">페이지 조립 담당</div>
-        <div class="char-desc">BUILDER가 만든 컴포넌트를 디자인 레이아웃대로 조립해 완성 페이지를 만듭니다. 최종 검수 후 다음 화면으로 넘어갑니다.</div>
-        <span class="char-tag" style="background:#FFF1F2;color:#BE123C">Page Assembly</span>
-      </div>
-    </div>
-
-    <div class="team-intro">
-      <strong>📌 팀 공통 원칙</strong><br>
-      모든 직원은 <code>tokens.css</code>에 없는 값을 하드코딩하지 않습니다.
-      불확실한 경우 추측으로 진행하지 않고 즉시 디자이너에게 질문합니다.
-      컴포넌트는 하나씩 완성 후 다음으로 넘어갑니다.
-    </div>
-  </section>
-
-  <hr>
-
-  <!-- HOW IT WORKS -->
-  <section id="how">
-    <h2>작동 방식</h2>
-    <p>axpublish는 <strong>두 가지 아웃풋</strong>을 만들어냅니다. Figma 파일 자체를 토큰으로 정리하고, 동시에 코드도 생성합니다. 단, Code Generation은 <strong>Figma가 완전히 확정된 이후에만</strong> 시작합니다.</p>
-
-    <div class="flow-pipeline">
-
-      <!-- Row 1 -->
-      <div class="flow-row">
-        <div class="flow-box primary">📁 Raw Figma 파일</div>
-        <div class="flow-arrow-h">→</div>
-        <div class="flow-box primary">🤖 AI + Figma MCP 연결</div>
-      </div>
-
-      <div class="flow-arrow-v">↓</div>
-
-      <!-- Row 2: MCP WRITE -->
-      <div class="flow-row">
-        <div class="flow-box">MCP WRITE</div>
-      </div>
-      <div class="flow-sub">
-        <div class="flow-sub-row"><span class="flow-sub-label">├</span><div class="flow-box" style="font-size:12px;">Variable 52개 생성</div></div>
-        <div class="flow-sub-row"><span class="flow-sub-label">├</span><div class="flow-box" style="font-size:12px;">레이어 전체 바인딩</div></div>
-        <div class="flow-sub-row"><span class="flow-sub-label">├</span><div class="flow-box" style="font-size:12px;">인터랙션 상태 시각화 (hover / pressed / disabled)</div></div>
-        <div class="flow-sub-row"><span class="flow-sub-label">└</span><div class="flow-box" style="font-size:12px;">컴포넌트 라이브러리 생성 (Button, GNB, Input, Modal…)</div></div>
-      </div>
-
-      <div class="flow-arrow-v">↓</div>
-
-      <!-- Row 3: 충돌 검증 -->
-      <div class="flow-row">
-        <div class="flow-box warn">⚠️ 충돌 검증</div>
-        <div class="flow-arrow-h" style="color:#AAAAAA; font-size:12px;">Style 충돌 / 잠긴 레이어 / 외부 컴포넌트 → 디자이너 수동 해결</div>
-      </div>
-
-      <div class="flow-arrow-v">↓</div>
-
-      <!-- Row 4: Figma 확정 -->
-      <div class="flow-row">
-        <div class="flow-box lock">🔒 Figma 확정 게이트</div>
-        <div class="flow-arrow-h" style="color:#AAAAAA; font-size:12px;">디자이너 "OK" 신호 이후에만 Code Gen 시작</div>
-      </div>
-
-      <div class="flow-arrow-v">↓</div>
-
-      <!-- Row 5: Code Gen -->
-      <div class="flow-row">
-        <div class="flow-box">💻 Code Generation</div>
-        <div class="flow-arrow-h" style="color:#AAAAAA; font-size:12px;">컴포넌트 생성 → 화면별 순차 조립 (홈 → 승인 → 다음 → …)</div>
-      </div>
-
-      <div class="flow-arrow-v">↓</div>
-
-      <!-- Row 6: 완료 -->
-      <div class="flow-row">
-        <div class="flow-box ok">🎉 완료</div>
-        <div class="flow-arrow-h" style="color:#AAAAAA; font-size:12px;">UI / Interaction QA → GitHub 업로드는 디자이너 자율</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- PHASES -->
-  <section id="phases">
-    <h2>6-Phase 워크플로우</h2>
-    <p><code>axpublish-orchestrator.md</code>에 각 Phase의 행동 지침이 정의되어 있습니다. AI는 이 문서를 읽고 순서대로 실행합니다.</p>
-
-    <div class="phase-list">
-      <div class="phase-item">
-        <span class="phase-num">Phase 0</span>
-        <div class="phase-body">
-          <h4>Discovery & Figma 세팅</h4>
-          <p>브랜드 컬러 수집 → HSL 스케일 생성 → theme.css 출력 → Figma Variable 49개 생성 → 레이어 바인딩 → 인터랙션 상태 시각화 → 충돌 검증 → 디자이너 확정 게이트</p>
+  
+      <div class="team-grid">
+        <div class="char-card">
+          <div class="char-avatar" style="background:linear-gradient(135deg,#4F46E5,#7C3AED)">🔍</div>
+          <div class="char-name" style="color:#4338CA">SCOUT</div>
+          <div class="char-role">디자인 분석가</div>
+          <div class="char-desc">디자인 파일을 받아 전체를 스캔합니다. 컴포넌트 목록, 색상 현황, Variables 적용 여부를 파악해 팀에 브리핑합니다.</div>
+          <span class="char-tag" style="background:#EEF2FF;color:#4338CA">Figma MCP Read</span>
+        </div>
+        <div class="char-card">
+          <div class="char-avatar" style="background:linear-gradient(135deg,#7C3AED,#A855F7)">🎨</div>
+          <div class="char-name" style="color:#7C3AED">BINDER</div>
+          <div class="char-role">토큰 연결 담당</div>
+          <div class="char-desc">axpublish Variable Collection을 Figma에 생성하고 모든 hex 값을 토큰으로 바인딩합니다. 이후 매핑이 자동화됩니다.</div>
+          <span class="char-tag" style="background:#F5F3FF;color:#7C3AED">Figma MCP Write</span>
+        </div>
+        <div class="char-card">
+          <div class="char-avatar" style="background:linear-gradient(135deg,#059669,#10B981)">📐</div>
+          <div class="char-name" style="color:#065F46">FLEX</div>
+          <div class="char-role">반응형 초안 생성</div>
+          <div class="char-desc">Desktop 프레임으로 responsive-rules.md 기반 Tablet + Mobile 초안을 Figma에 자동 생성합니다. 디자이너 검수 필요.</div>
+          <span class="char-tag" style="background:#ECFDF5;color:#065F46">responsive-rules.md</span>
+        </div>
+        <div class="char-card">
+          <div class="char-avatar" style="background:linear-gradient(135deg,#EA580C,#F97316)">🔧</div>
+          <div class="char-name" style="color:#C2410C">BUILDER</div>
+          <div class="char-role">컴포넌트 코드 제작</div>
+          <div class="char-desc">확정된 3-뷰포인트 디자인을 읽어 컴포넌트 단위로 코드를 생성합니다. axpublish 토큰만 사용. 하드코딩 절대 금지.</div>
+          <span class="char-tag" style="background:#FFF7ED;color:#C2410C">React + Tailwind v4</span>
+        </div>
+        <div class="char-card">
+          <div class="char-avatar" style="background:linear-gradient(135deg,#BE123C,#F43F5E)">🏗️</div>
+          <div class="char-name" style="color:#BE123C">ASSEMBLER</div>
+          <div class="char-role">페이지 조립 담당</div>
+          <div class="char-desc">BUILDER가 만든 컴포넌트를 디자인 레이아웃대로 조립해 완성 페이지를 만듭니다. 최종 검수 후 다음 화면으로 넘어갑니다.</div>
+          <span class="char-tag" style="background:#FFF1F2;color:#BE123C">Page Assembly</span>
         </div>
       </div>
-      <div class="phase-item">
-        <span class="phase-num">Phase 1</span>
-        <div class="phase-body">
-          <h4>타이포그래피 바인딩</h4>
-          <p>Figma 텍스트 레이어 전체 추출 → Seed Design 16레벨 토큰 매핑 (오차 ±2px 자동, 초과 시 디자이너에게 질문)</p>
-        </div>
+  
+      <div class="team-intro">
+        <strong>📌 팀 공통 원칙</strong><br>
+        모든 직원은 <code>tokens.css</code>에 없는 값을 하드코딩하지 않습니다.
+        불확실한 경우 추측으로 진행하지 않고 즉시 디자이너에게 질문합니다.
+        컴포넌트는 하나씩 완성 후 다음으로 넘어갑니다.
       </div>
-      <div class="phase-item">
-        <span class="phase-num">Phase 2</span>
-        <div class="phase-body">
-          <h4>반응형 구조 분석</h4>
-          <p>Auto-layout → CSS Flex/Grid 변환. 섹션별 Mobile/Tablet/Desktop 처리 방식 확정. 규칙 밖 섹션은 디자이너에게 PAUSE 보고.</p>
-        </div>
-      </div>
-      <div class="phase-item">
-        <span class="phase-num">Phase 3</span>
-        <div class="phase-body">
-          <h4>전역 컴포넌트 라이브러리</h4>
-          <p>재사용 요소 스캔 → Figma Component 생성(MCP Write) + Code 파일 생성 동시 진행. 버튼/GNB/인풋/모달 등 한 번만 만들고 이후 재사용.</p>
-        </div>
-      </div>
-      <div class="phase-item">
-        <span class="phase-num">Phase 4–5</span>
-        <div class="phase-body">
-          <h4>화면별 조립 & 로컬 QA</h4>
-          <p>한 화면씩 완성 → 디자이너 로컬 프리뷰(<code>npx serve .</code>) → 승인 → 다음 화면. 전체 일괄 빌드 금지.</p>
-        </div>
-      </div>
-      <div class="phase-item">
-        <span class="phase-num">Phase 6</span>
-        <div class="phase-body">
-          <h4>UI / Interaction QA</h4>
-          <p>전체 화면 완료 후 hover/GNB/모달/스크롤 인터랙션 전수 검수. 통과 후 GitHub 업로드는 디자이너 자율.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FIGMA WRITE -->
-  <section id="figma-write">
-    <h2>Figma MCP Write — 내부 동작</h2>
-    <p>axpublish의 핵심입니다. Figma를 읽기만 하는 게 아니라, AI가 MCP를 통해 <strong>Figma 안에 직접 Variable을 생성하고 모든 레이어에 바인딩</strong>합니다.</p>
 
-    <h3>Step 1 — Variable Collection 생성 (52개)</h3>
-    <p><code>axpublish / Semantic</code> 컬렉션 + <code>Light</code> 모드로 자동 생성됩니다. Primary / Secondary는 입력한 브랜드 컬러로 override됩니다.</p>
-
-    <table>
-      <tr><th>그룹</th><th>개수</th><th>변수 목록</th></tr>
-      <tr><td><strong>Primary</strong></td><td>3개</td><td>Normal / Strong / Heavy — 브랜드 컬러 기준</td></tr>
-      <tr><td><strong>Point</strong></td><td>2개</td><td>Text (텍스트 강조) / Brand (브랜드 자산)</td></tr>
-      <tr><td><strong>Secondary</strong></td><td>3개</td><td>Normal / Strong / Heavy</td></tr>
-      <tr><td><strong>Label</strong></td><td>6개</td><td>Strong / Normal / Neutral(α0.88) / Alternative(α0.61) / Assistive(α0.28) / Disable(α0.16)</td></tr>
-      <tr><td><strong>Background</strong></td><td>7개</td><td>Normal/Normal · Normal/Alternative · Normal/Section · Elevated/Normal · Elevated/Alternative · Transparent/Normal · Transparent/Alternative</td></tr>
-      <tr><td><strong>Interaction</strong></td><td>2개</td><td>Inactive / Disable</td></tr>
-      <tr><td><strong>Line</strong></td><td>8개</td><td>Normal(rgba) 4단계 + Solid(불투명) 4단계</td></tr>
-      <tr><td><strong>Fill</strong></td><td>3개</td><td>Normal(α0.08) / Strong(α0.16) / Alternative(α0.05)</td></tr>
-      <tr><td><strong>Status</strong></td><td>3개</td><td>Positive / Cautionary / Negative</td></tr>
-      <tr><td><strong>Static</strong></td><td>2개</td><td>White / Black</td></tr>
-      <tr><td><strong>Material</strong></td><td>1개</td><td>Dimmer(α0.52)</td></tr>
-      <tr><td><strong>Inverse</strong></td><td>3개</td><td>Primary / Background / Label</td></tr>
-      <tr><td><strong>Accent/Background</strong></td><td>7개</td><td>Red Orange / Lime / Cyan / Light Blue / Violet / Purple / Pink</td></tr>
-      <tr><td><strong>Accent/Foreground</strong></td><td>11개</td><td>Red / Red Orange / Orange / Lime / Green / Cyan / Light Blue / Blue / Violet / Purple / Pink</td></tr>
-    </table>
-
-    <h3>Step 2 — 레이어 전체 바인딩</h3>
-    <p>Figma 전체 레이어를 순회하며 하드코딩된 색상값을 Variable로 자동 교체합니다. 매칭 허용 오차는 hex 채널별 ±3.</p>
-
-    <div class="code-collapse">
-      <button class="code-toggle"><span class="code-span">더보기</span> <span class="toggle-icon">▼</span></button>
-    <pre><code><span class="cm">// 매핑 로직</span>
-텍스트 레이어 fill
-  불투명 어두운 색 (#171719, #000)   → <span class="cv">Label/Normal, Label/Strong</span>
-  반투명 (#37383C + alpha)           → <span class="cv">Label/Neutral ~ Label/Disable</span>
-
-Frame / Rectangle fill
-  흰색 계열 불투명                   → <span class="cv">Background/Normal/Normal</span>
-  회색 계열 불투명                   → <span class="cv">Background/Normal/Alternative</span>
-  반투명 어두운 색                   → <span class="cv">Fill/Normal ~ Fill/Strong</span>
-
-Stroke (border)
-  #70737C + alpha                    → <span class="cv">Line/Normal/*</span>
-  불투명 밝은 회색                   → <span class="cv">Line/Solid/*</span>
-
-브랜드 색상
-  Primary hex 매칭                   → <span class="cv">Primary/Normal ~ Heavy</span>
-
-Status 색상
-  #00BF40 계열                       → <span class="cv">Status/Positive</span>
-  #FF9200 계열                       → <span class="cv">Status/Cautionary</span>
-  #FF4242 계열                       → <span class="cv">Status/Negative</span></code></pre>
-    </div>
-
-    <div class="callout info">
-      <span class="callout-icon">⚠️</span>
-      <div class="callout-body">
-        <strong>충돌 시 PAUSE</strong>
-        기존 Color Style이 바인딩을 막거나, 외부 라이브러리 컴포넌트인 경우 AI가 목록을 보고하고
-        디자이너의 결정을 기다립니다. 임의로 진행하지 않습니다.
-      </div>
-    </div>
-
-    <h3>Step 3 — 인터랙션 상태 시각화</h3>
-    <p>바인딩 완료 후 Figma 내 <code>axpublish / Interaction States</code> 페이지에 버튼·인풋의 상태 매트릭스를 자동으로 그립니다. Primary 컬러가 바뀌면 Variable 바인딩으로 자동 반영됩니다.</p>
-
-    <div class="code-collapse">
-      <button class="code-toggle"><span class="code-span">더보기</span> <span class="toggle-icon">▼</span></button>
-    <pre><code><span class="cm">// Figma에 그려지는 버튼 상태 매트릭스</span>
-┌────────────┬────────────┬────────────┬────────────┐
-│  Default   │   Hover    │  Pressed   │  Disabled  │
-├────────────┼────────────┼────────────┼────────────┤
-│ <span class="cv">Primary/</span>   │ <span class="cv">Primary/</span>   │ <span class="cv">Primary/</span>   │ <span class="cv">Interaction/</span>│
-│ <span class="cv">Normal</span>     │ <span class="cv">Strong</span>     │ <span class="cv">Heavy</span>      │ <span class="cv">Disable</span>    │
-│ 텍스트:    │ 텍스트:    │ 텍스트:    │ 텍스트:    │
-│ <span class="cv">Static/</span>    │ <span class="cv">Static/</span>    │ <span class="cv">Static/</span>    │ <span class="cv">Interaction/</span>│
-│ <span class="cv">White</span>      │ <span class="cv">White</span>      │ <span class="cv">White</span>      │ <span class="cv">Inactive</span>   │
-└────────────┴────────────┴────────────┴────────────┘
-
-<span class="cm">// 추가로 그려지는 컴포넌트</span>
-Secondary 버튼: Secondary/Normal → Strong → Heavy
-Ghost 버튼:     배경 투명, 테두리 Line/Solid/Normal
-Input:          Default / Hover / Focus / Error / Disabled
-Link:           Default / Hover / Visited</code></pre>
-    </div>
-
-    <h3>Step 4 — 디자이너 확정 게이트 🔒</h3>
-    <p>Figma 상태가 확정되기 전까지 Code Generation은 시작되지 않습니다. 디자이너가 <strong>"OK"</strong> 또는 <strong>"Figma 완료"</strong> 한 마디를 하면 코드 생성 단계로 진행합니다.</p>
-
-    <div class="callout tip">
-      <span class="callout-icon">🔒</span>
-      <div class="callout-body">
-        <strong>Code Gen은 Figma 확정 이후에만</strong>
-        확정 전에 임의로 코드를 생성하지 않습니다.
-        Figma ↔ Code 불일치를 원천 차단하는 axpublish의 핵심 원칙입니다.
-      </div>
-    </div>
-  </section>
-
-  <!-- COMPONENTS -->
-  <section id="components">
-    <h2>컴포넌트 라이브러리 (Phase 3)</h2>
-    <p>재사용 가능한 UI 요소를 <strong>딱 한 번</strong> 만듭니다. Figma에는 Component로 등록하고, 코드에는 재사용 파일로 생성합니다. 이후 화면 조립 시 라이브러리에서 가져다 씁니다.</p>
-
-    <h3>Figma Component 생성 → Code 파일 생성 (동시)</h3>
-    <p style="font-size:13px; color:#888; margin-bottom:12px;">
-      ⚠️ <strong>재사용 기준:</strong> Figma 전체 스캔 후 <strong>2회 이상</strong> 등장하는 요소만 컴포넌트화.
-      1회만 등장하는 섹션(Hero 등)은 해당 <code>page.tsx</code>에 인라인으로 작성.
-    </p>
-    <table>
-      <tr><th>Tier</th><th>컴포넌트</th><th>Figma</th><th>Code 파일</th></tr>
-      <tr><td>Atom</td><td>Button (3 variants × 4 states)</td><td>Component + Variable</td><td>atoms/Button.tsx</td></tr>
-      <tr><td>Atom</td><td>Input (5 states)</td><td>Component + Variable</td><td>atoms/Input.tsx</td></tr>
-      <tr><td>Atom</td><td>Badge / Tag</td><td>Component + Variable</td><td>atoms/Badge.tsx</td></tr>
-      <tr><td>Molecule</td><td>Card</td><td>Component + Variable</td><td>molecules/Card.tsx</td></tr>
-      <tr><td>Molecule</td><td>Dropdown</td><td>Component + Variable</td><td>molecules/Dropdown.tsx</td></tr>
-      <tr><td>Molecule</td><td>Tab</td><td>Component + Variable</td><td>molecules/Tab.tsx</td></tr>
-      <tr><td>Organism</td><td>GNB (Desktop + Mobile)</td><td>Component + Variable</td><td>organisms/GNB.tsx</td></tr>
-      <tr><td>Organism</td><td>Footer</td><td>Component + Variable</td><td>organisms/Footer.tsx</td></tr>
-      <tr><td>Organism</td><td>Modal / Bottom Sheet</td><td>Component + Variable</td><td>organisms/Modal.tsx</td></tr>
-    </table>
-
-    <h3>Button.tsx 예시</h3>
-    <div class="code-collapse">
-      <button class="code-toggle"><span class="code-span">더보기</span> <span class="toggle-icon">▼</span></button>
-    <pre><code><span class="cm">// src/components/atoms/Button.tsx</span>
-<span class="ck">type</span> ButtonProps = {
-  label: string
-  variant?: <span class="cs">'primary'</span> | <span class="cs">'secondary'</span> | <span class="cs">'ghost'</span>
-  size?: <span class="cs">'sm'</span> | <span class="cs">'md'</span> | <span class="cs">'lg'</span>
-  disabled?: boolean
-  onClick?: () =&gt; void
-}
-
-<span class="ck">export default function</span> <span class="cv">Button</span>({ label, variant = <span class="cs">'primary'</span>, size = <span class="cs">'md'</span>, disabled, onClick }: ButtonProps) {
-  <span class="ck">const</span> sizes = { sm: <span class="cs">'px-4 h-9 text-sm'</span>, tb: <span class="cs">'px-5 h-12 text-sm'</span>, lg: <span class="cs">'px-6 h-14 text-base'</span> }
-  <span class="ck">const</span> variants = {
-    primary:   <span class="cs">'bg-primary-normal text-static-white hover:bg-primary-strong active:bg-primary-heavy'</span>,
-    secondary: <span class="cs">'bg-secondary-normal text-static-white hover:bg-secondary-strong'</span>,
-    ghost:     <span class="cs">'bg-transparent border border-line-solid-normal text-label-normal hover:bg-fill-normal'</span>,
-  }
-  <span class="ck">return</span> (
-    <span class="ct">&lt;button</span>
-      onClick={onClick} disabled={disabled}
-      className={<span class="cs">`inline-flex items-center justify-center rounded-md font-semibold
-        transition-colors duration-150 disabled:cursor-not-allowed
-        disabled:bg-interaction-disable disabled:text-interaction-inactive
-        ${sizes[size]} ${variants[variant]}`</span>}
-    <span class="ct">&gt;</span>{label}<span class="ct">&lt;/button&gt;</span>
-  )
-}</code></pre>
-    </div>
-  </section>
-
-  <hr>
-
-  <!-- FILES -->
-  <section id="files">
-    <h2>파일 구성</h2>
-    <p>6개 파일이 하나의 완결된 패키지입니다. AI에게 건네면 바로 동작합니다.</p>
-
-    <div class="file-list">
-      <div class="file-row">
-        <span class="file-icon">📋</span>
-        <div>
-          <div class="file-name-row"><span class="file-name">axpublish-orchestrator.md</span><span class="badge purple">AI 지침</span></div>
-          <p class="file-desc">AI가 읽고 따르는 6-Phase 워크플로우. 각 단계의 행동 지침, 보고 형식, PAUSE 조건이 정의되어 있습니다.</p>
-        </div>
-      </div>
-      <div class="file-row">
-        <span class="file-icon">📐</span>
-        <div>
-          <div class="file-name-row"><span class="file-name">responsive-rules.md</span><span class="badge">규칙 문서</span></div>
-          <p class="file-desc">반응형 처리 법전. 브레이크포인트, 타이포그래피 16레벨, Auto-layout→CSS 변환 테이블, 컴포넌트 패턴, 금지 사항 포함.</p>
-        </div>
-      </div>
-      <div class="file-row">
-        <span class="file-icon">🎨</span>
-        <div>
-          <div class="file-name-row"><span class="file-name">tokens.css</span><span class="badge blue">CSS</span></div>
-          <p class="file-desc">Seed Design 기반 시맨틱 토큰 전체. 컬러, 타이포그래피 16레벨, 그림자, 라디우스.</p>
-        </div>
-      </div>
-      <div class="file-row">
-        <span class="file-icon">⚙️</span>
-        <div>
-          <div class="file-name-row"><span class="file-name">tokens.css</span><span class="badge orange">Tailwind v4</span></div>
-          <p class="file-desc">Tailwind v4 CSS 네이티브 설정 포함. <code>@theme</code>으로 브레이크포인트 정의, <code>@utility</code>로 컨테이너 패턴. <code>tailwind.config.js</code> 없음.</p>
-        </div>
-      </div>
-      <div class="file-row">
-        <span class="file-icon">🔧</span>
-        <div>
-          <div class="file-name-row"><span class="file-name">generate-theme.js</span><span class="badge orange">Node.js</span></div>
-          <p class="file-desc">Primary/Secondary hex를 입력하면 HSL 계산으로 13단계 컬러 스케일을 생성하고 theme.css를 출력합니다.</p>
-        </div>
-      </div>
-      <div class="file-row">
-        <span class="file-icon">📦</span>
-        <div>
-          <div class="file-name-row"><span class="file-name">figma-semantic-variables.json</span><span class="badge green">JSON</span></div>
-          <p class="file-desc">Figma Variable Collection 템플릿. MCP Write 시 AI가 이 구조대로 49개 Variable을 생성합니다.</p>
-        </div>
-      </div>
-    </div>
-
-    <h3>CSS 로드 순서</h3>
-    <pre><code><span class="ct">&lt;link</span> rel="stylesheet" href="<span class="cs">./tokens.css</span>"<span class="ct">&gt;</span>     <span class="cm">&lt;!-- 1. Seed Design 기본 토큰 --&gt;</span>
-<span class="ct">&lt;link</span> rel="stylesheet" href="<span class="cs">./theme.css</span>"<span class="ct">&gt;</span>      <span class="cm">&lt;!-- 2. 프로젝트 Primary/Secondary --&gt;</span>
-<span class="ct">&lt;link</span> rel="stylesheet" href="<span class="cs">./style.css</span>"<span class="ct">&gt;</span>      <span class="cm">&lt;!-- 3. 프로젝트 커스텀 --&gt;</span></code></pre>
-  </section>
-
-  <!-- DESIGN SYSTEM COLORS -->
-  <section id="ds-colors">
-    <h2>Color</h2>
-    <p>두 계층으로 구성됩니다. <strong>Primitive</strong>는 팔레트 스케일 그대로, <strong>Semantic</strong>은 UI 역할에 따라 의미를 부여한 토큰입니다. 컴포넌트에서 직접 쓰는 건 Semantic이고, Primitive는 그 값의 출처입니다.</p>
-
-    <!-- ── PRIMITIVE ────────────────────────────────── -->
-    <div class="tab-group" id="color-tabs">
-      <div class="tab-list">
-        <button class="tab-btn active" data-tab="primitive">Primitive</button>
-        <button class="tab-btn" data-tab="semantic">Semantic</button>
-      </div>
-      <div class="tab-panel active" data-panel="primitive">
-      <p style="font-size:13px; color:#888; margin-bottom:16px">Figma: Atomic Variable Collection. 직접 사용 ✕, Semantic 토큰이 이 값을 참조합니다. <code>--atomic-*</code></p>
-
-    <div class="ds-section-label">Cool Neutral (주 그레이 팔레트)</div>
-    <div class="swatch-group">
-      <div class="swatch-group-title">--atomic-cn-* — 미세한 쿨 틴트. Label·Background·Line 모든 시맨틱의 기반</div>
-      <div class="swatch-row" style="flex-wrap:nowrap; gap:3px;">
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#0F0F10"></div><div class="swatch-name" style="font-size:9px">CN-5</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#171719"></div><div class="swatch-name" style="font-size:9px">CN-10</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#1B1C1E"></div><div class="swatch-name" style="font-size:9px">CN-15</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#292A2D"></div><div class="swatch-name" style="font-size:9px">CN-20</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#2E2F33"></div><div class="swatch-name" style="font-size:9px">CN-22</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#46474C"></div><div class="swatch-name" style="font-size:9px">CN-30</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#5A5C63"></div><div class="swatch-name" style="font-size:9px">CN-40</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#70737C"></div><div class="swatch-name" style="font-size:9px">CN-50</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#878A93"></div><div class="swatch-name" style="font-size:9px">CN-60</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#989BA2"></div><div class="swatch-name" style="font-size:9px">CN-70</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#AEB0B6"></div><div class="swatch-name" style="font-size:9px">CN-80</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#C2C4C8"></div><div class="swatch-name" style="font-size:9px">CN-90</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#DBDCDF"></div><div class="swatch-name" style="font-size:9px">CN-95</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#EAEBEC"></div><div class="swatch-name" style="font-size:9px">CN-97</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#F4F4F5"></div><div class="swatch-name" style="font-size:9px">CN-98</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#F7F7F8; border:1px solid #E1E2E4"></div><div class="swatch-name" style="font-size:9px">CN-99</div></div>
-      </div>
-    </div>
-
-    <div class="ds-section-label">Neutral (순수 회색)</div>
-    <div class="swatch-group">
-      <div class="swatch-group-title">--atomic-n-* — 쿨 틴트 없는 순수 gray. 아이콘, UI 크롬에 사용</div>
-      <div class="swatch-row" style="flex-wrap:nowrap; gap:3px;">
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#0F0F0F"></div><div class="swatch-name" style="font-size:9px">N-5</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#171717"></div><div class="swatch-name" style="font-size:9px">N-10</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#2A2A2A"></div><div class="swatch-name" style="font-size:9px">N-20</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#474747"></div><div class="swatch-name" style="font-size:9px">N-30</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#5C5C5C"></div><div class="swatch-name" style="font-size:9px">N-40</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#737373"></div><div class="swatch-name" style="font-size:9px">N-50</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#8A8A8A"></div><div class="swatch-name" style="font-size:9px">N-60</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#9B9B9B"></div><div class="swatch-name" style="font-size:9px">N-70</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#B0B0B0"></div><div class="swatch-name" style="font-size:9px">N-80</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#C4C4C4"></div><div class="swatch-name" style="font-size:9px">N-90</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#DCDCDC"></div><div class="swatch-name" style="font-size:9px">N-95</div></div>
-        <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#F7F7F7; border:1px solid #E0E0E0"></div><div class="swatch-name" style="font-size:9px">N-99</div></div>
-      </div>
-    </div>
-
-    <div class="ds-section-label">Opacity (투명도 스케일)</div>
-    <div class="swatch-group">
-      <div class="swatch-group-title">--opacity-* — Figma Opacity Variable 컬렉션 원본 (15단계)</div>
-      <div class="swatch-row" style="flex-wrap:nowrap; gap:4px; align-items:flex-end;">
-        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.08; border:1px solid #E0E0E0"></div><div class="swatch-name" style="font-size:9px">8%</div></div>
-        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.16; border:1px solid #E0E0E0"></div><div class="swatch-name" style="font-size:9px">16%</div></div>
-        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.22"></div><div class="swatch-name" style="font-size:9px">22%</div></div>
-        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.28"></div><div class="swatch-name" style="font-size:9px">28%</div></div>
-        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.43"></div><div class="swatch-name" style="font-size:9px">43%</div></div>
-        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.52"></div><div class="swatch-name" style="font-size:9px">52%</div></div>
-        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.61"></div><div class="swatch-name" style="font-size:9px">61%</div></div>
-        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.74"></div><div class="swatch-name" style="font-size:9px">74%</div></div>
-        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.88"></div><div class="swatch-name" style="font-size:9px">88%</div></div>
-        <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:1"></div><div class="swatch-name" style="font-size:9px">100%</div></div>
-      </div>
-    </div>
-
-    <!-- ── SEMANTIC ────────────────────────────────── -->
-      </div><!-- /tab-panel primitive -->
-      <div class="tab-panel" data-panel="semantic">
-      <p style="font-size:13px; color:#888; margin-bottom:16px">Figma: Semantic Variable Collection. 실제 컴포넌트에서 이 토큰을 사용합니다. <code>--color-*</code></p>
-
-    <div class="ds-section-label">Brand / Primary</div>
-    <div class="swatch-group">
-      <div class="swatch-group-title">generate-theme.js로 자동 생성 — Primary hex 입력 시 13단계 출력 (예시: #0066FF)</div>
-      <div class="swatch-row">
-        <div class="swatch"><div class="swatch-color" style="background:#0054D1"></div><div class="swatch-name">Heavy</div><div class="swatch-hex">Pressed</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#005EEB"></div><div class="swatch-name">Strong</div><div class="swatch-hex">Hover</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#0066FF"></div><div class="swatch-name">Normal</div><div class="swatch-hex">Default</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#3385FF"></div><div class="swatch-name">Inverse</div><div class="swatch-hex">Dark BG 위</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#99BFFF"></div><div class="swatch-name">Light</div><div class="swatch-hex">연한 강조</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#EBF2FF"></div><div class="swatch-name">Tint</div><div class="swatch-hex">뱃지 배경</div></div>
-      </div>
-    </div>
-
-    <div class="ds-section-label">Label (텍스트 색상)</div>
-    <div class="swatch-group">
-      <div class="swatch-row">
-        <div class="swatch"><div class="swatch-color" style="background:#000000"></div><div class="swatch-name">Strong</div><div class="swatch-hex">#000000</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#171719"></div><div class="swatch-name">Normal</div><div class="swatch-hex">CN-10</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#3B3C40"></div><div class="swatch-name">Neutral</div><div class="swatch-hex">α 88%</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#7C7E84"></div><div class="swatch-name">Alternative</div><div class="swatch-hex">α 61%</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#BCBDC2"></div><div class="swatch-name">Assistive</div><div class="swatch-hex">α 28%</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#D9DADC"></div><div class="swatch-name">Disable</div><div class="swatch-hex">α 16%</div></div>
-      </div>
-    </div>
-
-    <div class="ds-section-label">Background (배경 색상)</div>
-    <div class="swatch-group">
-      <div class="swatch-row">
-        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border:1px solid #E1E2E4"></div><div class="swatch-name">Normal</div><div class="swatch-hex">#FFFFFF</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#F7F7F8"></div><div class="swatch-name">Alternative</div><div class="swatch-hex">CN-99</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#F0F0F2"></div><div class="swatch-name">Section</div><div class="swatch-hex">섹션 구분</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border:1px solid #E1E2E4; box-shadow:0 2px 8px rgba(0,0,0,0.08)"></div><div class="swatch-name">Elevated</div><div class="swatch-hex">카드 배경</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:rgba(23,23,25,0.08)"></div><div class="swatch-name">Transparent</div><div class="swatch-hex">α 8%</div></div>
-      </div>
-    </div>
-
-    <div class="ds-section-label">Status (상태 색상)</div>
-    <div class="swatch-group">
-      <div class="swatch-row">
-        <div class="swatch"><div class="swatch-color" style="background:#00BF40"></div><div class="swatch-name">Positive</div><div class="swatch-hex">#00BF40</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#FF9200"></div><div class="swatch-name">Cautionary</div><div class="swatch-hex">#FF9200</div></div>
-        <div class="swatch"><div class="swatch-color" style="background:#FF4242"></div><div class="swatch-name">Negative</div><div class="swatch-hex">#FF4242</div></div>
-      </div>
-    </div>
-
-      </div><!-- /tab-panel semantic -->
-    </div><!-- /tab-group color -->
-
-    <h3>컬러 스케일 자동 생성</h3>
-    <pre><code><span class="cm"># Primary hex 하나로 13단계 자동 생성</span>
-node generate-theme.js --primary <span class="cs">"#0066FF"</span> --output ./src/theme.css</code></pre>
-  </section>
-
-  <!-- DESIGN SYSTEM TYPOGRAPHY -->
-  <section id="ds-typography">
-    <h2>타이포그래피 스케일</h2>
-    <p>17레벨 × 3단계(Desktop/Tablet/Mobile) 고정값 시스템. 브레이크포인트 전환 시 font-size가 자연스럽게 변합니다. letter-spacing은 <code>em</code> 단위로 폰트 크기에 비례합니다.</p>
-
-    <div class="tab-group" id="typo-tabs">
-      <div class="tab-list">
-        <button class="tab-btn active" data-tab="typo-table">전체 스케일</button>
-        <button class="tab-btn" data-tab="typo-preview">미리보기</button>
-        <button class="tab-btn" data-tab="typo-usage">사용법</button>
-      </div>
-      <div class="tab-panel active" data-panel="typo-table">
-      <div class="ds-section-label" style="margin-top:0">Desktop / Tablet / Mobile — 한눈에 보기</div>
-
-    <table style="font-size:12px; table-layout:fixed;">
-      <colgroup>
-        <col style="width:130px">
-        <col style="width:auto">
-        <col style="width:80px">
-        <col style="width:72px">
-        <col style="width:72px">
-        <col style="width:64px">
-        <col style="width:80px">
-      </colgroup>
-      <tr>
-        <th>토큰</th>
-        <th>용도</th>
-        <th style="text-align:center">Desktop</th>
-        <th style="text-align:center">Tablet</th>
-        <th style="text-align:center">Mobile</th>
-        <th style="text-align:center">LH</th>
-        <th style="text-align:center">LS</th>
-      </tr>
-      <tr>
-        <td><code>display-hero</code></td>
-        <td>랜딩 초대형 카피, 숫자 카운터</td>
-        <td style="text-align:center;font-weight:700">120px</td>
-        <td style="text-align:center;color:#888">74px</td>
-        <td style="text-align:center;color:#888">40px</td>
-        <td style="text-align:center">1.15</td>
-        <td style="text-align:center;color:#3B82F6">−0.032em</td>
-      </tr>
-      <tr>
-        <td><code>display-1</code></td>
-        <td>히어로 메인 카피</td>
-        <td style="text-align:center;font-weight:700">56px</td>
-        <td style="text-align:center;color:#888">42px</td>
-        <td style="text-align:center;color:#888">28px</td>
-        <td style="text-align:center">1.286</td>
-        <td style="text-align:center;color:#3B82F6">−0.032em</td>
-      </tr>
-      <tr>
-        <td><code>display-2</code></td>
-        <td>서브 히어로, 대형 섹션 슬로건</td>
-        <td style="text-align:center;font-weight:700">40px</td>
-        <td style="text-align:center;color:#888">31px</td>
-        <td style="text-align:center;color:#888">22px</td>
-        <td style="text-align:center">1.3</td>
-        <td style="text-align:center;color:#3B82F6">−0.028em</td>
-      </tr>
-      <tr>
-        <td><code>display-3</code></td>
-        <td>섹션 리드 문구, Title보다 강조 필요 시</td>
-        <td style="text-align:center;font-weight:700">36px</td>
-        <td style="text-align:center;color:#888">29px</td>
-        <td style="text-align:center;color:#888">24px</td>
-        <td style="text-align:center">1.333</td>
-        <td style="text-align:center;color:#3B82F6">−0.027em</td>
-      </tr>
-      <tr style="background:rgba(0,102,255,0.03)">
-        <td><code>title-1</code></td>
-        <td>페이지 타이틀, 주요 섹션 헤더</td>
-        <td style="text-align:center;font-weight:700">32px</td>
-        <td style="text-align:center;color:#888">26px</td>
-        <td style="text-align:center;color:#888">22px</td>
-        <td style="text-align:center">1.375</td>
-        <td style="text-align:center;color:#3B82F6">−0.025em</td>
-      </tr>
-      <tr style="background:rgba(0,102,255,0.03)">
-        <td><code>title-2</code></td>
-        <td>카드 제목, 모달 헤더</td>
-        <td style="text-align:center;font-weight:700">28px</td>
-        <td style="text-align:center;color:#888">22px</td>
-        <td style="text-align:center;color:#888">16px</td>
-        <td style="text-align:center">1.358</td>
-        <td style="text-align:center;color:#3B82F6">−0.024em</td>
-      </tr>
-      <tr style="background:rgba(0,102,255,0.03)">
-        <td><code>title-3</code></td>
-        <td>서브섹션, 리스트 그룹 헤더</td>
-        <td style="text-align:center;font-weight:700">24px</td>
-        <td style="text-align:center;color:#888">21px</td>
-        <td style="text-align:center;color:#888">18px</td>
-        <td style="text-align:center">1.333</td>
-        <td style="text-align:center;color:#3B82F6">−0.023em</td>
-      </tr>
-      <tr>
-        <td><code>heading-1</code></td>
-        <td>섹션 소제목 — 3-tier 자동 전환 (22·19·17px)</td>
-        <td style="text-align:center;font-weight:700">22px</td>
-        <td style="text-align:center;color:#888">19px</td>
-        <td style="text-align:center;color:#888">17px</td>
-        <td style="text-align:center">1.364</td>
-        <td style="text-align:center;color:#3B82F6">−0.019em</td>
-      </tr>
-
-      <tr>
-        <td><code>headline-1</code></td>
-        <td>강조 항목 라벨, 탭 — 3-tier 자동 전환 (18·16·15px)</td>
-        <td style="text-align:center;font-weight:700">18px</td>
-        <td style="text-align:center;color:#888">16px</td>
-        <td style="text-align:center;color:#888">15px</td>
-        <td style="text-align:center">1.444</td>
-        <td style="text-align:center;color:#888">−0.002em</td>
-      </tr>
-
-      <tr style="background:rgba(0,0,0,0.02)">
-        <td><code>body-1</code></td>
-        <td>기본 본문 (Normal lh1.5 / Reading lh1.625)</td>
-        <td style="text-align:center;font-weight:700">16px</td>
-        <td style="text-align:center;color:#888">15px</td>
-        <td style="text-align:center;color:#888">15px</td>
-        <td style="text-align:center">1.5 / 1.625</td>
-        <td style="text-align:center;color:#888">+0.006em</td>
-      </tr>
-      <tr style="background:rgba(0,0,0,0.02)">
-        <td><code>body-2</code></td>
-        <td>보조 본문 (Normal lh1.467 / Reading lh1.6)</td>
-        <td style="text-align:center;font-weight:700">15px</td>
-        <td style="text-align:center;color:#888">14px</td>
-        <td style="text-align:center;color:#888">14px</td>
-        <td style="text-align:center">1.467 / 1.6</td>
-        <td style="text-align:center;color:#888">+0.010em</td>
-      </tr>
-      <tr>
-        <td><code>label-1</code></td>
-        <td>폼 레이블, 버튼 (Normal lh1.429 / Reading lh1.571)</td>
-        <td style="text-align:center;font-weight:700">14px</td>
-        <td style="text-align:center;color:#888">13px</td>
-        <td style="text-align:center;color:#888">13px</td>
-        <td style="text-align:center">1.429 / 1.571</td>
-        <td style="text-align:center;color:#888">+0.015em</td>
-      </tr>
-      <tr>
-        <td><code>label-2</code></td>
-        <td>하위 레이블, 낮은 중요도 버튼</td>
-        <td style="text-align:center;font-weight:700">13px</td>
-        <td style="text-align:center;color:#888">12px</td>
-        <td style="text-align:center;color:#888">12px</td>
-        <td style="text-align:center">1.385</td>
-        <td style="text-align:center;color:#888">+0.019em</td>
-      </tr>
-      <tr style="background:rgba(0,0,0,0.02)">
-        <td><code>caption-1</code></td>
-        <td>타임스탬프, 메타, 뱃지 텍스트</td>
-        <td style="text-align:center;font-weight:700;color:#888">12px</td>
-        <td style="text-align:center;color:#bbb">12px</td>
-        <td style="text-align:center;color:#bbb">12px</td>
-        <td style="text-align:center">1.333</td>
-        <td style="text-align:center;color:#888">+0.025em</td>
-      </tr>
-      <tr style="background:rgba(0,0,0,0.02)">
-        <td><code>caption-2</code></td>
-        <td>법적 고지, 가장 보조적인 정보</td>
-        <td style="text-align:center;font-weight:700;color:#888">11px</td>
-        <td style="text-align:center;color:#bbb">11px</td>
-        <td style="text-align:center;color:#bbb">11px</td>
-        <td style="text-align:center">1.273</td>
-        <td style="text-align:center;color:#888">+0.031em</td>
-      </tr>
-    </table>
-
-      </div><!-- /tab-panel typo-table -->
-      <div class="tab-panel" data-panel="typo-preview">
-      <div class="typo-scale">
-      <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">display-1</div><div class="typo-sizes">56 · 42 · 28px / lh1.286 / ls−0.032em</div></div>
-        <div class="typo-sample" style="font-size:40px; font-weight:700; letter-spacing:-0.032em; line-height:1.286">디자인을 코드로</div>
-      </div>
-      <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">display-2</div><div class="typo-sizes">40 · 31 · 22px / lh1.3 / ls−0.028em</div></div>
-        <div class="typo-sample" style="font-size:30px; font-weight:700; letter-spacing:-0.028em; line-height:1.3">Design to Code Pipeline</div>
-      </div>
-      <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">title-1</div><div class="typo-sizes">32 · 26 · 22px / lh1.375 / ls−0.025em</div></div>
-        <div class="typo-sample" style="font-size:24px; font-weight:600; letter-spacing:-0.025em">페이지 타이틀, 주요 섹션 헤더</div>
-      </div>
-      <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">title-2</div><div class="typo-sizes">28 · 22 · 16px / lh1.358 / ls−0.024em</div></div>
-        <div class="typo-sample" style="font-size:20px; font-weight:600; letter-spacing:-0.024em">카드 제목, 모달 헤더</div>
-      </div>
-      <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">heading-1</div><div class="typo-sizes">22 · 19 · 17px / lh1.364 / ls−0.019em</div></div>
-        <div class="typo-sample" style="font-size:18px; font-weight:600; letter-spacing:-0.019em">섹션 소제목, 큰 화면</div>
-      </div>
-      <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">headline-1</div><div class="typo-sizes">18 · 16 · 15px / lh1.444 / ls−0.002em</div></div>
-        <div class="typo-sample" style="font-size:16px; font-weight:500; letter-spacing:-0.002em">강조 항목 라벨, 탭 텍스트</div>
-      </div>
-      <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">body-1 Normal</div><div class="typo-sizes">16 · 15 · 15px / lh1.5 / ls+0.006em</div></div>
-        <div class="typo-sample" style="font-size:14px; font-weight:400; letter-spacing:0.006em; line-height:1.5">일반 본문 텍스트입니다. 짧은 설명, 카드 요약에 사용합니다.</div>
-      </div>
-      <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">body-1 Reading</div><div class="typo-sizes">16 · 15 · 15px / lh1.625 / ls+0.006em</div></div>
-        <div class="typo-sample" style="font-size:14px; font-weight:400; letter-spacing:0.006em; line-height:1.625; color:#555">긴 글 본문에 사용합니다. 채용공고 상세, 블로그 포스트처럼 읽는 시간이 긴 텍스트에서 line-height를 더 넉넉하게 줍니다.</div>
-      </div>
-      <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">label-1</div><div class="typo-sizes">14 · 13 · 13px / lh1.429 / ls+0.015em</div></div>
-        <div class="typo-sample" style="font-size:13px; font-weight:500; letter-spacing:0.015em; color:#888">폼 레이블 · 버튼 텍스트 · UI 요소</div>
-      </div>
-      <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">caption-1</div><div class="typo-sizes">12px 고정 / lh1.333 / ls+0.025em</div></div>
-        <div class="typo-sample" style="font-size:11px; font-weight:400; letter-spacing:0.025em; color:#aaa">타임스탬프 · 메타 정보 · 뱃지 · 보조 설명</div>
-      </div>
-      <div class="typo-row">
-        <div class="typo-meta"><div class="typo-token">caption-2</div><div class="typo-sizes">11px 고정 / lh1.273 / ls+0.031em</div></div>
-        <div class="typo-sample" style="font-size:10px; font-weight:400; letter-spacing:0.031em; color:#ccc">법적 고지 · 약관 · 가장 낮은 위계 정보</div>
-      </div>
-    </div>
-
-      </div><!-- /tab-panel typo-preview -->
-      <div class="tab-panel" data-panel="typo-usage">
-      <h3 style="margin-top:0">CSS 사용 패턴</h3>
-    <pre><code><span class="cm">/* Tailwind v4 — 세 변수를 함께 쓰는 것이 원칙 */</span>
-<span class="ck">class</span>=<span class="cs">"text-[length:var(--font-size-title-1)]
-      leading-[var(--font-lh-title-1)]
-      tracking-[var(--font-ls-title-1)]"</span>
-
-<span class="cm">/* Reading 변형 (body/label) */</span>
-<span class="ck">class</span>=<span class="cs">"text-[length:var(--font-size-body-1)]
-      leading-[var(--font-lh-body-1-reading)]
-      tracking-[var(--font-ls-body-1)]"</span></code></pre>
-      </div><!-- /tab-panel typo-usage -->
-    </div><!-- /tab-group typo -->
-  </section>
-
-  <!-- DESIGN SYSTEM RESPONSIVE -->
-  <section id="ds-responsive">
-    <h2>Spacing · Grid</h2>
-
-    <div class="bp-diagram">
-      <div class="bp-bar-wrap">
-        <div class="bp-label">Mobile</div>
-        <div class="bp-bar bp-bar-mobile">&lt; 768px</div>
-        <div class="bp-range">(기본값, prefix 없음)</div>
-      </div>
-      <div class="bp-bar-wrap">
-        <div class="bp-label">Tablet</div>
-        <div class="bp-bar bp-bar-tablet">768 ~ 1279px</div>
-        <span class="bp-prefix">tb:</span> <span class="bp-prefix">max-mb:</span>
-      </div>
-      <div class="bp-bar-wrap">
-        <div class="bp-label">Desktop</div>
-        <div class="bp-bar bp-bar-desktop">1280px ~</div>
-        <span class="bp-prefix">mb:</span>
-      </div>
-    </div>
-
-    <div class="bp-container-info">
-      <div class="bp-container-card">
-        <div class="bp-container-tier">Mobile</div>
-        <div class="bp-container-val">padding 20px<br>max-width none</div>
-      </div>
-      <div class="bp-container-card">
-        <div class="bp-container-tier">Tablet</div>
-        <div class="bp-container-val">padding 48px<br>max-width 1279px</div>
-      </div>
-      <div class="bp-container-card">
-        <div class="bp-container-tier">Desktop</div>
-        <div class="bp-container-val">padding 64px<br>max-width 1440px</div>
-      </div>
-    </div>
-
-    <h3 style="margin-top:28px">Auto-layout → CSS 변환</h3>
-    <div class="mapping-grid">
-      <div class="mapping-item"><div class="mapping-figma">Horizontal / gap 12 / center</div><div class="mapping-css">flex flex-row gap-3 items-center</div></div>
-      <div class="mapping-item"><div class="mapping-figma">Vertical / gap 24 / align start</div><div class="mapping-css">flex flex-col gap-6 items-start</div></div>
-      <div class="mapping-item"><div class="mapping-figma">Fill container (width)</div><div class="mapping-css">w-full</div></div>
-      <div class="mapping-item"><div class="mapping-figma">Hug contents</div><div class="mapping-css">w-fit</div></div>
-      <div class="mapping-item"><div class="mapping-figma">Overflow Clip</div><div class="mapping-css">overflow-hidden</div></div>
-      <div class="mapping-item"><div class="mapping-figma">Layout Grid 3열 / gap 20</div><div class="mapping-css">grid grid-cols-3 gap-5</div></div>
-      <div class="mapping-item"><div class="mapping-figma">Position Fixed (GNB)</div><div class="mapping-css">fixed top-0 left-0 right-0 z-[100]</div></div>
-      <div class="mapping-item"><div class="mapping-figma">Corner Radius 8</div><div class="mapping-css">rounded-lg</div></div>
-    </div>
-  </section>
-
-  <hr>
-
-  <!-- DESIGN SYSTEM TOKENS -->
-  <section id="ds-tokens">
-    <h2>Foundations</h2>
-    <p>Radius, Shadow, Motion, Z-index 등 컴포넌트 구성에 필요한 기반 토큰입니다.</p>
-    <div class="accordion">
-    <p><code>tokens.css</code>에 정의된 전체 토큰 목록. 프로젝트에서 필요한 것만 골라 쓰면 됩니다.</p>
-
-    <h3>Radius (7단계)</h3>
-    <div style="display:flex; gap:12px; flex-wrap:wrap; margin:16px 0;">
-      <div style="text-align:center">
-        <div style="width:48px;height:48px;background:#0066FF;border-radius:0;display:inline-block"></div>
-        <div style="font-size:10px;margin-top:6px;font-family:monospace">none<br>0px</div>
-      </div>
-      <div style="text-align:center">
-        <div style="width:48px;height:48px;background:#0066FF;border-radius:4px;display:inline-block"></div>
-        <div style="font-size:10px;margin-top:6px;font-family:monospace">xsmall<br>4px</div>
-      </div>
-      <div style="text-align:center">
-        <div style="width:48px;height:48px;background:#0066FF;border-radius:8px;display:inline-block"></div>
-        <div style="font-size:10px;margin-top:6px;font-family:monospace">small<br>8px</div>
-      </div>
-      <div style="text-align:center">
-        <div style="width:48px;height:48px;background:#0066FF;border-radius:12px;display:inline-block"></div>
-        <div style="font-size:10px;margin-top:6px;font-family:monospace">medium<br>12px</div>
-      </div>
-      <div style="text-align:center">
-        <div style="width:48px;height:48px;background:#0066FF;border-radius:16px;display:inline-block"></div>
-        <div style="font-size:10px;margin-top:6px;font-family:monospace">large<br>16px</div>
-      </div>
-      <div style="text-align:center">
-        <div style="width:48px;height:48px;background:#0066FF;border-radius:24px;display:inline-block"></div>
-        <div style="font-size:10px;margin-top:6px;font-family:monospace">xlarge<br>24px</div>
-      </div>
-      <div style="text-align:center">
-        <div style="width:72px;height:48px;background:#0066FF;border-radius:9999px;display:inline-block"></div>
-        <div style="font-size:10px;margin-top:6px;font-family:monospace">pill<br>9999px</div>
-      </div>
-      <div style="text-align:center">
-        <div style="width:48px;height:48px;background:#0066FF;border-radius:50%;display:inline-block"></div>
-        <div style="font-size:10px;margin-top:6px;font-family:monospace">circle<br>50%</div>
-      </div>
-    </div>
-
-    <h3>Z-index 레이어</h3>
-    <div style="display:flex; flex-direction:column; gap:4px; margin:16px 0;">
-      <div style="display:flex; align-items:center; gap:12px;">
-        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-tooltip</div>
-        <div style="background:#0066FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:200px">600 — 툴팁</div>
-      </div>
-      <div style="display:flex; align-items:center; gap:12px;">
-        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-toast</div>
-        <div style="background:#1A75FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:185px">500 — 토스트</div>
-      </div>
-      <div style="display:flex; align-items:center; gap:12px;">
-        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-modal</div>
-        <div style="background:#3385FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:170px">400 — 모달</div>
-      </div>
-      <div style="display:flex; align-items:center; gap:12px;">
-        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-overlay</div>
-        <div style="background:#69A5FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:155px">300 — 딤 오버레이</div>
-      </div>
-      <div style="display:flex; align-items:center; gap:12px;">
-        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-dropdown</div>
-        <div style="background:#9EC5FF;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:140px">200 — 드롭다운</div>
-      </div>
-      <div style="display:flex; align-items:center; gap:12px;">
-        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-gnb</div>
-        <div style="background:#C9DEFE;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:125px">100 — GNB</div>
-      </div>
-      <div style="display:flex; align-items:center; gap:12px;">
-        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-sticky</div>
-        <div style="background:#EAF2FE;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:110px">10 — sticky</div>
-      </div>
-      <div style="display:flex; align-items:center; gap:12px;">
-        <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-base</div>
-        <div style="background:#F4F4F5;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:95px">0 — 기본</div>
-      </div>
-    </div>
-
-    <h3>Motion (전환 속도 + 이징)</h3>
-    <table>
-      <tr><th>토큰</th><th>값</th><th>용도</th></tr>
-      <tr><td><code>--duration-instant</code></td><td>50ms</td><td>즉각 반응 (ripple)</td></tr>
-      <tr><td><code>--duration-fast</code></td><td>100ms</td><td>버튼 hover, 색상 전환</td></tr>
-      <tr><td><code>--duration-normal</code></td><td>200ms</td><td>기본 트랜지션</td></tr>
-      <tr><td><code>--duration-slow</code></td><td>300ms</td><td>모달 등장, 사이드바 슬라이드</td></tr>
-      <tr><td><code>--duration-gentle</code></td><td>500ms</td><td>타이포 크기 전환 (현재 적용)</td></tr>
-      <tr><td><code>--ease-default</code></td><td>cubic-bezier(.2,0,0,1)</td><td>일반 전환</td></tr>
-      <tr><td><code>--ease-out</code></td><td>cubic-bezier(0,0,0,1)</td><td>등장 (나타날 때)</td></tr>
-      <tr><td><code>--ease-in</code></td><td>cubic-bezier(.2,0,1,1)</td><td>퇴장 (사라질 때)</td></tr>
-      <tr><td><code>--ease-spring</code></td><td>cubic-bezier(.34,1.56,.64,1)</td><td>스프링 (통통 튐)</td></tr>
-    </table>
-
-    <h3>Component Sizing (컴포넌트 높이)</h3>
-    <div style="display:flex; flex-direction:column; gap:8px; margin:16px 0;">
-      <div style="display:flex; align-items:center; gap:12px;">
-        <div style="width:100px;font-size:11px;color:#888;font-family:monospace">Button</div>
-        <div style="display:flex;gap:6px;align-items:flex-end">
-          <div style="background:#0066FF;border-radius:8px;width:60px;height:36px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:600">sm 36</div>
-          <div style="background:#0066FF;border-radius:8px;width:72px;height:48px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600">md 48</div>
-          <div style="background:#0066FF;border-radius:8px;width:84px;height:56px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600">lg 56</div>
-        </div>
-      </div>
-      <div style="display:flex; align-items:center; gap:12px; margin-top:4px;">
-        <div style="width:100px;font-size:11px;color:#888;font-family:monospace">Input</div>
-        <div style="display:flex;gap:6px;align-items:flex-end">
-          <div style="border:1.5px solid #0066FF;border-radius:8px;width:80px;height:36px;display:flex;align-items:center;padding:0 10px;font-size:10px;color:#888">sm 36px</div>
-          <div style="border:1.5px solid #0066FF;border-radius:8px;width:100px;height:48px;display:flex;align-items:center;padding:0 12px;font-size:11px;color:#888">md 48px</div>
-        </div>
-      </div>
-      <div style="display:flex; align-items:center; gap:12px; margin-top:4px;">
-        <div style="width:100px;font-size:11px;color:#888;font-family:monospace">GNB</div>
-        <div style="display:flex;gap:6px;align-items:flex-end">
-          <div style="background:#F4F4F5;border-radius:6px;width:100px;height:56px;display:flex;align-items:center;padding:0 12px;font-size:10px;color:#888">Mobile 56px</div>
-          <div style="background:#F4F4F5;border-radius:6px;width:140px;height:64px;display:flex;align-items:center;padding:0 14px;font-size:11px;color:#888">Desktop 64px</div>
-        </div>
-      </div>
-    </div>
-
-    <h3>Shadow (5단계)</h3>
-    <div style="display:flex; gap:16px; flex-wrap:wrap; margin:16px 0;">
-      <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 1px 2px -1px rgba(23,23,23,.10);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">xsmall</div>
-      <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 4px 6px -1px rgba(23,23,23,.06),0px 2px 4px -2px rgba(23,23,23,.06);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">small</div>
-      <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 10px 15px -3px rgba(23,23,23,.07),0px 4px 6px -2px rgba(23,23,23,.07);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">medium</div>
-      <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 16px 24px -6px rgba(23,23,23,.08),0px 6px 10px -4px rgba(23,23,23,.08);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">large</div>
-      <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 24px 38px -10px rgba(23,23,23,.12),0px 10px 15px -5px rgba(23,23,23,.10);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">xlarge</div>
-    </div>
-  </section>
-
-  <!-- USER JOURNEY EXAMPLE -->
   <section id="journey">
-    <h2>사용자 여정 예시</h2>
-    <p>
-      디자이너 <strong>디자이너</strong>이 axpublish를 처음 사용하는 시나리오입니다.
-      Figma 파일 하나로 시작해서 로컬 퍼블리싱까지 어떤 대화가 오가는지 단계별로 보여줍니다.
-    </p>
-
-    <!-- STEP 1 -->
-    <div class="journey-step">
-      <div class="journey-header">
-        <span class="journey-who who-user">디자이너</span>
-        <span class="journey-title">axpublish 시작 — Figma 링크 + 브랜드 컬러 전달</span>
+      <h2>사용자 여정 예시</h2>
+      <p>디자이너가 Desktop 디자인 파일 하나로 시작해서 완성된 반응형 코드까지 도달하는 실제 대화 흐름입니다. <strong>퍼블리싱 팀</strong> 5명이 순서대로 투입됩니다.</p>
+  
+      <!-- STEP 1 -->
+      <div class="journey-step">
+        <div class="journey-header">
+          <span class="journey-who who-user">디자이너</span>
+          <span class="journey-title">Figma 파일 + 브랜드 컬러 전달</span>
+        </div>
+        <div class="journey-body">
+          <p>axpublish-orchestrator.md를 AI에 첨부하고 아래 메시지로 시작합니다.</p>
+          <div class="journey-prompt">axpublish-orchestrator.md 읽고 SCOUT 시작해줘.
+  
+  Figma 파일: https://figma.com/design/abc123/my-project
+  Primary 컬러: #0066FF</div>
+        </div>
       </div>
-      <div class="journey-body">
-        <p>Claude에 axpublish 파일 6개를 올리고, 아래 프롬프트를 입력합니다.</p>
-        <div class="journey-prompt">axpublish-orchestrator.md를 읽고 Phase 0부터 시작해줘.
-
-Figma 파일: https://figma.com/design/abc123/my-project
-Primary 컬러: #0066FF
-Secondary 컬러: 없음</div>
+  
+      <div class="step-connector">↓</div>
+  
+      <!-- STEP 2 — SCOUT -->
+      <div class="journey-step">
+        <div class="journey-header">
+          <span class="journey-who" style="background:#EEF2FF;color:#4338CA;border-color:#C7D2FE">🔍 SCOUT</span>
+          <span class="journey-title">디자인 파일 스캔 &amp; 분석 완료</span>
+        </div>
+        <div class="journey-body">
+          <div class="journey-response">━━━━━━━━━━━━━━━━━━━━━━━
+  [SCOUT 완료] 디자인 파일 분석
+  ━━━━━━━━━━━━━━━━━━━━━━━
+  📄 화면: 5개 (홈, 목록, 상세, 마이페이지, 공지사항)
+  🧩 컴포넌트: 9개
+     Button, Card, GNB, Footer, Badge, Input, Modal, Tag, Tab
+  
+  🎨 토큰 현황:
+     Variables 적용: ✕ (hex 직접 사용 312개)
+     미적용 폰트: 8개
+  
+  → BINDER에게 인수인계합니다.</div>
+        </div>
       </div>
-    </div>
-
-    <div class="step-connector">↓</div>
-
-    <!-- STEP 2 -->
-    <div class="journey-step">
-      <div class="journey-header">
-        <span class="journey-who who-ai">AI</span>
-        <span class="journey-title">Phase 0-A/B — 컬러 스케일 생성 + theme.css 출력</span>
+  
+      <div class="step-connector">↓</div>
+  
+      <!-- STEP 3 — BINDER -->
+      <div class="journey-step">
+        <div class="journey-header">
+          <span class="journey-who" style="background:#F5F3FF;color:#7C3AED;border-color:#DDD6FE">🎨 BINDER</span>
+          <span class="journey-title">axpublish Variable Collection 생성 + 바인딩</span>
+        </div>
+        <div class="journey-body">
+          <div class="journey-figma">━━━━━━━━━━━━━━━━━━━━━━━
+  [BINDER] Variable Collection 생성 완료 (52개)
+  ━━━━━━━━━━━━━━━━━━━━━━━
+  ✅ 자동 바인딩: 309개
+     #171719 → --color-label-normal ✔
+     #0066FF → --color-primary-normal ✔
+     #F7F7F8 → --color-bg-alternative ✔
+     #00BF40 → --color-status-positive ✔
+     ... 305개
+  
+  ⚠️ 미매핑 PAUSE (3개):
+     #FF6B35 — 그라디언트 배경 (About 섹션)
+     → [A] accent-bg 토큰 신설
+     → [B] accent-bg-red-orange로 대체
+     → [C] 제거
+  
+  결정해 주시면 나머지 바인딩 완료합니다.</div>
+        </div>
       </div>
-      <div class="journey-body">
-        <div class="journey-response">✅ Phase 0-B — theme.css 생성 완료
-
-Primary (#0066FF) HSL 스케일:
-  heavy    → #3D2ED6  (pressed)
-  strong   → #4A3EEB  (hover)
-  normal   → #0066FF  (입력값)
-  inverse  → #7A6CF7
-  tint     → #EFEDFE
-
-Secondary 없음 → Primary 보색(HSL +180°) 자동 설정:
-  normal   → #F5B84C
-
-파일: ./theme.css ✅
-→ Phase 0-C Figma Variable Collection 생성 시작합니다.</div>
+  
+      <div class="step-connector">↓</div>
+  
+      <!-- STEP 4 — 디자이너 결정 -->
+      <div class="journey-step">
+        <div class="journey-header">
+          <span class="journey-who who-user">디자이너 ⏸</span>
+          <span class="journey-title">미매핑 색상 결정</span>
+        </div>
+        <div class="journey-body">
+          <div class="journey-prompt">B로 해줘. 바인딩 마저 끝내줘.</div>
+        </div>
       </div>
-    </div>
-
-    <div class="step-connector">↓</div>
-
-    <!-- STEP 3 -->
-    <div class="journey-step">
-      <div class="journey-header">
-        <span class="journey-who who-fig">Figma MCP</span>
-        <span class="journey-title">Phase 0-C/D — Variable 생성 + 레이어 바인딩</span>
+  
+      <div class="step-connector">↓</div>
+  
+      <!-- STEP 5 — BINDER 완료 → FLEX -->
+      <div class="journey-step">
+        <div class="journey-header">
+          <span class="journey-who" style="background:#F5F3FF;color:#7C3AED;border-color:#DDD6FE">🎨 BINDER</span>
+          <span class="journey-title">바인딩 완료 → FLEX 인수인계</span>
+        </div>
+        <div class="journey-body">
+          <div class="journey-figma">✅ 전체 바인딩 완료 (312개)
+  → FLEX에게 인수인계합니다.</div>
+        </div>
       </div>
-      <div class="journey-body">
-        <div class="journey-figma">✅ Phase 0-C — axpublish / Semantic 컬렉션 생성
-
-  Variable 52개 생성 완료
-  Primary/Normal → #0066FF ✔️
-  Primary/Strong → #4A3EEB ✔️
-  Label 6단계, Background 6단계, Line 8단계 ... 전체 ✔️
-
-✅ Phase 0-D — 레이어 바인딩 완료
-
-  처리 레이어: 312개
-
-  자동 바인딩:
-    Hero 제목 (#1A1A1F)         → Label/Normal ✔️
-    CTA 버튼 (#0066FF)          → Primary/Normal ✔️
-    섹션 배경 (#F7F7F8)          → Background/Normal/Alternative ✔️
-    카드 테두리 (#E1E2E4)        → Line/Solid/Normal ✔️
-    성공 상태 아이콘 (#00BF40)   → Status/Positive ✔️
-    ... 305개
-
-  ⚠️ 미매핑 (PAUSE):
-    #FF6B35 — About 섹션 그라디언트 배경 (1회)
-    [A] accent-bg 토큰 신설
-    [B] 가장 유사한 accent-bg-red-orange로 대체
-    [C] 제거
-
-  결정해 주시면 해당 레이어도 바인딩 완료합니다.</div>
+  
+      <div class="step-connector">↓</div>
+  
+      <!-- STEP 6 — FLEX -->
+      <div class="journey-step">
+        <div class="journey-header">
+          <span class="journey-who" style="background:#ECFDF5;color:#065F46;border-color:#A7F3D0">📐 FLEX</span>
+          <span class="journey-title">Tablet + Mobile 반응형 초안 자동 생성</span>
+        </div>
+        <div class="journey-body">
+          <div class="journey-response">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  [FLEX 완료] ⏸ 디자이너 검수 필요
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  responsive-rules.md 기반으로 생성:
+  
+  📱 홈 / Tablet  (768px) ✔
+  📱 홈 / Mobile  (375px) ✔
+  📱 목록 / Tablet ✔  ...전체 5페이지 × 2 = 10개 프레임
+  
+  ⚠️ 자동 추론이라 디자인 의도와 다를 수 있습니다.
+     Figma에서 확인 후 수정해 주세요.
+  
+  수정 완료 후 → "BUILDER 시작해줘" 라고 해주세요.</div>
+        </div>
       </div>
-    </div>
-
-    <div class="step-connector">↓</div>
-
-    <!-- STEP 4 -->
-    <div class="journey-step">
-      <div class="journey-header">
-        <span class="journey-who who-user">디자이너</span>
-        <span class="journey-title">미매핑 색상 결정</span>
+  
+      <div class="step-connector">↓</div>
+  
+      <!-- STEP 7 — 디자이너 검수 -->
+      <div class="journey-step">
+        <div class="journey-header">
+          <span class="journey-who who-user">디자이너 ⏸</span>
+          <span class="journey-title">Figma Tablet/Mobile 검수 + 수정</span>
+        </div>
+        <div class="journey-body">
+          <div class="journey-prompt">수정 완료. BUILDER 시작해줘.</div>
+        </div>
       </div>
-      <div class="journey-body">
-        <div class="journey-prompt">B로 해줘. 그리고 Primary 컬러 좀 더 진하게 바꿀게, #4A3AE8로.</div>
+  
+      <div class="step-connector">↓</div>
+  
+      <!-- STEP 8 — BUILDER -->
+      <div class="journey-step">
+        <div class="journey-header">
+          <span class="journey-who" style="background:#FFF7ED;color:#C2410C;border-color:#FED7AA">🔧 BUILDER</span>
+          <span class="journey-title">컴포넌트 코드 순차 생성</span>
+        </div>
+        <div class="journey-body">
+          <div class="journey-response">━━━━━━━━━━━━━━━━━━━━━━━
+  [BUILDER 완료] 컴포넌트 9개 생성
+  ━━━━━━━━━━━━━━━━━━━━━━━
+  src/components/
+    ui/      Button, Badge, Tag, Input
+    layout/  GNB, Footer
+    sections/ Card, Modal, Tab
+  
+  📊 품질: 토큰 100% / 하드코딩 0개
+  
+  → ASSEMBLER에게 인수인계합니다.</div>
+        </div>
       </div>
-    </div>
-
-    <div class="step-connector">↓</div>
-
-    <!-- STEP 5 -->
-    <div class="journey-step">
-      <div class="journey-header">
-        <span class="journey-who who-ai">AI</span>
-        <span class="journey-title">Phase 0-D-2/E/F — 인터랙션 시각화 + 충돌 검증 + Figma 확정</span>
+  
+      <div class="step-connector">↓</div>
+  
+      <!-- STEP 9 — ASSEMBLER -->
+      <div class="journey-step">
+        <div class="journey-header">
+          <span class="journey-who" style="background:#FFF1F2;color:#BE123C;border-color:#FECDD3">🏗️ ASSEMBLER</span>
+          <span class="journey-title">홈 페이지 조립 + 반응형 검증</span>
+        </div>
+        <div class="journey-body">
+          <div class="journey-response">━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  [ASSEMBLER 완료] ⏸ 최종 검수 필요
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  홈 페이지 완성
+  
+  ☑ Mobile(375px): 단컬럼, 20px 패딩
+  ☑ Tablet(768px): 2열 그리드, 48px 패딩
+  ☑ Desktop(1280px+): 3열, max-w 1440px
+  ☑ 하드코딩 0개
+  
+  로컬 확인: npx serve . → http://localhost:3000
+  
+  ✅ 승인 → "다음 화면 해줘" (목록, 상세...순서대로)
+  🔧 수정 → 수정 내용을 말씀해 주세요</div>
+        </div>
       </div>
-      <div class="journey-body">
-        <div class="journey-response">Primary 변경 반영: #4A3AE8
-→ generate-theme.js 재실행 → theme.css 갱신
-→ Figma Primary Variable 값 업데이트 완료
-
-✅ Phase 0-D-2 — 인터랙션 상태 시각화 완료
-
-  axpublish / Interaction States 페이지 생성:
-    Primary 버튼: Default / Hover / Pressed / Disabled ✔️
-    Secondary 버튼: Default / Hover / Pressed / Disabled ✔️
-    Input: Default / Hover / Focus / Error / Disabled ✔️
-
-✅ Phase 0-E — 충돌 검증
-
-  충돌 발견: 1건
-  → GNB > 로고 레이어가 잠겨 있습니다. 잠금 해제 후 알려주세요.
-
-✅ Phase 0-F — Figma 확정 대기 중
-
-  바인딩: 311개 완료 / 1개 대기(GNB 로고)
-  "완료" 알려주시면 Code Generation 시작합니다.</div>
+  
+      <div class="step-connector">↓</div>
+  
+      <!-- STEP 10 — 디자이너 승인 반복 -->
+      <div class="journey-step">
+        <div class="journey-header">
+          <span class="journey-who who-user">디자이너 ⏸</span>
+          <span class="journey-title">승인 + 다음 화면</span>
+        </div>
+        <div class="journey-body">
+          <div class="journey-prompt">홈 좋아. 목록 해줘.</div>
+        </div>
       </div>
-    </div>
-
-    <div class="step-connector">↓</div>
-
-    <!-- STEP 6 -->
-    <div class="journey-step">
-      <div class="journey-header">
-        <span class="journey-who who-user">디자이너</span>
-        <span class="journey-title">잠금 해제 후 확정</span>
+  
+      <div class="step-connector">↓ &nbsp; (BUILDER → ASSEMBLER → 디자이너 검수 반복)</div>
+  
+      <!-- STEP 11 — 완료 -->
+      <div class="journey-step">
+        <div class="journey-header">
+          <span class="journey-who" style="background:#FFF1F2;color:#BE123C;border-color:#FECDD3">🏗️ ASSEMBLER</span>
+          <span class="journey-title">전체 완료</span>
+        </div>
+        <div class="journey-body">
+          <div class="journey-response">🎉 모든 화면 완료
+  
+  처리 화면: 5개 (홈, 목록, 상세, 마이페이지, 공지사항)
+  생성 컴포넌트: 9개 (토큰 사용률 100%)
+  반응형 3-tier 전체 적용
+  
+  GitHub 업로드는 자율 진행하시면 됩니다.
+  수정이 필요하면 언제든 알려주세요.</div>
+        </div>
       </div>
-      <div class="journey-body">
-        <div class="journey-prompt">GNB 로고 잠금 해제했어. Figma 완료.</div>
+  
+      <div class="callout tip" style="margin-top:24px">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <strong>디자이너가 직접 개입하는 건 딱 3번</strong>
+          미매핑 색상 결정 → Tablet/Mobile Figma 수정 → 화면별 승인.
+          나머지는 팀원들이 자동 처리하고 보고합니다.
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="step-connector">↓</div>
 
-    <!-- STEP 7 -->
-    <div class="journey-step">
-      <div class="journey-header">
-        <span class="journey-who who-ai">AI</span>
-        <span class="journey-title">Phase 1–3 — 타이포그래피 + 반응형 + 컴포넌트 라이브러리</span>
+  <section id="ds-colors">
+      <h2>Color</h2>
+      <p>두 계층으로 구성됩니다. <strong>Primitive</strong>는 팔레트 스케일 그대로, <strong>Semantic</strong>은 UI 역할에 따라 의미를 부여한 토큰입니다. 컴포넌트에서 직접 쓰는 건 Semantic이고, Primitive는 그 값의 출처입니다.</p>
+  
+      <!-- ── PRIMITIVE ────────────────────────────────── -->
+      <div class="tab-group" id="color-tabs">
+        <div class="tab-list">
+          <button class="tab-btn active" data-tab="primitive">Primitive</button>
+          <button class="tab-btn" data-tab="semantic">Semantic</button>
+        </div>
+        <div class="tab-panel active" data-panel="primitive">
+        <p style="font-size:13px; color:#888; margin-bottom:16px">Figma: Atomic Variable Collection. 직접 사용 ✕, Semantic 토큰이 이 값을 참조합니다. <code>--atomic-*</code></p>
+  
+      <div class="ds-section-label">Cool Neutral (주 그레이 팔레트)</div>
+      <div class="swatch-group">
+        <div class="swatch-group-title">--atomic-cn-* — 미세한 쿨 틴트. Label·Background·Line 모든 시맨틱의 기반</div>
+        <div class="swatch-row" style="flex-wrap:nowrap; gap:3px;">
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#0F0F10"></div><div class="swatch-name" style="font-size:9px">CN-5</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#171719"></div><div class="swatch-name" style="font-size:9px">CN-10</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#1B1C1E"></div><div class="swatch-name" style="font-size:9px">CN-15</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#292A2D"></div><div class="swatch-name" style="font-size:9px">CN-20</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#2E2F33"></div><div class="swatch-name" style="font-size:9px">CN-22</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#46474C"></div><div class="swatch-name" style="font-size:9px">CN-30</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#5A5C63"></div><div class="swatch-name" style="font-size:9px">CN-40</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#70737C"></div><div class="swatch-name" style="font-size:9px">CN-50</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#878A93"></div><div class="swatch-name" style="font-size:9px">CN-60</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#989BA2"></div><div class="swatch-name" style="font-size:9px">CN-70</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#AEB0B6"></div><div class="swatch-name" style="font-size:9px">CN-80</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#C2C4C8"></div><div class="swatch-name" style="font-size:9px">CN-90</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#DBDCDF"></div><div class="swatch-name" style="font-size:9px">CN-95</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#EAEBEC"></div><div class="swatch-name" style="font-size:9px">CN-97</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#F4F4F5"></div><div class="swatch-name" style="font-size:9px">CN-98</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#F7F7F8; border:1px solid #E1E2E4"></div><div class="swatch-name" style="font-size:9px">CN-99</div></div>
+        </div>
       </div>
-      <div class="journey-body">
-        <div class="journey-response">🔓 Figma 확정. Code Generation 시작합니다.
-
-✅ Phase 1 완료 — 타이포그래피 바인딩
-  폰트 12개 → 토큰 자동 매핑 완료
-
-✅ Phase 2 완료 — 반응형 구조 분석
-  7개 섹션 감사 / 자동 처리 6개 / 디자이너 결정 1개 반영
-
-✅ Phase 3 완료 — 컴포넌트 라이브러리 구축
-  [Figma] axpublish / Components 페이지:
-    Atom 3개, Molecule 3개, Organism 3개 — Variable 바인딩 완료
-  [Code] components/ 폴더:
-    button.html, input.html, badge.html
-    card.html, dropdown.html
-    gnb.html, footer.html, modal.html
-
-→ Phase 4 시작합니다. 첫 번째 화면: 홈(Home)</div>
+  
+      <div class="ds-section-label">Neutral (순수 회색)</div>
+      <div class="swatch-group">
+        <div class="swatch-group-title">--atomic-n-* — 쿨 틴트 없는 순수 gray. 아이콘, UI 크롬에 사용</div>
+        <div class="swatch-row" style="flex-wrap:nowrap; gap:3px;">
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#0F0F0F"></div><div class="swatch-name" style="font-size:9px">N-5</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#171717"></div><div class="swatch-name" style="font-size:9px">N-10</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#2A2A2A"></div><div class="swatch-name" style="font-size:9px">N-20</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#474747"></div><div class="swatch-name" style="font-size:9px">N-30</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#5C5C5C"></div><div class="swatch-name" style="font-size:9px">N-40</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#737373"></div><div class="swatch-name" style="font-size:9px">N-50</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#8A8A8A"></div><div class="swatch-name" style="font-size:9px">N-60</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#9B9B9B"></div><div class="swatch-name" style="font-size:9px">N-70</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#B0B0B0"></div><div class="swatch-name" style="font-size:9px">N-80</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#C4C4C4"></div><div class="swatch-name" style="font-size:9px">N-90</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#DCDCDC"></div><div class="swatch-name" style="font-size:9px">N-95</div></div>
+          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#F7F7F7; border:1px solid #E0E0E0"></div><div class="swatch-name" style="font-size:9px">N-99</div></div>
+        </div>
       </div>
-    </div>
-
-    <div class="step-connector">↓</div>
-
-    <!-- STEP 8 -->
-    <div class="journey-step">
-      <div class="journey-header">
-        <span class="journey-who who-ai">AI</span>
-        <span class="journey-title">Phase 4–5 — Home 화면 조립 + QA</span>
+  
+      <div class="ds-section-label">Opacity (투명도 스케일)</div>
+      <div class="swatch-group">
+        <div class="swatch-group-title">--opacity-* — Figma Opacity Variable 컬렉션 원본 (15단계)</div>
+        <div class="swatch-row" style="flex-wrap:nowrap; gap:4px; align-items:flex-end;">
+          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.08; border:1px solid #E0E0E0"></div><div class="swatch-name" style="font-size:9px">8%</div></div>
+          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.16; border:1px solid #E0E0E0"></div><div class="swatch-name" style="font-size:9px">16%</div></div>
+          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.22"></div><div class="swatch-name" style="font-size:9px">22%</div></div>
+          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.28"></div><div class="swatch-name" style="font-size:9px">28%</div></div>
+          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.43"></div><div class="swatch-name" style="font-size:9px">43%</div></div>
+          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.52"></div><div class="swatch-name" style="font-size:9px">52%</div></div>
+          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.61"></div><div class="swatch-name" style="font-size:9px">61%</div></div>
+          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.74"></div><div class="swatch-name" style="font-size:9px">74%</div></div>
+          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.88"></div><div class="swatch-name" style="font-size:9px">88%</div></div>
+          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:1"></div><div class="swatch-name" style="font-size:9px">100%</div></div>
+        </div>
       </div>
-      <div class="journey-body">
-        <div class="journey-response">✅ Home 화면 Phase 4–5 완료
-
-생성 파일: index.html
-사용 컴포넌트: gnb.html / button.html / card.html / footer.html
-
-[QA 체크리스트]
-☑ 하드코딩 hex 없음
-☑ hover:bg-primary-strong / active:bg-primary-heavy 적용
-☑ 모바일 햄버거 정상 작동
-☑ max-width 1440px / padding 20px 균일
-☑ Display 폰트 모바일 다운스케일
-
-로컬 확인: npx serve .  → http://localhost:3000
-
-✅ Home 화면 완료. 다음 화면을 알려주세요.
-  (About? Works? Contact?)</div>
+  
+      <!-- ── SEMANTIC ────────────────────────────────── -->
+        </div><!-- /tab-panel primitive -->
+        <div class="tab-panel" data-panel="semantic">
+        <p style="font-size:13px; color:#888; margin-bottom:16px">Figma: Semantic Variable Collection. 실제 컴포넌트에서 이 토큰을 사용합니다. <code>--color-*</code></p>
+  
+      <div class="ds-section-label">Brand / Primary</div>
+      <div class="swatch-group">
+        <div class="swatch-group-title">generate-theme.js로 자동 생성 — Primary hex 입력 시 13단계 출력 (예시: #0066FF)</div>
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background:#0054D1"></div><div class="swatch-name">Heavy</div><div class="swatch-hex">Pressed</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#005EEB"></div><div class="swatch-name">Strong</div><div class="swatch-hex">Hover</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#0066FF"></div><div class="swatch-name">Normal</div><div class="swatch-hex">Default</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#3385FF"></div><div class="swatch-name">Inverse</div><div class="swatch-hex">Dark BG 위</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#99BFFF"></div><div class="swatch-name">Light</div><div class="swatch-hex">연한 강조</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#EBF2FF"></div><div class="swatch-name">Tint</div><div class="swatch-hex">뱃지 배경</div></div>
+        </div>
       </div>
-    </div>
-
-    <div class="step-connector">↓</div>
-
-    <!-- STEP 9 -->
-    <div class="journey-step">
-      <div class="journey-header">
-        <span class="journey-who who-user">디자이너</span>
-        <span class="journey-title">승인 + 다음 화면 지시</span>
+  
+      <div class="ds-section-label">Label (텍스트 색상)</div>
+      <div class="swatch-group">
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background:#000000"></div><div class="swatch-name">Strong</div><div class="swatch-hex">#000000</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#171719"></div><div class="swatch-name">Normal</div><div class="swatch-hex">CN-10</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#3B3C40"></div><div class="swatch-name">Neutral</div><div class="swatch-hex">α 88%</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#7C7E84"></div><div class="swatch-name">Alternative</div><div class="swatch-hex">α 61%</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#BCBDC2"></div><div class="swatch-name">Assistive</div><div class="swatch-hex">α 28%</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#D9DADC"></div><div class="swatch-name">Disable</div><div class="swatch-hex">α 16%</div></div>
+        </div>
       </div>
-      <div class="journey-body">
-        <div class="journey-prompt">홈 좋아. About 해줘.</div>
+  
+      <div class="ds-section-label">Background (배경 색상)</div>
+      <div class="swatch-group">
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border:1px solid #E1E2E4"></div><div class="swatch-name">Normal</div><div class="swatch-hex">#FFFFFF</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#F7F7F8"></div><div class="swatch-name">Alternative</div><div class="swatch-hex">CN-99</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#F0F0F2"></div><div class="swatch-name">Section</div><div class="swatch-hex">섹션 구분</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border:1px solid #E1E2E4; box-shadow:0 2px 8px rgba(0,0,0,0.08)"></div><div class="swatch-name">Elevated</div><div class="swatch-hex">카드 배경</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:rgba(23,23,25,0.08)"></div><div class="swatch-name">Transparent</div><div class="swatch-hex">α 8%</div></div>
+        </div>
       </div>
-    </div>
-
-    <div class="step-connector">↓ &nbsp; (반복: About → Works → Contact → ...)</div>
-
-    <!-- STEP 10 -->
-    <div class="journey-step">
-      <div class="journey-header">
-        <span class="journey-who who-ai">AI</span>
-        <span class="journey-title">Phase 6 — 전체 UI / Interaction QA</span>
+  
+      <div class="ds-section-label">Status (상태 색상)</div>
+      <div class="swatch-group">
+        <div class="swatch-row">
+          <div class="swatch"><div class="swatch-color" style="background:#00BF40"></div><div class="swatch-name">Positive</div><div class="swatch-hex">#00BF40</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#FF9200"></div><div class="swatch-name">Cautionary</div><div class="swatch-hex">#FF9200</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#FF4242"></div><div class="swatch-name">Negative</div><div class="swatch-hex">#FF4242</div></div>
+        </div>
       </div>
-      <div class="journey-body">
-        <div class="journey-response">🎉 모든 화면 완료. Phase 6 UI / Interaction QA 시작합니다.
+  
+        </div><!-- /tab-panel semantic -->
+      </div><!-- /tab-group color -->
+  
+      <h3>컬러 스케일 자동 생성</h3>
+      <pre><code><span class="cm"># Primary hex 하나로 13단계 자동 생성</span>
+  node generate-theme.js --primary <span class="cs">"#0066FF"</span> --output ./src/theme.css</code></pre>
+    </section>
 
-[인터랙션 체크]
-☑ 버튼 hover/pressed 상태 정상
-☑ GNB 햄버거 → 슬라이드 메뉴 정상
-☑ 모달 Dimmer + 슬라이드업(모바일) 정상
-☑ 스크롤 트리거 애니메이션 정상
 
-[시각 체크]
-☑ 전체 페이지 20px 패딩 일관
-☑ Primary 컬러 (#4A3AE8) Figma Variable ↔ CSS 일치
-☑ 이미지 aspect-ratio 리사이즈 시 유지
-☑ SVG 아이콘 크기 일관
-
-🎉 axpublish 파이프라인 완료
-
-처리 화면: 4개 (Home / About / Works / Contact)
-생성 컴포넌트: Atom 3 / Molecule 3 / Organism 3
-Figma Variable 바인딩: 312개
-
-GitHub 업로드는 자율 진행하시면 됩니다.
-수정 필요한 부분이 있으면 언제든지 알려주세요.</div>
+  <section id="ds-typography">
+      <h2>타이포그래피 스케일</h2>
+      <p>17레벨 × 3단계(Desktop/Tablet/Mobile) 고정값 시스템. 브레이크포인트 전환 시 font-size가 자연스럽게 변합니다. letter-spacing은 <code>em</code> 단위로 폰트 크기에 비례합니다.</p>
+  
+      <div class="tab-group" id="typo-tabs">
+        <div class="tab-list">
+          <button class="tab-btn active" data-tab="typo-table">전체 스케일</button>
+          <button class="tab-btn" data-tab="typo-preview">미리보기</button>
+          <button class="tab-btn" data-tab="typo-usage">사용법</button>
+        </div>
+        <div class="tab-panel active" data-panel="typo-table">
+        <div class="ds-section-label" style="margin-top:0">Desktop / Tablet / Mobile — 한눈에 보기</div>
+  
+      <table style="font-size:12px; table-layout:fixed;">
+        <colgroup>
+          <col style="width:130px">
+          <col style="width:auto">
+          <col style="width:80px">
+          <col style="width:72px">
+          <col style="width:72px">
+          <col style="width:64px">
+          <col style="width:80px">
+        </colgroup>
+        <tr>
+          <th>토큰</th>
+          <th>용도</th>
+          <th style="text-align:center">Desktop</th>
+          <th style="text-align:center">Tablet</th>
+          <th style="text-align:center">Mobile</th>
+          <th style="text-align:center">LH</th>
+          <th style="text-align:center">LS</th>
+        </tr>
+        <tr>
+          <td><code>display-hero</code></td>
+          <td>랜딩 초대형 카피, 숫자 카운터</td>
+          <td style="text-align:center;font-weight:700">120px</td>
+          <td style="text-align:center;color:#888">74px</td>
+          <td style="text-align:center;color:#888">40px</td>
+          <td style="text-align:center">1.15</td>
+          <td style="text-align:center;color:#3B82F6">−0.032em</td>
+        </tr>
+        <tr>
+          <td><code>display-1</code></td>
+          <td>히어로 메인 카피</td>
+          <td style="text-align:center;font-weight:700">56px</td>
+          <td style="text-align:center;color:#888">42px</td>
+          <td style="text-align:center;color:#888">28px</td>
+          <td style="text-align:center">1.286</td>
+          <td style="text-align:center;color:#3B82F6">−0.032em</td>
+        </tr>
+        <tr>
+          <td><code>display-2</code></td>
+          <td>서브 히어로, 대형 섹션 슬로건</td>
+          <td style="text-align:center;font-weight:700">40px</td>
+          <td style="text-align:center;color:#888">31px</td>
+          <td style="text-align:center;color:#888">22px</td>
+          <td style="text-align:center">1.3</td>
+          <td style="text-align:center;color:#3B82F6">−0.028em</td>
+        </tr>
+        <tr>
+          <td><code>display-3</code></td>
+          <td>섹션 리드 문구, Title보다 강조 필요 시</td>
+          <td style="text-align:center;font-weight:700">36px</td>
+          <td style="text-align:center;color:#888">29px</td>
+          <td style="text-align:center;color:#888">24px</td>
+          <td style="text-align:center">1.333</td>
+          <td style="text-align:center;color:#3B82F6">−0.027em</td>
+        </tr>
+        <tr style="background:rgba(0,102,255,0.03)">
+          <td><code>title-1</code></td>
+          <td>페이지 타이틀, 주요 섹션 헤더</td>
+          <td style="text-align:center;font-weight:700">32px</td>
+          <td style="text-align:center;color:#888">26px</td>
+          <td style="text-align:center;color:#888">22px</td>
+          <td style="text-align:center">1.375</td>
+          <td style="text-align:center;color:#3B82F6">−0.025em</td>
+        </tr>
+        <tr style="background:rgba(0,102,255,0.03)">
+          <td><code>title-2</code></td>
+          <td>카드 제목, 모달 헤더</td>
+          <td style="text-align:center;font-weight:700">28px</td>
+          <td style="text-align:center;color:#888">22px</td>
+          <td style="text-align:center;color:#888">16px</td>
+          <td style="text-align:center">1.358</td>
+          <td style="text-align:center;color:#3B82F6">−0.024em</td>
+        </tr>
+        <tr style="background:rgba(0,102,255,0.03)">
+          <td><code>title-3</code></td>
+          <td>서브섹션, 리스트 그룹 헤더</td>
+          <td style="text-align:center;font-weight:700">24px</td>
+          <td style="text-align:center;color:#888">21px</td>
+          <td style="text-align:center;color:#888">18px</td>
+          <td style="text-align:center">1.333</td>
+          <td style="text-align:center;color:#3B82F6">−0.023em</td>
+        </tr>
+        <tr>
+          <td><code>heading-1</code></td>
+          <td>섹션 소제목 — 3-tier 자동 전환 (22·19·17px)</td>
+          <td style="text-align:center;font-weight:700">22px</td>
+          <td style="text-align:center;color:#888">19px</td>
+          <td style="text-align:center;color:#888">17px</td>
+          <td style="text-align:center">1.364</td>
+          <td style="text-align:center;color:#3B82F6">−0.019em</td>
+        </tr>
+  
+        <tr>
+          <td><code>headline-1</code></td>
+          <td>강조 항목 라벨, 탭 — 3-tier 자동 전환 (18·16·15px)</td>
+          <td style="text-align:center;font-weight:700">18px</td>
+          <td style="text-align:center;color:#888">16px</td>
+          <td style="text-align:center;color:#888">15px</td>
+          <td style="text-align:center">1.444</td>
+          <td style="text-align:center;color:#888">−0.002em</td>
+        </tr>
+  
+        <tr style="background:rgba(0,0,0,0.02)">
+          <td><code>body-1</code></td>
+          <td>기본 본문 (Normal lh1.5 / Reading lh1.625)</td>
+          <td style="text-align:center;font-weight:700">16px</td>
+          <td style="text-align:center;color:#888">15px</td>
+          <td style="text-align:center;color:#888">15px</td>
+          <td style="text-align:center">1.5 / 1.625</td>
+          <td style="text-align:center;color:#888">+0.006em</td>
+        </tr>
+        <tr style="background:rgba(0,0,0,0.02)">
+          <td><code>body-2</code></td>
+          <td>보조 본문 (Normal lh1.467 / Reading lh1.6)</td>
+          <td style="text-align:center;font-weight:700">15px</td>
+          <td style="text-align:center;color:#888">14px</td>
+          <td style="text-align:center;color:#888">14px</td>
+          <td style="text-align:center">1.467 / 1.6</td>
+          <td style="text-align:center;color:#888">+0.010em</td>
+        </tr>
+        <tr>
+          <td><code>label-1</code></td>
+          <td>폼 레이블, 버튼 (Normal lh1.429 / Reading lh1.571)</td>
+          <td style="text-align:center;font-weight:700">14px</td>
+          <td style="text-align:center;color:#888">13px</td>
+          <td style="text-align:center;color:#888">13px</td>
+          <td style="text-align:center">1.429 / 1.571</td>
+          <td style="text-align:center;color:#888">+0.015em</td>
+        </tr>
+        <tr>
+          <td><code>label-2</code></td>
+          <td>하위 레이블, 낮은 중요도 버튼</td>
+          <td style="text-align:center;font-weight:700">13px</td>
+          <td style="text-align:center;color:#888">12px</td>
+          <td style="text-align:center;color:#888">12px</td>
+          <td style="text-align:center">1.385</td>
+          <td style="text-align:center;color:#888">+0.019em</td>
+        </tr>
+        <tr style="background:rgba(0,0,0,0.02)">
+          <td><code>caption-1</code></td>
+          <td>타임스탬프, 메타, 뱃지 텍스트</td>
+          <td style="text-align:center;font-weight:700;color:#888">12px</td>
+          <td style="text-align:center;color:#bbb">12px</td>
+          <td style="text-align:center;color:#bbb">12px</td>
+          <td style="text-align:center">1.333</td>
+          <td style="text-align:center;color:#888">+0.025em</td>
+        </tr>
+        <tr style="background:rgba(0,0,0,0.02)">
+          <td><code>caption-2</code></td>
+          <td>법적 고지, 가장 보조적인 정보</td>
+          <td style="text-align:center;font-weight:700;color:#888">11px</td>
+          <td style="text-align:center;color:#bbb">11px</td>
+          <td style="text-align:center;color:#bbb">11px</td>
+          <td style="text-align:center">1.273</td>
+          <td style="text-align:center;color:#888">+0.031em</td>
+        </tr>
+      </table>
+  
+        </div><!-- /tab-panel typo-table -->
+        <div class="tab-panel" data-panel="typo-preview">
+        <div class="typo-scale">
+        <div class="typo-row">
+          <div class="typo-meta"><div class="typo-token">display-1</div><div class="typo-sizes">56 · 42 · 28px / lh1.286 / ls−0.032em</div></div>
+          <div class="typo-sample" style="font-size:40px; font-weight:700; letter-spacing:-0.032em; line-height:1.286">디자인을 코드로</div>
+        </div>
+        <div class="typo-row">
+          <div class="typo-meta"><div class="typo-token">display-2</div><div class="typo-sizes">40 · 31 · 22px / lh1.3 / ls−0.028em</div></div>
+          <div class="typo-sample" style="font-size:30px; font-weight:700; letter-spacing:-0.028em; line-height:1.3">Design to Code Pipeline</div>
+        </div>
+        <div class="typo-row">
+          <div class="typo-meta"><div class="typo-token">title-1</div><div class="typo-sizes">32 · 26 · 22px / lh1.375 / ls−0.025em</div></div>
+          <div class="typo-sample" style="font-size:24px; font-weight:600; letter-spacing:-0.025em">페이지 타이틀, 주요 섹션 헤더</div>
+        </div>
+        <div class="typo-row">
+          <div class="typo-meta"><div class="typo-token">title-2</div><div class="typo-sizes">28 · 22 · 16px / lh1.358 / ls−0.024em</div></div>
+          <div class="typo-sample" style="font-size:20px; font-weight:600; letter-spacing:-0.024em">카드 제목, 모달 헤더</div>
+        </div>
+        <div class="typo-row">
+          <div class="typo-meta"><div class="typo-token">heading-1</div><div class="typo-sizes">22 · 19 · 17px / lh1.364 / ls−0.019em</div></div>
+          <div class="typo-sample" style="font-size:18px; font-weight:600; letter-spacing:-0.019em">섹션 소제목, 큰 화면</div>
+        </div>
+        <div class="typo-row">
+          <div class="typo-meta"><div class="typo-token">headline-1</div><div class="typo-sizes">18 · 16 · 15px / lh1.444 / ls−0.002em</div></div>
+          <div class="typo-sample" style="font-size:16px; font-weight:500; letter-spacing:-0.002em">강조 항목 라벨, 탭 텍스트</div>
+        </div>
+        <div class="typo-row">
+          <div class="typo-meta"><div class="typo-token">body-1 Normal</div><div class="typo-sizes">16 · 15 · 15px / lh1.5 / ls+0.006em</div></div>
+          <div class="typo-sample" style="font-size:14px; font-weight:400; letter-spacing:0.006em; line-height:1.5">일반 본문 텍스트입니다. 짧은 설명, 카드 요약에 사용합니다.</div>
+        </div>
+        <div class="typo-row">
+          <div class="typo-meta"><div class="typo-token">body-1 Reading</div><div class="typo-sizes">16 · 15 · 15px / lh1.625 / ls+0.006em</div></div>
+          <div class="typo-sample" style="font-size:14px; font-weight:400; letter-spacing:0.006em; line-height:1.625; color:#555">긴 글 본문에 사용합니다. 채용공고 상세, 블로그 포스트처럼 읽는 시간이 긴 텍스트에서 line-height를 더 넉넉하게 줍니다.</div>
+        </div>
+        <div class="typo-row">
+          <div class="typo-meta"><div class="typo-token">label-1</div><div class="typo-sizes">14 · 13 · 13px / lh1.429 / ls+0.015em</div></div>
+          <div class="typo-sample" style="font-size:13px; font-weight:500; letter-spacing:0.015em; color:#888">폼 레이블 · 버튼 텍스트 · UI 요소</div>
+        </div>
+        <div class="typo-row">
+          <div class="typo-meta"><div class="typo-token">caption-1</div><div class="typo-sizes">12px 고정 / lh1.333 / ls+0.025em</div></div>
+          <div class="typo-sample" style="font-size:11px; font-weight:400; letter-spacing:0.025em; color:#aaa">타임스탬프 · 메타 정보 · 뱃지 · 보조 설명</div>
+        </div>
+        <div class="typo-row">
+          <div class="typo-meta"><div class="typo-token">caption-2</div><div class="typo-sizes">11px 고정 / lh1.273 / ls+0.031em</div></div>
+          <div class="typo-sample" style="font-size:10px; font-weight:400; letter-spacing:0.031em; color:#ccc">법적 고지 · 약관 · 가장 낮은 위계 정보</div>
+        </div>
       </div>
-    </div>
+  
+        </div><!-- /tab-panel typo-preview -->
+        <div class="tab-panel" data-panel="typo-usage">
+        <h3 style="margin-top:0">CSS 사용 패턴</h3>
+      <pre><code><span class="cm">/* Tailwind v4 — 세 변수를 함께 쓰는 것이 원칙 */</span>
+  <span class="ck">class</span>=<span class="cs">"text-[length:var(--font-size-title-1)]
+        leading-[var(--font-lh-title-1)]
+        tracking-[var(--font-ls-title-1)]"</span>
+  
+  <span class="cm">/* Reading 변형 (body/label) */</span>
+  <span class="ck">class</span>=<span class="cs">"text-[length:var(--font-size-body-1)]
+        leading-[var(--font-lh-body-1-reading)]
+        tracking-[var(--font-ls-body-1)]"</span></code></pre>
+        </div><!-- /tab-panel typo-usage -->
+      </div><!-- /tab-group typo -->
+    </section>
 
-    <div class="callout tip" style="margin-top: 24px;">
-      <span class="callout-icon">✅</span>
-      <div class="callout-body">
-        <strong>포인트</strong>
-        디자이너가 직접 입력한 내용은 단 4번 — 시작 프롬프트, 미매핑 결정, 잠금 해제 확정, 화면별 승인.
-        나머지는 AI가 자동 처리하고 보고합니다.
+
+  <section id="ds-responsive">
+      <h2>Spacing · Grid</h2>
+  
+      <div class="bp-diagram">
+        <div class="bp-bar-wrap">
+          <div class="bp-label">Mobile</div>
+          <div class="bp-bar bp-bar-mobile">&lt; 768px</div>
+          <div class="bp-range">(기본값, prefix 없음)</div>
+        </div>
+        <div class="bp-bar-wrap">
+          <div class="bp-label">Tablet</div>
+          <div class="bp-bar bp-bar-tablet">768 ~ 1279px</div>
+          <span class="bp-prefix">tb:</span> <span class="bp-prefix">max-mb:</span>
+        </div>
+        <div class="bp-bar-wrap">
+          <div class="bp-label">Desktop</div>
+          <div class="bp-bar bp-bar-desktop">1280px ~</div>
+          <span class="bp-prefix">mb:</span>
+        </div>
       </div>
-    </div>
-  </section>
+  
+      <div class="bp-container-info">
+        <div class="bp-container-card">
+          <div class="bp-container-tier">Mobile</div>
+          <div class="bp-container-val">padding 20px<br>max-width none</div>
+        </div>
+        <div class="bp-container-card">
+          <div class="bp-container-tier">Tablet</div>
+          <div class="bp-container-val">padding 48px<br>max-width 1279px</div>
+        </div>
+        <div class="bp-container-card">
+          <div class="bp-container-tier">Desktop</div>
+          <div class="bp-container-val">padding 64px<br>max-width 1440px</div>
+        </div>
+      </div>
+  
+      <h3 style="margin-top:28px">Auto-layout → CSS 변환</h3>
+      <div class="mapping-grid">
+        <div class="mapping-item"><div class="mapping-figma">Horizontal / gap 12 / center</div><div class="mapping-css">flex flex-row gap-3 items-center</div></div>
+        <div class="mapping-item"><div class="mapping-figma">Vertical / gap 24 / align start</div><div class="mapping-css">flex flex-col gap-6 items-start</div></div>
+        <div class="mapping-item"><div class="mapping-figma">Fill container (width)</div><div class="mapping-css">w-full</div></div>
+        <div class="mapping-item"><div class="mapping-figma">Hug contents</div><div class="mapping-css">w-fit</div></div>
+        <div class="mapping-item"><div class="mapping-figma">Overflow Clip</div><div class="mapping-css">overflow-hidden</div></div>
+        <div class="mapping-item"><div class="mapping-figma">Layout Grid 3열 / gap 20</div><div class="mapping-css">grid grid-cols-3 gap-5</div></div>
+        <div class="mapping-item"><div class="mapping-figma">Position Fixed (GNB)</div><div class="mapping-css">fixed top-0 left-0 right-0 z-[100]</div></div>
+        <div class="mapping-item"><div class="mapping-figma">Corner Radius 8</div><div class="mapping-css">rounded-lg</div></div>
+      </div>
+    </section>
 
-  <hr>
 
-  <!-- START -->
+  <section id="ds-tokens">
+      <h2>Foundations</h2>
+      <p>Radius, Shadow, Motion, Z-index 등 컴포넌트 구성에 필요한 기반 토큰입니다.</p>
+      <div class="accordion">
+      <p><code>tokens.css</code>에 정의된 전체 토큰 목록. 프로젝트에서 필요한 것만 골라 쓰면 됩니다.</p>
+  
+      <h3>Radius (7단계)</h3>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin:16px 0;">
+        <div style="text-align:center">
+          <div style="width:48px;height:48px;background:#0066FF;border-radius:0;display:inline-block"></div>
+          <div style="font-size:10px;margin-top:6px;font-family:monospace">none<br>0px</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:48px;height:48px;background:#0066FF;border-radius:4px;display:inline-block"></div>
+          <div style="font-size:10px;margin-top:6px;font-family:monospace">xsmall<br>4px</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:48px;height:48px;background:#0066FF;border-radius:8px;display:inline-block"></div>
+          <div style="font-size:10px;margin-top:6px;font-family:monospace">small<br>8px</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:48px;height:48px;background:#0066FF;border-radius:12px;display:inline-block"></div>
+          <div style="font-size:10px;margin-top:6px;font-family:monospace">medium<br>12px</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:48px;height:48px;background:#0066FF;border-radius:16px;display:inline-block"></div>
+          <div style="font-size:10px;margin-top:6px;font-family:monospace">large<br>16px</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:48px;height:48px;background:#0066FF;border-radius:24px;display:inline-block"></div>
+          <div style="font-size:10px;margin-top:6px;font-family:monospace">xlarge<br>24px</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:72px;height:48px;background:#0066FF;border-radius:9999px;display:inline-block"></div>
+          <div style="font-size:10px;margin-top:6px;font-family:monospace">pill<br>9999px</div>
+        </div>
+        <div style="text-align:center">
+          <div style="width:48px;height:48px;background:#0066FF;border-radius:50%;display:inline-block"></div>
+          <div style="font-size:10px;margin-top:6px;font-family:monospace">circle<br>50%</div>
+        </div>
+      </div>
+  
+      <h3>Z-index 레이어</h3>
+      <div style="display:flex; flex-direction:column; gap:4px; margin:16px 0;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-tooltip</div>
+          <div style="background:#0066FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:200px">600 — 툴팁</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-toast</div>
+          <div style="background:#1A75FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:185px">500 — 토스트</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-modal</div>
+          <div style="background:#3385FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:170px">400 — 모달</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-overlay</div>
+          <div style="background:#69A5FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:155px">300 — 딤 오버레이</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-dropdown</div>
+          <div style="background:#9EC5FF;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:140px">200 — 드롭다운</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-gnb</div>
+          <div style="background:#C9DEFE;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:125px">100 — GNB</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-sticky</div>
+          <div style="background:#EAF2FE;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:110px">10 — sticky</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-base</div>
+          <div style="background:#F4F4F5;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:95px">0 — 기본</div>
+        </div>
+      </div>
+  
+      <h3>Motion (전환 속도 + 이징)</h3>
+      <table>
+        <tr><th>토큰</th><th>값</th><th>용도</th></tr>
+        <tr><td><code>--duration-instant</code></td><td>50ms</td><td>즉각 반응 (ripple)</td></tr>
+        <tr><td><code>--duration-fast</code></td><td>100ms</td><td>버튼 hover, 색상 전환</td></tr>
+        <tr><td><code>--duration-normal</code></td><td>200ms</td><td>기본 트랜지션</td></tr>
+        <tr><td><code>--duration-slow</code></td><td>300ms</td><td>모달 등장, 사이드바 슬라이드</td></tr>
+        <tr><td><code>--duration-gentle</code></td><td>500ms</td><td>타이포 크기 전환 (현재 적용)</td></tr>
+        <tr><td><code>--ease-default</code></td><td>cubic-bezier(.2,0,0,1)</td><td>일반 전환</td></tr>
+        <tr><td><code>--ease-out</code></td><td>cubic-bezier(0,0,0,1)</td><td>등장 (나타날 때)</td></tr>
+        <tr><td><code>--ease-in</code></td><td>cubic-bezier(.2,0,1,1)</td><td>퇴장 (사라질 때)</td></tr>
+        <tr><td><code>--ease-spring</code></td><td>cubic-bezier(.34,1.56,.64,1)</td><td>스프링 (통통 튐)</td></tr>
+      </table>
+  
+      <h3>Component Sizing (컴포넌트 높이)</h3>
+      <div style="display:flex; flex-direction:column; gap:8px; margin:16px 0;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:100px;font-size:11px;color:#888;font-family:monospace">Button</div>
+          <div style="display:flex;gap:6px;align-items:flex-end">
+            <div style="background:#0066FF;border-radius:8px;width:60px;height:36px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:600">sm 36</div>
+            <div style="background:#0066FF;border-radius:8px;width:72px;height:48px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600">md 48</div>
+            <div style="background:#0066FF;border-radius:8px;width:84px;height:56px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600">lg 56</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; margin-top:4px;">
+          <div style="width:100px;font-size:11px;color:#888;font-family:monospace">Input</div>
+          <div style="display:flex;gap:6px;align-items:flex-end">
+            <div style="border:1.5px solid #0066FF;border-radius:8px;width:80px;height:36px;display:flex;align-items:center;padding:0 10px;font-size:10px;color:#888">sm 36px</div>
+            <div style="border:1.5px solid #0066FF;border-radius:8px;width:100px;height:48px;display:flex;align-items:center;padding:0 12px;font-size:11px;color:#888">md 48px</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; margin-top:4px;">
+          <div style="width:100px;font-size:11px;color:#888;font-family:monospace">GNB</div>
+          <div style="display:flex;gap:6px;align-items:flex-end">
+            <div style="background:#F4F4F5;border-radius:6px;width:100px;height:56px;display:flex;align-items:center;padding:0 12px;font-size:10px;color:#888">Mobile 56px</div>
+            <div style="background:#F4F4F5;border-radius:6px;width:140px;height:64px;display:flex;align-items:center;padding:0 14px;font-size:11px;color:#888">Desktop 64px</div>
+          </div>
+        </div>
+      </div>
+  
+      <h3>Shadow (5단계)</h3>
+      <div style="display:flex; gap:16px; flex-wrap:wrap; margin:16px 0;">
+        <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 1px 2px -1px rgba(23,23,23,.10);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">xsmall</div>
+        <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 4px 6px -1px rgba(23,23,23,.06),0px 2px 4px -2px rgba(23,23,23,.06);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">small</div>
+        <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 10px 15px -3px rgba(23,23,23,.07),0px 4px 6px -2px rgba(23,23,23,.07);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">medium</div>
+        <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 16px 24px -6px rgba(23,23,23,.08),0px 6px 10px -4px rgba(23,23,23,.08);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">large</div>
+        <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 24px 38px -10px rgba(23,23,23,.12),0px 10px 15px -5px rgba(23,23,23,.10);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">xlarge</div>
+      </div>
+    </section>
+
+
+  <section id="how">
+      <h2>작동 방식</h2>
+      <p>axpublish는 <strong>두 가지 아웃풋</strong>을 만들어냅니다. Figma 파일 자체를 토큰으로 정리하고, 동시에 코드도 생성합니다. 단, Code Generation은 <strong>Figma가 완전히 확정된 이후에만</strong> 시작합니다.</p>
+  
+      <div class="flow-pipeline">
+  
+        <!-- Row 1 -->
+        <div class="flow-row">
+          <div class="flow-box primary">📁 Raw Figma 파일</div>
+          <div class="flow-arrow-h">→</div>
+          <div class="flow-box primary">🤖 AI + Figma MCP 연결</div>
+        </div>
+  
+        <div class="flow-arrow-v">↓</div>
+  
+        <!-- Row 2: MCP WRITE -->
+        <div class="flow-row">
+          <div class="flow-box">MCP WRITE</div>
+        </div>
+        <div class="flow-sub">
+          <div class="flow-sub-row"><span class="flow-sub-label">├</span><div class="flow-box" style="font-size:12px;">Variable 52개 생성</div></div>
+          <div class="flow-sub-row"><span class="flow-sub-label">├</span><div class="flow-box" style="font-size:12px;">레이어 전체 바인딩</div></div>
+          <div class="flow-sub-row"><span class="flow-sub-label">├</span><div class="flow-box" style="font-size:12px;">인터랙션 상태 시각화 (hover / pressed / disabled)</div></div>
+          <div class="flow-sub-row"><span class="flow-sub-label">└</span><div class="flow-box" style="font-size:12px;">컴포넌트 라이브러리 생성 (Button, GNB, Input, Modal…)</div></div>
+        </div>
+  
+        <div class="flow-arrow-v">↓</div>
+  
+        <!-- Row 3: 충돌 검증 -->
+        <div class="flow-row">
+          <div class="flow-box warn">⚠️ 충돌 검증</div>
+          <div class="flow-arrow-h" style="color:#AAAAAA; font-size:12px;">Style 충돌 / 잠긴 레이어 / 외부 컴포넌트 → 디자이너 수동 해결</div>
+        </div>
+  
+        <div class="flow-arrow-v">↓</div>
+  
+        <!-- Row 4: Figma 확정 -->
+        <div class="flow-row">
+          <div class="flow-box lock">🔒 Figma 확정 게이트</div>
+          <div class="flow-arrow-h" style="color:#AAAAAA; font-size:12px;">디자이너 "OK" 신호 이후에만 Code Gen 시작</div>
+        </div>
+  
+        <div class="flow-arrow-v">↓</div>
+  
+        <!-- Row 5: Code Gen -->
+        <div class="flow-row">
+          <div class="flow-box">💻 Code Generation</div>
+          <div class="flow-arrow-h" style="color:#AAAAAA; font-size:12px;">컴포넌트 생성 → 화면별 순차 조립 (홈 → 승인 → 다음 → …)</div>
+        </div>
+  
+        <div class="flow-arrow-v">↓</div>
+  
+        <!-- Row 6: 완료 -->
+        <div class="flow-row">
+          <div class="flow-box ok">🎉 완료</div>
+          <div class="flow-arrow-h" style="color:#AAAAAA; font-size:12px;">UI / Interaction QA → GitHub 업로드는 디자이너 자율</div>
+        </div>
+  
+      </div>
+    </section>
+
+
+  <section id="figma-write">
+      <h2>Figma MCP Write — 내부 동작</h2>
+      <p>axpublish의 핵심입니다. Figma를 읽기만 하는 게 아니라, AI가 MCP를 통해 <strong>Figma 안에 직접 Variable을 생성하고 모든 레이어에 바인딩</strong>합니다.</p>
+  
+      <h3>Step 1 — Variable Collection 생성 (52개)</h3>
+      <p><code>axpublish / Semantic</code> 컬렉션 + <code>Light</code> 모드로 자동 생성됩니다. Primary / Secondary는 입력한 브랜드 컬러로 override됩니다.</p>
+  
+      <table>
+        <tr><th>그룹</th><th>개수</th><th>변수 목록</th></tr>
+        <tr><td><strong>Primary</strong></td><td>3개</td><td>Normal / Strong / Heavy — 브랜드 컬러 기준</td></tr>
+        <tr><td><strong>Point</strong></td><td>2개</td><td>Text (텍스트 강조) / Brand (브랜드 자산)</td></tr>
+        <tr><td><strong>Secondary</strong></td><td>3개</td><td>Normal / Strong / Heavy</td></tr>
+        <tr><td><strong>Label</strong></td><td>6개</td><td>Strong / Normal / Neutral(α0.88) / Alternative(α0.61) / Assistive(α0.28) / Disable(α0.16)</td></tr>
+        <tr><td><strong>Background</strong></td><td>7개</td><td>Normal/Normal · Normal/Alternative · Normal/Section · Elevated/Normal · Elevated/Alternative · Transparent/Normal · Transparent/Alternative</td></tr>
+        <tr><td><strong>Interaction</strong></td><td>2개</td><td>Inactive / Disable</td></tr>
+        <tr><td><strong>Line</strong></td><td>8개</td><td>Normal(rgba) 4단계 + Solid(불투명) 4단계</td></tr>
+        <tr><td><strong>Fill</strong></td><td>3개</td><td>Normal(α0.08) / Strong(α0.16) / Alternative(α0.05)</td></tr>
+        <tr><td><strong>Status</strong></td><td>3개</td><td>Positive / Cautionary / Negative</td></tr>
+        <tr><td><strong>Static</strong></td><td>2개</td><td>White / Black</td></tr>
+        <tr><td><strong>Material</strong></td><td>1개</td><td>Dimmer(α0.52)</td></tr>
+        <tr><td><strong>Inverse</strong></td><td>3개</td><td>Primary / Background / Label</td></tr>
+        <tr><td><strong>Accent/Background</strong></td><td>7개</td><td>Red Orange / Lime / Cyan / Light Blue / Violet / Purple / Pink</td></tr>
+        <tr><td><strong>Accent/Foreground</strong></td><td>11개</td><td>Red / Red Orange / Orange / Lime / Green / Cyan / Light Blue / Blue / Violet / Purple / Pink</td></tr>
+      </table>
+  
+      <h3>Step 2 — 레이어 전체 바인딩</h3>
+      <p>Figma 전체 레이어를 순회하며 하드코딩된 색상값을 Variable로 자동 교체합니다. 매칭 허용 오차는 hex 채널별 ±3.</p>
+  
+      <div class="code-collapse">
+        <button class="code-toggle"><span class="code-span">더보기</span> <span class="toggle-icon">▼</span></button>
+      <pre><code><span class="cm">// 매핑 로직</span>
+  텍스트 레이어 fill
+    불투명 어두운 색 (#171719, #000)   → <span class="cv">Label/Normal, Label/Strong</span>
+    반투명 (#37383C + alpha)           → <span class="cv">Label/Neutral ~ Label/Disable</span>
+  
+  Frame / Rectangle fill
+    흰색 계열 불투명                   → <span class="cv">Background/Normal/Normal</span>
+    회색 계열 불투명                   → <span class="cv">Background/Normal/Alternative</span>
+    반투명 어두운 색                   → <span class="cv">Fill/Normal ~ Fill/Strong</span>
+  
+  Stroke (border)
+    #70737C + alpha                    → <span class="cv">Line/Normal/*</span>
+    불투명 밝은 회색                   → <span class="cv">Line/Solid/*</span>
+  
+  브랜드 색상
+    Primary hex 매칭                   → <span class="cv">Primary/Normal ~ Heavy</span>
+  
+  Status 색상
+    #00BF40 계열                       → <span class="cv">Status/Positive</span>
+    #FF9200 계열                       → <span class="cv">Status/Cautionary</span>
+    #FF4242 계열                       → <span class="cv">Status/Negative</span></code></pre>
+      </div>
+  
+      <div class="callout info">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body">
+          <strong>충돌 시 PAUSE</strong>
+          기존 Color Style이 바인딩을 막거나, 외부 라이브러리 컴포넌트인 경우 AI가 목록을 보고하고
+          디자이너의 결정을 기다립니다. 임의로 진행하지 않습니다.
+        </div>
+      </div>
+  
+      <h3>Step 3 — 인터랙션 상태 시각화</h3>
+      <p>바인딩 완료 후 Figma 내 <code>axpublish / Interaction States</code> 페이지에 버튼·인풋의 상태 매트릭스를 자동으로 그립니다. Primary 컬러가 바뀌면 Variable 바인딩으로 자동 반영됩니다.</p>
+  
+      <div class="code-collapse">
+        <button class="code-toggle"><span class="code-span">더보기</span> <span class="toggle-icon">▼</span></button>
+      <pre><code><span class="cm">// Figma에 그려지는 버튼 상태 매트릭스</span>
+  ┌────────────┬────────────┬────────────┬────────────┐
+  │  Default   │   Hover    │  Pressed   │  Disabled  │
+  ├────────────┼────────────┼────────────┼────────────┤
+  │ <span class="cv">Primary/</span>   │ <span class="cv">Primary/</span>   │ <span class="cv">Primary/</span>   │ <span class="cv">Interaction/</span>│
+  │ <span class="cv">Normal</span>     │ <span class="cv">Strong</span>     │ <span class="cv">Heavy</span>      │ <span class="cv">Disable</span>    │
+  │ 텍스트:    │ 텍스트:    │ 텍스트:    │ 텍스트:    │
+  │ <span class="cv">Static/</span>    │ <span class="cv">Static/</span>    │ <span class="cv">Static/</span>    │ <span class="cv">Interaction/</span>│
+  │ <span class="cv">White</span>      │ <span class="cv">White</span>      │ <span class="cv">White</span>      │ <span class="cv">Inactive</span>   │
+  └────────────┴────────────┴────────────┴────────────┘
+  
+  <span class="cm">// 추가로 그려지는 컴포넌트</span>
+  Secondary 버튼: Secondary/Normal → Strong → Heavy
+  Ghost 버튼:     배경 투명, 테두리 Line/Solid/Normal
+  Input:          Default / Hover / Focus / Error / Disabled
+  Link:           Default / Hover / Visited</code></pre>
+      </div>
+  
+      <h3>Step 4 — 디자이너 확정 게이트 🔒</h3>
+      <p>Figma 상태가 확정되기 전까지 Code Generation은 시작되지 않습니다. 디자이너가 <strong>"OK"</strong> 또는 <strong>"Figma 완료"</strong> 한 마디를 하면 코드 생성 단계로 진행합니다.</p>
+  
+      <div class="callout tip">
+        <span class="callout-icon">🔒</span>
+        <div class="callout-body">
+          <strong>Code Gen은 Figma 확정 이후에만</strong>
+          확정 전에 임의로 코드를 생성하지 않습니다.
+          Figma ↔ Code 불일치를 원천 차단하는 axpublish의 핵심 원칙입니다.
+        </div>
+      </div>
+    </section>
+
+
+  <section id="phases">
+      <h2>6-Phase 워크플로우</h2>
+      <p><code>axpublish-orchestrator.md</code>에 각 Phase의 행동 지침이 정의되어 있습니다. AI는 이 문서를 읽고 순서대로 실행합니다.</p>
+  
+      <div class="phase-list">
+        <div class="phase-item">
+          <span class="phase-num">Phase 0</span>
+          <div class="phase-body">
+            <h4>Discovery & Figma 세팅</h4>
+            <p>브랜드 컬러 수집 → HSL 스케일 생성 → theme.css 출력 → Figma Variable 49개 생성 → 레이어 바인딩 → 인터랙션 상태 시각화 → 충돌 검증 → 디자이너 확정 게이트</p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <span class="phase-num">Phase 1</span>
+          <div class="phase-body">
+            <h4>타이포그래피 바인딩</h4>
+            <p>Figma 텍스트 레이어 전체 추출 → Seed Design 16레벨 토큰 매핑 (오차 ±2px 자동, 초과 시 디자이너에게 질문)</p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <span class="phase-num">Phase 2</span>
+          <div class="phase-body">
+            <h4>반응형 구조 분석</h4>
+            <p>Auto-layout → CSS Flex/Grid 변환. 섹션별 Mobile/Tablet/Desktop 처리 방식 확정. 규칙 밖 섹션은 디자이너에게 PAUSE 보고.</p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <span class="phase-num">Phase 3</span>
+          <div class="phase-body">
+            <h4>전역 컴포넌트 라이브러리</h4>
+            <p>재사용 요소 스캔 → Figma Component 생성(MCP Write) + Code 파일 생성 동시 진행. 버튼/GNB/인풋/모달 등 한 번만 만들고 이후 재사용.</p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <span class="phase-num">Phase 4–5</span>
+          <div class="phase-body">
+            <h4>화면별 조립 & 로컬 QA</h4>
+            <p>한 화면씩 완성 → 디자이너 로컬 프리뷰(<code>npx serve .</code>) → 승인 → 다음 화면. 전체 일괄 빌드 금지.</p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <span class="phase-num">Phase 6</span>
+          <div class="phase-body">
+            <h4>UI / Interaction QA</h4>
+            <p>전체 화면 완료 후 hover/GNB/모달/스크롤 인터랙션 전수 검수. 통과 후 GitHub 업로드는 디자이너 자율.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  <section id="components">
+      <h2>컴포넌트 라이브러리 (Phase 3)</h2>
+      <p>재사용 가능한 UI 요소를 <strong>딱 한 번</strong> 만듭니다. Figma에는 Component로 등록하고, 코드에는 재사용 파일로 생성합니다. 이후 화면 조립 시 라이브러리에서 가져다 씁니다.</p>
+  
+      <h3>Figma Component 생성 → Code 파일 생성 (동시)</h3>
+      <p style="font-size:13px; color:#888; margin-bottom:12px;">
+        ⚠️ <strong>재사용 기준:</strong> Figma 전체 스캔 후 <strong>2회 이상</strong> 등장하는 요소만 컴포넌트화.
+        1회만 등장하는 섹션(Hero 등)은 해당 <code>page.tsx</code>에 인라인으로 작성.
+      </p>
+      <table>
+        <tr><th>Tier</th><th>컴포넌트</th><th>Figma</th><th>Code 파일</th></tr>
+        <tr><td>Atom</td><td>Button (3 variants × 4 states)</td><td>Component + Variable</td><td>atoms/Button.tsx</td></tr>
+        <tr><td>Atom</td><td>Input (5 states)</td><td>Component + Variable</td><td>atoms/Input.tsx</td></tr>
+        <tr><td>Atom</td><td>Badge / Tag</td><td>Component + Variable</td><td>atoms/Badge.tsx</td></tr>
+        <tr><td>Molecule</td><td>Card</td><td>Component + Variable</td><td>molecules/Card.tsx</td></tr>
+        <tr><td>Molecule</td><td>Dropdown</td><td>Component + Variable</td><td>molecules/Dropdown.tsx</td></tr>
+        <tr><td>Molecule</td><td>Tab</td><td>Component + Variable</td><td>molecules/Tab.tsx</td></tr>
+        <tr><td>Organism</td><td>GNB (Desktop + Mobile)</td><td>Component + Variable</td><td>organisms/GNB.tsx</td></tr>
+        <tr><td>Organism</td><td>Footer</td><td>Component + Variable</td><td>organisms/Footer.tsx</td></tr>
+        <tr><td>Organism</td><td>Modal / Bottom Sheet</td><td>Component + Variable</td><td>organisms/Modal.tsx</td></tr>
+      </table>
+  
+      <h3>Button.tsx 예시</h3>
+      <div class="code-collapse">
+        <button class="code-toggle"><span class="code-span">더보기</span> <span class="toggle-icon">▼</span></button>
+      <pre><code><span class="cm">// src/components/atoms/Button.tsx</span>
+  <span class="ck">type</span> ButtonProps = {
+    label: string
+    variant?: <span class="cs">'primary'</span> | <span class="cs">'secondary'</span> | <span class="cs">'ghost'</span>
+    size?: <span class="cs">'sm'</span> | <span class="cs">'md'</span> | <span class="cs">'lg'</span>
+    disabled?: boolean
+    onClick?: () =&gt; void
+  }
+  
+  <span class="ck">export default function</span> <span class="cv">Button</span>({ label, variant = <span class="cs">'primary'</span>, size = <span class="cs">'md'</span>, disabled, onClick }: ButtonProps) {
+    <span class="ck">const</span> sizes = { sm: <span class="cs">'px-4 h-9 text-sm'</span>, tb: <span class="cs">'px-5 h-12 text-sm'</span>, lg: <span class="cs">'px-6 h-14 text-base'</span> }
+    <span class="ck">const</span> variants = {
+      primary:   <span class="cs">'bg-primary-normal text-static-white hover:bg-primary-strong active:bg-primary-heavy'</span>,
+      secondary: <span class="cs">'bg-secondary-normal text-static-white hover:bg-secondary-strong'</span>,
+      ghost:     <span class="cs">'bg-transparent border border-line-solid-normal text-label-normal hover:bg-fill-normal'</span>,
+    }
+    <span class="ck">return</span> (
+      <span class="ct">&lt;button</span>
+        onClick={onClick} disabled={disabled}
+        className={<span class="cs">`inline-flex items-center justify-center rounded-md font-semibold
+          transition-colors duration-150 disabled:cursor-not-allowed
+          disabled:bg-interaction-disable disabled:text-interaction-inactive
+          ${sizes[size]} ${variants[variant]}`</span>}
+      <span class="ct">&gt;</span>{label}<span class="ct">&lt;/button&gt;</span>
+    )
+  }</code></pre>
+      </div>
+    </section>
+
+
+  <section id="files">
+      <h2>파일 구성</h2>
+      <p>6개 파일이 하나의 완결된 패키지입니다. AI에게 건네면 바로 동작합니다.</p>
+  
+      <div class="file-list">
+        <div class="file-row">
+          <span class="file-icon">📋</span>
+          <div>
+            <div class="file-name-row"><span class="file-name">axpublish-orchestrator.md</span><span class="badge purple">AI 지침</span></div>
+            <p class="file-desc">AI가 읽고 따르는 6-Phase 워크플로우. 각 단계의 행동 지침, 보고 형식, PAUSE 조건이 정의되어 있습니다.</p>
+          </div>
+        </div>
+        <div class="file-row">
+          <span class="file-icon">📐</span>
+          <div>
+            <div class="file-name-row"><span class="file-name">responsive-rules.md</span><span class="badge">규칙 문서</span></div>
+            <p class="file-desc">반응형 처리 법전. 브레이크포인트, 타이포그래피 16레벨, Auto-layout→CSS 변환 테이블, 컴포넌트 패턴, 금지 사항 포함.</p>
+          </div>
+        </div>
+        <div class="file-row">
+          <span class="file-icon">🎨</span>
+          <div>
+            <div class="file-name-row"><span class="file-name">tokens.css</span><span class="badge blue">CSS</span></div>
+            <p class="file-desc">Seed Design 기반 시맨틱 토큰 전체. 컬러, 타이포그래피 16레벨, 그림자, 라디우스.</p>
+          </div>
+        </div>
+        <div class="file-row">
+          <span class="file-icon">⚙️</span>
+          <div>
+            <div class="file-name-row"><span class="file-name">tokens.css</span><span class="badge orange">Tailwind v4</span></div>
+            <p class="file-desc">Tailwind v4 CSS 네이티브 설정 포함. <code>@theme</code>으로 브레이크포인트 정의, <code>@utility</code>로 컨테이너 패턴. <code>tailwind.config.js</code> 없음.</p>
+          </div>
+        </div>
+        <div class="file-row">
+          <span class="file-icon">🔧</span>
+          <div>
+            <div class="file-name-row"><span class="file-name">generate-theme.js</span><span class="badge orange">Node.js</span></div>
+            <p class="file-desc">Primary/Secondary hex를 입력하면 HSL 계산으로 13단계 컬러 스케일을 생성하고 theme.css를 출력합니다.</p>
+          </div>
+        </div>
+        <div class="file-row">
+          <span class="file-icon">📦</span>
+          <div>
+            <div class="file-name-row"><span class="file-name">figma-semantic-variables.json</span><span class="badge green">JSON</span></div>
+            <p class="file-desc">Figma Variable Collection 템플릿. MCP Write 시 AI가 이 구조대로 49개 Variable을 생성합니다.</p>
+          </div>
+        </div>
+      </div>
+  
+      <h3>CSS 로드 순서</h3>
+      <pre><code><span class="ct">&lt;link</span> rel="stylesheet" href="<span class="cs">./tokens.css</span>"<span class="ct">&gt;</span>     <span class="cm">&lt;!-- 1. Seed Design 기본 토큰 --&gt;</span>
+  <span class="ct">&lt;link</span> rel="stylesheet" href="<span class="cs">./theme.css</span>"<span class="ct">&gt;</span>      <span class="cm">&lt;!-- 2. 프로젝트 Primary/Secondary --&gt;</span>
+  <span class="ct">&lt;link</span> rel="stylesheet" href="<span class="cs">./style.css</span>"<span class="ct">&gt;</span>      <span class="cm">&lt;!-- 3. 프로젝트 커스텀 --&gt;</span></code></pre>
+    </section>
+
+
   <section id="start">
-    <h2>시작하기</h2>
-    <p>npm 배포 대신 GitHub 저장소를 직접 클론해서 사용합니다. 원하는 파일만 복사해 프로젝트에 넣으면 됩니다.</p>
+      <h2>시작하기</h2>
+      <p>npm 배포 대신 GitHub 저장소를 직접 클론해서 사용합니다. 원하는 파일만 복사해 프로젝트에 넣으면 됩니다.</p>
+  
+      <div class="github-block">
+        <div class="github-block-header">
+          <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <div>
+            <div class="github-block-title">kimseoyun98 / axpublish-init</div>
+            <div class="github-block-sub">github.com/kimseoyun98/axpublish-init</div>
+          </div>
+        </div>
+  
+        <div class="github-step">
+          <div class="github-step-title"><span class="github-step-num">1</span>저장소 클론</div>
+          <div class="github-cmd">
+            <span>git clone https://github.com/kimseoyun98/axpublish-init.git</span>
+            <button class="github-cmd-copy" onclick="navigator.clipboard.writeText('git clone https://github.com/kimseoyun98/axpublish-init.git');this.textContent='✓';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+          </div>
+        </div>
+  
+        <div class="github-step">
+          <div class="github-step-title"><span class="github-step-num">2</span>필요한 파일 복사</div>
+          <p style="font-size:13px; color:#666; margin-bottom:10px">클론한 폴더의 <code>templates/</code> 안 파일들을 프로젝트에 복사합니다.</p>
+          <div class="file-tree">
+  <span class="ft-dir">axpublish-init/templates/</span>
+  ├── <span class="ft-file">tokens.css</span>               <span class="ft-comment">← 디자인 토큰 전체</span>
+  ├── <span class="ft-file">axpublish-orchestrator.md</span>  <span class="ft-comment">← AI 팀 운영 지침서</span>
+  ├── <span class="ft-file">responsive-rules.md</span>       <span class="ft-comment">← 반응형 규칙</span>
+  ├── <span class="ft-file">figma-semantic-variables.json</span> <span class="ft-comment">← Figma Variable 템플릿</span>
+  └── <span class="ft-file">generate-theme.js</span>          <span class="ft-comment">← 브랜드 컬러 생성 스크립트</span>
+          </div>
+        </div>
+  
+        <div class="github-step">
+          <div class="github-step-title"><span class="github-step-num">3</span>브랜드 컬러 적용</div>
+          <div class="github-cmd">
+            <span>node generate-theme.js --primary "#0066FF" --output ./theme.css</span>
+            <button class="github-cmd-copy" onclick="navigator.clipboard.writeText('node generate-theme.js --primary "#0066FF" --output ./theme.css');this.textContent='✓';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+          </div>
+        </div>
+  
+        <div class="github-step">
+          <div class="github-step-title"><span class="github-step-num">4</span>AI에 파일 첨부 후 시작</div>
+          <p style="font-size:13px; color:#666">Claude / ChatGPT / Gemini에 <code>axpublish-orchestrator.md</code> 파일을 첨부하고, Figma 파일 URL과 함께 <strong>"SCOUT 시작해줘"</strong>라고 입력하면 파이프라인이 시작됩니다.</p>
+        </div>
+      </div>
+  
+      <h3>버전 히스토리</h3>
+      <div class="accordion">
+        <div class="acc-item open">
+          <button class="acc-header">v1.7.0 — 2026.08.04 <span class="acc-icon">▼</span></button>
+          <div class="acc-body">
+            <p style="font-size:13px; color:#555; line-height:1.8">
+              • orchestrator 캐릭터 기반 재설계 (SCOUT · BINDER · FLEX · BUILDER · ASSEMBLER)<br>
+              • Color 섹션 Primitive / Semantic 분리<br>
+              • Typography 탭 UI 적용<br>
+              • GitHub 클론 방식으로 배포 변경
+            </p>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-header">v1.5.0 — 타이포 수정 + Accent 제거 <span class="acc-icon">▼</span></button>
+          <div class="acc-body">
+            <p style="font-size:13px; color:#555; line-height:1.8">
+              • Display 1 60→56px, Display 2 44→40px, Title 2 30→28px<br>
+              • letter-spacing rem→em 단위 전환<br>
+              • Accent 색상 시스템 전체 제거
+            </p>
+          </div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-header">v1.4.0 — Neutral 팔레트 + Opacity 추가 <span class="acc-icon">▼</span></button>
+          <div class="acc-body">
+            <p style="font-size:13px; color:#555; line-height:1.8">
+              • Neutral 12단계, Opacity 15단계 토큰 추가<br>
+              • Figma Variable Collection 52개 변수 완성
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="github-block">
-      <div class="github-block-header">
-        <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-        <div>
-          <div class="github-block-title">kimseoyun98 / axpublish-init</div>
-          <div class="github-block-sub">github.com/kimseoyun98/axpublish-init</div>
-        </div>
-      </div>
+</main>
 
-      <div class="github-step">
-        <div class="github-step-title"><span class="github-step-num">1</span>저장소 클론</div>
-        <div class="github-cmd">
-          <span>git clone https://github.com/kimseoyun98/axpublish-init.git</span>
-          <button class="github-cmd-copy" onclick="navigator.clipboard.writeText('git clone https://github.com/kimseoyun98/axpublish-init.git');this.textContent='✓';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
-        </div>
-      </div>
 
-      <div class="github-step">
-        <div class="github-step-title"><span class="github-step-num">2</span>필요한 파일 복사</div>
-        <p style="font-size:13px; color:#666; margin-bottom:10px">클론한 폴더의 <code>templates/</code> 안 파일들을 프로젝트에 복사합니다.</p>
-        <div class="file-tree">
-<span class="ft-dir">axpublish-init/templates/</span>
-├── <span class="ft-file">tokens.css</span>               <span class="ft-comment">← 디자인 토큰 전체</span>
-├── <span class="ft-file">axpublish-orchestrator.md</span>  <span class="ft-comment">← AI 팀 운영 지침서</span>
-├── <span class="ft-file">responsive-rules.md</span>       <span class="ft-comment">← 반응형 규칙</span>
-├── <span class="ft-file">figma-semantic-variables.json</span> <span class="ft-comment">← Figma Variable 템플릿</span>
-└── <span class="ft-file">generate-theme.js</span>          <span class="ft-comment">← 브랜드 컬러 생성 스크립트</span>
-        </div>
-      </div>
+<script>
+  // ── Tabs ──
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const group = btn.closest('.tab-group');
+      group.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      group.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const panel = group.querySelector(`[data-panel="${btn.dataset.tab}"]`);
+      if (panel) panel.classList.add('active');
+    });
+  });
 
-      <div class="github-step">
-        <div class="github-step-title"><span class="github-step-num">3</span>브랜드 컬러 적용</div>
-        <div class="github-cmd">
-          <span>node generate-theme.js --primary "#0066FF" --output ./theme.css</span>
-          <button class="github-cmd-copy" onclick="navigator.clipboard.writeText('node generate-theme.js --primary "#0066FF" --output ./theme.css');this.textContent='✓';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
-        </div>
-      </div>
+  // ── Accordion ──
+  document.querySelectorAll('.acc-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.closest('.acc-item');
+      item.classList.toggle('open');
+    });
+  });
 
-      <div class="github-step">
-        <div class="github-step-title"><span class="github-step-num">4</span>AI에 파일 첨부 후 시작</div>
-        <p style="font-size:13px; color:#666">Claude / ChatGPT / Gemini에 <code>axpublish-orchestrator.md</code> 파일을 첨부하고, Figma 파일 URL과 함께 <strong>"SCOUT 시작해줘"</strong>라고 입력하면 파이프라인이 시작됩니다.</p>
-      </div>
-    </div>
 
-    <h3>버전 히스토리</h3>
-    <div class="accordion">
-      <div class="acc-item open">
-        <button class="acc-header">v1.7.0 — 2026.08.04 <span class="acc-icon">▼</span></button>
-        <div class="acc-body">
-          <p style="font-size:13px; color:#555; line-height:1.8">
-            • orchestrator 캐릭터 기반 재설계 (SCOUT · BINDER · FLEX · BUILDER · ASSEMBLER)<br>
-            • Color 섹션 Primitive / Semantic 분리<br>
-            • Typography 탭 UI 적용<br>
-            • GitHub 클론 방식으로 배포 변경
-          </p>
-        </div>
-      </div>
-      <div class="acc-item">
-        <button class="acc-header">v1.5.0 — 타이포 수정 + Accent 제거 <span class="acc-icon">▼</span></button>
-        <div class="acc-body">
-          <p style="font-size:13px; color:#555; line-height:1.8">
-            • Display 1 60→56px, Display 2 44→40px, Title 2 30→28px<br>
-            • letter-spacing rem→em 단위 전환<br>
-            • Accent 색상 시스템 전체 제거
-          </p>
-        </div>
-      </div>
-      <div class="acc-item">
-        <button class="acc-header">v1.4.0 — Neutral 팔레트 + Opacity 추가 <span class="acc-icon">▼</span></button>
-        <div class="acc-body">
-          <p style="font-size:13px; color:#555; line-height:1.8">
-            • Neutral 12단계, Opacity 15단계 토큰 추가<br>
-            • Figma Variable Collection 52개 변수 완성
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+  // ── Code collapse ──
+  document.querySelectorAll('.code-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const box = btn.closest('.code-collapse');
+      box.classList.toggle('open');
+      btn.querySelector('.code-span').textContent =
+        box.classList.contains('open') ? '접기' : '더보기';
+    });
+  });
+  // ── Sidebar active on scroll ──
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.sidebar-link');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`.sidebar-link[href="#${entry.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
 </main>
 
 
