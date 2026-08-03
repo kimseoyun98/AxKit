@@ -323,6 +323,81 @@
     .pl-key { color: #93C5FD; }
     .pl-val { color: #FCD34D; }
     .pl-dim { color: #4B5563; }
+
+    /* ── DESIGN SYSTEM VIEWER ── */
+    .ds-section-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--text-tertiary);
+      margin: 32px 0 12px;
+    }
+    /* Color swatches */
+    .swatch-group { margin-bottom: 28px; }
+    .swatch-group-title {
+      font-size: 11px; font-weight: 600; color: var(--text-tertiary);
+      margin-bottom: 8px; letter-spacing: 0.5px;
+    }
+    .swatch-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .swatch {
+      display: flex; flex-direction: column;
+      width: 80px;
+    }
+    .swatch-color {
+      height: 48px; border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.06);
+      margin-bottom: 6px;
+    }
+    .swatch-name { font-size: 10px; font-weight: 600; color: var(--text-primary); line-height: 1.3; }
+    .swatch-hex  { font-size: 10px; color: var(--text-tertiary); font-family: var(--mono); }
+    /* Typography scale */
+    .typo-scale { display: flex; flex-direction: column; gap: 0; }
+    .typo-row {
+      display: grid; grid-template-columns: 140px 1fr;
+      align-items: baseline; gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .typo-row:last-child { border-bottom: none; }
+    .typo-meta { text-align: right; }
+    .typo-token { font-size: 10px; font-weight: 600; color: var(--text-tertiary); font-family: var(--mono); }
+    .typo-sizes { font-size: 10px; color: #BBBBBB; margin-top: 2px; }
+    .typo-sample { color: var(--text-primary); line-height: 1.2; font-family: 'Inter', sans-serif; }
+    /* Responsive diagram */
+    .bp-diagram { display: flex; flex-direction: column; gap: 10px; margin: 20px 0; }
+    .bp-bar-wrap { display: flex; align-items: center; gap: 12px; }
+    .bp-label { font-size: 12px; font-weight: 600; width: 64px; color: var(--text-secondary); }
+    .bp-bar {
+      height: 40px; border-radius: 8px;
+      display: flex; align-items: center; padding: 0 14px;
+      font-size: 11px; font-weight: 600; color: #fff;
+      position: relative;
+    }
+    .bp-bar-mobile    { background: #6B7280; width: 120px; }
+    .bp-bar-tablet    { background: #3B82F6; width: 200px; }
+    .bp-bar-desktop   { background: #0066FF; width: 280px; }
+    .bp-range { font-size: 11px; color: var(--text-tertiary); }
+    .bp-prefix {
+      display: inline-block; padding: 2px 7px;
+      background: #1A1A22; color: #93C5FD;
+      border-radius: 4px; font-family: var(--mono); font-size: 11px;
+      margin-left: 6px;
+    }
+    .bp-container-info {
+      margin-top: 16px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+    }
+    .bp-container-card {
+      background: var(--code-bg); border-radius: 8px; padding: 12px 14px;
+    }
+    .bp-container-tier { font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 4px; }
+    .bp-container-val  { font-size: 12px; font-family: var(--mono); color: var(--text-primary); }
+    /* Auto-layout mapping */
+    .mapping-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 12px 0; }
+    .mapping-item {
+      background: var(--code-bg); border-radius: 6px; padding: 10px 12px;
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .mapping-figma { font-size: 11px; color: var(--text-tertiary); }
+    .mapping-css   { font-size: 11px; font-family: var(--mono); color: #0066FF; font-weight: 600; }
     /* ── RESPONSIVE ── */
     @media (max-width: 767px) {
       aside { display: none; }
@@ -350,8 +425,10 @@
 
   <div class="sidebar-section">System</div>
   <a href="#files" class="sidebar-link">파일 구성</a>
-  <a href="#tokens" class="sidebar-link">토큰 시스템</a>
-  <a href="#responsive" class="sidebar-link">반응형 규칙</a>
+  <div class="sidebar-section">Design System</div>
+  <a href="#ds-colors" class="sidebar-link">컬러 시스템</a>
+  <a href="#ds-typography" class="sidebar-link">타이포그래피</a>
+  <a href="#ds-responsive" class="sidebar-link">반응형 규칙</a>
 
   <div class="sidebar-section">Example</div>
   <a href="#journey" class="sidebar-link">사용자 여정 예시</a>
@@ -724,58 +801,184 @@ Link:           Default / Hover / Visited</code></pre>
 <span class="ct">&lt;link</span> rel="stylesheet" href="<span class="cs">./style.css</span>"<span class="ct">&gt;</span>      <span class="cm">&lt;!-- 3. 프로젝트 커스텀 --&gt;</span></code></pre>
   </section>
 
-  <!-- TOKENS -->
-  <section id="tokens">
-    <h2>토큰 시스템</h2>
-    <p><code>tokens.css</code>는 전역 기본값, <code>theme.css</code>는 프로젝트별 Primary/Secondary override입니다.</p>
+  <!-- DESIGN SYSTEM COLORS -->
+  <section id="ds-colors">
+    <h2>컬러 시스템</h2>
+    <p>Seed Design 기반 시맨틱 토큰. <code>tokens.css</code>에 기본값이 정의되고, <code>theme.css</code>가 브랜드 컬러로 override합니다.</p>
 
-    <h3>컬러 스케일 생성</h3>
+    <div class="ds-section-label">Brand Colors</div>
+    <div class="swatch-group">
+      <div class="swatch-group-title">Primary — generate-theme.js 자동 생성 (예시: #0066FF)</div>
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-color" style="background:#0054D1"></div><div class="swatch-name">Heavy</div><div class="swatch-hex">Pressed</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#005EEB"></div><div class="swatch-name">Strong</div><div class="swatch-hex">Hover</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#0066FF"></div><div class="swatch-name">Normal</div><div class="swatch-hex">Default</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3385FF"></div><div class="swatch-name">Inverse</div><div class="swatch-hex">Dark BG 위</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#99BFFF"></div><div class="swatch-name">Light</div><div class="swatch-hex">연한 강조</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#EBF2FF"></div><div class="swatch-name">Tint</div><div class="swatch-hex">뱃지 배경</div></div>
+      </div>
+    </div>
+
+    <div class="ds-section-label">Label (텍스트)</div>
+    <div class="swatch-group">
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-color" style="background:#000000"></div><div class="swatch-name">Strong</div><div class="swatch-hex">#000000</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#171719"></div><div class="swatch-name">Normal</div><div class="swatch-hex">#171719</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#3B3C40"></div><div class="swatch-name">Neutral</div><div class="swatch-hex">α 88%</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#7C7E84"></div><div class="swatch-name">Alternative</div><div class="swatch-hex">α 61%</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#BCBDC2"></div><div class="swatch-name">Assistive</div><div class="swatch-hex">α 28%</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#D9DADC"></div><div class="swatch-name">Disable</div><div class="swatch-hex">α 16%</div></div>
+      </div>
+    </div>
+
+    <div class="ds-section-label">Background</div>
+    <div class="swatch-group">
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border:1px solid #E1E2E4"></div><div class="swatch-name">Normal</div><div class="swatch-hex">#FFFFFF</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F7F7F8"></div><div class="swatch-name">Alternative</div><div class="swatch-hex">#F7F7F8</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F0F0F2"></div><div class="swatch-name">Section</div><div class="swatch-hex">섹션 구분</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border:1px solid #E1E2E4; box-shadow:0 2px 8px rgba(0,0,0,0.08)"></div><div class="swatch-name">Elevated</div><div class="swatch-hex">카드 배경</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:rgba(23,23,25,0.08)"></div><div class="swatch-name">Transparent</div><div class="swatch-hex">α 8%</div></div>
+      </div>
+    </div>
+
+    <div class="ds-section-label">Status</div>
+    <div class="swatch-group">
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-color" style="background:#00BF40"></div><div class="swatch-name">Positive</div><div class="swatch-hex">#00BF40</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FF9200"></div><div class="swatch-name">Cautionary</div><div class="swatch-hex">#FF9200</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FF4242"></div><div class="swatch-name">Negative</div><div class="swatch-hex">#FF4242</div></div>
+      </div>
+    </div>
+
+    <div class="ds-section-label">Accent (강조색)</div>
+    <div class="swatch-group">
+      <div class="swatch-group-title">Background</div>
+      <div class="swatch-row">
+        <div class="swatch"><div class="swatch-color" style="background:#FFF0EC"></div><div class="swatch-name">Red Orange</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F0FBEA"></div><div class="swatch-name">Lime</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#E6FAFA"></div><div class="swatch-name">Cyan</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#EAF3FF"></div><div class="swatch-name">Light Blue</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F3EEFF"></div><div class="swatch-name">Violet</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F8EEFF"></div><div class="swatch-name">Purple</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFECF5"></div><div class="swatch-name">Pink</div></div>
+      </div>
+    </div>
+
+    <h3>컬러 스케일 자동 생성</h3>
     <pre><code><span class="cm"># Primary hex 하나로 13단계 자동 생성</span>
-node generate-theme.js \
-  --primary <span class="cs">"#0066FF"</span> \
-  --secondary <span class="cs">"#FF7300"</span> \
-  --output ./theme.css
-
-<span class="cm"># 출력 예시</span>
-<span class="ck">--color-primary-heavy</span>:   <span class="cv">#0054D1</span>;  <span class="cm">/* pressed */</span>
-<span class="ck">--color-primary-strong</span>:  <span class="cv">#005EEB</span>;  <span class="cm">/* hover */</span>
-<span class="ck">--color-primary-normal</span>:  <span class="cv">#0066FF</span>;  <span class="cm">/* default (입력값) */</span>
-<span class="ck">--color-primary-inverse</span>: <span class="cv">#3385FF</span>;  <span class="cm">/* 역색 배경 위 */</span>
-<span class="ck">--color-primary-tint</span>:    <span class="cv">#EBF2FF</span>;  <span class="cm">/* 뱃지 배경 등 */</span></code></pre>
-
-    <h3>텍스트 컬러 6단계</h3>
-    <table>
-      <tr><th>토큰</th><th>용도</th><th>불투명도</th></tr>
-      <tr><td>--color-label-strong</td><td>가장 강한 강조, 주요 제목</td><td>100%</td></tr>
-      <tr><td>--color-label-normal</td><td>기본 본문, 일반 제목</td><td>100%</td></tr>
-      <tr><td>--color-label-neutral</td><td>보조 텍스트</td><td>88%</td></tr>
-      <tr><td>--color-label-alternative</td><td>더 흐린 보조</td><td>61%</td></tr>
-      <tr><td>--color-label-assistive</td><td>힌트, 플레이스홀더</td><td>28%</td></tr>
-      <tr><td>--color-label-disable</td><td>비활성 텍스트</td><td>16%</td></tr>
-    </table>
+node generate-theme.js --primary <span class="cs">"#0066FF"</span> --output ./src/theme.css</code></pre>
   </section>
 
-  <!-- RESPONSIVE -->
-  <section id="responsive">
-    <h2>반응형 규칙</h2>
-    <h3>브레이크포인트</h3>
-    <table>
-      <tr><th>구간</th><th>범위</th><th>Tailwind prefix</th></tr>
-      <tr><td>Mobile</td><td>0 ~ 767px</td><td>(기본값, prefix 없음)</td></tr>
-      <tr><td>Tablet</td><td>768 ~ 1279px</td><td>tb: / max-mb:</td></tr>
-      <tr><td>Desktop</td><td>1280px ~</td><td>mb:</td></tr>
-    </table>
+  <!-- DESIGN SYSTEM TYPOGRAPHY -->
+  <section id="ds-typography">
+    <h2>타이포그래피 스케일</h2>
+    <p>16레벨 타입 시스템. Figma Desktop/Tablet/Mobile 고정값 3단계, 브레이크포인트 전환 시 <code>transition: font-size 0.25s ease</code>로 자연스럽게 변합니다.</p>
 
-    <h3>Auto-layout → CSS 변환</h3>
-    <table>
-      <tr><th>Figma 설정</th><th>Tailwind 출력</th></tr>
-      <tr><td>Horizontal / gap 12px / center</td><td>flex flex-row gap-[12px] items-center</td></tr>
-      <tr><td>Vertical / gap 24px / align start</td><td>flex flex-col gap-[24px] items-start</td></tr>
-      <tr><td>Fill container</td><td>w-full</td></tr>
-      <tr><td>Hug contents</td><td>w-fit</td></tr>
-      <tr><td>Overflow Clip</td><td>overflow-hidden</td></tr>
-      <tr><td>Layout Grid 3열 / gap 20px</td><td>grid grid-cols-3 gap-[20px]</td></tr>
-    </table>
+    <div class="typo-scale">
+      <div class="typo-row">
+        <div class="typo-meta"><div class="typo-token">display-hero</div><div class="typo-sizes">120 / 74 / 40px</div></div>
+        <div class="typo-sample" style="font-size:48px; font-weight:700; letter-spacing:-0.03em; line-height:1">Aa</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta"><div class="typo-token">display-1</div><div class="typo-sizes">60 / 42 / 28px</div></div>
+        <div class="typo-sample" style="font-size:36px; font-weight:700; letter-spacing:-0.02em">디자인을 코드로</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta"><div class="typo-token">display-2</div><div class="typo-sizes">44 / 31 / 22px</div></div>
+        <div class="typo-sample" style="font-size:28px; font-weight:700; letter-spacing:-0.02em">Design to Code Pipeline</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta"><div class="typo-token">display-3</div><div class="typo-sizes">36 / 29 / 24px</div></div>
+        <div class="typo-sample" style="font-size:24px; font-weight:700; letter-spacing:-0.02em">Figma → Variable → Code</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta"><div class="typo-token">title-1</div><div class="typo-sizes">32 / 26 / 22px</div></div>
+        <div class="typo-sample" style="font-size:22px; font-weight:600; letter-spacing:-0.02em">섹션 제목에 사용합니다</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta"><div class="typo-token">title-2</div><div class="typo-sizes">30 / 22 / 16px</div></div>
+        <div class="typo-sample" style="font-size:20px; font-weight:600; letter-spacing:-0.02em">카드 제목, 모달 헤더</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta"><div class="typo-token">title-3</div><div class="typo-sizes">24 / 21 / 18px</div></div>
+        <div class="typo-sample" style="font-size:18px; font-weight:600; letter-spacing:-0.02em">소제목, 그룹 레이블</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta"><div class="typo-token">heading-1</div><div class="typo-sizes">22 / 19 / 17px</div></div>
+        <div class="typo-sample" style="font-size:16px; font-weight:600; letter-spacing:-0.01em">강조 본문, 리스트 헤더</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta"><div class="typo-token">headline-1</div><div class="typo-sizes">18 / 16 / 15px</div></div>
+        <div class="typo-sample" style="font-size:15px; font-weight:500">항목 라벨, 탭 텍스트</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta"><div class="typo-token">body-1</div><div class="typo-sizes">16 / 15 / 15px</div></div>
+        <div class="typo-sample" style="font-size:14px; font-weight:400; line-height:1.6">일반 본문 텍스트. 가독성을 위해 line-height 1.5를 사용합니다.</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta"><div class="typo-token">body-2</div><div class="typo-sizes">15 / 14 / 14px</div></div>
+        <div class="typo-sample" style="font-size:13px; font-weight:400; line-height:1.6; color:#666">보조 본문, 설명 텍스트로 사용합니다.</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta"><div class="typo-token">label-1</div><div class="typo-sizes">14 / 13 / 13px</div></div>
+        <div class="typo-sample" style="font-size:12px; font-weight:500; color:#888">폼 레이블, 버튼 텍스트</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-meta"><div class="typo-token">caption-1</div><div class="typo-sizes">12 / 12 / 12px (고정)</div></div>
+        <div class="typo-sample" style="font-size:11px; font-weight:400; color:#aaa">타임스탬프, 메타 정보, 주석</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN SYSTEM RESPONSIVE -->
+  <section id="ds-responsive">
+    <h2>반응형 규칙</h2>
+
+    <div class="bp-diagram">
+      <div class="bp-bar-wrap">
+        <div class="bp-label">Mobile</div>
+        <div class="bp-bar bp-bar-mobile">&lt; 768px</div>
+        <div class="bp-range">(기본값, prefix 없음)</div>
+      </div>
+      <div class="bp-bar-wrap">
+        <div class="bp-label">Tablet</div>
+        <div class="bp-bar bp-bar-tablet">768 ~ 1279px</div>
+        <span class="bp-prefix">tb:</span> <span class="bp-prefix">max-mb:</span>
+      </div>
+      <div class="bp-bar-wrap">
+        <div class="bp-label">Desktop</div>
+        <div class="bp-bar bp-bar-desktop">1280px ~</div>
+        <span class="bp-prefix">mb:</span>
+      </div>
+    </div>
+
+    <div class="bp-container-info">
+      <div class="bp-container-card">
+        <div class="bp-container-tier">Mobile</div>
+        <div class="bp-container-val">padding 20px<br>max-width none</div>
+      </div>
+      <div class="bp-container-card">
+        <div class="bp-container-tier">Tablet</div>
+        <div class="bp-container-val">padding 48px<br>max-width 1279px</div>
+      </div>
+      <div class="bp-container-card">
+        <div class="bp-container-tier">Desktop</div>
+        <div class="bp-container-val">padding 64px<br>max-width 1440px</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:28px">Auto-layout → CSS 변환</h3>
+    <div class="mapping-grid">
+      <div class="mapping-item"><div class="mapping-figma">Horizontal / gap 12 / center</div><div class="mapping-css">flex flex-row gap-3 items-center</div></div>
+      <div class="mapping-item"><div class="mapping-figma">Vertical / gap 24 / align start</div><div class="mapping-css">flex flex-col gap-6 items-start</div></div>
+      <div class="mapping-item"><div class="mapping-figma">Fill container (width)</div><div class="mapping-css">w-full</div></div>
+      <div class="mapping-item"><div class="mapping-figma">Hug contents</div><div class="mapping-css">w-fit</div></div>
+      <div class="mapping-item"><div class="mapping-figma">Overflow Clip</div><div class="mapping-css">overflow-hidden</div></div>
+      <div class="mapping-item"><div class="mapping-figma">Layout Grid 3열 / gap 20</div><div class="mapping-css">grid grid-cols-3 gap-5</div></div>
+      <div class="mapping-item"><div class="mapping-figma">Position Fixed (GNB)</div><div class="mapping-css">fixed top-0 left-0 right-0 z-[100]</div></div>
+      <div class="mapping-item"><div class="mapping-figma">Corner Radius 8</div><div class="mapping-css">rounded-lg</div></div>
+    </div>
   </section>
 
   <hr>
