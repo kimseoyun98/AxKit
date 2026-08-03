@@ -291,9 +291,31 @@ p, span, a, li, button, label, caption {
   --atomic-green-50:  #00bf40;
   --atomic-orange-50: #ff9200;
 
-  /* Accent Atomics */
+  /* Neutral (순수 회색 — 콜 틴트 없음, UI 크롬 등에 사용) */
+  --atomic-n-5:  #0f0f0f;
+  --atomic-n-10: #171717;
+  --atomic-n-15: #1c1c1c;
+  --atomic-n-20: #2a2a2a;
+  --atomic-n-22: #303030;
+  --atomic-n-30: #474747;
+  --atomic-n-40: #5c5c5c;
+  --atomic-n-50: #737373;
+  --atomic-n-60: #8a8a8a;
+  --atomic-n-70: #9b9b9b;
+  --atomic-n-80: #b0b0b0;
+  --atomic-n-90: #c4c4c4;
+  --atomic-n-95: #dcdcdc;
+  --atomic-n-99: #f7f7f7;
+
+  /* Accent Atomics — Foreground (vivid, 텍스트/아이콘용) */
+  --atomic-redorange-48: #f55a00;
+  --atomic-redorange-50: #ff5e00;
+  --atomic-orange-39:    #d17600;
+  --atomic-orange-50:    #ff9200;
   --atomic-lime-37:      #429e00;
   --atomic-lime-50:      #58cf04;
+  --atomic-green-40:     #009632;
+  --atomic-green-50:     #00bf40;
   --atomic-cyan-40:      #0098b2;
   --atomic-cyan-50:      #00bdde;
   --atomic-lightblue-40: #008dcf;
@@ -304,9 +326,42 @@ p, span, a, li, button, label, caption {
   --atomic-purple-50:    #cb59ff;
   --atomic-pink-46:      #e846cd;
   --atomic-pink-50:      #f553da;
-  --atomic-redorange-48: #f55a00;
-  --atomic-redorange-50: #ff5e00;
-  --atomic-orange-39:    #d17600;
+  --atomic-red-40:       #e52222;
+  --atomic-red-50:       #ff4242;
+
+  /* Accent Atomics — Background Tint (95단계, pale tint, 배경/뱃지용) */
+  --atomic-red-95:        #feecec;
+  --atomic-redorange-95:  #feeee5;
+  --atomic-orange-95:     #fef4e6;
+  --atomic-lime-95:       #e6ffd4;
+  --atomic-green-95:      #d9ffe6;
+  --atomic-cyan-95:       #defaff;
+  --atomic-lightblue-95:  #e5f6fe;
+  --atomic-blue-95:       #eaf2fe;
+  --atomic-violet-95:     #f0ecfe;
+  --atomic-purple-95:     #f9edff;
+  --atomic-pink-95:       #feecfb;
+
+  /* ════════════════════════════════════════════════════════
+   *  Opacity Scale (Figma Opacity Variable 컬렉션 원본)
+   *  알파값을 일관되게 쓸 때 참조. CSS: opacity: var(--opacity-52)
+   *  또는 rgba의 alpha 인자로: rgba(0,0,0, calc(var(--opacity-52)/100))
+   * ════════════════════════════════════════════════════════ */
+  --opacity-0:   0;
+  --opacity-5:   0.05;
+  --opacity-8:   0.08;
+  --opacity-12:  0.12;
+  --opacity-16:  0.16;
+  --opacity-22:  0.22;
+  --opacity-28:  0.28;
+  --opacity-35:  0.35;
+  --opacity-43:  0.43;
+  --opacity-52:  0.52;
+  --opacity-61:  0.61;
+  --opacity-74:  0.74;
+  --opacity-88:  0.88;
+  --opacity-97:  0.97;
+  --opacity-100: 1;
 
 
   /* ════════════════════════════════════════════════════════
@@ -380,22 +435,22 @@ p, span, a, li, button, label, caption {
   --color-inverse-label:      #f7f7f8;
 
   /* Accent Background — pale tint (섹션 배경, 뱃지 배경용) */
-  --color-accent-bg-redorange: #fff0ec;
-  --color-accent-bg-lime:      #f0fbea;
-  --color-accent-bg-cyan:      #e6fafa;
-  --color-accent-bg-lightblue: #eaf3ff;
-  --color-accent-bg-violet:    #f3eeff;
-  --color-accent-bg-purple:    #f8eeff;
-  --color-accent-bg-pink:      #ffecf5;
+  --color-accent-bg-redorange: var(--atomic-redorange-95);
+  --color-accent-bg-lime:      var(--atomic-lime-95);
+  --color-accent-bg-cyan:      var(--atomic-cyan-95);
+  --color-accent-bg-lightblue: var(--atomic-lightblue-95);
+  --color-accent-bg-violet:    var(--atomic-violet-95);
+  --color-accent-bg-purple:    var(--atomic-purple-95);
+  --color-accent-bg-pink:      var(--atomic-pink-95);
 
   /* Accent Background Vivid — 진한 배경색이 필요한 경우 (ex. 다크 뱃지) */
-  --color-accent-vivid-redorange: #ff5e00;
-  --color-accent-vivid-lime:      #58cf04;
-  --color-accent-vivid-cyan:      #00bdde;
-  --color-accent-vivid-lightblue: #00aeff;
-  --color-accent-vivid-violet:    #6541f2;
-  --color-accent-vivid-purple:    #cb59ff;
-  --color-accent-vivid-pink:      #f553da;
+  --color-accent-vivid-redorange: var(--atomic-redorange-50);
+  --color-accent-vivid-lime:      var(--atomic-lime-50);
+  --color-accent-vivid-cyan:      var(--atomic-cyan-50);
+  --color-accent-vivid-lightblue: var(--atomic-lightblue-50);
+  --color-accent-vivid-violet:    var(--atomic-violet-50);
+  --color-accent-vivid-purple:    var(--atomic-purple-50);
+  --color-accent-vivid-pink:      var(--atomic-pink-50);
 
   /* Accent Foreground */
   --color-accent-fg-red:       #e52222;
