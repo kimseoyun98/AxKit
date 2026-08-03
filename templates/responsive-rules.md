@@ -97,7 +97,7 @@
 | **Label 1~2** | Tablet과 동일 | **소폭 축소** | Figma 원본 | ✅ 반응형 (미세) |
 | **Caption 1~2** | **고정** | **고정** | **고정** | ❌ 완전 고정 |
 
-> **작동 방식:** `text-[length:var(--font-size-display-1)] leading-[var(--font-lh-display-1)]
+> **작동 방식:** `text-[length:var(--seed-font-size-t15)] leading-[var(--seed-line-height-t15)]
 > tracking-[var(--font-ls-display-1)]` 세 개를 세트로 쓰면 됨(tailwind.config.js가
 > 없어 `text-display-1`처럼 하나로 뭉친 유틸리티 클래스는 없다). font-size는
 > clamp()라 뷰포트 폭이 바뀔 때마다 자동으로 연속 스케일되고, line-height/letter-spacing은
@@ -134,8 +134,8 @@
 
 ```html
 <!-- ✅ 올바른 방법: CSS 변수를 브래킷으로 참조, 뷰포트 전 구간 자동 스케일 -->
-<h1 class="text-[length:var(--font-size-display-1)] leading-[var(--font-lh-display-1)]
-           tracking-[var(--font-ls-display-1)] font-bold text-[color:var(--color-label-normal)]">
+<h1 class="text-[length:var(--seed-font-size-t15)] leading-[var(--seed-line-height-t15)]
+           tracking-[var(--font-ls-display-1)] font-bold text-[color:var(--seed-color-fg-neutral)]">
   제목
 </h1>
 
@@ -165,39 +165,39 @@ tailwind.config.js가 없으므로 Tailwind v4 기본 제공 유틸리티를 그
 > tailwind.config.js가 없으므로 색상은 전부 `text-[color:var(--...)]` /
 > `bg-[var(--...)]` / `border-[var(--...)]` 브래킷 문법으로 CSS 변수를 직접
 > 참조한다 (newEromhp 실제 코드와 동일). 아래 표의 "토큰"은 CSS 변수 이름이며,
-> 클래스는 `text-[color:var(--color-label-strong)]`처럼 조합해서 쓴다.
+> 클래스는 `text-[color:var(--seed-color-fg-neutral)]`처럼 조합해서 쓴다.
 
 ### 3-1. 텍스트 컬러 — Label 6단계
 
 | 토큰 (CSS 변수) | 용도 | 투명도 |
 |:---|:---|:---|
-| `--color-label-strong` | 가장 강조, 강력한 제목 | 100% |
-| `--color-label-normal` | 기본 본문, 일반 제목 | 100% |
-| `--color-label-neutral` | 보조 텍스트 | 88% |
-| `--color-label-alternative` | 더 흐린 보조 | 61% |
-| `--color-label-assistive` | 힌트, 플레이스홀더 | 28% |
-| `--color-label-disable` | 비활성 UI 텍스트 | 16% |
+| `--seed-color-fg-neutral` | 가장 강조, 강력한 제목 | 100% |
+| `--seed-color-fg-neutral` | 기본 본문, 일반 제목 | 100% |
+| `--seed-color-fg-neutral-muted` | 보조 텍스트 | 88% |
+| `--seed-color-fg-neutral-subtle` | 더 흐린 보조 | 61% |
+| `--seed-color-fg-neutral-subtle` | 힌트, 플레이스홀더 | 28% |
+| `--seed-color-fg-disabled` | 비활성 UI 텍스트 | 16% |
 
 ### 3-2. 배경 컬러
 
 | 토큰 (CSS 변수) | 용도 |
 |:---|:---|
-| `--color-bg-normal` | 기본 페이지 배경 |
-| `--color-bg-normal-alt` | 섹션 교차 배경 |
-| `--color-bg-section` | 섹션 구분용 3단계 배경 (normal-alt보다 한 단계 더 진함) |
-| `--color-bg-elevated` | 카드, 드롭다운 |
-| `--color-fill-normal` | hover 배경, 미묘한 강조 |
-| `--color-fill-strong` | 더 진한 hover 배경 |
-| `--color-text-point` / `--color-brand-primary` | 브랜드 포인트 강조 (Primary alias) |
+| `--seed-color-bg-layer-default` | 기본 페이지 배경 |
+| `--seed-color-bg-layer-default-alt` | 섹션 교차 배경 |
+| `--seed-color-bg-layer-basement` | 섹션 구분용 3단계 배경 (normal-alt보다 한 단계 더 진함) |
+| `--seed-color-bg-layer-floating` | 카드, 드롭다운 |
+| `--seed-color-bg-neutral-weak` | hover 배경, 미묘한 강조 |
+| `--seed-color-bg-neutral-solid` | 더 진한 hover 배경 |
+| `--seed-color-fg-brand` / `--seed-color-fg-brand` | 브랜드 포인트 강조 (Primary alias) |
 
 ### 3-3. 테두리
 
 | 토큰 (CSS 변수) | 종류 | 용도 |
 |:---|:---|:---|
-| `--color-line-solid` | 불투명 | 카드 테두리, 구분선 |
-| `--color-line-solid-n` | 불투명, 연함 | 더 연한 구분선 |
-| `--color-line-solid-s` | 불투명, 강조(거의 검정) | 강한 대비가 필요한 강조 테두리 |
-| `--color-line-normal` | 반투명 | 배경 위에 겹치는 구분선 |
+| `--seed-color-stroke-neutral-solid` | 불투명 | 카드 테두리, 구분선 |
+| `--seed-color-stroke-neutral-solid` | 불투명, 연함 | 더 연한 구분선 |
+| `--seed-color-stroke-neutral-muted` | 불투명, 강조(거의 검정) | 강한 대비가 필요한 강조 테두리 |
+| `--seed-color-stroke-neutral-subtle` | 반투명 | 배경 위에 겹치는 구분선 |
 
 ### 3-4. 테두리 두께
 
@@ -208,7 +208,7 @@ Tailwind v4 기본 `border` 클래스 자체가 1px라 `--stroke-weight-1`(1px)�
 ### 3-5. 예시
 
 ```html
-<div class="bg-[var(--color-bg-elevated)] border border-[var(--color-line-solid)] text-[color:var(--color-label-normal)]">
+<div class="bg-[var(--seed-color-bg-layer-floating)] border border-[var(--seed-color-stroke-neutral-solid)] text-[color:var(--seed-color-fg-neutral)]">
   ...
 </div>
 ```
@@ -398,7 +398,7 @@ Figma: Layout Grid 3열 / Gap 20px
 ```
 ❌ px값 직접 하드코딩 (style="padding: 23px")
 ❌ CSS 변수를 참조하지 않는 임의 색상/크기 (bg-[#E0F7FA], text-[22px])
-   ✅ CSS 변수를 브래킷으로 참조하는 건 정상 패턴 (bg-[var(--color-bg-normal)])
+   ✅ CSS 변수를 브래킷으로 참조하는 건 정상 패턴 (bg-[var(--seed-color-bg-layer-default)])
 ❌ !important 사용
 ❌ 인라인 style="" 속성 사용
 ❌ Tailwind 기본 색상 클래스 직접 사용 (bg-blue-500 → 반드시 CSS 변수 토큰으로)

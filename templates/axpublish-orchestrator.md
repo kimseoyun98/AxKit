@@ -128,11 +128,11 @@ axpublish Variable Collection을 연결하여
 
 **① Variable Collection 생성 (Figma MCP Write)**
 
-`figma-semantic-variables.json` 기준으로 Figma에 컬렉션 생성:
+`figma-seed-variables.json` 기준으로 Figma에 컬렉션 생성:
 ```
 생성할 컬렉션:
-□ Semantic  — --color-label-*, --color-bg-*, --color-primary-*...
-□ Typography — --font-size-*, --font-lh-*, --font-ls-*
+□ Semantic  — --seed-color-fg-*, --seed-color-bg-*, --seed-color-stroke-*...
+□ Typography — --seed-font-size-t1~t16, --seed-line-height-t1~t16
 □ Primitive — --atomic-cn-*, --atomic-n-*
 □ Opacity   — --opacity-*
 
@@ -146,23 +146,23 @@ axpublish Variable Collection을 연결하여
 
 ```
 매핑 기준:
-#000000, #171719        → --color-label-strong / --color-label-normal
-#3B3C40                 → --color-label-neutral
-#7C7E84                 → --color-label-alternative
-#FFFFFF                 → --color-bg-normal
-#F7F7F8                 → --color-bg-alternative
-#F0F0F2                 → --color-bg-section
-#0066FF 계열            → --color-primary-normal (theme.css 기반)
-#00BF40                 → --color-status-positive
-#FF4242                 → --color-status-negative
-#FF9200                 → --color-status-cautionary
-E1E2E4 계열 (선/구분선)  → --color-line-normal
+#000000, #171719        → --seed-color-fg-neutral / --seed-color-fg-neutral
+#3B3C40                 → --seed-color-fg-neutral-muted
+#7C7E84                 → --seed-color-fg-neutral-subtle
+#FFFFFF                 → --seed-color-bg-layer-default
+#F7F7F8                 → --seed-color-bg-layer-fill
+#F0F0F2                 → --seed-color-bg-layer-basement
+#0066FF 계열            → --seed-color-bg-brand-solid (theme.css 기반)
+#00BF40                 → --seed-color-fg-positive
+#FF4242                 → --seed-color-fg-critical
+#FF9200                 → --seed-color-fg-warning
+E1E2E4 계열 (선/구분선)  → --seed-color-stroke-neutral-subtle
 
 폰트 크기:
-56px → --font-size-display-1
-32px → --font-size-title-1
+56px → --seed-font-size-t15
+32px → --seed-font-size-t12
 22px → --font-size-heading-1
-16px → --font-size-body-1
+16px → --seed-font-size-t5
 14px → --font-size-label-1
 12px → --font-size-caption-1
 (전체 매핑은 seed-tokens.css + @seed-design/css 기준)
@@ -476,5 +476,5 @@ Figma 디자인과 동일한 완성 페이지를 만든다.
 | `seed-tokens.css + @seed-design/css` | BINDER, BUILDER (항상) |
 | `theme.css` | BINDER, BUILDER |
 | `responsive-rules.md` | FLEX (반응형 생성), BUILDER (코드 작성) |
-| `figma-semantic-variables.json` | BINDER (Variable 구조 기준) |
+| `figma-seed-variables.json` | BINDER (Variable 구조 기준) |
 | `generate-seed-brand.js` | 프로젝트 시작 시 1회 실행 |
