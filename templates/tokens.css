@@ -1,36 +1,197 @@
 /*
  * ============================================================
- *  tokens.css — Seed Design System (axlab 적용)
+ *  tokens.css — Seed Design System (Tailwind CSS v4 네이티브)
  *
- *  출처: Figma Variables Export (Pretendard JP 기반)
+ *  출처: Figma Variables Export + 이롬넷(newEromhp) 실제 프로덕션 코드 대조 검증
+ *  스택: Vite + React + TypeScript + Tailwind CSS v4 (@tailwindcss/vite)
+ *
+ *  ⚠ tailwind.config.js 없음 — v4는 CSS 네이티브로 설정한다. 이 파일을
+ *  프로젝트의 진입 CSS(예: src/index.css)에서 그대로 사용하거나 @import한다.
+ *
  *  구조:
- *    LAYER 1. Atomic     — Primitive 팔레트
- *    LAYER 2. Semantic   — 역할 기반 토큰 (light mode)
- *    LAYER 3. Typography — 폰트 스타일 변수 (반응형 포함)
- *    LAYER 4. Shadow     — 그림자 레이어
- *    LAYER 5. Frame      — Radius / Spacing
+ *    0. Tailwind import + @theme(브레이크포인트)
+ *    1. Fluid Typography — clamp() 기반 (뷰포트에 따라 연속 스케일)
+ *    2. container-em 유틸리티 — 컨테이너 폭/패딩
+ *    3. Atomic — Primitive 팔레트
+ *    4. Semantic — 역할 기반 토큰
+ *    5. Shadow / Frame (Radius, Stroke, Spacing)
  *
- *  반응형 규칙:
- *    Mobile  < 768px  : Display ~ Heading 축소
- *    Tablet  768–1279px : 중간값
- *    Desktop ≥ 1280px : Figma 원본값 (full size)
- *
- *  컨테이너 padding: 모든 뷰포트 20px (Figma 원본 기준)
+ *  클래스 작성 패턴 (newEromhp 실제 코드와 동일):
+ *    - 색상/그림자: bg-[var(--color-bg-normal-alt)], text-[color:var(--color-label-normal)]
+ *    - 폰트 스타일: text-[length:var(--font-size-display-1)] leading-[var(--font-lh-display-1)]
+ *                   tracking-[var(--font-ls-display-1)]
+ *    - 브레이크포인트: mb:(Desktop, ≥1280) / tb:(≥768) / max-mb:(<1280) / max-tb:(<768)
+ *      (Tailwind 기본 md:/lg:가 아니라 아래 @theme의 --breakpoint-* 이름을 그대로 씀)
  * ============================================================
  */
 
-/* ════════════════════════════════════════════════════════════
- *  DEFAULT (Desktop ≥ 1280px) — Figma 원본값
+@import 'tailwindcss';
+
+/*
+ * 브레이크포인트 (Figma "Layout" Variable 컬렉션 기준 — 이롬넷 레퍼런스와 동일)
+ * Desktop 1280~1440 / Tablet 768~1279 / Mobile <768
+ * mb: = Desktop 이상(min-width:1280px) / tb: = Tablet 이상(min-width:768px)
+ * max-mb: = Desktop 미만(Tablet+Mobile 공통) / max-tb: = Mobile 전용(<768px)
+ * tb:max-mb: = Tablet 밴드만(768~1279px)
+ */
+@theme {
+  --breakpoint-mb: 1280px;
+  --breakpoint-tb: 768px;
+}
+
+/*
+ * ════════════════════════════════════════════════════════════
+ *  1. FLUID TYPOGRAPHY — clamp() 기반
+ *
+ *  공식: clamp(Mobile값, calc(intercept + slope*vw), Desktop값)
+ *  앵커: Desktop 1280px 뷰포트 / Mobile 390px 뷰포트
+ *        (Figma Layout 컬렉션의 content-min-width와 동일 — 이롬넷과 동일 공식)
+ *
+ *  이전엔 3단계(Mobile/Tablet/Desktop) 스텝 값을 미디어쿼리로 전환했으나,
+ *  실제 프로덕션(이롬넷)은 뷰포트에 따라 연속적으로 스케일되는 clamp() 방식을
+ *  쓰고 있어 이 구조로 전환함 — 미디어쿼리 오버라이드가 필요 없어짐.
+ *
+ *  ✓ = 이롬넷 실제 코드(src/index.css --fs-*)와 정확히 대조 검증됨
+ *  ⚠ = 이번 화면에서 실측되지 않은 값. 기존 추정치로 slope/intercept만 계산 —
+ *      임의로 새 숫자를 만들지 않았음.
+ *
+ *  line-height(unitless 배수)·letter-spacing(rem 고정값)은 브레이크포인트와
+ *  무관하게 유지된다 — font-size가 clamp()로 스케일되면 unitless line-height는
+ *  자동으로 같이 스케일되고, letter-spacing은 애초에 로컬 font-size와 무관한
+ *  루트 기준(rem) 값이라 고정이 맞다.
  * ════════════════════════════════════════════════════════════ */
 :root {
+  /* Display Hero — 40→120px (✓ 이롬넷 --fs-120-40과 정확히 일치) */
+  --font-size-display-hero: clamp(40px, calc(4.944px + 8.989vw), 120px);
+  --font-lh-display-hero:   1.15;      /* ⚠ 추정 — Display 1과 동일 패턴 가정 */
+  --font-ls-display-hero:   -0.125rem; /* ⚠ 추정 */
 
-  /* ─── 폰트 패밀리 ─────────────────────────────────────── */
+  /* Display Counter — 60→180px (✓ 이롬넷 --fs-180-60과 정확히 일치) */
+  --font-size-display-counter: clamp(60px, calc(7.416px + 13.483vw), 180px);
+  --font-lh-display-counter:   1.1;  /* ⚠ 추정 — 카운터류는 보통 타이트한 라인하이트 */
+  --font-ls-display-counter:   0rem; /* ⚠ 추정 */
+
+  /* Display 1 — 28→60px (✓ 이롬넷 --fs-60-28과 정확히 일치) */
+  --font-size-display-1: clamp(28px, calc(13.978px + 3.596vw), 60px);
+  --font-lh-display-1:   1.15;
+  --font-ls-display-1:   -0.125rem;
+
+  /* Display 2 — 22→44px (✓ 이롬넷 --fs-44-22와 정확히 일치) */
+  --font-size-display-2: clamp(22px, calc(12.36px + 2.472vw), 44px);
+  --font-lh-display-2:   1.295;
+  --font-ls-display-2:   -0.125rem;
+
+  /* Display 3 — 24→36px (✓ 이롬넷 --fs-36-24와 정확히 일치, 크기 자체는 ⚠ 추정치) */
+  --font-size-display-3: clamp(24px, calc(18.742px + 1.348vw), 36px);
+  --font-lh-display-3:   1.333;
+  --font-ls-display-3:   -0.125rem;
+
+  /* Title 1 — 22→32px (✓ 이롬넷 --fs-32-22와 정확히 일치, 크기 자체는 ⚠ 추정치) */
+  --font-size-title-1: clamp(22px, calc(17.618px + 1.124vw), 32px);
+  --font-lh-title-1:   1.375;
+  --font-ls-title-1:   -0.125rem;
+
+  /* Title 2 — 16→30px (✓ 이롬넷 --fs-30-16과 정확히 일치 — Mobile 16px 확정) */
+  --font-size-title-2: clamp(16px, calc(9.865px + 1.573vw), 30px);
+  --font-lh-title-2:   1.367;
+  --font-ls-title-2:   -0.125rem;
+
+  /* Title 3 — 18→24px (✓ 이롬넷 --fs-24-18과 정확히 일치, 양끝 값 모두 실측) */
+  --font-size-title-3: clamp(18px, calc(15.371px + 0.674vw), 24px);
+  --font-lh-title-3:   1.333;
+  --font-ls-title-3:   -0.14325rem;
+
+  /* Heading 1 — 17→22px (⚠ 추정, 이롬넷 대조 자료 없음) */
+  --font-size-heading-1: clamp(17px, calc(14.809px + 0.562vw), 22px);
+  --font-lh-heading-1:   1.364;
+  --font-ls-heading-1:   -0.075rem;
+
+  /* Heading 2 — 15→20px (✓ 이롬넷 --fs-20-15와 정확히 일치 — Mobile 15px 확정) */
+  --font-size-heading-2: clamp(15px, calc(12.809px + 0.562vw), 20px);
+  --font-lh-heading-2:   1.4;
+  --font-ls-heading-2:   -0.075rem;
+
+  /* Headline 1 — 15→18px (✓ 이롬넷 --fs-18-15와 정확히 일치, 양끝 값 모두 실측) */
+  --font-size-headline-1: clamp(15px, calc(13.685px + 0.337vw), 18px);
+  --font-lh-headline-1:   1.444;
+  --font-ls-headline-1:   0rem;
+
+  /* Headline 2 — 14→17px (✓ 이롬넷 --fs-17-14와 정확히 일치 — Mobile 14px 확정) */
+  --font-size-headline-2: clamp(14px, calc(12.685px + 0.337vw), 17px);
+  --font-lh-headline-2:   1.412;
+  --font-ls-headline-2:   0rem;
+
+  /* ─── Body 이하: Caption만 완전 고정, 나머지는 미세하게 반응형 ─── */
+
+  /* Body 1 — 15→16px (✓ 이롬넷 --fs-16-15와 정확히 일치, 양끝 값 모두 실측) */
+  --font-size-body-1:       clamp(15px, calc(14.562px + 0.112vw), 16px);
+  --font-lh-body-1:         1.5;
+  --font-lh-body-1-reading: 1.625;
+  --font-ls-body-1:         0rem;
+
+  /* Body 2 — 14→15px (양끝 값 실측, 이롬넷 대조 var 못 찾음 — 계산은 동일 공식) */
+  --font-size-body-2:       clamp(14px, calc(13.562px + 0.112vw), 15px);
+  --font-lh-body-2:         1.467;
+  --font-lh-body-2-reading: 1.6;
+  --font-ls-body-2:         0rem;
+
+  /* Label 1 — 13→14px (양끝 값 실측, 이롬넷 대조 var 못 찾음 — 계산은 동일 공식) */
+  --font-size-label-1:       clamp(13px, calc(12.562px + 0.112vw), 14px);
+  --font-lh-label-1:         1.429;
+  --font-lh-label-1-reading: 1.571;
+  --font-ls-label-1:         0rem;
+
+  /* Label 2 — 12→13px (⚠ 추정) */
+  --font-size-label-2: clamp(12px, calc(11.562px + 0.112vw), 13px);
+  --font-lh-label-2:   1.385;
+  --font-ls-label-2:   0rem;
+
+  /* Caption 1 — 12px 고정 (실측: Desktop/Tablet/Mobile 전부 12 — 유일하게 완전 고정, clamp 불필요) */
+  --font-size-caption-1: 12px;
+  --font-lh-caption-1:   1.333;
+  --font-ls-caption-1:   0rem;
+
+  /* Caption 2 — 11px 고정 (⚠ 추정, Caption 1과 같은 고정 패턴으로 유지) */
+  --font-size-caption-2: 11px;
+  --font-lh-caption-2:   1.273;
+  --font-ls-caption-2:   0rem;
+}
+
+/*
+ * ════════════════════════════════════════════════════════════
+ *  2. CONTAINER — 디바이스 티어별 콘텐츠 폭 + 좌우 패딩
+ *  Figma content-min/max-width + content-padding과 1:1 매핑
+ *  (이롬넷 레퍼런스 실측: Desktop 64px / Tablet 48px / Mobile 20px)
+ * ════════════════════════════════════════════════════════════ */
+@utility container-em {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1440px;
+  padding-inline: 64px;
+
+  @media (width < 1280px) {
+    max-width: 1279px;
+    padding-inline: 48px;
+  }
+
+  @media (width < 768px) {
+    max-width: none;
+    padding-inline: 20px;
+  }
+}
+
+:root {
+
+  /* ─── 폰트 패밀리 ─────────────────────────────────────────
+   * Primary/Secondary처럼 프로젝트마다 다른 값. 기본값은 Seed 기본
+   * 폰트(Pretendard JP)지만, theme.css에서 --font-sans를 재정의하면
+   * 프로젝트 지정 폰트로 교체된다. (예: 이롬넷 레퍼런스는 'Wanted Sans Variable') */
   --font-sans:     'Pretendard JP', 'Pretendard', sans-serif;
   --font-fallback: 'Inter', sans-serif;
 
 
   /* ════════════════════════════════════════════════════════
-   *  LAYER 1. ATOMIC (Primitive)
+   *  3. ATOMIC (Primitive)
    * ════════════════════════════════════════════════════════ */
 
   /* Common */
@@ -102,13 +263,19 @@
 
 
   /* ════════════════════════════════════════════════════════
-   *  LAYER 2. SEMANTIC TOKENS
+   *  4. SEMANTIC TOKENS
    * ════════════════════════════════════════════════════════ */
 
   /* Primary */
   --color-primary-normal: #0066ff;
   --color-primary-strong: #005eeb;
   --color-primary-heavy:  #0054d1;
+
+  /* Point / Brand — Primary와 동일 값이지만 의미를 분리해서 쓰는 alias.
+     Point = 텍스트 강조용, Brand = 로고/브랜드 자산용. theme.css가 Primary를
+     override하면 자동으로 같이 갱신됨. (이롬넷 레퍼런스 파일에서 실사용 확인) */
+  --color-text-point:    var(--color-primary-normal);
+  --color-brand-primary: var(--color-primary-normal);
 
   /* Label (Text) — 6단계 */
   --color-label-strong:      #000000;
@@ -121,6 +288,7 @@
   /* Background */
   --color-bg-normal:         #ffffff;
   --color-bg-normal-alt:     #f7f7f8;
+  --color-bg-section:        #eaebec; /* 신규 — 섹션 구분용 3단계 배경(Base/Cool Neutral/97). Normal-alt보다 한 단계 더 진함. 이롬넷 레퍼런스에서 발견 */
   --color-bg-elevated:       #ffffff;
   --color-bg-elevated-alt:   #f7f7f8;
   --color-bg-trans-normal:   rgba(255, 255, 255, .08);
@@ -140,7 +308,7 @@
   --color-line-solid:         #e1e2e4;
   --color-line-solid-n:       #eaebec;
   --color-line-solid-alt:     #f4f4f5;
-  --color-line-solid-s:       #aeb0b6;
+  --color-line-solid-s:       #212225; /* 이롬넷 레퍼런스 실측값으로 갱신 (기존 Seed 기본값 #aeb0b6보다 훨씬 진함 — 실제로는 거의 검정에 가까운 강조 테두리로 쓰임) */
 
   /* Fill (미묘한 오버레이 배경) */
   --color-fill-normal: rgba(112, 115, 124, .08);
@@ -161,7 +329,7 @@
 
   /* Inverse */
   --color-inverse-primary:    #3385ff;
-  --color-inverse-background: #1b1c1e;
+  --color-inverse-background: #333438; /* 이롬넷 레퍼런스 실측값으로 갱신 (기존 #1b1c1e에서 변경) */
   --color-inverse-label:      #f7f7f8;
 
   /* Accent Background */
@@ -188,98 +356,7 @@
 
 
   /* ════════════════════════════════════════════════════════
-   *  LAYER 3. TYPOGRAPHY — Desktop 기준값 (Figma 원본)
-   *  letter-spacing: px → em 변환 (ls / fontSize)
-   * ════════════════════════════════════════════════════════ */
-
-  /* Display 1 — 56px */
-  --font-size-display-1:    56px;
-  --font-lh-display-1:      72px;
-  --font-ls-display-1:      -0.032em;
-
-  /* Display 2 — 40px */
-  --font-size-display-2:    40px;
-  --font-lh-display-2:      52px;
-  --font-ls-display-2:      -0.028em;
-
-  /* Display 3 — 36px */
-  --font-size-display-3:    36px;
-  --font-lh-display-3:      48px;
-  --font-ls-display-3:      -0.027em;
-
-  /* Title 1 — 32px */
-  --font-size-title-1:      32px;
-  --font-lh-title-1:        44px;
-  --font-ls-title-1:        -0.025em;
-
-  /* Title 2 — 28px */
-  --font-size-title-2:      28px;
-  --font-lh-title-2:        38px;
-  --font-ls-title-2:        -0.024em;
-
-  /* Title 3 — 24px */
-  --font-size-title-3:      24px;
-  --font-lh-title-3:        32px;
-  --font-ls-title-3:        -0.023em;
-
-  /* Heading 1 — 22px */
-  --font-size-heading-1:    22px;
-  --font-lh-heading-1:      30px;
-  --font-ls-heading-1:      -0.019em;
-
-  /* Heading 2 — 20px */
-  --font-size-heading-2:    20px;
-  --font-lh-heading-2:      28px;
-  --font-ls-heading-2:      -0.012em;
-
-  /* Headline 1 — 18px */
-  --font-size-headline-1:   18px;
-  --font-lh-headline-1:     26px;
-  --font-ls-headline-1:     -0.0002em;
-
-  /* Headline 2 — 17px */
-  --font-size-headline-2:   17px;
-  --font-lh-headline-2:     24px;
-  --font-ls-headline-2:     0em;
-
-  /* ─── Body 이하: 모든 뷰포트 고정 (반응형 없음) ─── */
-
-  /* Body 1 — 16px */
-  --font-size-body-1:       16px;
-  --font-lh-body-1:         24px;
-  --font-lh-body-1-reading: 26px;
-  --font-ls-body-1:         0.0057em;
-
-  /* Body 2 — 15px */
-  --font-size-body-2:       15px;
-  --font-lh-body-2:         22px;
-  --font-lh-body-2-reading: 24px;
-  --font-ls-body-2:         0.0096em;
-
-  /* Label 1 — 14px */
-  --font-size-label-1:       14px;
-  --font-lh-label-1:         20px;
-  --font-lh-label-1-reading: 22px;
-  --font-ls-label-1:         0.0145em;
-
-  /* Label 2 — 13px */
-  --font-size-label-2:       13px;
-  --font-lh-label-2:         18px;
-  --font-ls-label-2:         0.0194em;
-
-  /* Caption 1 — 12px */
-  --font-size-caption-1:     12px;
-  --font-lh-caption-1:       16px;
-  --font-ls-caption-1:       0.0252em;
-
-  /* Caption 2 — 11px */
-  --font-size-caption-2:     11px;
-  --font-lh-caption-2:       14px;
-  --font-ls-caption-2:       0.031em;
-
-
-  /* ════════════════════════════════════════════════════════
-   *  LAYER 4. SHADOW
+   *  5. SHADOW
    * ════════════════════════════════════════════════════════ */
 
   --shadow-xsmall:
@@ -306,7 +383,7 @@
 
 
   /* ════════════════════════════════════════════════════════
-   *  LAYER 5. FRAME TOKENS
+   *  6. FRAME TOKENS
    * ════════════════════════════════════════════════════════ */
 
   --radius-small:  12px;
@@ -314,100 +391,10 @@
   --radius-large:  16px;
   --radius-xlarge: 20px;
 
-  /* 컨테이너 패딩 — 모든 뷰포트 20px (Figma 원본 기준) */
-  --layout-padding: 20px;
+  /* Stroke / Border Width (신규 — 이롬넷 레퍼런스에서 발견, 기존 키트엔 없었음) */
+  --stroke-weight-1: 1px;
 
   /* 컴포넌트 Spacing */
   --space-gap-normal:  20px;
   --space-card-tiny:   6px;
-}
-
-
-/* ════════════════════════════════════════════════════════════
- *  TABLET (768px – 1279px)
- *  Display/Title/Heading 중간 스케일
- * ════════════════════════════════════════════════════════════ */
-@media (min-width: 768px) and (max-width: 1279px) {
-
-  :root {
-    /* Display */
-    --font-size-display-1: 44px;
-    --font-lh-display-1:   58px;
-
-    --font-size-display-2: 34px;
-    --font-lh-display-2:   44px;
-
-    --font-size-display-3: 30px;
-    --font-lh-display-3:   40px;
-
-    /* Title */
-    --font-size-title-1: 28px;
-    --font-lh-title-1:   38px;
-
-    --font-size-title-2: 24px;
-    --font-lh-title-2:   32px;
-
-    --font-size-title-3: 22px;
-    --font-lh-title-3:   30px;
-
-    /* Heading */
-    --font-size-heading-1: 20px;
-    --font-lh-heading-1:   28px;
-
-    --font-size-heading-2: 18px;
-    --font-lh-heading-2:   26px;
-
-    /* Headline */
-    --font-size-headline-1: 17px;
-    --font-lh-headline-1:   24px;
-
-    /* Body 이하 고정 */
-  }
-}
-
-
-/* ════════════════════════════════════════════════════════════
- *  MOBILE (< 768px)
- *  Display/Title/Heading 최소 스케일
- *  Body 이하 변경 없음
- * ════════════════════════════════════════════════════════════ */
-@media (max-width: 767px) {
-
-  :root {
-    /* Display → 모바일에서 Title 수준으로 축소 */
-    --font-size-display-1: 32px;
-    --font-lh-display-1:   44px;
-
-    --font-size-display-2: 26px;
-    --font-lh-display-2:   36px;
-
-    --font-size-display-3: 24px;
-    --font-lh-display-3:   32px;
-
-    /* Title */
-    --font-size-title-1: 22px;
-    --font-lh-title-1:   30px;
-
-    --font-size-title-2: 20px;
-    --font-lh-title-2:   28px;
-
-    --font-size-title-3: 18px;
-    --font-lh-title-3:   26px;
-
-    /* Heading */
-    --font-size-heading-1: 17px;
-    --font-lh-heading-1:   24px;
-
-    --font-size-heading-2: 16px;
-    --font-lh-heading-2:   24px;
-
-    /* Headline */
-    --font-size-headline-1: 16px;
-    --font-lh-headline-1:   24px;
-
-    --font-size-headline-2: 15px;
-    --font-lh-headline-2:   22px;
-
-    /* Body 이하 고정 — 변경 없음 */
-  }
 }

@@ -36,10 +36,9 @@ my-project/
 ├── PROMPT.md                    ← Claude에 붙여넣을 시작 프롬프트 (자동 완성)
 ├── axpublish-orchestrator.md    ← AI 워크플로우 지침서
 ├── responsive-rules.md          ← 반응형 변환 규칙
-├── tokens.css                   ← Seed Design 시맨틱 토큰
-├── tailwind.config.js           ← Tailwind 클래스 매핑
+├── tokens.css                   ← Seed Design 시맨틱 토큰 (Tailwind v4 네이티브)
 ├── generate-theme.js            ← 컬러 스케일 생성기
-└── figma-semantic-variables.json ← Figma Variable 템플릿 (49개)
+└── figma-semantic-variables.json ← Figma Variable 템플릿 (52개)
 ```
 
 ---
@@ -52,7 +51,7 @@ Raw Figma 파일
 AI + Figma MCP 연결
   ↓
 [MCP WRITE]
-  ├── Variable 49개 생성
+  ├── Variable 52개 생성
   ├── 레이어 전체 바인딩
   ├── 인터랙션 상태 시각화 (hover / pressed / disabled)
   └── 컴포넌트 라이브러리 생성 (Button, GNB, Input, Modal…)
@@ -72,7 +71,7 @@ AI + Figma MCP 연결
 
 | Phase | 이름 | 내용 |
 |-------|------|------|
-| 0 | Discovery & Figma 세팅 | 브랜드 컬러 → Variable 49개 → 레이어 바인딩 → 인터랙션 시각화 → 확정 게이트 |
+| 0 | Discovery & Figma 세팅 | 브랜드 컬러 → Variable 52개 → 레이어 바인딩 → 인터랙션 시각화 → 확정 게이트 |
 | 1 | 타이포그래피 바인딩 | 텍스트 레이어 → Seed Design 16레벨 토큰 매핑 |
 | 2 | 반응형 구조 분석 | Auto-layout → CSS Flex/Grid 변환 |
 | 3 | 전역 컴포넌트 라이브러리 | Figma Component + Code 파일 동시 생성 |

@@ -15,17 +15,31 @@
 
 ### 1-1. 브레이크포인트 (수정 금지)
 
-| 구간 | 범위 | Tailwind prefix |
-|:---|:---|:---|
-| **Mobile** | 0px ~ 767px | 기본값 (prefix 없음) |
-| **Tablet** | 768px ~ 1279px | `md:` |
-| **Desktop** | 1280px ~ | `lg:` |
+> ⚠️ Tailwind 기본 프리픽스(`md:`/`lg:`/`xl:`)를 쓰지 않는다. `tokens.css`의
+> `@theme { --breakpoint-mb: 1280px; --breakpoint-tb: 768px; }`가 커스텀
+> 브레이크포인트 이름을 정의하고, Tailwind v4는 `--breakpoint-*` 변수 이름의
+> 접미사(`mb`, `tb`)를 그대로 variant 프리픽스로 만든다. (newEromhp 실제 코드와 동일)
+
+| 구간 | 범위 | Tailwind prefix | 의미 |
+|:---|:---|:---|:---|
+| **Mobile** | 0px ~ 767px | 기본값 (prefix 없음) | — |
+| **Tablet 이상** | 768px ~ | `tb:` | min-width: 768px |
+| **Desktop 이상** | 1280px ~ | `mb:` | min-width: 1280px |
+| **Desktop 미만** | ~ 1279px | `max-mb:` | Tablet+Mobile 공통 (max-width: 1279.98px) |
+| **Mobile 전용** | ~ 767px | `max-tb:` | max-width: 767.98px |
+| **Tablet 밴드만** | 768px ~ 1279px | `tb:max-mb:` | 두 프리픽스 조합 |
 
 ### 1-2. 컨테이너 구조 (수정 금지)
 
+> ⚠️ **패딩은 뷰포트마다 다르다** (이롬넷 레퍼런스 실측: Desktop 64px / Tablet 48px /
+> Mobile 20px). 예전엔 전 뷰포트 20px 균일로 가정했으나 실측 결과 오류로 확인돼 수정.
+> `max-w-[...] mx-auto px-[...]`를 직접 조합하지 말고, `tokens.css`에 정의된
+> `container-em` 유틸리티 하나만 쓴다 — max-width·브레이크포인트별 패딩이 전부
+> 포함돼 있다 (newEromhp 실제 코드와 동일).
+
 ```html
 <!-- 모든 섹션 콘텐츠의 표준 래퍼 -->
-<div class="w-full max-w-[1440px] mx-auto px-[20px]">
+<div class="container-em">
   ...
 </div>
 ```
@@ -33,67 +47,113 @@
 | 항목 | 값 |
 |:---|:---|
 | **max-width** | 1440px |
-| **모든 뷰포트 패딩** | 좌우 각 20px (Figma 원본 기준, 균일 적용) |
+| **Mobile 패딩** | 좌우 각 20px |
+| **Tablet 패딩** | 좌우 각 48px |
+| **Desktop 패딩** | 좌우 각 64px |
 
 ---
 
 ## 2. 타이포그래피 시스템
 
-> **폰트 패밀리:** `'Pretendard JP', 'Pretendard', sans-serif`
-> **Letter-spacing:** 각 토큰별 고정값 사용 (tokens.css 기준, 임의 조정 금지)
+> **폰트 패밀리:** 기본값 `'Pretendard JP', 'Pretendard', sans-serif`. Primary/Secondary
+> 처럼 프로젝트마다 다르면 theme.css에서 `--font-sans`를 override한다.
+> (이롬넷 레퍼런스는 `'Wanted Sans Variable'`)
+
+### 2-0. font-size(clamp) / line-height / letter-spacing 바인딩 원리 (중요)
+
+이롬넷 레퍼런스 파일을 Desktop/Tablet/Mobile 3개 브레이크포인트로 실측하고,
+실제 프로덕션 코드(`src/index.css`의 `--fs-*` 변수)와 대조한 결과:
+
+- **font-size는 clamp() 기반 fluid 값**이다. `clamp(Mobile값, calc(intercept + slope*vw), Desktop값)`
+  형태로 뷰포트 폭에 따라 연속적으로 스케일된다. 3단계 스텝(Mobile/Tablet/Desktop
+  고정값을 미디어쿼리로 전환)이 아니라 매 픽셀 단위로 부드럽게 커진다. 앵커는
+  Desktop 1280px 뷰포트 / Mobile 390px 뷰포트 (Figma content-min-width와 동일).
+- **line-height는 unitless 배수**(예: Display 1 = `1.15`)로 정의된다. font-size가
+  clamp()로 줄어들면 line-height도 같은 비율로 자동으로 줄어들기 때문에, 별도
+  처리가 필요 없다.
+- **letter-spacing은 rem 고정값**으로 정의된다. Figma의 letter-spacing 필드가
+  rem을 지원하지 않아 화면엔 px로 찍히지만, 실제 계산 기준은 루트 폰트 크기(16px)
+  기준 rem이라 로컬 font-size가 바뀌어도 값이 같이 줄어들지 않는다. (`em` 단위로
+  넣으면 요소 자신의 font-size에 비례해 버려서 실제 패턴과 어긋난다 — 흔한 실수)
+
+`tokens.css`는 이 원리에 따라 `--font-size-*`(clamp)·`--font-lh-*`(unitless)·
+`--font-ls-*`(rem 고정)를 `:root`에 한 번만 정의한다. 미디어쿼리 오버라이드 자체가
+필요 없다 — Caption처럼 완전히 고정인 스타일만 clamp() 없이 고정 px로 둔다.
 
 ### 2-1. 반응형 규칙 원칙
 
+실측 결과 "Body 이하는 전부 고정"이라는 기존 가정은 부정확했다. **Caption만 완전히
+고정**이고, Body·Label은 Desktop→Tablet에서 미세하게 줄어든 뒤 Tablet=Mobile로
+고정되는 패턴이다.
+
 | 분류 | Mobile | Tablet | Desktop | 반응형 여부 |
 |:---|:---|:---|:---|:---|
+| Display Hero/Counter | 축소 | 중간 | Figma 원본 | ✅ 반응형 |
 | Display 1~3 | 축소 | 중간 | Figma 원본 | ✅ 반응형 |
 | Title 1~3 | 축소 | 중간 | Figma 원본 | ✅ 반응형 |
 | Heading 1~2 | 축소 | 중간 | Figma 원본 | ✅ 반응형 |
 | Headline 1~2 | 축소 | 중간 | Figma 원본 | ✅ 반응형 |
-| **Body 1~2** | **고정** | **고정** | **고정** | ❌ 고정 |
-| **Label 1~2** | **고정** | **고정** | **고정** | ❌ 고정 |
-| **Caption 1~2** | **고정** | **고정** | **고정** | ❌ 고정 |
+| **Body 1~2** | Tablet과 동일 | **소폭 축소** | Figma 원본 | ✅ 반응형 (미세) |
+| **Label 1~2** | Tablet과 동일 | **소폭 축소** | Figma 원본 | ✅ 반응형 (미세) |
+| **Caption 1~2** | **고정** | **고정** | **고정** | ❌ 완전 고정 |
 
-> **작동 방식:** Tailwind 클래스는 `text-display-1` 하나만 쓰면 됨.
-> CSS 변수가 미디어쿼리로 자동 전환됨 (tokens.css 처리).
+> **작동 방식:** `text-[length:var(--font-size-display-1)] leading-[var(--font-lh-display-1)]
+> tracking-[var(--font-ls-display-1)]` 세 개를 세트로 쓰면 됨(tailwind.config.js가
+> 없어 `text-display-1`처럼 하나로 뭉친 유틸리티 클래스는 없다). font-size는
+> clamp()라 뷰포트 폭이 바뀔 때마다 자동으로 연속 스케일되고, line-height/letter-spacing은
+> 위 2-0 원리에 따라 별도 처리 없이 같이 맞춰짐.
 
-### 2-2. 뷰포트별 폰트 크기 (tokens.css 기준)
+### 2-2. 뷰포트별 폰트 크기 (tokens.css 기준 — clamp() 양끝값)
 
-| 토큰 클래스 | Mobile | Tablet | Desktop | 용도 |
+`✓`= 이롬넷 레퍼런스로 실측 검증됨. `⚠` = 이번 화면에서 미실측, 기존 추정치 유지.
+표의 Tablet 열은 고정 스텝이 아니라 해당 뷰포트 폭에서 clamp()가 계산하는 근사값이다.
+
+| 스타일명 (`--font-size-{name}`) | Mobile | Tablet | Desktop | 용도 |
 |:---|:---|:---|:---|:---|
-| `text-display-1` | 32px | 44px | **56px** | 최대 강조 타이틀 |
-| `text-display-2` | 26px | 34px | **40px** | 히어로 타이틀 |
-| `text-display-3` | 24px | 30px | **36px** | 장식적 대형 텍스트 |
-| `text-title-1` | 22px | 28px | **32px** | 페이지 주요 제목 |
-| `text-title-2` | 20px | 24px | **28px** | 섹션 제목 |
-| `text-title-3` | 18px | 22px | **24px** | 카드/모달 제목 |
-| `text-heading-1` | 17px | 20px | **22px** | 섹션 내 소제목 |
-| `text-heading-2` | 16px | 18px | **20px** | 컴포넌트 레이블 |
-| `text-headline-1` | 16px | 17px | **18px** | 본문 강조 |
-| `text-headline-2` | 15px | 16px | **17px** | 본문 강조 소 |
-| `text-body-1` | 16px | 16px | **16px** | 주요 본문 (**고정**) |
-| `text-body-1-r` | 16px | 16px | **16px** | 긴 본문 reading (**고정**) |
-| `text-body-2` | 15px | 15px | **15px** | 기본 본문 (**고정**) |
-| `text-label-1` | 14px | 14px | **14px** | UI 레이블 (**고정**) |
-| `text-label-2` | 13px | 13px | **13px** | 보조 레이블 (**고정**) |
-| `text-caption-1` | 12px | 12px | **12px** | 캡션 (**고정**) |
-| `text-caption-2` | 11px | 11px | **11px** | 최소 캡션 (**고정**) |
+| `display-hero` | 40px ✓ | 73px ✓ | **120px** ✓ | 초대형 히어로 타이틀 |
+| `display-counter` | ⚠ | 110px ✓ | **180px** ✓ | 숫자 카운터/통계 강조 |
+| `display-1` | 28px ✓ | 41px ✓ | **60px** ✓ | 최대 강조 타이틀 |
+| `display-2` | 22px ✓ | 31px ✓ | **44px** ✓ | 히어로 타이틀 |
+| `display-3` | 24px ⚠ | 30px ⚠ | **36px** ⚠ | 장식적 대형 텍스트 |
+| `title-1` | 22px ⚠ | 28px ⚠ | **32px** ⚠ | 페이지 주요 제목 |
+| `title-2` | 20px ⚠ | 23px ✓ | **30px** ✓ | 섹션 제목 |
+| `title-3` | 18px ✓ | 22px ⚠ | **24px** ✓ | 카드/모달 제목 |
+| `heading-1` | 17px ⚠ | 20px ⚠ | **22px** ⚠ | 섹션 내 소제목 |
+| `heading-2` | 16px ⚠ | 18px ✓ | **20px** ✓ | 컴포넌트 레이블 |
+| `headline-1` | 15px ✓ | 16px ✓ | **18px** ✓ | 본문 강조 |
+| `headline-2` | 15px ⚠ | 16px ⚠ | **17px** ⚠ | 본문 강조 소 |
+| `body-1` | 15px ✓ | 15px ✓ | **16px** ✓ | 주요 본문 |
+| `body-1-reading` | 15px ✓ | 15px ✓ | **16px** ✓ | 긴 본문 reading |
+| `body-2` | 14px ✓ | 15px ✓ | **15px** ✓ | 기본 본문 |
+| `label-1` | 13px ✓ | 13px ✓ | **14px** ✓ | UI 레이블 |
+| `label-2` | 12px ⚠ | 12px ⚠ | **13px** ⚠ | 보조 레이블 |
+| `caption-1` | 12px ✓ | 12px ✓ | **12px** ✓ | 캡션 (완전 고정) |
+| `caption-2` | 11px ⚠ | 11px ⚠ | **11px** ⚠ | 최소 캡션 (완전 고정) |
 
 ### 2-3. Tailwind 클래스 작성 패턴
 
 ```html
-<!-- ✅ 올바른 방법: 클래스 하나, 반응형 자동 적용 -->
-<h1 class="text-display-1 font-bold text-label-normal">제목</h1>
+<!-- ✅ 올바른 방법: CSS 변수를 브래킷으로 참조, 뷰포트 전 구간 자동 스케일 -->
+<h1 class="text-[length:var(--font-size-display-1)] leading-[var(--font-lh-display-1)]
+           tracking-[var(--font-ls-display-1)] font-bold text-[color:var(--color-label-normal)]">
+  제목
+</h1>
 
-<!-- ❌ 잘못된 방법: 뷰포트별 클래스 중복 -->
-<h1 class="text-[32px] md:text-[44px] lg:text-[56px]">제목</h1>
+<!-- ❌ 잘못된 방법 1: 뷰포트별 클래스 중복 (clamp()가 이미 처리함) -->
+<h1 class="text-[32px] tb:text-[44px] mb:text-[56px]">제목</h1>
+
+<!-- ❌ 잘못된 방법 2: 토큰 없는 임의 hex/px (CSS 변수 참조 없이 값만 하드코딩) -->
+<h1 class="text-[#171719] text-[56px]">제목</h1>
 ```
 
 ### 2-4. Font Weight 클래스
 
+tailwind.config.js가 없으므로 Tailwind v4 기본 제공 유틸리티를 그대로 쓴다
+(별도 토큰 매핑 불필요 — newEromhp 실제 코드도 이 기본 클래스를 그대로 사용):
+
 | 클래스 | 값 | 용도 |
 |:---|:---|:---|
-| `font-regular` | 400 | 일반 본문 |
+| `font-normal` | 400 | 일반 본문 |
 | `font-medium` | 500 | 강조 본문 |
 | `font-semibold` | 600 | 서브 헤딩, 버튼 |
 | `font-bold` | 700 | 헤딩, 강조 |
@@ -102,34 +162,56 @@
 
 ## 3. 컬러 토큰 사용 규칙
 
+> tailwind.config.js가 없으므로 색상은 전부 `text-[color:var(--...)]` /
+> `bg-[var(--...)]` / `border-[var(--...)]` 브래킷 문법으로 CSS 변수를 직접
+> 참조한다 (newEromhp 실제 코드와 동일). 아래 표의 "토큰"은 CSS 변수 이름이며,
+> 클래스는 `text-[color:var(--color-label-strong)]`처럼 조합해서 쓴다.
+
 ### 3-1. 텍스트 컬러 — Label 6단계
 
-| 토큰 | 용도 | 투명도 |
+| 토큰 (CSS 변수) | 용도 | 투명도 |
 |:---|:---|:---|
-| `text-label-strong` | 가장 강조, 강력한 제목 | 100% |
-| `text-label-normal` | 기본 본문, 일반 제목 | 100% |
-| `text-label-neutral` | 보조 텍스트 | 88% |
-| `text-label-alternative` | 더 흐린 보조 | 61% |
-| `text-label-assistive` | 힌트, 플레이스홀더 | 28% |
-| `text-label-disable` | 비활성 UI 텍스트 | 16% |
+| `--color-label-strong` | 가장 강조, 강력한 제목 | 100% |
+| `--color-label-normal` | 기본 본문, 일반 제목 | 100% |
+| `--color-label-neutral` | 보조 텍스트 | 88% |
+| `--color-label-alternative` | 더 흐린 보조 | 61% |
+| `--color-label-assistive` | 힌트, 플레이스홀더 | 28% |
+| `--color-label-disable` | 비활성 UI 텍스트 | 16% |
 
 ### 3-2. 배경 컬러
 
-| 토큰 | 용도 |
+| 토큰 (CSS 변수) | 용도 |
 |:---|:---|
-| `bg-bg-normal` | 기본 페이지 배경 |
-| `bg-bg-normal-alt` | 섹션 교차 배경 |
-| `bg-bg-elevated` | 카드, 드롭다운 |
-| `bg-fill-normal` | hover 배경, 미묘한 강조 |
-| `bg-fill-strong` | 더 진한 hover 배경 |
+| `--color-bg-normal` | 기본 페이지 배경 |
+| `--color-bg-normal-alt` | 섹션 교차 배경 |
+| `--color-bg-section` | 섹션 구분용 3단계 배경 (normal-alt보다 한 단계 더 진함) |
+| `--color-bg-elevated` | 카드, 드롭다운 |
+| `--color-fill-normal` | hover 배경, 미묘한 강조 |
+| `--color-fill-strong` | 더 진한 hover 배경 |
+| `--color-text-point` / `--color-brand-primary` | 브랜드 포인트 강조 (Primary alias) |
 
 ### 3-3. 테두리
 
-| 토큰 | 종류 | 용도 |
+| 토큰 (CSS 변수) | 종류 | 용도 |
 |:---|:---|:---|
-| `border-line-solid` | 불투명 | 카드 테두리, 구분선 |
-| `border-line-solid-n` | 불투명, 연함 | 더 연한 구분선 |
-| `border-line-normal` | 반투명 | 배경 위에 겹치는 구분선 |
+| `--color-line-solid` | 불투명 | 카드 테두리, 구분선 |
+| `--color-line-solid-n` | 불투명, 연함 | 더 연한 구분선 |
+| `--color-line-solid-s` | 불투명, 강조(거의 검정) | 강한 대비가 필요한 강조 테두리 |
+| `--color-line-normal` | 반투명 | 배경 위에 겹치는 구분선 |
+
+### 3-4. 테두리 두께
+
+Tailwind v4 기본 `border` 클래스 자체가 1px라 `--stroke-weight-1`(1px)과 값이
+같다. 다만 토큰 추적을 명확히 하려면 브래킷으로 직접 참조한다:
+`border-[length:var(--stroke-weight-1)]`. 임의 px 하드코딩 금지.
+
+### 3-5. 예시
+
+```html
+<div class="bg-[var(--color-bg-elevated)] border border-[var(--color-line-solid)] text-[color:var(--color-label-normal)]">
+  ...
+</div>
+```
 
 ---
 
@@ -156,7 +238,7 @@
 
 ```html
 <!-- 3열 → 2열 → 1열 예시 -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
+<div class="grid grid-cols-1 tb:grid-cols-2 mb:grid-cols-3 gap-[20px]">
 ```
 
 > ⚠️ 예외: Figma에서 가로 스크롤(Overflow: Scroll)로 설계된 경우
@@ -169,9 +251,9 @@
 | Figma 시안 정렬 유지 | 정렬 무시, **너비 100% 세로 스택** |
 
 ```html
-<div class="flex flex-col w-full gap-[12px] lg:flex-row lg:w-auto lg:justify-end">
-  <button class="w-full lg:w-auto">Secondary</button>
-  <button class="w-full lg:w-auto">Primary CTA</button>
+<div class="flex flex-col w-full gap-[12px] mb:flex-row mb:w-auto mb:justify-end">
+  <button class="w-full mb:w-auto">Secondary</button>
+  <button class="w-full mb:w-auto">Primary CTA</button>
 </div>
 ```
 
@@ -196,8 +278,8 @@
 | 화면 중앙, `max-w-[600px]` | **하단 슬라이드업 (Bottom Sheet)** |
 
 ```html
-<div class="fixed bottom-0 left-0 w-full rounded-t-[--radius-xlarge]
-            lg:relative lg:rounded-[--radius-large] lg:max-w-[600px]">
+<div class="fixed bottom-0 left-0 w-full rounded-t-[length:var(--radius-xlarge)]
+            mb:relative mb:rounded-[length:var(--radius-large)] mb:max-w-[600px]">
 ```
 
 ---
@@ -315,10 +397,12 @@ Figma: Layout Grid 3열 / Gap 20px
 
 ```
 ❌ px값 직접 하드코딩 (style="padding: 23px")
-❌ 토큰 없는 임의 색상 사용 (bg-[#E0F7FA])
+❌ CSS 변수를 참조하지 않는 임의 색상/크기 (bg-[#E0F7FA], text-[22px])
+   ✅ CSS 변수를 브래킷으로 참조하는 건 정상 패턴 (bg-[var(--color-bg-normal)])
 ❌ !important 사용
 ❌ 인라인 style="" 속성 사용
-❌ Tailwind 기본 색상 클래스 직접 사용 (bg-blue-500 → 반드시 Semantic 토큰으로)
-❌ xl: prefix 사용 (Desktop은 lg: 사용)
+❌ Tailwind 기본 색상 클래스 직접 사용 (bg-blue-500 → 반드시 CSS 변수 토큰으로)
+❌ Tailwind 기본 브레이크포인트 프리픽스 사용 (md:/lg:/xl: → 반드시 tb:/mb: 커스텀 프리픽스 사용)
+❌ tailwind.config.js 파일 생성 (v4는 CSS 네이티브 — @theme/@utility로 설정)
 ❌ 독자 판단으로 예외 처리 (반드시 PAUSE 후 보고)
 ```

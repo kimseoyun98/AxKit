@@ -21,8 +21,11 @@ Figma 디자인을 분석하여 **Seed Design 토큰 시스템**에 바인딩하
 [2] 선보고 후실행: 각 Phase 시작 시 "Phase X 시작합니다" 선언.
                    완료 시 발견 사항 요약 보고 후 다음 Phase 진행.
 
-[3] 하드코딩 금지: tokens.css / theme.css / tailwind.config.js에 없는 값은
-                   절대 코드에 직접 삽입하지 않음.
+[3] 하드코딩 금지: tokens.css / theme.css에 정의된 CSS 변수 외의 값은
+                   절대 코드에 직접 삽입하지 않음. (tailwind.config.js 없음 —
+                   v4 CSS 네이티브라 `bg-[var(--color-...)]` 같은 브래킷 임의값
+                   문법으로 토큰을 참조하는 게 정상 패턴. 토큰 없이 원시 hex/px를
+                   브래킷에 넣는 것만 금지)
 
 [4] 임의 판단 금지: responsive-rules.md의 PAUSE 트리거 상황에서
                     독자 결론 없이 반드시 디자이너에게 옵션 제시.
@@ -112,10 +115,13 @@ Primary / Secondary는 0-B에서 생성된 theme.css 값으로 덮어씀.
 2. 아래 그룹 순서대로 변수 등록:
 
 ```
-생성 그룹 목록 (총 49개 변수):
+생성 그룹 목록 (총 52개 변수):
 
 [Primary]       3개 — theme.css 기준값 사용
   Normal / Strong / Heavy
+
+[Point]         2개 — Primary와 동일 값을 참조하는 alias (신규)
+  Text(텍스트 강조용) / Brand(브랜드 자산용)
 
 [Secondary]     3개 — theme.css 기준값 사용
   Normal / Strong / Heavy
@@ -123,8 +129,8 @@ Primary / Secondary는 0-B에서 생성된 theme.css 값으로 덮어씀.
 [Label]         6개 — alpha 포함
   Strong / Normal / Neutral(α0.88) / Alternative(α0.61) / Assistive(α0.28) / Disable(α0.16)
 
-[Background]    6개
-  Normal/Normal / Normal/Alternative
+[Background]    7개
+  Normal/Normal / Normal/Alternative / Normal/Section(신규 — 섹션 구분용 3단계 배경)
   Elevated/Normal / Elevated/Alternative
   Transparent/Normal(α0.08) / Transparent/Alternative(α0.28)
 
@@ -164,7 +170,7 @@ Primary / Secondary는 0-B에서 생성된 theme.css 값으로 덮어씀.
 [Phase 0-C — Figma Variable Collection 생성 완료]
 
 컬렉션: axpublish / Semantic (Light)
-생성 변수: 49개
+생성 변수: 52개
 
 Primary override (theme.css):
   Normal → [hex from theme.css]
@@ -429,6 +435,13 @@ Seed Design 시스템에 없는 색상에 대해 디자이너 결정 요청:
 결정해 주시면 진행합니다.
 ```
 
+> **참고 사례 (이롬넷 레퍼런스):** `var(--btn-primary-default): #FFF3C7`처럼 Primary
+> 컬러와 무관한 파스텔 톤이 특정 버튼 1곳에만 쓰이는 경우가 실무에 존재한다.
+> 이런 값은 Seed 시맨틱 팔레트(`figma-semantic-variables.json`)에 기본으로
+> 넣지 않는다 — 프로젝트마다 다른 컴포넌트 예외이기 때문. 대신 위 PAUSE 형식으로
+> 디자이너에게 보고하고, 결정되면 **컴포넌트 레벨 변수**(예: `Component/Button/PrimaryDefault`)
+> 로 별도 생성해서 해당 컴포넌트에만 바인딩한다. Semantic 팔레트를 오염시키지 않는다.
+
 ---
 
 ### Step 0-J. Phase 0 완료 선언
@@ -438,7 +451,7 @@ Seed Design 시스템에 없는 색상에 대해 디자이너 결정 요청:
 
 [결과 요약]
 - theme.css 생성: Primary 13색 / Secondary 13색 스케일
-- Figma Variable Collection 생성: 49개 (axpublish / Semantic)
+- Figma Variable Collection 생성: 52개 (axpublish / Semantic)
 - 레이어 바인딩: X개 완료 / X개 충돌 해결 / X개 의도적 제외
 - Figma 확정: ✅ (디자이너 승인 완료)
 - 신규 accent 토큰: X개 추가
@@ -697,35 +710,46 @@ axpublish / Components 페이지:
 ### Step 3-C. 컴포넌트 Code Generation
 
 Figma Component와 1:1 대응하는 재사용 TSX 컴포넌트 파일 생성.
-**프레임워크: Next.js (App Router) + TypeScript + Tailwind CSS**
+**프레임워크: Vite + React + TypeScript + React Router + Tailwind CSS v4**
+(newEromhp 실제 프로덕션 스택과 동일 — Next.js 아님, tailwind.config.js 없음)
 
 > **재사용 기준:** Figma 전체 스캔 후 **2회 이상** 등장하는 요소만 컴포넌트화.
-> 단 1회 등장하는 섹션(예: Hero, 특정 페이지 전용 배너)은 해당 page.tsx에 인라인으로 작성.
+> 단 1회 등장하는 섹션(예: Hero, 특정 페이지 전용 배너)은 해당 `*Page.tsx`에 인라인으로 작성.
 
 **프로젝트 초기화 (최초 1회):**
 ```bash
-npx create-next-app@latest [프로젝트명] \
-  --typescript \
-  --tailwind \
-  --app \
-  --src-dir \
-  --import-alias "@/*"
+npm create vite@latest [프로젝트명] -- --template react-ts
+cd [프로젝트명]
+npm install react-router-dom
+npm install -D tailwindcss @tailwindcss/vite
+```
+
+`vite.config.ts`에 Tailwind 플러그인 등록:
+```ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  resolve: { alias: { '@': '/src' } },
+})
 ```
 
 **파일 구조:**
 ```
 src/
-├── app/
-│   ├── globals.css        ← tokens.css + theme.css import
-│   ├── layout.tsx         ← GNB + Footer 포함 (전체 공통 레이아웃)
-│   ├── page.tsx           ← 홈
-│   ├── about/
-│   │   └── page.tsx
-│   └── [화면명]/
-│       └── page.tsx
+├── main.tsx                ← ReactDOM.createRoot, App 마운트
+├── App.tsx                 ← createBrowserRouter로 라우트 전체 등록
+├── index.css                ← tokens.css 내용 + theme.css import (Tailwind v4 진입점)
+├── pages/
+│   ├── HomePage.tsx         ← 홈
+│   ├── AboutPage.tsx
+│   └── [화면명]Page.tsx
 ├── components/
+│   ├── Layout.tsx           ← GNB + <Outlet/> + Footer (전체 공통 레이아웃)
 │   ├── atoms/
-│   │   ├── Button.tsx     ← 2회 이상 사용
+│   │   ├── Button.tsx       ← 2회 이상 사용
 │   │   ├── Input.tsx
 │   │   └── Badge.tsx
 │   ├── molecules/
@@ -733,26 +757,33 @@ src/
 │   │   ├── Dropdown.tsx
 │   │   └── Tab.tsx
 │   └── organisms/
-│       ├── GNB.tsx        ← 모든 페이지 공통
+│       ├── Gnb.tsx          ← 모든 페이지 공통
 │       ├── Footer.tsx
 │       └── Modal.tsx
 └── styles/
-    ├── tokens.css         ← Seed Design 시맨틱 토큰
-    └── theme.css          ← 프로젝트 Primary/Secondary
+    └── theme.css            ← 프로젝트 Primary/Secondary override
 ```
 
-**globals.css CSS 로드 순서:**
+**index.css 로드 순서:**
 ```css
-@import './tokens.css';   /* 1. Seed Design 기본 토큰 */
-@import './theme.css';    /* 2. 프로젝트 컬러 override */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* tokens.css 전체 내용을 여기 붙여넣거나 @import — @import 'tailwindcss'가 맨 위에 와야 함 */
+@import './styles/theme.css';   /* 프로젝트 컬러 override (tokens.css 다음) */
 ```
 
 **클래스 작성 순서 (모든 컴포넌트 공통):**
 ```
 Layout → Box Model → Typography → Color → Border → Effect → Interaction
+```
+
+**Tailwind v4 클래스 작성 규칙 (tailwind.config.js 없음 — 반드시 CSS 변수를 브래킷에 직접 참조):**
+```
+색상:    bg-[var(--color-primary-normal)]  text-[color:var(--color-label-normal)]
+폰트:    text-[length:var(--font-size-display-1)] leading-[var(--font-lh-display-1)]
+         tracking-[var(--font-ls-display-1)]
+테두리:  border-[var(--stroke-weight-1)] border-[var(--color-line-solid)]
+그림자:  shadow-[var(--shadow-medium)]
+브레이크포인트: mb:(Desktop, ≥1280) / tb:(≥768) / max-mb:(<1280) / max-tb:(<768)
+컨테이너: <div class="container-em"> (tokens.css의 @utility, max-width+padding 자동 처리)
 ```
 
 **Button.tsx 예시:**
@@ -772,12 +803,12 @@ export default function Button({
   disabled,
   onClick,
 }: ButtonProps) {
-  const base = 'inline-flex items-center justify-center rounded-md font-semibold transition-colors duration-150 disabled:cursor-not-allowed disabled:bg-interaction-disable disabled:text-interaction-inactive'
+  const base = 'inline-flex items-center justify-center rounded-[var(--radius-medium)] font-semibold transition-colors duration-150 disabled:cursor-not-allowed disabled:bg-[var(--color-interaction-disable)] disabled:text-[color:var(--color-interaction-inactive)]'
   const sizes = { sm: 'px-4 h-9 text-sm', md: 'px-5 h-12 text-sm', lg: 'px-6 h-14 text-base' }
   const variants = {
-    primary:   'bg-primary-normal text-static-white hover:bg-primary-strong active:bg-primary-heavy',
-    secondary: 'bg-secondary-normal text-static-white hover:bg-secondary-strong active:bg-secondary-heavy',
-    ghost:     'bg-transparent border border-line-solid-normal text-label-normal hover:bg-fill-normal',
+    primary:   'bg-[var(--color-primary-normal)] text-[color:var(--color-static-white)] hover:bg-[var(--color-primary-strong)] active:bg-[var(--color-primary-heavy)]',
+    secondary: 'bg-[var(--color-secondary-normal)] text-[color:var(--color-static-white)] hover:bg-[var(--color-secondary-strong)] active:bg-[var(--color-secondary-heavy)]',
+    ghost:     'bg-transparent border border-[var(--color-line-solid)] text-[color:var(--color-label-normal)] hover:bg-[var(--color-fill-normal)]',
   }
 
   return (
@@ -792,46 +823,75 @@ export default function Button({
 }
 ```
 
-**GNB.tsx 예시 (Mobile-first):**
+**Gnb.tsx 예시 (react-router-dom, mobile-first — newEromhp 실제 패턴):**
 ```tsx
-'use client'
+import { Link, useLocation } from 'react-router-dom'
 import { useState } from 'react'
-import Link from 'next/link'
 
-export default function GNB() {
+export default function Gnb() {
+  const { pathname } = useLocation()
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-5 h-14 bg-bg-normal border-b border-line-solid-normal lg:h-16">
-      <Link href="/" className="text-title-3 font-bold text-label-strong">로고</Link>
-      <button className="lg:hidden text-label-normal" onClick={() => setOpen(!open)}>☰</button>
-      <nav className="hidden lg:flex items-center gap-8">
-        <Link className="text-sm text-label-normal hover:text-label-strong" href="/">홈</Link>
+    <header className="fixed inset-x-0 top-0 z-50 flex h-[64px] items-center justify-between px-[20px] bg-[var(--color-bg-normal)] border-b border-[var(--color-line-solid)] tb:px-[48px] mb:px-[64px]">
+      <Link to="/" className="text-[length:var(--font-size-title-3)] font-bold text-[color:var(--color-label-strong)]">
+        로고
+      </Link>
+      <button className="mb:hidden text-[color:var(--color-label-normal)]" onClick={() => setOpen(!open)}>☰</button>
+      <nav className="hidden mb:flex items-center gap-8">
+        <Link
+          to="/"
+          className={`text-sm ${pathname === '/' ? 'text-[color:var(--color-primary-normal)]' : 'text-[color:var(--color-label-normal)]'} hover:text-[color:var(--color-label-strong)]`}
+        >
+          홈
+        </Link>
       </nav>
     </header>
   )
 }
 ```
 
-**layout.tsx 예시:**
+**Layout.tsx 예시 (모든 페이지 공통 셸 — Next.js의 layout.tsx가 아니라 react-router의 `<Outlet/>` 패턴):**
 ```tsx
-import type { Metadata } from 'next'
-import GNB from '@/components/organisms/GNB'
+import { Outlet, ScrollRestoration } from 'react-router-dom'
+import Gnb from '@/components/organisms/Gnb'
 import Footer from '@/components/organisms/Footer'
-import '@/styles/globals.css'
 
-export const metadata: Metadata = { title: '[프로젝트명]' }
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function Layout() {
   return (
-    <html lang="ko">
-      <body className="bg-bg-normal text-label-normal">
-        <GNB />
-        <main className="pt-14 lg:pt-16">{children}</main>
-        <Footer />
-      </body>
-    </html>
+    <>
+      <Gnb />
+      <main className="pt-[64px] mb:pt-[64px]">
+        <Outlet />
+      </main>
+      <Footer />
+      <ScrollRestoration />
+    </>
   )
+}
+```
+
+**App.tsx 예시 (라우트 전체 등록):**
+```tsx
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Layout from '@/components/Layout'
+import HomePage from '@/pages/HomePage'
+import AboutPage from '@/pages/AboutPage'
+import NotFoundPage from '@/pages/NotFoundPage'
+
+const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children: [
+      { path: '/', element: <HomePage /> },
+      { path: '/about', element: <AboutPage /> },
+      { path: '*', element: <NotFoundPage /> },
+    ],
+  },
+])
+
+export default function App() {
+  return <RouterProvider router={router} />
 }
 ```
 
@@ -859,13 +919,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 ```
 ## Phase 4. 컴포넌트 조립 및 레이아웃 배치 (Page Assembly)
 
-### 페이지 셸 표준 구조 (Next.js App Router)
+### 페이지 셸 표준 구조 (Vite + React Router)
 
-각 화면은 `app/[화면명]/page.tsx` 파일로 생성.
-컴포넌트는 Phase 3에서 만든 것을 import해서 조립. 재사용 안 되는 섹션은 인라인 작성.
+각 화면은 `src/pages/[화면명]Page.tsx` 파일로 생성하고, `App.tsx`의 라우트 테이블에
+등록한다 (Step 3-C의 App.tsx 참고). 컴포넌트는 Phase 3에서 만든 것을 import해서
+조립. 재사용 안 되는 섹션은 인라인 작성.
 
 ```tsx
-// app/page.tsx (홈 예시)
+// src/pages/HomePage.tsx
 import Button from '@/components/atoms/Button'
 import Card from '@/components/molecules/Card'
 
@@ -873,17 +934,21 @@ export default function HomePage() {
   return (
     <>
       {/* Hero — 홈에만 있으므로 인라인 */}
-      <section className="w-full pt-24 pb-20 bg-bg-normal">
-        <div className="max-w-[1440px] mx-auto px-5">
-          <h1 className="text-display-1 font-bold text-label-strong">제목</h1>
-          <p className="mt-4 text-body-1 text-label-alternative">설명</p>
+      <section className="w-full pt-24 pb-20 bg-[var(--color-bg-normal)]">
+        <div className="container-em">
+          <h1 className="text-[length:var(--font-size-display-1)] leading-[var(--font-lh-display-1)] tracking-[var(--font-ls-display-1)] font-bold text-[color:var(--color-label-strong)]">
+            제목
+          </h1>
+          <p className="mt-4 text-[length:var(--font-size-body-1)] leading-[var(--font-lh-body-1)] text-[color:var(--color-label-alternative)]">
+            설명
+          </p>
           <Button label="시작하기" variant="primary" />
         </div>
       </section>
 
       {/* 카드 그리드 — Card 컴포넌트 재사용 */}
       <section className="w-full py-16">
-        <div className="max-w-[1440px] mx-auto px-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="container-em grid grid-cols-1 tb:grid-cols-2 mb:grid-cols-3 gap-5">
           <Card title="제목" description="설명" />
         </div>
       </section>
@@ -894,9 +959,13 @@ export default function HomePage() {
 
 ### 섹션 컨테이너 규칙
 
+`max-w-[1440px] mx-auto px-5` 조합을 직접 쓰지 않는다 — tokens.css에 정의된
+`container-em` 유틸리티 하나로 대체 (Desktop 64 / Tablet 48 / Mobile 20px 패딩이
+브레이크포인트별로 자동 적용됨):
+
 ```tsx
 <section className="w-full py-16">
-  <div className="max-w-[1440px] mx-auto px-5">
+  <div className="container-em">
     {/* 섹션 콘텐츠 */}
   </div>
 </section>
@@ -908,7 +977,8 @@ export default function HomePage() {
 ✅ Phase 4 완료
 
 - X개 섹션 조립 완료
-- 생성 파일: app/[화면명]/page.tsx
+- 생성 파일: src/pages/[화면명]Page.tsx
+- App.tsx 라우트 등록 완료
 → Phase 5 최종 QA를 시작합니다.
 ```
 
@@ -921,14 +991,14 @@ export default function HomePage() {
 ```
 [레이아웃 & 반응형]
 ☐ 모든 클래스가 Mobile-first 순서인가?
-☐ Desktop prefix가 xl: 아닌 lg: 인가?
-☐ 모든 섹션에 max-w-[1440px] mx-auto px-[20px] 래퍼가 있는가?
+☐ Desktop prefix가 mb:, Tablet 이상이 tb: 인가? (Tailwind 기본 md:/lg:가 아니라 tokens.css @theme의 --breakpoint-mb/--breakpoint-tb 이름을 그대로 씀)
+☐ 모든 섹션에 max-w-[1440px] mx-auto px-[...] 대신 container-em 유틸리티를 썼는가?
 ☐ Mobile / Tablet / Desktop 3뷰에서 규칙대로 변환되는가?
-☐ Display~Headline이 모바일에서 다운스케일 되었는가? (text-* 토큰 사용 시 자동)
+☐ Display~Headline이 clamp() 기반 font-size라 뷰포트 전 구간에서 자연스럽게 스케일되는가? (미디어쿼리 오버라이드 불필요)
 
 [토큰 준수]
 ☐ 코드 전체에 하드코딩된 #HEX 색상이 없는가?
-☐ tailwind.config.js에 없는 임의 클래스(bg-[...])가 없는가?
+☐ 브래킷 임의값을 쓰더라도 반드시 CSS 변수를 참조하는가? (bg-[var(--color-...)] 정상 / bg-[#FF0000] 금지)
 ☐ Tailwind 기본 색상 클래스(bg-blue-500 등)가 없는가?
 ☐ 텍스트 컬러가 label 6단계 토큰으로 적용되었는가?
 ☐ primary/secondary 색상이 theme.css 토큰으로 적용되었는가?

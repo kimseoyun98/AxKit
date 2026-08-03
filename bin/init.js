@@ -83,7 +83,6 @@ async function main() {
     'axpublish-orchestrator.md',
     'responsive-rules.md',
     'tokens.css',
-    'tailwind.config.js',
     'generate-theme.js',
     'figma-semantic-variables.json',
   ];
@@ -116,8 +115,7 @@ async function main() {
   console.log(`  ${dim('├── PROMPT.md               ← Claude에 붙여넣을 시작 프롬프트')}`);
   console.log(`  ${dim('├── axpublish-orchestrator.md')}`);
   console.log(`  ${dim('├── responsive-rules.md')}`);
-  console.log(`  ${dim('├── tokens.css')}`);
-  console.log(`  ${dim('├── tailwind.config.js')}`);
+  console.log(`  ${dim('├── tokens.css               ← Tailwind v4 네이티브 (tailwind.config.js 없음)')}`);
   console.log(`  ${dim('├── generate-theme.js')}`);
   console.log(`  ${dim('└── figma-semantic-variables.json')}`);
   console.log();
@@ -139,10 +137,9 @@ function generatePrompt({ name, figmaUrl, primary, secondary, screens }) {
 
 - \`axpublish-orchestrator.md\` — 워크플로우 지침서. **이 파일이 모든 행동의 최우선 기준입니다.**
 - \`responsive-rules.md\` — 반응형 변환 규칙. 코드 생성 시 항상 이 문서를 기준으로 합니다.
-- \`tokens.css\` — Seed Design 시맨틱 토큰 전체. 하드코딩 금지, 이 파일의 변수만 사용합니다.
-- \`tailwind.config.js\` — tokens.css를 Tailwind 클래스로 매핑한 설정.
+- \`tokens.css\` — Seed Design 시맨틱 토큰 전체 (Tailwind v4 네이티브, tailwind.config.js 없음). 하드코딩 금지, 이 파일의 변수만 사용합니다.
 - \`generate-theme.js\` — Primary/Secondary hex를 받아 theme.css를 생성하는 스크립트.
-- \`figma-semantic-variables.json\` — Figma Variable Collection 생성 템플릿 (49개).
+- \`figma-semantic-variables.json\` — Figma Variable Collection 생성 템플릿 (52개).
 
 ---
 
@@ -150,7 +147,7 @@ function generatePrompt({ name, figmaUrl, primary, secondary, screens }) {
 
 1. **순서 고수** — Phase 0 → 1 → 2 → 3 → 4 → 5 → 6. 이전 Phase 완료 전 절대 다음으로 넘어가지 않음.
 2. **선보고 후실행** — 각 Phase/Step 시작 시 선언. 완료 시 요약 보고 후 다음 진행.
-3. **하드코딩 금지** — tokens.css / theme.css / tailwind.config.js에 없는 값은 코드에 절대 직접 삽입하지 않음.
+3. **하드코딩 금지** — tokens.css / theme.css에 정의된 CSS 변수 외의 값은 코드에 절대 직접 삽입하지 않음. (tailwind.config.js 없음 — v4 CSS 네이티브)
 4. **임의 판단 금지** — responsive-rules.md의 PAUSE 트리거 상황에서 독자 결론 없이 반드시 옵션 제시.
 5. **화면 단위 진행** — 한 화면 완전히 완료 + 디자이너 승인 후 다음 화면. 전체 일괄 빌드 절대 금지.
 6. **Code Generation은 Figma 확정 이후에만** — Phase 0-F (Figma 확정 게이트) 통과 전까지 코드 생성 시작하지 않음.
