@@ -128,43 +128,46 @@ axpublish Variable Collection을 연결하여
 
 **① Variable Collection 생성 (Figma MCP Write)**
 
-`figma-seed-variables.json` 기준으로 Figma에 컬렉션 생성:
+`figma-seed-variables.json` 기준으로 Figma에 `axpublish / Seed` 컬렉션 생성 (Light / Dark 2모드):
 ```
-생성할 컬렉션:
-□ Semantic  — --seed-color-fg-*, --seed-color-bg-*, --seed-color-stroke-*...
-□ Typography — --seed-font-size-t1~t16, --seed-line-height-t1~t16
-□ Primitive — --atomic-cn-*, --atomic-n-*
-□ Opacity   — --opacity-*
-
-브레이크포인트 모드:
-□ Desktop  (≥1280px) 기본값
-□ Tablet   (768~1279px)
-□ Mobile   (<768px)
+Collection: "axpublish / Seed"
+├── 🪨 palette/                      (Primitive: 원본 Hex 값 / 레이어 직접 지정 X)
+│     ├── carrot-100 ~ 900          (Hex 값: 브랜드 덮어쓰기)
+│     ├── gray-00 ~ 1000            (Hex 값: 중성색 스케일)
+│     └── status (green/red/yellow/blue-700)
+└── 🎯 Semantic 토큰                   (역할 기반 / 레이어 직접 지정 O / palette/ 참조)
+      ├── fg/ (neutral, neutral-muted, brand, positive, critical 등)
+      ├── bg-layer/ (default, fill, floating, basement)
+      ├── bg-brand/ (solid, solid-pressed, weak, weak-pressed)
+      ├── bg-neutral/ (inverted, solid, weak, disabled)
+      ├── bg-status/ (positive-solid, critical-solid, warning-solid, informative-solid, overlay)
+      └── stroke/ (neutral-subtle, neutral-muted, neutral-solid, neutral-contrast, brand-solid, critical-solid, focus-ring)
 ```
 
 **② hex → Variable 자동 바인딩 (Figma MCP Write)**
 
 ```
-매핑 기준:
-#000000, #171719        → --seed-color-fg-neutral / --seed-color-fg-neutral
-#3B3C40                 → --seed-color-fg-neutral-muted
-#7C7E84                 → --seed-color-fg-neutral-subtle
-#FFFFFF                 → --seed-color-bg-layer-default
-#F7F7F8                 → --seed-color-bg-layer-fill
-#F0F0F2                 → --seed-color-bg-layer-basement
-#0066FF 계열            → --seed-color-bg-brand-solid (theme.css 기반)
-#00BF40                 → --seed-color-fg-positive
-#FF4242                 → --seed-color-fg-critical
-#FF9200                 → --seed-color-fg-warning
-E1E2E4 계열 (선/구분선)  → --seed-color-stroke-neutral-subtle
+매핑 기준 (Hex → Figma Variable → CSS 변수):
+#121212, #171719        → fg/neutral          (--seed-color-fg-neutral)
+#424242                 → fg/neutral-muted    (--seed-color-fg-neutral-muted)
+#616161                 → fg/neutral-subtle   (--seed-color-fg-neutral-subtle)
+#FFFFFF                 → bg-layer/default    (--seed-color-bg-layer-default)
+#F5F5F5                 → bg-layer/fill       (--seed-color-bg-layer-fill)
+#EBEBEB                 → bg-layer/basement   (--seed-color-bg-layer-basement)
+#0066FF 계열            → bg-brand/solid      (--seed-color-bg-brand-solid)
+#388E3C                 → fg/positive         (--seed-color-fg-positive)
+#C62828                 → fg/critical         (--seed-color-fg-critical)
+#F57F17                 → fg/warning          (--seed-color-fg-warning)
+rgba(0,0,0,0.08) 계열   → stroke/neutral-subtle (--seed-color-stroke-neutral-subtle)
 
-폰트 크기:
+폰트 크기 매핑:
 56px → --seed-font-size-t15
+48px → --seed-font-size-t14
 32px → --seed-font-size-t12
-22px → --font-size-heading-1
+22px → --seed-font-size-t8
 16px → --seed-font-size-t5
-14px → --font-size-label-1
-12px → --font-size-caption-1
+14px → --seed-font-size-t4
+12px → --seed-font-size-t2
 (전체 매핑은 seed-tokens.css + @seed-design/css 기준)
 ```
 
