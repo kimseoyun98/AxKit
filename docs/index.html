@@ -502,6 +502,32 @@
       --seed-color-palette-carrot-800: #0054D1;
       --seed-color-palette-carrot-900: #004AB8;
     }
+    /* t9~t16 Mobile static override (docs용 — seed-tokens.css 반영) */
+    :root {
+      --seed-font-size-t9: 20px; --seed-font-size-t10: 20px; --seed-font-size-t11: 22px;
+      --seed-font-size-t12: 24px; --seed-font-size-t13: 28px; --seed-font-size-t14: 30px;
+      --seed-font-size-t15: 32px; --seed-font-size-t16: 36px;
+      --seed-line-height-t12: 32px; --seed-line-height-t13: 36px;
+      --seed-line-height-t14: 38px; --seed-line-height-t15: 40px; --seed-line-height-t16: 44px;
+    }
+    @media (min-width: 768px) {
+      :root {
+        --seed-font-size-t9: 22px; --seed-font-size-t10: 24px; --seed-font-size-t11: 26px;
+        --seed-font-size-t12: 28px; --seed-font-size-t13: 36px; --seed-font-size-t14: 42px;
+        --seed-font-size-t15: 48px; --seed-font-size-t16: 56px;
+        --seed-line-height-t12: 36px; --seed-line-height-t13: 44px;
+        --seed-line-height-t14: 52px; --seed-line-height-t15: 58px; --seed-line-height-t16: 66px;
+      }
+    }
+    @media (min-width: 1280px) {
+      :root {
+        --seed-font-size-t9: 24px; --seed-font-size-t10: 26px; --seed-font-size-t11: 28px;
+        --seed-font-size-t12: 32px; --seed-font-size-t13: 40px; --seed-font-size-t14: 48px;
+        --seed-font-size-t15: 56px; --seed-font-size-t16: 72px;
+        --seed-line-height-t12: 40px; --seed-line-height-t13: 48px;
+        --seed-line-height-t14: 58px; --seed-line-height-t15: 66px; --seed-line-height-t16: 84px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -776,7 +802,7 @@
 
       <!-- ── Typography ── -->
       <div class="tab-panel" data-panel="sp-typo">
-        <p style="font-size:13px;color:#888;margin-bottom:16px">Seed의 <code>clamp()</code> 기반 자동 스케일. 브레이크포인트 없이 화면 크기에 따라 자동 조절됩니다.</p>
+        <p style="font-size:13px;color:#888;margin-bottom:16px"><strong>t1~t8</strong>은 Seed 기본값 고정. <strong>t9~t16</strong>은 Mobile / Tablet / Desktop 3단계 고정값으로 반응형 적용.</p>
         <table>
           <tr><th>Token</th><th>Static</th><th>사용 예</th><th>axpublish 대응</th></tr>
           <tr><td><code>--seed-font-size-t2</code></td><td>12px</td><td>캡션, 태그</td><td>caption-1</td></tr>
@@ -1180,27 +1206,33 @@
       </div>
 
       <div class="tab-panel active" data-panel="typo-table">
-        <div class="ds-section-label" style="margin-top:0">t1 ~ t14 — Static / 자동 clamp() 범위</div>
+        <div class="ds-section-label" style="margin-top:0">t1 ~ t16 — 화면별 고정값 (static responsive)</div>
+        <p style="font-size:12px;color:#888;margin-bottom:12px">
+          t1~t8: Seed 기본값 고정 (컴포넌트 내부 사용 — 변경 시 버튼·인풋 영향)<br>
+          t9~t16: <code>seed-tokens.css</code>에서 화면별 고정값으로 override<br>
+          ✦ t15·t16은 Seed 공식 스케일 확장 (56px, 72px)
+        </p>
         <table>
-          <tr><th>토큰</th><th>Static</th><th>Min(×0.8)</th><th>Max(×1.5)</th><th>용도</th><th>이전 axpublish</th></tr>
-          <tr><td><code>--seed-font-size-t1</code></td><td>11px</td><td>8.8px</td><td>16.5px</td><td>극소 캡션</td><td>caption-2 (10px)</td></tr>
-          <tr><td><code>--seed-font-size-t2</code></td><td>12px</td><td>9.6px</td><td>18px</td><td>캡션</td><td>caption-1 (12px)</td></tr>
-          <tr><td><code>--seed-font-size-t3</code></td><td>13px</td><td>10.4px</td><td>19.5px</td><td>보조 레이블</td><td>label-2 (13px)</td></tr>
-          <tr><td><code>--seed-font-size-t4</code></td><td>14px</td><td>11.2px</td><td>21px</td><td>레이블·버튼</td><td>label-1 (14px)</td></tr>
-          <tr><td><code>--seed-font-size-t5</code></td><td>16px</td><td>12.8px</td><td>24px</td><td>본문</td><td>body-1 (16px)</td></tr>
-          <tr><td><code>--seed-font-size-t6</code></td><td>18px</td><td>14.4px</td><td>27px</td><td>큰 본문</td><td>body-1-lg</td></tr>
-          <tr><td><code>--seed-font-size-t7</code></td><td>20px</td><td>16px</td><td>30px</td><td>소제목</td><td>heading-3 (20px)</td></tr>
-          <tr><td><code>--seed-font-size-t8</code></td><td>22px</td><td>17.6px</td><td>33px</td><td>헤딩</td><td>heading-1 (22px)</td></tr>
-          <tr><td><code>--seed-font-size-t9</code></td><td>24px</td><td>19.2px</td><td>36px</td><td>소타이틀</td><td>heading-2 (24px)</td></tr>
-          <tr><td><code>--seed-font-size-t10</code></td><td>26px</td><td>20.8px</td><td>39px</td><td>타이틀 3</td><td>title-3 (26px)</td></tr>
-          <tr><td><code>--seed-font-size-t11</code></td><td>28px</td><td>22.4px</td><td>42px</td><td>타이틀 2</td><td>title-2 (28px)</td></tr>
-          <tr><td><code>--seed-font-size-t12</code></td><td>32px</td><td>25.6px</td><td>48px</td><td>타이틀 1</td><td>title-1 (32px)</td></tr>
-          <tr><td><code>--seed-font-size-t13</code></td><td>40px</td><td>32px</td><td>60px</td><td>Display 2</td><td>display-2 (40px)</td></tr>
-          <tr><td><code>--seed-font-size-t14</code></td><td>48px</td><td>44.8px</td><td>72px</td><td>Display S</td><td>display-2 (40px) ↑</td></tr>
-          <tr style="background:#EEF2FF"><td><code>--seed-font-size-t15</code> ✦</td><td>56px</td><td>44.8px</td><td>84px</td><td>Display M</td><td>display-1 (56px) ✓</td></tr>
-          <tr style="background:#EEF2FF"><td><code>--seed-font-size-t16</code> ✦</td><td>72px</td><td>57.6px</td><td>108px</td><td>Display L (Hero)</td><td>—</td></tr>
+          <tr><th>토큰</th><th>Mobile<br><small>&lt;768px</small></th><th>Tablet<br><small>768~1279</small></th><th>Desktop<br><small>1280px+</small></th><th>용도</th></tr>
+          <tr style="background:#f9f9f9"><td colspan="5" style="font-size:11px;color:#888;padding:6px 12px;font-weight:700">── Seed 기본값 (t1~t8) — 컴포넌트용, 변경 안 함 ──</td></tr>
+          <tr><td><code>--seed-font-size-t1</code></td><td>11px</td><td>11px</td><td>11px</td><td>극소 캡션</td></tr>
+          <tr><td><code>--seed-font-size-t2</code></td><td>12px</td><td>12px</td><td>12px</td><td>캡션</td></tr>
+          <tr><td><code>--seed-font-size-t3</code></td><td>13px</td><td>13px</td><td>13px</td><td>보조 레이블</td></tr>
+          <tr><td><code>--seed-font-size-t4</code></td><td>14px</td><td>14px</td><td>14px</td><td>레이블·버튼</td></tr>
+          <tr><td><code>--seed-font-size-t5</code></td><td>16px</td><td>16px</td><td>16px</td><td>본문</td></tr>
+          <tr><td><code>--seed-font-size-t6</code></td><td>18px</td><td>18px</td><td>18px</td><td>큰 본문</td></tr>
+          <tr><td><code>--seed-font-size-t7</code></td><td>20px</td><td>20px</td><td>20px</td><td>소제목</td></tr>
+          <tr><td><code>--seed-font-size-t8</code></td><td>22px</td><td>22px</td><td>22px</td><td>헤딩</td></tr>
+          <tr style="background:#f9f9f9"><td colspan="5" style="font-size:11px;color:#888;padding:6px 12px;font-weight:700">── 반응형 override (t9~t16) — seed-tokens.css 제어 ──</td></tr>
+          <tr style="background:#fffbe6"><td><code>--seed-font-size-t9</code></td><td>20px</td><td>22px</td><td>24px</td><td>소타이틀</td></tr>
+          <tr style="background:#fffbe6"><td><code>--seed-font-size-t10</code></td><td>20px</td><td>24px</td><td>26px</td><td>타이틀 3</td></tr>
+          <tr style="background:#fffbe6"><td><code>--seed-font-size-t11</code></td><td>22px</td><td>26px</td><td>28px</td><td>타이틀 2</td></tr>
+          <tr style="background:#fffbe6"><td><code>--seed-font-size-t12</code></td><td>24px</td><td>28px</td><td>32px</td><td>타이틀 1</td></tr>
+          <tr style="background:#fffbe6"><td><code>--seed-font-size-t13</code></td><td>28px</td><td>36px</td><td>40px</td><td>Display 2</td></tr>
+          <tr style="background:#fffbe6"><td><code>--seed-font-size-t14</code></td><td>30px</td><td>42px</td><td>48px</td><td>Display 1</td></tr>
+          <tr style="background:#EEF2FF"><td><code>--seed-font-size-t15</code> ✦</td><td>32px</td><td>48px</td><td>56px</td><td>Display XL</td></tr>
+          <tr style="background:#EEF2FF"><td><code>--seed-font-size-t16</code> ✦</td><td>36px</td><td>56px</td><td>72px</td><td>Hero Display</td></tr>
         </table>
-        <p style="font-size:12px;color:#888;margin-top:8px">✦ Seed 공식 스케일 확장 — <code>seed-tokens.css</code>에 정의. 네이밍만 Seed 규칙 준수.</p>
       </div>
 
       <div class="tab-panel" data-panel="typo-preview">
