@@ -106,20 +106,10 @@
   --font-lh-heading-1:   1.364;
   --font-ls-heading-1:   -0.019em;
 
-  /* Heading 2: Mobile 15px / Tablet 17px / Desktop 20px */
-  --font-size-heading-2: 20px;
-  --font-lh-heading-2:   1.4;
-  --font-ls-heading-2:   -0.012em;
-
   /* Headline 1: Mobile 15px / Tablet 16px / Desktop 18px */
   --font-size-headline-1: 18px;
   --font-lh-headline-1:   1.444;
   --font-ls-headline-1:   -0.002em;
-
-  /* Headline 2: Mobile 14px / Tablet 15px / Desktop 17px */
-  --font-size-headline-2: 17px;
-  --font-lh-headline-2:   1.412;
-  --font-ls-headline-2:   0em;
 
   /* Body 1: Mobile 15px / Desktop 16px */
   --font-size-body-1:       16px;
@@ -166,9 +156,7 @@
     --font-size-title-2:         22px;
     --font-size-title-3:         21px;
     --font-size-heading-1:       19px;
-    --font-size-heading-2:       17px;
     --font-size-headline-1:      16px;
-    --font-size-headline-2:      15px;
     --font-size-body-1:          15px;
     --font-size-body-2:          14px;
     --font-size-label-1:         13px;
@@ -188,9 +176,7 @@
     --font-size-title-2:         16px;
     --font-size-title-3:         18px;
     --font-size-heading-1:       17px;
-    --font-size-heading-2:       15px;
     --font-size-headline-1:      15px;
-    --font-size-headline-2:      14px;
     --font-size-body-1:          15px;
     --font-size-body-2:          14px;
     --font-size-label-1:         13px;
