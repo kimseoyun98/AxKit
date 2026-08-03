@@ -1196,13 +1196,18 @@
           <tr><td><code>--seed-font-size-t11</code></td><td>28px</td><td>22.4px</td><td>42px</td><td>타이틀 2</td><td>title-2 (28px)</td></tr>
           <tr><td><code>--seed-font-size-t12</code></td><td>32px</td><td>25.6px</td><td>48px</td><td>타이틀 1</td><td>title-1 (32px)</td></tr>
           <tr><td><code>--seed-font-size-t13</code></td><td>40px</td><td>32px</td><td>60px</td><td>Display 2</td><td>display-2 (40px)</td></tr>
-          <tr><td><code>--seed-font-size-t14</code></td><td>48px</td><td>38.4px</td><td>72px</td><td>Display 1</td><td>display-1 (56px) ≈</td></tr>
+          <tr><td><code>--seed-font-size-t14</code></td><td>48px</td><td>44.8px</td><td>72px</td><td>Display S</td><td>display-2 (40px) ↑</td></tr>
+          <tr style="background:#EEF2FF"><td><code>--seed-font-size-t15</code> ✦</td><td>56px</td><td>44.8px</td><td>84px</td><td>Display M</td><td>display-1 (56px) ✓</td></tr>
+          <tr style="background:#EEF2FF"><td><code>--seed-font-size-t16</code> ✦</td><td>72px</td><td>57.6px</td><td>108px</td><td>Display L (Hero)</td><td>—</td></tr>
         </table>
+        <p style="font-size:12px;color:#888;margin-top:8px">✦ Seed 공식 스케일 확장 — <code>seed-tokens.css</code>에 정의. 네이밍만 Seed 규칙 준수.</p>
       </div>
 
       <div class="tab-panel" data-panel="typo-preview">
         <div style="padding:24px;background:var(--seed-color-bg-layer-fill,#f5f5f5);border-radius:12px;display:flex;flex-direction:column;gap:12px">
-          <p style="font-size:var(--seed-font-size-t14,48px);font-weight:700;margin:0;line-height:1.1;color:var(--seed-color-fg-neutral,#121212)">t14 — Display (48px)</p>
+          <p style="font-size:var(--seed-font-size-t16,72px);font-weight:700;margin:0;line-height:1.1;color:var(--seed-color-fg-neutral,#121212)">t16 — Hero Display (72px)</p>
+          <p style="font-size:var(--seed-font-size-t15,56px);font-weight:700;margin:0;line-height:1.1;color:var(--seed-color-fg-neutral,#121212)">t15 — Display (56px) ✦</p>
+          <p style="font-size:var(--seed-font-size-t14,48px);font-weight:700;margin:0;line-height:1.1;color:var(--seed-color-fg-neutral,#121212)">t14 — Display S (48px)</p>
           <p style="font-size:var(--seed-font-size-t12,32px);font-weight:700;margin:0;line-height:1.2;color:var(--seed-color-fg-neutral,#121212)">t12 — Title (32px)</p>
           <p style="font-size:var(--seed-font-size-t8,22px);font-weight:600;margin:0;line-height:1.3;color:var(--seed-color-fg-neutral,#121212)">t8 — Heading (22px)</p>
           <p style="font-size:var(--seed-font-size-t5,16px);margin:0;line-height:1.6;color:var(--seed-color-fg-neutral,#121212)">t5 — Body (16px). 이 텍스트는 clamp()로 화면에 따라 자동 조절됩니다. 별도 미디어쿼리 없이도 가독성이 유지됩니다.</p>
@@ -1215,27 +1220,38 @@
         <h3 style="margin-top:0">CSS 사용 패턴</h3>
         <div class="code-collapse">
           <button class="code-toggle"><span class="code-span">더보기</span> <span class="toggle-icon">▼</span></button>
-          <pre><code><span class="cm">/* Seed 타이포 적용 */</span>
-.title {
-  font-size: <span class="cv">var(--seed-font-size-t12)</span>;   <span class="cm">/* 32px static, clamp 자동 */</span>
-  line-height: <span class="cv">var(--seed-line-height-t12)</span>;
-  font-weight: <span class="cv">var(--seed-font-weight-bold)</span>;
-  color: <span class="cv">var(--seed-color-fg-neutral)</span>;
+          <pre><code><span class="cm">/* ── 반응형 Display 타이포 패턴 (권장) ── */</span>
+.hero-title {
+  font-size: <span class="cv">var(--seed-font-size-t12)</span>;   <span class="cm">/* Mobile  32px */</span>
+}
+<span class="ck">@media</span> (min-width: 768px) {
+  .hero-title { font-size: <span class="cv">var(--seed-font-size-t14)</span>; } <span class="cm">/* Tablet  48px */</span>
+}
+<span class="ck">@media</span> (min-width: 1280px) {
+  .hero-title { font-size: <span class="cv">var(--seed-font-size-t15)</span>; } <span class="cm">/* Desktop 56px ✦ */</span>
 }
 
+<span class="cm">/* ── 기본 바디 / 레이블 ── */</span>
 .body-text {
-  font-size: <span class="cv">var(--seed-font-size-t5)</span>;   <span class="cm">/* 16px */</span>
+  font-size: <span class="cv">var(--seed-font-size-t5)</span>;       <span class="cm">/* 16px */</span>
   line-height: <span class="cv">var(--seed-line-height-t5)</span>;
   color: <span class="cv">var(--seed-color-fg-neutral)</span>;
 }
 
+.label {
+  font-size: <span class="cv">var(--seed-font-size-t4)</span>;       <span class="cm">/* 14px */</span>
+  font-weight: <span class="cv">var(--seed-font-weight-bold)</span>;
+}
+
 .caption {
-  font-size: <span class="cv">var(--seed-font-size-t2)</span>;   <span class="cm">/* 12px */</span>
+  font-size: <span class="cv">var(--seed-font-size-t2)</span>;       <span class="cm">/* 12px */</span>
   color: <span class="cv">var(--seed-color-fg-neutral-muted)</span>;
 }
 
-<span class="cm">/* Tailwind v4 arbitrary value */</span>
+<span class="cm">/* ── Tailwind v4 arbitrary value ── */</span>
 <span class="ck">&lt;h1</span> <span class="cs">class</span>=<span class="cs">"text-[length:var(--seed-font-size-t12)]
+        md:text-[length:var(--seed-font-size-t14)]
+        lg:text-[length:var(--seed-font-size-t15)]
         leading-[var(--seed-line-height-t12)]
         text-[color:var(--seed-color-fg-neutral)]
         font-bold"</span><span class="ck">&gt;</span></code></pre>

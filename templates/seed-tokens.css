@@ -52,3 +52,49 @@
     --layout-padding: var(--seed-dimension-x16);  /* 64px (desktop) */
   }
 }
+
+/* ────────────────────────────────────────────────────────────────
+   CUSTOM TYPE SCALE EXTENSION
+   Seed t14 = 48px 이상이 필요한 Display용 확장.
+   네이밍은 Seed 규칙 그대로 tNN 연장.
+   ──────────────────────────────────────────────────────────────── */
+:root {
+  /* t15 — 56px Display */
+  --seed-font-size-t15-static: 56px;
+  --seed-font-size-t15: clamp(
+    calc(56px * var(--seed-font-size-limit-min, .8)),   /* 44.8px */
+    56px,
+    calc(56px * var(--seed-font-size-limit-max, 1.5))   /* 84px  */
+  );
+  --seed-line-height-t15: clamp(
+    calc(64px * var(--seed-line-height-limit-min, .8)),
+    64px,
+    calc(64px * var(--seed-line-height-limit-max, 1.5))
+  );
+
+  /* t16 — 72px Hero Display */
+  --seed-font-size-t16-static: 72px;
+  --seed-font-size-t16: clamp(
+    calc(72px * var(--seed-font-size-limit-min, .8)),   /* 57.6px */
+    72px,
+    calc(72px * var(--seed-font-size-limit-max, 1.5))   /* 108px */
+  );
+  --seed-line-height-t16: clamp(
+    calc(80px * var(--seed-line-height-limit-min, .8)),
+    80px,
+    calc(80px * var(--seed-line-height-limit-max, 1.5))
+  );
+}
+
+/* ── 반응형 Display 타이포 권장 패턴 ── */
+/*
+  .display-text {
+    font-size: var(--seed-font-size-t12);           Mobile  32px
+  }
+  @media (min-width: 768px) {
+    .display-text { font-size: var(--seed-font-size-t14); } Tablet  48px
+  }
+  @media (min-width: 1280px) {
+    .display-text { font-size: var(--seed-font-size-t15); } Desktop 56px
+  }
+*/
