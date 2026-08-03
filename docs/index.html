@@ -523,31 +523,95 @@
 
   <!-- FIGMA WRITE -->
   <section id="figma-write">
-    <h2>Figma MCP Write</h2>
-    <p>axpublish의 핵심입니다. Figma를 읽기만 하는 게 아니라, <strong>직접 Variable을 생성하고 레이어에 바인딩</strong>합니다.</p>
+    <h2>Figma MCP Write — 내부 동작</h2>
+    <p>axpublish의 핵심입니다. Figma를 읽기만 하는 게 아니라, AI가 MCP를 통해 <strong>Figma 안에 직접 Variable을 생성하고 모든 레이어에 바인딩</strong>합니다.</p>
 
-    <h3>생성되는 Variable Collection</h3>
+    <h3>Step 1 — Variable Collection 생성 (52개)</h3>
+    <p><code>axpublish / Semantic</code> 컬렉션 + <code>Light</code> 모드로 자동 생성됩니다. Primary / Secondary는 입력한 브랜드 컬러로 override됩니다.</p>
+
     <table>
-      <tr><th>그룹</th><th>변수 수</th><th>설명</th></tr>
-      <tr><td>Primary</td><td>3개</td><td>Normal / Strong / Heavy — theme.css 기준</td></tr>
-      <tr><td>Secondary</td><td>3개</td><td>Normal / Strong / Heavy</td></tr>
-      <tr><td>Label</td><td>6개</td><td>텍스트 위계 6단계 (alpha 포함)</td></tr>
-      <tr><td>Background</td><td>6개</td><td>Normal / Elevated / Transparent 각 2가지</td></tr>
-      <tr><td>Line</td><td>8개</td><td>Normal(rgba) 4개 / Solid(불투명) 4개</td></tr>
-      <tr><td>Fill</td><td>3개</td><td>hover 배경 등 alpha fill용</td></tr>
-      <tr><td>Status</td><td>3개</td><td>Positive / Cautionary / Negative</td></tr>
-      <tr><td>Accent BG/FG</td><td>18개</td><td>강조색 배경 7개 + 전경 11개</td></tr>
-      <tr><td>기타</td><td>6개</td><td>Static / Material / Inverse / Interaction</td></tr>
+      <tr><th>그룹</th><th>개수</th><th>변수 목록</th></tr>
+      <tr><td><strong>Primary</strong></td><td>3개</td><td>Normal / Strong / Heavy — 브랜드 컬러 기준</td></tr>
+      <tr><td><strong>Point</strong></td><td>2개</td><td>Text (텍스트 강조) / Brand (브랜드 자산)</td></tr>
+      <tr><td><strong>Secondary</strong></td><td>3개</td><td>Normal / Strong / Heavy</td></tr>
+      <tr><td><strong>Label</strong></td><td>6개</td><td>Strong / Normal / Neutral(α0.88) / Alternative(α0.61) / Assistive(α0.28) / Disable(α0.16)</td></tr>
+      <tr><td><strong>Background</strong></td><td>7개</td><td>Normal/Normal · Normal/Alternative · Normal/Section · Elevated/Normal · Elevated/Alternative · Transparent/Normal · Transparent/Alternative</td></tr>
+      <tr><td><strong>Interaction</strong></td><td>2개</td><td>Inactive / Disable</td></tr>
+      <tr><td><strong>Line</strong></td><td>8개</td><td>Normal(rgba) 4단계 + Solid(불투명) 4단계</td></tr>
+      <tr><td><strong>Fill</strong></td><td>3개</td><td>Normal(α0.08) / Strong(α0.16) / Alternative(α0.05)</td></tr>
+      <tr><td><strong>Status</strong></td><td>3개</td><td>Positive / Cautionary / Negative</td></tr>
+      <tr><td><strong>Static</strong></td><td>2개</td><td>White / Black</td></tr>
+      <tr><td><strong>Material</strong></td><td>1개</td><td>Dimmer(α0.52)</td></tr>
+      <tr><td><strong>Inverse</strong></td><td>3개</td><td>Primary / Background / Label</td></tr>
+      <tr><td><strong>Accent/Background</strong></td><td>7개</td><td>Red Orange / Lime / Cyan / Light Blue / Violet / Purple / Pink</td></tr>
+      <tr><td><strong>Accent/Foreground</strong></td><td>11개</td><td>Red / Red Orange / Orange / Lime / Green / Cyan / Light Blue / Blue / Violet / Purple / Pink</td></tr>
     </table>
 
-    <h3>인터랙션 상태 시각화</h3>
-    <p>바인딩 완료 후 <code>axpublish / Interaction States</code> 페이지에 버튼 상태 매트릭스를 자동으로 그립니다. Primary 컬러가 바뀌면 Variable 바인딩으로 자동 반영됩니다.</p>
+    <h3>Step 2 — 레이어 전체 바인딩</h3>
+    <p>Figma 전체 레이어를 순회하며 하드코딩된 색상값을 Variable로 자동 교체합니다. 매칭 허용 오차는 hex 채널별 ±3.</p>
 
-    <pre><code><span class="cm">// 버튼 상태 매트릭스</span>
-Default  → <span class="cv">Primary/Normal</span>            배경 + <span class="cv">Static/White</span> 텍스트
-Hover    → <span class="cv">Primary/Strong</span>            배경
-Pressed  → <span class="cv">Primary/Heavy</span>             배경
-Disabled → <span class="cv">Interaction/Disable</span>       배경 + <span class="cv">Interaction/Inactive</span> 텍스트</code></pre>
+    <pre><code><span class="cm">// 매핑 로직</span>
+텍스트 레이어 fill
+  불투명 어두운 색 (#171719, #000)   → <span class="cv">Label/Normal, Label/Strong</span>
+  반투명 (#37383C + alpha)           → <span class="cv">Label/Neutral ~ Label/Disable</span>
+
+Frame / Rectangle fill
+  흰색 계열 불투명                   → <span class="cv">Background/Normal/Normal</span>
+  회색 계열 불투명                   → <span class="cv">Background/Normal/Alternative</span>
+  반투명 어두운 색                   → <span class="cv">Fill/Normal ~ Fill/Strong</span>
+
+Stroke (border)
+  #70737C + alpha                    → <span class="cv">Line/Normal/*</span>
+  불투명 밝은 회색                   → <span class="cv">Line/Solid/*</span>
+
+브랜드 색상
+  Primary hex 매칭                   → <span class="cv">Primary/Normal ~ Heavy</span>
+
+Status 색상
+  #00BF40 계열                       → <span class="cv">Status/Positive</span>
+  #FF9200 계열                       → <span class="cv">Status/Cautionary</span>
+  #FF4242 계열                       → <span class="cv">Status/Negative</span></code></pre>
+
+    <div class="callout info">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-body">
+        <strong>충돌 시 PAUSE</strong>
+        기존 Color Style이 바인딩을 막거나, 외부 라이브러리 컴포넌트인 경우 AI가 목록을 보고하고
+        디자이너의 결정을 기다립니다. 임의로 진행하지 않습니다.
+      </div>
+    </div>
+
+    <h3>Step 3 — 인터랙션 상태 시각화</h3>
+    <p>바인딩 완료 후 Figma 내 <code>axpublish / Interaction States</code> 페이지에 버튼·인풋의 상태 매트릭스를 자동으로 그립니다. Primary 컬러가 바뀌면 Variable 바인딩으로 자동 반영됩니다.</p>
+
+    <pre><code><span class="cm">// Figma에 그려지는 버튼 상태 매트릭스</span>
+┌────────────┬────────────┬────────────┬────────────┐
+│  Default   │   Hover    │  Pressed   │  Disabled  │
+├────────────┼────────────┼────────────┼────────────┤
+│ <span class="cv">Primary/</span>   │ <span class="cv">Primary/</span>   │ <span class="cv">Primary/</span>   │ <span class="cv">Interaction/</span>│
+│ <span class="cv">Normal</span>     │ <span class="cv">Strong</span>     │ <span class="cv">Heavy</span>      │ <span class="cv">Disable</span>    │
+│ 텍스트:    │ 텍스트:    │ 텍스트:    │ 텍스트:    │
+│ <span class="cv">Static/</span>    │ <span class="cv">Static/</span>    │ <span class="cv">Static/</span>    │ <span class="cv">Interaction/</span>│
+│ <span class="cv">White</span>      │ <span class="cv">White</span>      │ <span class="cv">White</span>      │ <span class="cv">Inactive</span>   │
+└────────────┴────────────┴────────────┴────────────┘
+
+<span class="cm">// 추가로 그려지는 컴포넌트</span>
+Secondary 버튼: Secondary/Normal → Strong → Heavy
+Ghost 버튼:     배경 투명, 테두리 Line/Solid/Normal
+Input:          Default / Hover / Focus / Error / Disabled
+Link:           Default / Hover / Visited</code></pre>
+
+    <h3>Step 4 — 디자이너 확정 게이트 🔒</h3>
+    <p>Figma 상태가 확정되기 전까지 Code Generation은 시작되지 않습니다. 디자이너가 <strong>"OK"</strong> 또는 <strong>"Figma 완료"</strong> 한 마디를 하면 코드 생성 단계로 진행합니다.</p>
+
+    <div class="callout tip">
+      <span class="callout-icon">🔒</span>
+      <div class="callout-body">
+        <strong>Code Gen은 Figma 확정 이후에만</strong>
+        확정 전에 임의로 코드를 생성하지 않습니다.
+        Figma ↔ Code 불일치를 원천 차단하는 axpublish의 핵심 원칙입니다.
+      </div>
+    </div>
   </section>
 
   <!-- COMPONENTS -->
