@@ -646,7 +646,7 @@
   
       <div class="team-intro">
         <strong>📌 팀 공통 원칙</strong><br>
-        모든 직원은 <code>tokens.css</code>에 없는 값을 하드코딩하지 않습니다.
+        모든 직원은 <code>seed-tokens.css</code>에 없는 값을 하드코딩하지 않습니다.
         불확실한 경우 추측으로 진행하지 않고 즉시 디자이너에게 질문합니다.
         컴포넌트는 하나씩 완성 후 다음으로 넘어갑니다.
       </div>
@@ -736,7 +736,7 @@
           <span class="callout-icon">💡</span>
           <div class="callout-body">
             <strong>brandSolid 배경색</strong>은 <code>--seed-color-bg-brand-solid</code> → <code>--seed-color-palette-carrot-600</code>을 참조합니다.
-            <code>seed-tokens.css</code>에서 carrot 팔레트를 override하면 자동으로 내 브랜드 컬러로 교체됩니다.
+            <code>seed-seed-tokens.css</code>에서 carrot 팔레트를 override하면 자동으로 내 브랜드 컬러로 교체됩니다.
           </div>
         </div>
       </div>
@@ -1059,371 +1059,198 @@
 
 
   <section id="ds-colors">
-      <h2>Color</h2>
-      <p>두 계층으로 구성됩니다. <strong>Primitive</strong>는 팔레트 스케일 그대로, <strong>Semantic</strong>은 UI 역할에 따라 의미를 부여한 토큰입니다. 컴포넌트에서 직접 쓰는 건 Semantic이고, Primitive는 그 값의 출처입니다.</p>
-  
-      <!-- ── PRIMITIVE ────────────────────────────────── -->
-      <div class="tab-group" id="color-tabs">
-        <div class="tab-list">
-          <button class="tab-btn active" data-tab="primitive">Primitive</button>
-          <button class="tab-btn" data-tab="semantic">Semantic</button>
-        </div>
-        <div class="tab-panel active" data-panel="primitive">
-        <p style="font-size:13px; color:#888; margin-bottom:16px">Figma: Atomic Variable Collection. 직접 사용 ✕, Semantic 토큰이 이 값을 참조합니다. <code>--atomic-*</code></p>
-  
-      <div class="ds-section-label">Cool Neutral (주 그레이 팔레트)</div>
-      <div class="swatch-group">
-        <div class="swatch-group-title">--atomic-cn-* — 미세한 쿨 틴트. Label·Background·Line 모든 시맨틱의 기반</div>
-        <div class="swatch-row" style="flex-wrap:nowrap; gap:3px;">
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#0F0F10"></div><div class="swatch-name" style="font-size:9px">CN-5</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#171719"></div><div class="swatch-name" style="font-size:9px">CN-10</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#1B1C1E"></div><div class="swatch-name" style="font-size:9px">CN-15</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#292A2D"></div><div class="swatch-name" style="font-size:9px">CN-20</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#2E2F33"></div><div class="swatch-name" style="font-size:9px">CN-22</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#46474C"></div><div class="swatch-name" style="font-size:9px">CN-30</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#5A5C63"></div><div class="swatch-name" style="font-size:9px">CN-40</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#70737C"></div><div class="swatch-name" style="font-size:9px">CN-50</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#878A93"></div><div class="swatch-name" style="font-size:9px">CN-60</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#989BA2"></div><div class="swatch-name" style="font-size:9px">CN-70</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#AEB0B6"></div><div class="swatch-name" style="font-size:9px">CN-80</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#C2C4C8"></div><div class="swatch-name" style="font-size:9px">CN-90</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#DBDCDF"></div><div class="swatch-name" style="font-size:9px">CN-95</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#EAEBEC"></div><div class="swatch-name" style="font-size:9px">CN-97</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#F4F4F5"></div><div class="swatch-name" style="font-size:9px">CN-98</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#F7F7F8; border:1px solid #E1E2E4"></div><div class="swatch-name" style="font-size:9px">CN-99</div></div>
-        </div>
+    <h2>Color</h2>
+    <p><code>@seed-design/css</code> 기반. <strong>Primitive</strong>는 팔레트 원본값, <strong>Semantic</strong>은 역할 기반 토큰입니다. 컴포넌트에서는 Semantic 토큰만 사용합니다.</p>
+
+    <div class="tab-group" id="color-tabs">
+      <div class="tab-list">
+        <button class="tab-btn active" data-tab="primitive">Primitive (팔레트)</button>
+        <button class="tab-btn" data-tab="semantic-fg">Foreground</button>
+        <button class="tab-btn" data-tab="semantic-bg">Background</button>
+        <button class="tab-btn" data-tab="semantic-stroke">Stroke</button>
       </div>
-  
-      <div class="ds-section-label">Neutral (순수 회색)</div>
-      <div class="swatch-group">
-        <div class="swatch-group-title">--atomic-n-* — 쿨 틴트 없는 순수 gray. 아이콘, UI 크롬에 사용</div>
-        <div class="swatch-row" style="flex-wrap:nowrap; gap:3px;">
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#0F0F0F"></div><div class="swatch-name" style="font-size:9px">N-5</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#171717"></div><div class="swatch-name" style="font-size:9px">N-10</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#2A2A2A"></div><div class="swatch-name" style="font-size:9px">N-20</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#474747"></div><div class="swatch-name" style="font-size:9px">N-30</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#5C5C5C"></div><div class="swatch-name" style="font-size:9px">N-40</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#737373"></div><div class="swatch-name" style="font-size:9px">N-50</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#8A8A8A"></div><div class="swatch-name" style="font-size:9px">N-60</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#9B9B9B"></div><div class="swatch-name" style="font-size:9px">N-70</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#B0B0B0"></div><div class="swatch-name" style="font-size:9px">N-80</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#C4C4C4"></div><div class="swatch-name" style="font-size:9px">N-90</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#DCDCDC"></div><div class="swatch-name" style="font-size:9px">N-95</div></div>
-          <div class="swatch" style="width:46px"><div class="swatch-color" style="background:#F7F7F7; border:1px solid #E0E0E0"></div><div class="swatch-name" style="font-size:9px">N-99</div></div>
-        </div>
-      </div>
-  
-      <div class="ds-section-label">Opacity (투명도 스케일)</div>
-      <div class="swatch-group">
-        <div class="swatch-group-title">--opacity-* — Figma Opacity Variable 컬렉션 원본 (15단계)</div>
-        <div class="swatch-row" style="flex-wrap:nowrap; gap:4px; align-items:flex-end;">
-          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.08; border:1px solid #E0E0E0"></div><div class="swatch-name" style="font-size:9px">8%</div></div>
-          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.16; border:1px solid #E0E0E0"></div><div class="swatch-name" style="font-size:9px">16%</div></div>
-          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.22"></div><div class="swatch-name" style="font-size:9px">22%</div></div>
-          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.28"></div><div class="swatch-name" style="font-size:9px">28%</div></div>
-          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.43"></div><div class="swatch-name" style="font-size:9px">43%</div></div>
-          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.52"></div><div class="swatch-name" style="font-size:9px">52%</div></div>
-          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.61"></div><div class="swatch-name" style="font-size:9px">61%</div></div>
-          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.74"></div><div class="swatch-name" style="font-size:9px">74%</div></div>
-          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:0.88"></div><div class="swatch-name" style="font-size:9px">88%</div></div>
-          <div class="swatch" style="width:44px"><div class="swatch-color" style="background:#0066FF; opacity:1"></div><div class="swatch-name" style="font-size:9px">100%</div></div>
-        </div>
-      </div>
-  
-      <!-- ── SEMANTIC ────────────────────────────────── -->
-        </div><!-- /tab-panel primitive -->
-        <div class="tab-panel" data-panel="semantic">
-        <p style="font-size:13px; color:#888; margin-bottom:16px">Figma: Semantic Variable Collection. 실제 컴포넌트에서 이 토큰을 사용합니다. <code>--color-*</code></p>
-  
-      <div class="ds-section-label">Brand / Primary</div>
-      <div class="swatch-group">
-        <div class="swatch-group-title">generate-theme.js로 자동 생성 — Primary hex 입력 시 13단계 출력 (예시: #0066FF)</div>
+
+      <!-- Primitive -->
+      <div class="tab-panel active" data-panel="primitive">
+        <p style="font-size:13px;color:#888;margin-bottom:16px">직접 사용 ✕ — Semantic 토큰이 이 값을 참조. <code>--seed-color-palette-{name}-{step}</code></p>
+        <div class="ds-section-label">Brand (carrot → 내 브랜드로 override)</div>
         <div class="swatch-row">
-          <div class="swatch"><div class="swatch-color" style="background:#0054D1"></div><div class="swatch-name">Heavy</div><div class="swatch-hex">Pressed</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#005EEB"></div><div class="swatch-name">Strong</div><div class="swatch-hex">Hover</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#0066FF"></div><div class="swatch-name">Normal</div><div class="swatch-hex">Default</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#3385FF"></div><div class="swatch-name">Inverse</div><div class="swatch-hex">Dark BG 위</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#99BFFF"></div><div class="swatch-name">Light</div><div class="swatch-hex">연한 강조</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#EBF2FF"></div><div class="swatch-name">Tint</div><div class="swatch-hex">뱃지 배경</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#EBF2FF"></div><div class="swatch-name">carrot-100</div><div class="swatch-hex">Tint</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#C7DCFF"></div><div class="swatch-name">carrot-200</div><div class="swatch-hex"></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#99BFFF"></div><div class="swatch-name">carrot-300</div><div class="swatch-hex"></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#5C99FF"></div><div class="swatch-name">carrot-400</div><div class="swatch-hex"></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#3385FF"></div><div class="swatch-name">carrot-500</div><div class="swatch-hex"></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#0066FF"></div><div class="swatch-name">carrot-600</div><div class="swatch-hex">Normal</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#005EEB"></div><div class="swatch-name">carrot-700</div><div class="swatch-hex">Hover</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#0054D1"></div><div class="swatch-name">carrot-800</div><div class="swatch-hex">Pressed</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#004AB8"></div><div class="swatch-name">carrot-900</div><div class="swatch-hex"></div></div>
         </div>
-      </div>
-  
-      <div class="ds-section-label">Label (텍스트 색상)</div>
-      <div class="swatch-group">
+        <div class="ds-section-label" style="margin-top:20px">Gray (Neutral)</div>
         <div class="swatch-row">
-          <div class="swatch"><div class="swatch-color" style="background:#000000"></div><div class="swatch-name">Strong</div><div class="swatch-hex">#000000</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#171719"></div><div class="swatch-name">Normal</div><div class="swatch-hex">CN-10</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#3B3C40"></div><div class="swatch-name">Neutral</div><div class="swatch-hex">α 88%</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#7C7E84"></div><div class="swatch-name">Alternative</div><div class="swatch-hex">α 61%</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#BCBDC2"></div><div class="swatch-name">Assistive</div><div class="swatch-hex">α 28%</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#D9DADC"></div><div class="swatch-name">Disable</div><div class="swatch-hex">α 16%</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#ffffff;border:1px solid #eee"></div><div class="swatch-name">gray-00</div><div class="swatch-hex">#ffffff</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#F5F5F5"></div><div class="swatch-name">gray-100</div><div class="swatch-hex"></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#EBEBEB"></div><div class="swatch-name">gray-200</div><div class="swatch-hex"></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#D9D9D9"></div><div class="swatch-name">gray-300</div><div class="swatch-hex"></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#C2C2C2"></div><div class="swatch-name">gray-400</div><div class="swatch-hex"></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#9E9E9E"></div><div class="swatch-name">gray-500</div><div class="swatch-hex">Placeholder</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#757575"></div><div class="swatch-name">gray-600</div><div class="swatch-hex"></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#616161"></div><div class="swatch-name">gray-700</div><div class="swatch-hex">Subtle</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#424242"></div><div class="swatch-name">gray-800</div><div class="swatch-hex">Muted</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#212121"></div><div class="swatch-name">gray-900</div><div class="swatch-hex"></div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#121212"></div><div class="swatch-name">gray-1000</div><div class="swatch-hex">Neutral</div></div>
         </div>
-      </div>
-  
-      <div class="ds-section-label">Background (배경 색상)</div>
-      <div class="swatch-group">
+        <div class="ds-section-label" style="margin-top:20px">Status</div>
         <div class="swatch-row">
-          <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border:1px solid #E1E2E4"></div><div class="swatch-name">Normal</div><div class="swatch-hex">#FFFFFF</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#F7F7F8"></div><div class="swatch-name">Alternative</div><div class="swatch-hex">CN-99</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#F0F0F2"></div><div class="swatch-name">Section</div><div class="swatch-hex">섹션 구분</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border:1px solid #E1E2E4; box-shadow:0 2px 8px rgba(0,0,0,0.08)"></div><div class="swatch-name">Elevated</div><div class="swatch-hex">카드 배경</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:rgba(23,23,25,0.08)"></div><div class="swatch-name">Transparent</div><div class="swatch-hex">α 8%</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#388E3C"></div><div class="swatch-name">green-700</div><div class="swatch-hex">Positive</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#F57F17"></div><div class="swatch-name">yellow-700</div><div class="swatch-hex">Warning</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#C62828"></div><div class="swatch-name">red-700</div><div class="swatch-hex">Critical</div></div>
+          <div class="swatch"><div class="swatch-color" style="background:#1565C0"></div><div class="swatch-name">blue-700</div><div class="swatch-hex">Informative</div></div>
         </div>
       </div>
-  
-      <div class="ds-section-label">Status (상태 색상)</div>
-      <div class="swatch-group">
-        <div class="swatch-row">
-          <div class="swatch"><div class="swatch-color" style="background:#00BF40"></div><div class="swatch-name">Positive</div><div class="swatch-hex">#00BF40</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#FF9200"></div><div class="swatch-name">Cautionary</div><div class="swatch-hex">#FF9200</div></div>
-          <div class="swatch"><div class="swatch-color" style="background:#FF4242"></div><div class="swatch-name">Negative</div><div class="swatch-hex">#FF4242</div></div>
-        </div>
+
+      <!-- Foreground -->
+      <div class="tab-panel" data-panel="semantic-fg">
+        <p style="font-size:13px;color:#888;margin-bottom:16px">텍스트·아이콘 색상. <code>--seed-color-fg-{role}</code></p>
+        <table>
+          <tr><th>토큰</th><th>용도</th><th>대응 (이전 axpublish)</th></tr>
+          <tr><td><code>--seed-color-fg-neutral</code></td><td>기본 텍스트</td><td><del>--color-label-normal</del></td></tr>
+          <tr><td><code>--seed-color-fg-neutral-muted</code></td><td>보조 텍스트</td><td><del>--color-label-alternative</del></td></tr>
+          <tr><td><code>--seed-color-fg-neutral-subtle</code></td><td>힌트·비활성 텍스트</td><td><del>--color-label-neutral</del></td></tr>
+          <tr><td><code>--seed-color-fg-neutral-inverted</code></td><td>다크 배경 위 텍스트</td><td><del>--color-label-on-color</del></td></tr>
+          <tr><td><code>--seed-color-fg-brand</code></td><td>브랜드 텍스트·링크</td><td><del>--color-primary-normal</del> (텍스트용)</td></tr>
+          <tr><td><code>--seed-color-fg-disabled</code></td><td>비활성 텍스트</td><td><del>--color-label-disable</del></td></tr>
+          <tr><td><code>--seed-color-fg-placeholder</code></td><td>플레이스홀더</td><td>—</td></tr>
+          <tr><td><code>--seed-color-fg-positive</code></td><td>성공 메시지</td><td><del>--color-status-positive</del></td></tr>
+          <tr><td><code>--seed-color-fg-critical</code></td><td>에러 메시지</td><td><del>--color-status-negative</del></td></tr>
+          <tr><td><code>--seed-color-fg-warning</code></td><td>경고 메시지</td><td><del>--color-status-cautionary</del></td></tr>
+          <tr><td><code>--seed-color-fg-informative</code></td><td>정보 메시지</td><td>—</td></tr>
+        </table>
       </div>
-  
-        </div><!-- /tab-panel semantic -->
-      </div><!-- /tab-group color -->
-  
-      <h3>컬러 스케일 자동 생성</h3>
-      <pre><code><span class="cm"># Primary hex 하나로 13단계 자동 생성</span>
-  node generate-theme.js --primary <span class="cs">"#0066FF"</span> --output ./src/theme.css</code></pre>
-    </section>
+
+      <!-- Background -->
+      <div class="tab-panel" data-panel="semantic-bg">
+        <p style="font-size:13px;color:#888;margin-bottom:16px">배경 색상. <code>--seed-color-bg-{layer|brand|status}-{role}</code></p>
+        <table>
+          <tr><th>토큰</th><th>용도</th><th>대응 (이전 axpublish)</th></tr>
+          <tr><th colspan="3" style="background:#f8f8f8;text-align:left;font-size:11px;color:#888">Layer — 화면 레이어</th></tr>
+          <tr><td><code>--seed-color-bg-layer-default</code></td><td>기본 화면 배경</td><td><del>--color-bg-normal</del></td></tr>
+          <tr><td><code>--seed-color-bg-layer-fill</code></td><td>섹션 배경</td><td><del>--color-bg-alternative</del></td></tr>
+          <tr><td><code>--seed-color-bg-layer-floating</code></td><td>카드·모달 배경</td><td><del>--color-bg-elevated</del></td></tr>
+          <tr><td><code>--seed-color-bg-layer-basement</code></td><td>제일 아래 배경 (앱 외곽)</td><td><del>--color-bg-section</del></td></tr>
+          <tr><th colspan="3" style="background:#f8f8f8;text-align:left;font-size:11px;color:#888">Brand — 브랜드 컬러</th></tr>
+          <tr><td><code>--seed-color-bg-brand-solid</code></td><td>Primary 버튼 배경</td><td><del>--color-primary-normal</del></td></tr>
+          <tr><td><code>--seed-color-bg-brand-solid-pressed</code></td><td>Hover/Pressed 버튼</td><td><del>--color-primary-strong</del> / <del>heavy</del></td></tr>
+          <tr><td><code>--seed-color-bg-brand-weak</code></td><td>연한 브랜드 배경</td><td><del>--color-fill-normal</del></td></tr>
+          <tr><th colspan="3" style="background:#f8f8f8;text-align:left;font-size:11px;color:#888">Status — 상태색</th></tr>
+          <tr><td><code>--seed-color-bg-positive-solid</code></td><td>성공 배경</td><td><del>--color-status-positive</del></td></tr>
+          <tr><td><code>--seed-color-bg-critical-solid</code></td><td>에러 배경</td><td><del>--color-status-negative</del></td></tr>
+          <tr><td><code>--seed-color-bg-warning-solid</code></td><td>경고 배경</td><td><del>--color-status-cautionary</del></td></tr>
+          <tr><td><code>--seed-color-bg-disabled</code></td><td>비활성 배경</td><td><del>--color-interaction-disable</del></td></tr>
+          <tr><td><code>--seed-color-bg-overlay</code></td><td>모달 Dimmer</td><td><del>--color-material-dimmer</del></td></tr>
+        </table>
+      </div>
+
+      <!-- Stroke -->
+      <div class="tab-panel" data-panel="semantic-stroke">
+        <p style="font-size:13px;color:#888;margin-bottom:16px">테두리·구분선. <code>--seed-color-stroke-{role}</code></p>
+        <table>
+          <tr><th>토큰</th><th>용도</th><th>대응 (이전 axpublish)</th></tr>
+          <tr><td><code>--seed-color-stroke-neutral-subtle</code></td><td>구분선 (얇은)</td><td><del>--color-line-normal</del></td></tr>
+          <tr><td><code>--seed-color-stroke-neutral-muted</code></td><td>구분선 (중간)</td><td><del>--color-line-normal-solid</del></td></tr>
+          <tr><td><code>--seed-color-stroke-neutral-solid</code></td><td>강한 테두리</td><td><del>--color-line-strong</del></td></tr>
+          <tr><td><code>--seed-color-stroke-neutral-contrast</code></td><td>가장 강한 테두리</td><td>—</td></tr>
+          <tr><td><code>--seed-color-stroke-brand-solid</code></td><td>브랜드 테두리 (focus 등)</td><td>—</td></tr>
+          <tr><td><code>--seed-color-stroke-critical-solid</code></td><td>에러 테두리</td><td>—</td></tr>
+          <tr><td><code>--seed-color-stroke-focus-ring</code></td><td>접근성 Focus ring</td><td>—</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
 
 
   <section id="ds-typography">
-      <h2>타이포그래피 스케일</h2>
-      <p>17레벨 × 3단계(Desktop/Tablet/Mobile) 고정값 시스템. 브레이크포인트 전환 시 font-size가 자연스럽게 변합니다. letter-spacing은 <code>em</code> 단위로 폰트 크기에 비례합니다.</p>
-  
-      <div class="tab-group" id="typo-tabs">
-        <div class="tab-list">
-          <button class="tab-btn active" data-tab="typo-table">전체 스케일</button>
-          <button class="tab-btn" data-tab="typo-preview">미리보기</button>
-          <button class="tab-btn" data-tab="typo-usage">사용법</button>
-        </div>
-        <div class="tab-panel active" data-panel="typo-table">
-        <div class="ds-section-label" style="margin-top:0">Desktop / Tablet / Mobile — 한눈에 보기</div>
-  
-      <table style="font-size:12px; table-layout:fixed;">
-        <colgroup>
-          <col style="width:130px">
-          <col style="width:auto">
-          <col style="width:80px">
-          <col style="width:72px">
-          <col style="width:72px">
-          <col style="width:64px">
-          <col style="width:80px">
-        </colgroup>
-        <tr>
-          <th>토큰</th>
-          <th>용도</th>
-          <th style="text-align:center">Desktop</th>
-          <th style="text-align:center">Tablet</th>
-          <th style="text-align:center">Mobile</th>
-          <th style="text-align:center">LH</th>
-          <th style="text-align:center">LS</th>
-        </tr>
-        <tr>
-          <td><code>display-hero</code></td>
-          <td>랜딩 초대형 카피, 숫자 카운터</td>
-          <td style="text-align:center;font-weight:700">120px</td>
-          <td style="text-align:center;color:#888">74px</td>
-          <td style="text-align:center;color:#888">40px</td>
-          <td style="text-align:center">1.15</td>
-          <td style="text-align:center;color:#3B82F6">−0.032em</td>
-        </tr>
-        <tr>
-          <td><code>display-1</code></td>
-          <td>히어로 메인 카피</td>
-          <td style="text-align:center;font-weight:700">56px</td>
-          <td style="text-align:center;color:#888">42px</td>
-          <td style="text-align:center;color:#888">28px</td>
-          <td style="text-align:center">1.286</td>
-          <td style="text-align:center;color:#3B82F6">−0.032em</td>
-        </tr>
-        <tr>
-          <td><code>display-2</code></td>
-          <td>서브 히어로, 대형 섹션 슬로건</td>
-          <td style="text-align:center;font-weight:700">40px</td>
-          <td style="text-align:center;color:#888">31px</td>
-          <td style="text-align:center;color:#888">22px</td>
-          <td style="text-align:center">1.3</td>
-          <td style="text-align:center;color:#3B82F6">−0.028em</td>
-        </tr>
-        <tr>
-          <td><code>display-3</code></td>
-          <td>섹션 리드 문구, Title보다 강조 필요 시</td>
-          <td style="text-align:center;font-weight:700">36px</td>
-          <td style="text-align:center;color:#888">29px</td>
-          <td style="text-align:center;color:#888">24px</td>
-          <td style="text-align:center">1.333</td>
-          <td style="text-align:center;color:#3B82F6">−0.027em</td>
-        </tr>
-        <tr style="background:rgba(0,102,255,0.03)">
-          <td><code>title-1</code></td>
-          <td>페이지 타이틀, 주요 섹션 헤더</td>
-          <td style="text-align:center;font-weight:700">32px</td>
-          <td style="text-align:center;color:#888">26px</td>
-          <td style="text-align:center;color:#888">22px</td>
-          <td style="text-align:center">1.375</td>
-          <td style="text-align:center;color:#3B82F6">−0.025em</td>
-        </tr>
-        <tr style="background:rgba(0,102,255,0.03)">
-          <td><code>title-2</code></td>
-          <td>카드 제목, 모달 헤더</td>
-          <td style="text-align:center;font-weight:700">28px</td>
-          <td style="text-align:center;color:#888">22px</td>
-          <td style="text-align:center;color:#888">16px</td>
-          <td style="text-align:center">1.358</td>
-          <td style="text-align:center;color:#3B82F6">−0.024em</td>
-        </tr>
-        <tr style="background:rgba(0,102,255,0.03)">
-          <td><code>title-3</code></td>
-          <td>서브섹션, 리스트 그룹 헤더</td>
-          <td style="text-align:center;font-weight:700">24px</td>
-          <td style="text-align:center;color:#888">21px</td>
-          <td style="text-align:center;color:#888">18px</td>
-          <td style="text-align:center">1.333</td>
-          <td style="text-align:center;color:#3B82F6">−0.023em</td>
-        </tr>
-        <tr>
-          <td><code>heading-1</code></td>
-          <td>섹션 소제목 — 3-tier 자동 전환 (22·19·17px)</td>
-          <td style="text-align:center;font-weight:700">22px</td>
-          <td style="text-align:center;color:#888">19px</td>
-          <td style="text-align:center;color:#888">17px</td>
-          <td style="text-align:center">1.364</td>
-          <td style="text-align:center;color:#3B82F6">−0.019em</td>
-        </tr>
-  
-        <tr>
-          <td><code>headline-1</code></td>
-          <td>강조 항목 라벨, 탭 — 3-tier 자동 전환 (18·16·15px)</td>
-          <td style="text-align:center;font-weight:700">18px</td>
-          <td style="text-align:center;color:#888">16px</td>
-          <td style="text-align:center;color:#888">15px</td>
-          <td style="text-align:center">1.444</td>
-          <td style="text-align:center;color:#888">−0.002em</td>
-        </tr>
-  
-        <tr style="background:rgba(0,0,0,0.02)">
-          <td><code>body-1</code></td>
-          <td>기본 본문 (Normal lh1.5 / Reading lh1.625)</td>
-          <td style="text-align:center;font-weight:700">16px</td>
-          <td style="text-align:center;color:#888">15px</td>
-          <td style="text-align:center;color:#888">15px</td>
-          <td style="text-align:center">1.5 / 1.625</td>
-          <td style="text-align:center;color:#888">+0.006em</td>
-        </tr>
-        <tr style="background:rgba(0,0,0,0.02)">
-          <td><code>body-2</code></td>
-          <td>보조 본문 (Normal lh1.467 / Reading lh1.6)</td>
-          <td style="text-align:center;font-weight:700">15px</td>
-          <td style="text-align:center;color:#888">14px</td>
-          <td style="text-align:center;color:#888">14px</td>
-          <td style="text-align:center">1.467 / 1.6</td>
-          <td style="text-align:center;color:#888">+0.010em</td>
-        </tr>
-        <tr>
-          <td><code>label-1</code></td>
-          <td>폼 레이블, 버튼 (Normal lh1.429 / Reading lh1.571)</td>
-          <td style="text-align:center;font-weight:700">14px</td>
-          <td style="text-align:center;color:#888">13px</td>
-          <td style="text-align:center;color:#888">13px</td>
-          <td style="text-align:center">1.429 / 1.571</td>
-          <td style="text-align:center;color:#888">+0.015em</td>
-        </tr>
-        <tr>
-          <td><code>label-2</code></td>
-          <td>하위 레이블, 낮은 중요도 버튼</td>
-          <td style="text-align:center;font-weight:700">13px</td>
-          <td style="text-align:center;color:#888">12px</td>
-          <td style="text-align:center;color:#888">12px</td>
-          <td style="text-align:center">1.385</td>
-          <td style="text-align:center;color:#888">+0.019em</td>
-        </tr>
-        <tr style="background:rgba(0,0,0,0.02)">
-          <td><code>caption-1</code></td>
-          <td>타임스탬프, 메타, 뱃지 텍스트</td>
-          <td style="text-align:center;font-weight:700;color:#888">12px</td>
-          <td style="text-align:center;color:#bbb">12px</td>
-          <td style="text-align:center;color:#bbb">12px</td>
-          <td style="text-align:center">1.333</td>
-          <td style="text-align:center;color:#888">+0.025em</td>
-        </tr>
-        <tr style="background:rgba(0,0,0,0.02)">
-          <td><code>caption-2</code></td>
-          <td>법적 고지, 가장 보조적인 정보</td>
-          <td style="text-align:center;font-weight:700;color:#888">11px</td>
-          <td style="text-align:center;color:#bbb">11px</td>
-          <td style="text-align:center;color:#bbb">11px</td>
-          <td style="text-align:center">1.273</td>
-          <td style="text-align:center;color:#888">+0.031em</td>
-        </tr>
-      </table>
-  
-        </div><!-- /tab-panel typo-table -->
-        <div class="tab-panel" data-panel="typo-preview">
-        <div class="typo-scale">
-        <div class="typo-row">
-          <div class="typo-meta"><div class="typo-token">display-1</div><div class="typo-sizes">56 · 42 · 28px / lh1.286 / ls−0.032em</div></div>
-          <div class="typo-sample" style="font-size:40px; font-weight:700; letter-spacing:-0.032em; line-height:1.286">디자인을 코드로</div>
-        </div>
-        <div class="typo-row">
-          <div class="typo-meta"><div class="typo-token">display-2</div><div class="typo-sizes">40 · 31 · 22px / lh1.3 / ls−0.028em</div></div>
-          <div class="typo-sample" style="font-size:30px; font-weight:700; letter-spacing:-0.028em; line-height:1.3">Design to Code Pipeline</div>
-        </div>
-        <div class="typo-row">
-          <div class="typo-meta"><div class="typo-token">title-1</div><div class="typo-sizes">32 · 26 · 22px / lh1.375 / ls−0.025em</div></div>
-          <div class="typo-sample" style="font-size:24px; font-weight:600; letter-spacing:-0.025em">페이지 타이틀, 주요 섹션 헤더</div>
-        </div>
-        <div class="typo-row">
-          <div class="typo-meta"><div class="typo-token">title-2</div><div class="typo-sizes">28 · 22 · 16px / lh1.358 / ls−0.024em</div></div>
-          <div class="typo-sample" style="font-size:20px; font-weight:600; letter-spacing:-0.024em">카드 제목, 모달 헤더</div>
-        </div>
-        <div class="typo-row">
-          <div class="typo-meta"><div class="typo-token">heading-1</div><div class="typo-sizes">22 · 19 · 17px / lh1.364 / ls−0.019em</div></div>
-          <div class="typo-sample" style="font-size:18px; font-weight:600; letter-spacing:-0.019em">섹션 소제목, 큰 화면</div>
-        </div>
-        <div class="typo-row">
-          <div class="typo-meta"><div class="typo-token">headline-1</div><div class="typo-sizes">18 · 16 · 15px / lh1.444 / ls−0.002em</div></div>
-          <div class="typo-sample" style="font-size:16px; font-weight:500; letter-spacing:-0.002em">강조 항목 라벨, 탭 텍스트</div>
-        </div>
-        <div class="typo-row">
-          <div class="typo-meta"><div class="typo-token">body-1 Normal</div><div class="typo-sizes">16 · 15 · 15px / lh1.5 / ls+0.006em</div></div>
-          <div class="typo-sample" style="font-size:14px; font-weight:400; letter-spacing:0.006em; line-height:1.5">일반 본문 텍스트입니다. 짧은 설명, 카드 요약에 사용합니다.</div>
-        </div>
-        <div class="typo-row">
-          <div class="typo-meta"><div class="typo-token">body-1 Reading</div><div class="typo-sizes">16 · 15 · 15px / lh1.625 / ls+0.006em</div></div>
-          <div class="typo-sample" style="font-size:14px; font-weight:400; letter-spacing:0.006em; line-height:1.625; color:#555">긴 글 본문에 사용합니다. 채용공고 상세, 블로그 포스트처럼 읽는 시간이 긴 텍스트에서 line-height를 더 넉넉하게 줍니다.</div>
-        </div>
-        <div class="typo-row">
-          <div class="typo-meta"><div class="typo-token">label-1</div><div class="typo-sizes">14 · 13 · 13px / lh1.429 / ls+0.015em</div></div>
-          <div class="typo-sample" style="font-size:13px; font-weight:500; letter-spacing:0.015em; color:#888">폼 레이블 · 버튼 텍스트 · UI 요소</div>
-        </div>
-        <div class="typo-row">
-          <div class="typo-meta"><div class="typo-token">caption-1</div><div class="typo-sizes">12px 고정 / lh1.333 / ls+0.025em</div></div>
-          <div class="typo-sample" style="font-size:11px; font-weight:400; letter-spacing:0.025em; color:#aaa">타임스탬프 · 메타 정보 · 뱃지 · 보조 설명</div>
-        </div>
-        <div class="typo-row">
-          <div class="typo-meta"><div class="typo-token">caption-2</div><div class="typo-sizes">11px 고정 / lh1.273 / ls+0.031em</div></div>
-          <div class="typo-sample" style="font-size:10px; font-weight:400; letter-spacing:0.031em; color:#ccc">법적 고지 · 약관 · 가장 낮은 위계 정보</div>
+    <h2>Typography</h2>
+    <p><code>@seed-design/css</code> 기반 t1~t14 스케일. <code>clamp()</code>로 최소·최대 사이 자동 유동합니다. 반응형 타이포 브레이크포인트 불필요.</p>
+
+    <div class="tab-group" id="typo-tabs">
+      <div class="tab-list">
+        <button class="tab-btn active" data-tab="typo-table">전체 스케일</button>
+        <button class="tab-btn" data-tab="typo-preview">미리보기</button>
+        <button class="tab-btn" data-tab="typo-usage">사용법</button>
+      </div>
+
+      <div class="tab-panel active" data-panel="typo-table">
+        <div class="ds-section-label" style="margin-top:0">t1 ~ t14 — Static / 자동 clamp() 범위</div>
+        <table>
+          <tr><th>토큰</th><th>Static</th><th>Min(×0.8)</th><th>Max(×1.5)</th><th>용도</th><th>이전 axpublish</th></tr>
+          <tr><td><code>--seed-font-size-t1</code></td><td>11px</td><td>8.8px</td><td>16.5px</td><td>극소 캡션</td><td>caption-2 (10px)</td></tr>
+          <tr><td><code>--seed-font-size-t2</code></td><td>12px</td><td>9.6px</td><td>18px</td><td>캡션</td><td>caption-1 (12px)</td></tr>
+          <tr><td><code>--seed-font-size-t3</code></td><td>13px</td><td>10.4px</td><td>19.5px</td><td>보조 레이블</td><td>label-2 (13px)</td></tr>
+          <tr><td><code>--seed-font-size-t4</code></td><td>14px</td><td>11.2px</td><td>21px</td><td>레이블·버튼</td><td>label-1 (14px)</td></tr>
+          <tr><td><code>--seed-font-size-t5</code></td><td>16px</td><td>12.8px</td><td>24px</td><td>본문</td><td>body-1 (16px)</td></tr>
+          <tr><td><code>--seed-font-size-t6</code></td><td>18px</td><td>14.4px</td><td>27px</td><td>큰 본문</td><td>body-1-lg</td></tr>
+          <tr><td><code>--seed-font-size-t7</code></td><td>20px</td><td>16px</td><td>30px</td><td>소제목</td><td>heading-3 (20px)</td></tr>
+          <tr><td><code>--seed-font-size-t8</code></td><td>22px</td><td>17.6px</td><td>33px</td><td>헤딩</td><td>heading-1 (22px)</td></tr>
+          <tr><td><code>--seed-font-size-t9</code></td><td>24px</td><td>19.2px</td><td>36px</td><td>소타이틀</td><td>heading-2 (24px)</td></tr>
+          <tr><td><code>--seed-font-size-t10</code></td><td>26px</td><td>20.8px</td><td>39px</td><td>타이틀 3</td><td>title-3 (26px)</td></tr>
+          <tr><td><code>--seed-font-size-t11</code></td><td>28px</td><td>22.4px</td><td>42px</td><td>타이틀 2</td><td>title-2 (28px)</td></tr>
+          <tr><td><code>--seed-font-size-t12</code></td><td>32px</td><td>25.6px</td><td>48px</td><td>타이틀 1</td><td>title-1 (32px)</td></tr>
+          <tr><td><code>--seed-font-size-t13</code></td><td>40px</td><td>32px</td><td>60px</td><td>Display 2</td><td>display-2 (40px)</td></tr>
+          <tr><td><code>--seed-font-size-t14</code></td><td>48px</td><td>38.4px</td><td>72px</td><td>Display 1</td><td>display-1 (56px) ≈</td></tr>
+        </table>
+      </div>
+
+      <div class="tab-panel" data-panel="typo-preview">
+        <div style="padding:24px;background:var(--seed-color-bg-layer-fill,#f5f5f5);border-radius:12px;display:flex;flex-direction:column;gap:12px">
+          <p style="font-size:var(--seed-font-size-t14,48px);font-weight:700;margin:0;line-height:1.1;color:var(--seed-color-fg-neutral,#121212)">t14 — Display (48px)</p>
+          <p style="font-size:var(--seed-font-size-t12,32px);font-weight:700;margin:0;line-height:1.2;color:var(--seed-color-fg-neutral,#121212)">t12 — Title (32px)</p>
+          <p style="font-size:var(--seed-font-size-t8,22px);font-weight:600;margin:0;line-height:1.3;color:var(--seed-color-fg-neutral,#121212)">t8 — Heading (22px)</p>
+          <p style="font-size:var(--seed-font-size-t5,16px);margin:0;line-height:1.6;color:var(--seed-color-fg-neutral,#121212)">t5 — Body (16px). 이 텍스트는 clamp()로 화면에 따라 자동 조절됩니다. 별도 미디어쿼리 없이도 가독성이 유지됩니다.</p>
+          <p style="font-size:var(--seed-font-size-t4,14px);margin:0;line-height:1.5;color:var(--seed-color-fg-neutral-muted,#616161)">t4 — Label (14px). 버튼 텍스트, 폼 레이블에 사용합니다.</p>
+          <p style="font-size:var(--seed-font-size-t2,12px);margin:0;line-height:1.4;color:var(--seed-color-fg-neutral-muted,#616161)">t2 — Caption (12px). 보조 설명, 타임스탬프.</p>
         </div>
       </div>
-  
-        </div><!-- /tab-panel typo-preview -->
-        <div class="tab-panel" data-panel="typo-usage">
+
+      <div class="tab-panel" data-panel="typo-usage">
         <h3 style="margin-top:0">CSS 사용 패턴</h3>
-      <pre><code><span class="cm">/* Tailwind v4 — 세 변수를 함께 쓰는 것이 원칙 */</span>
-  <span class="ck">class</span>=<span class="cs">"text-[length:var(--font-size-title-1)]
-        leading-[var(--font-lh-title-1)]
-        tracking-[var(--font-ls-title-1)]"</span>
-  
-  <span class="cm">/* Reading 변형 (body/label) */</span>
-  <span class="ck">class</span>=<span class="cs">"text-[length:var(--font-size-body-1)]
-        leading-[var(--font-lh-body-1-reading)]
-        tracking-[var(--font-ls-body-1)]"</span></code></pre>
-        </div><!-- /tab-panel typo-usage -->
-      </div><!-- /tab-group typo -->
-    </section>
+        <div class="code-collapse">
+          <button class="code-toggle"><span class="code-span">더보기</span> <span class="toggle-icon">▼</span></button>
+          <pre><code><span class="cm">/* Seed 타이포 적용 */</span>
+.title {
+  font-size: <span class="cv">var(--seed-font-size-t12)</span>;   <span class="cm">/* 32px static, clamp 자동 */</span>
+  line-height: <span class="cv">var(--seed-line-height-t12)</span>;
+  font-weight: <span class="cv">var(--seed-font-weight-bold)</span>;
+  color: <span class="cv">var(--seed-color-fg-neutral)</span>;
+}
+
+.body-text {
+  font-size: <span class="cv">var(--seed-font-size-t5)</span>;   <span class="cm">/* 16px */</span>
+  line-height: <span class="cv">var(--seed-line-height-t5)</span>;
+  color: <span class="cv">var(--seed-color-fg-neutral)</span>;
+}
+
+.caption {
+  font-size: <span class="cv">var(--seed-font-size-t2)</span>;   <span class="cm">/* 12px */</span>
+  color: <span class="cv">var(--seed-color-fg-neutral-muted)</span>;
+}
+
+<span class="cm">/* Tailwind v4 arbitrary value */</span>
+<span class="ck">&lt;h1</span> <span class="cs">class</span>=<span class="cs">"text-[length:var(--seed-font-size-t12)]
+        leading-[var(--seed-line-height-t12)]
+        text-[color:var(--seed-color-fg-neutral)]
+        font-bold"</span><span class="ck">&gt;</span></code></pre>
+        </div>
+        <div class="callout info" style="margin-top:16px">
+          <span class="callout-icon">💡</span>
+          <div class="callout-body">
+            <strong>clamp() 자동 스케일</strong><br>
+            <code>--seed-font-size-multiplier</code> 값(기본 1)으로 전체 타이포 스케일이 비례 조절됩니다.
+            iOS는 <code>data-seed-platform="ios"</code>로 자동 보정됩니다.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
   <section id="ds-responsive">
@@ -1477,132 +1304,71 @@
 
 
   <section id="ds-tokens">
-      <h2>Foundations</h2>
-      <p>Radius, Shadow, Motion, Z-index 등 컴포넌트 구성에 필요한 기반 토큰입니다.</p>
-      <div class="accordion">
-      <p><code>tokens.css</code>에 정의된 전체 토큰 목록. 프로젝트에서 필요한 것만 골라 쓰면 됩니다.</p>
-  
-      <h3>Radius (7단계)</h3>
-      <div style="display:flex; gap:12px; flex-wrap:wrap; margin:16px 0;">
-        <div style="text-align:center">
-          <div style="width:48px;height:48px;background:#0066FF;border-radius:0;display:inline-block"></div>
-          <div style="font-size:10px;margin-top:6px;font-family:monospace">none<br>0px</div>
-        </div>
-        <div style="text-align:center">
-          <div style="width:48px;height:48px;background:#0066FF;border-radius:4px;display:inline-block"></div>
-          <div style="font-size:10px;margin-top:6px;font-family:monospace">xsmall<br>4px</div>
-        </div>
-        <div style="text-align:center">
-          <div style="width:48px;height:48px;background:#0066FF;border-radius:8px;display:inline-block"></div>
-          <div style="font-size:10px;margin-top:6px;font-family:monospace">small<br>8px</div>
-        </div>
-        <div style="text-align:center">
-          <div style="width:48px;height:48px;background:#0066FF;border-radius:12px;display:inline-block"></div>
-          <div style="font-size:10px;margin-top:6px;font-family:monospace">medium<br>12px</div>
-        </div>
-        <div style="text-align:center">
-          <div style="width:48px;height:48px;background:#0066FF;border-radius:16px;display:inline-block"></div>
-          <div style="font-size:10px;margin-top:6px;font-family:monospace">large<br>16px</div>
-        </div>
-        <div style="text-align:center">
-          <div style="width:48px;height:48px;background:#0066FF;border-radius:24px;display:inline-block"></div>
-          <div style="font-size:10px;margin-top:6px;font-family:monospace">xlarge<br>24px</div>
-        </div>
-        <div style="text-align:center">
-          <div style="width:72px;height:48px;background:#0066FF;border-radius:9999px;display:inline-block"></div>
-          <div style="font-size:10px;margin-top:6px;font-family:monospace">pill<br>9999px</div>
-        </div>
-        <div style="text-align:center">
-          <div style="width:48px;height:48px;background:#0066FF;border-radius:50%;display:inline-block"></div>
-          <div style="font-size:10px;margin-top:6px;font-family:monospace">circle<br>50%</div>
+    <h2>Foundations</h2>
+    <p>Radius, Shadow, Motion, Z-index 등 컴포넌트 구성에 필요한 기반 토큰입니다. <code>@seed-design/css</code> 기반.</p>
+    <div class="accordion">
+      <div class="acc-item open">
+        <button class="acc-header">Spacing — <code>--seed-dimension-x*</code> (4px 배수) <span class="acc-icon">▼</span></button>
+        <div class="acc-body">
+          <table>
+            <tr><th>토큰</th><th>값</th><th>용도</th></tr>
+            <tr><td><code>--seed-dimension-x1</code></td><td>4px</td><td>아이콘 내부 미세 간격</td></tr>
+            <tr><td><code>--seed-dimension-x2</code></td><td>8px</td><td>칩 내부, 아이콘-텍스트 사이</td></tr>
+            <tr><td><code>--seed-dimension-x3</code></td><td>12px</td><td>컴포넌트 기본 수직 간격</td></tr>
+            <tr><td><code>--seed-dimension-x4</code></td><td>16px</td><td>버튼 좌우 패딩, 카드 내부</td></tr>
+            <tr><td><code>--seed-dimension-x5</code></td><td>20px</td><td>모바일 좌우 gutter</td></tr>
+            <tr><td><code>--seed-dimension-x6</code></td><td>24px</td><td>섹션 상하 내부</td></tr>
+            <tr><td><code>--seed-dimension-x8</code></td><td>32px</td><td>섹션 간 간격</td></tr>
+            <tr><td><code>--seed-dimension-x12</code></td><td>48px</td><td>버튼 medium 높이, 탭렛 gutter</td></tr>
+            <tr><td><code>--seed-dimension-x14</code></td><td>56px</td><td>버튼 large 높이</td></tr>
+            <tr><td><code>--seed-dimension-x16</code></td><td>64px</td><td>데스크탑 gutter</td></tr>
+          </table>
         </div>
       </div>
-  
-      <h3>Z-index 레이어</h3>
-      <div style="display:flex; flex-direction:column; gap:4px; margin:16px 0;">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-tooltip</div>
-          <div style="background:#0066FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:200px">600 — 툴팁</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-toast</div>
-          <div style="background:#1A75FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:185px">500 — 토스트</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-modal</div>
-          <div style="background:#3385FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:170px">400 — 모달</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-overlay</div>
-          <div style="background:#69A5FF;color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:155px">300 — 딤 오버레이</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-dropdown</div>
-          <div style="background:#9EC5FF;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:140px">200 — 드롭다운</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-gnb</div>
-          <div style="background:#C9DEFE;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:125px">100 — GNB</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-sticky</div>
-          <div style="background:#EAF2FE;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:110px">10 — sticky</div>
-        </div>
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div style="width:80px;text-align:right;font-family:monospace;font-size:11px;color:#888">--z-base</div>
-          <div style="background:#F4F4F5;color:#171719;font-size:11px;font-weight:600;padding:4px 12px;border-radius:4px;width:95px">0 — 기본</div>
-        </div>
-      </div>
-  
-      <h3>Motion (전환 속도 + 이징)</h3>
-      <table>
-        <tr><th>토큰</th><th>값</th><th>용도</th></tr>
-        <tr><td><code>--duration-instant</code></td><td>50ms</td><td>즉각 반응 (ripple)</td></tr>
-        <tr><td><code>--duration-fast</code></td><td>100ms</td><td>버튼 hover, 색상 전환</td></tr>
-        <tr><td><code>--duration-normal</code></td><td>200ms</td><td>기본 트랜지션</td></tr>
-        <tr><td><code>--duration-slow</code></td><td>300ms</td><td>모달 등장, 사이드바 슬라이드</td></tr>
-        <tr><td><code>--duration-gentle</code></td><td>500ms</td><td>타이포 크기 전환 (현재 적용)</td></tr>
-        <tr><td><code>--ease-default</code></td><td>cubic-bezier(.2,0,0,1)</td><td>일반 전환</td></tr>
-        <tr><td><code>--ease-out</code></td><td>cubic-bezier(0,0,0,1)</td><td>등장 (나타날 때)</td></tr>
-        <tr><td><code>--ease-in</code></td><td>cubic-bezier(.2,0,1,1)</td><td>퇴장 (사라질 때)</td></tr>
-        <tr><td><code>--ease-spring</code></td><td>cubic-bezier(.34,1.56,.64,1)</td><td>스프링 (통통 튐)</td></tr>
-      </table>
-  
-      <h3>Component Sizing (컴포넌트 높이)</h3>
-      <div style="display:flex; flex-direction:column; gap:8px; margin:16px 0;">
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div style="width:100px;font-size:11px;color:#888;font-family:monospace">Button</div>
-          <div style="display:flex;gap:6px;align-items:flex-end">
-            <div style="background:#0066FF;border-radius:8px;width:60px;height:36px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;font-weight:600">sm 36</div>
-            <div style="background:#0066FF;border-radius:8px;width:72px;height:48px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:600">md 48</div>
-            <div style="background:#0066FF;border-radius:8px;width:84px;height:56px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:600">lg 56</div>
-          </div>
-        </div>
-        <div style="display:flex; align-items:center; gap:12px; margin-top:4px;">
-          <div style="width:100px;font-size:11px;color:#888;font-family:monospace">Input</div>
-          <div style="display:flex;gap:6px;align-items:flex-end">
-            <div style="border:1.5px solid #0066FF;border-radius:8px;width:80px;height:36px;display:flex;align-items:center;padding:0 10px;font-size:10px;color:#888">sm 36px</div>
-            <div style="border:1.5px solid #0066FF;border-radius:8px;width:100px;height:48px;display:flex;align-items:center;padding:0 12px;font-size:11px;color:#888">md 48px</div>
-          </div>
-        </div>
-        <div style="display:flex; align-items:center; gap:12px; margin-top:4px;">
-          <div style="width:100px;font-size:11px;color:#888;font-family:monospace">GNB</div>
-          <div style="display:flex;gap:6px;align-items:flex-end">
-            <div style="background:#F4F4F5;border-radius:6px;width:100px;height:56px;display:flex;align-items:center;padding:0 12px;font-size:10px;color:#888">Mobile 56px</div>
-            <div style="background:#F4F4F5;border-radius:6px;width:140px;height:64px;display:flex;align-items:center;padding:0 14px;font-size:11px;color:#888">Desktop 64px</div>
+      <div class="acc-item">
+        <button class="acc-header">Motion — <code>--seed-duration-*</code> / <code>--seed-timing-function-*</code> <span class="acc-icon">▼</span></button>
+        <div class="acc-body">
+          <table>
+            <tr><th>토큰</th><th>용도</th></tr>
+            <tr><td><code>--seed-duration-color-transition</code></td><td>색상 전환 (버튼 hover)</td></tr>
+            <tr><td><code>--seed-duration-pressed-scale</code></td><td>버튼 눌림 스케일 애니메이션</td></tr>
+            <tr><td><code>--seed-timing-function-easing</code></td><td>일반 ease 곡선</td></tr>
+            <tr><td><code>--seed-timing-function-pressed-scale</code></td><td>눌림 효과 곡선</td></tr>
+          </table>
+          <div class="callout info" style="margin-top:12px">
+            <span class="callout-icon">💡</span>
+            <div class="callout-body">Seed 버튼은 hover 시 배경색 전환 + active 시 <code>scale: 0.97</code> 눌림 효과가 자동으로 적용됩니다.</div>
           </div>
         </div>
       </div>
-  
-      <h3>Shadow (5단계)</h3>
-      <div style="display:flex; gap:16px; flex-wrap:wrap; margin:16px 0;">
-        <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 1px 2px -1px rgba(23,23,23,.10);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">xsmall</div>
-        <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 4px 6px -1px rgba(23,23,23,.06),0px 2px 4px -2px rgba(23,23,23,.06);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">small</div>
-        <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 10px 15px -3px rgba(23,23,23,.07),0px 4px 6px -2px rgba(23,23,23,.07);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">medium</div>
-        <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 16px 24px -6px rgba(23,23,23,.08),0px 6px 10px -4px rgba(23,23,23,.08);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">large</div>
-        <div style="width:72px;height:72px;background:#fff;border-radius:12px;box-shadow:0px 24px 38px -10px rgba(23,23,23,.12),0px 10px 15px -5px rgba(23,23,23,.10);display:flex;align-items:center;justify-content:center;font-size:10px;color:#888;font-family:monospace">xlarge</div>
+      <div class="acc-item">
+        <button class="acc-header">Font Weight — <code>--seed-font-weight-*</code> <span class="acc-icon">▼</span></button>
+        <div class="acc-body">
+          <table>
+            <tr><th>토큰</th><th>값</th><th>용도</th></tr>
+            <tr><td><code>--seed-font-weight-regular</code></td><td>400</td><td>본문</td></tr>
+            <tr><td><code>--seed-font-weight-medium</code></td><td>500</td><td>중간 강조</td></tr>
+            <tr><td><code>--seed-font-weight-semibold</code></td><td>600</td><td>헤딩, 서브타이틀</td></tr>
+            <tr><td><code>--seed-font-weight-bold</code></td><td>700</td><td>버튼, 타이틀</td></tr>
+          </table>
+        </div>
       </div>
-    </section>
+      <div class="acc-item">
+        <button class="acc-header">Dark Mode — <code>data-seed-color-scheme</code> <span class="acc-icon">▼</span></button>
+        <div class="acc-body">
+          <p style="font-size:13px;color:#555;line-height:1.7">Seed는 다크모드를 기본 지원합니다. HTML attribute 하나로 전환됩니다.</p>
+          <pre><code><span class="cm">&lt;!-- 시스템 설정 자동 따라가기 --&gt;</span>
+&lt;<span class="ck">html</span> <span class="cv">data-seed</span> <span class="cv">data-seed-color-scheme</span>=<span class="cs">"system"</span>&gt;
+
+<span class="cm">&lt;!-- 강제 라이트 --&gt;</span>
+&lt;<span class="ck">html</span> <span class="cv">data-seed</span> <span class="cv">data-seed-color-scheme</span>=<span class="cs">"light"</span>&gt;
+
+<span class="cm">&lt;!-- JS로 전환 --&gt;</span>
+<span class="ck">document</span>.documentElement.setAttribute(<span class="cs">"data-seed-color-scheme"</span>, <span class="cs">"dark"</span>);</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
   <section id="how">
@@ -1894,21 +1660,21 @@
         <div class="file-row">
           <span class="file-icon">🎨</span>
           <div>
-            <div class="file-name-row"><span class="file-name">tokens.css</span><span class="badge blue">CSS</span></div>
+            <div class="file-name-row"><span class="file-name">seed-tokens.css</span><span class="badge blue">CSS</span></div>
             <p class="file-desc">Seed Design 기반 시맨틱 토큰 전체. 컬러, 타이포그래피 16레벨, 그림자, 라디우스.</p>
           </div>
         </div>
         <div class="file-row">
           <span class="file-icon">⚙️</span>
           <div>
-            <div class="file-name-row"><span class="file-name">tokens.css</span><span class="badge orange">Tailwind v4</span></div>
+            <div class="file-name-row"><span class="file-name">seed-tokens.css</span><span class="badge orange">Tailwind v4</span></div>
             <p class="file-desc">Tailwind v4 CSS 네이티브 설정 포함. <code>@theme</code>으로 브레이크포인트 정의, <code>@utility</code>로 컨테이너 패턴. <code>tailwind.config.js</code> 없음.</p>
           </div>
         </div>
         <div class="file-row">
           <span class="file-icon">🔧</span>
           <div>
-            <div class="file-name-row"><span class="file-name">generate-theme.js</span><span class="badge orange">Node.js</span></div>
+            <div class="file-name-row"><span class="file-name">generate-seed-brand.js</span><span class="badge orange">Node.js</span></div>
             <p class="file-desc">Primary/Secondary hex를 입력하면 HSL 계산으로 13단계 컬러 스케일을 생성하고 theme.css를 출력합니다.</p>
           </div>
         </div>
@@ -1922,7 +1688,7 @@
       </div>
   
       <h3>CSS 로드 순서</h3>
-      <pre><code><span class="ct">&lt;link</span> rel="stylesheet" href="<span class="cs">./tokens.css</span>"<span class="ct">&gt;</span>     <span class="cm">&lt;!-- 1. Seed Design 기본 토큰 --&gt;</span>
+      <pre><code><span class="ct">&lt;link</span> rel="stylesheet" href="<span class="cs">./seed-tokens.css</span>"<span class="ct">&gt;</span>     <span class="cm">&lt;!-- 1. Seed Design 기본 토큰 --&gt;</span>
   <span class="ct">&lt;link</span> rel="stylesheet" href="<span class="cs">./theme.css</span>"<span class="ct">&gt;</span>      <span class="cm">&lt;!-- 2. 프로젝트 Primary/Secondary --&gt;</span>
   <span class="ct">&lt;link</span> rel="stylesheet" href="<span class="cs">./style.css</span>"<span class="ct">&gt;</span>      <span class="cm">&lt;!-- 3. 프로젝트 커스텀 --&gt;</span></code></pre>
     </section>
@@ -1954,19 +1720,19 @@
           <p style="font-size:13px; color:#666; margin-bottom:10px">클론한 폴더의 <code>templates/</code> 안 파일들을 프로젝트에 복사합니다.</p>
           <div class="file-tree">
   <span class="ft-dir">axpublish-init/templates/</span>
-  ├── <span class="ft-file">tokens.css</span>               <span class="ft-comment">← 디자인 토큰 전체</span>
+  ├── <span class="ft-file">seed-tokens.css</span>               <span class="ft-comment">← 디자인 토큰 전체</span>
   ├── <span class="ft-file">axpublish-orchestrator.md</span>  <span class="ft-comment">← AI 팀 운영 지침서</span>
   ├── <span class="ft-file">responsive-rules.md</span>       <span class="ft-comment">← 반응형 규칙</span>
   ├── <span class="ft-file">figma-semantic-variables.json</span> <span class="ft-comment">← Figma Variable 템플릿</span>
-  └── <span class="ft-file">generate-theme.js</span>          <span class="ft-comment">← 브랜드 컬러 생성 스크립트</span>
+  └── <span class="ft-file">generate-seed-brand.js</span>          <span class="ft-comment">← 브랜드 컬러 생성 스크립트</span>
           </div>
         </div>
   
         <div class="github-step">
           <div class="github-step-title"><span class="github-step-num">4</span>브랜드 컬러 적용</div>
           <div class="github-cmd">
-            <span>node generate-seed-brand.js --primary "#0066FF" --output ./seed-tokens.css</span>
-            <button class="github-cmd-copy" onclick="navigator.clipboard.writeText('node generate-seed-brand.js --primary "#0066FF" --output ./seed-tokens.css');this.textContent='✓';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+            <span>node generate-seed-brand.js --primary "#0066FF" --output ./seed-seed-tokens.css</span>
+            <button class="github-cmd-copy" onclick="navigator.clipboard.writeText('node generate-seed-brand.js --primary "#0066FF" --output ./seed-seed-tokens.css');this.textContent='✓';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
           </div>
         </div>
   
