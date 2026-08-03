@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>axpublish — Documentation</title>
-  <link rel="stylesheet" href="seed.css">
+  <link rel="stylesheet" href="./seed-tokens.css">
+  <link rel="stylesheet" href="https://unpkg.com/@seed-design/css/dist/index.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -569,6 +570,74 @@
     }
     .acc-body[hidden], .acc-body:not(.active) {
       display: none !important;
+    }
+
+  
+    /* ── M3 UNDERLINE INDICATOR TABS (하단 선 인디케이터 탭 스타일) ── */
+    .tab-list, #mcp-tab-group, #phase-tab-group, #char-tab-group, #journey-tab-group {
+      display: flex !important;
+      gap: 20px !important;
+      border-bottom: 2px solid var(--m3-outline-variant, #E1E3E1) !important;
+      padding: 0 4px !important;
+      margin-bottom: 20px !important;
+      overflow-x: auto !important;
+      scrollbar-width: none !important;
+      width: 100% !important;
+      background: transparent !important;
+    }
+
+    .tab-btn, .char-tab-btn, .journey-tab-btn, .phase-tab-btn, .mcp-tab-btn {
+      background: transparent !important;
+      border: none !important;
+      border-bottom: 3px solid transparent !important;
+      border-radius: 0 !important;
+      padding: 10px 4px 12px 4px !important;
+      height: auto !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      color: var(--m3-on-surface-variant, #444746) !important;
+      cursor: pointer !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+      min-width: max-content !important;
+      transition: all 0.2s !important;
+      line-height: 1.2 !important;
+    }
+
+    .tab-btn:hover, .char-tab-btn:hover, .journey-tab-btn:hover, .phase-tab-btn:hover, .mcp-tab-btn:hover {
+      color: var(--m3-primary, #0B57D0) !important;
+      background: transparent !important;
+    }
+
+    .tab-btn.active, .char-tab-btn.active, .journey-tab-btn.active, .phase-tab-btn.active, .mcp-tab-btn.active {
+      border-bottom-color: var(--m3-primary, #0B57D0) !important;
+      color: var(--m3-primary, #0B57D0) !important;
+      font-weight: 700 !important;
+      background: transparent !important;
+    }
+
+    /* ── Seed Color Tokens Fallback 바인딩 ── */
+    :root {
+      --seed-color-fg-neutral: #121212;
+      --seed-color-fg-neutral-muted: #424242;
+      --seed-color-fg-neutral-subtle: #616161;
+      --seed-color-fg-neutral-inverted: #FFFFFF;
+      --seed-color-fg-brand: #0066FF;
+      --seed-color-fg-disabled: #9E9E9E;
+      --seed-color-fg-positive: #388E3C;
+      --seed-color-fg-critical: #C62828;
+      --seed-color-fg-warning: #F57F17;
+      
+      --seed-color-bg-layer-default: #FFFFFF;
+      --seed-color-bg-layer-fill: #F5F5F5;
+      --seed-color-bg-layer-floating: #FFFFFF;
+      --seed-color-bg-layer-basement: #EBEBEB;
+      --seed-color-bg-brand-solid: #0066FF;
+      --seed-color-bg-brand-solid-pressed: #005EEB;
+      
+      --seed-color-stroke-neutral-subtle: rgba(0,0,0,0.08);
+      --seed-color-stroke-neutral-muted: rgba(0,0,0,0.12);
+      --seed-color-stroke-neutral-solid: #424242;
     }
 
   </style>
@@ -1900,60 +1969,18 @@ axpublish / Seed (Modes: Light / Dark)
     }
   }
 
+  
   function updateMcpTabs(activeIndex) {
     const tabGroup = document.getElementById('mcp-tab-group');
     if (!tabGroup) return;
     const tabs = tabGroup.querySelectorAll('.mcp-tab-btn');
     tabs.forEach((tab, idx) => {
-      if (idx === activeIndex) {
-        tab.style.background = mcpColors[idx] || '#7C3AED';
-        tab.style.borderColor = mcpColors[idx] || '#7C3AED';
-        tab.style.color = '#ffffff';
-        tab.classList.add('active');
-      } else {
-        tab.style.background = '#ffffff';
-        tab.style.borderColor = '#e5e7eb';
-        tab.style.color = '#4b5563';
-        tab.classList.remove('active');
-      }
+      tab.style.background = '';
+      tab.style.borderColor = '';
+      tab.style.color = '';
+      if (idx === activeIndex) { tab.classList.add('active'); }
+      else { tab.classList.remove('active'); }
     });
-  }
-
-  
-  let currentPhaseIndex = 0;
-  const phaseColors = ['#4338CA', '#7C3AED', '#059669', '#EA580C', '#BE123C', '#2563EB'];
-
-  function phaseSlideGo(index) {
-    const slider = document.getElementById('phase-slider');
-    if (!slider) return;
-    const slides = slider.querySelectorAll('.phase-slide');
-    if (index < 0) index = 0;
-    if (index >= slides.length) index = slides.length - 1;
-    currentPhaseIndex = index;
-    
-    const targetSlide = slides[index];
-    slider.scrollTo({
-      left: targetSlide.offsetLeft - slider.offsetLeft,
-      behavior: 'smooth'
-    });
-    updatePhaseTabs(index);
-  }
-
-  function phaseSlideNav(direction) {
-    phaseSlideGo(currentPhaseIndex + direction);
-  }
-
-  function phaseOnScroll() {
-    const slider = document.getElementById('phase-slider');
-    if (!slider) return;
-    const slides = slider.querySelectorAll('.phase-slide');
-    const scrollLeft = slider.scrollLeft;
-    const width = slider.clientWidth;
-    const index = Math.round(scrollLeft / width);
-    if (index !== currentPhaseIndex && index >= 0 && index < slides.length) {
-      currentPhaseIndex = index;
-      updatePhaseTabs(index);
-    }
   }
 
   function updatePhaseTabs(activeIndex) {
@@ -1961,56 +1988,12 @@ axpublish / Seed (Modes: Light / Dark)
     if (!tabGroup) return;
     const tabs = tabGroup.querySelectorAll('.phase-tab-btn');
     tabs.forEach((tab, idx) => {
-      if (idx === activeIndex) {
-        tab.style.background = phaseColors[idx] || '#4338CA';
-        tab.style.borderColor = phaseColors[idx] || '#4338CA';
-        tab.style.color = '#ffffff';
-        tab.classList.add('active');
-      } else {
-        tab.style.background = '#ffffff';
-        tab.style.borderColor = '#e5e7eb';
-        tab.style.color = '#4b5563';
-        tab.classList.remove('active');
-      }
+      tab.style.background = '';
+      tab.style.borderColor = '';
+      tab.style.color = '';
+      if (idx === activeIndex) { tab.classList.add('active'); }
+      else { tab.classList.remove('active'); }
     });
-  }
-
-  
-  // ── 캐릭터 슬라이더 ──
-  let currentCharIndex = 0;
-  const charColors = ['#4338CA', '#7C3AED', '#065F46', '#C2410C', '#BE123C'];
-
-  function charSlideGo(index) {
-    const slider = document.getElementById('char-slider');
-    if (!slider) return;
-    const slides = slider.querySelectorAll('.char-slide');
-    if (index < 0) index = 0;
-    if (index >= slides.length) index = slides.length - 1;
-    currentCharIndex = index;
-    
-    const targetSlide = slides[index];
-    slider.scrollTo({
-      left: targetSlide.offsetLeft - slider.offsetLeft,
-      behavior: 'smooth'
-    });
-    updateCharTabs(index);
-  }
-
-  function charSlideNav(direction) {
-    charSlideGo(currentCharIndex + direction);
-  }
-
-  function charOnScroll() {
-    const slider = document.getElementById('char-slider');
-    if (!slider) return;
-    const slides = slider.querySelectorAll('.char-slide');
-    const scrollLeft = slider.scrollLeft;
-    const width = slider.clientWidth;
-    const index = Math.round(scrollLeft / width);
-    if (index !== currentCharIndex && index >= 0 && index < slides.length) {
-      currentCharIndex = index;
-      updateCharTabs(index);
-    }
   }
 
   function updateCharTabs(activeIndex) {
@@ -2018,55 +2001,12 @@ axpublish / Seed (Modes: Light / Dark)
     if (!tabGroup) return;
     const tabs = tabGroup.querySelectorAll('.char-tab-btn');
     tabs.forEach((tab, idx) => {
-      if (idx === activeIndex) {
-        tab.style.background = charColors[idx] || '#4338CA';
-        tab.style.borderColor = charColors[idx] || '#4338CA';
-        tab.style.color = '#ffffff';
-        tab.classList.add('active');
-      } else {
-        tab.style.background = '#ffffff';
-        tab.style.borderColor = '#e5e7eb';
-        tab.style.color = '#4b5563';
-        tab.classList.remove('active');
-      }
+      tab.style.background = '';
+      tab.style.borderColor = '';
+      tab.style.color = '';
+      if (idx === activeIndex) { tab.classList.add('active'); }
+      else { tab.classList.remove('active'); }
     });
-  }
-
-  // ── 여정 11스텝 슬라이더 ──
-  let currentJourneyIndex = 0;
-  const journeyColors = ['#16A34A', '#4338CA', '#7C3AED', '#16A34A', '#7C3AED', '#059669', '#16A34A', '#EA580C', '#BE123C', '#16A34A', '#BE123C'];
-
-  function journeySlideGo(index) {
-    const slider = document.getElementById('journey-slider');
-    if (!slider) return;
-    const slides = slider.querySelectorAll('.journey-slide');
-    if (index < 0) index = 0;
-    if (index >= slides.length) index = slides.length - 1;
-    currentJourneyIndex = index;
-    
-    const targetSlide = slides[index];
-    slider.scrollTo({
-      left: targetSlide.offsetLeft - slider.offsetLeft,
-      behavior: 'smooth'
-    });
-    updateJourneyTabs(index);
-  }
-
-  function journeySlideNav(direction) {
-    journeySlideGo(currentJourneyIndex + direction);
-  }
-
-  function journeyOnScroll() {
-    const slider = document.getElementById('journey-slider');
-    if (!slider) return;
-    const slides = slider.querySelectorAll('.journey-slide');
-    const scrollLeft = slider.scrollLeft;
-    const width = slider.clientWidth;
-    const index = Math.round(scrollLeft / width);
-    if (index !== currentJourneyIndex && index >= 0 && index < slides.length) {
-      currentJourneyIndex = index;
-      updateJourneyTabs(index);
-    }
   }
 
   function updateJourneyTabs(activeIndex) {
@@ -2074,23 +2014,15 @@ axpublish / Seed (Modes: Light / Dark)
     if (!tabGroup) return;
     const tabs = tabGroup.querySelectorAll('.journey-tab-btn');
     tabs.forEach((tab, idx) => {
-      if (idx === activeIndex) {
-        tab.style.background = journeyColors[idx] || '#16A34A';
-        tab.style.borderColor = journeyColors[idx] || '#16A34A';
-        tab.style.color = '#ffffff';
-        tab.classList.add('active');
-      } else {
-        tab.style.background = '#ffffff';
-        tab.style.borderColor = '#e5e7eb';
-        tab.style.color = '#4b5563';
-        tab.classList.remove('active');
-      }
+      tab.style.background = '';
+      tab.style.borderColor = '';
+      tab.style.color = '';
+      if (idx === activeIndex) { tab.classList.add('active'); }
+      else { tab.classList.remove('active'); }
     });
   }
 
-  
-  // ── 본문 탭 전환 ──
-  function switchTab(btn, panelId) {
+function switchTab(btn, panelId) {
     const parent = btn.parentElement;
     if (parent) {
       parent.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
