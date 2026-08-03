@@ -201,7 +201,7 @@
 /* ─── 브레이크포인트 전환 시 스르륵 변환 ─────────────────── */
 h1, h2, h3, h4, h5, h6,
 p, span, a, li, button, label, caption {
-  transition: font-size 0.25s ease;
+  transition: font-size var(--duration-gentle) var(--ease-default);
 }
 
 /*
@@ -379,14 +379,23 @@ p, span, a, li, button, label, caption {
   --color-inverse-background: #333438; /* 이롬넷 레퍼런스 실측값으로 갱신 (기존 #1b1c1e에서 변경) */
   --color-inverse-label:      #f7f7f8;
 
-  /* Accent Background */
-  --color-accent-bg-redorange: #ff5e00;
-  --color-accent-bg-lime:      #58cf04;
-  --color-accent-bg-cyan:      #00bdde;
-  --color-accent-bg-lightblue: #00aeff;
-  --color-accent-bg-violet:    #6541f2;
-  --color-accent-bg-purple:    #cb59ff;
-  --color-accent-bg-pink:      #f553da;
+  /* Accent Background — pale tint (섹션 배경, 뱃지 배경용) */
+  --color-accent-bg-redorange: #fff0ec;
+  --color-accent-bg-lime:      #f0fbea;
+  --color-accent-bg-cyan:      #e6fafa;
+  --color-accent-bg-lightblue: #eaf3ff;
+  --color-accent-bg-violet:    #f3eeff;
+  --color-accent-bg-purple:    #f8eeff;
+  --color-accent-bg-pink:      #ffecf5;
+
+  /* Accent Background Vivid — 진한 배경색이 필요한 경우 (ex. 다크 뱃지) */
+  --color-accent-vivid-redorange: #ff5e00;
+  --color-accent-vivid-lime:      #58cf04;
+  --color-accent-vivid-cyan:      #00bdde;
+  --color-accent-vivid-lightblue: #00aeff;
+  --color-accent-vivid-violet:    #6541f2;
+  --color-accent-vivid-purple:    #cb59ff;
+  --color-accent-vivid-pink:      #f553da;
 
   /* Accent Foreground */
   --color-accent-fg-red:       #e52222;
@@ -433,15 +442,99 @@ p, span, a, li, button, label, caption {
    *  6. FRAME TOKENS
    * ════════════════════════════════════════════════════════ */
 
-  --radius-small:  12px;
-  --radius-medium: 14px;
-  --radius-large:  16px;
-  --radius-xlarge: 20px;
+  /* Radius — 7단계 */
+  --radius-none:   0px;
+  --radius-xsmall: 4px;   /* 뱃지, 태그 */
+  --radius-small:  8px;   /* 버튼 (기존 12→8 조정), 인풋 */
+  --radius-medium: 12px;  /* 카드, 모달 */
+  --radius-large:  16px;  /* 바텀시트, 큰 카드 */
+  --radius-xlarge: 24px;  /* 팝업, 다이얼로그 */
+  --radius-pill:   9999px; /* 칩, 풀 둥근 버튼 */
+  --radius-circle: 50%;   /* 아바타, FAB */
 
-  /* Stroke / Border Width (신규 — 이롬넷 레퍼런스에서 발견, 기존 키트엔 없었음) */
-  --stroke-weight-1: 1px;
+  /* Stroke / Border Width */
+  --stroke-weight-hairline: 0.5px;
+  --stroke-weight-1:        1px;   /* 기본 테두리 */
+  --stroke-weight-2:        2px;   /* 포커스 링, 강조 */
+  --stroke-weight-4:        4px;   /* 인디케이터, 구분선 */
 
-  /* 컴포넌트 Spacing */
+  /* ════════════════════════════════════════════════════════
+   *  7. Z-INDEX SCALE
+   *  레이어 충돌 없이 쌓을 수 있는 기준값.
+   *  컴포넌트 코드에서 직접 쓰거나 Tailwind z-[var(--z-*)]로 참조.
+   * ════════════════════════════════════════════════════════ */
+
+  --z-base:       0;
+  --z-raised:     1;    /* 카드 hover elevation */
+  --z-sticky:     10;   /* sticky 헤더, 사이드바 */
+  --z-gnb:        100;  /* GNB / fixed 네비게이션 */
+  --z-dropdown:   200;  /* 드롭다운, 셀렉트 팝업 */
+  --z-overlay:    300;  /* 모달 딤 오버레이 */
+  --z-modal:      400;  /* 모달 / 바텀시트 */
+  --z-toast:      500;  /* 토스트 / 스낵바 */
+  --z-tooltip:    600;  /* 툴팁 */
+
+  /* ════════════════════════════════════════════════════════
+   *  8. COMPONENT SIZING
+   *  버튼·인풋·GNB 등 고정 컴포넌트 높이.
+   *  하드코딩 대신 이 변수를 참조해 일관성 유지.
+   * ════════════════════════════════════════════════════════ */
+
+  /* Button height */
+  --size-button-sm: 36px;  /* 작은 버튼 (인라인, 태그 내부) */
+  --size-button-md: 48px;  /* 기본 버튼 */
+  --size-button-lg: 56px;  /* 크고 중요한 CTA */
+
+  /* Input / Form */
+  --size-input-sm:  36px;  /* 소형 인풋 */
+  --size-input-md:  48px;  /* 기본 인풋 */
+  --size-input-lg:  56px;  /* 텍스트에리어 첫 행 */
+
+  /* Navigation */
+  --size-gnb-mobile:  56px;  /* 모바일 GNB 높이 */
+  --size-gnb-desktop: 64px;  /* 데스크탑 GNB 높이 */
+  --size-tab-bar:     56px;  /* 모바일 하단 탭바 */
+
+  /* Icon */
+  --size-icon-sm: 16px;
+  --size-icon-md: 20px;
+  --size-icon-lg: 24px;
+  --size-icon-xl: 32px;
+
+  /* Avatar */
+  --size-avatar-xs: 24px;
+  --size-avatar-sm: 32px;
+  --size-avatar-md: 40px;
+  --size-avatar-lg: 56px;
+  --size-avatar-xl: 72px;
+
+  /* ════════════════════════════════════════════════════════
+   *  9. MOTION (Transition)
+   *  모든 인터랙션 애니메이션의 기준값.
+   *  CSS: transition: background var(--duration-normal) var(--ease-default);
+   * ════════════════════════════════════════════════════════ */
+
+  /* Duration */
+  --duration-instant: 50ms;   /* 즉각 반응 (ripple 등) */
+  --duration-fast:    100ms;  /* 버튼 hover, 색상 전환 */
+  --duration-normal:  200ms;  /* 기본 트랜지션 */
+  --duration-slow:    300ms;  /* 모달 등장, 사이드바 슬라이드 */
+  --duration-gentle:  500ms;  /* 타이포 크기 전환 (현재 적용됨) */
+
+  /* Easing */
+  --ease-default:  cubic-bezier(0.20, 0.00, 0.00, 1.00);  /* 일반 전환 */
+  --ease-in:       cubic-bezier(0.20, 0.00, 1.00, 1.00);  /* 퇴장 (사라질 때) */
+  --ease-out:      cubic-bezier(0.00, 0.00, 0.00, 1.00);  /* 등장 (나타날 때) */
+  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1.00);  /* 스프링 (통통 튐) */
+  --ease-linear:   linear;
+
+  /* Spacing (기존 유지 + 보완) */
   --space-gap-normal:  20px;
+  --space-gap-large:   32px;
+  --space-section-v:   80px;  /* 섹션 상하 패딩 (Desktop) */
+  --space-section-v-m: 48px;  /* 섹션 상하 패딩 (Mobile) */
   --space-card-tiny:   6px;
+  --space-card-sm:     12px;
+  --space-card-md:     20px;
+  --space-card-lg:     32px;
 }
