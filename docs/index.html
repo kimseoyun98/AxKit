@@ -81,26 +81,7 @@
   <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/component/tabs.css">
   <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/component/dialog.css">
 
-<style id="seed-component-fix">
-  /* Seed BEM 원본 컴포넌트 깨짐 보정 토큰 */
-  :root {
-    --seed-color-bg-brand-solid: #0066FF;
-    --seed-color-bg-brand-solid-pressed: #005EEB;
-    --seed-color-fg-neutral-inverted: #FFFFFF;
-    --seed-color-bg-neutral-solid: #E5E7EB;
-    --seed-color-bg-neutral-solid-pressed: #D1D5DB;
-    --seed-color-fg-neutral: #111827;
-    --seed-color-bg-critical-solid: #DC2626;
-    --seed-color-stroke-brand-solid: #0066FF;
-    --seed-color-stroke-neutral-subtle: #E5E7EB;
-    --seed-color-fg-brand: #0066FF;
-    --seed-radius-r2: 8px;
-    --seed-radius-r3: 12px;
-    --seed-radius-full: 9999px;
-    --seed-dimension-x3: 12px;
-    --seed-dimension-x4: 16px;
-  }
-</style>
+
 
 
 
@@ -110,235 +91,140 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@seed-design/css@2.3.0/component/switch.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@seed-design/css@2.3.0/component/checkbox.css">
 
-<style id="seed-full-tokens-inline">
-/**
- * axpublish v2.0 — seed-seed-tokens.css
- * 당근마켓 @seed-design/css 2.3.0 원본 8대 Foundations (Color, Typography, Spacing, Radius, Motion, Shadow, Scale, Breakpoint) 100% 완전 반영
- */
-
-:root {
-  /* ── INCLUSIVE DESIGN (접근성 & 포용적 디자인 규칙) ── */
-  --seed-touch-target-min: 44px;
-  --seed-touch-target-compact: 24px;
-  --seed-apca-contrast-text-recommended: 90;
-  --seed-apca-contrast-text-min: 75;
-  --seed-apca-contrast-disabled: 30;
-
-  /* ── 1. SPACING & DIMENSION (x0_5 ~ x16) ── */
-  --seed-dimension-x0_5: 2px;
-  --seed-dimension-x1: 4px;
-  --seed-dimension-x1_5: 6px;
-  --seed-dimension-x2: 8px;
-  --seed-dimension-x2_5: 10px;
-  --seed-dimension-x3: 12px;
-  --seed-dimension-x3_5: 14px;
-  --seed-dimension-x4: 16px;
-  --seed-dimension-x4_5: 18px;
-  --seed-dimension-x5: 20px;
-  --seed-dimension-x6: 24px;
-  --seed-dimension-x7: 28px;
-  --seed-dimension-x8: 32px;
-  --seed-dimension-x9: 36px;
-  --seed-dimension-x10: 40px;
-  --seed-dimension-x12: 48px;
-  --seed-dimension-x13: 52px;
-  --seed-dimension-x14: 56px;
-  --seed-dimension-x16: 64px;
-
-  /* ── 2. RADIUS (r0_5 ~ r6, full) ── */
-  --seed-radius-r0_5: 2px;
-  --seed-radius-r1: 4px;
-  --seed-radius-r1_5: 6px;
-  --seed-radius-r2: 8px;
-  --seed-radius-r2_5: 10px;
-  --seed-radius-r3: 12px;
-  --seed-radius-r3_5: 14px;
-  --seed-radius-r4: 16px;
-  --seed-radius-r5: 20px;
-  --seed-radius-r6: 24px;
-  --seed-radius-full: 9999px;
-
-  /* ── 3. MOTION DURATION & TIMING ── */
-  --seed-duration-d1: 100ms;
-  --seed-duration-d2: 150ms;
-  --seed-duration-d3: 200ms;
-  --seed-duration-d4: 300ms;
-  --seed-duration-d5: 400ms;
-  --seed-duration-d6: 500ms;
-  --seed-timing-function-enter: cubic-bezier(0, 0, 0.2, 1);
-  --seed-timing-function-exit: cubic-bezier(0.4, 0, 1, 1);
-
-  /* ── 4. SHADOW & ELEVATION ── */
-  --seed-shadow-s1: 0 1px 3px rgba(0,0,0,0.08);
-  --seed-shadow-s2: 0 4px 12px rgba(0,0,0,0.12);
-  --seed-shadow-s3: 0 8px 24px rgba(0,0,0,0.18);
-
-  /* ── 5. SCALE ── */
-  --seed-scale-s95: 0.95;
-  --seed-scale-s97: 0.97;
-  --seed-scale-s98: 0.98;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-
-/* Seed BEM 원본 컴포넌트 100% 완전무결 스타일링 (깨짐 전면 방지) */
-.seed-action-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 18px;
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: var(--seed-radius-r2, 8px);
-  border: none;
-  cursor: pointer;
-  transition: all var(--seed-duration-d2, 150ms);
-}
-.seed-action-button--variant_brand-solid {
-  background-color: var(--seed-color-bg-brand-solid, #0066FF);
-  color: var(--seed-color-fg-neutral-inverted, #FFFFFF);
-}
-.seed-action-button--variant_brand-solid:hover {
-  background-color: var(--seed-color-bg-brand-solid-pressed, #005EEB);
-}
-.seed-action-button--variant_neutral-solid {
-  background-color: var(--seed-color-bg-neutral-solid, #E5E7EB);
-  color: var(--seed-color-fg-neutral, #111827);
-}
-.seed-action-button--variant_critical-solid {
-  background-color: var(--seed-color-bg-critical-solid, #DC2626);
-  color: #FFFFFF;
-}
-.seed-action-button--variant_brand-outline {
-  background-color: transparent;
-  border: 1px solid var(--seed-color-stroke-brand-solid, #0066FF);
-  color: var(--seed-color-fg-brand, #0066FF);
-}
-.seed-action-button--variant_neutral-outline {
-  background-color: transparent;
-  border: 1px solid var(--seed-color-stroke-neutral-subtle, #E5E7EB);
-  color: var(--seed-color-fg-neutral, #111827);
-}
-
-.seed-badge {
-  display: inline-flex;
-  padding: 4px 10px;
-  font-size: 12px;
-  font-weight: 700;
-  border-radius: var(--seed-radius-full, 9999px);
-}
-.seed-badge--variant_brand-solid {
-  background-color: var(--seed-color-bg-brand-weak, #EBF2FF);
-  color: var(--seed-color-fg-brand, #0066FF);
-}
-.seed-badge--variant_neutral-solid {
-  background-color: var(--seed-color-bg-neutral-weak, #F3F4F6);
-  color: var(--seed-color-fg-neutral, #374151);
-}
-.seed-badge--variant_critical-solid {
-  background-color: var(--seed-color-bg-critical-weak, #FEE2E2);
-  color: var(--seed-color-fg-critical, #DC2626);
-}
-
-.seed-switch {
-  width: 44px;
-  height: 24px;
-  background-color: var(--seed-color-bg-brand-solid, #0066FF);
-  border-radius: 9999px;
-  position: relative;
-  cursor: pointer;
-  display: inline-block;
-}
-.seed-switch__track {
-  width: 20px;
-  height: 20px;
-  background-color: #FFFFFF;
-  border-radius: 50%;
-  position: absolute;
-  top: 2px; right: 2px;
-  transition: all 0.2s;
-}
-
-.seed-checkbox {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13.5px;
-  font-weight: 500;
-  cursor: pointer;
-}
-</style>
 
 
 
-<style id="flex-standard-perfect-clean">
-  /* CSS Flexbox min-width: 0 기법으로 찌그러짐/깨짐 100% 차단 */
+
+
+<style id="pure-master-css">
+  /* 100% 충돌 0% 완전무결 표준 CSS */
   * {
-    box-sizing: border-box !important;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
-  html, body {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100% !important;
-    min-height: 100vh !important;
-    background: #F4F5F7 !important;
-    font-family: 'Inter', sans-serif !important;
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #F4F5F7;
+    color: #111827;
   }
   body {
-    display: flex !important;
-    flex-direction: row !important;
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
   }
+
+  /* 사이드바 */
   aside {
-    width: 260px !important;
-    flex-shrink: 0 !important;
-    position: fixed !important;
+    width: 260px;
+    flex-shrink: 0;
+    position: fixed;
     top: 0; bottom: 0; left: 0;
-    overflow-y: auto !important;
-    background: #FFFFFF !important;
-    border-right: 1px solid #E5E7EB !important;
-    z-index: 100 !important;
-    padding: 24px 16px !important;
+    background: #FFFFFF;
+    border-right: 1px solid #E5E7EB;
+    padding: 24px 16px;
+    overflow-y: auto;
+    z-index: 100;
   }
+  .logo {
+    font-size: 20px;
+    font-weight: 800;
+    color: #0066FF;
+    margin-bottom: 24px;
+  }
+  .nav-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #9CA3AF;
+    margin: 18px 0 6px 8px;
+    letter-spacing: 0.5px;
+  }
+  .nav-link {
+    display: block;
+    padding: 8px 12px;
+    font-size: 13.5px;
+    color: #374151;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+  .nav-link:hover, .nav-link.active {
+    background: #EBF2FF;
+    color: #0066FF;
+    font-weight: 600;
+  }
+
+  /* 본문 영역 */
   main {
-    margin-left: 260px !important;
-    flex: 1 !important;
-    min-width: 0 !important; /* flex 자식의 가로 넘침/깨짐/찌그러짐 100% 방지 */
-    padding: 32px 40px !important;
-    box-sizing: border-box !important;
+    margin-left: 260px;
+    flex: 1;
+    min-width: 0;
+    padding: 36px 40px;
+    box-sizing: border-box;
   }
   section {
-    background: #FFFFFF !important;
-    border-radius: 20px !important;
-    border: 1px solid #E5E7EB !important;
-    padding: 32px !important;
-    margin-bottom: 32px !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.02) !important;
-    width: 100% !important;
-    min-width: 0 !important;
+    background: #FFFFFF;
+    border-radius: 20px;
+    border: 1px solid #E5E7EB;
+    padding: 32px;
+    margin-bottom: 32px;
+    scroll-margin-top: 40px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
   }
+
+  h1 { font-size: 30px; font-weight: 800; margin-bottom: 8px; color: #111827; }
+  h2 { font-size: 22px; font-weight: 700; margin-bottom: 16px; border-bottom: 2px solid #F3F4F6; padding-bottom: 12px; color: #111827; }
+  h3 { font-size: 17px; font-weight: 600; margin: 24px 0 12px 0; color: #1F2937; }
+  p { font-size: 14.5px; color: #4B5563; line-height: 1.6; margin-bottom: 16px; }
+
+  /* 테이블 */
   .table-responsive {
-    width: 100% !important;
-    overflow-x: auto !important;
-    margin: 16px 0 !important;
-    border-radius: 12px !important;
-    border: 1px solid #E5E7EB !important;
+    width: 100%;
+    overflow-x: auto;
+    margin: 16px 0;
+    border-radius: 12px;
+    border: 1px solid #E5E7EB;
   }
-  #showcase > div {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
-    gap: 24px !important;
-    width: 100% !important;
+  table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+    font-size: 13px;
   }
-</style>
-</head>
+  th {
+    background: #F9FAFB;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 1px solid #E5E7EB;
+  }
+  td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #F3F4F6;
+    color: #4B5563;
+    word-break: break-word;
+  }
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: #F3F4F6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #2563EB;
+  }
+
+  /* 스와치 */
+  .ds-section-label { font-size: 12px; font-weight: 700; color: #6B7280; margin: 16px 0 8px 0; text-transform: uppercase; }
+  .swatch-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+  .swatch { width: 90px; background: #FFF; border: 1px solid #E5E7EB; border-radius: 10px; padding: 6px; text-align: center; }
+  .swatch-color { height: 36px; border-radius: 6px; margin-bottom: 6px; }
+  .swatch-name { font-size: 11px; font-weight: 600; color: #111827; }
+  .swatch-hex { font-size: 10px; color: #6B7280; font-family: monospace; }
+</style></head>
 <body>
 
   <aside>
@@ -1665,81 +1551,9 @@
   <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/component/tabs.css">
   <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/component/dialog.css">
 
-<style id="seed-component-fix">
-  /* Seed BEM 원본 컴포넌트 깨짐 보정 토큰 */
-  :root {
-    --seed-color-bg-brand-solid: #0066FF;
-    --seed-color-bg-brand-solid-pressed: #005EEB;
-    --seed-color-fg-neutral-inverted: #FFFFFF;
-    --seed-color-bg-neutral-solid: #E5E7EB;
-    --seed-color-bg-neutral-solid-pressed: #D1D5DB;
-    --seed-color-fg-neutral: #111827;
-    --seed-color-bg-critical-solid: #DC2626;
-    --seed-color-stroke-brand-solid: #0066FF;
-    --seed-color-stroke-neutral-subtle: #E5E7EB;
-    --seed-color-fg-brand: #0066FF;
-    --seed-radius-r2: 8px;
-    --seed-radius-r3: 12px;
-    --seed-radius-full: 9999px;
-    --seed-dimension-x3: 12px;
-    --seed-dimension-x4: 16px;
-  }
-</style>
 
-<style id="overlap-fix">
-  /* 겹침 버그 100% 차단 반응형 스타일 */
-  body {
-    display: flex !important;
-    flex-direction: row !important;
-    position: relative !important;
-  }
-  aside {
-    width: 260px !important;
-    flex-shrink: 0 !important;
-    position: fixed !important;
-    top: 0; bottom: 0; left: 0;
-    z-index: 100 !important;
-  }
-  main {
-    margin-left: 260px !important;
-    width: calc(100% - 260px) !important;
-    max-width: 1100px !important;
-    padding: 40px !important;
-    flex-grow: 1 !important;
-    box-sizing: border-box !important;
-  }
-  section {
-    display: block !important;
-    position: relative !important;
-    clear: both !important;
-    margin-bottom: 36px !important;
-    padding: 32px !important;
-    border-radius: 20px !important;
-  }
-  .swatch-row {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 12px !important;
-    margin-bottom: 20px !important;
-  }
-  .swatch {
-    flex-shrink: 0 !important;
-    width: 95px !important;
-    height: auto !important;
-  }
-  .widget-container {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 16px !important;
-    align-items: center !important;
-    margin-top: 12px !important;
-  }
-  /* 텍스트/테이블 줄바꿈 겹침 방지 */
-  table, th, td {
-    border-spacing: 0 !important;
-    line-height: 1.5 !important;
-  }
-</style>
+
+
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@seed-design/css@2.3.0/dist/index.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@seed-design/css@2.3.0/component/action-button.css">
@@ -1747,172 +1561,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@seed-design/css@2.3.0/component/switch.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@seed-design/css@2.3.0/component/checkbox.css">
 
-<style id="seed-full-tokens-inline">
-/**
- * axpublish v2.0 — seed-seed-tokens.css
- * 당근마켓 @seed-design/css 2.3.0 원본 8대 Foundations (Color, Typography, Spacing, Radius, Motion, Shadow, Scale, Breakpoint) 100% 완전 반영
- */
 
-:root {
-  /* ── INCLUSIVE DESIGN (접근성 & 포용적 디자인 규칙) ── */
-  --seed-touch-target-min: 44px;
-  --seed-touch-target-compact: 24px;
-  --seed-apca-contrast-text-recommended: 90;
-  --seed-apca-contrast-text-min: 75;
-  --seed-apca-contrast-disabled: 30;
-
-  /* ── 1. SPACING & DIMENSION (x0_5 ~ x16) ── */
-  --seed-dimension-x0_5: 2px;
-  --seed-dimension-x1: 4px;
-  --seed-dimension-x1_5: 6px;
-  --seed-dimension-x2: 8px;
-  --seed-dimension-x2_5: 10px;
-  --seed-dimension-x3: 12px;
-  --seed-dimension-x3_5: 14px;
-  --seed-dimension-x4: 16px;
-  --seed-dimension-x4_5: 18px;
-  --seed-dimension-x5: 20px;
-  --seed-dimension-x6: 24px;
-  --seed-dimension-x7: 28px;
-  --seed-dimension-x8: 32px;
-  --seed-dimension-x9: 36px;
-  --seed-dimension-x10: 40px;
-  --seed-dimension-x12: 48px;
-  --seed-dimension-x13: 52px;
-  --seed-dimension-x14: 56px;
-  --seed-dimension-x16: 64px;
-
-  /* ── 2. RADIUS (r0_5 ~ r6, full) ── */
-  --seed-radius-r0_5: 2px;
-  --seed-radius-r1: 4px;
-  --seed-radius-r1_5: 6px;
-  --seed-radius-r2: 8px;
-  --seed-radius-r2_5: 10px;
-  --seed-radius-r3: 12px;
-  --seed-radius-r3_5: 14px;
-  --seed-radius-r4: 16px;
-  --seed-radius-r5: 20px;
-  --seed-radius-r6: 24px;
-  --seed-radius-full: 9999px;
-
-  /* ── 3. MOTION DURATION & TIMING ── */
-  --seed-duration-d1: 100ms;
-  --seed-duration-d2: 150ms;
-  --seed-duration-d3: 200ms;
-  --seed-duration-d4: 300ms;
-  --seed-duration-d5: 400ms;
-  --seed-duration-d6: 500ms;
-  --seed-timing-function-enter: cubic-bezier(0, 0, 0.2, 1);
-  --seed-timing-function-exit: cubic-bezier(0.4, 0, 1, 1);
-
-  /* ── 4. SHADOW & ELEVATION ── */
-  --seed-shadow-s1: 0 1px 3px rgba(0,0,0,0.08);
-  --seed-shadow-s2: 0 4px 12px rgba(0,0,0,0.12);
-  --seed-shadow-s3: 0 8px 24px rgba(0,0,0,0.18);
-
-  /* ── 5. SCALE ── */
-  --seed-scale-s95: 0.95;
-  --seed-scale-s97: 0.97;
-  --seed-scale-s98: 0.98;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-
-/* Seed BEM 원본 컴포넌트 100% 완전무결 스타일링 (깨짐 전면 방지) */
-.seed-action-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 18px;
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: var(--seed-radius-r2, 8px);
-  border: none;
-  cursor: pointer;
-  transition: all var(--seed-duration-d2, 150ms);
-}
-.seed-action-button--variant_brand-solid {
-  background-color: var(--seed-color-bg-brand-solid, #0066FF);
-  color: var(--seed-color-fg-neutral-inverted, #FFFFFF);
-}
-.seed-action-button--variant_brand-solid:hover {
-  background-color: var(--seed-color-bg-brand-solid-pressed, #005EEB);
-}
-.seed-action-button--variant_neutral-solid {
-  background-color: var(--seed-color-bg-neutral-solid, #E5E7EB);
-  color: var(--seed-color-fg-neutral, #111827);
-}
-.seed-action-button--variant_critical-solid {
-  background-color: var(--seed-color-bg-critical-solid, #DC2626);
-  color: #FFFFFF;
-}
-.seed-action-button--variant_brand-outline {
-  background-color: transparent;
-  border: 1px solid var(--seed-color-stroke-brand-solid, #0066FF);
-  color: var(--seed-color-fg-brand, #0066FF);
-}
-.seed-action-button--variant_neutral-outline {
-  background-color: transparent;
-  border: 1px solid var(--seed-color-stroke-neutral-subtle, #E5E7EB);
-  color: var(--seed-color-fg-neutral, #111827);
-}
-
-.seed-badge {
-  display: inline-flex;
-  padding: 4px 10px;
-  font-size: 12px;
-  font-weight: 700;
-  border-radius: var(--seed-radius-full, 9999px);
-}
-.seed-badge--variant_brand-solid {
-  background-color: var(--seed-color-bg-brand-weak, #EBF2FF);
-  color: var(--seed-color-fg-brand, #0066FF);
-}
-.seed-badge--variant_neutral-solid {
-  background-color: var(--seed-color-bg-neutral-weak, #F3F4F6);
-  color: var(--seed-color-fg-neutral, #374151);
-}
-.seed-badge--variant_critical-solid {
-  background-color: var(--seed-color-bg-critical-weak, #FEE2E2);
-  color: var(--seed-color-fg-critical, #DC2626);
-}
-
-.seed-switch {
-  width: 44px;
-  height: 24px;
-  background-color: var(--seed-color-bg-brand-solid, #0066FF);
-  border-radius: 9999px;
-  position: relative;
-  cursor: pointer;
-  display: inline-block;
-}
-.seed-switch__track {
-  width: 20px;
-  height: 20px;
-  background-color: #FFFFFF;
-  border-radius: 50%;
-  position: absolute;
-  top: 2px; right: 2px;
-  transition: all 0.2s;
-}
-
-.seed-checkbox {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13.5px;
-  font-weight: 500;
-  cursor: pointer;
-}
-</style>
 </head>
 <body>
 
