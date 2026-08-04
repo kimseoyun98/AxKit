@@ -4,6 +4,13 @@
  */
 
 :root {
+  /* ── INCLUSIVE DESIGN (접근성 & 포용적 디자인 규칙) ── */
+  --seed-touch-target-min: 44px;
+  --seed-touch-target-compact: 24px;
+  --seed-apca-contrast-text-recommended: 90;
+  --seed-apca-contrast-text-min: 75;
+  --seed-apca-contrast-disabled: 30;
+
   /* ── 1. SPACING & DIMENSION (x0_5 ~ x16) ── */
   --seed-dimension-x0_5: 2px;
   --seed-dimension-x1: 4px;
@@ -57,4 +64,13 @@
   --seed-scale-s95: 0.95;
   --seed-scale-s97: 0.97;
   --seed-scale-s98: 0.98;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

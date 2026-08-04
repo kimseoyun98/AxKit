@@ -328,3 +328,14 @@ Figma: Layout Grid 3열 / Gap 20px
 ❌ tailwind.config.js 파일 생성 (v4는 CSS 네이티브 — @theme/@utility로 설정)
 ❌ 독자 판단으로 예외 처리 (반드시 PAUSE 후 보고)
 ```
+
+
+
+## Inclusive Design & Accessibility (포용적 디자인 접근성 6대 준수 규칙)
+
+1. **Touch Target Size (터치 영역)**: 모든 버튼, 칩, 입력 필드의 클릭 가능 영역은 최소 `44x44px` (제약 시 최소 `24x24px`) 필수 확보.
+2. **Color & APCA Contrast (명암비)**: 본문 텍스트는 APCA Lc 75 이상 (Lc 90 권장), Disabled/Placeholder는 Lc 30 이상 유지.
+3. **Screen Reader & Alt Text**: 모든 버튼/아이콘에 `aria-label` 및 대체 텍스트 명시, 장식용 요소는 `aria-hidden="true"`.
+4. **Error Handling & Feedback**: 오류 시 `stroke/critical-solid` 테두리 피드백 + `aria-live="polite"`로 보조기술 즉시 알림.
+5. **User Motion Control**: `@media (prefers-reduced-motion: reduce)` 감지 시 2초 이상의 애니메이션 자동 중단.
+6. **Automatic Media Control**: 자동 재생 오디오/비디오는 기본 음소거 및 사용자가 멈출 수 있는 옵션 필수 제공.
