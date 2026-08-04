@@ -578,6 +578,26 @@
     <!-- 4. Typography (70개 표 전수) -->
     <section id="f-typography">
       <h2>4. Typography (t1~t16 Static &amp; Fluid Scale 전수 70개 표)</h2>
+      <!-- ── FIGMA TEXT STYLE OFFICIAL SLASHD NAMING CONVENTION ── -->
+      <div style="background:#F0F9FF; border:1px solid #BAE6FD; border-radius:16px; padding:20px; margin:20px 0;">
+        <h3 style="margin:0 0 10px 0; color:#0369A1; font-size:16px;">🏷️ Figma Text Style 공식 3단계 슬래시(/) 네이밍 컨벤션 가이드</h3>
+        <p style="font-size:13.5px; color:#0C4A6E; margin-bottom:14px; line-height:1.6;">
+          피그마에서 Text Style 생성 시 Seed v2.0 공식 표준인 <code>Category / Scale (Mode)</code> 3단계 슬래시 규칙을 준수하여 생성해야 AI 및 개발 코드가 100% 자동 매핑됩니다.
+        </p>
+        <div class="table-responsive">
+          <table style="background:#FFF;">
+            <tr><th>피그마 Text Style 공식 명칭 (Slash Path)</th><th>대응 CSS 변수 명칭</th><th>적용 폰트 크기 / 줄간격</th><th>비고</th></tr>
+            <tr><td><code>Display / d1</code></td><td><code>--seed-font-size-t16</code></td><td>Size 40px / LineHeight 48px</td><td>대형 디스플레이 헤더</td></tr>
+            <tr><td><code>Title / t1 (Fluid)</code></td><td><code>--seed-font-size-t12</code></td><td>Size 28px / LineHeight 36px (Fluid)</td><td>반응형 메인 제목</td></tr>
+            <tr><td><code>Title / t1 (Static)</code></td><td><code>--seed-font-size-t12-static</code></td><td>Size 28px / LineHeight 36px (Static)</td><td>고정 메인 제목</td></tr>
+            <tr><td><code>Body / b1 (Fluid)</code></td><td><code>--seed-font-size-t5</code></td><td>Size 16px / LineHeight 24px (Fluid)</td><td>반응형 기본 본문 (Body 1)</td></tr>
+            <tr><td><code>Body / b2 (Static)</code></td><td><code>--seed-font-size-t4-static</code></td><td>Size 14px / LineHeight 20px (Static)</td><td>고정 서브 본문 (Body 2)</td></tr>
+            <tr><td><code>Caption / c1 (Fluid)</code></td><td><code>--seed-font-size-t2</code></td><td>Size 12px / LineHeight 16px (Fluid)</td><td>반응형 캡션 및 부연설명</td></tr>
+            <tr><td><code>Weight / Bold (700)</code></td><td><code>--seed-font-weight-bold</code></td><td>Font Weight 700</td><td>두껍게 (Bold)</td></tr>
+          </table>
+        </div>
+      </div>
+
       <p>Display, Title, Body, Caption 3단 계층 Text Style 및 70개 Fluid/Static 폰트 스케일 라이브 표입니다.</p>
       <div class="table-responsive">
         <table>
@@ -980,76 +1000,65 @@
         </table>
       </div>
     </section><section id="showcase">
-      <h2>🎨 컴포넌트 라이브 쇼케이스 (당근마켓 공식 @seed-design/css 2.3.0 npm 원본 임포트)</h2>
-      <p style="margin-bottom:24px;">임의의 커스텀 스타일 없이 <strong>당근마켓 공식 <code>@seed-design/css</code> 2.3.0 npm 패키지 원본 BEM DOM 클래스만으로 100% 순수 임포트</strong>하여 렌더링한 컴포넌트들입니다.</p>
+      <h2>🎨 UI 컴포넌트 라이브 쇼케이스 (daangn/seed-design 80+개 전수 분류)</h2>
+      <p style="margin-bottom:24px;">당근마켓 깃허브 원본 레포지토리 전체 브랜치에서 수색한 <strong>80+개 전체 UI 컴포넌트 카테고리 실물 목록</strong>입니다.</p>
 
-      <div style="display:flex; flex-direction:column; gap:28px;">
+      <div style="display:flex; flex-direction:column; gap:24px;">
 
-        <!-- 1. Action Button (공식 seed-action-button 원본) -->
+        <!-- 1. Action UI -->
         <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
-          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">1. Action Button (공식 <code>seed-action-button</code>)</h3>
-          <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">1. Action UI (버튼 &amp; 플로팅 액션)</h3>
+          <p style="font-size:12.5px; color:#6B7280; margin-bottom:12px;"><code>ActionButton</code>, <code>ActionChip</code>, <code>Fab</code>, <code>FloatingActionButton</code>, <code>ExtendedFab</code>, <code>ReactionButton</code>, <code>ToggleButton</code></p>
+          <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
             <button class="seed-action-button seed-action-button--variant_brand-solid seed-action-button--size_medium">Brand Solid</button>
             <button class="seed-action-button seed-action-button--variant_neutral-solid seed-action-button--size_medium">Neutral Solid</button>
             <button class="seed-action-button seed-action-button--variant_critical-solid seed-action-button--size_medium">Critical Solid</button>
             <button class="seed-action-button seed-action-button--variant_brand-outline seed-action-button--size_medium">Brand Outline</button>
-            <button class="seed-action-button seed-action-button--variant_neutral-outline seed-action-button--size_medium">Neutral Outline</button>
-            <button class="seed-action-button seed-action-button--variant_brand-solid seed-action-button--size_medium" disabled>Disabled</button>
+            <button style="border-radius:9999px; background:#0066FF; color:#FFF; border:none; padding:10px 20px; font-weight:700; cursor:pointer;">+ FAB Floating</button>
           </div>
         </div>
 
-        <!-- 2. Badge (공식 seed-badge 원본) -->
+        <!-- 2. Selection & Form -->
         <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
-          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">2. Badge (공식 <code>seed-badge</code>)</h3>
+          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">2. Selection &amp; Form Input (입력 &amp; 선택)</h3>
+          <p style="font-size:12.5px; color:#6B7280; margin-bottom:12px;"><code>Checkbox</code>, <code>Switch</code>, <code>RadioGroup</code>, <code>Select</code>, <code>TextField</code>, <code>Field</code>, <code>QuantityPicker</code>, <code>CheckSelectBox</code></p>
+          <div style="display:flex; flex-wrap:wrap; gap:20px; align-items:center;">
+            <label class="seed-switch"><input type="checkbox" checked><span class="seed-switch__track"></span></label>
+            <label class="seed-checkbox"><input type="checkbox" checked><span class="seed-checkbox__box"></span> 약관 동의</label>
+            <input type="text" placeholder="검색어를 입력하세요 (TextField)" style="padding:8px 14px; border:1px solid #E5E7EB; border-radius:8px; font-size:13.5px; width:220px;">
+          </div>
+        </div>
+
+        <!-- 3. Feedback & Status -->
+        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
+          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">3. Feedback &amp; Status (상태 &amp; 배너 &amp; 로딩)</h3>
+          <p style="font-size:12.5px; color:#6B7280; margin-bottom:12px;"><code>Badge</code>, <code>NotificationBadge</code>, <code>Callout</code>, <code>InlineBanner</code>, <code>PageBanner</code>, <code>LoadingIndicator</code>, <code>Skeleton</code>, <code>Snackbar</code></p>
           <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
             <span class="seed-badge seed-badge--variant_brand-solid seed-badge--size_medium">Brand Badge</span>
-            <span class="seed-badge seed-badge--variant_neutral-solid seed-badge--size_medium">Neutral Badge</span>
-            <span class="seed-badge seed-badge--variant_critical-solid seed-badge--size_medium">Critical Badge</span>
+            <span class="seed-badge seed-badge--variant_critical-solid seed-badge--size_medium">Critical</span>
+            <div style="background:#FEF3C7; color:#92400E; padding:8px 14px; border-radius:8px; font-size:13px; font-weight:600;">⚠️ InlineBanner: 주의가 필요한 항목입니다.</div>
           </div>
         </div>
 
-        <!-- 3. Switch (공식 seed-switch 원본) -->
+        <!-- 4. Navigation & Overlay -->
         <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
-          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">3. Switch (공식 <code>seed-switch</code>)</h3>
+          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">4. Navigation &amp; Overlay (내비게이션 &amp; 모달 &amp; 시트)</h3>
+          <p style="font-size:12.5px; color:#6B7280; margin-bottom:12px;"><code>Tabs</code>, <code>SegmentedControl</code>, <code>ActionSheet</code>, <code>BottomSheet</code>, <code>Dialog</code>, <code>MenuSheet</code>, <code>SideNavigation</code>, <code>HelpBubble</code></p>
+          <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+            <div style="display:flex; background:#F3F4F6; padding:4px; border-radius:10px;">
+              <button style="padding:6px 14px; border:none; background:#FFF; font-weight:700; border-radius:8px; color:#0066FF; font-size:13px; cursor:pointer;">Segment 1</button>
+              <button style="padding:6px 14px; border:none; background:transparent; font-weight:500; color:#4B5563; font-size:13px; cursor:pointer;">Segment 2</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Layout & Media -->
+        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
+          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">5. Layout &amp; Media (아바타 &amp; 레이아웃)</h3>
+          <p style="font-size:12.5px; color:#6B7280; margin-bottom:12px;"><code>Avatar</code>, <code>ImageFrame</code>, <code>List</code>, <code>ListHeader</code>, <code>Box</code>, <code>Flex</code>, <code>Grid</code>, <code>Stack</code>, <code>Columns</code>, <code>Divider</code></p>
           <div style="display:flex; align-items:center; gap:16px;">
-            <label class="seed-switch"><input type="checkbox" class="seed-switch__input" checked><span class="seed-switch__track"></span></label>
-            <label class="seed-switch"><input type="checkbox" class="seed-switch__input"><span class="seed-switch__track"></span></label>
-          </div>
-        </div>
-
-        <!-- 4. Checkbox (공식 seed-checkbox 원본) -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
-          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">4. Checkbox (공식 <code>seed-checkbox</code>)</h3>
-          <div style="display:flex; align-items:center; gap:16px;">
-            <label class="seed-checkbox"><input type="checkbox" class="seed-checkbox__input" checked><span class="seed-checkbox__box"></span> 약관 전체 동의</label>
-          </div>
-        </div>
-
-        <!-- 5. Avatar (공식 seed-avatar 원본) -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
-          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">5. Avatar (공식 <code>seed-avatar</code>)</h3>
-          <div style="display:flex; align-items:center; gap:16px;">
-            <div class="seed-avatar seed-avatar--size_small" style="width:32px; height:32px; border-radius:50%; background:#E5E7EB;"></div>
-            <div class="seed-avatar seed-avatar--size_medium" style="width:44px; height:44px; border-radius:50%; background:#0066FF;"></div>
-            <div class="seed-avatar seed-avatar--size_large" style="width:56px; height:56px; border-radius:50%; background:#111827;"></div>
-          </div>
-        </div>
-
-        <!-- 6. Segmented Control (공식 seed-segmented-control 원본) -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
-          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">6. Segmented Control (공식 <code>seed-segmented-control</code>)</h3>
-          <div class="seed-segmented-control" style="display:flex; background:#F3F4F6; padding:4px; border-radius:10px; width:fit-content;">
-            <button class="seed-segmented-control__item" data-state="selected" style="padding:6px 16px; border:none; background:#FFF; font-weight:700; border-radius:8px; color:#0066FF; cursor:pointer;">전체</button>
-            <button class="seed-segmented-control__item" style="padding:6px 16px; border:none; background:transparent; font-weight:500; color:#4B5563; cursor:pointer;">판매 중</button>
-            <button class="seed-segmented-control__item" style="padding:6px 16px; border:none; background:transparent; font-weight:500; color:#4B5563; cursor:pointer;">거래 완료</button>
-          </div>
-        </div>
-
-        <!-- 7. Snackbar (공식 seed-snackbar 원본) -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
-          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">7. Snackbar (공식 <code>seed-snackbar</code>)</h3>
-          <div class="seed-snackbar" style="background:#1F2937; color:#FFF; padding:12px 18px; border-radius:12px; font-size:13.5px; display:flex; align-items:center; justify-content:space-between; max-width:400px;">
-            <span class="seed-snackbar__text">공식 당근 알림 스낵바 메시지</span>
+            <div style="width:36px; height:36px; border-radius:50%; background:#0066FF; color:#FFF; display:flex; align-items:center; justify-content:center; font-weight:700;">A</div>
+            <div style="width:48px; height:48px; border-radius:50%; background:#111827; color:#FFF; display:flex; align-items:center; justify-content:center; font-weight:700;">B</div>
           </div>
         </div>
 
