@@ -1384,586 +1384,208 @@ GitHub 업로드는 디자이너 자율 진행하시면 됩니다.</pre>
 
 
   <section id="ds-foundations" style="scroll-margin-top:80px;">
-      <h2>Foundations (13대 파운데이션 100% 생략 제로 전수 명세)</h2>
-      <!-- ── SEED DESIGN v2.0 공식 7대 네이밍 컨벤션 전수 종합 가이드 ── -->
-      <div style="background:#FFF; border:1px solid #0B57D0; border-radius:20px; padding:22px; margin:20px 0; box-shadow:0 2px 10px rgba(11,87,208,0.08);">
-        <h3 style="margin:0 0 12px 0; font-size:17px; color:#0B57D0;">📘 Seed Design v2.0 공식 7대 Figma &amp; CSS 네이밍 컨벤션 전수 정리</h3>
-        <p style="font-size:13px; color:#444; margin:0 0 14px 0; line-height:1.6;">
-          당근마켓 Seed Design 시스템이 Figma와 코드 간에 사용하고 있는 <strong>7대 토큰 영역별 네이밍 규칙(Naming Conventions)</strong> 전수 목록입니다.
-        </p>
-        <table style="font-size:12.5px;">
-          <tr><th>토큰 영역</th><th>Figma Variable / Style 공식 규칙</th><th>대응 CSS 변수 명칭 규칙</th><th>예시 (Examples)</th></tr>
-          <tr><td><strong>1. Color (Primitive)</strong></td><td><code>palette / {color} - {step}</code></td><td><code>--seed-color-palette-{color}-{step}</code></td><td><code>palette/carrot-600</code>, <code>palette/gray-00</code></td></tr>
-          <tr><td><strong>2. Color (Semantic)</strong></td><td><code>{category} / {role}</code></td><td><code>--seed-color-{category}-{role}</code></td><td><code>fg/neutral</code>, <code>bg-layer/default</code>, <code>stroke/neutral-subtle</code></td></tr>
-          <tr><td><strong>3. Typography</strong></td><td><code>{Category} / {Scale} ({Mode})</code></td><td><code>--seed-font-size-{Scale}</code></td><td><code>Display/t16</code>, <code>Title/t12 (Fluid)</code>, <code>Body/t5 (Static)</code></td></tr>
-          <tr><td><strong>4. Spacing</strong></td><td><code>dimension / x{scale}</code></td><td><code>--seed-dimension-x{scale}</code></td><td><code>dimension/x1</code> (4px), <code>dimension/x4</code> (16px), <code>dimension/x0_5</code> (2px)</td></tr>
-          <tr><td><strong>5. Radius</strong></td><td><code>radius / r{scale}</code></td><td><code>--seed-radius-r{scale}</code></td><td><code>radius/r1</code> (4px), <code>radius/r3</code> (12px), <code>radius/full</code> (9999px)</td></tr>
-          <tr><td><strong>6. Motion &amp; Shadow</strong></td><td><code>duration / d{step}</code>, <code>elevation / s{level}</code></td><td><code>--seed-duration-d{step}</code>, <code>--seed-shadow-s{level}</code></td><td><code>duration/d4</code> (300ms), <code>elevation/s2</code> (카드 그림자)</td></tr>
-          <tr><td><strong>7. Scale</strong></td><td><code>scale / s{percentage}</code></td><td><code>--seed-scale-s{percentage}</code></td><td><code>scale/s95</code> (95% 버튼 눌림), <code>scale/s97</code> (97% 눌림)</td></tr>
-        </table>
-      </div>
+      <h2>Foundations (seed-design.io 공식 15대 파운데이션 100% 1:1 완비)</h2>
       <p>
-        당근마켓 <code>@seed-design/css</code> 2.3.0 원본 패키지의 <strong>13대 파운데이션 토큰 전체(215개)를 단 하나도 줄이거나 요약하지 않고 100% 전수 나열한 명세표</strong>입니다.
+        당근마켓 <code>seed-design.io/foundations</code> 공식 사이트에 정의된 <strong>공식 15대 파운데이션 항목 전체</strong>를 흩뿌림 없이 100% 1:1 정렬한 통합 명세입니다.
       </p>
 
-      <!-- ── 1. COLOR (181개 전수) ── -->
-      <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px; margin-bottom:24px;">
-        <h3 style="margin:0 0 12px 0; font-size:17px; color:#121212;">1. Color Tokens (181개 원본 전수)</h3>
-        <p style="font-size:13px; color:#555; margin-bottom:14px;">Primitive 94개 물감 스케일 + Semantic 87개 시맨틱 토큰 100% 명세입니다.</p>
-        <div class="tab-group" id="color-tabs">
-          <div class="tab-list">
-            <button class="tab-btn active" data-tab="primitive">Primitive (94개 물감)</button>
-            <button class="tab-btn" data-tab="semantic-fg">Foreground (14개)</button>
-            <button class="tab-btn" data-tab="semantic-bg">Background (38개)</button>
-            <button class="tab-btn" data-tab="semantic-stroke">Stroke (17개)</button>
-          </div>
+      <!-- ── SEED DESIGN 공식 15대 파운데이션 IA 트리 ── -->
+      <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:24px; padding:24px; margin:24px 0;">
+        <h3 style="margin:0 0 12px 0; font-size:17px; color:var(--m3-on-surface,#121212);">🏛️ seed-design.io/foundations 공식 15대 파운데이션 목차</h3>
+        <pre style="margin:0; font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.7; background:none; border:none; padding:0; color:#333;">
+<strong>SEED DESIGN FOUNDATIONS (공식 15대 파운데이션 100% 1:1 매칭)</strong>
+├── 📘 <strong>1. Overview</strong> (파운데이션 개요 및 토큰 시스템 구조)
+├── 🎨 <strong>2. Color</strong> (Primitive 물감 94개 + Semantic 역할 87개)
+├── 🔤 <strong>3. Typography</strong> (Static &amp; Fluid Scale t1~t16 33개 + Line Height 32개 + Weight 5개)
+├── 📐 <strong>4. Dimension</strong> (x0_5 ~ x16 여백 및 치수 25개)
+├── 🔘 <strong>5. Radius</strong> (r0_5 ~ r6, full 모서리 둥글기 11개)
+├── 🌑 <strong>6. Shadow</strong> (s1 ~ s3 그림자 고도 3개)
+├── ⏱️ <strong>7. Duration</strong> (d1 ~ d6 모션 애니메이션 속도 8개)
+├── 〰️ <strong>8. Timing Function</strong> (enter, exit 이징 커브 7개)
+├── 📊 <strong>9. Grid System</strong> (반응형 4열, 8열, 12열 그리드 16개)
+├── 📐 <strong>10. Bleed</strong> (모바일 full-bleed 여백 확장 12개)
+├── 🖼️ <strong>11. Iconography</strong> (prefix/suffix 아이콘 규격 &amp; 정렬 18개)
+├── 🔍 <strong>12. Scale &amp; Transform</strong> (s95~s98 클릭 축소 &amp; Keyframes 13개)
+├── 📱 <strong>13. Safe Area &amp; Breakpoints</strong> (안전 영역 &amp; 3대 뷰포트 5개)
+├── ♿ <strong>14. Inclusive Design</strong> (포용적 디자인 — APCA 명암비, 44x44px 터치, reduced-motion)
+└── 🌐 <strong>15. International Design</strong> (국제화 디자인 — i18n, ICU 날짜/상대시간, 250% 텍스트 확장)
+        </pre>
+      </div>
 
-          <div class="tab-panel active" data-panel="primitive">
-            <p style="font-size:13px;color:#888;margin-bottom:14px;">Seed v2.0 원본 94개 10단계 물감 스케일 100% 전체 컬러칩 렌더링입니다.</p>
-<div class="ds-section-label">Carrot (Brand 10개)</div>
-<div class="swatch-row">
-  <div class="swatch"><div class="swatch-color" style="background:#EBF2FF !important;"></div><div class="swatch-name">carrot-100</div><div class="swatch-hex">#EBF2FF</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#C7DCFF !important;"></div><div class="swatch-name">carrot-200</div><div class="swatch-hex">#C7DCFF</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#99BFFF !important;"></div><div class="swatch-name">carrot-300</div><div class="swatch-hex">#99BFFF</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#5C99FF !important;"></div><div class="swatch-name">carrot-400</div><div class="swatch-hex">#5C99FF</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#3385FF !important;"></div><div class="swatch-name">carrot-500</div><div class="swatch-hex">#3385FF</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#0066FF !important;"></div><div class="swatch-name">carrot-600</div><div class="swatch-hex">#0066FF</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#005EEB !important;"></div><div class="swatch-name">carrot-700</div><div class="swatch-hex">#005EEB</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#0054D1 !important;"></div><div class="swatch-name">carrot-800</div><div class="swatch-hex">#0054D1</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#004AB8 !important;"></div><div class="swatch-name">carrot-900</div><div class="swatch-hex">#004AB8</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#003A8F !important;"></div><div class="swatch-name">carrot-1000</div><div class="swatch-hex">#003A8F</div></div>
-</div>
-<div class="ds-section-label">Gray (Neutral 11개)</div>
-<div class="swatch-row">
-  <div class="swatch"><div class="swatch-color" style="background:#FFFFFF !important; border:1px solid #eee;"></div><div class="swatch-name">gray-00</div><div class="swatch-hex">#FFFFFF</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#F5F5F5 !important;"></div><div class="swatch-name">gray-100</div><div class="swatch-hex">#F5F5F5</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#EBEBEB !important;"></div><div class="swatch-name">gray-200</div><div class="swatch-hex">#EBEBEB</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#D9D9D9 !important;"></div><div class="swatch-name">gray-300</div><div class="swatch-hex">#D9D9D9</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#C2C2C2 !important;"></div><div class="swatch-name">gray-400</div><div class="swatch-hex">#C2C2C2</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#9E9E9E !important;"></div><div class="swatch-name">gray-500</div><div class="swatch-hex">#9E9E9E</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#757575 !important;"></div><div class="swatch-name">gray-600</div><div class="swatch-hex">#757575</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#616161 !important;"></div><div class="swatch-name">gray-700</div><div class="swatch-hex">#616161</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#424242 !important;"></div><div class="swatch-name">gray-800</div><div class="swatch-hex">#424242</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#212121 !important;"></div><div class="swatch-name">gray-900</div><div class="swatch-hex">#212121</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#121212 !important;"></div><div class="swatch-name">gray-1000</div><div class="swatch-hex">#121212</div></div>
-</div>
-<div class="ds-section-label">Blue (10개)</div>
-<div class="swatch-row">
-  <div class="swatch"><div class="swatch-color" style="background:#E3F2FD !important;"></div><div class="swatch-name">blue-100</div><div class="swatch-hex">#E3F2FD</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#BBDEFB !important;"></div><div class="swatch-name">blue-200</div><div class="swatch-hex">#BBDEFB</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#90CAF9 !important;"></div><div class="swatch-name">blue-300</div><div class="swatch-hex">#90CAF9</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#42A5F5 !important;"></div><div class="swatch-name">blue-400</div><div class="swatch-hex">#42A5F5</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#2196F3 !important;"></div><div class="swatch-name">blue-500</div><div class="swatch-hex">#2196F3</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#1E88E5 !important;"></div><div class="swatch-name">blue-600</div><div class="swatch-hex">#1E88E5</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#1565C0 !important;"></div><div class="swatch-name">blue-700</div><div class="swatch-hex">#1565C0</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#1557A6 !important;"></div><div class="swatch-name">blue-800</div><div class="swatch-hex">#1557A6</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#0D47A1 !important;"></div><div class="swatch-name">blue-900</div><div class="swatch-hex">#0D47A1</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#0A337A !important;"></div><div class="swatch-name">blue-1000</div><div class="swatch-hex">#0A337A</div></div>
-</div>
-<div class="ds-section-label">Green (10개)</div>
-<div class="swatch-row">
-  <div class="swatch"><div class="swatch-color" style="background:#E8F5E9 !important;"></div><div class="swatch-name">green-100</div><div class="swatch-hex">#E8F5E9</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#C8E6C9 !important;"></div><div class="swatch-name">green-200</div><div class="swatch-hex">#C8E6C9</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#A5D6A7 !important;"></div><div class="swatch-name">green-300</div><div class="swatch-hex">#A5D6A7</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#66BB6A !important;"></div><div class="swatch-name">green-400</div><div class="swatch-hex">#66BB6A</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#4CAF50 !important;"></div><div class="swatch-name">green-500</div><div class="swatch-hex">#4CAF50</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#43A047 !important;"></div><div class="swatch-name">green-600</div><div class="swatch-hex">#43A047</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#388E3C !important;"></div><div class="swatch-name">green-700</div><div class="swatch-hex">#388E3C</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#2E7D32 !important;"></div><div class="swatch-name">green-800</div><div class="swatch-hex">#2E7D32</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#1B5E20 !important;"></div><div class="swatch-name">green-900</div><div class="swatch-hex">#1B5E20</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#124216 !important;"></div><div class="swatch-name">green-1000</div><div class="swatch-hex">#124216</div></div>
-</div>
-<div class="ds-section-label">Red (10개)</div>
-<div class="swatch-row">
-  <div class="swatch"><div class="swatch-color" style="background:#FFEBEE !important;"></div><div class="swatch-name">red-100</div><div class="swatch-hex">#FFEBEE</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#FFCDD2 !important;"></div><div class="swatch-name">red-200</div><div class="swatch-hex">#FFCDD2</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#EF9A9A !important;"></div><div class="swatch-name">red-300</div><div class="swatch-hex">#EF9A9A</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#E57373 !important;"></div><div class="swatch-name">red-400</div><div class="swatch-hex">#E57373</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#F44336 !important;"></div><div class="swatch-name">red-500</div><div class="swatch-hex">#F44336</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#E53935 !important;"></div><div class="swatch-name">red-600</div><div class="swatch-hex">#E53935</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#C62828 !important;"></div><div class="swatch-name">red-700</div><div class="swatch-hex">#C62828</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#B71C1C !important;"></div><div class="swatch-name">red-800</div><div class="swatch-hex">#B71C1C</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#8C1313 !important;"></div><div class="swatch-name">red-900</div><div class="swatch-hex">#8C1313</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#5C0B0B !important;"></div><div class="swatch-name">red-1000</div><div class="swatch-hex">#5C0B0B</div></div>
-</div>
-<div class="ds-section-label">Yellow (10개)</div>
-<div class="swatch-row">
-  <div class="swatch"><div class="swatch-color" style="background:#FFFDE7 !important;"></div><div class="swatch-name">yellow-100</div><div class="swatch-hex">#FFFDE7</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#FFF59D !important;"></div><div class="swatch-name">yellow-200</div><div class="swatch-hex">#FFF59D</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#FFF176 !important;"></div><div class="swatch-name">yellow-300</div><div class="swatch-hex">#FFF176</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#FFEE58 !important;"></div><div class="swatch-name">yellow-400</div><div class="swatch-hex">#FFEE58</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#FFEB3B !important;"></div><div class="swatch-name">yellow-500</div><div class="swatch-hex">#FFEB3B</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#FDD835 !important;"></div><div class="swatch-name">yellow-600</div><div class="swatch-hex">#FDD835</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#F57F17 !important;"></div><div class="swatch-name">yellow-700</div><div class="swatch-hex">#F57F17</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#F57F17 !important;"></div><div class="swatch-name">yellow-800</div><div class="swatch-hex">#F57F17</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#E65100 !important;"></div><div class="swatch-name">yellow-900</div><div class="swatch-hex">#E65100</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#BF360C !important;"></div><div class="swatch-name">yellow-1000</div><div class="swatch-hex">#BF360C</div></div>
-</div>
-<div class="ds-section-label">Pink (10개)</div>
-<div class="swatch-row">
-  <div class="swatch"><div class="swatch-color" style="background:#FCE4EC !important;"></div><div class="swatch-name">pink-100</div><div class="swatch-hex">#FCE4EC</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#F8BBD0 !important;"></div><div class="swatch-name">pink-200</div><div class="swatch-hex">#F8BBD0</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#F48FB1 !important;"></div><div class="swatch-name">pink-300</div><div class="swatch-hex">#F48FB1</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#F06292 !important;"></div><div class="swatch-name">pink-400</div><div class="swatch-hex">#F06292</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#E91E63 !important;"></div><div class="swatch-name">pink-500</div><div class="swatch-hex">#E91E63</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#D81B60 !important;"></div><div class="swatch-name">pink-600</div><div class="swatch-hex">#D81B60</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#C2185B !important;"></div><div class="swatch-name">pink-700</div><div class="swatch-hex">#C2185B</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#AD1457 !important;"></div><div class="swatch-name">pink-800</div><div class="swatch-hex">#AD1457</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#880E4F !important;"></div><div class="swatch-name">pink-900</div><div class="swatch-hex">#880E4F</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#560832 !important;"></div><div class="swatch-name">pink-1000</div><div class="swatch-hex">#560832</div></div>
-</div>
-<div class="ds-section-label">Purple (10개)</div>
-<div class="swatch-row">
-  <div class="swatch"><div class="swatch-color" style="background:#F3E5F5 !important;"></div><div class="swatch-name">purple-100</div><div class="swatch-hex">#F3E5F5</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#E1BEE7 !important;"></div><div class="swatch-name">purple-200</div><div class="swatch-hex">#E1BEE7</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#CE93D8 !important;"></div><div class="swatch-name">purple-300</div><div class="swatch-hex">#CE93D8</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#AB47BC !important;"></div><div class="swatch-name">purple-400</div><div class="swatch-hex">#AB47BC</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#9C27B0 !important;"></div><div class="swatch-name">purple-500</div><div class="swatch-hex">#9C27B0</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#8E24AA !important;"></div><div class="swatch-name">purple-600</div><div class="swatch-hex">#8E24AA</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#7B1FA2 !important;"></div><div class="swatch-name">purple-700</div><div class="swatch-hex">#7B1FA2</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#6A1B9A !important;"></div><div class="swatch-name">purple-800</div><div class="swatch-hex">#6A1B9A</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#4A148C !important;"></div><div class="swatch-name">purple-900</div><div class="swatch-hex">#4A148C</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#310C5D !important;"></div><div class="swatch-name">purple-1000</div><div class="swatch-hex">#310C5D</div></div>
-</div>
-<div class="ds-section-label">Teal (10개)</div>
-<div class="swatch-row">
-  <div class="swatch"><div class="swatch-color" style="background:#E0F2F1 !important;"></div><div class="swatch-name">teal-100</div><div class="swatch-hex">#E0F2F1</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#B2DFDB !important;"></div><div class="swatch-name">teal-200</div><div class="swatch-hex">#B2DFDB</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#80CBC4 !important;"></div><div class="swatch-name">teal-300</div><div class="swatch-hex">#80CBC4</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#26A69A !important;"></div><div class="swatch-name">teal-400</div><div class="swatch-hex">#26A69A</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#009688 !important;"></div><div class="swatch-name">teal-500</div><div class="swatch-hex">#009688</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#00897B !important;"></div><div class="swatch-name">teal-600</div><div class="swatch-hex">#00897B</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#00796B !important;"></div><div class="swatch-name">teal-700</div><div class="swatch-hex">#00796B</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#00695C !important;"></div><div class="swatch-name">teal-800</div><div class="swatch-hex">#00695C</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#004D40 !important;"></div><div class="swatch-name">teal-900</div><div class="swatch-hex">#004D40</div></div>
-  <div class="swatch"><div class="swatch-color" style="background:#00332B !important;"></div><div class="swatch-name">teal-1000</div><div class="swatch-hex">#00332B</div></div>
-</div>
-          </div>
+      <!-- ── 15대 파운데이션 전수 라이브 상세 표 ── -->
+      <div style="display:flex; flex-direction:column; gap:20px; margin-top:24px;">
 
-          <div class="tab-panel" data-panel="semantic-fg">
-            <div class="table-responsive">
-<table>
-              <tr><th>Figma Variable</th><th>대응 CSS 변수명</th><th>용도</th></tr>
-              <tr><td><code>fg/neutral</code></td><td><code>--seed-color-fg-neutral</code></td><td>기본 본문 텍스트</td></tr>
-              <tr><td><code>fg/neutral-muted</code></td><td><code>--seed-color-fg-neutral-muted</code></td><td>보조 설명 텍스트</td></tr>
-              <tr><td><code>fg/neutral-subtle</code></td><td><code>--seed-color-fg-neutral-subtle</code></td><td>약한 힌트 텍스트</td></tr>
-              <tr><td><code>fg/neutral-inverted</code></td><td><code>--seed-color-fg-neutral-inverted</code></td><td>다크 반전 텍스트</td></tr>
-              <tr><td><code>fg/brand</code></td><td><code>--seed-color-fg-brand</code></td><td>브랜드 포인트 텍스트 및 링크</td></tr>
-              <tr><td><code>fg/disabled</code></td><td><code>--seed-color-fg-disabled</code></td><td>비활성 텍스트</td></tr>
-              <tr><td><code>fg/positive</code></td><td><code>--seed-color-fg-positive</code></td><td>성공 텍스트</td></tr>
-              <tr><td><code>fg/critical</code></td><td><code>--seed-color-fg-critical</code></td><td>에러 텍스트</td></tr>
-              <tr><td><code>fg/warning</code></td><td><code>--seed-color-fg-warning</code></td><td>주의 텍스트</td></tr>
-              <tr><td><code>fg/informative</code></td><td><code>--seed-color-fg-informative</code></td><td>정보 텍스트</td></tr>
+        <!-- 1. Overview -->
+        <div style="background:#FFF; border:1px solid #E1E3E1; border-radius:18px; padding:20px;">
+          <h4 style="margin:0 0 8px 0; font-size:16px; color:#121212;">1. Overview (파운데이션 개요)</h4>
+          <p style="font-size:13px; color:#555; margin:0;">Seed Design 파운데이션은 모든 시각적 요소와 UI 컴포넌트의 근간이 되는 100% 표준 토큰 체계입니다.</p>
+        </div>
+
+        <!-- 2. Color -->
+        <div style="background:#FFF; border:1px solid #E1E3E1; border-radius:18px; padding:20px;">
+          <h4 style="margin:0 0 12px 0; font-size:16px; color:#121212;">2. Color (Primitive 94개 + Semantic 87개)</h4>
+          <p style="font-size:13px; color:#555; margin-bottom:12px;">Figma Variable <code>palette/*</code>, <code>fg/*</code>, <code>bg-layer/*</code>, <code>stroke/*</code> 100% 연동.</p>
+          <div class="tab-group" id="color-tabs-official">
+            <div class="tab-list">
+              <button class="tab-btn active" data-tab="primitive">Primitive (94개 물감)</button>
+              <button class="tab-btn" data-tab="semantic-fg">Foreground</button>
+              <button class="tab-btn" data-tab="semantic-bg">Background</button>
+              <button class="tab-btn" data-tab="semantic-stroke">Stroke</button>
+            </div>
+            <div class="tab-panel active" data-panel="primitive">
+              <p style="font-size:12.5px; color:#666; margin-bottom:10px;">Carrot, Gray, Blue, Green, Red, Yellow, Pink, Purple, Teal 10단계 원본 100% 라이브 컬러칩</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Typography -->
+        <div style="background:#FFF; border:1px solid #E1E3E1; border-radius:18px; padding:20px;">
+          <h4 style="margin:0 0 10px 0; font-size:16px; color:#121212;">3. Typography (Static &amp; Fluid Scale t1~t16)</h4>
+          <div class="table-responsive">
+            <table>
+              <tr><th>Figma Style</th><th>Font Size 변수</th><th>Line Height 변수</th><th>설명 및 사용 여부</th></tr>
+              <tr><td><code>font-size/t1 ~ t16</code></td><td><code>--seed-font-size-t1 ~ t16</code></td><td><code>--seed-line-height-t1 ~ t16</code></td><td>Fluid Responsive &amp; Static 70개 폰트 스케일 (⭕ 사용)</td></tr>
+              <tr><td><code>font-weight/regular, medium, bold</code></td><td>—</td><td><code>--seed-font-weight-regular, medium, bold</code></td><td>Font Weight 400, 500, 700 (⭕ 사용)</td></tr>
             </table>
-</div>
           </div>
+        </div>
 
-          <div class="tab-panel" data-panel="semantic-bg">
-            <div class="table-responsive">
-<table>
-              <tr><th>Figma Variable</th><th>대응 CSS 변수명</th><th>비고</th></tr>
-              <tr><td><code>bg-layer/default</code></td><td><code>--seed-color-bg-layer-default</code></td><td>기본 화면 배경</td></tr>
-              <tr><td><code>bg-layer/fill</code></td><td><code>--seed-color-bg-layer-fill</code></td><td>섹션 배경</td></tr>
-              <tr><td><code>bg-layer/floating</code></td><td><code>--seed-color-bg-layer-floating</code></td><td>카드·모달·드롭다운 배경</td></tr>
-              <tr><td><code>bg-layer/basement</code></td><td><code>--seed-color-bg-layer-basement</code></td><td>최하단 배경 (앱 외곽)</td></tr>
-              <tr><td><code>bg-brand/solid</code></td><td><code>--seed-color-bg-brand-solid</code></td><td>Primary 버튼 배경</td></tr>
-              <tr><td><code>bg-brand/solid-pressed</code></td><td><code>--seed-color-bg-brand-solid-pressed</code></td><td><span style="color:#2563EB;font-weight:bold;">[CSS :hover / :active 자동 처리]</span></td></tr>
-              <tr><td><code>bg-brand/weak</code></td><td><code>--seed-color-bg-brand-weak</code></td><td>연한 브랜드 배경</td></tr>
-              <tr><td><code>bg-neutral/solid</code></td><td><code>--seed-color-bg-neutral-solid</code></td><td>중성 서브 버튼 배경</td></tr>
-              <tr><td><code>bg-neutral/weak-alpha</code></td><td><code>--seed-color-bg-neutral-weak-alpha</code></td><td><span style="color:#2563EB;font-weight:bold;">[CSS 반투명 hover 자동 처리]</span></td></tr>
-              <tr><td><code>bg-status/positive-solid</code></td><td><code>--seed-color-bg-positive-solid</code></td><td>성공 뱃지/배경</td></tr>
-              <tr><td><code>bg-status/critical-solid</code></td><td><code>--seed-color-bg-critical-solid</code></td><td>에러 뱃지/배경</td></tr>
-              <tr><td><code>bg-status/overlay</code></td><td><code>--seed-color-bg-overlay</code></td><td>모달 Dimmer 오버레이</td></tr>
+        <!-- 4. Dimension -->
+        <div style="background:#FFF; border:1px solid #E1E3E1; border-radius:18px; padding:20px;">
+          <h4 style="margin:0 0 10px 0; font-size:16px; color:#121212;">4. Dimension (여백 &amp; 치수 x0_5 ~ x16)</h4>
+          <div class="table-responsive">
+            <table>
+              <tr><th>Figma Variable</th><th>대응 CSS 변수명</th><th>수치 값</th><th>용도</th></tr>
+              <tr><td><code>dimension/x1 ~ x16</code></td><td><code>--seed-dimension-x1 ~ x16</code></td><td>4px ~ 64px</td><td>Auto-layout Spacing &amp; Padding (⭕ 사용)</td></tr>
             </table>
-</div>
           </div>
+        </div>
 
-          <div class="tab-panel" data-panel="semantic-stroke">
-            <div class="table-responsive">
-<table>
-              <tr><th>Figma Variable</th><th>대응 CSS 변수명</th><th>용도</th></tr>
-              <tr><td><code>stroke/neutral-subtle</code></td><td><code>--seed-color-stroke-neutral-subtle</code></td><td>카드 연한 테두리 및 구분선</td></tr>
-              <tr><td><code>stroke/neutral-muted</code></td><td><code>--seed-color-stroke-neutral-muted</code></td><td>중간 테두리</td></tr>
-              <tr><td><code>stroke/neutral-solid</code></td><td><code>--seed-color-stroke-neutral-solid</code></td><td>강한 외곽 테두리</td></tr>
-              <tr><td><code>stroke/brand-solid</code></td><td><code>--seed-color-stroke-brand-solid</code></td><td>브랜드 포인트 테두리</td></tr>
-              <tr><td><code>stroke/critical-solid</code></td><td><code>--seed-color-stroke-critical-solid</code></td><td>에러 강조 테두리</td></tr>
-              <tr><td><code>stroke/focus-ring</code></td><td><code>--seed-color-stroke-focus-ring</code></td><td>접근성 Focus Ring</td></tr>
+        <!-- 5. Radius -->
+        <div style="background:#FFF; border:1px solid #E1E3E1; border-radius:18px; padding:20px;">
+          <h4 style="margin:0 0 10px 0; font-size:16px; color:#121212;">5. Radius (모서리 둥글기 r0_5 ~ r6, full)</h4>
+          <div class="table-responsive">
+            <table>
+              <tr><th>Figma Variable</th><th>대응 CSS 변수명</th><th>수치 값</th><th>용도</th></tr>
+              <tr><td><code>radius/r1 ~ r6, full</code></td><td><code>--seed-radius-r1 ~ r6, full</code></td><td>4px ~ 24px, 9999px</td><td>Corner Radius 바인딩 (⭕ 사용)</td></tr>
             </table>
-</div>
           </div>
         </div>
-      </div>
 
-      <!-- ── 2. TYPOGRAPHY (70개 전수 라이브 표) ── -->
-      <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px; margin-bottom:24px;">
-        <h3 style="margin:0 0 12px 0; font-size:17px; color:#121212;">2. Typography Tokens (t1~t16 전수 70개 라이브 목록)</h3>
-        <p style="font-size:13px; color:#555; margin-bottom:14px;">t1부터 t16까지 static 고정값 및 fluid 유동값, Line-height, Font-weight 전수 100% 명세표입니다.</p>
-        <div class="table-responsive">
-<table>
-          <tr><th>Figma Style 명칭</th><th>Font Size CSS 변수</th><th>Line Height CSS 변수</th><th>설명</th><th>Figma 사용 여부</th></tr>
-          <tr>
-  <td><code>font-size/t1</code></td>
-  <td><code>--seed-font-size-t1</code></td>
-  <td><code>--seed-line-height-t1</code></td>
-  <td>t1 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t1-static</code></td>
-  <td><code>--seed-font-size-t1-static</code></td>
-  <td><code>--seed-line-height-t1-static</code></td>
-  <td>t1 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr><tr>
-  <td><code>font-size/t2</code></td>
-  <td><code>--seed-font-size-t2</code></td>
-  <td><code>--seed-line-height-t2</code></td>
-  <td>t2 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t2-static</code></td>
-  <td><code>--seed-font-size-t2-static</code></td>
-  <td><code>--seed-line-height-t2-static</code></td>
-  <td>t2 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr><tr>
-  <td><code>font-size/t3</code></td>
-  <td><code>--seed-font-size-t3</code></td>
-  <td><code>--seed-line-height-t3</code></td>
-  <td>t3 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t3-static</code></td>
-  <td><code>--seed-font-size-t3-static</code></td>
-  <td><code>--seed-line-height-t3-static</code></td>
-  <td>t3 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr><tr>
-  <td><code>font-size/t4</code></td>
-  <td><code>--seed-font-size-t4</code></td>
-  <td><code>--seed-line-height-t4</code></td>
-  <td>t4 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t4-static</code></td>
-  <td><code>--seed-font-size-t4-static</code></td>
-  <td><code>--seed-line-height-t4-static</code></td>
-  <td>t4 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr><tr>
-  <td><code>font-size/t5</code></td>
-  <td><code>--seed-font-size-t5</code></td>
-  <td><code>--seed-line-height-t5</code></td>
-  <td>t5 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t5-static</code></td>
-  <td><code>--seed-font-size-t5-static</code></td>
-  <td><code>--seed-line-height-t5-static</code></td>
-  <td>t5 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr><tr>
-  <td><code>font-size/t6</code></td>
-  <td><code>--seed-font-size-t6</code></td>
-  <td><code>--seed-line-height-t6</code></td>
-  <td>t6 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t6-static</code></td>
-  <td><code>--seed-font-size-t6-static</code></td>
-  <td><code>--seed-line-height-t6-static</code></td>
-  <td>t6 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr><tr>
-  <td><code>font-size/t7</code></td>
-  <td><code>--seed-font-size-t7</code></td>
-  <td><code>--seed-line-height-t7</code></td>
-  <td>t7 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t7-static</code></td>
-  <td><code>--seed-font-size-t7-static</code></td>
-  <td><code>--seed-line-height-t7-static</code></td>
-  <td>t7 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr><tr>
-  <td><code>font-size/t8</code></td>
-  <td><code>--seed-font-size-t8</code></td>
-  <td><code>--seed-line-height-t8</code></td>
-  <td>t8 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t8-static</code></td>
-  <td><code>--seed-font-size-t8-static</code></td>
-  <td><code>--seed-line-height-t8-static</code></td>
-  <td>t8 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr><tr>
-  <td><code>font-size/t9</code></td>
-  <td><code>--seed-font-size-t9</code></td>
-  <td><code>--seed-line-height-t9</code></td>
-  <td>t9 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t9-static</code></td>
-  <td><code>--seed-font-size-t9-static</code></td>
-  <td><code>--seed-line-height-t9-static</code></td>
-  <td>t9 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr><tr>
-  <td><code>font-size/t10</code></td>
-  <td><code>--seed-font-size-t10</code></td>
-  <td><code>--seed-line-height-t10</code></td>
-  <td>t10 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t10-static</code></td>
-  <td><code>--seed-font-size-t10-static</code></td>
-  <td><code>--seed-line-height-t10-static</code></td>
-  <td>t10 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr><tr>
-  <td><code>font-size/t11</code></td>
-  <td><code>--seed-font-size-t11</code></td>
-  <td><code>--seed-line-height-t11</code></td>
-  <td>t11 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t11-static</code></td>
-  <td><code>--seed-font-size-t11-static</code></td>
-  <td><code>--seed-line-height-t11-static</code></td>
-  <td>t11 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr><tr>
-  <td><code>font-size/t12</code></td>
-  <td><code>--seed-font-size-t12</code></td>
-  <td><code>--seed-line-height-t12</code></td>
-  <td>t12 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t12-static</code></td>
-  <td><code>--seed-font-size-t12-static</code></td>
-  <td><code>--seed-line-height-t12-static</code></td>
-  <td>t12 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr><tr>
-  <td><code>font-size/t13</code></td>
-  <td><code>--seed-font-size-t13</code></td>
-  <td><code>--seed-line-height-t13</code></td>
-  <td>t13 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t13-static</code></td>
-  <td><code>--seed-font-size-t13-static</code></td>
-  <td><code>--seed-line-height-t13-static</code></td>
-  <td>t13 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr><tr>
-  <td><code>font-size/t14</code></td>
-  <td><code>--seed-font-size-t14</code></td>
-  <td><code>--seed-line-height-t14</code></td>
-  <td>t14 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t14-static</code></td>
-  <td><code>--seed-font-size-t14-static</code></td>
-  <td><code>--seed-line-height-t14-static</code></td>
-  <td>t14 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr><tr>
-  <td><code>font-size/t15</code></td>
-  <td><code>--seed-font-size-t15</code></td>
-  <td><code>--seed-line-height-t15</code></td>
-  <td>t15 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t15-static</code></td>
-  <td><code>--seed-font-size-t15-static</code></td>
-  <td><code>--seed-line-height-t15-static</code></td>
-  <td>t15 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr><tr>
-  <td><code>font-size/t16</code></td>
-  <td><code>--seed-font-size-t16</code></td>
-  <td><code>--seed-line-height-t16</code></td>
-  <td>t16 Fluid Responsive (타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-<tr>
-  <td><code>font-size/t16-static</code></td>
-  <td><code>--seed-font-size-t16-static</code></td>
-  <td><code>--seed-line-height-t16-static</code></td>
-  <td>t16 Fixed Static (고정 타이포 크기 + 줄간격)</td>
-  <td>⭕ 사용</td>
-</tr>
-          <tr><td><code>font-weight/regular</code></td><td>—</td><td><code>--seed-font-weight-regular</code></td><td>Font Weight 400 (Regular)</td><td>⭕ 사용</td></tr>
-          <tr><td><code>font-weight/medium</code></td><td>—</td><td><code>--seed-font-weight-medium</code></td><td>Font Weight 500 (Medium)</td><td>⭕ 사용</td></tr>
-          <tr><td><code>font-weight/bold</code></td><td>—</td><td><code>--seed-font-weight-bold</code></td><td>Font Weight 700 (Bold)</td><td>⭕ 사용</td></tr>
-        </table>
-</div>
-      </div>
-
-      <!-- ── 3. SPACING & DIMENSION (25개 전수) ── -->
-      <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px; margin-bottom:24px;">
-        <h3 style="margin:0 0 12px 0; font-size:17px; color:#121212;">3. Spacing &amp; Dimension Tokens (x0_5 ~ x16 전수 25개)</h3>
-        <div class="table-responsive">
-<table>
-          <tr><th>Figma Variable 명칭</th><th>대응 CSS 변수명</th><th>수치 값</th><th>용도</th></tr>
-          <tr><td><code>dimension/x0_5</code></td><td><code>--seed-dimension-x0_5</code></td><td>2px</td><td>미세 간격</td></tr>
-          <tr><td><code>dimension/x1</code></td><td><code>--seed-dimension-x1</code></td><td>4px</td><td>최소 여백 및 아이콘 간격</td></tr>
-          <tr><td><code>dimension/x1_5</code></td><td><code>--seed-dimension-x1_5</code></td><td>6px</td><td>소여백</td></tr>
-          <tr><td><code>dimension/x2</code></td><td><code>--seed-dimension-x2</code></td><td>8px</td><td>내부 소여백</td></tr>
-          <tr><td><code>dimension/x2_5</code></td><td><code>--seed-dimension-x2_5</code></td><td>10px</td><td>중소 여백</td></tr>
-          <tr><td><code>dimension/x3</code></td><td><code>--seed-dimension-x3</code></td><td>12px</td><td>버튼 패딩</td></tr>
-          <tr><td><code>dimension/x3_5</code></td><td><code>--seed-dimension-x3_5</code></td><td>14px</td><td>중여백</td></tr>
-          <tr><td><code>dimension/x4</code></td><td><code>--seed-dimension-x4</code></td><td>16px</td><td>기본 카드 패딩, 컴포넌트 간격</td></tr>
-          <tr><td><code>dimension/x4_5</code></td><td><code>--seed-dimension-x4_5</code></td><td>18px</td><td>서브 패딩</td></tr>
-          <tr><td><code>dimension/x5</code></td><td><code>--seed-dimension-x5</code></td><td>20px</td><td>Mobile 컨테이너 패딩</td></tr>
-          <tr><td><code>dimension/x6</code></td><td><code>--seed-dimension-x6</code></td><td>24px</td><td>대형 간격</td></tr>
-          <tr><td><code>dimension/x7</code></td><td><code>--seed-dimension-x7</code></td><td>28px</td><td>섹션 소여백</td></tr>
-          <tr><td><code>dimension/x8</code></td><td><code>--seed-dimension-x8</code></td><td>32px</td><td>섹션 대형 간격</td></tr>
-          <tr><td><code>dimension/x9</code></td><td><code>--seed-dimension-x9</code></td><td>36px</td><td>컴포넌트 대형 높이</td></tr>
-          <tr><td><code>dimension/x10</code></td><td><code>--seed-dimension-x10</code></td><td>40px</td><td>컴포넌트 대여백</td></tr>
-          <tr><td><code>dimension/x12</code></td><td><code>--seed-dimension-x12</code></td><td>48px</td><td>Tablet 컨테이너 패딩</td></tr>
-          <tr><td><code>dimension/x13</code></td><td><code>--seed-dimension-x13</code></td><td>52px</td><td>버튼 대형 높이</td></tr>
-          <tr><td><code>dimension/x14</code></td><td><code>--seed-dimension-x14</code></td><td>56px</td><td>디스플레이 헤더 높이</td></tr>
-          <tr><td><code>dimension/x16</code></td><td><code>--seed-dimension-x16</code></td><td>64px</td><td>Desktop 컨테이너 패딩</td></tr>
-        </table>
-</div>
-      </div>
-
-      <!-- ── 4. RADIUS (11개 전수) ── -->
-      <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px; margin-bottom:24px;">
-        <h3 style="margin:0 0 12px 0; font-size:17px; color:#121212;">4. Radius Tokens (r0_5 ~ r6, full 전수 11개)</h3>
-        <div class="table-responsive">
-<table>
-          <tr><th>Figma Variable 명칭</th><th>대응 CSS 변수명</th><th>수치 값</th><th>용도</th></tr>
-          <tr><td><code>radius/r0_5</code></td><td><code>--seed-radius-r0_5</code></td><td>2px</td><td>미세 모서리</td></tr>
-          <tr><td><code>radius/r1</code></td><td><code>--seed-radius-r1</code></td><td>4px</td><td>태그 모서리</td></tr>
-          <tr><td><code>radius/r1_5</code></td><td><code>--seed-radius-r1_5</code></td><td>6px</td><td>칩 모서리</td></tr>
-          <tr><td><code>radius/r2</code></td><td><code>--seed-radius-r2</code></td><td>8px</td><td>버튼/입력창 모서리</td></tr>
-          <tr><td><code>radius/r2_5</code></td><td><code>--seed-radius-r2_5</code></td><td>10px</td><td>중형 모서리</td></tr>
-          <tr><td><code>radius/r3</code></td><td><code>--seed-radius-r3</code></td><td>12px</td><td>기본 카드 모서리</td></tr>
-          <tr><td><code>radius/r3_5</code></td><td><code>--seed-radius-r3_5</code></td><td>14px</td><td>대형 카드 모서리</td></tr>
-          <tr><td><code>radius/r4</code></td><td><code>--seed-radius-r4</code></td><td>16px</td><td>다이얼로그/모달 모서리</td></tr>
-          <tr><td><code>radius/r5</code></td><td><code>--seed-radius-r5</code></td><td>20px</td><td>바텀시트 상단 모서리</td></tr>
-          <tr><td><code>radius/r6</code></td><td><code>--seed-radius-r6</code></td><td>24px</td><td>카운터 모서리</td></tr>
-          <tr><td><code>radius/full</code></td><td><code>--seed-radius-full</code></td><td>9999px</td><td>원형/캡슐 알약 모서리</td></tr>
-        </table>
-</div>
-      </div>
-
-      <!-- ── 5~13. MOTION, SHADOW, SCALE, GRADIENT, GRID, BLEED, ICON, TRANSFORM ── -->
-      <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px;">
-        <h3 style="margin:0 0 12px 0; font-size:17px; color:#121212;">5~13. Motion, Shadow, Scale, Gradient, Grid, Bleed, Icon, Transform (88개 전수)</h3>
-        <div class="table-responsive">
-<table>
-          <tr><th>구분</th><th>Figma Variable</th><th>CSS 변수명</th><th>수치 / 베지어 / 설명</th><th>Figma 사용 여부</th></tr>
-          <tr><td>Motion</td><td><code>duration/d1 ~ d6</code></td><td><code>--seed-duration-d1 ~ d6</code></td><td>100ms ~ 500ms 애니메이션 속도</td><td>⭕ 사용</td></tr>
-          <tr><td>Motion</td><td>—</td><td><code>--seed-timing-function-enter</code></td><td>cubic-bezier(0, 0, 0.2, 1)</td><td>❌ <strong style="color:#C2410C;">[Figma 변수 ✕ - CSS 전용]</strong></td></tr>
-          <tr><td>Shadow</td><td><code>elevation/s1</code></td><td><code>--seed-shadow-s1</code></td><td><code>0 1px 3px rgba(0,0,0,0.08)</code></td><td>⭕ 사용</td></tr>
-          <tr><td>Shadow</td><td><code>elevation/s2</code></td><td><code>--seed-shadow-s2</code></td><td><code>0 4px 12px rgba(0,0,0,0.12)</code></td><td>⭕ 사용</td></tr>
-          <tr><td>Shadow</td><td><code>elevation/s3</code></td><td><code>--seed-shadow-s3</code></td><td><code>0 8px 24px rgba(0,0,0,0.18)</code></td><td>⭕ 사용</td></tr>
-          <tr><td>Scale</td><td><code>scale/s95, s97, s98</code></td><td><code>--seed-scale-s95, s97, s98</code></td><td>0.95, 0.97, 0.98 버튼 클릭 축소 비율</td><td>⭕ 사용</td></tr>
-          <tr><td>Gradient</td><td><code>gradient/shimmer-neutral</code></td><td><code>--seed-gradient-shimmer-neutral</code></td><td>스켈레톤 로딩 쉬머 그래디언트 (피그마 스켈레톤 상태 렌더링)</td><td>⭕ <strong style="color:#15803D;">Figma Variable 사용 (스켈레톤 상태 디자인 ⭕)</strong></td></tr>
-          <tr><td>Grid System</td><td><code>grid/columns-base, md, lg</code></td><td><code>--seed-grid-columns-base</code></td><td>반응형 그리드 (Mobile 4열, Tablet 8열, Desktop 12열)</td><td>⭕ <strong style="color:#15803D;">Figma Style/Variable 사용 (Figma Layout Grid Style 바인딩 ⭕)</strong></td></tr>
-          <tr><td>Bleed</td><td>—</td><td><code>--seed-box-bleed-left / right</code></td><td>부모 여백 뚫는 full-bleed 확장</td><td>❌ <strong style="color:#C2410C;">[Figma 변수 ✕ - CSS 전용]</strong></td></tr>
-          <tr><td>Icon</td><td><code>icon/size-sm, md, lg</code></td><td><code>--seed-icon-size</code>, <code>--seed-prefix-icon-size</code></td><td>14px, 18px, 22px 아이콘 크기 규격</td><td>⭕ 사용</td></tr>
-          <tr><td>Transform</td><td>—</td><td><code>--seed-enter-translate-y</code></td><td>모달/바텀시트 슬라이드업 등장/퇴장 트랜스폼</td><td>❌ <strong style="color:#C2410C;">[Figma 변수 ✕ - CSS 전용]</strong></td></tr>
-        </table>
-</div>
-      </div>
-  
-      <!-- ── 14. INCLUSIVE DESIGN (포용적 디자인 & 접근성 가이드) ── -->
-      <div style="background:#FFF; border:2px solid #2563EB; border-radius:20px; padding:22px; margin-top:24px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #E1E3E1; padding-bottom:10px;">
-          <h3 style="margin:0; font-size:17px; color:#2563EB;">♿ 14. Inclusive Design (포용적 디자인 &amp; 접근성 — 100% 시스템 반영)</h3>
-          <span style="font-size:11.5px; font-weight:700; color:#2563EB; background:#EFF6FF; padding:3px 10px; border-radius:10px;">Figma &amp; CSS &amp; AI 시스템 100% 반영 ⭕</span>
-        </div>
-        <p style="font-size:13px; color:#444; margin-bottom:14px; line-height:1.6;">
-          당근 Seed Design의 포용적 디자인 지침은 <strong>Figma Auto-layout 터치 패딩, CSS Media Query, AI 접근성 검수 규칙으로 100% 시스템화</strong>되어 관리됩니다.
-        </p>
-        <div class="table-responsive">
-          <table>
-            <tr><th>지침 영역</th><th>Seed 접근성 기준 (APCA &amp; PX)</th><th>시스템 반영 방식 (Figma / CSS / AI)</th></tr>
-            <tr><td><strong>Visual Clarity &amp; APCA</strong></td><td>본문 텍스트 APCA Lc 75~90+, Disabled Lc 30+</td><td>⭕ <code>fg/neutral</code> (Lc 90+), <code>fg/disabled</code> (Lc 30+) 시맨틱 토큰 바인딩</td></tr>
-            <tr><td><strong>Touch Area Size</strong></td><td>이상적 터치 영역 <code>44x44px</code> 이상 (최소 <code>24x24px</code>)</td><td>⭕ <code>--seed-touch-target-min: 44px</code> 및 Figma Auto-layout Touch Target 지정</td></tr>
-            <tr><td><strong>Animation Control</strong></td><td><code>prefers-reduced-motion</code> 지침, 2초 이상 사용 제한</td><td>⭕ CSS <code>@media (prefers-reduced-motion: reduce)</code> 무반응 모션 100% 자동 지원</td></tr>
-            <tr><td><strong>Error Handling</strong></td><td>즉각적 시각 피드백 + <code>aria-live</code> 보조기술 알림</td><td>⭕ AI(BUILDER) 웹 코드 작성 시 <code>aria-live="polite"</code> 및 에러 테두리 100% 자동 삽입</td></tr>
-            <tr><td><strong>Alternative Text</strong></td><td>VoiceOver, TalkBack용 <code>aria-label</code> 필수 제공</td><td>⭕ 모든 컴포넌트 아이콘 및 이미지에 <code>aria-label</code> 접근성 태그 필수 바인딩</td></tr>
-          </table>
-        </div>
-      </div>
-
-      <!-- ── 15. SEED DESIGN RESPONSIVE SYSTEM (당근 Seed 반응형 처리 4대 핵심 매커니즘) ── -->
-      <div style="background:#FFF; border:2px solid #0066FF; border-radius:20px; padding:22px; margin-top:24px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #E1E3E1; padding-bottom:10px;">
-          <h3 style="margin:0; font-size:17px; color:#0066FF;">📱 15. Seed Design Responsive System (당근 Seed 반응형 처리 4대 매커니즘)</h3>
-          <span style="font-size:11.5px; font-weight:700; color:#0066FF; background:#EBF2FF; padding:3px 10px; border-radius:10px;">반응형 스펙 100% 반영 ⭕</span>
-        </div>
-        <p style="font-size:13px; color:#444; margin-bottom:14px; line-height:1.6;">
-          당근 Seed Design은 <strong>3대 뷰포트 구간, Fluid/Static 폰트 이원화, 모바일-데스크톱 컴포넌트 자동 전환</strong>으로 반응형을 처리합니다.
-        </p>
-        <div class="table-responsive">
-          <table>
-            <tr><th>반응형 처리 영역</th><th>Mobile (&lt; 768px)</th><th>Tablet (768px ~ 1279px)</th><th>Desktop (1280px+)</th></tr>
-            <tr><td><strong>1. Grid System (열)</strong></td><td>4 Columns (4열)</td><td>8 Columns (8열)</td><td>12 Columns (12열)</td></tr>
-            <tr><td><strong>2. Side Gutter (좌우 여백)</strong></td><td><code>dimension/x5</code> (20px)</td><td><code>dimension/x12</code> (48px)</td><td><code>dimension/x16</code> (64px)</td></tr>
-            <tr><td><strong>3. Fluid Typography</strong></td><td>Title t12 (32px / line-height 40)</td><td>Title t12 (36px / line-height 44)</td><td>Title t12 (40px / line-height 48)</td></tr>
-            <tr><td><strong>4. Component Layout</strong></td><td>Bottom Sheet / Action Sheet / Full-width Stack</td><td>Floating Modal / Medium Width</td><td>Center Dialog / Side-by-side Row</td></tr>
-          </table>
-        </div>
-      </div>
-
-      <!-- ── 16. INTERNATIONAL DESIGN (국제화 & 다국어 i18n 가이드) ── -->
-      <div style="background:#FFF; border:2px solid #059669; border-radius:20px; padding:22px; margin-top:24px;">
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #E1E3E1; padding-bottom:10px;">
-          <h3 style="margin:0; font-size:17px; color:#059669;">🌐 16. International Design (국제화 &amp; 다국어 i18n — seed-design.io 전수 반영)</h3>
-          <span style="font-size:11.5px; font-weight:700; color:#059669; background:#ECFDF5; padding:3px 10px; border-radius:10px;">seed-design.io 100% 공식 반영 ⭕</span>
-        </div>
-        <p style="font-size:13px; color:#444; margin-bottom:14px; line-height:1.6;">
-          당근 Seed Design의 국제화 가이드는 <strong>ICU 날짜/상대시간 표준, 만/K 단위 환산, 250% 텍스트 확장 대비 CSS</strong>로 시스템화되어 있습니다.
-        </p>
-
-        <!-- 상대적 시간 및 날짜 ICU 표 -->
-        <h4 style="font-size:14px; color:#121212; margin:16px 0 8px 0;">1. 상대적 시간 &amp; 날짜 ICU 표기 표준</h4>
-        <div class="table-responsive">
-          <table>
-            <tr><th>기준</th><th>ko_KR (한국어)</th><th>en_US / en_GB / en_CA (영어)</th><th>ja_JP (일본어)</th><th>비고</th></tr>
-            <tr><td>매우 짧은 시간</td><td>방금 전</td><td>Just now</td><td>たった今</td><td>즉시 피드백</td></tr>
-            <tr><td>초 (단수/복수)</td><td>1초 전 / 2초 전</td><td>1s / 2s</td><td>1 秒前 / 2 秒前</td><td>단위 축약</td></tr>
-            <tr><td>분 (단수/복수)</td><td>1분 전 / 2분 전</td><td>1min / 2min</td><td>1 分前 / 2 分前</td><td>'min'으로 명확화</td></tr>
-            <tr><td>시간 (단수/복수)</td><td>1시간 전 / 2시간 전</td><td>1h / 2h</td><td>1 時間前 / 2 時間前</td><td>시간 축약</td></tr>
-            <tr><td>날짜 점(.) 축약</td><td><code>2026. 3. 31.</code></td><td>—</td><td>—</td><td>마지막 [일] 뒤에도 점 필수!</td></tr>
-          </table>
+        <!-- 6. Shadow -->
+        <div style="background:#FFF; border:1px solid #E1E3E1; border-radius:18px; padding:20px;">
+          <h4 style="margin:0 0 10px 0; font-size:16px; color:#121212;">6. Shadow (그림자 고도 s1 ~ s3)</h4>
+          <div class="table-responsive">
+            <table>
+              <tr><th>Figma Effect Style</th><th>대응 CSS 변수명</th><th>Box Shadow 값</th><th>용도</th></tr>
+              <tr><td><code>elevation/s1, s2, s3</code></td><td><code>--seed-shadow-s1, s2, s3</code></td><td><code>0 1px 3px ~ 0 8px 24px</code></td><td>카드·모달 그림자 고도 (⭕ 사용)</td></tr>
+            </table>
+          </div>
         </div>
 
-        <!-- 텍스트 길이 확장 대비 표 -->
-        <h4 style="font-size:14px; color:#121212; margin:16px 0 8px 0;">2. 번역 후 텍스트 길이에 따른 레이아웃 확장 비율 (W3C Standard)</h4>
-        <div class="table-responsive">
-          <table>
-            <tr><th>한국어 원문 글자 수</th><th>예상 번역 확장 비율</th><th>대응 레이아웃 처리 규칙 (CSS / Figma)</th></tr>
-            <tr><td><strong>10자 이하</strong> (예: 저장 ➔ Speichern)</td><td><strong>150% ~ 250% 확장</strong></td><td>버튼/라벨 폭 고정 ✕, Flex Padding 유연성 100% 확보</td></tr>
-            <tr><td><strong>11자 ~ 20자</strong></td><td><strong>130% ~ 150% 확장</strong></td><td>텍스트 줄 바꿈 (wrap) 및 동적 너비 자동 조절</td></tr>
-            <tr><td><strong>21자 ~ 50자</strong></td><td><strong>90% ~ 110% 확장</strong></td><td>컨테이너 뷰포트 반응성 점검</td></tr>
-          </table>
+        <!-- 7. Duration -->
+        <div style="background:#FFF; border:1px solid #E1E3E1; border-radius:18px; padding:20px;">
+          <h4 style="margin:0 0 10px 0; font-size:16px; color:#121212;">7. Duration (모션 속도 d1 ~ d6)</h4>
+          <div class="table-responsive">
+            <table>
+              <tr><th>Figma Variable</th><th>대응 CSS 변수명</th><th>속도 값</th><th>용도</th></tr>
+              <tr><td><code>duration/d1 ~ d6</code></td><td><code>--seed-duration-d1 ~ d6</code></td><td>100ms ~ 500ms</td><td>Smart Animate 속도 (⭕ 사용)</td></tr>
+            </table>
+          </div>
         </div>
+
+        <!-- 8. Timing Function -->
+        <div style="background:#FFF; border:1px solid #E1E3E1; border-radius:18px; padding:20px;">
+          <h4 style="margin:0 0 10px 0; font-size:16px; color:#121212;">8. Timing Function (이징 커브 enter/exit)</h4>
+          <div class="table-responsive">
+            <table>
+              <tr><th>Figma 관리 방식</th><th>대응 CSS 변수명</th><th>베지어 수치</th><th>용도</th></tr>
+              <tr><td>CSS 전용 ❌</td><td><code>--seed-timing-function-enter / exit</code></td><td>cubic-bezier 이징 커브</td><td>등장·퇴장 애니메이션 곡선</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- 9. Grid System -->
+        <div style="background:#FFF; border:1px solid #E1E3E1; border-radius:18px; padding:20px;">
+          <h4 style="margin:0 0 10px 0; font-size:16px; color:#121212;">9. Grid System (반응형 4, 8, 12열 그리드)</h4>
+          <div class="table-responsive">
+            <table>
+              <tr><th>Figma Style</th><th>대응 CSS 변수명</th><th>열 규격</th><th>용도</th></tr>
+              <tr><td><code>grid/columns-base, md, lg</code></td><td><code>--seed-grid-columns-base, md, lg</code></td><td>4열, 8열, 12열</td><td>Figma Layout Grid Style 바인딩 (⭕ 사용)</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- 10. Bleed -->
+        <div style="background:#FFF; border:1px solid #E1E3E1; border-radius:18px; padding:20px;">
+          <h4 style="margin:0 0 10px 0; font-size:16px; color:#121212;">10. Bleed (모바일 Full-bleed 여백 확장)</h4>
+          <div class="table-responsive">
+            <table>
+              <tr><th>Figma 관리 방식</th><th>대응 CSS 변수명</th><th>용도</th></tr>
+              <tr><td>CSS 전용 ❌</td><td><code>--seed-box-bleed-left / right</code></td><td>부모 패딩을 뚫고 양끝까지 꽉 차는 모바일 터치 블리드</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- 11. Iconography -->
+        <div style="background:#FFF; border:1px solid #E1E3E1; border-radius:18px; padding:20px;">
+          <h4 style="margin:0 0 10px 0; font-size:16px; color:#121212;">11. Iconography (아이콘 규격 &amp; prefix/suffix)</h4>
+          <div class="table-responsive">
+            <table>
+              <tr><th>Figma Variable</th><th>대응 CSS 변수명</th><th>규격</th><th>용도</th></tr>
+              <tr><td><code>icon/size-sm, md, lg</code></td><td><code>--seed-icon-size</code>, <code>--seed-prefix-icon-size</code></td><td>14px, 18px, 22px</td><td>Icon Instance Size 바인딩 (⭕ 사용)</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- 12. Scale & Transform -->
+        <div style="background:#FFF; border:1px solid #E1E3E1; border-radius:18px; padding:20px;">
+          <h4 style="margin:0 0 10px 0; font-size:16px; color:#121212;">12. Scale &amp; Transform (클릭 축소 &amp; Keyframes)</h4>
+          <div class="table-responsive">
+            <table>
+              <tr><th>Figma Variable</th><th>대응 CSS 변수명</th><th>값</th><th>용도</th></tr>
+              <tr><td><code>scale/s95, s97, s98</code></td><td><code>--seed-scale-s95, s97, s98</code></td><td>0.95 ~ 0.98</td><td>버튼 클릭 축소 비율 (⭕ 사용)</td></tr>
+              <tr><td>CSS 전용 ❌</td><td><code>--seed-enter-translate-y</code></td><td>Keyframes</td><td>바텀시트 슬라이드업 트랜스폼</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- 13. Safe Area & Breakpoints -->
+        <div style="background:#FFF; border:1px solid #E1E3E1; border-radius:18px; padding:20px;">
+          <h4 style="margin:0 0 10px 0; font-size:16px; color:#121212;">13. Safe Area &amp; Breakpoints (안전 영역 &amp; 3대 뷰포트)</h4>
+          <div class="table-responsive">
+            <table>
+              <tr><th>Figma Variable</th><th>대응 CSS / Tailwind</th><th>수치</th><th>용도</th></tr>
+              <tr><td><code>breakpoint/tb, mb</code></td><td><code>tb: 768px, mb: 1280px</code></td><td>768px, 1280px</td><td>Figma Breakpoint Frame 너비 (⭕ 사용)</td></tr>
+              <tr><td>CSS 전용 ❌</td><td><code>--seed-safe-area-top / bottom</code></td><td>env()</td><td>iOS/Android 브라우저 안전 영역</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- 14. Inclusive Design -->
+        <div style="background:#FFF; border:2px solid #2563EB; border-radius:18px; padding:20px;">
+          <h4 style="margin:0 0 10px 0; font-size:16px; color:#2563EB;">14. Inclusive Design (포용적 디자인 — APCA &amp; 44px 터치)</h4>
+          <div class="table-responsive">
+            <table>
+              <tr><th>접근성 수치 기준</th><th>시스템 반영 방식</th><th>설명</th></tr>
+              <tr><td>APCA Lc 75~90+ / 44x44px 터치</td><td><code>--seed-touch-target-min: 44px</code></td><td>접근성 명암비 토큰 &amp; 44px 터치 타겟 &amp; reduced-motion 지원</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- 15. International Design -->
+        <div style="background:#FFF; border:2px solid #059669; border-radius:18px; padding:20px;">
+          <h4 style="margin:0 0 10px 0; font-size:16px; color:#059669;">15. International Design (국제화 디자인 — i18n &amp; 250% 확장)</h4>
+          <div class="table-responsive">
+            <table>
+              <tr><th>국제화 기준</th><th>시스템 반영 방식</th><th>설명</th></tr>
+              <tr><td>ICU 날짜 / 250% 텍스트 확장</td><td><code>white-space: nowrap</code> Flex Padding</td><td>한국어 점(.) 축약, 150~250% 다국어 텍스트 확장 대비 레이아웃</td></tr>
+            </table>
+          </div>
+        </div>
+
       </div>
-</section></section>
+  </section></section>
 
 
   <section id="files">
