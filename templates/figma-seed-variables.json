@@ -4,7 +4,7 @@
     "Light",
     "Dark"
   ],
-  "totalCount": 234,
+  "totalCount": 237,
   "variables": [
     {
       "name": "palette/carrot-100",
@@ -1409,6 +1409,24 @@
       "type": "COLOR",
       "value": "linear-gradient(90deg, #3385FF 0%, #0066FF 100%)",
       "description": "Seed 하이라이트 매직 그래디언트 (Figma 렌더링 ⭕)"
+    },
+    {
+      "name": "grid/columns-base",
+      "type": "FLOAT",
+      "value": 4,
+      "description": "Mobile 뷰포트 레이아웃 그리드 (4열)"
+    },
+    {
+      "name": "grid/columns-md",
+      "type": "FLOAT",
+      "value": 8,
+      "description": "Tablet 뷰포트 레이아웃 그리드 (8열)"
+    },
+    {
+      "name": "grid/columns-lg",
+      "type": "FLOAT",
+      "value": 12,
+      "description": "Desktop 뷰포트 레이아웃 그리드 (12열)"
     }
   ]
 }
