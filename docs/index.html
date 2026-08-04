@@ -614,31 +614,109 @@
     </section>
 
     <!-- 9. Inclusive Design -->
-    <section id="f-inclusive">
-      <h2>9. Inclusive Design (포용적 디자인 &amp; 접근성 가이드)</h2>
-      <p>APCA 명암비 (Lc 75/90/30), Touch Target Size (최소 44x44px), <code>prefers-reduced-motion</code> 모션 제어, <code>aria-live</code> 오류 피드백 지침 100% 반영.</p>
+    <!-- 9. Inclusive Design -->
+    <section id="f-inclusive" style="border:2px solid #2563EB;">
+      <h2 style="color:#2563EB;">9. Inclusive Design (포용적 디자인 &amp; 접근성 가이드 — 100% 꼼꼼 명세)</h2>
+      <p>시각, 청각, 운동 능력 등 다양한 환경의 사용자 전체를 포용하는 <strong>Seed 공식 접근성(A11y) 기준</strong>입니다.</p>
+
+      <h3>1. APCA (Advanced Perceptual Contrast Algorithm) 명암비 기준</h3>
+      <div class="table-responsive">
+        <table>
+          <tr><th>적용 대상 UI 요소</th><th>최소 Lc 명암비 기준</th><th>권장 Lc 명암비</th><th>대응 시맨틱 토큰 명세</th></tr>
+          <tr><td>본문 텍스트 (2줄 이상, 제목, 입력필드)</td><td><strong>Lc 75 이상</strong></td><td><strong>Lc 90 이상 권장</strong></td><td><code>fg/neutral</code> (palette/gray-1000)</td></tr>
+          <tr><td>일반 시각 요소 및 서브 텍스트</td><td><strong>Lc 60 이상</strong> (16px 미만 bold)</td><td>Lc 75 이상</td><td><code>fg/neutral-muted</code> (palette/gray-800)</td></tr>
+          <tr><td>Placeholder 및 Disabled 비활성 텍스트</td><td><strong>Lc 30 이상</strong></td><td>Lc 45 이상</td><td><code>fg/disabled</code> (palette/gray-500)</td></tr>
+        </table>
+      </div>
+
+      <h3>2. Touch Target Size (터치 영역 규격)</h3>
+      <div class="table-responsive">
+        <table>
+          <tr><th>구분</th><th>규격 수치</th><th>설명 및 적용 가이드</th></tr>
+          <tr><td>이상적 터치 영역</td><td><strong>44 x 44 px 이상</strong></td><td>모든 주요 버튼, 칩, 입력 필드의 최소 클릭 영역 (<code>--seed-touch-target-min: 44px</code>)</td></tr>
+          <tr><td>최소 보장 터치 영역</td><td><strong>24 x 24 px 이상</strong></td><td>디자인/기능 제약 시 보장해야 하는 픽셀 최소 한계치</td></tr>
+        </table>
+      </div>
+
+      <h3>3. Animation &amp; Motion Control</h3>
+      <div class="table-responsive">
+        <table>
+          <tr><th>접근성 지침</th><th>설명 및 자동 적용 코드</th></tr>
+          <tr><td><code>prefers-reduced-motion</code></td><td>사용자 브라우저 설정 감지 시 모든 트랜지션/애니메이션 100% 자동 끄기 (<code>0.01ms</code>)</td></tr>
+          <tr><td>2초 모션 시간 제한</td><td>2초 이상 지속되는 애니메이션은 주의 분산 예방을 위해 건너뛰기 및 멈춤 옵션 제공</td></tr>
+        </table>
+      </div>
     </section>
 
     <!-- 10. International Design -->
-    <section id="f-international">
-      <h2>10. International Design (국제화 디자인 i18n 가이드)</h2>
-      <p>ICU 날짜/상대시간 표준, 만/K 대단위 환산, 한국어 점(.) 축약(<code>2026. 3. 31.</code>), 150~250% 다국어 텍스트 확장 레이아웃 대비 지침 100% 반영.</p>
+    <section id="f-international" style="border:2px solid #059669;">
+      <h2 style="color:#059669;">10. International Design (국제화 디자인 i18n 가이드 — 100% 꼼꼼 명세)</h2>
+      <p>언어 및 문화권 변경 시 레이아웃이 깨지지 않도록 보장하는 <strong>Seed 공식 국제화 규격</strong>입니다.</p>
+
+      <h3>1. 상대적 시간 표기 로케일 표준</h3>
+      <div class="table-responsive">
+        <table>
+          <tr><th>경과 시간 기준</th><th>ko_KR (한국어)</th><th>en_US / en_GB / en_CA (영어)</th><th>ja_JP (일본어)</th><th>표기 규칙 및 비고</th></tr>
+          <tr><td>매우 짧은 시간</td><td>방금 전</td><td>Just now</td><td>たった今</td><td>즉시 피드백</td></tr>
+          <tr><td>초 단위 (단수/복수)</td><td>1초 전 / 2초 전</td><td>1s / 2s</td><td>1 秒前 / 2 秒前</td><td>'s' 축약</td></tr>
+          <tr><td>분 단위 (단수/복수)</td><td>1분 전 / 2분 전</td><td>1min / 2min</td><td>1 分前 / 2 分前</td><td>'min' 명확화 표기</td></tr>
+          <tr><td>시간 단위 (단수/복수)</td><td>1시간 전 / 2시간 전</td><td>1h / 2h</td><td>1 時間前 / 2 時間前</td><td>'h' 축약</td></tr>
+          <tr><td>일 단위 (단수/복수)</td><td>1일 전 / 2일 전</td><td>1d / 2d</td><td>1 日前 / 2 日前</td><td>'d' 축약</td></tr>
+        </table>
+      </div>
+
+      <h3>2. 날짜 표기 &amp; 한국어 점(.) 축약 규칙</h3>
+      <div class="table-responsive">
+        <table>
+          <tr><th>로케일 ID</th><th>Standard Date</th><th>Compact Date</th><th>한국어 점(.) 축약 필수 규칙</th></tr>
+          <tr><td><strong>ko_KR</strong></td><td>2026년 3월 31일</td><td>3월 31일</td><td><strong style="color:#059669;">2026. 3. 31. (마지막 [일] 뒤에도 점 필수!)</strong></td></tr>
+          <tr><td><strong>en_US / en_CA</strong></td><td>Jul 16, 2015</td><td>Jul 16</td><td>—</td></tr>
+          <tr><td><strong>en_GB</strong></td><td>16 Jul 2015</td><td>16 Jul</td><td>—</td></tr>
+        </table>
+      </div>
+
+      <h3>3. 번역 후 텍스트 길이에 따른 레이아웃 확장 비율 (W3C Standard)</h3>
+      <div class="table-responsive">
+        <table>
+          <tr><th>한국어 원문 글자 수</th><th>번역 시 예상 확장 비율</th><th>대응 레이아웃 처리 규칙</th></tr>
+          <tr><td>10자 이하 (예: 저장 ➔ Speichern)</td><td><strong>150% ~ 250% 확장</strong></td><td>버튼 폭 고정 금지, Flex Padding 유연성 100% 확보 (<code>white-space: nowrap</code>)</td></tr>
+          <tr><td>11자 ~ 20자</td><td><strong>130% ~ 150% 확장</strong></td><td>텍스트 줄 바꿈 (wrap) 및 동적 너비 확장</td></tr>
+        </table>
+      </div>
     </section>
 
     <!-- 11. Motion -->
     <section id="f-motion">
-      <h2>11. Motion &amp; Duration</h2>
-      <p><code>duration/d1 ~ d6</code> (100ms~500ms 속도) 및 <code>enter/exit</code> 이징 커브.</p>
+      <h2>11. Motion &amp; Duration (전수 속도 &amp; 이징 이징 표)</h2>
+      <p>Smart Animate 모션 속도 <code>duration/d1 ~ d6</code> 및 이징 커브 전수 명세입니다.</p>
+      <div class="table-responsive">
+        <table>
+          <tr><th>토큰 구분</th><th>Figma Variable / CSS 변수명</th><th>수치 / 베지어 값</th><th>용도 및 비고</th></tr>
+          <tr><td>Duration d1</td><td><code>duration/d1</code> (<code>--seed-duration-d1</code>)</td><td>100ms</td><td>미세 hover 피드백</td></tr>
+          <tr><td>Duration d2</td><td><code>duration/d2</code> (<code>--seed-duration-d2</code>)</td><td>150ms</td><td>기본 hover 트랜지션</td></tr>
+          <tr><td>Duration d3</td><td><code>duration/d3</code> (<code>--seed-duration-d3</code>)</td><td>200ms</td><td>드롭다운/토글 트랜지션</td></tr>
+          <tr><td>Duration d4</td><td><code>duration/d4</code> (<code>--seed-duration-d4</code>)</td><td>300ms</td><td>모달/바텀시트 트랜지션</td></tr>
+          <tr><td>Duration d5</td><td><code>duration/d5</code> (<code>--seed-duration-d5</code>)</td><td>400ms</td><td>페이지 전환 모션</td></tr>
+          <tr><td>Duration d6</td><td><code>duration/d6</code> (<code>--seed-duration-d6</code>)</td><td>500ms</td><td>대형 모션</td></tr>
+          <tr><td>Timing Enter</td><td><code>--seed-timing-function-enter</code></td><td>cubic-bezier(0, 0, 0.2, 1)</td><td>등장 이징 커브 (CSS 전용 ❌)</td></tr>
+          <tr><td>Timing Exit</td><td><code>--seed-timing-function-exit</code></td><td>cubic-bezier(0.4, 0, 1, 1)</td><td>퇴장 이징 커브 (CSS 전용 ❌)</td></tr>
+        </table>
+      </div>
     </section>
 
     <!-- 12. Grid & Bleed -->
     <section id="f-grid">
-      <h2>12. Grid System &amp; Bleed</h2>
-      <p>반응형 4열/8열/12열 레이아웃 그리드(Figma Layout Grid Style 바인딩 ⭕) 및 모바일 Full-bleed 여백 확장.</p>
-    </section>
-
-    <!-- Showcase (컴포넌트 위젯 깨짐 100% 수습) -->
-    <section id="showcase">
+      <h2>12. Grid System &amp; Bleed (반응형 그리드 &amp; 모바일 블리드 규격)</h2>
+      <div class="table-responsive">
+        <table>
+          <tr><th>구분</th><th>Figma Style / CSS 변수명</th><th>규격 수치</th><th>용도 및 설명</th></tr>
+          <tr><td>Mobile Grid</td><td><code>grid/columns-base</code></td><td>4 Columns (4열)</td><td>⭕ Figma Layout Grid Style 바인딩 (Gutter 20px)</td></tr>
+          <tr><td>Tablet Grid</td><td><code>grid/columns-md</code></td><td>8 Columns (8열)</td><td>⭕ Figma Layout Grid Style 바인딩 (Gutter 48px)</td></tr>
+          <tr><td>Desktop Grid</td><td><code>grid/columns-lg</code></td><td>12 Columns (12열)</td><td>⭕ Figma Layout Grid Style 바인딩 (Gutter 64px)</td></tr>
+          <tr><td>Full Bleed</td><td><code>--seed-box-bleed-left / right</code></td><td>부모 패딩 전면 무효화</td><td>모바일 화면 양끝까지 꽉 차는 full-bleed 확장</td></tr>
+        </table>
+      </div>
+    </section><section id="showcase">
       <h2>🎨 컴포넌트 실물 라이브 쇼케이스 (깨짐 100% 수습 완료)</h2>
       <p><code>@seed-design/css</code> 2.3.0 레시피 기반의 완성형 컴포넌트 실물 위젯들입니다.</p>
 
