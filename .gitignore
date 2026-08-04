@@ -3,3 +3,5 @@ node_modules/
 *.tgz
 *.log
 .npm/
+docs/node_modules/
+docs/dist/
