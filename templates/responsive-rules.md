@@ -2,7 +2,7 @@
 
 > **💡 작업자(AI/개발자) 필독 사항**
 > 본 문서는 **axpublish** 파이프라인의 반응형 렌더링 규칙 법전입니다.
-> 색상·타이포 토큰 정의는 **`@seed-design/css`** 와 **`seed-tokens.css`** 를 따릅니다.
+> 색상·타이포 토큰 정의는 **`@seed-design/css`** 와 **`seed-seed-tokens.css`** 를 따릅니다.
 > 이 문서는 Seed가 다루지 않는 **레이아웃·반응형·Figma 변환 규칙**을 정의합니다.
 >
 > **기본 작업 원칙**
@@ -16,7 +16,7 @@
 
 ### 1-1. 브레이크포인트 (수정 금지)
 
-> ⚠️ Tailwind 기본 프리픽스(`md:`/`lg:`/`xl:`)를 쓰지 않는다. `seed-tokens.css`의
+> ⚠️ Tailwind 기본 프리픽스(`md:`/`lg:`/`xl:`)를 쓰지 않는다. `seed-seed-tokens.css`의
 > `@theme { --breakpoint-mb: 1280px; --breakpoint-tb: 768px; }`가 커스텀
 > 브레이크포인트를 정의하고, Tailwind v4는 `--breakpoint-*` 변수 접미사를 variant 프리픽스로 만든다.
 
@@ -31,7 +31,7 @@
 
 ### 1-2. 컨테이너 구조 (수정 금지)
 
-> `max-w-[...] mx-auto px-[...]`를 직접 조합하지 말고, `seed-tokens.css`에 정의된
+> `max-w-[...] mx-auto px-[...]`를 직접 조합하지 말고, `seed-seed-tokens.css`에 정의된
 > `container-em` 유틸리티 하나만 쓴다 — max-width·브레이크포인트별 패딩이 전부 포함.
 
 ```html
@@ -53,11 +53,11 @@
 ## 2. 타이포그래피
 
 > **폰트 패밀리:** 기본값 `'Pretendard JP', 'Pretendard', sans-serif`.
-> 프로젝트마다 다르면 `seed-tokens.css`에서 `--font-sans`를 override한다.
+> 프로젝트마다 다르면 `seed-seed-tokens.css`에서 `--font-sans`를 override한다.
 
 ### 2-1. Seed 타입 스케일 — 화면별 고정값
 
-`seed-tokens.css` 에서 **t1~t8은 Seed 기본값 고정**, **t9~t16은 화면별 static 값**으로 override.
+`seed-seed-tokens.css` 에서 **t1~t8은 Seed 기본값 고정**, **t9~t16은 화면별 static 값**으로 override.
 Seed 컴포넌트 내부(버튼·인풋·배지 등)는 t1~t8을 사용하므로 수정 금지.
 
 | 토큰 | Mobile | Tablet | Desktop | 역할 |
@@ -79,7 +79,7 @@ Seed 컴포넌트 내부(버튼·인풋·배지 등)는 t1~t8을 사용하므로
 | **`--seed-font-size-t15`** ✦ | **32px** | **48px** | **56px** | Display XL |
 | **`--seed-font-size-t16`** ✦ | **36px** | **56px** | **72px** | Hero Display |
 
-✦ t15·t16은 Seed 공식 스케일 확장 — `seed-tokens.css`에 정의.
+✦ t15·t16은 Seed 공식 스케일 확장 — `seed-seed-tokens.css`에 정의.
 
 ### 2-2. Tailwind 클래스 작성 패턴
 

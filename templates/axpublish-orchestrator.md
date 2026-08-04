@@ -33,7 +33,7 @@ axpublish는 5명의 AI 직원과 1명의 디자이너(당신)가 함께 일합�
 
 ```
 [R1] 하드코딩 금지
-     색상·폰트·간격 모두 seed-tokens.css + @seed-design/css 변수로만 작성.
+     색상·폰트·간격 모두 seed-seed-tokens.css + @seed-design/css 변수로만 작성.
      hex나 px 수치 직접 사용 절대 금지.
 
 [R2] 순서 준수
@@ -45,7 +45,7 @@ axpublish는 5명의 AI 직원과 1명의 디자이너(당신)가 함께 일합�
      다음 직원에게 인수인계 선언 후 넘김.
 
 [R4] 모르면 멈춤
-     seed-tokens.css + @seed-design/css에 없는 값, 디자인 의도가 불분명한 경우
+     seed-seed-tokens.css + @seed-design/css에 없는 값, 디자인 의도가 불분명한 경우
      즉시 디자이너에게 질문. 추측으로 진행하지 않음.
 
 [R5] 컴포넌트 단위
@@ -168,7 +168,7 @@ rgba(0,0,0,0.08) 계열   → stroke/neutral-subtle (--seed-color-stroke-neutral
 16px → --seed-font-size-t5
 14px → --seed-font-size-t4
 12px → --seed-font-size-t2
-(전체 매핑은 seed-tokens.css + @seed-design/css 기준)
+(전체 매핑은 seed-seed-tokens.css + @seed-design/css 기준)
 ```
 
 **매핑 불가 항목 발생 시:**
@@ -181,7 +181,7 @@ rgba(0,0,0,0.08) 계열   → stroke/neutral-subtle (--seed-color-stroke-neutral
 
 처리 방법을 알려주세요:
 ① 가장 가까운 토큰으로 대체 → [추천 토큰명]
-② seed-tokens.css + @seed-design/css에 새 토큰으로 추가
+② seed-seed-tokens.css + @seed-design/css에 새 토큰으로 추가
 ③ 해당 요소는 예외 처리
 ```
 
@@ -241,7 +241,7 @@ Tablet + Mobile 프레임 초안을 Figma에 자동 생성한다.
 프레임: [원본이름] / Tablet
 너비: 768px
 패딩: 48px
-폰트: seed-tokens.css + @seed-design/css Tablet 값 적용
+폰트: seed-seed-tokens.css + @seed-design/css Tablet 값 적용
 레이아웃: 중간 단계 적용
 ```
 
@@ -252,7 +252,7 @@ Tablet + Mobile 프레임 초안을 Figma에 자동 생성한다.
 프레임: [원본이름] / Mobile
 너비: 375px
 패딩: 20px
-폰트: seed-tokens.css + @seed-design/css Mobile 값 적용
+폰트: seed-seed-tokens.css + @seed-design/css Mobile 값 적용
 레이아웃: 단컬럼 적용
 ```
 
@@ -335,7 +335,7 @@ mb:   = Desktop 이상 (≥1280px)
 text-[length:var(--seed-font-size-t5)]         ← Mobile(15px)
 tb:text-[length:var(--seed-font-size-t5)]      ← Tablet(15px)
 mb:text-[length:var(--seed-font-size-t5)]      ← Desktop(16px)
-(seed-tokens.css + @seed-design/css 브레이크포인트가 자동으로 값 변경)
+(seed-seed-tokens.css + @seed-design/css 브레이크포인트가 자동으로 값 변경)
 ```
 
 **컴포넌트 완료 보고:**
@@ -350,7 +350,7 @@ mb:text-[length:var(--seed-font-size-t5)]      ← Desktop(16px)
 
 **PAUSE 트리거 (이 상황에서는 반드시 멈춤):**
 ```
-① seed-tokens.css + @seed-design/css에 없는 값이 디자인에 있을 때
+① seed-seed-tokens.css + @seed-design/css에 없는 값이 디자인에 있을 때
 ② 디자인에 hover/active 상태가 없을 때
 ③ 동일 컴포넌트가 페이지마다 다르게 생겼을 때
 ④ 컴포넌트 이름이 Figma에 없거나 불분명할 때
@@ -476,7 +476,7 @@ Figma 디자인과 동일한 완성 페이지를 만든다.
 
 | 파일 | 누가 씀 |
 |------|---------|
-| `seed-tokens.css + @seed-design/css` | BINDER, BUILDER (항상) |
+| `seed-seed-tokens.css + @seed-design/css` | BINDER, BUILDER (항상) |
 | `theme.css` | BINDER, BUILDER |
 | `responsive-rules.md` | FLEX (반응형 생성), BUILDER (코드 작성) |
 | `figma-seed-variables.json` | BINDER (Variable 구조 기준) |
