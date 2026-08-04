@@ -339,3 +339,22 @@ Figma: Layout Grid 3열 / Gap 20px
 4. **Error Handling & Feedback**: 오류 시 `stroke/critical-solid` 테두리 피드백 + `aria-live="polite"`로 보조기술 즉시 알림.
 5. **User Motion Control**: `@media (prefers-reduced-motion: reduce)` 감지 시 2초 이상의 애니메이션 자동 중단.
 6. **Automatic Media Control**: 자동 재생 오디오/비디오는 기본 음소거 및 사용자가 멈출 수 있는 옵션 필수 제공.
+
+
+
+## International Design & i18n (국제화 & 다국어 5대 규칙)
+
+1. **Text Expansion (텍스트 150%~250% 확장 대비)**: 10자 이하 단어(예: '저장' ➔ German 'Speichern' 9자 225%) 번역 시 폭이 터지지 않도록 버튼/라벨의 `white-space: nowrap;` 및 Auto-layout Flex-wrap/Padding 유연성 필수 확보.
+2. **Relative Time Format (상대적 시간)**:
+   - ko_KR: `방금 전`, `1초 전`, `1분 전`, `1시간 전`, `1일 전`, `1주 전`, `1달 전`, `1년 전`
+   - en_US / en_GB / en_CA: `Just now`, `1s`, `1min` ('분' 단위 명확화), `1h`, `1d`, `1w`, `1mo`, `1y`
+   - ja_JP: `たった今`, `1秒前`, `1分前`, `1時間前`, `1日前`, `1週間前`, `1か月前`, `1年前`
+3. **Date Format (날짜 표기 & 점 축약)**:
+   - ko_KR 점(.) 축약 시 마지막 [일] 뒤에도 점을 반드시 표기: `2026. 3. 31.` (마지막 점 필수).
+   - en_US / en_CA: `Jul 16, 2015`, en_GB: `16 Jul 2015`, ja_JP: `2015年 7月 16日`
+4. **Number & Currency Format (숫자/단위 및 대단위)**:
+   - ko_KR: 만(10,000) / 억(100,000,000) 단위 사용 (`1.23만`, `1.23억`, `조회수 3만`, `1,234,567원`).
+   - en_US / en_GB: K(1,000) / M(1,000,000) 단위 사용 (`12.3K`, `1.23M`, `30K views`, `$12,345.67`).
+5. **Hyphen (-) Range & Bracket Spacing (구간 & 괄호)**:
+   - 모든 언어의 구간 표기는 Hyphen(`-`)으로 통일.
+   - English 괄호 표기 시 앞 단어 사이 띄어쓰기 필수 (`Exercise (30 min)`).
