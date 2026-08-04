@@ -4,13 +4,13 @@
     "Light",
     "Dark"
   ],
-  "totalCount": 126,
+  "totalCount": 168,
   "variables": [
     {
       "name": "palette/carrot-100",
       "type": "COLOR",
       "value": "#EBF2FF",
-      "description": "Primitive Brand Tint 100"
+      "description": "Primitive Brand 100"
     },
     {
       "name": "palette/carrot-200",
@@ -40,19 +40,19 @@
       "name": "palette/carrot-600",
       "type": "COLOR",
       "value": "#0066FF",
-      "description": "Primitive Brand 600 (Normal Base)"
+      "description": "Primitive Brand 600"
     },
     {
       "name": "palette/carrot-700",
       "type": "COLOR",
       "value": "#005EEB",
-      "description": "Primitive Brand 700 (Hover)"
+      "description": "Primitive Brand 700"
     },
     {
       "name": "palette/carrot-800",
       "type": "COLOR",
       "value": "#0054D1",
-      "description": "Primitive Brand 800 (Pressed)"
+      "description": "Primitive Brand 800"
     },
     {
       "name": "palette/carrot-900",
@@ -64,13 +64,13 @@
       "name": "palette/carrot-1000",
       "type": "COLOR",
       "value": "#003A8F",
-      "description": "Primitive Brand Deep 1000"
+      "description": "Primitive Brand 1000"
     },
     {
       "name": "palette/gray-00",
       "type": "COLOR",
       "value": "#FFFFFF",
-      "description": "Primitive Pure White"
+      "description": "Primitive White"
     },
     {
       "name": "palette/gray-100",
@@ -130,7 +130,7 @@
       "name": "palette/gray-1000",
       "type": "COLOR",
       "value": "#121212",
-      "description": "Primitive Dark Neutral 1000"
+      "description": "Primitive Gray 1000"
     },
     {
       "name": "palette/blue-100",
@@ -556,7 +556,7 @@
       "name": "fg/neutral",
       "type": "COLOR",
       "alias": "palette/gray-1000",
-      "description": "기본 텍스트 및 강한 강조"
+      "description": "기본 본문 텍스트"
     },
     {
       "name": "fg/neutral-muted",
@@ -568,73 +568,73 @@
       "name": "fg/neutral-subtle",
       "type": "COLOR",
       "alias": "palette/gray-600",
-      "description": "힌트 및 약한 보조 텍스트"
+      "description": "약한 힌트 텍스트"
     },
     {
       "name": "fg/neutral-inverted",
       "type": "COLOR",
       "alias": "palette/gray-00",
-      "description": "다크 배경 위 반전 텍스트"
+      "description": "다크 반전 텍스트"
     },
     {
       "name": "fg/brand",
       "type": "COLOR",
       "alias": "palette/carrot-600",
-      "description": "브랜드 포인트 텍스트 및 링크"
+      "description": "브랜드 포인트 텍스트"
     },
     {
       "name": "fg/disabled",
       "type": "COLOR",
       "alias": "palette/gray-500",
-      "description": "비활성화 텍스트"
+      "description": "비활성 텍스트"
     },
     {
       "name": "fg/positive",
       "type": "COLOR",
       "alias": "palette/green-700",
-      "description": "성공 메시지 텍스트"
+      "description": "성공 텍스트"
     },
     {
       "name": "fg/critical",
       "type": "COLOR",
       "alias": "palette/red-700",
-      "description": "에러/경고 메시지 텍스트"
+      "description": "에러 텍스트"
     },
     {
       "name": "fg/warning",
       "type": "COLOR",
       "alias": "palette/yellow-700",
-      "description": "주의 메시지 텍스트"
+      "description": "주의 텍스트"
     },
     {
       "name": "fg/informative",
       "type": "COLOR",
       "alias": "palette/blue-700",
-      "description": "정보 안내 텍스트"
+      "description": "정보 텍스트"
     },
     {
       "name": "bg-layer/default",
       "type": "COLOR",
       "alias": "palette/gray-00",
-      "description": "기본 페이지/화면 배경"
+      "description": "기본 화면 배경"
     },
     {
       "name": "bg-layer/fill",
       "type": "COLOR",
       "alias": "palette/gray-100",
-      "description": "교차 섹션 배경"
+      "description": "섹션 배경"
     },
     {
       "name": "bg-layer/floating",
       "type": "COLOR",
       "alias": "palette/gray-00",
-      "description": "카드/드롭다운/모달 배경"
+      "description": "카드/모달/드롭다운 배경"
     },
     {
       "name": "bg-layer/basement",
       "type": "COLOR",
       "alias": "palette/gray-200",
-      "description": "최하단 앱 외곽 배경"
+      "description": "앱 최하단 외곽 배경"
     },
     {
       "name": "bg-brand/solid",
@@ -646,7 +646,7 @@
       "name": "bg-brand/solid-pressed",
       "type": "COLOR",
       "alias": "palette/carrot-700",
-      "description": "Primary 버튼 Hover/Pressed 배경 [CSS :hover / :active로 자동 처리 가능]"
+      "description": "Primary 버튼 Hover/Pressed 배경 [CSS :hover/:active 자동 처리]"
     },
     {
       "name": "bg-brand/weak",
@@ -658,13 +658,13 @@
       "name": "bg-brand/weak-pressed",
       "type": "COLOR",
       "alias": "palette/carrot-200",
-      "description": "연한 브랜드 배경 Hover [CSS :hover / :active로 자동 처리 가능]"
+      "description": "연한 브랜드 배경 Hover [CSS :hover/:active 자동 처리]"
     },
     {
       "name": "bg-neutral/inverted",
       "type": "COLOR",
       "alias": "palette/gray-900",
-      "description": "다크 테마 / Inverted 버튼 배경"
+      "description": "다크 테마 버튼 배경"
     },
     {
       "name": "bg-neutral/solid",
@@ -682,13 +682,13 @@
       "name": "bg-neutral/weak-alpha",
       "type": "COLOR",
       "value": "rgba(0,0,0,0.04)",
-      "description": "반투명 hover 릴리프 배경 [CSS 반투명 hover로 자동 처리 가능]"
+      "description": "반투명 hover 릴리프 [CSS 반투명 hover 자동 처리]"
     },
     {
       "name": "bg-neutral/disabled",
       "type": "COLOR",
       "alias": "palette/gray-200",
-      "description": "비활성화 요소 배경"
+      "description": "비활성화 배경"
     },
     {
       "name": "bg-status/positive-solid",
@@ -718,7 +718,7 @@
       "name": "bg-status/overlay",
       "type": "COLOR",
       "value": "rgba(0,0,0,0.5)",
-      "description": "모달/다이얼로그 오버레이 (Dimmer)"
+      "description": "모달 Dimmer 오버레이"
     },
     {
       "name": "stroke/neutral-subtle",
@@ -748,7 +748,7 @@
       "name": "stroke/brand-solid",
       "type": "COLOR",
       "alias": "palette/carrot-600",
-      "description": "브랜드 포인트 테두리 (Focus 등)"
+      "description": "브랜드 포인트 테두리"
     },
     {
       "name": "stroke/critical-solid",
@@ -760,7 +760,259 @@
       "name": "stroke/focus-ring",
       "type": "COLOR",
       "alias": "palette/carrot-400",
-      "description": "접근성 Focus Ring 테두리"
+      "description": "접근성 Focus Ring"
+    },
+    {
+      "name": "dimension/x0_5",
+      "type": "FLOAT",
+      "value": 2,
+      "description": "2px 미세 간격"
+    },
+    {
+      "name": "dimension/x1",
+      "type": "FLOAT",
+      "value": 4,
+      "description": "4px 최소 여백, 아이콘 간격"
+    },
+    {
+      "name": "dimension/x1_5",
+      "type": "FLOAT",
+      "value": 6,
+      "description": "6px 소여백"
+    },
+    {
+      "name": "dimension/x2",
+      "type": "FLOAT",
+      "value": 8,
+      "description": "8px 내부 소여백"
+    },
+    {
+      "name": "dimension/x2_5",
+      "type": "FLOAT",
+      "value": 10,
+      "description": "10px 중소 여백"
+    },
+    {
+      "name": "dimension/x3",
+      "type": "FLOAT",
+      "value": 12,
+      "description": "12px 버튼 패딩"
+    },
+    {
+      "name": "dimension/x3_5",
+      "type": "FLOAT",
+      "value": 14,
+      "description": "14px 중여백"
+    },
+    {
+      "name": "dimension/x4",
+      "type": "FLOAT",
+      "value": 16,
+      "description": "16px 카드 패딩, 기본 간격"
+    },
+    {
+      "name": "dimension/x4_5",
+      "type": "FLOAT",
+      "value": 18,
+      "description": "18px 서브 패딩"
+    },
+    {
+      "name": "dimension/x5",
+      "type": "FLOAT",
+      "value": 20,
+      "description": "20px Mobile 컨테이너 패딩"
+    },
+    {
+      "name": "dimension/x6",
+      "type": "FLOAT",
+      "value": 24,
+      "description": "24px 대형 간격"
+    },
+    {
+      "name": "dimension/x7",
+      "type": "FLOAT",
+      "value": 28,
+      "description": "28px 섹션 소여백"
+    },
+    {
+      "name": "dimension/x8",
+      "type": "FLOAT",
+      "value": 32,
+      "description": "32px 섹션 간격"
+    },
+    {
+      "name": "dimension/x9",
+      "type": "FLOAT",
+      "value": 36,
+      "description": "36px 컴포넌트 대형 높이"
+    },
+    {
+      "name": "dimension/x10",
+      "type": "FLOAT",
+      "value": 40,
+      "description": "40px 컴포넌트 대여백"
+    },
+    {
+      "name": "dimension/x12",
+      "type": "FLOAT",
+      "value": 48,
+      "description": "48px Tablet 컨테이너 패딩"
+    },
+    {
+      "name": "dimension/x13",
+      "type": "FLOAT",
+      "value": 52,
+      "description": "52px 버튼 대형 높이"
+    },
+    {
+      "name": "dimension/x14",
+      "type": "FLOAT",
+      "value": 56,
+      "description": "56px 디스플레이 헤더 높이"
+    },
+    {
+      "name": "dimension/x16",
+      "type": "FLOAT",
+      "value": 64,
+      "description": "64px Desktop 컨테이너 패딩"
+    },
+    {
+      "name": "radius/r0_5",
+      "type": "FLOAT",
+      "value": 2,
+      "description": "2px 미세 모서리"
+    },
+    {
+      "name": "radius/r1",
+      "type": "FLOAT",
+      "value": 4,
+      "description": "4px 태그 모서리"
+    },
+    {
+      "name": "radius/r1_5",
+      "type": "FLOAT",
+      "value": 6,
+      "description": "6px 칩 모서리"
+    },
+    {
+      "name": "radius/r2",
+      "type": "FLOAT",
+      "value": 8,
+      "description": "8px 버튼/입력창 모서리"
+    },
+    {
+      "name": "radius/r2_5",
+      "type": "FLOAT",
+      "value": 10,
+      "description": "10px 중형 모서리"
+    },
+    {
+      "name": "radius/r3",
+      "type": "FLOAT",
+      "value": 12,
+      "description": "12px 카드 모서리"
+    },
+    {
+      "name": "radius/r3_5",
+      "type": "FLOAT",
+      "value": 14,
+      "description": "14px 대형 카드 모서리"
+    },
+    {
+      "name": "radius/r4",
+      "type": "FLOAT",
+      "value": 16,
+      "description": "16px 다이얼로그 모서리"
+    },
+    {
+      "name": "radius/r5",
+      "type": "FLOAT",
+      "value": 20,
+      "description": "20px 바텀시트 상단 모서리"
+    },
+    {
+      "name": "radius/r6",
+      "type": "FLOAT",
+      "value": 24,
+      "description": "24px 슈퍼 카운터 모서리"
+    },
+    {
+      "name": "radius/full",
+      "type": "FLOAT",
+      "value": 9999,
+      "description": "원형/캡슐 알약 모서리"
+    },
+    {
+      "name": "duration/d1",
+      "type": "FLOAT",
+      "value": 100,
+      "description": "100ms 미세 피드백"
+    },
+    {
+      "name": "duration/d2",
+      "type": "FLOAT",
+      "value": 150,
+      "description": "150ms hover 트랜지션"
+    },
+    {
+      "name": "duration/d3",
+      "type": "FLOAT",
+      "value": 200,
+      "description": "200ms 드롭다운/토글"
+    },
+    {
+      "name": "duration/d4",
+      "type": "FLOAT",
+      "value": 300,
+      "description": "300ms 모달/바텀시트"
+    },
+    {
+      "name": "duration/d5",
+      "type": "FLOAT",
+      "value": 400,
+      "description": "400ms 페이지 전환"
+    },
+    {
+      "name": "duration/d6",
+      "type": "FLOAT",
+      "value": 500,
+      "description": "500ms 대형 모션"
+    },
+    {
+      "name": "elevation/s1",
+      "type": "STRING",
+      "value": "0 1px 3px rgba(0,0,0,0.08)",
+      "description": "1단계 가벼운 그림자"
+    },
+    {
+      "name": "elevation/s2",
+      "type": "STRING",
+      "value": "0 4px 12px rgba(0,0,0,0.12)",
+      "description": "2단계 카드 그림자"
+    },
+    {
+      "name": "elevation/s3",
+      "type": "STRING",
+      "value": "0 8px 24px rgba(0,0,0,0.18)",
+      "description": "3단계 모달/팝업 그림자"
+    },
+    {
+      "name": "scale/s95",
+      "type": "FLOAT",
+      "value": 0.95,
+      "description": "대형 버튼 눌림 비율 (0.95)"
+    },
+    {
+      "name": "scale/s97",
+      "type": "FLOAT",
+      "value": 0.97,
+      "description": "중형 버튼 눌림 비율 (0.97)"
+    },
+    {
+      "name": "scale/s98",
+      "type": "FLOAT",
+      "value": 0.98,
+      "description": "소형 버튼 눌림 비율 (0.98)"
     }
   ]
 }

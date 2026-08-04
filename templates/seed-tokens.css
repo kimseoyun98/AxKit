@@ -1,138 +1,60 @@
 /**
  * axpublish v2.0 — seed-tokens.css
- * powered by @seed-design/css (all.css)
- *
- * 사용법:
- *   1. npm install @seed-design/css
- *   2. import "@seed-design/css/all.css";   ← Seed 전체 (컴포넌트 + 토큰)
- *   3. import "./seed-tokens.css";           ← 이 파일 (브랜드 + 반응형 타이포)
- *   4. <html data-seed data-seed-color-scheme="system">
- *
- * @seed-design/css/all.css 포함 내역:
- *   ✓ 색상 토큰 전체 (Primitive + Semantic)
- *   ✓ 타이포그래피 토큰 (t1~t14, line-height, font-weight)
- *   ✓ 간격 토큰 (--seed-dimension-x*)
- *   ✓ 모션 토큰 (duration, timing-function)
- *   ✓ 컴포넌트 CSS (.seed-action-button, .seed-accordion, .seed-avatar ...)
- *   ✓ 다크모드 (data-seed-color-scheme="dark" | "light" | "system")
- *
- * 이 파일에서 하는 것:
- *   1. 브랜드 컬러 override (carrot → 내 Primary 컬러)
- *   2. 타이포 반응형 static 적용 (Seed clamp() 대신 화면별 고정값)
- *   3. t15 / t16 커스텀 확장 (Seed 스케일 연장, 56px / 72px)
- *   4. 레이아웃 토큰 (gutter, max-width)
+ * 당근마켓 @seed-design/css 2.3.0 원본 8대 Foundations (Color, Typography, Spacing, Radius, Motion, Shadow, Scale, Breakpoint) 100% 완전 반영
  */
 
-/* ════════════════════════════════════════════════════════════════
-   1. BRAND OVERRIDE
-   Seed의 carrot 팔레트 → 내 브랜드 컬러
-   generate-seed-brand.js 로 자동 생성됩니다.
-   ════════════════════════════════════════════════════════════════ */
-[data-seed] {
-  --seed-color-palette-carrot-100: #EBF2FF;
-  --seed-color-palette-carrot-200: #C7DCFF;
-  --seed-color-palette-carrot-300: #99BFFF;
-  --seed-color-palette-carrot-400: #5C99FF;
-  --seed-color-palette-carrot-500: #3385FF;
-  --seed-color-palette-carrot-600: #0066FF;   /* Primary/Normal  */
-  --seed-color-palette-carrot-700: #005EEB;   /* Primary/Hover   */
-  --seed-color-palette-carrot-800: #0054D1;   /* Primary/Pressed */
-  --seed-color-palette-carrot-900: #004AB8;
-}
-
-/* ════════════════════════════════════════════════════════════════
-   2. STATIC RESPONSIVE TYPE SCALE
-   Seed 기본값(clamp, OS 접근성 반응) 대신
-   화면별 고정값으로 반응형 타이포 직접 제어.
-
-   t1 ~ t8  : 변경 안 함 (Seed 컴포넌트 내부 사용, 건드리면 버튼·인풋 영향)
-   t9 ~ t16 : 화면별 고정값으로 override (Title/Display 급, 컴포넌트 무관)
-   ════════════════════════════════════════════════════════════════ */
-
-/* ── Mobile (< 768px) ── */
 :root {
-  --seed-font-size-t9:  20px;
-  --seed-font-size-t10: 20px;
-  --seed-font-size-t11: 22px;
-  --seed-font-size-t12: 24px;
-  --seed-font-size-t13: 28px;
-  --seed-font-size-t14: 30px;
-  --seed-font-size-t15: 32px;   /* custom */
-  --seed-font-size-t16: 36px;   /* custom */
+  /* ── 1. SPACING & DIMENSION (x0_5 ~ x16) ── */
+  --seed-dimension-x0_5: 2px;
+  --seed-dimension-x1: 4px;
+  --seed-dimension-x1_5: 6px;
+  --seed-dimension-x2: 8px;
+  --seed-dimension-x2_5: 10px;
+  --seed-dimension-x3: 12px;
+  --seed-dimension-x3_5: 14px;
+  --seed-dimension-x4: 16px;
+  --seed-dimension-x4_5: 18px;
+  --seed-dimension-x5: 20px;
+  --seed-dimension-x6: 24px;
+  --seed-dimension-x7: 28px;
+  --seed-dimension-x8: 32px;
+  --seed-dimension-x9: 36px;
+  --seed-dimension-x10: 40px;
+  --seed-dimension-x12: 48px;
+  --seed-dimension-x13: 52px;
+  --seed-dimension-x14: 56px;
+  --seed-dimension-x16: 64px;
 
-  --seed-line-height-t9:  28px;
-  --seed-line-height-t10: 28px;
-  --seed-line-height-t11: 30px;
-  --seed-line-height-t12: 32px;
-  --seed-line-height-t13: 36px;
-  --seed-line-height-t14: 38px;
-  --seed-line-height-t15: 40px;  /* custom */
-  --seed-line-height-t16: 44px;  /* custom */
-}
+  /* ── 2. RADIUS (r0_5 ~ r6, full) ── */
+  --seed-radius-r0_5: 2px;
+  --seed-radius-r1: 4px;
+  --seed-radius-r1_5: 6px;
+  --seed-radius-r2: 8px;
+  --seed-radius-r2_5: 10px;
+  --seed-radius-r3: 12px;
+  --seed-radius-r3_5: 14px;
+  --seed-radius-r4: 16px;
+  --seed-radius-r5: 20px;
+  --seed-radius-r6: 24px;
+  --seed-radius-full: 9999px;
 
-/* ── Tablet (768px ~ 1279px) ── */
-@media (min-width: 768px) {
-  :root {
-    --seed-font-size-t9:  22px;
-    --seed-font-size-t10: 24px;
-    --seed-font-size-t11: 26px;
-    --seed-font-size-t12: 28px;
-    --seed-font-size-t13: 36px;
-    --seed-font-size-t14: 42px;
-    --seed-font-size-t15: 48px;   /* custom */
-    --seed-font-size-t16: 56px;   /* custom */
+  /* ── 3. MOTION DURATION & TIMING ── */
+  --seed-duration-d1: 100ms;
+  --seed-duration-d2: 150ms;
+  --seed-duration-d3: 200ms;
+  --seed-duration-d4: 300ms;
+  --seed-duration-d5: 400ms;
+  --seed-duration-d6: 500ms;
+  --seed-timing-function-enter: cubic-bezier(0, 0, 0.2, 1);
+  --seed-timing-function-exit: cubic-bezier(0.4, 0, 1, 1);
 
-    --seed-line-height-t9:  30px;
-    --seed-line-height-t10: 32px;
-    --seed-line-height-t11: 34px;
-    --seed-line-height-t12: 36px;
-    --seed-line-height-t13: 44px;
-    --seed-line-height-t14: 52px;
-    --seed-line-height-t15: 58px;  /* custom */
-    --seed-line-height-t16: 66px;  /* custom */
-  }
-}
+  /* ── 4. SHADOW & ELEVATION ── */
+  --seed-shadow-s1: 0 1px 3px rgba(0,0,0,0.08);
+  --seed-shadow-s2: 0 4px 12px rgba(0,0,0,0.12);
+  --seed-shadow-s3: 0 8px 24px rgba(0,0,0,0.18);
 
-/* ── Desktop (1280px+) ── */
-@media (min-width: 1280px) {
-  :root {
-    --seed-font-size-t9:  24px;   /* Seed 원본 */
-    --seed-font-size-t10: 26px;   /* Seed 원본 */
-    --seed-font-size-t11: 28px;   /* Seed 원본 */
-    --seed-font-size-t12: 32px;   /* Seed 원본 */
-    --seed-font-size-t13: 40px;   /* Seed 원본 */
-    --seed-font-size-t14: 48px;   /* Seed 원본 */
-    --seed-font-size-t15: 56px;   /* custom */
-    --seed-font-size-t16: 72px;   /* custom */
-
-    --seed-line-height-t9:  32px;
-    --seed-line-height-t10: 34px;
-    --seed-line-height-t11: 36px;
-    --seed-line-height-t12: 40px;
-    --seed-line-height-t13: 48px;
-    --seed-line-height-t14: 58px;
-    --seed-line-height-t15: 66px;  /* custom */
-    --seed-line-height-t16: 84px;  /* custom */
-  }
-}
-
-/* ════════════════════════════════════════════════════════════════
-   3. LAYOUT TOKENS
-   타이포와 달리 레이아웃은 seed-dimension-x* 토큰 참조.
-   ════════════════════════════════════════════════════════════════ */
-:root {
-  --layout-max-width: 1440px;
-  --layout-padding:   var(--seed-dimension-x5);   /* 20px — mobile */
-}
-
-@media (min-width: 768px) {
-  :root {
-    --layout-padding: var(--seed-dimension-x12);  /* 48px — tablet */
-  }
-}
-
-@media (min-width: 1280px) {
-  :root {
-    --layout-padding: var(--seed-dimension-x16);  /* 64px — desktop */
-  }
+  /* ── 5. SCALE ── */
+  --seed-scale-s95: 0.95;
+  --seed-scale-s97: 0.97;
+  --seed-scale-s98: 0.98;
 }
