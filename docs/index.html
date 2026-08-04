@@ -101,6 +101,61 @@
     --seed-dimension-x4: 16px;
   }
 </style>
+
+<style id="overlap-fix">
+  /* 겹침 버그 100% 차단 반응형 스타일 */
+  body {
+    display: flex !important;
+    flex-direction: row !important;
+    position: relative !important;
+  }
+  aside {
+    width: 260px !important;
+    flex-shrink: 0 !important;
+    position: fixed !important;
+    top: 0; bottom: 0; left: 0;
+    z-index: 100 !important;
+  }
+  main {
+    margin-left: 260px !important;
+    width: calc(100% - 260px) !important;
+    max-width: 1100px !important;
+    padding: 40px !important;
+    flex-grow: 1 !important;
+    box-sizing: border-box !important;
+  }
+  section {
+    display: block !important;
+    position: relative !important;
+    clear: both !important;
+    margin-bottom: 36px !important;
+    padding: 32px !important;
+    border-radius: 20px !important;
+  }
+  .swatch-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 12px !important;
+    margin-bottom: 20px !important;
+  }
+  .swatch {
+    flex-shrink: 0 !important;
+    width: 95px !important;
+    height: auto !important;
+  }
+  .widget-container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+    align-items: center !important;
+    margin-top: 12px !important;
+  }
+  /* 텍스트/테이블 줄바꿈 겹침 방지 */
+  table, th, td {
+    border-spacing: 0 !important;
+    line-height: 1.5 !important;
+  }
+</style>
 </head>
 <body>
 
