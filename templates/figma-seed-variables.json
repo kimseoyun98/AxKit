@@ -4,7 +4,7 @@
     "Light",
     "Dark"
   ],
-  "totalCount": 231,
+  "totalCount": 234,
   "variables": [
     {
       "name": "palette/carrot-100",
@@ -1391,6 +1391,24 @@
       "type": "FLOAT",
       "value": 700,
       "description": "Seed Font Weight Bold (700)"
+    },
+    {
+      "name": "gradient/shimmer-neutral",
+      "type": "COLOR",
+      "value": "linear-gradient(90deg, #F5F5F5 0%, #EBEBEB 50%, #F5F5F5 100%)",
+      "description": "Seed 스켈레톤 로딩 Shimmer 그래디언트 (Figma 스켈레톤 상태 렌더링 ⭕)"
+    },
+    {
+      "name": "gradient/glow-magic",
+      "type": "COLOR",
+      "value": "linear-gradient(135deg, #0066FF 0%, #9C27B0 100%)",
+      "description": "Seed 매직 글로우 그래디언트 (Figma 렌더링 ⭕)"
+    },
+    {
+      "name": "gradient/highlight-magic",
+      "type": "COLOR",
+      "value": "linear-gradient(90deg, #3385FF 0%, #0066FF 100%)",
+      "description": "Seed 하이라이트 매직 그래디언트 (Figma 렌더링 ⭕)"
     }
   ]
 }
