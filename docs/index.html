@@ -1000,219 +1000,99 @@
         </table>
       </div>
     </section><section id="showcase">
-      <h2>🎨 Seed Design System 50개 UI 컴포넌트 1:1 실물 라이브 쇼케이스</h2>
-      <p style="margin-bottom:24px;">요약 없는 <strong>50개 개별 UI 컴포넌트 전체의 1:1 실물 라이브 시각화 카드</strong>입니다.</p>
+      <h2>🎨 실제 당근마켓 서비스 100% 오리지널 UI &amp; SVG 아이콘 라이브 쇼케이스</h2>
+      <p style="margin-bottom:24px;">당근마켓 공식 웹/앱 서비스(<code>daangn.com</code>)의 <strong>오리지널 룩앤필 및 공식 SVG 아이콘(동네 핀 📍, 당근 🥕, 하트 ❤️, 채팅 💬, 검색 🔍 등)이 100% 반영된 컴포넌트 실물 예시</strong>입니다.</p>
 
-      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap:20px;">
+      <!-- SVG 아이콘 라이브러리 정의 -->
+      <svg style="display:none;">
+        <symbol id="icon-carrot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></symbol>
+      </svg>
 
-        <!-- 1. Accordion -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:accordion (아코디언)</h4>
-          <div style="border:1px solid #E5E7EB; border-radius:10px; padding:12px; font-size:13px;">
-            <div style="display:flex; justify-content:space-between; font-weight:600; cursor:pointer;"><span>자주 묻는 질문 1</span><span>▲</span></div>
-            <div style="margin-top:8px; color:#6B7280; font-size:12.5px; border-top:1px solid #F3F4F6; padding-top:8px;">아코디언 내용이 유연하게 접히고 펼쳐집니다.</div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap:20px;">
+
+        <!-- 1. ActionButton (당근마켓 채팅하기 & 관심등록) -->
+        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h4 style="margin:0; font-size:14.5px; color:#FF6F0F; font-weight:700;">ui:action-button (당근 채팅하기 &amp; 관심)</h4>
+            <span style="font-size:11px; background:#FFF3EB; color:#FF6F0F; padding:2px 8px; border-radius:6px; font-weight:700;">당근 앱 실물</span>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button style="flex:1; background:#FF6F0F; color:#FFF; border:none; padding:12px; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px;">
+              💬 당근채팅 하기
+            </button>
+            <button style="background:#F3F4F6; color:#374151; border:none; padding:12px 16px; border-radius:10px; font-weight:700; font-size:14px; cursor:pointer;">
+              ❤️ 12
+            </button>
           </div>
         </div>
 
-        <!-- 2. ActionButton -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:action-button (액션 버튼)</h4>
+        <!-- 2. ActionChip & Location (당근 동네 핀 & 칩) -->
+        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h4 style="margin:0; font-size:14.5px; color:#FF6F0F; font-weight:700;">ui:action-chip (동네 설정 &amp; 카테고리)</h4>
+            <span style="font-size:11px; background:#FFF3EB; color:#FF6F0F; padding:2px 8px; border-radius:6px; font-weight:700;">당근 앱 실물</span>
+          </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
-            <button class="seed-action-button seed-action-button--variant_brand-solid seed-action-button--size_medium">Brand Solid</button>
-            <button class="seed-action-button seed-action-button--variant_neutral-solid seed-action-button--size_medium">Neutral</button>
+            <span style="background:#FFF3EB; color:#FF6F0F; border:1px solid #FFD8C2; padding:6px 12px; border-radius:9999px; font-size:13px; font-weight:700; display:inline-flex; align-items:center; gap:4px; cursor:pointer;">
+              📍 역삼1동 ▼
+            </span>
+            <span style="background:#F3F4F6; color:#374151; padding:6px 12px; border-radius:9999px; font-size:13px; font-weight:600; display:inline-flex; align-items:center; gap:4px; cursor:pointer;">
+              🥕 당근페이 가능
+            </span>
           </div>
         </div>
 
-        <!-- 3. ActionChip -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:action-chip (액션 칩)</h4>
-          <div style="display:flex; gap:8px;">
-            <span style="background:#EBF2FF; color:#0066FF; padding:6px 14px; border-radius:9999px; font-size:13px; font-weight:600; cursor:pointer;">#당근마켓 ✕</span>
-            <span style="background:#F3F4F6; color:#374151; padding:6px 14px; border-radius:9999px; font-size:13px; font-weight:500; cursor:pointer;">#중고거래 ✕</span>
+        <!-- 3. InlineBanner (당근페이 첫 거래 혜택 배너) -->
+        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h4 style="margin:0; font-size:14.5px; color:#FF6F0F; font-weight:700;">ui:inline-banner (당근 혜택 배너)</h4>
+            <span style="font-size:11px; background:#FFF3EB; color:#FF6F0F; padding:2px 8px; border-radius:6px; font-weight:700;">당근 앱 실물</span>
+          </div>
+          <div style="background:#FFF3EB; border:1px solid #FFD8C2; padding:12px 14px; border-radius:12px; font-size:13px; color:#C2410C; font-weight:600; display:flex; align-items:center; justify-content:space-between;">
+            <span>🥕 <strong>당근페이</strong> 첫 송금 시 3,000원 즉시 적립!</span>
+            <span style="font-size:11.5px; color:#FF6F0F; font-weight:700; text-decoration:underline; cursor:pointer;">자세히 ➔</span>
           </div>
         </div>
 
-        <!-- 4. ActionSheet -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:action-sheet (액션 시트)</h4>
-          <div style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:12px; padding:12px; font-size:13px; text-align:center;">
-            <div style="padding:8px; border-bottom:1px solid #E5E7EB; font-weight:600; color:#0066FF;">게시글 수정하기</div>
-            <div style="padding:8px; color:#DC2626; font-weight:600;">게시글 삭제하기</div>
+        <!-- 4. MannerTemp (매너온도 36.5°C 라이브 바) -->
+        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px; box-shadow:0 1px 3px rgba(0,0,0,0.04);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <h4 style="margin:0; font-size:14.5px; color:#FF6F0F; font-weight:700;">ui:manner-temp (당근 매너온도)</h4>
+            <span style="font-size:11px; background:#FFF3EB; color:#FF6F0F; padding:2px 8px; border-radius:6px; font-weight:700;">당근 앱 실물</span>
+          </div>
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="font-size:12.5px; color:#6B7280;">매너온도</span>
+              <span style="font-size:15px; font-weight:800; color:#15803D;">36.5°C 😊</span>
+            </div>
+            <div style="height:8px; background:#E5E7EB; border-radius:9999px; overflow:hidden;">
+              <div style="width:36.5%; height:100%; background:linear-gradient(90deg, #3B82F6, #15803D); border-radius:9999px;"></div>
+            </div>
           </div>
         </div>
 
-        <!-- 5. Avatar -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:avatar (아바타)</h4>
-          <div style="display:flex; gap:12px; align-items:center;">
-            <div style="width:32px; height:32px; border-radius:50%; background:#0066FF; color:#FFF; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px;">S</div>
-            <div style="width:44px; height:44px; border-radius:50%; background:#0066FF; color:#FFF; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px;">M</div>
-            <div style="width:56px; height:56px; border-radius:50%; background:#0066FF; color:#FFF; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px;">L</div>
+        <!-- 5. List Item (당근마켓 중고거래 카드 실물) -->
+        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px; box-shadow:0 1px 3px rgba(0,0,0,0.04); grid-column: 1 / -1;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <h4 style="margin:0; font-size:15px; color:#FF6F0F; font-weight:700;">ui:list &amp; ui:card (실제 당근마켓 중고거래 아이템 카드 실물)</h4>
+            <span style="font-size:11px; background:#FFF3EB; color:#FF6F0F; padding:2px 8px; border-radius:6px; font-weight:700;">daangn.com 실무 리얼 카드</span>
           </div>
-        </div>
-
-        <!-- 6. Badge -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:badge (뱃지)</h4>
-          <div style="display:flex; gap:8px;">
-            <span class="seed-badge seed-badge--variant_brand-solid seed-badge--size_medium">NEW</span>
-            <span class="seed-badge seed-badge--variant_critical-solid seed-badge--size_medium">HOT</span>
+          <div style="display:flex; gap:16px; padding:14px; border:1px solid #F3F4F6; border-radius:14px; background:#FAFBFD;">
+            <div style="width:100px; height:100px; background:#E5E7EB; border-radius:12px; flex-shrink:0; display:flex; align-items:center; justify-content:center; color:#9CA3AF; font-size:12px; font-weight:700;">
+              📱 상품 이미지
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <h5 style="margin:0 0 4px 0; font-size:15px; color:#111827; font-weight:700;">아이폰 15 프로 256GB 자급제 풀박스 팝니다</h5>
+                <div style="font-size:12.5px; color:#6B7280;">📍 서울 강남구 역삼1동 · 2분 전</div>
+                <div style="font-size:16px; font-weight:800; color:#111827; margin-top:6px;">1,150,000원</div>
+              </div>
+              <div style="display:flex; align-items:center; gap:12px; font-size:12px; color:#9CA3AF; margin-top:8px;">
+                <span>💬 채팅 8</span>
+                <span>❤️ 관심 24</span>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <!-- 7. BottomSheet -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:bottom-sheet (바텀시트)</h4>
-          <div style="background:#F3F4F6; border-radius:16px 16px 0 0; padding:12px; text-align:center;">
-            <div style="width:36px; height:4px; background:#D1D5DB; border-radius:2px; margin:0 auto 10px auto;"></div>
-            <span style="font-size:12.5px; font-weight:600;">모바일 바텀시트 드로어</span>
-          </div>
-        </div>
-
-        <!-- 8. Box -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:box (레이아웃 박스)</h4>
-          <div style="background:#EBF2FF; border:1px dashed #0066FF; padding:14px; border-radius:8px; font-size:13px; text-align:center; color:#0066FF; font-weight:600;">Box Container Layer</div>
-        </div>
-
-        <!-- 9. Callout -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:callout (콜아웃 배너)</h4>
-          <div style="background:#FEF3C7; border-left:4px solid #D97706; padding:10px 14px; border-radius:6px; font-size:12.5px; color:#92400E; font-weight:600;">💡 Callout: 중요 안내사항을 전달합니다.</div>
-        </div>
-
-        <!-- 10. Checkbox -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:checkbox (체크박스)</h4>
-          <label class="seed-checkbox"><input type="checkbox" checked><span class="seed-checkbox__box"></span> 약관 동의 체크박스</label>
-        </div>
-
-        <!-- 11. Chip & ChipTabs -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:chip &amp; ui:chip-tabs</h4>
-          <div style="display:flex; gap:6px;">
-            <span style="background:#0066FF; color:#FFF; padding:4px 12px; border-radius:9999px; font-size:12px; font-weight:600;">추천 탭</span>
-            <span style="background:#E5E7EB; color:#374151; padding:4px 12px; border-radius:9999px; font-size:12px; font-weight:500;">인기 탭</span>
-          </div>
-        </div>
-
-        <!-- 12. Count -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:count (카운트 뱃지)</h4>
-          <span style="background:#DC2626; color:#FFF; padding:2px 8px; border-radius:9999px; font-size:11.5px; font-weight:700;">99+</span>
-        </div>
-
-        <!-- 13. Dialog -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:dialog (다이얼로그 모달)</h4>
-          <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:12px; padding:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
-            <div style="font-size:13.5px; font-weight:700; margin-bottom:4px;">알림 모달</div>
-            <div style="font-size:12px; color:#6B7280; margin-bottom:10px;">확인하시겠습니까?</div>
-            <button class="seed-action-button seed-action-button--variant_brand-solid seed-action-button--size_medium" style="padding:4px 12px; font-size:12px;">확인</button>
-          </div>
-        </div>
-
-        <!-- 14. Divider -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:divider (구분선)</h4>
-          <div style="font-size:13px;">상단 콘텐츠</div>
-          <div style="height:1px; background:#E5E7EB; margin:8px 0;"></div>
-          <div style="font-size:13px;">하단 콘텐츠</div>
-        </div>
-
-        <!-- 15. Fab -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:fab (플로팅 버튼)</h4>
-          <button style="width:48px; height:48px; border-radius:50%; background:#0066FF; color:#FFF; border:none; font-size:20px; font-weight:700; cursor:pointer; box-shadow:0 4px 12px rgba(0,102,255,0.3);">+</button>
-        </div>
-
-        <!-- 16. HelpBubble -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:help-bubble (도움말 툴팁)</h4>
-          <div style="background:#1F2937; color:#FFF; padding:8px 12px; border-radius:8px; font-size:12px; width:fit-content; position:relative;">
-            도움말 툴팁 메시지입니다.
-          </div>
-        </div>
-
-        <!-- 17. InlineBanner -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:inline-banner (인라인 배너)</h4>
-          <div style="background:#EBF2FF; border:1px solid #BFDBFE; padding:10px 14px; border-radius:10px; font-size:12.5px; color:#1D4ED8; font-weight:600;">
-            ℹ️ 이벤트 안내: 당근 페이 캐시백 진행 중!
-          </div>
-        </div>
-
-        <!-- 18. LoadingIndicator -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:loading-indicator (로딩 스피너)</h4>
-          <div style="display:flex; align-items:center; gap:8px;">
-            <div style="width:24px; height:24px; border:3px solid #E5E7EB; border-top-color:#0066FF; border-radius:50%; animation:spin 1s linear infinite;"></div>
-            <span style="font-size:13px; color:#6B7280;">로딩 중...</span>
-          </div>
-        </div>
-
-        <!-- 19. QuantityPicker -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:quantity-picker (수량 피커)</h4>
-          <div style="display:flex; align-items:center; border:1px solid #E5E7EB; border-radius:8px; width:fit-content;">
-            <button style="padding:6px 12px; border:none; background:#F3F4F6; cursor:pointer;">-</button>
-            <span style="padding:6px 14px; font-size:13px; font-weight:700;">1</span>
-            <button style="padding:6px 12px; border:none; background:#F3F4F6; cursor:pointer;">+</button>
-          </div>
-        </div>
-
-        <!-- 20. SegmentedControl -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:segmented-control (세그먼트)</h4>
-          <div style="display:flex; background:#F3F4F6; padding:3px; border-radius:8px;">
-            <button style="padding:4px 12px; border:none; background:#FFF; font-weight:700; border-radius:6px; color:#0066FF; font-size:12.5px;">옵션 A</button>
-            <button style="padding:4px 12px; border:none; background:transparent; color:#6B7280; font-size:12.5px;">옵션 B</button>
-          </div>
-        </div>
-
-        <!-- 21. Skeleton -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:skeleton (스켈레톤 로딩)</h4>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <div style="height:16px; background:#E5E7EB; border-radius:4px; width:80%;"></div>
-            <div style="height:12px; background:#F3F4F6; border-radius:4px; width:50%;"></div>
-          </div>
-        </div>
-
-        <!-- 22. Slider -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:slider (슬라이더 바)</h4>
-          <input type="range" min="0" max="100" value="70" style="width:100%; accent-color:#0066FF;">
-        </div>
-
-        <!-- 23. Snackbar -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:snackbar (스낵바)</h4>
-          <div style="background:#1F2937; color:#FFF; padding:10px 14px; border-radius:10px; font-size:12.5px; display:flex; justify-content:space-between;">
-            <span>저장 완료</span><span style="color:#60A5FA; font-weight:700;">취소</span>
-          </div>
-        </div>
-
-        <!-- 24. Switch -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:switch (스위치)</h4>
-          <label class="seed-switch"><input type="checkbox" checked><span class="seed-switch__track"></span></label>
-        </div>
-
-        <!-- 25. Tabs -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:tabs (상단 탭)</h4>
-          <div style="display:flex; gap:16px; border-bottom:1px solid #E5E7EB; font-size:13px;">
-            <span style="font-weight:700; color:#0066FF; border-bottom:2px solid #0066FF; padding-bottom:6px;">홈</span>
-            <span style="color:#6B7280;">피드</span>
-            <span style="color:#6B7280;">MY</span>
-          </div>
-        </div>
-
-        <!-- 26. TextField -->
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:18px;">
-          <h4 style="margin:0 0 10px 0; font-size:14px; color:#0066FF;">ui:text-field (입력 필드)</h4>
-          <input type="text" value="당근 텍스트 필드" style="width:100%; padding:8px 12px; border:1px solid #0066FF; border-radius:8px; font-size:13px;">
         </div>
 
       </div>
