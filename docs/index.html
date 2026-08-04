@@ -1003,12 +1003,8 @@
   
 
 
-  <div class="sidebar-section">Foundations (최상위 대분류)</div>
-  <a href="#ds-foundations" class="sidebar-link" style="font-weight:700;">🏛️ Foundations 개요</a>
-  <a href="#ds-colors" class="sidebar-link" style="padding-left:28px; font-size:12.5px;">1. Color</a>
-  <a href="#ds-typography" class="sidebar-link" style="padding-left:28px; font-size:12.5px;">2. Typography</a>
-  <a href="#ds-foundations" class="sidebar-link" style="padding-left:28px; font-size:12.5px;">3~4. Spacing · Radius</a>
-  <a href="#ds-foundations" class="sidebar-link" style="padding-left:28px; font-size:12.5px;">5~8. Motion · Shadow</a>
+  <div class="sidebar-section">Foundations</div>
+  <a href="#ds-foundations" class="sidebar-link active" style="font-weight:700;">🏛️ 13대 통합 수직 명세</a>
 
   <div class="sidebar-section">Figma</div>
   <a href="#how" class="sidebar-link">작동 방식</a>
@@ -1658,34 +1654,35 @@ GitHub 업로드는 디자이너 자율 진행하시면 됩니다.</pre>
 
 
   <section id="ds-foundations" style="scroll-margin-top:80px;">
-      <h2>Foundations (디자인 시스템 최상위 파운데이션)</h2>
+      <h2>Foundations (13대 파운데이션 100% 수직 통합 명세)</h2>
       <p>
-        Foundations는 Seed Design 시스템의 가장 근본이 되는 최상위 뼈대입니다. 
-        모든 <strong>Color, Typography, Spacing, Radius, Motion, Elevation, Scale, Breakpoint</strong>가 Foundations 하위 계층으로 체계적으로 관리됩니다.
+        당근마켓 <code>@seed-design/css</code> 2.3.0 원본 패키지의 <strong>13대 파운데이션 전체 명세</strong>를 위아래 쪼개짐 없이 단 하나의 통일된 구조로 명시합니다.
       </p>
 
-      <!-- ── FOUNDATIONS 8대 아키텍처 계층 트리 시각화 ── -->
+      <!-- ── 13대 파운데이션 전수 통일 목록 ── -->
       <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:24px; padding:24px; margin:24px 0;">
-        <h3 style="margin:0 0 12px 0; font-size:17px; color:var(--m3-on-surface,#121212);">🏛️ Foundations 정보 아키텍처 (Information Architecture)</h3>
+        <h3 style="margin:0 0 12px 0; font-size:17px; color:var(--m3-on-surface,#121212);">🏛️ Foundations 13대 시스템 원본 체계</h3>
         <pre style="margin:0; font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.7; background:none; border:none; padding:0; color:#333;">
-<strong>FOUNDATIONS (최상위 대분류)</strong>
-├── 🎨 <strong>1. Color</strong> (Primitive 물감 94개 + Semantic 역할 36개)
-├── 🔤 <strong>2. Typography</strong> (Static Responsive Scale t1~t16 + Line Height + Weight)
-├── 📐 <strong>3. Spacing &amp; Dimension</strong> (x0_5 ~ x16 치수 및 글로벌 간격 25개)
+<strong>FOUNDATIONS (단일 수직 통합 체계)</strong>
+├── 🎨 <strong>1. Color</strong> (Primitive 물감 94개 + Semantic 역할 87개)
+├── 🔤 <strong>2. Typography</strong> (Static &amp; Fluid Scale t1~t14 33개 + Line Height 32개 + Weight 5개)
+├── 📐 <strong>3. Spacing &amp; Dimension</strong> (x0_5 ~ x16 여백 및 치수 25개)
 ├── 🔘 <strong>4. Radius</strong> (r0_5 ~ r6, full 모서리 둥글기 11개)
-├── ⏱️ <strong>5. Motion</strong> (Duration d1~d6 + Timing Function 모션 15개)
-├── 🌑 <strong>6. Elevation &amp; Shadow</strong> (s1 ~ s3 그림자 고도 3개)
-├── 🔍 <strong>7. Scale &amp; Opacity</strong> (s95~s98 클릭 축소 비율 &amp; 투명도 5개)
-└── 📱 <strong>8. Safe Area &amp; Breakpoint</strong> (기기 안전 영역 &amp; 뷰포트 3개)
+├── ⏱️ <strong>5. Motion &amp; Duration</strong> (d1~d6 + enter/exit 타이밍 15개)
+├── 🌑 <strong>6. Elevation &amp; Shadow</strong> (s1~s3 그림자 고도 3개)
+├── 🔍 <strong>7. Scale &amp; Opacity</strong> (s95~s98 클릭 축소 &amp; 투명도 5개)
+├── 📱 <strong>8. Safe Area &amp; Breakpoint</strong> (안전 영역 &amp; 뷰포트 3개)
+├── 🌈 <strong>9. Gradient</strong> (glow, highlight, shimmer 로딩 그래디언트 6개)
+├── 📊 <strong>10. Grid System</strong> (반응형 1~12열 그리드 16개)
+├── 📐 <strong>11. Bleed &amp; Outset</strong> (모바일 full-bleed 여백 확장 12개)
+├── 🖼️ <strong>12. Iconography</strong> (prefix/suffix 아이콘 크기 &amp; 정렬 18개)
+└── 🔄 <strong>13. Transform Keyframe</strong> (모달/바텀시트 등장·퇴장 트랜스폼 10개)
         </pre>
       </div>
 
-      <!-- ── FOUNDATION 1: COLOR ── -->
-      <div id="ds-colors" style="margin-top:36px; padding-top:20px; border-top:1px solid #E1E3E1;">
-        <h3 style="font-size:20px; margin-bottom:8px;">1. Color (Foundations 하위 계층)</h3>
-        <p style="font-size:13.5px; color:#666; margin-bottom:16px;"><strong>Primitive(94개 물감 스케일)</strong>는 디자이너/AI의 색상 재료 창고이며, <strong>Semantic(36개 역할 토큰)</strong>은 디자인 레이어에 직접 바인딩되는 토큰입니다.</p>
-
-        <!-- Color 탭 제어 -->
+      <!-- 1. COLOR -->
+      <div style="margin-top:32px; padding-top:20px; border-top:1px solid #E1E3E1;">
+        <h3 style="font-size:20px; margin-bottom:8px;">1. Color (Primitive 94개 + Semantic 87개)</h3>
         <div class="tab-group" id="color-tabs">
           <div class="tab-list">
             <button class="tab-btn active" data-tab="primitive">Primitive (94개 물감)</button>
@@ -1694,7 +1691,6 @@ GitHub 업로드는 디자이너 자율 진행하시면 됩니다.</pre>
             <button class="tab-btn" data-tab="semantic-stroke">Stroke</button>
           </div>
 
-          <!-- Primitive 94개 전체 스와치 -->
           <div class="tab-panel active" data-panel="primitive">
             <div class="ds-section-label">Brand (carrot 100~1000)</div>
             <div class="swatch-row">
@@ -1737,7 +1733,6 @@ GitHub 업로드는 디자이너 자율 진행하시면 됩니다.</pre>
             </div>
           </div>
 
-          <!-- Foreground -->
           <div class="tab-panel" data-panel="semantic-fg">
             <table>
               <tr><th>Figma Variable (Semantic)</th><th>용도</th><th>대응 CSS 변수</th></tr>
@@ -1751,7 +1746,6 @@ GitHub 업로드는 디자이너 자율 진행하시면 됩니다.</pre>
             </table>
           </div>
 
-          <!-- Background -->
           <div class="tab-panel" data-panel="semantic-bg">
             <table>
               <tr><th>Figma Variable (Semantic)</th><th>용도</th><th>비고 (코드 연동)</th></tr>
@@ -1767,7 +1761,6 @@ GitHub 업로드는 디자이너 자율 진행하시면 됩니다.</pre>
             </table>
           </div>
 
-          <!-- Stroke -->
           <div class="tab-panel" data-panel="semantic-stroke">
             <table>
               <tr><th>Figma Variable (Semantic)</th><th>용도</th><th>대응 CSS 변수</th></tr>
@@ -1780,11 +1773,9 @@ GitHub 업로드는 디자이너 자율 진행하시면 됩니다.</pre>
         </div>
       </div>
 
-      <!-- ── FOUNDATION 2: TYPOGRAPHY ── -->
-      <div id="ds-typography" style="margin-top:36px; padding-top:20px; border-top:1px solid #E1E3E1;">
-        <h3 style="font-size:20px; margin-bottom:8px;">2. Typography (Foundations 하위 계층)</h3>
-        <p style="font-size:13.5px; color:#666; margin-bottom:16px;"><code>@seed-design/css</code> t1~t16 스케일. 3개 반응형 브레이크포인트 고정값 적용.</p>
-        
+      <!-- 2. TYPOGRAPHY -->
+      <div style="margin-top:32px; padding-top:20px; border-top:1px solid #E1E3E1;">
+        <h3 style="font-size:20px; margin-bottom:8px;">2. Typography (Static &amp; Fluid Scale t1~t14)</h3>
         <table>
           <tr><th>토큰</th><th>Mobile<br><small>&lt;768px</small></th><th>Tablet<br><small>768~1279</small></th><th>Desktop<br><small>1280px+</small></th><th>용도</th></tr>
           <tr><td><code>--seed-font-size-t1</code></td><td>11px</td><td>11px</td><td>11px</td><td>극소 캡션</td></tr>
@@ -1796,16 +1787,16 @@ GitHub 업로드는 디자이너 자율 진행하시면 됩니다.</pre>
         </table>
       </div>
 
-      <!-- ── FOUNDATION 3~8: SPACING, RADIUS, MOTION, SHADOW, SCALE ── -->
-      <div style="margin-top:36px; padding-top:20px; border-top:1px solid #E1E3E1;">
-        <h3 style="font-size:20px; margin-bottom:16px;">3~8. Spacing, Radius, Motion, Shadow, Scale (Foundations 하위 계층)</h3>
+      <!-- 3~13. SPACING, RADIUS, MOTION, SHADOW, SCALE, GRADIENT, GRID, BLEED, ICON, TRANSFORM -->
+      <div style="margin-top:32px; padding-top:20px; border-top:1px solid #E1E3E1;">
+        <h3 style="font-size:20px; margin-bottom:16px;">3~13. Spacing, Radius, Motion, Shadow, Scale, Gradient, Grid, Bleed, Icon, Transform</h3>
         
         <div style="display:flex; flex-direction:column; gap:14px;">
           
-          <!-- Spacing -->
+          <!-- 3. Spacing -->
           <div class="acc-single">
             <button type="button" class="acc-single-btn" onclick="accSingleToggle(this)">
-              <span>3. Spacing &amp; Dimension (x0_5 ~ x16 — 25개)</span>
+              <span>3. Spacing &amp; Dimension (x0_5 ~ x16 — 25개 토큰)</span>
               <span style="font-size:12px; color:#888;">▲</span>
             </button>
             <div class="acc-single-content">
@@ -1822,10 +1813,10 @@ GitHub 업로드는 디자이너 자율 진행하시면 됩니다.</pre>
             </div>
           </div>
 
-          <!-- Radius -->
+          <!-- 4. Radius -->
           <div class="acc-single">
             <button type="button" class="acc-single-btn" onclick="accSingleToggle(this)">
-              <span>4. Radius (r0_5 ~ r6, full — 11개)</span>
+              <span>4. Radius (r0_5 ~ r6, full — 11개 토큰)</span>
               <span style="font-size:12px; color:#888;">▲</span>
             </button>
             <div class="acc-single-content">
@@ -1841,549 +1832,44 @@ GitHub 업로드는 디자이너 자율 진행하시면 됩니다.</pre>
             </div>
           </div>
 
-          <!-- Motion, Shadow, Scale -->
+          <!-- 5~8. Motion, Shadow, Scale, Safe Area -->
           <div class="acc-single">
             <button type="button" class="acc-single-btn" onclick="accSingleToggle(this)">
-              <span>5~7. Motion, Shadow &amp; Scale</span>
+              <span>5~8. Motion, Shadow, Scale &amp; Safe Area (15개 토큰)</span>
               <span style="font-size:12px; color:#888;">▼</span>
             </button>
             <div class="acc-single-content" hidden>
               <table>
                 <tr><th>구분</th><th>Figma Variable</th><th>CSS 변수명</th><th>값</th></tr>
-                <tr><td>Motion</td><td><code>duration/d4</code></td><td><code>--seed-duration-d4</code></td><td>300ms (모달)</td></tr>
-                <tr><td>Shadow</td><td><code>elevation/s2</code></td><td><code>--seed-shadow-s2</code></td><td><code>0 4px 12px rgba(0,0,0,0.12)</code></td></tr>
+                <tr><td>Motion</td><td><code>duration/d4</code></td><td><code>--seed-duration-d4</code></td><td>300ms (모달 트랜지션)</td></tr>
+                <tr><td>Shadow</td><td><code>elevation/s2</code></td><td><code>--seed-shadow-s2</code></td><td><code>0 4px 12px rgba(0,0,0,0.12)</code> (카드 그림자)</td></tr>
                 <tr><td>Scale</td><td><code>scale/s97</code></td><td><code>--seed-scale-s97</code></td><td>0.97 (버튼 눌림 비율)</td></tr>
+                <tr><td>Safe Area</td><td>—</td><td><code>--seed-safe-area-top</code></td><td>env(safe-area-inset-top)</td></tr>
+              </table>
+            </div>
+          </div>
+
+          <!-- 9~13. Gradient, Grid, Bleed, Icon, Transform -->
+          <div class="acc-single">
+            <button type="button" class="acc-single-btn" onclick="accSingleToggle(this)">
+              <span>9~13. Gradient, Grid System, Bleed, Iconography &amp; Transform Keyframe (62개 토큰)</span>
+              <span style="font-size:12px; color:#888;">▼</span>
+            </button>
+            <div class="acc-single-content" hidden>
+              <table>
+                <tr><th>구분</th><th>CSS 변수명</th><th>설명 및 용도</th></tr>
+                <tr><td>Gradient</td><td><code>--seed-gradient-shimmer-neutral</code></td><td>스켈레톤 로딩 쉬머 그래디언트 애니메이션</td></tr>
+                <tr><td>Grid System</td><td><code>--seed-grid-columns-base</code></td><td>반응형 레이아웃 그리드 (Mobile 4열, Tablet 8열, Desktop 12열)</td></tr>
+                <tr><td>Bleed</td><td><code>--seed-box-bleed-left</code></td><td>모바일 부모 여백을 뚫고 화면 끝까지 꽉 차는 full-bleed 확장</td></tr>
+                <tr><td>Iconography</td><td><code>--seed-prefix-icon-size</code></td><td>버튼 및 입력창 내부 앞/뒤 아이콘 규격 (14px~22px)</td></tr>
+                <tr><td>Transform</td><td><code>--seed-enter-translate-y</code></td><td>모달 및 바텀시트 슬라이드업 등장/퇴장 트랜스폼 키프레임</td></tr>
               </table>
             </div>
           </div>
 
         </div>
       </div>
-  </section>
-
-
-  <section id="ds-tokens">
-      <h2>Foundations (8대 시스템 원본 토큰 100% 전수 명세)</h2>
-      <p>
-        당근마켓 <code>@seed-design/css</code> 2.3.0 패키지 원본의 <strong>8대 파운데이션 (Color, Typography, Spacing/Dimension, Radius, Motion, Elevation, Scale, Safe Area) 215개 토큰 전체 명세</strong>입니다.
-      </p>
-
-      <div style="display:flex; flex-direction:column; gap:16px; margin-top:20px;">
-
-        <!-- 1. SPACING & DIMENSION (25개 전체) -->
-        <div class="acc-single">
-          <button type="button" class="acc-single-btn" onclick="accSingleToggle(this)">
-            <span>1. Spacing &amp; Dimension (여백 스케일 — 총 25개)</span>
-            <span style="font-size:12px; color:#888;">▲</span>
-          </button>
-          <div class="acc-single-content">
-            <p style="margin:0 0 12px 0; font-size:13.5px; color:#444746;">Seed <code>--seed-dimension-x*</code> 여백 및 치수 100% 토큰화 명세입니다.</p>
-            <table>
-              <tr><th>Figma Variable</th><th>CSS 변수명</th><th>값</th><th>용도</th></tr>
-              <tr><td><code>dimension/x0_5</code></td><td><code>--seed-dimension-x0_5</code></td><td>2px</td><td>미세 간격</td></tr>
-              <tr><td><code>dimension/x1</code></td><td><code>--seed-dimension-x1</code></td><td>4px</td><td>최소 여백, 아이콘 간격</td></tr>
-              <tr><td><code>dimension/x1_5</code></td><td><code>--seed-dimension-x1_5</code></td><td>6px</td><td>소여백</td></tr>
-              <tr><td><code>dimension/x2</code></td><td><code>--seed-dimension-x2</code></td><td>8px</td><td>내부 소여백</td></tr>
-              <tr><td><code>dimension/x2_5</code></td><td><code>--seed-dimension-x2_5</code></td><td>10px</td><td>중소 여백</td></tr>
-              <tr><td><code>dimension/x3</code></td><td><code>--seed-dimension-x3</code></td><td>12px</td><td>버튼 패딩</td></tr>
-              <tr><td><code>dimension/x3_5</code></td><td><code>--seed-dimension-x3_5</code></td><td>14px</td><td>중여백</td></tr>
-              <tr><td><code>dimension/x4</code></td><td><code>--seed-dimension-x4</code></td><td>16px</td><td>기본 카드 패딩, 컴포넌트 간격</td></tr>
-              <tr><td><code>dimension/x4_5</code></td><td><code>--seed-dimension-x4_5</code></td><td>18px</td><td>서브 패딩</td></tr>
-              <tr><td><code>dimension/x5</code></td><td><code>--seed-dimension-x5</code></td><td>20px</td><td>Mobile 컨테이너 좌우 패딩</td></tr>
-              <tr><td><code>dimension/x6</code></td><td><code>--seed-dimension-x6</code></td><td>24px</td><td>대형 간격</td></tr>
-              <tr><td><code>dimension/x7</code></td><td><code>--seed-dimension-x7</code></td><td>28px</td><td>섹션 소여백</td></tr>
-              <tr><td><code>dimension/x8</code></td><td><code>--seed-dimension-x8</code></td><td>32px</td><td>섹션 대형 간격</td></tr>
-              <tr><td><code>dimension/x9</code></td><td><code>--seed-dimension-x9</code></td><td>36px</td><td>컴포넌트 대형 높이</td></tr>
-              <tr><td><code>dimension/x10</code></td><td><code>--seed-dimension-x10</code></td><td>40px</td><td>컴포넌트 대여백</td></tr>
-              <tr><td><code>dimension/x12</code></td><td><code>--seed-dimension-x12</code></td><td>48px</td><td>Tablet 컨테이너 좌우 패딩</td></tr>
-              <tr><td><code>dimension/x13</code></td><td><code>--seed-dimension-x13</code></td><td>52px</td><td>버튼 대형 높이</td></tr>
-              <tr><td><code>dimension/x14</code></td><td><code>--seed-dimension-x14</code></td><td>56px</td><td>디스플레이 헤더 높이</td></tr>
-              <tr><td><code>dimension/x16</code></td><td><code>--seed-dimension-x16</code></td><td>64px</td><td>Desktop 컨테이너 좌우 패딩</td></tr>
-            </table>
-          </div>
-        </div>
-
-        <!-- 2. RADIUS (11개 전체) -->
-        <div class="acc-single">
-          <button type="button" class="acc-single-btn" onclick="accSingleToggle(this)">
-            <span>2. Radius (모서리 둥글기 스케일 — 총 11개)</span>
-            <span style="font-size:12px; color:#888;">▲</span>
-          </button>
-          <div class="acc-single-content">
-            <p style="margin:0 0 12px 0; font-size:13.5px; color:#444746;">Seed <code>--seed-radius-r*</code> 모서리 둥글기 100% 토큰화 명세입니다.</p>
-            <table>
-              <tr><th>Figma Variable</th><th>CSS 변수명</th><th>값</th><th>용도</th></tr>
-              <tr><td><code>radius/r0_5</code></td><td><code>--seed-radius-r0_5</code></td><td>2px</td><td>미세 모서리 둥글기</td></tr>
-              <tr><td><code>radius/r1</code></td><td><code>--seed-radius-r1</code></td><td>4px</td><td>태그 모서리</td></tr>
-              <tr><td><code>radius/r1_5</code></td><td><code>--seed-radius-r1_5</code></td><td>6px</td><td>칩 모서리</td></tr>
-              <tr><td><code>radius/r2</code></td><td><code>--seed-radius-r2</code></td><td>8px</td><td>버튼/입력창 모서리</td></tr>
-              <tr><td><code>radius/r2_5</code></td><td><code>--seed-radius-r2_5</code></td><td>10px</td><td>중형 모서리</td></tr>
-              <tr><td><code>radius/r3</code></td><td><code>--seed-radius-r3</code></td><td>12px</td><td>기본 카드 모서리</td></tr>
-              <tr><td><code>radius/r3_5</code></td><td><code>--seed-radius-r3_5</code></td><td>14px</td><td>대형 카드 모서리</td></tr>
-              <tr><td><code>radius/r4</code></td><td><code>--seed-radius-r4</code></td><td>16px</td><td>다이얼로그/모달 모서리</td></tr>
-              <tr><td><code>radius/r5</code></td><td><code>--seed-radius-r5</code></td><td>20px</td><td>바텀시트 상단 모서리</td></tr>
-              <tr><td><code>radius/r6</code></td><td><code>--seed-radius-r6</code></td><td>24px</td><td>카운터 모서리</td></tr>
-              <tr><td><code>radius/full</code></td><td><code>--seed-radius-full</code></td><td>9999px</td><td>원형/캡슐 알약 모서리</td></tr>
-            </table>
-          </div>
-        </div>
-
-        <!-- 3. MOTION DURATION & TIMING (15개 전체) -->
-        <div class="acc-single">
-          <button type="button" class="acc-single-btn" onclick="accSingleToggle(this)">
-            <span>3. Motion (애니메이션 속도 &amp; 타이밍 함수 — 총 15개)</span>
-            <span style="font-size:12px; color:#888;">▼</span>
-          </button>
-          <div class="acc-single-content" hidden>
-            <p style="margin:0 0 12px 0; font-size:13.5px; color:#444746;">Seed <code>--seed-duration-d*</code> &amp; <code>--seed-timing-function-*</code> 모션 명세입니다.</p>
-            <table>
-              <tr><th>Figma Variable</th><th>CSS 변수명</th><th>값 / 속도</th><th>용도</th></tr>
-              <tr><td><code>duration/d1</code></td><td><code>--seed-duration-d1</code></td><td>100ms</td><td>미세 hover 피드백</td></tr>
-              <tr><td><code>duration/d2</code></td><td><code>--seed-duration-d2</code></td><td>150ms</td><td>기본 hover 트랜지션</td></tr>
-              <tr><td><code>duration/d3</code></td><td><code>--seed-duration-d3</code></td><td>200ms</td><td>드롭다운/토글 트랜지션</td></tr>
-              <tr><td><code>duration/d4</code></td><td><code>--seed-duration-d4</code></td><td>300ms</td><td>모달/바텀시트 트랜지션</td></tr>
-              <tr><td><code>duration/d5</code></td><td><code>--seed-duration-d5</code></td><td>400ms</td><td>페이지 모션</td></tr>
-              <tr><td><code>duration/d6</code></td><td><code>--seed-duration-d6</code></td><td>500ms</td><td>대형 모션</td></tr>
-              <tr><td>—</td><td><code>--seed-timing-function-enter</code></td><td>cubic-bezier(0,0,0.2,1)</td><td>등장 애니메이션</td></tr>
-              <tr><td>—</td><td><code>--seed-timing-function-exit</code></td><td>cubic-bezier(0.4,0,1,1)</td><td>퇴장 애니메이션</td></tr>
-            </table>
-          </div>
-        </div>
-
-        <!-- 4. ELEVATION & SHADOW (3개 전체) -->
-        <div class="acc-single">
-          <button type="button" class="acc-single-btn" onclick="accSingleToggle(this)">
-            <span>4. Elevation &amp; Shadow (그림자 고도 — 총 3개)</span>
-            <span style="font-size:12px; color:#888;">▼</span>
-          </button>
-          <div class="acc-single-content" hidden>
-            <p style="margin:0 0 12px 0; font-size:13.5px; color:#444746;">Seed <code>--seed-shadow-s*</code> 그림자 깊이 토큰 명세입니다.</p>
-            <table>
-              <tr><th>Figma Variable</th><th>CSS 변수명</th><th>Box Shadow 값</th><th>용도</th></tr>
-              <tr><td><code>elevation/s1</code></td><td><code>--seed-shadow-s1</code></td><td><code>0 1px 3px rgba(0,0,0,0.08)</code></td><td>1단계 가벼운 그림자 (카드)</td></tr>
-              <tr><td><code>elevation/s2</code></td><td><code>--seed-shadow-s2</code></td><td><code>0 4px 12px rgba(0,0,0,0.12)</code></td><td>2단계 부유 카드 그림자</td></tr>
-              <tr><td><code>elevation/s3</code></td><td><code>--seed-shadow-s3</code></td><td><code>0 8px 24px rgba(0,0,0,0.18)</code></td><td>3단계 모달/팝업 그림자</td></tr>
-            </table>
-          </div>
-        </div>
-
-        <!-- 5. SCALE & OPACITY (5개 전체) -->
-        <div class="acc-single">
-          <button type="button" class="acc-single-btn" onclick="accSingleToggle(this)">
-            <span>5. Scale &amp; Opacity (버튼 클릭 축소 &amp; 투명도 — 총 5개)</span>
-            <span style="font-size:12px; color:#888;">▼</span>
-          </button>
-          <div class="acc-single-content" hidden>
-            <p style="margin:0 0 12px 0; font-size:13.5px; color:#444746;">Seed <code>--seed-scale-s*</code> 클릭 눌림 비율 명세입니다.</p>
-            <table>
-              <tr><th>Figma Variable</th><th>CSS 변수명</th><th>비율 값</th><th>용도</th></tr>
-              <tr><td><code>scale/s95</code></td><td><code>--seed-scale-s95</code></td><td>0.95 (95%)</td><td>대형 버튼 클릭 눌림 비율</td></tr>
-              <tr><td><code>scale/s97</code></td><td><code>--seed-scale-s97</code></td><td>0.97 (97%)</td><td>중형 버튼 클릭 눌림 비율</td></tr>
-              <tr><td><code>scale/s98</code></td><td><code>--seed-scale-s98</code></td><td>0.98 (98%)</td><td>소형 버튼 클릭 눌림 비율</td></tr>
-            </table>
-          </div>
-        </div>
-
-      </div>
-  </section>
-
-
-  <section id="how">
-      <h2>작동 방식</h2>
-      <p>axpublish는 <strong>두 가지 아웃풋</strong>을 만들어냅니다. Figma 파일 자체를 토큰으로 정리하고, 동시에 코드를 생성합니다. 단, Code Generation은 <strong>Figma가 완전히 확정된 이후에만</strong> 시작합니다.</p>
-
-      <!-- 가로 흐름 카드 스텝 레이아웃 -->
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin:24px 0;">
-        
-        <div style="border:1px solid var(--seed-color-stroke-neutral-subtle,#e5e7eb); border-radius:12px; padding:18px; background:var(--seed-color-bg-layer-floating,#ffffff); position:relative; box-shadow:0 2px 6px rgba(0,0,0,0.03);">
-          <div style="font-size:12px; font-weight:bold; color:#7C3AED; background:#F5F3FF; padding:2px 8px; border-radius:10px; width:fit-content; margin-bottom:8px;">STEP 1</div>
-          <h4 style="margin:0 0 6px 0; font-size:15px; color:var(--seed-color-fg-neutral,#121212);">📁 Raw Figma ➔ MCP 연결</h4>
-          <p style="font-size:12.5px; color:var(--seed-color-fg-neutral-muted,#666); margin:0; line-height:1.5;">SCOUT이 디자인 파일 전체 스캔. 화면·컴포넌트·색상·폰트 현황 파악.</p>
-        </div>
-
-        <div style="border:1px solid var(--seed-color-stroke-neutral-subtle,#e5e7eb); border-radius:12px; padding:18px; background:var(--seed-color-bg-layer-floating,#ffffff); position:relative; box-shadow:0 2px 6px rgba(0,0,0,0.03);">
-          <div style="font-size:12px; font-weight:bold; color:#059669; background:#ECFDF5; padding:2px 8px; border-radius:10px; width:fit-content; margin-bottom:8px;">STEP 2</div>
-          <h4 style="margin:0 0 6px 0; font-size:15px; color:var(--seed-color-fg-neutral,#121212);">🛠️ MCP Write &amp; 바인딩</h4>
-          <p style="font-size:12.5px; color:var(--seed-color-fg-neutral-muted,#666); margin:0; line-height:1.5;">BINDER가 Variable 59개 생성, 레이어 전체 1:1 바인딩 및 상태 시각화.</p>
-        </div>
-
-        <div style="border:1px solid #FED7AA; border-radius:12px; padding:18px; background:#FFF7ED; position:relative; box-shadow:0 2px 6px rgba(0,0,0,0.03);">
-          <div style="font-size:12px; font-weight:bold; color:#C2410C; background:#FFEDD5; padding:2px 8px; border-radius:10px; width:fit-content; margin-bottom:8px;">STEP 3</div>
-          <h4 style="margin:0 0 6px 0; font-size:15px; color:#9A3412;">🔒 Figma 확정 게이트</h4>
-          <p style="font-size:12.5px; color:#7C2D12; margin:0; line-height:1.5;">디자이너의 최종 "OK" 신호 이후에만 코드 생성 진입. 불일치 원천 차단.</p>
-        </div>
-
-        <div style="border:1px solid var(--seed-color-stroke-neutral-subtle,#e5e7eb); border-radius:12px; padding:18px; background:var(--seed-color-bg-layer-floating,#ffffff); position:relative; box-shadow:0 2px 6px rgba(0,0,0,0.03);">
-          <div style="font-size:12px; font-weight:bold; color:#2563EB; background:#EFF6FF; padding:2px 8px; border-radius:10px; width:fit-content; margin-bottom:8px;">STEP 4</div>
-          <h4 style="margin:0 0 6px 0; font-size:15px; color:var(--seed-color-fg-neutral,#121212);">💻 Code Gen &amp; QA 완료 🎉</h4>
-          <p style="font-size:12.5px; color:var(--seed-color-fg-neutral-muted,#666); margin:0; line-height:1.5;">BUILDER 컴포넌트 생성 ➔ ASSEMBLER 순차 조립 ➔ 인터랙션 QA 후 완공.</p>
-        </div>
-
-      </div>
-  </section>
-
-
-  <section id="figma-write">
-      <h2>Figma MCP Write — 내부 동작</h2>
-      <p>axpublish의 핵심입니다. AI(BINDER)가 MCP를 통해 <strong>Figma 파일 내부에 직접 Seed Variable Collection을 생성하고 모든 레이어에 바인딩</strong>합니다.</p>
-
-      <!-- ── Carousel Controller ── -->
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin:20px 0 12px 0; background:transparent; padding:0; border:none;">
-        
-        <!-- Left Chevron -->
-        <button type="button" onclick="mcpSlideNav(-1)" class="mcp-nav-btn" style="background:#ffffff; border:1px solid #d1d5db; border-radius:8px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; color:#374151; font-weight:bold; transition:all 0.15s;" title="이전 스텝">❮</button>
-
-        <!-- Step Tabs -->
-        <div style="display:flex; gap:6px; overflow-x:auto; padding:2px 0;" id="mcp-tab-group">
-          <button type="button" onclick="mcpSlideGo(0)" class="mcp-tab-btn active" style="padding:6px 14px; border-radius:20px; border:1px solid #7C3AED; background:#7C3AED; color:#fff; font-size:12.5px; font-weight:bold; cursor:pointer; whitespace:nowrap; transition:all 0.2s;">Step 1. Variable 생성</button>
-          <button type="button" onclick="mcpSlideGo(1)" class="mcp-tab-btn" style="padding:6px 14px; border-radius:20px; border:1px solid #e5e7eb; background:#ffffff; color:#4b5563; font-size:12.5px; font-weight:bold; cursor:pointer; whitespace:nowrap; transition:all 0.2s;">Step 2. 레이어 바인딩</button>
-          <button type="button" onclick="mcpSlideGo(2)" class="mcp-tab-btn" style="padding:6px 14px; border-radius:20px; border:1px solid #e5e7eb; background:#ffffff; color:#4b5563; font-size:12.5px; font-weight:bold; cursor:pointer; whitespace:nowrap; transition:all 0.2s;">Step 3. 상태 시각화</button>
-          <button type="button" onclick="mcpSlideGo(3)" class="mcp-tab-btn" style="padding:6px 14px; border-radius:20px; border:1px solid #e5e7eb; background:#ffffff; color:#4b5563; font-size:12.5px; font-weight:bold; cursor:pointer; whitespace:nowrap; transition:all 0.2s;">Step 4. 확정 게이트 🔒</button>
-        </div>
-
-        <!-- Right Chevron -->
-        <button type="button" onclick="mcpSlideNav(1)" class="mcp-nav-btn" style="background:#ffffff; border:1px solid #d1d5db; border-radius:8px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; color:#374151; font-weight:bold; transition:all 0.15s;" title="다음 스텝">❯</button>
-      </div>
-
-      <!-- ── Carousel Slider Container ── -->
-      <div id="mcp-slider" onscroll="mcpOnScroll()" style="display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; padding-bottom:12px; scrollbar-width:thin;">
-
-        <!-- SLIDE 1 -->
-        <div class="mcp-slide" style="flex:0 0 100%; min-width:100%; scroll-snap-align:start; box-sizing:border-box; border:1px solid var(--seed-color-stroke-neutral-muted,#e5e7eb); border-radius:12px; padding:20px; background:var(--seed-color-bg-layer-floating,#ffffff); box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-            <span style="background:#7C3AED; color:#fff; font-weight:bold; font-size:12px; padding:4px 10px; border-radius:20px;">STEP 1</span>
-            <h3 style="margin:0; font-size:18px; color:var(--seed-color-fg-neutral,#121212);">Variable Collection 생성 (59개)</h3>
-          </div>
-          <p style="font-size:14px; color:var(--seed-color-fg-neutral-muted,#424242); margin-bottom:16px;">
-            <code>axpublish / Seed</code> 컬렉션을 <code>Light</code> 및 <code>Dark</code> 2개 모드로 자동 생성합니다. 
-            Primitive(<code>palette/</code>)는 원본 Hex 스케일로 다루고, Semantic(<code>fg/</code>, <code>bg-*/</code>, <code>stroke/</code>) 토큰이 이를 Alias 참조합니다.
-          </p>
-
-          <!-- 트리 박스 -->
-          <div style="background:#1e1e2e; color:#cdd6f4; border-radius:8px; padding:14px; font-family:monospace; font-size:12px; line-height:1.5; margin-bottom:16px;">
-            <div style="color:#cba6f7; font-weight:bold; margin-bottom:6px;">❖ Figma Variable 패널 구조 (BINDER가 자동 생성하는 트리)</div>
-axpublish / Seed (Modes: Light / Dark)
-├── 🪨 palette/                      (Primitive: 레이어 직접 지정 X)
-│     ├── carrot-100 ~ 900          (Hex 값: 브랜드 덮어쓰기)
-│     ├── gray-00 ~ 1000            (Hex 값: 중성색 스케일)
-│     └── status (green/red/yellow/blue-700)
-└── 🎯 Semantic 토큰                   (레이어 직접 지정 O / palette 참조)
-      ├── fg / neutral               → alias: palette/gray-1000
-      ├── fg / brand                 → alias: palette/carrot-600
-      ├── bg-layer / default         → alias: palette/gray-00
-      ├── bg-brand / solid           → alias: palette/carrot-600
-      ├── bg-neutral / inverted      → alias: palette/gray-900
-      ├── bg-status / positive-solid → alias: palette/green-700
-      └── stroke / neutral-subtle    → rgba(0,0,0,0.08)
-          </div>
-
-          <table>
-            <tr><th>그룹</th><th>개수</th><th>변수 (Seed CSS 대응)</th></tr>
-            <tr><td><strong>palette</strong></td><td>24개</td><td>carrot-100~900 (브랜드, override) + gray-00~1000 + status 4색</td></tr>
-            <tr><td><strong>fg</strong></td><td>11개</td><td>neutral / neutral-muted / neutral-subtle / neutral-inverted / brand / disabled / placeholder / positive / critical / warning / informative</td></tr>
-            <tr><td><strong>bg-layer</strong></td><td>4개</td><td>default / fill / floating / basement</td></tr>
-            <tr><td><strong>bg-brand</strong></td><td>4개</td><td>solid / solid-pressed / weak / weak-pressed</td></tr>
-            <tr><td><strong>bg-neutral</strong></td><td>4개</td><td>inverted / solid / weak / disabled</td></tr>
-            <tr><td><strong>bg-status</strong></td><td>5개</td><td>positive-solid / critical-solid / warning-solid / informative-solid / overlay</td></tr>
-            <tr><td><strong>stroke</strong></td><td>7개</td><td>neutral-subtle / neutral-muted / neutral-solid / neutral-contrast / brand-solid / critical-solid / focus-ring</td></tr>
-          </table>
-          <p style="font-size:12px; color:#888; margin-top:8px; margin-bottom:0;">※ <strong>palette</strong>는 Primitive — Semantic이 alias로 참조하며, 컴포넌트에는 Semantic 토큰만 바인딩합니다.</p>
-        </div>
-
-        <!-- SLIDE 2 -->
-        <div class="mcp-slide" style="flex:0 0 100%; min-width:100%; scroll-snap-align:start; box-sizing:border-box; border:1px solid var(--seed-color-stroke-neutral-muted,#e5e7eb); border-radius:12px; padding:20px; background:var(--seed-color-bg-layer-floating,#ffffff); box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-            <span style="background:#059669; color:#fff; font-weight:bold; font-size:12px; padding:4px 10px; border-radius:20px;">STEP 2</span>
-            <h3 style="margin:0; font-size:18px; color:var(--seed-color-fg-neutral,#121212);">레이어 자동 바인딩 (Hex ➔ Seed Variable)</h3>
-          </div>
-          <p style="font-size:14px; color:var(--seed-color-fg-neutral-muted,#424242); margin-bottom:16px;">
-            Figma 전체 레이어를 순회하며 하드코딩된 Hex 색상을 가장 적합한 Seed Semantic Variable로 자동 전환합니다.
-          </p>
-
-          <pre style="margin-bottom:16px;"><code><span class="cm">// BINDER의 1:1 자동 바인딩 규칙</span>
-  텍스트 레이어 Fill
-    기본 진한 텍스트 (#121212, #171719)   → <span class="cv">fg/neutral</span>         (--seed-color-fg-neutral)
-    보조 설명 텍스트 (#424242, #616161) → <span class="cv">fg/neutral-muted</span>   (--seed-color-fg-neutral-muted)
-    브랜드 강조 텍스트 (#0066FF)          → <span class="cv">fg/brand</span>           (--seed-color-fg-brand)
-
-  Frame / Component 배경 Fill
-    화면 전체 / 기본 카드 배경           → <span class="cv">bg-layer/default</span>   (--seed-color-bg-layer-default)
-    회색/회색조 섹션 배경                → <span class="cv">bg-layer/fill</span>      (--seed-color-bg-layer-fill)
-    Primary 버튼 배경                    → <span class="cv">bg-brand/solid</span>     (--seed-color-bg-brand-solid)
-
-  Stroke (테두리·구분선)
-    연한 카드 테두리 / 카드 구분선       → <span class="cv">stroke/neutral-subtle</span> (--seed-color-stroke-neutral-subtle)
-    강한 외각 테두리                      → <span class="cv">stroke/neutral-solid</span>  (--seed-color-stroke-neutral-solid)
-
-  상태 (Status) 메시지 및 뱃지
-    성공 / 완료 (#388E3C 계열)           → <span class="cv">fg/positive</span>        (--seed-color-fg-positive)
-    에러 / Danger (#C62828 계열)         → <span class="cv">fg/critical</span>        (--seed-color-fg-critical)
-    경고 / Caution (#F57F17 계열)        → <span class="cv">fg/warning</span>         (--seed-color-fg-warning)</code></pre>
-
-          <div class="callout warning" style="margin-bottom:0;">
-            <span class="callout-icon">⚠️</span>
-            <div class="callout-body">
-              <strong>미매핑 또는 기존 Style 충돌 시 PAUSE</strong><br>
-              Seed 토큰에 존재하지 않는 특수 색상이나 외부 라이브러리 Style이 감지되면 작업을 일시 중지하고 디자이너의 선택을 요청합니다.
-            </div>
-          </div>
-        </div>
-
-        <!-- SLIDE 3 -->
-        <div class="mcp-slide" style="flex:0 0 100%; min-width:100%; scroll-snap-align:start; box-sizing:border-box; border:1px solid var(--seed-color-stroke-neutral-muted,#e5e7eb); border-radius:12px; padding:20px; background:var(--seed-color-bg-layer-floating,#ffffff); box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-            <span style="background:#EA580C; color:#fff; font-weight:bold; font-size:12px; padding:4px 10px; border-radius:20px;">STEP 3</span>
-            <h3 style="margin:0; font-size:18px; color:var(--seed-color-fg-neutral,#121212);">인터랙션 상태 시각화 (State Matrix)</h3>
-          </div>
-          <p style="font-size:14px; color:var(--seed-color-fg-neutral-muted,#424242); margin-bottom:16px;">
-            바인딩 완료 후 Figma 파일 내 <code>axpublish / Interaction States</code> 페이지를 신설하여 UI 주요 요소(버튼, 인풋 등)의 Default / Hover / Pressed / Disabled 상태 매트릭스를 자동 생성합니다.
-          </p>
-
-          <pre><code><span class="cm">// BINDER가 시각화하는 버튼 상태 매트릭스</span>
-  ┌─────────────┬─────────────┬─────────────┬─────────────┐
-  │   Default   │    Hover    │   Pressed   │  Disabled   │
-  ├─────────────┼─────────────┼─────────────┼─────────────┤
-  │ <span class="cv">bg-brand/</span>   │ <span class="cv">bg-brand/</span>   │ <span class="cv">bg-brand/</span>   │ <span class="cv">bg-neutral/</span> │
-  │ <span class="cv">solid</span>       │ <span class="cv">solid-press</span> │ <span class="cv">solid-press</span> │ <span class="cv">disabled</span>    │
-  │ 텍스트:     │ 텍스트:     │ 텍스트:     │ 텍스트:     │
-  │ <span class="cv">fg/neutral-</span> │ <span class="cv">fg/neutral-</span> │ <span class="cv">fg/neutral-</span> │ <span class="cv">fg/disabled</span> │
-  │ <span class="cv">inverted</span>    │ <span class="cv">inverted</span>    │ <span class="cv">inverted</span>    │             │
-  └─────────────┴─────────────┴─────────────┴─────────────┘
-
-  <span class="cm">// 시각화 컴포넌트 목록</span>
-  Primary 버튼:   bg-brand/solid → solid-pressed
-  Secondary 버튼: bg-neutral/inverted → bg-neutral/solid
-  Ghost 버튼:     배경 투명, 테두리 stroke/neutral-solid
-  Input:          Default / Hover / Focus (stroke/brand-solid) / Error (stroke/critical-solid) / Disabled
-  Link:           Default (fg/brand) / Hover / Visited</code></pre>
-        </div>
-
-        <!-- SLIDE 4 -->
-        <div class="mcp-slide" style="flex:0 0 100%; min-width:100%; scroll-snap-align:start; box-sizing:border-box; border:1px solid #FED7AA; border-radius:12px; padding:20px; background:#FFF7ED; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-            <span style="background:#C2410C; color:#fff; font-weight:bold; font-size:12px; padding:4px 10px; border-radius:20px;">STEP 4</span>
-            <h3 style="margin:0; font-size:18px; color:#9A3412;">디자이너 확정 게이트 🔒</h3>
-          </div>
-          <p style="font-size:14px; color:#7C2D12; margin-bottom:16px;">
-            Figma 상의 Variable 바인딩 및 인터랙션 시각화 상태를 디자이너가 직접 검수한 후 <strong>"OK"</strong> 또는 <strong>"다음 진행"</strong>을 승인해야만 코드 생성 단계(Phase 4 BUILDER)로 진입합니다.
-          </p>
-
-          <div class="callout tip" style="margin-bottom:0; background:#ffffff;">
-            <span class="callout-icon">🔒</span>
-            <div class="callout-body">
-              <strong>Code Generation은 디자이너 승인 이후에만 수행</strong><br>
-              승인 전에 임의로 코드를 조합하거나 빌드하지 않음으로써 Figma 디자인 ↔ Code 구현 간 불일치를 원천 차단합니다.
-            </div>
-          </div>
-        </div>
-
-      </div>
-  </section>
-
-
-  <section id="phases">
-      <h2>6-Phase 워크플로우</h2>
-      <p><code>axpublish-orchestrator.md</code>에 각 Phase의 행동 지침이 정의되어 있습니다. AI는 이 문서를 읽고 순서대로 실행합니다.</p>
-
-      <!-- Phase Carousel Controller -->
-      <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin:20px 0 12px 0; background:transparent; padding:0; border:none;">
-        <button type="button" onclick="phaseSlideNav(-1)" class="mcp-nav-btn" style="background:#ffffff; border:1px solid #d1d5db; border-radius:8px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; color:#374151; font-weight:bold; transition:all 0.15s;" title="이전 Phase">❮</button>
-
-        <div style="display:flex; gap:6px; overflow-x:auto; padding:2px 0;" id="phase-tab-group">
-          <button type="button" onclick="phaseSlideGo(0)" class="phase-tab-btn active" style="padding:6px 14px; border-radius:20px; border:1px solid #4338CA; background:#4338CA; color:#fff; font-size:12.5px; font-weight:bold; cursor:pointer; whitespace:nowrap; transition:all 0.2s;">Phase 0. Discovery &amp; Figma</button>
-          <button type="button" onclick="phaseSlideGo(1)" class="phase-tab-btn" style="padding:6px 14px; border-radius:20px; border:1px solid #e5e7eb; background:#ffffff; color:#4b5563; font-size:12.5px; font-weight:bold; cursor:pointer; whitespace:nowrap; transition:all 0.2s;">Phase 1. 타이포 바인딩</button>
-          <button type="button" onclick="phaseSlideGo(2)" class="phase-tab-btn" style="padding:6px 14px; border-radius:20px; border:1px solid #e5e7eb; background:#ffffff; color:#4b5563; font-size:12.5px; font-weight:bold; cursor:pointer; whitespace:nowrap; transition:all 0.2s;">Phase 2. 반응형 분석</button>
-          <button type="button" onclick="phaseSlideGo(3)" class="phase-tab-btn" style="padding:6px 14px; border-radius:20px; border:1px solid #e5e7eb; background:#ffffff; color:#4b5563; font-size:12.5px; font-weight:bold; cursor:pointer; whitespace:nowrap; transition:all 0.2s;">Phase 3. 컴포넌트 라이브러리</button>
-          <button type="button" onclick="phaseSlideGo(4)" class="phase-tab-btn" style="padding:6px 14px; border-radius:20px; border:1px solid #e5e7eb; background:#ffffff; color:#4b5563; font-size:12.5px; font-weight:bold; cursor:pointer; whitespace:nowrap; transition:all 0.2s;">Phase 4–5. 조립 &amp; 로컬 QA</button>
-          <button type="button" onclick="phaseSlideGo(5)" class="phase-tab-btn" style="padding:6px 14px; border-radius:20px; border:1px solid #e5e7eb; background:#ffffff; color:#4b5563; font-size:12.5px; font-weight:bold; cursor:pointer; whitespace:nowrap; transition:all 0.2s;">Phase 6. UI / Interaction QA</button>
-        </div>
-
-        <button type="button" onclick="phaseSlideNav(1)" class="mcp-nav-btn" style="background:#ffffff; border:1px solid #d1d5db; border-radius:8px; width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:16px; color:#374151; font-weight:bold; transition:all 0.15s;" title="다음 Phase">❯</button>
-      </div>
-
-      <!-- Phase Slider Container -->
-      <div id="phase-slider" onscroll="phaseOnScroll()" style="display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth; padding-bottom:12px; scrollbar-width:thin;">
-        
-        <!-- P0 -->
-        <div class="phase-slide" style="flex:0 0 100%; min-width:100%; scroll-snap-align:start; box-sizing:border-box; border:1px solid var(--seed-color-stroke-neutral-muted,#e5e7eb); border-radius:12px; padding:24px; background:var(--seed-color-bg-layer-floating,#ffffff); box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-            <span style="background:#4338CA; color:#fff; font-weight:bold; font-size:12px; padding:4px 10px; border-radius:20px;">Phase 0</span>
-            <h4 style="margin:0; font-size:18px; color:var(--seed-color-fg-neutral,#121212);">Discovery &amp; Figma 세팅</h4>
-          </div>
-          <p style="font-size:14.5px; color:var(--seed-color-fg-neutral-muted,#424242); line-height:1.6; margin:0;">
-            브랜드 컬러 수집 → <code>generate-seed-brand.js</code> 실행 ➔ Figma <code>axpublish / Seed</code> Variable 59개 생성 ➔ 전체 레이어 1:1 바인딩 ➔ 인터랙션 상태 시각화 ➔ 미매핑/충돌 검증 ➔ <strong>디자이너 확정 게이트 🔒</strong>
-          </p>
-        </div>
-
-        <!-- P1 -->
-        <div class="phase-slide" style="flex:0 0 100%; min-width:100%; scroll-snap-align:start; box-sizing:border-box; border:1px solid var(--seed-color-stroke-neutral-muted,#e5e7eb); border-radius:12px; padding:24px; background:var(--seed-color-bg-layer-floating,#ffffff); box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-            <span style="background:#7C3AED; color:#fff; font-weight:bold; font-size:12px; padding:4px 10px; border-radius:20px;">Phase 1</span>
-            <h4 style="margin:0; font-size:18px; color:var(--seed-color-fg-neutral,#121212);">타이포그래피 바인딩</h4>
-          </div>
-          <p style="font-size:14.5px; color:var(--seed-color-fg-neutral-muted,#424242); line-height:1.6; margin:0;">
-            Figma 텍스트 레이어 전체 추출 ➔ Seed Design 16레벨 토큰(<code>--seed-font-size-t1~t16</code>) 매핑. 뷰포트별 스태틱 3단계 브레이크포인트 적용.
-          </p>
-        </div>
-
-        <!-- P2 -->
-        <div class="phase-slide" style="flex:0 0 100%; min-width:100%; scroll-snap-align:start; box-sizing:border-box; border:1px solid var(--seed-color-stroke-neutral-muted,#e5e7eb); border-radius:12px; padding:24px; background:var(--seed-color-bg-layer-floating,#ffffff); box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-            <span style="background:#059669; color:#fff; font-weight:bold; font-size:12px; padding:4px 10px; border-radius:20px;">Phase 2</span>
-            <h4 style="margin:0; font-size:18px; color:var(--seed-color-fg-neutral,#121212);">반응형 구조 분석 (FLEX)</h4>
-          </div>
-          <p style="font-size:14.5px; color:var(--seed-color-fg-neutral-muted,#424242); line-height:1.6; margin:0;">
-            Figma Auto-layout → CSS Flex/Grid 변환. <code>responsive-rules.md</code> 기반으로 Tablet &amp; Mobile 초안 자동 생성. 규칙 밖 예외 시 디자이너에게 PAUSE 보고.
-          </p>
-        </div>
-
-        <!-- P3 -->
-        <div class="phase-slide" style="flex:0 0 100%; min-width:100%; scroll-snap-align:start; box-sizing:border-box; border:1px solid var(--seed-color-stroke-neutral-muted,#e5e7eb); border-radius:12px; padding:24px; background:var(--seed-color-bg-layer-floating,#ffffff); box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-            <span style="background:#EA580C; color:#fff; font-weight:bold; font-size:12px; padding:4px 10px; border-radius:20px;">Phase 3</span>
-            <h4 style="margin:0; font-size:18px; color:var(--seed-color-fg-neutral,#121212);">전역 컴포넌트 라이브러리 (BUILDER)</h4>
-          </div>
-          <p style="font-size:14.5px; color:var(--seed-color-fg-neutral-muted,#424242); line-height:1.6; margin:0;">
-            2회 이상 사용되는 요소 스캔 ➔ Figma Component 등록 + Code 파일 생성(React + Tailwind v4) 동시 진행. 버튼/GNB/인풋/모달 등 컴포넌트 모듈화.
-          </p>
-        </div>
-
-        <!-- P4-5 -->
-        <div class="phase-slide" style="flex:0 0 100%; min-width:100%; scroll-snap-align:start; box-sizing:border-box; border:1px solid var(--seed-color-stroke-neutral-muted,#e5e7eb); border-radius:12px; padding:24px; background:var(--seed-color-bg-layer-floating,#ffffff); box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-            <span style="background:#BE123C; color:#fff; font-weight:bold; font-size:12px; padding:4px 10px; border-radius:20px;">Phase 4–5</span>
-            <h4 style="margin:0; font-size:18px; color:var(--seed-color-fg-neutral,#121212);">화면별 조립 &amp; 로컬 QA (ASSEMBLER)</h4>
-          </div>
-          <p style="font-size:14.5px; color:var(--seed-color-fg-neutral-muted,#424242); line-height:1.6; margin:0;">
-            한 화면씩 순차 조립 ➔ 디자이너 로컬 프리뷰(<code>npx serve .</code>) ➔ 뷰포트 검수 및 승인 ➔ 다음 화면 조립 진행. 일괄 빌드 절대 금지.
-          </p>
-        </div>
-
-        <!-- P6 -->
-        <div class="phase-slide" style="flex:0 0 100%; min-width:100%; scroll-snap-align:start; box-sizing:border-box; border:1px solid var(--seed-color-stroke-neutral-muted,#e5e7eb); border-radius:12px; padding:24px; background:var(--seed-color-bg-layer-floating,#ffffff); box-shadow:0 2px 8px rgba(0,0,0,0.04);">
-          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
-            <span style="background:#2563EB; color:#fff; font-weight:bold; font-size:12px; padding:4px 10px; border-radius:20px;">Phase 6</span>
-            <h4 style="margin:0; font-size:18px; color:var(--seed-color-fg-neutral,#121212);">UI / Interaction QA</h4>
-          </div>
-          <p style="font-size:14.5px; color:var(--seed-color-fg-neutral-muted,#424242); line-height:1.6; margin:0;">
-            전체 화면 반응형 인터랙션(Hover/GNB/모달/스크롤) 전수 검토 ➔ 검수 완료 후 GitHub 저장소 업로드는 디자이너 자율 진행.
-          </p>
-        </div>
-
-      </div>
-  </section>
-
-
-  <section id="components">
-      <h2>Seed Design 원본 컴포넌트 패키지 전체 (@seed-design/css 2.3.0)</h2>
-      <p>
-        당근마켓 <code>@seed-design/css</code> 2.3.0 패키지 원본 레시피 11종(Action Button, Badge, Switch, Checkbox, Avatar, Manner Temp, Segmented Control, Snackbar, Action Sheet, Dialog, Tabs)을 직접 렌더링하는 <strong>100% 원본 패키지 실물 쇼케이스</strong>입니다.
-      </p>
-
-      <!-- ── 1. ACTION BUTTON ── -->
-      <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:24px; padding:24px; margin:24px 0;">
-        <h3 style="margin:0 0 14px 0; font-size:17px; color:#121212;">1. Action Button (<code>.seed-action-button</code>)</h3>
-        <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
-          <button type="button" class="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">brandSolid</button>
-          <button type="button" class="seed-action-button seed-action-button--variant_neutralSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">neutralSolid</button>
-          <button type="button" class="seed-action-button seed-action-button--variant_criticalSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">criticalSolid</button>
-          <button type="button" class="seed-action-button seed-action-button--variant_neutralWeak seed-action-button--size_medium seed-action-button--size_medium-layout_withText">neutralWeak</button>
-          <button type="button" class="seed-action-button seed-action-button--variant_brandOutline seed-action-button--size_medium seed-action-button--size_medium-layout_withText">brandOutline</button>
-          <button type="button" class="seed-action-button seed-action-button--variant_neutralOutline seed-action-button--size_medium seed-action-button--size_medium-layout_withText">neutralOutline</button>
-        </div>
-      </div>
-
-      <!-- ── 2. BADGE & MANNER TEMP ── -->
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:18px; margin-bottom:24px;">
-        
-        <!-- Badge -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:20px;">
-          <h4 style="margin:0 0 12px 0; font-size:15px; color:#121212;">2. Badge (<code>.seed-badge</code>)</h4>
-          <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
-            <span class="seed-badge seed-badge--variant_brandSolid" style="background:#FF6F0F; color:#fff; padding:4px 10px; border-radius:12px; font-weight:700; font-size:12px;">Brand</span>
-            <span class="seed-badge seed-badge--variant_neutralSolid" style="background:#212529; color:#fff; padding:4px 10px; border-radius:12px; font-weight:700; font-size:12px;">Neutral</span>
-            <span class="seed-badge seed-badge--variant_positiveSolid" style="background:#388E3C; color:#fff; padding:4px 10px; border-radius:12px; font-weight:700; font-size:12px;">Positive</span>
-            <span class="seed-badge seed-badge--variant_criticalSolid" style="background:#FF3B30; color:#fff; padding:4px 10px; border-radius:12px; font-weight:700; font-size:12px;">Critical</span>
-          </div>
-        </div>
-
-        <!-- Manner Temp (당근 매너온도) -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:20px;">
-          <h4 style="margin:0 0 12px 0; font-size:15px; color:#121212;">3. Manner Temp (매너온도 <code>.seed-manner-temp</code>)</h4>
-          <div style="display:flex; align-items:center; gap:14px;">
-            <div style="font-size:16px; font-weight:800; color:#FF6F0F;">36.5°C</div>
-            <div style="flex:1; height:8px; background:#E5E7EB; border-radius:4px; overflow:hidden;">
-              <div style="width:36.5%; height:100%; background:#FF6F0F; border-radius:4px;"></div>
-            </div>
-            <span style="font-size:20px;">😊</span>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ── 3. SWITCH, CHECKBOX & AVATAR ── -->
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:24px;">
-        
-        <!-- Switch -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:20px;">
-          <h4 style="margin:0 0 12px 0; font-size:15px; color:#121212;">4. Switch (스위치 <code>.seed-switch</code>)</h4>
-          <div style="display:flex; align-items:center; gap:16px;">
-            <label style="display:inline-flex; align-items:center; gap:8px; cursor:pointer;">
-              <input type="checkbox" checked style="width:40px; height:22px; accent-color:#FF6F0F; cursor:pointer;">
-              <span style="font-size:13.5px; font-weight:600;">알림 설정 ON</span>
-            </label>
-          </div>
-        </div>
-
-        <!-- Checkbox -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:20px;">
-          <h4 style="margin:0 0 12px 0; font-size:15px; color:#121212;">5. Checkbox (<code>.seed-checkbox</code>)</h4>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <label style="display:inline-flex; align-items:center; gap:8px; font-size:13.5px; cursor:pointer;">
-              <input type="checkbox" checked style="accent-color:#FF6F0F;"> 약관에 동의합니다 (필수)
-            </label>
-            <label style="display:inline-flex; align-items:center; gap:8px; font-size:13.5px; cursor:pointer;">
-              <input type="checkbox" style="accent-color:#FF6F0F;"> 마케팅 정보 수신 동의
-            </label>
-          </div>
-        </div>
-
-        <!-- Avatar -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:20px;">
-          <h4 style="margin:0 0 12px 0; font-size:15px; color:#121212;">6. Avatar (아바타 <code>.seed-avatar</code>)</h4>
-          <div style="display:flex; align-items:center; gap:12px;">
-            <div style="width:48px; height:48px; border-radius:50%; background:#FF6F0F; color:#FFF; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:18px;">🥕</div>
-            <div style="width:38px; height:38px; border-radius:50%; background:#212529; color:#FFF; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px;">User</div>
-            <div style="width:30px; height:30px; border-radius:50%; background:#E5E7EB; color:#555; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px;">Bot</div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- ── 4. SEGMENTED CONTROL & SNACKBAR ── -->
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:18px;">
-        
-        <!-- Segmented Control -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:20px;">
-          <h4 style="margin:0 0 12px 0; font-size:15px; color:#121212;">7. Segmented Control (<code>.seed-segmented-control</code>)</h4>
-          <div style="background:#EBEBEB; padding:3px; border-radius:10px; display:inline-flex; gap:4px;">
-            <button type="button" style="background:#FFF; border:none; padding:6px 16px; border-radius:8px; font-size:13px; font-weight:700; shadow:0 1px 2px rgba(0,0,0,0.1); cursor:pointer;">전체</button>
-            <button type="button" style="background:transparent; border:none; padding:6px 16px; border-radius:8px; font-size:13px; font-weight:500; color:#666; cursor:pointer;">판매중</button>
-            <button type="button" style="background:transparent; border:none; padding:6px 16px; border-radius:8px; font-size:13px; font-weight:500; color:#666; cursor:pointer;">거래완료</button>
-          </div>
-        </div>
-
-        <!-- Snackbar -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:20px;">
-          <h4 style="margin:0 0 12px 0; font-size:15px; color:#121212;">8. Snackbar (스낵바 <code>.seed-snackbar</code>)</h4>
-          <div class="seed-snackbar" style="background:#212529; color:#FFF; padding:12px 18px; border-radius:12px; display:flex; align-items:center; justify-content:space-between; font-size:13px;">
-            <span>관심 품목에 추가되었습니다.</span>
-            <button type="button" style="background:none; border:none; color:#FF6F0F; font-weight:700; cursor:pointer;">실행 취소</button>
-          </div>
-        </div>
-
-      </div>
-  </section>
+  </section></section>
 
 
   <section id="files">
