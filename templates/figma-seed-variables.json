@@ -4,7 +4,7 @@
     "Light",
     "Dark"
   ],
-  "totalCount": 168,
+  "totalCount": 231,
   "variables": [
     {
       "name": "palette/carrot-100",
@@ -1013,6 +1013,384 @@
       "type": "FLOAT",
       "value": 0.98,
       "description": "소형 버튼 눌림 비율 (0.98)"
+    },
+    {
+      "name": "font-size/t1",
+      "type": "FLOAT",
+      "value": "t1 size",
+      "description": "Seed Typography Size t1"
+    },
+    {
+      "name": "font-size/t1-static",
+      "type": "FLOAT",
+      "value": "t1 static size",
+      "description": "Seed Static Typography Size t1"
+    },
+    {
+      "name": "line-height/t1",
+      "type": "FLOAT",
+      "value": "t1 lh",
+      "description": "Seed Typography Line-Height t1"
+    },
+    {
+      "name": "line-height/t1-static",
+      "type": "FLOAT",
+      "value": "t1 static lh",
+      "description": "Seed Static Typography Line-Height t1"
+    },
+    {
+      "name": "font-size/t2",
+      "type": "FLOAT",
+      "value": "t2 size",
+      "description": "Seed Typography Size t2"
+    },
+    {
+      "name": "font-size/t2-static",
+      "type": "FLOAT",
+      "value": "t2 static size",
+      "description": "Seed Static Typography Size t2"
+    },
+    {
+      "name": "line-height/t2",
+      "type": "FLOAT",
+      "value": "t2 lh",
+      "description": "Seed Typography Line-Height t2"
+    },
+    {
+      "name": "line-height/t2-static",
+      "type": "FLOAT",
+      "value": "t2 static lh",
+      "description": "Seed Static Typography Line-Height t2"
+    },
+    {
+      "name": "font-size/t3",
+      "type": "FLOAT",
+      "value": "t3 size",
+      "description": "Seed Typography Size t3"
+    },
+    {
+      "name": "font-size/t3-static",
+      "type": "FLOAT",
+      "value": "t3 static size",
+      "description": "Seed Static Typography Size t3"
+    },
+    {
+      "name": "line-height/t3",
+      "type": "FLOAT",
+      "value": "t3 lh",
+      "description": "Seed Typography Line-Height t3"
+    },
+    {
+      "name": "line-height/t3-static",
+      "type": "FLOAT",
+      "value": "t3 static lh",
+      "description": "Seed Static Typography Line-Height t3"
+    },
+    {
+      "name": "font-size/t4",
+      "type": "FLOAT",
+      "value": "t4 size",
+      "description": "Seed Typography Size t4"
+    },
+    {
+      "name": "font-size/t4-static",
+      "type": "FLOAT",
+      "value": "t4 static size",
+      "description": "Seed Static Typography Size t4"
+    },
+    {
+      "name": "line-height/t4",
+      "type": "FLOAT",
+      "value": "t4 lh",
+      "description": "Seed Typography Line-Height t4"
+    },
+    {
+      "name": "line-height/t4-static",
+      "type": "FLOAT",
+      "value": "t4 static lh",
+      "description": "Seed Static Typography Line-Height t4"
+    },
+    {
+      "name": "font-size/t5",
+      "type": "FLOAT",
+      "value": "t5 size",
+      "description": "Seed Typography Size t5"
+    },
+    {
+      "name": "font-size/t5-static",
+      "type": "FLOAT",
+      "value": "t5 static size",
+      "description": "Seed Static Typography Size t5"
+    },
+    {
+      "name": "line-height/t5",
+      "type": "FLOAT",
+      "value": "t5 lh",
+      "description": "Seed Typography Line-Height t5"
+    },
+    {
+      "name": "line-height/t5-static",
+      "type": "FLOAT",
+      "value": "t5 static lh",
+      "description": "Seed Static Typography Line-Height t5"
+    },
+    {
+      "name": "font-size/t6",
+      "type": "FLOAT",
+      "value": "t6 size",
+      "description": "Seed Typography Size t6"
+    },
+    {
+      "name": "font-size/t6-static",
+      "type": "FLOAT",
+      "value": "t6 static size",
+      "description": "Seed Static Typography Size t6"
+    },
+    {
+      "name": "line-height/t6",
+      "type": "FLOAT",
+      "value": "t6 lh",
+      "description": "Seed Typography Line-Height t6"
+    },
+    {
+      "name": "line-height/t6-static",
+      "type": "FLOAT",
+      "value": "t6 static lh",
+      "description": "Seed Static Typography Line-Height t6"
+    },
+    {
+      "name": "font-size/t7",
+      "type": "FLOAT",
+      "value": "t7 size",
+      "description": "Seed Typography Size t7"
+    },
+    {
+      "name": "font-size/t7-static",
+      "type": "FLOAT",
+      "value": "t7 static size",
+      "description": "Seed Static Typography Size t7"
+    },
+    {
+      "name": "line-height/t7",
+      "type": "FLOAT",
+      "value": "t7 lh",
+      "description": "Seed Typography Line-Height t7"
+    },
+    {
+      "name": "line-height/t7-static",
+      "type": "FLOAT",
+      "value": "t7 static lh",
+      "description": "Seed Static Typography Line-Height t7"
+    },
+    {
+      "name": "font-size/t8",
+      "type": "FLOAT",
+      "value": "t8 size",
+      "description": "Seed Typography Size t8"
+    },
+    {
+      "name": "font-size/t8-static",
+      "type": "FLOAT",
+      "value": "t8 static size",
+      "description": "Seed Static Typography Size t8"
+    },
+    {
+      "name": "line-height/t8",
+      "type": "FLOAT",
+      "value": "t8 lh",
+      "description": "Seed Typography Line-Height t8"
+    },
+    {
+      "name": "line-height/t8-static",
+      "type": "FLOAT",
+      "value": "t8 static lh",
+      "description": "Seed Static Typography Line-Height t8"
+    },
+    {
+      "name": "font-size/t9",
+      "type": "FLOAT",
+      "value": "t9 size",
+      "description": "Seed Typography Size t9"
+    },
+    {
+      "name": "font-size/t9-static",
+      "type": "FLOAT",
+      "value": "t9 static size",
+      "description": "Seed Static Typography Size t9"
+    },
+    {
+      "name": "line-height/t9",
+      "type": "FLOAT",
+      "value": "t9 lh",
+      "description": "Seed Typography Line-Height t9"
+    },
+    {
+      "name": "line-height/t9-static",
+      "type": "FLOAT",
+      "value": "t9 static lh",
+      "description": "Seed Static Typography Line-Height t9"
+    },
+    {
+      "name": "font-size/t10",
+      "type": "FLOAT",
+      "value": "t10 size",
+      "description": "Seed Typography Size t10"
+    },
+    {
+      "name": "font-size/t10-static",
+      "type": "FLOAT",
+      "value": "t10 static size",
+      "description": "Seed Static Typography Size t10"
+    },
+    {
+      "name": "line-height/t10",
+      "type": "FLOAT",
+      "value": "t10 lh",
+      "description": "Seed Typography Line-Height t10"
+    },
+    {
+      "name": "line-height/t10-static",
+      "type": "FLOAT",
+      "value": "t10 static lh",
+      "description": "Seed Static Typography Line-Height t10"
+    },
+    {
+      "name": "font-size/t11",
+      "type": "FLOAT",
+      "value": "t11 size",
+      "description": "Seed Typography Size t11"
+    },
+    {
+      "name": "font-size/t11-static",
+      "type": "FLOAT",
+      "value": "t11 static size",
+      "description": "Seed Static Typography Size t11"
+    },
+    {
+      "name": "line-height/t11",
+      "type": "FLOAT",
+      "value": "t11 lh",
+      "description": "Seed Typography Line-Height t11"
+    },
+    {
+      "name": "line-height/t11-static",
+      "type": "FLOAT",
+      "value": "t11 static lh",
+      "description": "Seed Static Typography Line-Height t11"
+    },
+    {
+      "name": "font-size/t12",
+      "type": "FLOAT",
+      "value": "t12 size",
+      "description": "Seed Typography Size t12"
+    },
+    {
+      "name": "font-size/t12-static",
+      "type": "FLOAT",
+      "value": "t12 static size",
+      "description": "Seed Static Typography Size t12"
+    },
+    {
+      "name": "line-height/t12",
+      "type": "FLOAT",
+      "value": "t12 lh",
+      "description": "Seed Typography Line-Height t12"
+    },
+    {
+      "name": "line-height/t12-static",
+      "type": "FLOAT",
+      "value": "t12 static lh",
+      "description": "Seed Static Typography Line-Height t12"
+    },
+    {
+      "name": "font-size/t13",
+      "type": "FLOAT",
+      "value": "t13 size",
+      "description": "Seed Typography Size t13"
+    },
+    {
+      "name": "font-size/t13-static",
+      "type": "FLOAT",
+      "value": "t13 static size",
+      "description": "Seed Static Typography Size t13"
+    },
+    {
+      "name": "line-height/t13",
+      "type": "FLOAT",
+      "value": "t13 lh",
+      "description": "Seed Typography Line-Height t13"
+    },
+    {
+      "name": "line-height/t13-static",
+      "type": "FLOAT",
+      "value": "t13 static lh",
+      "description": "Seed Static Typography Line-Height t13"
+    },
+    {
+      "name": "font-size/t14",
+      "type": "FLOAT",
+      "value": "t14 size",
+      "description": "Seed Typography Size t14"
+    },
+    {
+      "name": "font-size/t14-static",
+      "type": "FLOAT",
+      "value": "t14 static size",
+      "description": "Seed Static Typography Size t14"
+    },
+    {
+      "name": "line-height/t14",
+      "type": "FLOAT",
+      "value": "t14 lh",
+      "description": "Seed Typography Line-Height t14"
+    },
+    {
+      "name": "line-height/t14-static",
+      "type": "FLOAT",
+      "value": "t14 static lh",
+      "description": "Seed Static Typography Line-Height t14"
+    },
+    {
+      "name": "font-size/t15",
+      "type": "FLOAT",
+      "value": "t15 size",
+      "description": "Extended Display Size t15"
+    },
+    {
+      "name": "line-height/t15",
+      "type": "FLOAT",
+      "value": "t15 lh",
+      "description": "Extended Display Line-Height t15"
+    },
+    {
+      "name": "font-size/t16",
+      "type": "FLOAT",
+      "value": "t16 size",
+      "description": "Extended Display Size t16"
+    },
+    {
+      "name": "line-height/t16",
+      "type": "FLOAT",
+      "value": "t16 lh",
+      "description": "Extended Display Line-Height t16"
+    },
+    {
+      "name": "font-weight/regular",
+      "type": "FLOAT",
+      "value": 400,
+      "description": "Seed Font Weight Regular (400)"
+    },
+    {
+      "name": "font-weight/medium",
+      "type": "FLOAT",
+      "value": 500,
+      "description": "Seed Font Weight Medium (500)"
+    },
+    {
+      "name": "font-weight/bold",
+      "type": "FLOAT",
+      "value": 700,
+      "description": "Seed Font Weight Bold (700)"
     }
   ]
 }

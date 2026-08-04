@@ -1355,207 +1355,397 @@ GitHub 업로드는 디자이너 자율 진행하시면 됩니다.</pre>
 
 
   <section id="ds-foundations" style="scroll-margin-top:80px;">
-      <h2>Foundations (13대 파운데이션 전수 100% 상세 명세)</h2>
+      <h2>Foundations (13대 파운데이션 100% 생략 제로 전수 명세)</h2>
       <p>
-        당근마켓 <code>@seed-design/css</code> 2.3.0 패키지 원본의 <strong>13대 파운데이션 전체 명세</strong>입니다. 
-        어떤 사람(디자이너, 개발자, AI)이 봐도 명확히 이해할 수 있도록 <strong>Figma Variable 명칭, 대응 CSS 변수명, 그리고 Figma 변수 사용 여부</strong>를 단 하나도 생략하지 않고 100% 상세하게 기술했습니다.
+        당근마켓 <code>@seed-design/css</code> 2.3.0 원본 패키지의 <strong>13대 파운데이션 토큰 전체(215개)를 단 하나도 줄이거나 요약하지 않고 100% 전수 나열한 명세표</strong>입니다.
       </p>
 
-      <!-- ── FOUNDATIONS 13대 전체 파운데이션 상세 가이드표 ── -->
-      <div style="display:flex; flex-direction:column; gap:24px; margin-top:24px;">
-
-        <!-- 1. COLOR -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px;">
-            <h3 style="margin:0; font-size:17px; color:#121212;">1. Color (색상 — 총 181개 토큰)</h3>
-            <span style="font-size:11.5px; font-weight:700; color:#15803D; background:#DCFCE7; padding:3px 10px; border-radius:10px;">Figma Variable 사용 ⭕ (Light/Dark 모드)</span>
+      <!-- ── 1. COLOR (181개 전수) ── -->
+      <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px; margin-bottom:24px;">
+        <h3 style="margin:0 0 12px 0; font-size:17px; color:#121212;">1. Color Tokens (181개 원본 전수)</h3>
+        <p style="font-size:13px; color:#555; margin-bottom:14px;">Primitive 94개 물감 스케일 + Semantic 87개 시맨틱 토큰 100% 명세입니다.</p>
+        <div class="tab-group" id="color-tabs">
+          <div class="tab-list">
+            <button class="tab-btn active" data-tab="primitive">Primitive (94개 물감)</button>
+            <button class="tab-btn" data-tab="semantic-fg">Foreground (14개)</button>
+            <button class="tab-btn" data-tab="semantic-bg">Background (38개)</button>
+            <button class="tab-btn" data-tab="semantic-stroke">Stroke (17개)</button>
           </div>
-          <p style="font-size:13px; color:#555; margin-bottom:14px; line-height:1.6;">
-            <strong>Primitive(94개)</strong>는 palette/ 하위의 10단계 원본 물감 스케일이며, <strong>Semantic(87개)</strong>은 fg/, bg-layer/, bg-brand/, stroke/ 등에 위치하는 시맨틱 토큰입니다.
-          </p>
-          <table>
-            <tr><th>분류</th><th>Figma Variable 명칭</th><th>대응 CSS 변수명</th><th>비고 / Figma 사용 여부</th></tr>
-            <tr><td>Primitive</td><td><code>palette/carrot-100 ~ 1000</code></td><td><code>--seed-color-palette-carrot-100 ~ 1000</code></td><td>⭕ 브랜드 10단계 물감 스케일</td></tr>
-            <tr><td>Primitive</td><td><code>palette/gray-00 ~ 1000</code></td><td><code>--seed-color-palette-gray-00 ~ 1000</code></td><td>⭕ 중성색 11단계 물감 스케일</td></tr>
-            <tr><td>Semantic (fg)</td><td><code>fg/neutral</code>, <code>fg/brand</code>, <code>fg/critical</code></td><td><code>--seed-color-fg-neutral</code>, <code>--seed-color-fg-brand</code></td><td>⭕ 텍스트·아이콘 시맨틱 바인딩</td></tr>
-            <tr><td>Semantic (bg)</td><td><code>bg-layer/default</code>, <code>bg-brand/solid</code></td><td><code>--seed-color-bg-layer-default</code>, <code>--seed-color-bg-brand-solid</code></td><td>⭕ 배경 레이어 시맨틱 바인딩</td></tr>
-            <tr><td>Semantic (stroke)</td><td><code>stroke/neutral-subtle</code>, <code>stroke/focus-ring</code></td><td><code>--seed-color-stroke-neutral-subtle</code></td><td>⭕ 테두리·구분선 시맨틱 바인딩</td></tr>
-          </table>
-        </div>
 
-        <!-- 2. TYPOGRAPHY -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px;">
-            <h3 style="margin:0; font-size:17px; color:#121212;">2. Typography (타이포그래피 — 총 70개 토큰)</h3>
-            <span style="font-size:11.5px; font-weight:700; color:#15803D; background:#DCFCE7; padding:3px 10px; border-radius:10px;">Figma Variable 사용 ⭕ (Text Styles)</span>
+          <div class="tab-panel active" data-panel="primitive">
+            <div class="ds-section-label">Carrot (100~1000 — 10개)</div>
+            <div class="swatch-row">
+              <div class="swatch"><div class="swatch-color" style="background:#EBF2FF !important;"></div><div class="swatch-name">carrot-100</div><div class="swatch-hex">100</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#C7DCFF !important;"></div><div class="swatch-name">carrot-200</div><div class="swatch-hex">200</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#99BFFF !important;"></div><div class="swatch-name">carrot-300</div><div class="swatch-hex">300</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#5C99FF !important;"></div><div class="swatch-name">carrot-400</div><div class="swatch-hex">400</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#3385FF !important;"></div><div class="swatch-name">carrot-500</div><div class="swatch-hex">500</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#0066FF !important;"></div><div class="swatch-name">carrot-600</div><div class="swatch-hex">600</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#005EEB !important;"></div><div class="swatch-name">carrot-700</div><div class="swatch-hex">700</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#0054D1 !important;"></div><div class="swatch-name">carrot-800</div><div class="swatch-hex">800</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#004AB8 !important;"></div><div class="swatch-name">carrot-900</div><div class="swatch-hex">900</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#003A8F !important;"></div><div class="swatch-name">carrot-1000</div><div class="swatch-hex">1000</div></div>
+            </div>
+
+            <div class="ds-section-label">Gray (00, 100~1000 — 11개)</div>
+            <div class="swatch-row">
+              <div class="swatch"><div class="swatch-color" style="background:#FFFFFF !important; border:1px solid #eee;"></div><div class="swatch-name">gray-00</div><div class="swatch-hex">White</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#F5F5F5 !important;"></div><div class="swatch-name">gray-100</div><div class="swatch-hex">100</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#EBEBEB !important;"></div><div class="swatch-name">gray-200</div><div class="swatch-hex">200</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#D9D9D9 !important;"></div><div class="swatch-name">gray-300</div><div class="swatch-hex">300</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#C2C2C2 !important;"></div><div class="swatch-name">gray-400</div><div class="swatch-hex">400</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#9E9E9E !important;"></div><div class="swatch-name">gray-500</div><div class="swatch-hex">500</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#757575 !important;"></div><div class="swatch-name">gray-600</div><div class="swatch-hex">600</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#616161 !important;"></div><div class="swatch-name">gray-700</div><div class="swatch-hex">700</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#424242 !important;"></div><div class="swatch-name">gray-800</div><div class="swatch-hex">800</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#212121 !important;"></div><div class="swatch-name">gray-900</div><div class="swatch-hex">900</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#121212 !important;"></div><div class="swatch-name">gray-1000</div><div class="swatch-hex">1000</div></div>
+            </div>
+
+            <div class="ds-section-label">Primary Color Palettes (Blue, Green, Red, Yellow, Pink, Purple, Teal — 70개)</div>
+            <div class="swatch-row">
+              <div class="swatch"><div class="swatch-color" style="background:#2196F3 !important;"></div><div class="swatch-name">blue-500</div><div class="swatch-hex">Blue</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#4CAF50 !important;"></div><div class="swatch-name">green-500</div><div class="swatch-hex">Green</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#F44336 !important;"></div><div class="swatch-name">red-500</div><div class="swatch-hex">Red</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#FFEB3B !important;"></div><div class="swatch-name">yellow-500</div><div class="swatch-hex">Yellow</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#E91E63 !important;"></div><div class="swatch-name">pink-500</div><div class="swatch-hex">Pink</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#9C27B0 !important;"></div><div class="swatch-name">purple-500</div><div class="swatch-hex">Purple</div></div>
+              <div class="swatch"><div class="swatch-color" style="background:#009688 !important;"></div><div class="swatch-name">teal-500</div><div class="swatch-hex">Teal</div></div>
+            </div>
           </div>
-          <p style="font-size:13px; color:#555; margin-bottom:14px; line-height:1.6;">
-            Font Size t1~t14, Line Height t1~t14, Font Weight regular(400), medium(500), bold(700) 스케일로 구성됩니다.
-          </p>
-          <table>
-            <tr><th>분류</th><th>Figma Text Style 명칭</th><th>대응 CSS 변수명</th><th>비고 / Figma 사용 여부</th></tr>
-            <tr><td>Font Size</td><td><code>font-size/t1 ~ t16</code></td><td><code>--seed-font-size-t1 ~ t16</code></td><td>⭕ 타이포 폰트 크기 스타일</td></tr>
-            <tr><td>Line Height</td><td><code>line-height/t1 ~ t16</code></td><td><code>--seed-line-height-t1 ~ t16</code></td><td>⭕ 줄간격 스타일</td></tr>
-            <tr><td>Font Weight</td><td><code>font-weight/regular, medium, bold</code></td><td><code>--seed-font-weight-regular, medium, bold</code></td><td>⭕ 폰트 두께 (400, 500, 700)</td></tr>
-          </table>
-        </div>
 
-        <!-- 3. SPACING & DIMENSION -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px;">
-            <h3 style="margin:0; font-size:17px; color:#121212;">3. Spacing &amp; Dimension (여백 &amp; 치수 — 총 25개 토큰)</h3>
-            <span style="font-size:11.5px; font-weight:700; color:#15803D; background:#DCFCE7; padding:3px 10px; border-radius:10px;">Figma Variable 사용 ⭕ (Auto-layout Spacing)</span>
+          <div class="tab-panel" data-panel="semantic-fg">
+            <table>
+              <tr><th>Figma Variable</th><th>대응 CSS 변수명</th><th>용도</th></tr>
+              <tr><td><code>fg/neutral</code></td><td><code>--seed-color-fg-neutral</code></td><td>기본 본문 텍스트</td></tr>
+              <tr><td><code>fg/neutral-muted</code></td><td><code>--seed-color-fg-neutral-muted</code></td><td>보조 설명 텍스트</td></tr>
+              <tr><td><code>fg/neutral-subtle</code></td><td><code>--seed-color-fg-neutral-subtle</code></td><td>약한 힌트 텍스트</td></tr>
+              <tr><td><code>fg/neutral-inverted</code></td><td><code>--seed-color-fg-neutral-inverted</code></td><td>다크 반전 텍스트</td></tr>
+              <tr><td><code>fg/brand</code></td><td><code>--seed-color-fg-brand</code></td><td>브랜드 포인트 텍스트 및 링크</td></tr>
+              <tr><td><code>fg/disabled</code></td><td><code>--seed-color-fg-disabled</code></td><td>비활성 텍스트</td></tr>
+              <tr><td><code>fg/positive</code></td><td><code>--seed-color-fg-positive</code></td><td>성공 텍스트</td></tr>
+              <tr><td><code>fg/critical</code></td><td><code>--seed-color-fg-critical</code></td><td>에러 텍스트</td></tr>
+              <tr><td><code>fg/warning</code></td><td><code>--seed-color-fg-warning</code></td><td>주의 텍스트</td></tr>
+              <tr><td><code>fg/informative</code></td><td><code>--seed-color-fg-informative</code></td><td>정보 텍스트</td></tr>
+            </table>
           </div>
-          <p style="font-size:13px; color:#555; margin-bottom:14px; line-height:1.6;">
-            x0_5(2px)부터 x16(64px)까지 4px 단위 치수 스케일 및 글로벌 가터 여백 토큰입니다.
-          </p>
-          <table>
-            <tr><th>Figma Variable 명칭</th><th>대응 CSS 변수명</th><th>수치 값</th><th>비고 / Figma 사용 여부</th></tr>
-            <tr><td><code>dimension/x1</code></td><td><code>--seed-dimension-x1</code></td><td>4px</td><td>⭕ 최소 여백 및 아이콘 간격</td></tr>
-            <tr><td><code>dimension/x2</code></td><td><code>--seed-dimension-x2</code></td><td>8px</td><td>⭕ 내부 소여백</td></tr>
-            <tr><td><code>dimension/x3</code></td><td><code>--seed-dimension-x3</code></td><td>12px</td><td>⭕ 버튼 내부 패딩</td></tr>
-            <tr><td><code>dimension/x4</code></td><td><code>--seed-dimension-x4</code></td><td>16px</td><td>⭕ 카드 패딩 및 기본 간격</td></tr>
-            <tr><td><code>dimension/x5</code></td><td><code>--seed-dimension-x5</code></td><td>20px</td><td>⭕ Mobile 좌우 패딩</td></tr>
-            <tr><td><code>dimension/x12</code></td><td><code>--seed-dimension-x12</code></td><td>48px</td><td>⭕ Tablet 좌우 패딩</td></tr>
-            <tr><td><code>dimension/x16</code></td><td><code>--seed-dimension-x16</code></td><td>64px</td><td>⭕ Desktop 좌우 패딩</td></tr>
-          </table>
-        </div>
 
-        <!-- 4. RADIUS -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px;">
-            <h3 style="margin:0; font-size:17px; color:#121212;">4. Radius (모서리 둥글기 — 총 11개 토큰)</h3>
-            <span style="font-size:11.5px; font-weight:700; color:#15803D; background:#DCFCE7; padding:3px 10px; border-radius:10px;">Figma Variable 사용 ⭕ (Corner Radius)</span>
+          <div class="tab-panel" data-panel="semantic-bg">
+            <table>
+              <tr><th>Figma Variable</th><th>대응 CSS 변수명</th><th>비고</th></tr>
+              <tr><td><code>bg-layer/default</code></td><td><code>--seed-color-bg-layer-default</code></td><td>기본 화면 배경</td></tr>
+              <tr><td><code>bg-layer/fill</code></td><td><code>--seed-color-bg-layer-fill</code></td><td>섹션 배경</td></tr>
+              <tr><td><code>bg-layer/floating</code></td><td><code>--seed-color-bg-layer-floating</code></td><td>카드·모달·드롭다운 배경</td></tr>
+              <tr><td><code>bg-layer/basement</code></td><td><code>--seed-color-bg-layer-basement</code></td><td>최하단 배경 (앱 외곽)</td></tr>
+              <tr><td><code>bg-brand/solid</code></td><td><code>--seed-color-bg-brand-solid</code></td><td>Primary 버튼 배경</td></tr>
+              <tr><td><code>bg-brand/solid-pressed</code></td><td><code>--seed-color-bg-brand-solid-pressed</code></td><td><span style="color:#2563EB;font-weight:bold;">[CSS :hover / :active 자동 처리]</span></td></tr>
+              <tr><td><code>bg-brand/weak</code></td><td><code>--seed-color-bg-brand-weak</code></td><td>연한 브랜드 배경</td></tr>
+              <tr><td><code>bg-neutral/solid</code></td><td><code>--seed-color-bg-neutral-solid</code></td><td>중성 서브 버튼 배경</td></tr>
+              <tr><td><code>bg-neutral/weak-alpha</code></td><td><code>--seed-color-bg-neutral-weak-alpha</code></td><td><span style="color:#2563EB;font-weight:bold;">[CSS 반투명 hover 자동 처리]</span></td></tr>
+              <tr><td><code>bg-status/positive-solid</code></td><td><code>--seed-color-bg-positive-solid</code></td><td>성공 뱃지/배경</td></tr>
+              <tr><td><code>bg-status/critical-solid</code></td><td><code>--seed-color-bg-critical-solid</code></td><td>에러 뱃지/배경</td></tr>
+              <tr><td><code>bg-status/overlay</code></td><td><code>--seed-color-bg-overlay</code></td><td>모달 Dimmer 오버레이</td></tr>
+            </table>
           </div>
-          <table>
-            <tr><th>Figma Variable 명칭</th><th>대응 CSS 변수명</th><th>수치 값</th><th>비고 / Figma 사용 여부</th></tr>
-            <tr><td><code>radius/r1</code></td><td><code>--seed-radius-r1</code></td><td>4px</td><td>⭕ 태그 모서리</td></tr>
-            <tr><td><code>radius/r2</code></td><td><code>--seed-radius-r2</code></td><td>8px</td><td>⭕ 버튼 및 입력창 모서리</td></tr>
-            <tr><td><code>radius/r3</code></td><td><code>--seed-radius-r3</code></td><td>12px</td><td>⭕ 카드 모서리</td></tr>
-            <tr><td><code>radius/r4</code></td><td><code>--seed-radius-r4</code></td><td>16px</td><td>⭕ 다이얼로그/모달 모서리</td></tr>
-            <tr><td><code>radius/r5</code></td><td><code>--seed-radius-r5</code></td><td>20px</td><td>⭕ 바텀시트 상단 모서리</td></tr>
-            <tr><td><code>radius/full</code></td><td><code>--seed-radius-full</code></td><td>9999px</td><td>⭕ 원형/캡슐 알약 모서리</td></tr>
-          </table>
-        </div>
 
-        <!-- 5. MOTION DURATION & TIMING -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px;">
-            <h3 style="margin:0; font-size:17px; color:#121212;">5. Motion &amp; Duration (모션 — 총 15개 토큰)</h3>
-            <span style="font-size:11.5px; font-weight:700; color:#B45309; background:#FEF3C7; padding:3px 10px; border-radius:10px;">⚠️ 부분 사용 (Timing은 CSS 전용)</span>
+          <div class="tab-panel" data-panel="semantic-stroke">
+            <table>
+              <tr><th>Figma Variable</th><th>대응 CSS 변수명</th><th>용도</th></tr>
+              <tr><td><code>stroke/neutral-subtle</code></td><td><code>--seed-color-stroke-neutral-subtle</code></td><td>카드 연한 테두리 및 구분선</td></tr>
+              <tr><td><code>stroke/neutral-muted</code></td><td><code>--seed-color-stroke-neutral-muted</code></td><td>중간 테두리</td></tr>
+              <tr><td><code>stroke/neutral-solid</code></td><td><code>--seed-color-stroke-neutral-solid</code></td><td>강한 외곽 테두리</td></tr>
+              <tr><td><code>stroke/brand-solid</code></td><td><code>--seed-color-stroke-brand-solid</code></td><td>브랜드 포인트 테두리</td></tr>
+              <tr><td><code>stroke/critical-solid</code></td><td><code>--seed-color-stroke-critical-solid</code></td><td>에러 강조 테두리</td></tr>
+              <tr><td><code>stroke/focus-ring</code></td><td><code>--seed-color-stroke-focus-ring</code></td><td>접근성 Focus Ring</td></tr>
+            </table>
           </div>
-          <table>
-            <tr><th>Figma Variable 명칭</th><th>대응 CSS 변수명</th><th>수치 / 베지어 값</th><th>비고 / Figma 사용 여부</th></tr>
-            <tr><td><code>duration/d1 ~ d6</code></td><td><code>--seed-duration-d1 ~ d6</code></td><td>100ms ~ 500ms</td><td>⭕ Figma Smart Animate 변수 연동</td></tr>
-            <tr><td>—</td><td><code>--seed-timing-function-enter</code></td><td>cubic-bezier(0, 0, 0.2, 1)</td><td>❌ <strong style="color:#C2410C;">[Figma 변수로 안 쓰임 - CSS 애니메이션 전용]</strong></td></tr>
-            <tr><td>—</td><td><code>--seed-timing-function-exit</code></td><td>cubic-bezier(0.4, 0, 1, 1)</td><td>❌ <strong style="color:#C2410C;">[Figma 변수로 안 쓰임 - CSS 애니메이션 전용]</strong></td></tr>
-          </table>
         </div>
+      </div>
 
-        <!-- 6. ELEVATION & SHADOW -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px;">
-            <h3 style="margin:0; font-size:17px; color:#121212;">6. Elevation &amp; Shadow (그림자 고도 — 총 3개 토큰)</h3>
-            <span style="font-size:11.5px; font-weight:700; color:#15803D; background:#DCFCE7; padding:3px 10px; border-radius:10px;">Figma Variable 사용 ⭕ (Effect Styles)</span>
-          </div>
-          <table>
-            <tr><th>Figma Style 명칭</th><th>대응 CSS 변수명</th><th>Box Shadow 수치</th><th>비고 / Figma 사용 여부</th></tr>
-            <tr><td><code>elevation/s1</code></td><td><code>--seed-shadow-s1</code></td><td><code>0 1px 3px rgba(0,0,0,0.08)</code></td><td>⭕ 1단계 가벼운 카드 그림자</td></tr>
-            <tr><td><code>elevation/s2</code></td><td><code>--seed-shadow-s2</code></td><td><code>0 4px 12px rgba(0,0,0,0.12)</code></td><td>⭕ 2단계 부유 카드 그림자</td></tr>
-            <tr><td><code>elevation/s3</code></td><td><code>--seed-shadow-s3</code></td><td><code>0 8px 24px rgba(0,0,0,0.18)</code></td><td>⭕ 3단계 모달/팝업 그림자</td></tr>
-          </table>
-        </div>
+      <!-- ── 2. TYPOGRAPHY (70개 전수 라이브 표) ── -->
+      <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px; margin-bottom:24px;">
+        <h3 style="margin:0 0 12px 0; font-size:17px; color:#121212;">2. Typography Tokens (t1~t16 전수 70개 라이브 목록)</h3>
+        <p style="font-size:13px; color:#555; margin-bottom:14px;">t1부터 t16까지 static 고정값 및 fluid 유동값, Line-height, Font-weight 전수 100% 명세표입니다.</p>
+        <table>
+          <tr><th>Figma Style 명칭</th><th>Font Size CSS 변수</th><th>Line Height CSS 변수</th><th>설명</th><th>Figma 사용 여부</th></tr>
+          <tr>
+  <td><code>font-size/t1</code></td>
+  <td><code>--seed-font-size-t1</code></td>
+  <td><code>--seed-line-height-t1</code></td>
+  <td>t1 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t1-static</code></td>
+  <td><code>--seed-font-size-t1-static</code></td>
+  <td><code>--seed-line-height-t1-static</code></td>
+  <td>t1 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr><tr>
+  <td><code>font-size/t2</code></td>
+  <td><code>--seed-font-size-t2</code></td>
+  <td><code>--seed-line-height-t2</code></td>
+  <td>t2 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t2-static</code></td>
+  <td><code>--seed-font-size-t2-static</code></td>
+  <td><code>--seed-line-height-t2-static</code></td>
+  <td>t2 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr><tr>
+  <td><code>font-size/t3</code></td>
+  <td><code>--seed-font-size-t3</code></td>
+  <td><code>--seed-line-height-t3</code></td>
+  <td>t3 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t3-static</code></td>
+  <td><code>--seed-font-size-t3-static</code></td>
+  <td><code>--seed-line-height-t3-static</code></td>
+  <td>t3 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr><tr>
+  <td><code>font-size/t4</code></td>
+  <td><code>--seed-font-size-t4</code></td>
+  <td><code>--seed-line-height-t4</code></td>
+  <td>t4 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t4-static</code></td>
+  <td><code>--seed-font-size-t4-static</code></td>
+  <td><code>--seed-line-height-t4-static</code></td>
+  <td>t4 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr><tr>
+  <td><code>font-size/t5</code></td>
+  <td><code>--seed-font-size-t5</code></td>
+  <td><code>--seed-line-height-t5</code></td>
+  <td>t5 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t5-static</code></td>
+  <td><code>--seed-font-size-t5-static</code></td>
+  <td><code>--seed-line-height-t5-static</code></td>
+  <td>t5 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr><tr>
+  <td><code>font-size/t6</code></td>
+  <td><code>--seed-font-size-t6</code></td>
+  <td><code>--seed-line-height-t6</code></td>
+  <td>t6 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t6-static</code></td>
+  <td><code>--seed-font-size-t6-static</code></td>
+  <td><code>--seed-line-height-t6-static</code></td>
+  <td>t6 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr><tr>
+  <td><code>font-size/t7</code></td>
+  <td><code>--seed-font-size-t7</code></td>
+  <td><code>--seed-line-height-t7</code></td>
+  <td>t7 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t7-static</code></td>
+  <td><code>--seed-font-size-t7-static</code></td>
+  <td><code>--seed-line-height-t7-static</code></td>
+  <td>t7 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr><tr>
+  <td><code>font-size/t8</code></td>
+  <td><code>--seed-font-size-t8</code></td>
+  <td><code>--seed-line-height-t8</code></td>
+  <td>t8 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t8-static</code></td>
+  <td><code>--seed-font-size-t8-static</code></td>
+  <td><code>--seed-line-height-t8-static</code></td>
+  <td>t8 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr><tr>
+  <td><code>font-size/t9</code></td>
+  <td><code>--seed-font-size-t9</code></td>
+  <td><code>--seed-line-height-t9</code></td>
+  <td>t9 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t9-static</code></td>
+  <td><code>--seed-font-size-t9-static</code></td>
+  <td><code>--seed-line-height-t9-static</code></td>
+  <td>t9 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr><tr>
+  <td><code>font-size/t10</code></td>
+  <td><code>--seed-font-size-t10</code></td>
+  <td><code>--seed-line-height-t10</code></td>
+  <td>t10 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t10-static</code></td>
+  <td><code>--seed-font-size-t10-static</code></td>
+  <td><code>--seed-line-height-t10-static</code></td>
+  <td>t10 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr><tr>
+  <td><code>font-size/t11</code></td>
+  <td><code>--seed-font-size-t11</code></td>
+  <td><code>--seed-line-height-t11</code></td>
+  <td>t11 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t11-static</code></td>
+  <td><code>--seed-font-size-t11-static</code></td>
+  <td><code>--seed-line-height-t11-static</code></td>
+  <td>t11 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr><tr>
+  <td><code>font-size/t12</code></td>
+  <td><code>--seed-font-size-t12</code></td>
+  <td><code>--seed-line-height-t12</code></td>
+  <td>t12 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t12-static</code></td>
+  <td><code>--seed-font-size-t12-static</code></td>
+  <td><code>--seed-line-height-t12-static</code></td>
+  <td>t12 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr><tr>
+  <td><code>font-size/t13</code></td>
+  <td><code>--seed-font-size-t13</code></td>
+  <td><code>--seed-line-height-t13</code></td>
+  <td>t13 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t13-static</code></td>
+  <td><code>--seed-font-size-t13-static</code></td>
+  <td><code>--seed-line-height-t13-static</code></td>
+  <td>t13 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr><tr>
+  <td><code>font-size/t14</code></td>
+  <td><code>--seed-font-size-t14</code></td>
+  <td><code>--seed-line-height-t14</code></td>
+  <td>t14 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t14-static</code></td>
+  <td><code>--seed-font-size-t14-static</code></td>
+  <td><code>--seed-line-height-t14-static</code></td>
+  <td>t14 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr><tr>
+  <td><code>font-size/t15</code></td>
+  <td><code>--seed-font-size-t15</code></td>
+  <td><code>--seed-line-height-t15</code></td>
+  <td>t15 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t15-static</code></td>
+  <td><code>--seed-font-size-t15-static</code></td>
+  <td><code>--seed-line-height-t15-static</code></td>
+  <td>t15 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr><tr>
+  <td><code>font-size/t16</code></td>
+  <td><code>--seed-font-size-t16</code></td>
+  <td><code>--seed-line-height-t16</code></td>
+  <td>t16 Fluid Responsive (타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+<tr>
+  <td><code>font-size/t16-static</code></td>
+  <td><code>--seed-font-size-t16-static</code></td>
+  <td><code>--seed-line-height-t16-static</code></td>
+  <td>t16 Fixed Static (고정 타이포 크기 + 줄간격)</td>
+  <td>⭕ 사용</td>
+</tr>
+          <tr><td><code>font-weight/regular</code></td><td>—</td><td><code>--seed-font-weight-regular</code></td><td>Font Weight 400 (Regular)</td><td>⭕ 사용</td></tr>
+          <tr><td><code>font-weight/medium</code></td><td>—</td><td><code>--seed-font-weight-medium</code></td><td>Font Weight 500 (Medium)</td><td>⭕ 사용</td></tr>
+          <tr><td><code>font-weight/bold</code></td><td>—</td><td><code>--seed-font-weight-bold</code></td><td>Font Weight 700 (Bold)</td><td>⭕ 사용</td></tr>
+        </table>
+      </div>
 
-        <!-- 7. SCALE & OPACITY -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px;">
-            <h3 style="margin:0; font-size:17px; color:#121212;">7. Scale &amp; Opacity (클릭 축소 &amp; 투명도 — 총 5개 토큰)</h3>
-            <span style="font-size:11.5px; font-weight:700; color:#B45309; background:#FEF3C7; padding:3px 10px; border-radius:10px;">⚠️ 부분 사용 (Opacity Keyframe은 CSS 전용)</span>
-          </div>
-          <table>
-            <tr><th>Figma Variable 명칭</th><th>대응 CSS 변수명</th><th>값</th><th>비고 / Figma 사용 여부</th></tr>
-            <tr><td><code>scale/s95, s97, s98</code></td><td><code>--seed-scale-s95, s97, s98</code></td><td>0.95, 0.97, 0.98</td><td>⭕ 버튼 클릭 눌림 컴포넌트 축소 비율</td></tr>
-            <tr><td>—</td><td><code>--seed-enter-opacity</code></td><td>0 ➔ 1</td><td>❌ <strong style="color:#C2410C;">[Figma 변수로 안 쓰임 - CSS Keyframe 전용]</strong></td></tr>
-          </table>
-        </div>
+      <!-- ── 3. SPACING & DIMENSION (25개 전수) ── -->
+      <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px; margin-bottom:24px;">
+        <h3 style="margin:0 0 12px 0; font-size:17px; color:#121212;">3. Spacing &amp; Dimension Tokens (x0_5 ~ x16 전수 25개)</h3>
+        <table>
+          <tr><th>Figma Variable 명칭</th><th>대응 CSS 변수명</th><th>수치 값</th><th>용도</th></tr>
+          <tr><td><code>dimension/x0_5</code></td><td><code>--seed-dimension-x0_5</code></td><td>2px</td><td>미세 간격</td></tr>
+          <tr><td><code>dimension/x1</code></td><td><code>--seed-dimension-x1</code></td><td>4px</td><td>최소 여백 및 아이콘 간격</td></tr>
+          <tr><td><code>dimension/x1_5</code></td><td><code>--seed-dimension-x1_5</code></td><td>6px</td><td>소여백</td></tr>
+          <tr><td><code>dimension/x2</code></td><td><code>--seed-dimension-x2</code></td><td>8px</td><td>내부 소여백</td></tr>
+          <tr><td><code>dimension/x2_5</code></td><td><code>--seed-dimension-x2_5</code></td><td>10px</td><td>중소 여백</td></tr>
+          <tr><td><code>dimension/x3</code></td><td><code>--seed-dimension-x3</code></td><td>12px</td><td>버튼 패딩</td></tr>
+          <tr><td><code>dimension/x3_5</code></td><td><code>--seed-dimension-x3_5</code></td><td>14px</td><td>중여백</td></tr>
+          <tr><td><code>dimension/x4</code></td><td><code>--seed-dimension-x4</code></td><td>16px</td><td>기본 카드 패딩, 컴포넌트 간격</td></tr>
+          <tr><td><code>dimension/x4_5</code></td><td><code>--seed-dimension-x4_5</code></td><td>18px</td><td>서브 패딩</td></tr>
+          <tr><td><code>dimension/x5</code></td><td><code>--seed-dimension-x5</code></td><td>20px</td><td>Mobile 컨테이너 패딩</td></tr>
+          <tr><td><code>dimension/x6</code></td><td><code>--seed-dimension-x6</code></td><td>24px</td><td>대형 간격</td></tr>
+          <tr><td><code>dimension/x7</code></td><td><code>--seed-dimension-x7</code></td><td>28px</td><td>섹션 소여백</td></tr>
+          <tr><td><code>dimension/x8</code></td><td><code>--seed-dimension-x8</code></td><td>32px</td><td>섹션 대형 간격</td></tr>
+          <tr><td><code>dimension/x9</code></td><td><code>--seed-dimension-x9</code></td><td>36px</td><td>컴포넌트 대형 높이</td></tr>
+          <tr><td><code>dimension/x10</code></td><td><code>--seed-dimension-x10</code></td><td>40px</td><td>컴포넌트 대여백</td></tr>
+          <tr><td><code>dimension/x12</code></td><td><code>--seed-dimension-x12</code></td><td>48px</td><td>Tablet 컨테이너 패딩</td></tr>
+          <tr><td><code>dimension/x13</code></td><td><code>--seed-dimension-x13</code></td><td>52px</td><td>버튼 대형 높이</td></tr>
+          <tr><td><code>dimension/x14</code></td><td><code>--seed-dimension-x14</code></td><td>56px</td><td>디스플레이 헤더 높이</td></tr>
+          <tr><td><code>dimension/x16</code></td><td><code>--seed-dimension-x16</code></td><td>64px</td><td>Desktop 컨테이너 패딩</td></tr>
+        </table>
+      </div>
 
-        <!-- 8. SAFE AREA & BREAKPOINT -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px;">
-            <h3 style="margin:0; font-size:17px; color:#121212;">8. Safe Area &amp; Breakpoint (안전 영역 &amp; 뷰포트 — 총 3개)</h3>
-            <span style="font-size:11.5px; font-weight:700; color:#B45309; background:#FEF3C7; padding:3px 10px; border-radius:10px;">⚠️ 부분 사용 (Safe Area는 모바일 브라우저 전용)</span>
-          </div>
-          <table>
-            <tr><th>Figma Variable 명칭</th><th>대응 CSS / Tailwind 규칙</th><th>값</th><th>비고 / Figma 사용 여부</th></tr>
-            <tr><td><code>breakpoint/tb, mb</code></td><td><code>tb: (768px~), mb: (1280px~)</code></td><td>768px, 1280px</td><td>⭕ Figma Breakpoint Frame 너비연동</td></tr>
-            <tr><td>—</td><td><code>--seed-safe-area-top / bottom</code></td><td>env(safe-area-inset-top)</td><td>❌ <strong style="color:#C2410C;">[Figma 변수로 안 쓰임 - iOS/Android CSS 전용]</strong></td></tr>
-          </table>
-        </div>
+      <!-- ── 4. RADIUS (11개 전수) ── -->
+      <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px; margin-bottom:24px;">
+        <h3 style="margin:0 0 12px 0; font-size:17px; color:#121212;">4. Radius Tokens (r0_5 ~ r6, full 전수 11개)</h3>
+        <table>
+          <tr><th>Figma Variable 명칭</th><th>대응 CSS 변수명</th><th>수치 값</th><th>용도</th></tr>
+          <tr><td><code>radius/r0_5</code></td><td><code>--seed-radius-r0_5</code></td><td>2px</td><td>미세 모서리</td></tr>
+          <tr><td><code>radius/r1</code></td><td><code>--seed-radius-r1</code></td><td>4px</td><td>태그 모서리</td></tr>
+          <tr><td><code>radius/r1_5</code></td><td><code>--seed-radius-r1_5</code></td><td>6px</td><td>칩 모서리</td></tr>
+          <tr><td><code>radius/r2</code></td><td><code>--seed-radius-r2</code></td><td>8px</td><td>버튼/입력창 모서리</td></tr>
+          <tr><td><code>radius/r2_5</code></td><td><code>--seed-radius-r2_5</code></td><td>10px</td><td>중형 모서리</td></tr>
+          <tr><td><code>radius/r3</code></td><td><code>--seed-radius-r3</code></td><td>12px</td><td>기본 카드 모서리</td></tr>
+          <tr><td><code>radius/r3_5</code></td><td><code>--seed-radius-r3_5</code></td><td>14px</td><td>대형 카드 모서리</td></tr>
+          <tr><td><code>radius/r4</code></td><td><code>--seed-radius-r4</code></td><td>16px</td><td>다이얼로그/모달 모서리</td></tr>
+          <tr><td><code>radius/r5</code></td><td><code>--seed-radius-r5</code></td><td>20px</td><td>바텀시트 상단 모서리</td></tr>
+          <tr><td><code>radius/r6</code></td><td><code>--seed-radius-r6</code></td><td>24px</td><td>카운터 모서리</td></tr>
+          <tr><td><code>radius/full</code></td><td><code>--seed-radius-full</code></td><td>9999px</td><td>원형/캡슐 알약 모서리</td></tr>
+        </table>
+      </div>
 
-        <!-- 9. GRADIENT -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px;">
-            <h3 style="margin:0; font-size:17px; color:#121212;">9. Gradient (쉬머 로딩 그래디언트 — 총 6개 토큰)</h3>
-            <span style="font-size:11.5px; font-weight:700; color:#C2410C; background:#FFEDD5; padding:3px 10px; border-radius:10px;">❌ Figma 변수 안 쓰임 (CSS 전용 토큰)</span>
-          </div>
-          <table>
-            <tr><th>Figma Variable 명칭</th><th>대응 CSS 변수명</th><th>설명 / 사용 여부</th></tr>
-            <tr><td>미사용 (Figma 렌더링 ✕)</td><td><code>--seed-gradient-shimmer-neutral</code></td><td>❌ <strong style="color:#C2410C;">[Figma 변수로 안 쓰임 - CSS 스켈레톤 로딩 전용]</strong></td></tr>
-            <tr><td>미사용 (Figma 렌더링 ✕)</td><td><code>--seed-gradient-glow-magic</code></td><td>❌ <strong style="color:#C2410C;">[Figma 변수로 안 쓰임 - CSS 매직 그래디언트 전용]</strong></td></tr>
-          </table>
-        </div>
-
-        <!-- 10. GRID SYSTEM -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px;">
-            <h3 style="margin:0; font-size:17px; color:#121212;">10. Grid System (반응형 1~12열 그리드 — 총 16개 토큰)</h3>
-            <span style="font-size:11.5px; font-weight:700; color:#C2410C; background:#FFEDD5; padding:3px 10px; border-radius:10px;">❌ Figma 변수 안 쓰임 (Figma Layout Grid Style로 관리)</span>
-          </div>
-          <table>
-            <tr><th>Figma 관리 방식</th><th>대응 CSS 변수명</th><th>열(Columns) 규격 및 사용 여부</th></tr>
-            <tr><td>Figma Layout Grid Style</td><td><code>--seed-grid-columns-base</code></td><td>❌ <strong style="color:#C2410C;">[Figma 변수 ✕ - Mobile 4열 레이아웃 그리드 CSS]</strong></td></tr>
-            <tr><td>Figma Layout Grid Style</td><td><code>--seed-grid-columns-md</code></td><td>❌ <strong style="color:#C2410C;">[Figma 변수 ✕ - Tablet 8열 레이아웃 그리드 CSS]</strong></td></tr>
-            <tr><td>Figma Layout Grid Style</td><td><code>--seed-grid-columns-lg</code></td><td>❌ <strong style="color:#C2410C;">[Figma 변수 ✕ - Desktop 12열 레이아웃 그리드 CSS]</strong></td></tr>
-          </table>
-        </div>
-
-        <!-- 11. BLEED & OUTSET -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px;">
-            <h3 style="margin:0; font-size:17px; color:#121212;">11. Bleed &amp; Outset (모바일 Full-bleed 확장 — 총 12개 토큰)</h3>
-            <span style="font-size:11.5px; font-weight:700; color:#C2410C; background:#FFEDD5; padding:3px 10px; border-radius:10px;">❌ Figma 변수 안 쓰임 (CSS Layout Margins 전용)</span>
-          </div>
-          <table>
-            <tr><th>Figma 관리 방식</th><th>대응 CSS 변수명</th><th>설명 / 사용 여부</th></tr>
-            <tr><td>미사용 (Figma 렌더링 ✕)</td><td><code>--seed-box-bleed-left / right</code></td><td>❌ <strong style="color:#C2410C;">[Figma 변수로 안 쓰임 - 부모 여백 뚫는 CSS full-bleed]</strong></td></tr>
-          </table>
-        </div>
-
-        <!-- 12. ICONOGRAPHY -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px;">
-            <h3 style="margin:0; font-size:17px; color:#121212;">12. Iconography (아이콘 규격 &amp; 위치 — 총 18개 토큰)</h3>
-            <span style="font-size:11.5px; font-weight:700; color:#15803D; background:#DCFCE7; padding:3px 10px; border-radius:10px;">Figma Variable 사용 ⭕ (Icon Instance Size)</span>
-          </div>
-          <table>
-            <tr><th>Figma Variable 명칭</th><th>대응 CSS 변수명</th><th>수치 값 / 사용 여부</th></tr>
-            <tr><td><code>icon/size-sm, md, lg</code></td><td><code>--seed-icon-size</code>, <code>--seed-prefix-icon-size</code></td><td>⭕ 14px, 18px, 22px (아이콘 규격 연동)</td></tr>
-          </table>
-        </div>
-
-        <!-- 13. TRANSFORM KEYFRAME -->
-        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px;">
-          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:10px;">
-            <h3 style="margin:0; font-size:17px; color:#121212;">13. Transform Keyframe (등장·퇴장 변형 — 총 10개 토큰)</h3>
-            <span style="font-size:11.5px; font-weight:700; color:#C2410C; background:#FFEDD5; padding:3px 10px; border-radius:10px;">❌ Figma 변수 안 쓰임 (CSS Keyframe 애니메이션 전용)</span>
-          </div>
-          <table>
-            <tr><th>Figma 관리 방식</th><th>대응 CSS 변수명</th><th>설명 / 사용 여부</th></tr>
-            <tr><td>미사용 (Figma 렌더링 ✕)</td><td><code>--seed-enter-translate-y</code></td><td>❌ <strong style="color:#C2410C;">[Figma 변수로 안 쓰임 - 바텀시트 슬라이드업 CSS Keyframe]</strong></td></tr>
-            <tr><td>미사용 (Figma 렌더링 ✕)</td><td><code>--seed-exit-translate-y</code></td><td>❌ <strong style="color:#C2410C;">[Figma 변수로 안 쓰임 - 바텀시트 퇴장 CSS Keyframe]</strong></td></tr>
-          </table>
-        </div>
-
+      <!-- ── 5~13. MOTION, SHADOW, SCALE, GRADIENT, GRID, BLEED, ICON, TRANSFORM ── -->
+      <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:22px;">
+        <h3 style="margin:0 0 12px 0; font-size:17px; color:#121212;">5~13. Motion, Shadow, Scale, Gradient, Grid, Bleed, Icon, Transform (88개 전수)</h3>
+        <table>
+          <tr><th>구분</th><th>Figma Variable</th><th>CSS 변수명</th><th>수치 / 베지어 / 설명</th><th>Figma 사용 여부</th></tr>
+          <tr><td>Motion</td><td><code>duration/d1 ~ d6</code></td><td><code>--seed-duration-d1 ~ d6</code></td><td>100ms ~ 500ms 애니메이션 속도</td><td>⭕ 사용</td></tr>
+          <tr><td>Motion</td><td>—</td><td><code>--seed-timing-function-enter</code></td><td>cubic-bezier(0, 0, 0.2, 1)</td><td>❌ <strong style="color:#C2410C;">[Figma 변수 ✕ - CSS 전용]</strong></td></tr>
+          <tr><td>Shadow</td><td><code>elevation/s1</code></td><td><code>--seed-shadow-s1</code></td><td><code>0 1px 3px rgba(0,0,0,0.08)</code></td><td>⭕ 사용</td></tr>
+          <tr><td>Shadow</td><td><code>elevation/s2</code></td><td><code>--seed-shadow-s2</code></td><td><code>0 4px 12px rgba(0,0,0,0.12)</code></td><td>⭕ 사용</td></tr>
+          <tr><td>Shadow</td><td><code>elevation/s3</code></td><td><code>--seed-shadow-s3</code></td><td><code>0 8px 24px rgba(0,0,0,0.18)</code></td><td>⭕ 사용</td></tr>
+          <tr><td>Scale</td><td><code>scale/s95, s97, s98</code></td><td><code>--seed-scale-s95, s97, s98</code></td><td>0.95, 0.97, 0.98 버튼 클릭 축소 비율</td><td>⭕ 사용</td></tr>
+          <tr><td>Gradient</td><td>—</td><td><code>--seed-gradient-shimmer-neutral</code></td><td>스켈레톤 로딩 쉬머 그래디언트 애니메이션</td><td>❌ <strong style="color:#C2410C;">[Figma 변수 ✕ - CSS 전용]</strong></td></tr>
+          <tr><td>Grid</td><td>Figma Grid Style</td><td><code>--seed-grid-columns-base</code></td><td>Mobile 4열, Tablet 8열, Desktop 12열 그리드</td><td>❌ <strong style="color:#C2410C;">[Figma 변수 ✕ - CSS 전용]</strong></td></tr>
+          <tr><td>Bleed</td><td>—</td><td><code>--seed-box-bleed-left / right</code></td><td>부모 여백 뚫는 full-bleed 확장</td><td>❌ <strong style="color:#C2410C;">[Figma 변수 ✕ - CSS 전용]</strong></td></tr>
+          <tr><td>Icon</td><td><code>icon/size-sm, md, lg</code></td><td><code>--seed-icon-size</code>, <code>--seed-prefix-icon-size</code></td><td>14px, 18px, 22px 아이콘 크기 규격</td><td>⭕ 사용</td></tr>
+          <tr><td>Transform</td><td>—</td><td><code>--seed-enter-translate-y</code></td><td>모달/바텀시트 슬라이드업 등장/퇴장 트랜스폼</td><td>❌ <strong style="color:#C2410C;">[Figma 변수 ✕ - CSS 전용]</strong></td></tr>
+        </table>
       </div>
   </section></section>
 
