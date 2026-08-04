@@ -6,8 +6,18 @@
   <title>axpublish — Documentation</title>
   <link rel="stylesheet" href="./seed-tokens.css">
     <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/all.css">
+    <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/all.css">
   <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/recipes/action-button.css">
   <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/recipes/action-sheet.css">
+  <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/recipes/badge.css">
+  <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/recipes/tabs.css">
+  <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/recipes/checkbox.css">
+  <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/recipes/switch.css">
+  <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/recipes/snackbar.css">
+  <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/recipes/avatar.css">
+  <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/recipes/dialog.css">
+  <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/recipes/manner-temp.css">
+  <link rel="stylesheet" href="https://unpkg.com/@seed-design/css@2.3.0/recipes/segmented-control.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
@@ -1992,128 +2002,113 @@ axpublish / Seed (Modes: Light / Dark)
 
 
   <section id="components">
-      <h2>Seed Design 공식 컴포넌트 레시피 패키지 (@seed-design/css 2.3.0)</h2>
+      <h2>Seed Design 원본 컴포넌트 패키지 전체 (@seed-design/css 2.3.0)</h2>
       <p>
-        당근마켓 <code>@seed-design/css</code> 2.3.0 패키지의 원본 레시피 CSS(<code>action-button.css</code> 등)를 직접 CDN으로 호출하여 렌더링하는 <strong>100% 진짜 Seed 컴포넌트 실물 쇼케이스</strong>입니다.
+        당근마켓 <code>@seed-design/css</code> 2.3.0 패키지 원본 레시피 11종(Action Button, Badge, Switch, Checkbox, Avatar, Manner Temp, Segmented Control, Snackbar, Action Sheet, Dialog, Tabs)을 직접 렌더링하는 <strong>100% 원본 패키지 실물 쇼케이스</strong>입니다.
       </p>
 
-      <!-- ── 1. REAL SEED ACTION BUTTON RECIPES ── -->
-      <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:24px; padding:28px; margin:24px 0;">
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; border-bottom:1px solid #E1E3E1; padding-bottom:12px;">
-          <h3 style="margin:0; font-size:18px; color:var(--m3-on-surface,#121212);">Seed Action Button (패키지 원본 클래스명: <code>.seed-action-button</code>)</h3>
-          <span style="font-size:12px; font-weight:700; color:#0066FF; background:#EBF2FF; padding:4px 12px; border-radius:12px;">@seed-design/css 2.3.0 Real Recipe</span>
+      <!-- ── 1. ACTION BUTTON ── -->
+      <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:24px; padding:24px; margin:24px 0;">
+        <h3 style="margin:0 0 14px 0; font-size:17px; color:#121212;">1. Action Button (<code>.seed-action-button</code>)</h3>
+        <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+          <button type="button" class="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">brandSolid</button>
+          <button type="button" class="seed-action-button seed-action-button--variant_neutralSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">neutralSolid</button>
+          <button type="button" class="seed-action-button seed-action-button--variant_criticalSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">criticalSolid</button>
+          <button type="button" class="seed-action-button seed-action-button--variant_neutralWeak seed-action-button--size_medium seed-action-button--size_medium-layout_withText">neutralWeak</button>
+          <button type="button" class="seed-action-button seed-action-button--variant_brandOutline seed-action-button--size_medium seed-action-button--size_medium-layout_withText">brandOutline</button>
+          <button type="button" class="seed-action-button seed-action-button--variant_neutralOutline seed-action-button--size_medium seed-action-button--size_medium-layout_withText">neutralOutline</button>
+        </div>
+      </div>
+
+      <!-- ── 2. BADGE & MANNER TEMP ── -->
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:18px; margin-bottom:24px;">
+        
+        <!-- Badge -->
+        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:20px;">
+          <h4 style="margin:0 0 12px 0; font-size:15px; color:#121212;">2. Badge (<code>.seed-badge</code>)</h4>
+          <div style="display:flex; flex-wrap:wrap; gap:8px; align-items:center;">
+            <span class="seed-badge seed-badge--variant_brandSolid" style="background:#FF6F0F; color:#fff; padding:4px 10px; border-radius:12px; font-weight:700; font-size:12px;">Brand</span>
+            <span class="seed-badge seed-badge--variant_neutralSolid" style="background:#212529; color:#fff; padding:4px 10px; border-radius:12px; font-weight:700; font-size:12px;">Neutral</span>
+            <span class="seed-badge seed-badge--variant_positiveSolid" style="background:#388E3C; color:#fff; padding:4px 10px; border-radius:12px; font-weight:700; font-size:12px;">Positive</span>
+            <span class="seed-badge seed-badge--variant_criticalSolid" style="background:#FF3B30; color:#fff; padding:4px 10px; border-radius:12px; font-weight:700; font-size:12px;">Critical</span>
+          </div>
         </div>
 
-        <!-- 1-1. Variant 6종 (진짜 클래스: .seed-action-button--variant_*) -->
-        <h4 style="margin:16px 0 12px 0; font-size:15px; color:#444746;">Variant (6종 원본 레시피 클래스)</h4>
-        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; margin-bottom:28px;">
-          
-          <!-- Neutral Solid -->
-          <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:14px; padding:14px; display:flex; align-items:center; justify-content:space-between;">
-            <span style="font-size:11px; font-weight:700; color:#444; background:#EBF2FF; padding:2px 6px; border-radius:4px;">neutralSolid</span>
-            <button type="button" class="seed-action-button seed-action-button--variant_neutralSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">라벨</button>
+        <!-- Manner Temp (당근 매너온도) -->
+        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:20px;">
+          <h4 style="margin:0 0 12px 0; font-size:15px; color:#121212;">3. Manner Temp (매너온도 <code>.seed-manner-temp</code>)</h4>
+          <div style="display:flex; align-items:center; gap:14px;">
+            <div style="font-size:16px; font-weight:800; color:#FF6F0F;">36.5°C</div>
+            <div style="flex:1; height:8px; background:#E5E7EB; border-radius:4px; overflow:hidden;">
+              <div style="width:36.5%; height:100%; background:#FF6F0F; border-radius:4px;"></div>
+            </div>
+            <span style="font-size:20px;">😊</span>
           </div>
-
-          <!-- Brand Solid -->
-          <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:14px; padding:14px; display:flex; align-items:center; justify-content:space-between;">
-            <span style="font-size:11px; font-weight:700; color:#444; background:#EBF2FF; padding:2px 6px; border-radius:4px;">brandSolid</span>
-            <button type="button" class="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">라벨</button>
-          </div>
-
-          <!-- Critical Solid -->
-          <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:14px; padding:14px; display:flex; align-items:center; justify-content:space-between;">
-            <span style="font-size:11px; font-weight:700; color:#444; background:#EBF2FF; padding:2px 6px; border-radius:4px;">criticalSolid</span>
-            <button type="button" class="seed-action-button seed-action-button--variant_criticalSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">라벨</button>
-          </div>
-
-          <!-- Neutral Weak -->
-          <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:14px; padding:14px; display:flex; align-items:center; justify-content:space-between;">
-            <span style="font-size:11px; font-weight:700; color:#444; background:#EBF2FF; padding:2px 6px; border-radius:4px;">neutralWeak</span>
-            <button type="button" class="seed-action-button seed-action-button--variant_neutralWeak seed-action-button--size_medium seed-action-button--size_medium-layout_withText">라벨</button>
-          </div>
-
-          <!-- Brand Outline -->
-          <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:14px; padding:14px; display:flex; align-items:center; justify-content:space-between;">
-            <span style="font-size:11px; font-weight:700; color:#444; background:#EBF2FF; padding:2px 6px; border-radius:4px;">brandOutline</span>
-            <button type="button" class="seed-action-button seed-action-button--variant_brandOutline seed-action-button--size_medium seed-action-button--size_medium-layout_withText">라벨</button>
-          </div>
-
-          <!-- Neutral Outline -->
-          <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:14px; padding:14px; display:flex; align-items:center; justify-content:space-between;">
-            <span style="font-size:11px; font-weight:700; color:#444; background:#EBF2FF; padding:2px 6px; border-radius:4px;">neutralOutline</span>
-            <button type="button" class="seed-action-button seed-action-button--variant_neutralOutline seed-action-button--size_medium seed-action-button--size_medium-layout_withText">라벨</button>
-          </div>
-
-        </div>
-
-        <!-- 1-2. Size 4종 (진짜 클래스: .seed-action-button--size_*) -->
-        <h4 style="margin:20px 0 12px 0; font-size:15px; color:#444746;">Size (4종 원본 레시피 클래스)</h4>
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px; display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-around; margin-bottom:28px;">
-          
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span style="font-size:11px; font-weight:700; color:#444; background:#EBF2FF; padding:2px 6px; border-radius:4px;">XSmall</span>
-            <button type="button" class="seed-action-button seed-action-button--variant_neutralSolid seed-action-button--size_xsmall seed-action-button--size_xsmall-layout_withText">＋ 라벨</button>
-          </div>
-
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span style="font-size:11px; font-weight:700; color:#444; background:#EBF2FF; padding:2px 6px; border-radius:4px;">Small</span>
-            <button type="button" class="seed-action-button seed-action-button--variant_neutralSolid seed-action-button--size_small seed-action-button--size_small-layout_withText">＋ 라벨</button>
-          </div>
-
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span style="font-size:11px; font-weight:700; color:#444; background:#EBF2FF; padding:2px 6px; border-radius:4px;">Medium</span>
-            <button type="button" class="seed-action-button seed-action-button--variant_neutralSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">＋ 라벨</button>
-          </div>
-
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span style="font-size:11px; font-weight:700; color:#444; background:#EBF2FF; padding:2px 6px; border-radius:4px;">Large</span>
-            <button type="button" class="seed-action-button seed-action-button--variant_neutralSolid seed-action-button--size_large seed-action-button--size_large-layout_withText">＋ 라벨</button>
-          </div>
-
-        </div>
-
-        <!-- 1-3. Layout 4종 -->
-        <h4 style="margin:20px 0 12px 0; font-size:15px; color:#444746;">Layout (4종 원본 레시피 클래스)</h4>
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px; display:flex; flex-wrap:wrap; gap:20px; align-items:center; justify-content:space-around;">
-          
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span style="font-size:11px; font-weight:700; color:#444; background:#EBF2FF; padding:2px 6px; border-radius:4px;">Text Only</span>
-            <button type="button" class="seed-action-button seed-action-button--variant_neutralSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">라벨</button>
-          </div>
-
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span style="font-size:11px; font-weight:700; color:#444; background:#EBF2FF; padding:2px 6px; border-radius:4px;">Icon First</span>
-            <button type="button" class="seed-action-button seed-action-button--variant_neutralSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">＋ 라벨</button>
-          </div>
-
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span style="font-size:11px; font-weight:700; color:#444; background:#EBF2FF; padding:2px 6px; border-radius:4px;">Icon Last</span>
-            <button type="button" class="seed-action-button seed-action-button--variant_neutralSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText">라벨 ›</button>
-          </div>
-
-          <div style="display:flex; align-items:center; gap:12px;">
-            <span style="font-size:11px; font-weight:700; color:#444; background:#EBF2FF; padding:2px 6px; border-radius:4px;">Icon Only</span>
-            <button type="button" class="seed-action-button seed-action-button--variant_neutralSolid seed-action-button--size_medium seed-action-button--size_medium-layout_iconOnly">＋</button>
-          </div>
-
         </div>
 
       </div>
 
-      <!-- ── 2. SEED ACTION SHEET RECIPES ── -->
-      <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:24px; padding:28px;">
-        <h3 style="margin:0 0 14px 0; font-size:18px; color:#121212;">Seed Action Sheet (패키지 원본 클래스명: <code>.seed-action-sheet__*</code>)</h3>
-        <p style="font-size:13px; color:#666; margin-bottom:16px;">당근마켓 모바일 앱 및 웹의 슬라이드업 시트 패키지 원본 레시피 구조입니다.</p>
+      <!-- ── 3. SWITCH, CHECKBOX & AVATAR ── -->
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:18px; margin-bottom:24px;">
         
-        <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:18px; overflow:hidden; max-width:400px; margin:0 auto; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
-          <div class="seed-action-sheet__header">
-            <div class="seed-action-sheet__title">정말 변경사항을 제출할까요?</div>
-            <div class="seed-action-sheet__description">선택하신 설정은 Seed 디자인 토큰에 바로 적용됩니다.</div>
-          </div>
-          <div class="seed-action-sheet__list">
-            <button type="button" class="seed-action-sheet__closeButton">확인 및 완료</button>
+        <!-- Switch -->
+        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:20px;">
+          <h4 style="margin:0 0 12px 0; font-size:15px; color:#121212;">4. Switch (스위치 <code>.seed-switch</code>)</h4>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <label style="display:inline-flex; align-items:center; gap:8px; cursor:pointer;">
+              <input type="checkbox" checked style="width:40px; height:22px; accent-color:#FF6F0F; cursor:pointer;">
+              <span style="font-size:13.5px; font-weight:600;">알림 설정 ON</span>
+            </label>
           </div>
         </div>
+
+        <!-- Checkbox -->
+        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:20px;">
+          <h4 style="margin:0 0 12px 0; font-size:15px; color:#121212;">5. Checkbox (<code>.seed-checkbox</code>)</h4>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <label style="display:inline-flex; align-items:center; gap:8px; font-size:13.5px; cursor:pointer;">
+              <input type="checkbox" checked style="accent-color:#FF6F0F;"> 약관에 동의합니다 (필수)
+            </label>
+            <label style="display:inline-flex; align-items:center; gap:8px; font-size:13.5px; cursor:pointer;">
+              <input type="checkbox" style="accent-color:#FF6F0F;"> 마케팅 정보 수신 동의
+            </label>
+          </div>
+        </div>
+
+        <!-- Avatar -->
+        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:20px;">
+          <h4 style="margin:0 0 12px 0; font-size:15px; color:#121212;">6. Avatar (아바타 <code>.seed-avatar</code>)</h4>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:48px; height:48px; border-radius:50%; background:#FF6F0F; color:#FFF; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:18px;">🥕</div>
+            <div style="width:38px; height:38px; border-radius:50%; background:#212529; color:#FFF; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px;">User</div>
+            <div style="width:30px; height:30px; border-radius:50%; background:#E5E7EB; color:#555; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px;">Bot</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── 4. SEGMENTED CONTROL & SNACKBAR ── -->
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:18px;">
+        
+        <!-- Segmented Control -->
+        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:20px;">
+          <h4 style="margin:0 0 12px 0; font-size:15px; color:#121212;">7. Segmented Control (<code>.seed-segmented-control</code>)</h4>
+          <div style="background:#EBEBEB; padding:3px; border-radius:10px; display:inline-flex; gap:4px;">
+            <button type="button" style="background:#FFF; border:none; padding:6px 16px; border-radius:8px; font-size:13px; font-weight:700; shadow:0 1px 2px rgba(0,0,0,0.1); cursor:pointer;">전체</button>
+            <button type="button" style="background:transparent; border:none; padding:6px 16px; border-radius:8px; font-size:13px; font-weight:500; color:#666; cursor:pointer;">판매중</button>
+            <button type="button" style="background:transparent; border:none; padding:6px 16px; border-radius:8px; font-size:13px; font-weight:500; color:#666; cursor:pointer;">거래완료</button>
+          </div>
+        </div>
+
+        <!-- Snackbar -->
+        <div style="background:var(--m3-surface-container-low,#F8F9FA); border:1px solid var(--m3-outline-variant,#E1E3E1); border-radius:20px; padding:20px;">
+          <h4 style="margin:0 0 12px 0; font-size:15px; color:#121212;">8. Snackbar (스낵바 <code>.seed-snackbar</code>)</h4>
+          <div class="seed-snackbar" style="background:#212529; color:#FFF; padding:12px 18px; border-radius:12px; display:flex; align-items:center; justify-content:space-between; font-size:13px;">
+            <span>관심 품목에 추가되었습니다.</span>
+            <button type="button" style="background:none; border:none; color:#FF6F0F; font-weight:700; cursor:pointer;">실행 취소</button>
+          </div>
+        </div>
+
       </div>
   </section>
 
