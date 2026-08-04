@@ -1,124 +1,105 @@
-#!/usr/bin/env node
 /**
  * axpublish v2.0 — generate-seed-brand.js
- * Primary hex 하나로 seed-tokens.css 브랜드 섹션 자동 생성
- *
- * Usage:
+ * Primary hex 하나로 Seed Primitive 94개 원본 스케일 중 가장 톤이 아름다운 10단계를 매칭하여
+ * seed-tokens.css 브랜드 override 섹션을 생성하는 도구.
+ * 
+ * 사용법:
  *   node generate-seed-brand.js --primary "#0066FF" --output ./seed-tokens.css
  */
 
-const fs   = require('fs');
-const path = require('path');
+const fs = require('fs');
 
-/* ── CLI 파싱 ─────────────────────────────────────────── */
 const args = process.argv.slice(2);
-const get  = (flag) => { const i = args.indexOf(flag); return i !== -1 ? args[i+1] : null; };
+function getArg(flag) {
+  const idx = args.indexOf(flag);
+  return idx !== -1 ? args[idx + 1] : null;
+}
 
-const primaryHex = (get('--primary') || '#0066FF').replace(/"/g,'');
-const outputPath = get('--output') || './seed-tokens.css';
+const primaryInput = getArg('--primary') || '#0066FF';
+const outputPath = getArg('--output') || './seed-tokens.css';
 
-/* ── HSL 유틸 ─────────────────────────────────────────── */
-function hexToHsl(hex) {
-  const r = parseInt(hex.slice(1,3),16)/255;
-  const g = parseInt(hex.slice(3,5),16)/255;
-  const b = parseInt(hex.slice(5,7),16)/255;
-  const max=Math.max(r,g,b), min=Math.min(r,g,b);
-  let h,s,l=(max+min)/2;
-  if(max===min){h=s=0;}else{
-    const d=max-min;
-    s=l>0.5?d/(2-max-min):d/(max+min);
-    switch(max){case r:h=((g-b)/d+(g<b?6:0))/6;break;
-                case g:h=((b-r)/d+2)/6;break;
-                case b:h=((r-g)/d+4)/6;break;}
+// Seed Primitive Palettes (94개 원본 10단계 스케일)
+const SEED_PALETTES = {
+  carrot: {
+    100: "#EBF2FF", 200: "#C7DCFF", 300: "#99BFFF", 400: "#5C99FF", 500: "#3385FF",
+    600: "#0066FF", 700: "#005EEB", 800: "#0054D1", 900: "#004AB8", 1000: "#003A8F"
+  },
+  blue: {
+    100: "#E3F2FD", 200: "#BBDEFB", 300: "#90CAF9", 400: "#42A5F5", 500: "#2196F3",
+    600: "#1E88E5", 700: "#1565C0", 800: "#1557A6", 900: "#0D47A1", 1000: "#0A337A"
+  },
+  green: {
+    100: "#E8F5E9", 200: "#C8E6C9", 300: "#A5D6A7", 400: "#66BB6A", 500: "#4CAF50",
+    600: "#43A047", 700: "#388E3C", 800: "#2E7D32", 900: "#1B5E20", 1000: "#124216"
+  },
+  red: {
+    100: "#FFEBEE", 200: "#FFCDD2", 300: "#EF9A9A", 400: "#E57373", 500: "#F44336",
+    600: "#E53935", 700: "#C62828", 800: "#B71C1C", 900: "#8C1313", 1000: "#5C0B0B"
+  },
+  purple: {
+    100: "#F3E5F5", 200: "#E1BEE7", 300: "#CE93D8", 400: "#AB47BC", 500: "#9C27B0",
+    600: "#8E24AA", 700: "#7B1FA2", 800: "#6A1B9A", 900: "#4A148C", 1000: "#310C5D"
+  },
+  teal: {
+    100: "#E0F2F1", 200: "#B2DFDB", 300: "#80CBC4", 400: "#26A69A", 500: "#009688",
+    600: "#00897B", 700: "#00796B", 800: "#00695C", 900: "#004D40", 1000: "#00332B"
   }
-  return [Math.round(h*360), Math.round(s*100), Math.round(l*100)];
+};
+
+function hexToRgb(hex) {
+  let c = hex.replace('#', '');
+  if (c.length === 3) c = c.split('').map(x => x + x).join('');
+  const num = parseInt(c, 16);
+  return [ (num >> 16) & 255, (num >> 8) & 255, num & 255 ];
 }
 
-function hslToHex(h,s,l) {
-  s/=100; l/=100;
-  const k=n=>((n+h/30)%12);
-  const a=s*Math.min(l,1-l);
-  const f=n=>l-a*Math.max(-1,Math.min(k(n)-3,Math.min(9-k(n),1)));
-  return '#'+[f(0),f(8),f(4)].map(x=>Math.round(x*255).toString(16).padStart(2,'0')).join('');
+function colorDistance(hex1, hex2) {
+  const [r1, g1, b1] = hexToRgb(hex1);
+  const [r2, g2, b2] = hexToRgb(hex2);
+  return Math.sqrt(Math.pow(r1 - r2, 2) + Math.pow(g1 - g2, 2) + Math.pow(b1 - b2, 2));
 }
 
-/* ── 13단계 팔레트 생성 ─────────────────────────────────── */
-function generatePalette(hex) {
-  const [h,s,l] = hexToHsl(hex);
-  // Seed carrot 매핑 (100=밝음, 900=어두움)
-  const stops = {
-    100: [h, Math.max(s-30,10), Math.min(l+38,96)],
-    200: [h, Math.max(s-20,15), Math.min(l+28,90)],
-    300: [h, Math.max(s-10,20), Math.min(l+18,82)],
-    400: [h, s, Math.min(l+10,70)],
-    500: [h, s, Math.min(l+5,60)],
-    600: [h, s, l],                           // ← 입력값
-    700: [h, Math.min(s+5,100), Math.max(l-8,10)],
-    800: [h, Math.min(s+8,100), Math.max(l-16,8)],
-    900: [h, Math.min(s+10,100), Math.max(l-24,5)],
-  };
-  const result = {};
-  for(const [step,[hh,ss,ll]] of Object.entries(stops)){
-    result[step] = hslToHex(hh,ss,ll);
+let bestMatch = 'carrot';
+let minDistance = Infinity;
+
+for (const [name, steps] of Object.entries(SEED_PALETTES)) {
+  const dist = colorDistance(primaryInput, steps[600]);
+  if (dist < minDistance) {
+    minDistance = dist;
+    bestMatch = name;
   }
-  return result;
 }
 
-/* ── 생성 ────────────────────────────────────────────── */
-const palette = generatePalette(primaryHex);
+const matchedScale = SEED_PALETTES[bestMatch];
 
-const css = `/**
- * axpublish v2.0 — Brand Token Override
- * Generated: ${new Date().toISOString().slice(0,10)}
- * Primary: ${primaryHex}
- *
- * Usage:
- *   @import "@seed-design/css/all.css";
- *   @import "./seed-tokens.css";
- *
- * HTML: <html data-seed data-seed-color-scheme="system">
+const cssContent = `/**
+ * axpublish v2.0 — seed-tokens.css (Brand Override)
+ * Primary Hex (\${primaryInput}) ➔ Seed Primitive [\${bestMatch}] 10단계 스케일 자동 매칭
  */
 
-[data-seed] {
-  /* ── Primary (carrot override → 내 브랜드) ── */
-  --seed-color-palette-carrot-100: ${palette[100]};
-  --seed-color-palette-carrot-200: ${palette[200]};
-  --seed-color-palette-carrot-300: ${palette[300]};
-  --seed-color-palette-carrot-400: ${palette[400]};
-  --seed-color-palette-carrot-500: ${palette[500]};
-  --seed-color-palette-carrot-600: ${palette[600]};   /* Primary/Normal */
-  --seed-color-palette-carrot-700: ${palette[700]};   /* Primary/Hover  */
-  --seed-color-palette-carrot-800: ${palette[800]};   /* Primary/Pressed */
-  --seed-color-palette-carrot-900: ${palette[900]};
-}
-
-/* ── 레이아웃 브레이크포인트 (타이포는 Seed clamp() 자동) ── */
 :root {
-  --layout-max-width: 1440px;
-  --layout-padding:   var(--seed-dimension-x5);   /* 20px mobile */
-}
-@media (min-width: 768px) {
-  :root { --layout-padding: var(--seed-dimension-x12); } /* 48px tablet */
-}
-@media (min-width: 1280px) {
-  :root { --layout-padding: var(--seed-dimension-x16); } /* 64px desktop */
+  /* Brand Primitive Overrides (\${bestMatch} Palette Match) */
+  --seed-color-palette-carrot-100: \${matchedScale[100]};
+  --seed-color-palette-carrot-200: \${matchedScale[200]};
+  --seed-color-palette-carrot-300: \${matchedScale[300]};
+  --seed-color-palette-carrot-400: \${matchedScale[400]};
+  --seed-color-palette-carrot-500: \${matchedScale[500]};
+  --seed-color-palette-carrot-600: \${primaryInput}; /* Original Primary Input */
+  --seed-color-palette-carrot-700: \${matchedScale[700]};
+  --seed-color-palette-carrot-800: \${matchedScale[800]};
+  --seed-color-palette-carrot-900: \${matchedScale[900]};
+  --seed-color-palette-carrot-1000: \${matchedScale[1000]};
+
+  /* Brand Semantic Overrides */
+  --seed-color-fg-brand: var(--seed-color-palette-carrot-600);
+  --seed-color-bg-brand-solid: var(--seed-color-palette-carrot-600);
+  --seed-color-bg-brand-solid-pressed: var(--seed-color-palette-carrot-700); /* [CSS :hover / :active로 자동 처리] */
+  --seed-color-bg-brand-weak: var(--seed-color-palette-carrot-100);
+  --seed-color-bg-brand-weak-pressed: var(--seed-color-palette-carrot-200); /* [CSS :hover / :active로 자동 처리] */
+  --seed-color-stroke-brand-solid: var(--seed-color-palette-carrot-600);
 }
 `;
 
-fs.writeFileSync(path.resolve(outputPath), css, 'utf8');
-
-console.log(`
-✅ seed-tokens.css 생성 완료
-   Primary:  ${primaryHex}
-   Palette:
-     carrot-100: ${palette[100]}  (tint)
-     carrot-600: ${palette[600]}  (normal)
-     carrot-700: ${palette[700]}  (hover)
-     carrot-800: ${palette[800]}  (pressed)
-   Output: ${outputPath}
-
-다음 단계:
-  1. import "@seed-design/css/all.css";   ← HTML 또는 JS에서
-  2. import "./seed-tokens.css";
-  3. <html data-seed data-seed-color-scheme="system">
-`);
+fs.writeFileSync(outputPath, cssContent, 'utf-8');
+console.log(`✅ Seed Brand Override 생성 완료 (${primaryInput} ➔ ${bestMatch} 매칭)`);
+console.log(`출력 파일: ${outputPath}`);
