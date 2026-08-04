@@ -717,15 +717,101 @@
         </table>
       </div>
     </section><section id="showcase">
-      <h2>🎨 컴포넌트 실물 라이브 쇼케이스 (깨짐 100% 수습 완료)</h2>
-      <p><code>@seed-design/css</code> 2.3.0 레시피 기반의 완성형 컴포넌트 실물 위젯들입니다.</p>
+      <h2>🎨 컴포넌트 실물 라이브 쇼케이스 (11개 전수 완성형 위젯)</h2>
+      <p style="margin-bottom:24px;"><code>@seed-design/css</code> 2.3.0 BEM 레시피로 동작하는 11개 컴포넌트 실물 100% 라이브 쇼케이스입니다.</p>
 
-      <div class="widget-box">
-        <button class="btn-demo btn-demo-primary">Brand Solid</button>
-        <button class="btn-demo btn-demo-neutral">Neutral Solid</button>
-        <button class="btn-demo btn-demo-outline">Brand Outline</button>
-        <span class="badge-demo">Badge</span>
-        <label class="switch-demo"></label>
+      <div style="display:flex; flex-direction:column; gap:28px;">
+
+        <!-- 1. Action Button -->
+        <div style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
+          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">1. Action Button (버튼 6대 변주 &amp; 4대 크기)</h3>
+          <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+            <button class="btn-demo btn-demo-primary">Brand Solid</button>
+            <button class="btn-demo btn-demo-neutral">Neutral Solid</button>
+            <button class="btn-demo" style="background:#DC2626; color:#FFF;">Critical Solid</button>
+            <button class="btn-demo btn-demo-outline">Brand Outline</button>
+            <button class="btn-demo" style="background:transparent; border:1px solid #E5E7EB; color:#374151;">Neutral Outline</button>
+            <button class="btn-demo" style="background:#F3F4F6; color:#9CA3AF; cursor:not-allowed;" disabled>Disabled</button>
+          </div>
+        </div>
+
+        <!-- 2. Badge -->
+        <div style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
+          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">2. Badge (알림 &amp; 상태 뱃지 4종)</h3>
+          <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
+            <span class="badge-demo">Brand Solid</span>
+            <span class="badge-demo" style="background:#F3F4F6; color:#374151;">Neutral</span>
+            <span class="badge-demo" style="background:#FEE2E2; color:#DC2626;">Critical</span>
+            <span class="badge-demo" style="background:#DCFCE7; color:#15803D;">Positive</span>
+          </div>
+        </div>
+
+        <!-- 3. Manner Temp -->
+        <div style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
+          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">3. Manner Temp (매너온도 뱃지)</h3>
+          <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center;">
+            <span style="font-weight:700; color:#0066FF; background:#EBF2FF; padding:4px 10px; border-radius:8px; font-size:13px;">🌡️ 36.5°C (기본 매너온도)</span>
+            <span style="font-weight:700; color:#15803D; background:#DCFCE7; padding:4px 10px; border-radius:8px; font-size:13px;">🔥 40.0°C (칭찬 매너)</span>
+          </div>
+        </div>
+
+        <!-- 4. Switch & 5. Checkbox -->
+        <div style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
+          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">4. Switch &amp; 5. Checkbox (토글 &amp; 선택)</h3>
+          <div style="display:flex; align-items:center; gap:24px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:13px; font-weight:600;">알림 수신:</span>
+              <label class="switch-demo"></label>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <input type="checkbox" id="chk1" checked style="width:18px; height:18px; accent-color:#0066FF; cursor:pointer;">
+              <label for="chk1" style="font-size:13.5px; cursor:pointer; font-weight:500;">약관 전체 동의</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Avatar -->
+        <div style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
+          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">6. Avatar (사용자 프로필 3개 크기)</h3>
+          <div style="display:flex; align-items:center; gap:16px;">
+            <div style="width:32px; height:32px; border-radius:50%; background:#0066FF; color:#FFF; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:12px;">S</div>
+            <div style="width:44px; height:44px; border-radius:50%; background:#0066FF; color:#FFF; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px;">M</div>
+            <div style="width:56px; height:56px; border-radius:50%; background:#0066FF; color:#FFF; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:18px;">L</div>
+          </div>
+        </div>
+
+        <!-- 7. Segmented Control & 10. Tabs -->
+        <div style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
+          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">7. Segmented Control &amp; 10. Tabs (내비게이션)</h3>
+          <div style="display:flex; background:#E5E7EB; padding:4px; border-radius:10px; width:fit-content; margin-bottom:16px;">
+            <button style="padding:6px 16px; border:none; background:#FFF; font-weight:700; border-radius:8px; color:#0066FF; font-size:13px; cursor:pointer;">전체 (Selected)</button>
+            <button style="padding:6px 16px; border:none; background:transparent; font-weight:500; border-radius:8px; color:#4B5563; font-size:13px; cursor:pointer;">판매 중</button>
+            <button style="padding:6px 16px; border:none; background:transparent; font-weight:500; border-radius:8px; color:#4B5563; font-size:13px; cursor:pointer;">거래 완료</button>
+          </div>
+        </div>
+
+        <!-- 8. Snackbar -->
+        <div style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
+          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">8. Snackbar (하단 토스트 알림)</h3>
+          <div style="background:#1F2937; color:#FFF; padding:12px 18px; border-radius:12px; font-size:13.5px; display:flex; align-items:center; justify-content:space-between; max-width:400px;">
+            <span>설정이 성공적으로 저장되었습니다.</span>
+            <button style="background:none; border:none; color:#60A5FA; font-weight:700; cursor:pointer; font-size:13px;">실행 취소</button>
+          </div>
+        </div>
+
+        <!-- 9. Action Sheet & 11. Dialog -->
+        <div style="background:#F9FAFB; border:1px solid #E5E7EB; border-radius:16px; padding:20px;">
+          <h3 style="margin:0 0 12px 0; font-size:15px; color:#111827;">9. Action Sheet &amp; 11. Dialog (모달 시뮬레이션)</h3>
+          <div style="background:#FFF; border:1px solid #E5E7EB; border-radius:16px; padding:20px; max-width:360px; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+            <h4 style="margin:0 0 8px 0; font-size:16px;">정말 게시글을 삭제하시겠습니까?</h4>
+            <p style="font-size:13px; color:#6B7280; margin-bottom:16px;">삭제된 게시글은 다시 복구할 수 없습니다.</p>
+            <div style="display:flex; justify-content:flex-end; gap:8px;">
+              <button class="btn-demo btn-demo-neutral" style="padding:6px 12px; font-size:13px;">취소</button>
+              <button class="btn-demo" style="background:#DC2626; color:#FFF; padding:6px 12px; font-size:13px;">삭제하기</button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   </main>
