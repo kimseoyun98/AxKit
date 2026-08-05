@@ -33,7 +33,7 @@ axpublish는 5명의 AI 직원과 1명의 디자이너(당신)가 함께 일합�
 
 ```
 [R1] 하드코딩 금지
-     색상·폰트·간격 모두 seed-seed-tokens.css + @seed-design/css 변수로만 작성.
+     색상·폰트·간격 모두 seed-tokens.css + @seed-design/css 변수로만 작성.
      hex나 px 수치 직접 사용 절대 금지.
 
 [R2] 순서 준수
@@ -45,7 +45,7 @@ axpublish는 5명의 AI 직원과 1명의 디자이너(당신)가 함께 일합�
      다음 직원에게 인수인계 선언 후 넘김.
 
 [R4] 모르면 멈춤
-     seed-seed-tokens.css + @seed-design/css에 없는 값, 디자인 의도가 불분명한 경우
+     seed-tokens.css + @seed-design/css에 없는 값, 디자인 의도가 불분명한 경우
      즉시 디자이너에게 질문. 추측으로 진행하지 않음.
 
 [R5] 컴포넌트 단위
@@ -126,15 +126,23 @@ axpublish Variable Collection을 연결하여
 
 ### BINDER가 하는 것
 
-**① Variable Collection 생성 (Figma MCP Write)**
+**⓪ 기존 컬렉션 확인 (반드시 먼저) — Figma MCP Read**
 
-`figma-seed-variables.json` 기준으로 Figma에 `axpublish / Seed` 컬렉션 생성 (Light / Dark 2모드):
+새 컬렉션을 만들기 전에 대상 Figma 파일에 SEED 기반 Variable Collection이 이미 있는지
+`use_figma`로 조상/컬렉션 목록을 직접 순회해서 확인한다 (이름이 프로젝트마다 다를 수 있음,
+예: "Erom Color"/"Erom Typography"/"Erom Foundation"/"Erom Layout" 같은 프로젝트 고유 이름일
+수 있다 — "axpublish / Seed"라는 이름을 검색해서 못 찾았다고 없다고 단정하지 않는다).
+**이미 있으면 그 컬렉션을 그대로 이어서 쓴다.** 새 컬렉션을 중복 생성하지 않는다.
+없을 때만 아래 ①로 진행한다.
+
+**① Variable Collection 생성 (없을 때만) — Figma MCP Write**
+
 ```
-Collection: "axpublish / Seed"
+Collection: "[프로젝트명] / Seed"  (이름은 디자이너와 먼저 확인)
 ├── 🪨 palette/                      (Primitive: 원본 Hex 값 / 레이어 직접 지정 X)
-│     ├── carrot-100 ~ 900          (Hex 값: 브랜드 덮어쓰기)
-│     ├── gray-00 ~ 1000            (Hex 값: 중성색 스케일)
-│     └── status (green/red/yellow/blue-700)
+│     ├── carrot-100 ~ 1000         (브랜드 스케일 — 실제 프로젝트 브랜드 hex로 override)
+│     ├── gray-00 ~ 1000            (중성색 스케일)
+│     └── status (green/red/yellow/blue 등)
 └── 🎯 Semantic 토큰                   (역할 기반 / 레이어 직접 지정 O / palette/ 참조)
       ├── fg/ (neutral, neutral-muted, brand, positive, critical 등)
       ├── bg-layer/ (default, fill, floating, basement)
@@ -144,45 +152,39 @@ Collection: "axpublish / Seed"
       └── stroke/ (neutral-subtle, neutral-muted, neutral-solid, neutral-contrast, brand-solid, critical-solid, focus-ring)
 ```
 
-**② hex → Variable 자동 바인딩 (Figma MCP Write)**
+> ⚠️ 위 구조는 시작점일 뿐이다. 토큰 **개수·이름·값**은 반드시
+> `node_modules/@seed-design/css/all.css`를 직접 열어서 실제로 존재하는 것과 1:1 대조한
+> 뒤에 확정한다 — 이 문서에 적힌 목록이 실제 패키지와 다르면 패키지 쪽이 맞다.
+
+**② hex/px → Variable 바인딩 (Figma MCP Write)**
 
 ```
-매핑 기준 (Hex → Figma Variable → CSS 변수):
-#121212, #171719        → fg/neutral          (--seed-color-fg-neutral)
-#424242                 → fg/neutral-muted    (--seed-color-fg-neutral-muted)
-#616161                 → fg/neutral-subtle   (--seed-color-fg-neutral-subtle)
-#FFFFFF                 → bg-layer/default    (--seed-color-bg-layer-default)
-#F5F5F5                 → bg-layer/fill       (--seed-color-bg-layer-fill)
-#EBEBEB                 → bg-layer/basement   (--seed-color-bg-layer-basement)
-#0066FF 계열            → bg-brand/solid      (--seed-color-bg-brand-solid)
-#388E3C                 → fg/positive         (--seed-color-fg-positive)
-#C62828                 → fg/critical         (--seed-color-fg-critical)
-#F57F17                 → fg/warning          (--seed-color-fg-warning)
-rgba(0,0,0,0.08) 계열   → stroke/neutral-subtle (--seed-color-stroke-neutral-subtle)
+색상: 디자인 파일의 hex 값을, --seed-color-fg-*/--seed-color-bg-*/--seed-color-stroke-*
+      중 실제로 같은 값을 가진 시맨틱 토큰에 매칭한다. "비슷해 보이는" 토큰으로 눈대중
+      대체하지 말고, all.css에서 실제 계산된 hex/rgba 값을 직접 비교해서 정확히
+      일치하는 토큰을 찾는다.
 
-폰트 크기 매핑:
-56px → --seed-font-size-t15
-48px → --seed-font-size-t14
-32px → --seed-font-size-t12
-22px → --seed-font-size-t8
-16px → --seed-font-size-t5
-14px → --seed-font-size-t4
-12px → --seed-font-size-t2
-(전체 매핑은 seed-seed-tokens.css + @seed-design/css 기준)
+폰트 크기: --seed-font-size-t1(11px) ~ t14(48px) 중 하나에 매칭한다 (t15/t16은 없음).
+      ⚠️ SEED 폰트 크기는 브레이크포인트로 바뀌지 않는다 — 화면마다 크기가 달라 보여도
+      토큰 자체를 화면별로 다르게 주는 게 아니라(t12가 md에서 32px, lg에서 40px 이런 식
+      아님), 같은 토큰이 전 화면에서 같은 값을 유지한다. 화면별로 실제 크기가 다르게
+      그려진 디자인이면 그건 SEED 매핑이 아니라 별도 반응형 처리 대상이니 FLEX에게
+      그대로 전달한다 (자세한 근거는 responsive-rules.md 2-1 참고).
 ```
 
 **매핑 불가 항목 발생 시:**
 ```
 [BINDER] ⚠️ 매핑 확인 요청
 
-아래 값이 axpublish 토큰에 없습니다.
+아래 값이 SEED 토큰에 없습니다.
 - 색상 #FF6B35 (N개 요소에 사용됨)
 - 폰트 18px (N개 요소에 사용됨)
 
 처리 방법을 알려주세요:
-① 가장 가까운 토큰으로 대체 → [추천 토큰명]
-② seed-seed-tokens.css + @seed-design/css에 새 토큰으로 추가
-③ 해당 요소는 예외 처리
+① (기본 권장) 그대로 두고 예외 처리 — SEED에 없는 값을 비슷한 토큰으로 임의
+   대체하지 않는다. 대체는 디자인 의도를 조용히 바꿔버리는 것과 같다.
+② 브랜드 override로 primitive 스케일에 신규 추가 (generate-seed-brand.js 활용)
+③ 해당 요소는 디자인 실수로 보고 제거
 ```
 
 ### BINDER 인수인계 보고서
@@ -226,33 +228,36 @@ Tablet + Mobile 프레임 초안을 Figma에 자동 생성한다.
 [FLEX] 변환 계획 확인 요청
 
 [홈 화면] 변환 계획:
-- Hero 타이틀: title-1 (Desktop 32px → Tablet 26px → Mobile 22px)
+- Hero 타이틀: t12(32px) 그대로 유지 — SEED 폰트 크기는 breakpoint로 안 바뀜.
+  화면이 좁아지면 크기가 아니라 "몇 줄로 줄바꿈되는지"/컨테이너 폭이 바뀌는 것.
+  만약 실제로 화면별 폰트 크기가 다르게 그려져 있다면 이건 디자인 의도이므로
+  PAUSE 후 확인 (임의로 SEED 토큰이 바뀐다고 가정하지 않는다)
 - 카드 그리드: Desktop 3열 → Tablet 2열 → Mobile 1열
 - GNB: Desktop 가로형 유지 → Mobile 햄버거 전환
-- CTA 버튼: 높이 Desktop 56px → Mobile 48px
+- CTA 버튼: 높이 Desktop 56px → Mobile 48px (레이아웃 값이라 breakpoint별 변경 정상)
 
 진행할까요?
 ```
 
-**② Tablet 프레임 생성 (Figma MCP Write)**
+**② md(Tablet) 프레임 생성 (Figma MCP Write)**
 
-각 Desktop 프레임 옆에 Tablet 버전 생성:
+각 Desktop 프레임 옆에 md 버전 생성:
 ```
-프레임: [원본이름] / Tablet
+프레임: [원본이름] / md
 너비: 768px
-패딩: 48px
-폰트: seed-seed-tokens.css + @seed-design/css Tablet 값 적용
+패딩: 24px (--seed-dimension-x6, responsive-rules.md 1-2 참고)
+폰트: SEED 토큰 값 그대로 (breakpoint로 안 바뀜)
 레이아웃: 중간 단계 적용
 ```
 
-**③ Mobile 프레임 생성 (Figma MCP Write)**
+**③ base(Mobile) 프레임 생성 (Figma MCP Write)**
 
-각 Desktop 프레임 옆에 Mobile 버전 생성:
+각 Desktop 프레임 옆에 base 버전 생성:
 ```
-프레임: [원본이름] / Mobile
+프레임: [원본이름] / base
 너비: 375px
-패딩: 20px
-폰트: seed-seed-tokens.css + @seed-design/css Mobile 값 적용
+패딩: 12px (--seed-dimension-x3, responsive-rules.md 1-2 참고)
+폰트: SEED 토큰 값 그대로 (breakpoint로 안 바뀜)
 레이아웃: 단컬럼 적용
 ```
 
@@ -264,8 +269,8 @@ Tablet + Mobile 프레임 초안을 Figma에 자동 생성한다.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Figma에 아래 프레임이 추가되었습니다:
 
-📱 [화면명] / Tablet
-📱 [화면명] / Mobile
+📱 [화면명] / md
+📱 [화면명] / base
 (데스크탑 원본 프레임 오른쪽에 배치)
 
 ⚠️ 이 프레임은 responsive-rules.md 기반 자동 생성입니다.
@@ -309,8 +314,8 @@ Figma에 아래 프레임이 추가되었습니다:
 
 // ✅ 올바른 패턴
 <button className="
-  h-[var(--seed-dimension-x12)] mb:h-[var(--seed-dimension-x14)]
-  px-[var(--seed-dimension-x4)] mb:px-[var(--seed-dimension-x5)]
+  h-[var(--seed-dimension-x12)] lg:h-[var(--seed-dimension-x14)]
+  px-[var(--seed-dimension-x4)] lg:px-[var(--seed-dimension-x5)]
   bg-[var(--seed-color-bg-brand-solid)]
   hover:bg-[var(--seed-color-bg-brand-solid-pressed)]
   active:bg-[var(--seed-color-bg-brand-solid-pressed)]
@@ -325,17 +330,14 @@ Figma에 아래 프레임이 추가되었습니다:
 <button style={{ background: '#0066FF', fontSize: '14px' }}>
 ```
 
-**반응형 클래스 작성 기준:**
+**반응형 클래스 작성 기준 (breakpoint 이름은 SEED 실제 값 기준, responsive-rules.md 1-1 참고):**
 ```
-기본값: Mobile 기준 (<768px)
-tb:   = Tablet 이상 (≥768px)
-mb:   = Desktop 이상 (≥1280px)
+기본값: base (0px~), 그 위로 sm(480) / md(768) / lg(1280) / xl(1440)
 
-예) 폰트 크기
-text-[length:var(--seed-font-size-t5)]         ← Mobile(15px)
-tb:text-[length:var(--seed-font-size-t5)]      ← Tablet(15px)
-mb:text-[length:var(--seed-font-size-t5)]      ← Desktop(16px)
-(seed-seed-tokens.css + @seed-design/css 브레이크포인트가 자동으로 값 변경)
+⚠️ 폰트 크기(--seed-font-size-t*)는 breakpoint로 바뀌지 않는다. t4는 어느 화면에서나
+항상 14px다 — 위 예시의 text-[length:var(--seed-font-size-t4)]에 lg: 등을 붙여 다른
+값으로 바꾸지 않는다. 반응형으로 커지는 건 height/padding처럼 레이아웃 값이지 SEED
+타이포 토큰이 아니다 (자세한 근거는 responsive-rules.md 2-1 참고).
 ```
 
 **컴포넌트 완료 보고:**
@@ -350,7 +352,7 @@ mb:text-[length:var(--seed-font-size-t5)]      ← Desktop(16px)
 
 **PAUSE 트리거 (이 상황에서는 반드시 멈춤):**
 ```
-① seed-seed-tokens.css + @seed-design/css에 없는 값이 디자인에 있을 때
+① seed-tokens.css + @seed-design/css에 없는 값이 디자인에 있을 때
 ② 디자인에 hover/active 상태가 없을 때
 ③ 동일 컴포넌트가 페이지마다 다르게 생겼을 때
 ④ 컴포넌트 이름이 Figma에 없거나 불분명할 때
@@ -476,7 +478,7 @@ Figma 디자인과 동일한 완성 페이지를 만든다.
 
 | 파일 | 누가 씀 |
 |------|---------|
-| `seed-seed-tokens.css + @seed-design/css` | BINDER, BUILDER (항상) |
+| `seed-tokens.css + @seed-design/css` | BINDER, BUILDER (항상) |
 | `theme.css` | BINDER, BUILDER |
 | `responsive-rules.md` | FLEX (반응형 생성), BUILDER (코드 작성) |
 | `figma-seed-variables.json` | BINDER (Variable 구조 기준) |

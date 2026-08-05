@@ -2,7 +2,7 @@
 
 > **💡 작업자(AI/개발자) 필독 사항**
 > 본 문서는 **axpublish** 파이프라인의 반응형 렌더링 규칙 법전입니다.
-> 색상·타이포 토큰 정의는 **`@seed-design/css`** 와 **`seed-seed-tokens.css`** 를 따릅니다.
+> 색상·타이포 토큰 정의는 **`@seed-design/css`** 와 **`seed-tokens.css`** 를 따릅니다.
 > 이 문서는 Seed가 다루지 않는 **레이아웃·반응형·Figma 변환 규칙**을 정의합니다.
 >
 > **기본 작업 원칙**
@@ -16,23 +16,34 @@
 
 ### 1-1. 브레이크포인트 (수정 금지)
 
-> ⚠️ Tailwind 기본 프리픽스(`md:`/`lg:`/`xl:`)를 쓰지 않는다. `seed-seed-tokens.css`의
-> `@theme { --breakpoint-mb: 1280px; --breakpoint-tb: 768px; }`가 커스텀
-> 브레이크포인트를 정의하고, Tailwind v4는 `--breakpoint-*` 변수 접미사를 variant 프리픽스로 만든다.
+> ⚠️ **이 값은 `@seed-design/css`의 실제 `breakpoints/index.mjs`에 정의된 값을 그대로 따른다.**
+> 임의로 3단계(Mobile/Tablet/Desktop)로 단순화하지 않는다 — SEED는 5단계다.
+> Tailwind 기본 프리픽스(`sm:`/`md:`/`lg:`/`xl:`)는 breakpoint **숫자**가 SEED와 다르므로
+> 그대로 쓰지 말고, `@theme`에서 SEED 값으로 재정의한 뒤 동일한 이름의 프리픽스로 쓴다
+> (이름은 SEED와 맞추는 게 목적이지, 커스텀 접두사를 새로 만드는 게 목적이 아니다).
 
-| 구간 | 범위 | Tailwind prefix | 의미 |
+| 구간 | 최소 너비 (min-width) | Tailwind prefix | 비고 |
 |:---|:---|:---|:---|
-| **Mobile** | 0px ~ 767px | 기본값 (prefix 없음) | — |
-| **Tablet 이상** | 768px ~ | `tb:` | min-width: 768px |
-| **Desktop 이상** | 1280px ~ | `mb:` | min-width: 1280px |
-| **Desktop 미만** | ~ 1279px | `max-mb:` | Tablet+Mobile 공통 (max-width: 1279.98px) |
-| **Mobile 전용** | ~ 767px | `max-tb:` | max-width: 767.98px |
-| **Tablet 밴드만** | 768px ~ 1279px | `tb:max-mb:` | 두 프리픽스 조합 |
+| **base** | 0px (기본값, prefix 없음) | 기본값 | — |
+| **sm** | 480px | `sm:` | |
+| **md** | 768px | `md:` | 사이드바 등 Tablet 레이아웃 분기 기준 |
+| **lg** | 1280px | `lg:` | Desktop 레이아웃 분기 기준 |
+| **xl** | 1440px | `xl:` | 콘텐츠 최대폭 도달 지점 (아래 1-2 참고) |
+
+> 값 검증 방법: `node_modules/@seed-design/css/breakpoints/index.mjs`를 직접 열어서
+> `breakpoints = { base: 0, sm: 480, md: 768, lg: 1280, xl: 1440 }`와 대조한다 — 이 문서의
+> 숫자와 실제 패키지 숫자가 달라졌다면 이 문서가 아니라 실제 패키지 쪽이 맞다.
 
 ### 1-2. 컨테이너 구조 (수정 금지)
 
-> `max-w-[...] mx-auto px-[...]`를 직접 조합하지 말고, `seed-seed-tokens.css`에 정의된
+> `max-w-[...] mx-auto px-[...]`를 직접 조합하지 말고, 프로젝트의 브랜드 토큰 CSS에 정의한
 > `container-em` 유틸리티 하나만 쓴다 — max-width·브레이크포인트별 패딩이 전부 포함.
+>
+> ⚠️ 아래 패딩 값은 **SEED 공식 CSS 토큰이 아니다** — `@seed-design/css`가 실제로 내보내는 건
+> `--seed-box-margin-*` 같은 빈 통로(`none`/`initial`)뿐이고, breakpoint 경계에서 값이 바뀌는
+> 로직 자체는 SEED 문서가 가이드라인으로만 제공하고 이걸 가져다 쓰는 앱이 직접 작성해야 한다.
+> 아래 표는 그 가이드라인을 그대로 프로젝트 표준으로 채택한 값이다 (임의로 20/48/64처럼
+> 다른 숫자를 새로 지어내지 않는다).
 
 ```html
 <!-- 모든 섹션 콘텐츠의 표준 래퍼 -->
@@ -41,75 +52,86 @@
 </div>
 ```
 
-| 항목 | 값 |
-|:---|:---|
-| **max-width** | 1440px |
-| **Mobile 패딩** | 좌우 각 20px (`--seed-dimension-x5`) |
-| **Tablet 패딩** | 좌우 각 48px (`--seed-dimension-x12`) |
-| **Desktop 패딩** | 좌우 각 64px (`--seed-dimension-x16`) |
+| 브레이크포인트 | 범위 | Margin(좌우 패딩) | Gutter |
+|:---|:---|:---|:---|
+| base | 0 ~ 479px | 12px (`--seed-dimension-x3`) | 16px (`--seed-dimension-x4`) |
+| sm | 480 ~ 767px | 12px (`--seed-dimension-x3`) | 16px (`--seed-dimension-x4`) |
+| md | 768 ~ 1279px | 24px (`--seed-dimension-x6`) | 32px (`--seed-dimension-x8`) |
+| lg | 1280 ~ 1439px | 24px (`--seed-dimension-x6`) | 32px (`--seed-dimension-x8`) |
+| xl | 1440px ~ | 24px (`--seed-dimension-x6`) | 32px (`--seed-dimension-x8`) |
+
+**max-width**: 1440px (Figma 쪽 콘텐츠 그리드도 동일 기준 — `Seed/Grid/Content` 스타일 참고)
 
 ---
 
 ## 2. 타이포그래피
 
 > **폰트 패밀리:** 기본값 `'Pretendard JP', 'Pretendard', sans-serif`.
-> 프로젝트마다 다르면 `seed-seed-tokens.css`에서 `--font-sans`를 override한다.
+> 프로젝트마다 다르면 브랜드 토큰 CSS에서 `--font-sans`를 override한다.
 
-### 2-1. Seed 타입 스케일 — 화면별 고정값
+### 2-1. Seed 타입 스케일 — t1~t14 (t15/t16은 존재하지 않음)
 
-`seed-seed-tokens.css` 에서 **t1~t8은 Seed 기본값 고정**, **t9~t16은 화면별 static 값**으로 override.
-Seed 컴포넌트 내부(버튼·인풋·배지 등)는 t1~t8을 사용하므로 수정 금지.
+> ⚠️ **가장 흔한 오해: SEED 폰트 크기는 브레이크포인트(뷰포트)로 바뀌지 않는다.**
+> `--seed-font-size-t12`는 Mobile이든 Desktop이든 항상 32px이다. 대신 각 토큰은
+> `clamp(base × 0.8, base, base × 1.5)` 형태로, **OS 접근성 폰트 크기 설정**
+> (`--seed-font-size-multiplier`, iOS/Android의 "글자 크게 보기" 등)에 따라서만 값이
+> 조금씩 변한다. "화면 크기가 커지면 제목도 커진다"는 이 문서의 예전 표는 실제 SEED
+> 동작과 다르다 — 반응형으로 폰트 크기를 다르게 주고 싶다면 SEED 토큰을 화면별로
+> override하는 게 아니라, 페이지 레벨에서 별도의 반응형 클래스를 직접 얹어야 한다.
+>
+> t1~t14 전체가 이 방식이며 t15/t16은 실제 패키지에 없다 — 화면에 그 이상 큰 텍스트가
+> 필요하면 t14(48px)를 그대로 쓰거나 페이지 전용 클래스를 새로 만든다(토큰으로 두지 않음).
 
-| 토큰 | Mobile | Tablet | Desktop | 역할 |
-|:---|:---|:---|:---|:---|
-| `--seed-font-size-t1` | 11px | 11px | 11px | 극소 캡션 |
-| `--seed-font-size-t2` | 12px | 12px | 12px | 캡션 |
-| `--seed-font-size-t3` | 13px | 13px | 13px | 보조 레이블 |
-| `--seed-font-size-t4` | 14px | 14px | 14px | 레이블·버튼 |
-| `--seed-font-size-t5` | 16px | 16px | 16px | 본문 |
-| `--seed-font-size-t6` | 18px | 18px | 18px | 큰 본문 |
-| `--seed-font-size-t7` | 20px | 20px | 20px | 소제목 |
-| `--seed-font-size-t8` | 22px | 22px | 22px | 헤딩 |
-| **`--seed-font-size-t9`** ↓ | **20px** | **22px** | **24px** | 소타이틀 |
-| **`--seed-font-size-t10`** | **20px** | **24px** | **26px** | 타이틀 3 |
-| **`--seed-font-size-t11`** | **22px** | **26px** | **28px** | 타이틀 2 |
-| **`--seed-font-size-t12`** | **24px** | **28px** | **32px** | 타이틀 1 |
-| **`--seed-font-size-t13`** | **28px** | **36px** | **40px** | Display 2 |
-| **`--seed-font-size-t14`** | **30px** | **42px** | **48px** | Display 1 |
-| **`--seed-font-size-t15`** ✦ | **32px** | **48px** | **56px** | Display XL |
-| **`--seed-font-size-t16`** ✦ | **36px** | **56px** | **72px** | Hero Display |
+| 토큰 | 값(base) | 역할 |
+|:---|:---|:---|
+| `--seed-font-size-t1` | 11px | 극소 캡션 |
+| `--seed-font-size-t2` | 12px | 캡션 |
+| `--seed-font-size-t3` | 13px | 보조 레이블 |
+| `--seed-font-size-t4` | 14px | 레이블·버튼 |
+| `--seed-font-size-t5` | 16px | 본문 |
+| `--seed-font-size-t6` | 18px | 큰 본문 |
+| `--seed-font-size-t7` | 20px | 소제목 |
+| `--seed-font-size-t8` | 22px | 헤딩 |
+| `--seed-font-size-t9` | 24px | 소타이틀 |
+| `--seed-font-size-t10` | 26px | 타이틀 3 |
+| `--seed-font-size-t11` | 28px | 타이틀 2 |
+| `--seed-font-size-t12` | 32px | 타이틀 1 |
+| `--seed-font-size-t13` | 40px | Display 2 |
+| `--seed-font-size-t14` | 48px | Display 1 |
 
-✦ t15·t16은 Seed 공식 스케일 확장 — `seed-seed-tokens.css`에 정의.
+> 값 검증 방법: `node_modules/@seed-design/css/all.css`에서 `--seed-font-size-t*` 로
+> grep해서 `clamp(...)` 안의 base 값(가운데 항)이 위 표와 일치하는지 대조한다.
 
 ### 2-2. Tailwind 클래스 작성 패턴
 
 ```html
-<!-- ✅ 올바른 방법: CSS 변수를 브래킷으로 참조 -->
+<!-- ✅ 올바른 방법: CSS 변수를 브래킷으로 참조 (모든 뷰포트에서 동일한 크기) -->
 <h1 class="text-[length:var(--seed-font-size-t12)] leading-[var(--seed-line-height-t12)]
            font-bold text-[color:var(--seed-color-fg-neutral)]">
   제목
 </h1>
 
-<!-- ✅ 반응형 타이포: 토큰이 미디어쿼리 자동 처리 — 뷰포트별 클래스 중복 불필요 -->
-<h1 class="text-[length:var(--seed-font-size-t14)] leading-[var(--seed-line-height-t14)] font-bold">
-  Display 제목 (Mobile 30px / Tablet 42px / Desktop 48px 자동 적용)
+<!-- Figma 시안에서 화면별로 실제 폰트 크기가 다르게 그려져 있다면(디자인 의도),
+     이건 SEED 토큰을 바꾸는 게 아니라 브레이크포인트 클래스를 별도로 얹는 것 —
+     반드시 어떤 값이 디자인 의도인지 먼저 확인 후 진행 (PAUSE 트리거 7번 참고) -->
+<h1 class="text-[length:var(--seed-font-size-t9)] lg:text-[length:var(--seed-font-size-t12)] font-bold">
+  화면별로 다르게 그려진 제목
 </h1>
 
-<!-- ❌ 잘못된 방법 1: 뷰포트별 클래스 직접 지정 (토큰이 이미 처리) -->
-<h1 class="text-[30px] tb:text-[42px] mb:text-[48px]">제목</h1>
-
-<!-- ❌ 잘못된 방법 2: 임의 하드코딩 -->
+<!-- ❌ 잘못된 방법: 임의 하드코딩 -->
 <h1 class="text-[#171719] text-[56px]">제목</h1>
 ```
 
 ### 2-3. Font Weight
 
+> SEED는 3단계만 존재한다 (600/Semibold 없음 — 디자인에 SemiBold가 있다면 Bold로
+> 통합하거나 PAUSE 후 확인한다, 임의로 `font-semibold` 클래스를 쓰지 않는다).
+
 | 클래스 | 값 | 용도 |
 |:---|:---|:---|
-| `font-normal` | 400 | 일반 본문 |
-| `font-medium` | 500 | 강조 본문 |
-| `font-semibold` | 600 | 서브 헤딩, 버튼 |
-| `font-bold` | 700 | 헤딩, 강조 |
+| `font-normal` | 400 (`--seed-font-weight-regular`) | 일반 본문 |
+| `font-medium` | 500 (`--seed-font-weight-medium`) | 강조 본문, 레이블 |
+| `font-bold` | 700 (`--seed-font-weight-bold`) | 헤딩, 버튼, 강조 |
 
 ---
 
@@ -160,7 +182,7 @@ border border-[var(--seed-color-stroke-neutral-solid)]
 
 ```html
 <!-- 3열 → 2열 → 1열 예시 -->
-<div class="grid grid-cols-1 tb:grid-cols-2 mb:grid-cols-3 gap-[20px]">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
 ```
 
 > ⚠️ 예외: Figma에서 가로 스크롤(Overflow: Scroll)로 설계된 경우
@@ -173,9 +195,9 @@ border border-[var(--seed-color-stroke-neutral-solid)]
 | Figma 시안 정렬 유지 | 정렬 무시, **너비 100% 세로 스택** |
 
 ```html
-<div class="flex flex-col w-full gap-[12px] mb:flex-row mb:w-auto mb:justify-end">
-  <button class="w-full mb:w-auto">취소</button>
-  <button class="w-full mb:w-auto">확인</button>
+<div class="flex flex-col w-full gap-[12px] lg:flex-row lg:w-auto lg:justify-end">
+  <button class="w-full lg:w-auto">취소</button>
+  <button class="w-full lg:w-auto">확인</button>
 </div>
 ```
 
@@ -201,7 +223,7 @@ border border-[var(--seed-color-stroke-neutral-solid)]
 
 ```html
 <div class="fixed bottom-0 left-0 w-full rounded-t-[var(--seed-radius-xlarge)]
-            mb:relative mb:rounded-[var(--seed-radius-large)] mb:max-w-[600px]">
+            lg:relative lg:rounded-[var(--seed-radius-large)] lg:max-w-[600px]">
 ```
 
 ---
@@ -308,7 +330,7 @@ Figma: Layout Grid 3열 / Gap 20px
 
 | 트리거 | 보고 형식 |
 |:---|:---|
-| `--seed-color-*` 에 없는 색상 발견 | `"#HEX (X회 사용). [A] 신규 토큰 추가 [B] 가장 유사한 Seed 시맨틱으로 대체 [C] 제거"` |
+| `--seed-color-*` 에 없는 색상 발견 | `"#HEX (X회 사용). [A] 그대로 두고 예외 처리(기본 권장 — 비슷한 토큰으로 임의 대체 금지) [B] 브랜드 override로 신규 primitive 추가 [C] 제거"` |
 | 5열 이상 그리드 발견 | `"X열 그리드는 기본 패턴 범위 밖입니다. 모바일 처리 방식을 선택해 주세요."` |
 | Figma 시안에 애니메이션/인터랙션 명시 | `"X 컴포넌트에 인터랙션이 감지되었습니다. 구현 범위에 포함할까요?"` |
 | 레이아웃이 규칙으로 처리 불가 | `"X 섹션은 공통 패턴으로 처리가 어렵습니다. 처리 방식을 알려주세요."` |
@@ -324,7 +346,8 @@ Figma: Layout Grid 3열 / Gap 20px
 ❌ !important 사용
 ❌ 인라인 style="" 속성 사용
 ❌ Tailwind 기본 색상 클래스 직접 사용 (bg-blue-500 → 반드시 Seed CSS 변수 토큰으로)
-❌ Tailwind 기본 브레이크포인트 프리픽스 사용 (md:/lg:/xl: → 반드시 tb:/mb: 커스텀 프리픽스)
+❌ Tailwind 기본 breakpoint 숫자를 그대로 사용 (기본값 md=768/lg=1024는 SEED의 md=768/lg=1280과
+   다르다 — 반드시 `@theme`에서 SEED 실제 값(0/480/768/1280/1440)으로 재정의 후 sm:/md:/lg:/xl: 사용)
 ❌ tailwind.config.js 파일 생성 (v4는 CSS 네이티브 — @theme/@utility로 설정)
 ❌ 독자 판단으로 예외 처리 (반드시 PAUSE 후 보고)
 ```
