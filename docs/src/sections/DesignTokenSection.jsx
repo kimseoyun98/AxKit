@@ -1,0 +1,40 @@
+import { Sec } from '../components/UI'
+
+export function DesignTokenSection() {
+  return (
+    <Sec id="f-design-token">
+      <h2>Design Token — Overview</h2>
+      <p>
+        디자인 토큰은 디자인 결정을 데이터로 번역한 것입니다. UI의 세부 사항을 디자인과 엔지니어링
+        간에 전달하는 커뮤니케이션 도구이자 공통 언어입니다.
+      </p>
+
+      <h3>2단계 계층 구조</h3>
+      <p>
+        <strong>Raw value</strong> — 어떤 디스플레이 장치에 그릴 수 있는 실제 값(<code>1px</code>,{' '}
+        <code>#fff</code>, <code>"Noto Sans KR"</code> 등). 무한한 값 중 실제로 쓸 값을 제한하고 이름을
+        부여하면 일관성·재사용성을 얻지만, 유연성·창의성은 제한됩니다. SEED는 이 균형을 위해 토큰을
+        2단계로 계층화합니다.
+      </p>
+      <p>
+        <strong>Scale Token(=이 문서의 Primitive)</strong> — Raw value Scale 하나에 이름을 부여한 것.
+        전체 디자인에 사용되는 값을 유한하게 유지하고, 미리 정의한 단위로 출력장치 세부사항을 숨겨
+        특정 플랫폼에 불가지론적인 디자인을 가능하게 합니다.
+      </p>
+      <p>
+        <strong>Semantic Token</strong> — Scale Token의 조합(Composition)으로 디자인 의도를 표현한
+        단위. 실제 디자인·개발 과정의 주요 빌딩블록입니다. 뷰포트나 플랫폼 등 외부 환경에 맞게 Scale에
+        적절한 값을 주입하는 것만으로, 스키마 변경 없이 유연하게 스킴을 재정의할 수 있습니다.
+      </p>
+
+      <h3>예시</h3>
+      <p>
+        <strong>색상</strong> — <code>fg.brand</code>/<code>bg.brand</code> 토큰은 모든 서비스에서
+        배경과 텍스트에 동일한 브랜드 색상을 쓸 수 있게 합니다.
+        <br />
+        <strong>간격</strong> — 화면 가장자리와 콘텐츠 사이 간격을 나타내는 <code>global-gutter</code>{' '}
+        토큰은 모든 서비스에서 동일한 간격을 쓸 수 있게 합니다.
+      </p>
+    </Sec>
+  )
+}
