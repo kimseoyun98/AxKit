@@ -1,6 +1,8 @@
 /**
- * axpublish v2.0 — seed-seed-tokens.css
- * 당근마켓 @seed-design/css 2.3.0 원본 8대 Foundations (Color, Typography, Spacing, Radius, Motion, Shadow, Scale, Breakpoint) 100% 완전 반영
+ * axpublish v2.0 — seed-tokens.css
+ * 당근마켓 @seed-design/css 2.3.0 원본 8대 Foundations (Color, Typography, Spacing, Radius, Motion, Shadow, Scale, Breakpoint) 반영
+ * Color는 generate-seed-brand.js가 생성하는 브랜드 override 파일에서 다룬다 (여기엔 Color 제외 7개 Foundation).
+ * 값 검증: node_modules/@seed-design/css/base.css 원본과 대조 완료.
  */
 
 :root {
@@ -32,6 +34,14 @@
   --seed-dimension-x14: 56px;
   --seed-dimension-x16: 64px;
 
+  /* ── 1-1. SEMANTIC SPACING (SEED 공식 정의 — packages/rootage/dimension.yaml 기준) ── */
+  --seed-dimension-spacing-x-between-chips: var(--seed-dimension-x2);     /* Chip 사이의 수평 간격 */
+  --seed-dimension-spacing-x-global-gutter: var(--seed-dimension-x4);     /* 화면 전체에 적용되는 기본 수평 padding */
+  --seed-dimension-spacing-y-component-default: var(--seed-dimension-x3); /* 전용 간격 토큰이 없는 컴포넌트 사이의 기본 수직 간격 */
+  --seed-dimension-spacing-y-nav-to-title: var(--seed-dimension-x5);      /* Top Navigation과 Page Title 사이 간격 */
+  --seed-dimension-spacing-y-screen-bottom: var(--seed-dimension-x14);    /* 화면 하단 여백 */
+  --seed-dimension-spacing-y-between-text: var(--seed-dimension-x1_5);   /* 텍스트 요소 간 수직 간격 */
+
   /* ── 2. RADIUS (r0_5 ~ r6, full) ── */
   --seed-radius-r0_5: 2px;
   --seed-radius-r1: 4px;
@@ -46,24 +56,127 @@
   --seed-radius-full: 9999px;
 
   /* ── 3. MOTION DURATION & TIMING ── */
-  --seed-duration-d1: 100ms;
-  --seed-duration-d2: 150ms;
-  --seed-duration-d3: 200ms;
-  --seed-duration-d4: 300ms;
-  --seed-duration-d5: 400ms;
-  --seed-duration-d6: 500ms;
-  --seed-timing-function-enter: cubic-bezier(0, 0, 0.2, 1);
-  --seed-timing-function-exit: cubic-bezier(0.4, 0, 1, 1);
+  --seed-duration-d1: 50ms;
+  --seed-duration-d2: 100ms;
+  --seed-duration-d3: 150ms;
+  --seed-duration-d4: 200ms;
+  --seed-duration-d5: 250ms;
+  --seed-duration-d6: 300ms;
+  --seed-timing-function-linear: cubic-bezier(0, 0, 1, 1);
+  --seed-timing-function-easing: cubic-bezier(0.35, 0, 0.35, 1);
+  --seed-timing-function-enter: cubic-bezier(0, 0, 0.15, 1);
+  --seed-timing-function-exit: cubic-bezier(0.35, 0, 1, 1);
+  --seed-timing-function-enter-expressive: cubic-bezier(0.03, 0.4, 0.1, 1);
+  --seed-timing-function-exit-expressive: cubic-bezier(0.35, 0, 0.95, 0.55);
 
   /* ── 4. SHADOW & ELEVATION ── */
-  --seed-shadow-s1: 0 1px 3px rgba(0,0,0,0.08);
-  --seed-shadow-s2: 0 4px 12px rgba(0,0,0,0.12);
-  --seed-shadow-s3: 0 8px 24px rgba(0,0,0,0.18);
+  --seed-shadow-s1: 0 1px 4px 0 rgba(0,0,0,0.078);
+  --seed-shadow-s2: 0 2px 10px 0 rgba(0,0,0,0.102);
+  --seed-shadow-s3: 0 4px 16px 0 rgba(0,0,0,0.122);
 
   /* ── 5. SCALE ── */
   --seed-scale-s95: 0.95;
   --seed-scale-s97: 0.97;
   --seed-scale-s98: 0.98;
+
+  /* ── 6. TYPOGRAPHY ── */
+  /* 폰트 패밀리 기본값 (responsive-rules.md 2 기준) — 프로젝트마다 다르면 여기만 override */
+  --font-sans: 'Pretendard JP', 'Pretendard', sans-serif;
+
+  --seed-font-weight-regular: 400;
+  --seed-font-weight-medium: 500;
+  --seed-font-weight-bold: 700;
+
+  /*
+   * t1~t14 (t15/t16은 SEED에 존재하지 않음 — responsive-rules.md 2-1 참고)
+   * SEED 폰트 크기는 브레이크포인트(뷰포트)로 바뀌지 않는다. clamp()는 OS 접근성
+   * 폰트 크기 설정(--seed-font-size-multiplier)에만 반응하며, 화면 크기와는 무관하다.
+   * 화면별로 실제 텍스트 크기가 달라야 한다면 다른 t 토큰으로 breakpoint 클래스를
+   * 별도로 얹는다 (SEED 토큰 자체를 override하지 않는다).
+   */
+  --seed-font-size-t1-static: 11px;
+  --seed-font-size-t2-static: 12px;
+  --seed-font-size-t3-static: 13px;
+  --seed-font-size-t4-static: 14px;
+  --seed-font-size-t5-static: 16px;
+  --seed-font-size-t6-static: 18px;
+  --seed-font-size-t7-static: 20px;
+  --seed-font-size-t8-static: 22px;
+  --seed-font-size-t9-static: 24px;
+  --seed-font-size-t10-static: 26px;
+  --seed-font-size-t11-static: 28px;
+  --seed-font-size-t12-static: 32px;
+  --seed-font-size-t13-static: 40px;
+  --seed-font-size-t14-static: 48px;
+
+  --seed-font-size-t1: clamp(calc(var(--seed-font-size-t1-static) * var(--seed-font-size-limit-min, .8)), calc(.6875rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-font-size-t1-static) * var(--seed-font-size-limit-max, 1.5)));
+  --seed-font-size-t2: clamp(calc(var(--seed-font-size-t2-static) * var(--seed-font-size-limit-min, .8)), calc(.75rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-font-size-t2-static) * var(--seed-font-size-limit-max, 1.5)));
+  --seed-font-size-t3: clamp(calc(var(--seed-font-size-t3-static) * var(--seed-font-size-limit-min, .8)), calc(.8125rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-font-size-t3-static) * var(--seed-font-size-limit-max, 1.5)));
+  --seed-font-size-t4: clamp(calc(var(--seed-font-size-t4-static) * var(--seed-font-size-limit-min, .8)), calc(.875rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-font-size-t4-static) * var(--seed-font-size-limit-max, 1.5)));
+  --seed-font-size-t5: clamp(calc(var(--seed-font-size-t5-static) * var(--seed-font-size-limit-min, .8)), calc(1rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-font-size-t5-static) * var(--seed-font-size-limit-max, 1.5)));
+  --seed-font-size-t6: clamp(calc(var(--seed-font-size-t6-static) * var(--seed-font-size-limit-min, .8)), calc(1.125rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-font-size-t6-static) * var(--seed-font-size-limit-max, 1.5)));
+  --seed-font-size-t7: clamp(calc(var(--seed-font-size-t7-static) * var(--seed-font-size-limit-min, .8)), calc(1.25rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-font-size-t7-static) * var(--seed-font-size-limit-max, 1.5)));
+  --seed-font-size-t8: clamp(calc(var(--seed-font-size-t8-static) * var(--seed-font-size-limit-min, .8)), calc(1.375rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-font-size-t8-static) * var(--seed-font-size-limit-max, 1.5)));
+  --seed-font-size-t9: clamp(calc(var(--seed-font-size-t9-static) * var(--seed-font-size-limit-min, .8)), calc(1.5rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-font-size-t9-static) * var(--seed-font-size-limit-max, 1.5)));
+  --seed-font-size-t10: clamp(calc(var(--seed-font-size-t10-static) * var(--seed-font-size-limit-min, .8)), calc(1.625rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-font-size-t10-static) * var(--seed-font-size-limit-max, 1.5)));
+  --seed-font-size-t11: clamp(calc(var(--seed-font-size-t11-static) * var(--seed-font-size-limit-min, .8)), calc(1.75rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-font-size-t11-static) * var(--seed-font-size-limit-max, 1.5)));
+  --seed-font-size-t12: clamp(calc(var(--seed-font-size-t12-static) * var(--seed-font-size-limit-min, .8)), calc(2rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-font-size-t12-static) * var(--seed-font-size-limit-max, 1.5)));
+  --seed-font-size-t13: clamp(calc(var(--seed-font-size-t13-static) * var(--seed-font-size-limit-min, .8)), calc(2.5rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-font-size-t13-static) * var(--seed-font-size-limit-max, 1.5)));
+  --seed-font-size-t14: clamp(calc(var(--seed-font-size-t14-static) * var(--seed-font-size-limit-min, .8)), calc(3rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-font-size-t14-static) * var(--seed-font-size-limit-max, 1.5)));
+
+  --seed-line-height-t1-static: 15px;
+  --seed-line-height-t2-static: 16px;
+  --seed-line-height-t3-static: 18px;
+  --seed-line-height-t4-static: 19px;
+  --seed-line-height-t5-static: 22px;
+  --seed-line-height-t6-static: 24px;
+  --seed-line-height-t7-static: 27px;
+  --seed-line-height-t8-static: 30px;
+  --seed-line-height-t9-static: 32px;
+  --seed-line-height-t10-static: 35px;
+  --seed-line-height-t11-static: 38px;
+  --seed-line-height-t12-static: 42px;
+  --seed-line-height-t13-static: 52px;
+  --seed-line-height-t14-static: 60px;
+
+  --seed-line-height-t1: clamp(calc(var(--seed-line-height-t1-static) * var(--seed-line-height-limit-min, .8)), calc(.9375rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-line-height-t1-static) * var(--seed-line-height-limit-max, 1.5)));
+  --seed-line-height-t2: clamp(calc(var(--seed-line-height-t2-static) * var(--seed-line-height-limit-min, .8)), calc(1rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-line-height-t2-static) * var(--seed-line-height-limit-max, 1.5)));
+  --seed-line-height-t3: clamp(calc(var(--seed-line-height-t3-static) * var(--seed-line-height-limit-min, .8)), calc(1.125rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-line-height-t3-static) * var(--seed-line-height-limit-max, 1.5)));
+  --seed-line-height-t4: clamp(calc(var(--seed-line-height-t4-static) * var(--seed-line-height-limit-min, .8)), calc(1.1875rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-line-height-t4-static) * var(--seed-line-height-limit-max, 1.5)));
+  --seed-line-height-t5: clamp(calc(var(--seed-line-height-t5-static) * var(--seed-line-height-limit-min, .8)), calc(1.375rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-line-height-t5-static) * var(--seed-line-height-limit-max, 1.5)));
+  --seed-line-height-t6: clamp(calc(var(--seed-line-height-t6-static) * var(--seed-line-height-limit-min, .8)), calc(1.5rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-line-height-t6-static) * var(--seed-line-height-limit-max, 1.5)));
+  --seed-line-height-t7: clamp(calc(var(--seed-line-height-t7-static) * var(--seed-line-height-limit-min, .8)), calc(1.6875rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-line-height-t7-static) * var(--seed-line-height-limit-max, 1.5)));
+  --seed-line-height-t8: clamp(calc(var(--seed-line-height-t8-static) * var(--seed-line-height-limit-min, .8)), calc(1.875rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-line-height-t8-static) * var(--seed-line-height-limit-max, 1.5)));
+  --seed-line-height-t9: clamp(calc(var(--seed-line-height-t9-static) * var(--seed-line-height-limit-min, .8)), calc(2rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-line-height-t9-static) * var(--seed-line-height-limit-max, 1.5)));
+  --seed-line-height-t10: clamp(calc(var(--seed-line-height-t10-static) * var(--seed-line-height-limit-min, .8)), calc(2.1875rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-line-height-t10-static) * var(--seed-line-height-limit-max, 1.5)));
+  --seed-line-height-t11: clamp(calc(var(--seed-line-height-t11-static) * var(--seed-line-height-limit-min, .8)), calc(2.375rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-line-height-t11-static) * var(--seed-line-height-limit-max, 1.5)));
+  --seed-line-height-t12: clamp(calc(var(--seed-line-height-t12-static) * var(--seed-line-height-limit-min, .8)), calc(2.625rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-line-height-t12-static) * var(--seed-line-height-limit-max, 1.5)));
+  --seed-line-height-t13: clamp(calc(var(--seed-line-height-t13-static) * var(--seed-line-height-limit-min, .8)), calc(3.25rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-line-height-t13-static) * var(--seed-line-height-limit-max, 1.5)));
+  --seed-line-height-t14: clamp(calc(var(--seed-line-height-t14-static) * var(--seed-line-height-limit-min, .8)), calc(3.75rem * var(--seed-font-size-multiplier, 1)), calc(var(--seed-line-height-t14-static) * var(--seed-line-height-limit-max, 1.5)));
+
+  /* ── 7. CONTAINER (responsive-rules.md 1-2 기준 — 수정 금지) ── */
+  --seed-container-max-width: 1440px;
+  --seed-container-padding-base: var(--seed-dimension-x3);  /* base~sm: 12px */
+  --seed-container-padding-sm: var(--seed-dimension-x3);
+  --seed-container-padding-md: var(--seed-dimension-x6);    /* md~xl: 24px */
+  --seed-container-padding-lg: var(--seed-dimension-x6);
+  --seed-container-padding-xl: var(--seed-dimension-x6);
+  --seed-container-gutter-base: var(--seed-dimension-x4);   /* base~sm: 16px */
+  --seed-container-gutter-sm: var(--seed-dimension-x4);
+  --seed-container-gutter-md: var(--seed-dimension-x8);     /* md~xl: 32px */
+  --seed-container-gutter-lg: var(--seed-dimension-x8);
+  --seed-container-gutter-xl: var(--seed-dimension-x8);
+}
+
+/* ── 8. BREAKPOINT (responsive-rules.md 1-1 기준 — 수정 금지) ──
+ * Tailwind v4 @theme로 재정의: 기본 sm/md/lg/xl 숫자(640/768/1024/1280)는 SEED와
+ * 다르므로 반드시 이 블록으로 override한 뒤 동일한 이름의 프리픽스(sm:/md:/lg:/xl:)를 쓴다.
+ */
+@theme {
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1280px;
+  --breakpoint-xl: 1440px;
 }
 
 @media (prefers-reduced-motion: reduce) {

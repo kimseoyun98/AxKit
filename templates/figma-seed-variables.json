@@ -4,66 +4,66 @@
     "Light",
     "Dark"
   ],
-  "totalCount": 237,
+  "totalCount": 274,
   "variables": [
     {
       "name": "palette/carrot-100",
       "type": "COLOR",
-      "value": "#EBF2FF",
+      "value": "#FFF2EC",
       "description": "Primitive Brand 100"
     },
     {
       "name": "palette/carrot-200",
       "type": "COLOR",
-      "value": "#C7DCFF",
+      "value": "#FFE8DB",
       "description": "Primitive Brand 200"
     },
     {
       "name": "palette/carrot-300",
       "type": "COLOR",
-      "value": "#99BFFF",
+      "value": "#FFD5C0",
       "description": "Primitive Brand 300"
     },
     {
       "name": "palette/carrot-400",
       "type": "COLOR",
-      "value": "#5C99FF",
+      "value": "#FFB999",
       "description": "Primitive Brand 400"
     },
     {
       "name": "palette/carrot-500",
       "type": "COLOR",
-      "value": "#3385FF",
+      "value": "#FF9364",
       "description": "Primitive Brand 500"
     },
     {
       "name": "palette/carrot-600",
       "type": "COLOR",
-      "value": "#0066FF",
-      "description": "Primitive Brand 600"
+      "value": "#FF6600",
+      "description": "Primitive Brand 600 (프로젝트 Primary 컬러로 override됨 — generate-seed-brand.js 참고)"
     },
     {
       "name": "palette/carrot-700",
       "type": "COLOR",
-      "value": "#005EEB",
+      "value": "#E14D00",
       "description": "Primitive Brand 700"
     },
     {
       "name": "palette/carrot-800",
       "type": "COLOR",
-      "value": "#0054D1",
+      "value": "#B93901",
       "description": "Primitive Brand 800"
     },
     {
       "name": "palette/carrot-900",
       "type": "COLOR",
-      "value": "#004AB8",
+      "value": "#862B00",
       "description": "Primitive Brand 900"
     },
     {
       "name": "palette/carrot-1000",
       "type": "COLOR",
-      "value": "#003A8F",
+      "value": "#471601",
       "description": "Primitive Brand 1000"
     },
     {
@@ -75,301 +75,301 @@
     {
       "name": "palette/gray-100",
       "type": "COLOR",
-      "value": "#F5F5F5",
+      "value": "#F7F8F9",
       "description": "Primitive Gray 100"
     },
     {
       "name": "palette/gray-200",
       "type": "COLOR",
-      "value": "#EBEBEB",
+      "value": "#F3F4F5",
       "description": "Primitive Gray 200"
     },
     {
       "name": "palette/gray-300",
       "type": "COLOR",
-      "value": "#D9D9D9",
+      "value": "#EEEFF1",
       "description": "Primitive Gray 300"
     },
     {
       "name": "palette/gray-400",
       "type": "COLOR",
-      "value": "#C2C2C2",
+      "value": "#DCDEE3",
       "description": "Primitive Gray 400"
     },
     {
       "name": "palette/gray-500",
       "type": "COLOR",
-      "value": "#9E9E9E",
+      "value": "#D1D3D8",
       "description": "Primitive Gray 500"
     },
     {
       "name": "palette/gray-600",
       "type": "COLOR",
-      "value": "#757575",
+      "value": "#B0B3BA",
       "description": "Primitive Gray 600"
     },
     {
       "name": "palette/gray-700",
       "type": "COLOR",
-      "value": "#616161",
+      "value": "#868B94",
       "description": "Primitive Gray 700"
     },
     {
       "name": "palette/gray-800",
       "type": "COLOR",
-      "value": "#424242",
+      "value": "#555D6D",
       "description": "Primitive Gray 800"
     },
     {
       "name": "palette/gray-900",
       "type": "COLOR",
-      "value": "#212121",
+      "value": "#2A3038",
       "description": "Primitive Gray 900"
     },
     {
       "name": "palette/gray-1000",
       "type": "COLOR",
-      "value": "#121212",
+      "value": "#1A1C20",
       "description": "Primitive Gray 1000"
     },
     {
       "name": "palette/blue-100",
       "type": "COLOR",
-      "value": "#E3F2FD",
+      "value": "#EFF6FF",
       "description": "Primitive Blue 100"
     },
     {
       "name": "palette/blue-200",
       "type": "COLOR",
-      "value": "#BBDEFB",
+      "value": "#E2EDFC",
       "description": "Primitive Blue 200"
     },
     {
       "name": "palette/blue-300",
       "type": "COLOR",
-      "value": "#90CAF9",
+      "value": "#CBDFFA",
       "description": "Primitive Blue 300"
     },
     {
       "name": "palette/blue-400",
       "type": "COLOR",
-      "value": "#42A5F5",
+      "value": "#AACEFD",
       "description": "Primitive Blue 400"
     },
     {
       "name": "palette/blue-500",
       "type": "COLOR",
-      "value": "#2196F3",
+      "value": "#85B8FD",
       "description": "Primitive Blue 500"
     },
     {
       "name": "palette/blue-600",
       "type": "COLOR",
-      "value": "#1E88E5",
+      "value": "#5E98FE",
       "description": "Primitive Blue 600"
     },
     {
       "name": "palette/blue-700",
       "type": "COLOR",
-      "value": "#1565C0",
+      "value": "#217CF9",
       "description": "Primitive Blue 700"
     },
     {
       "name": "palette/blue-800",
       "type": "COLOR",
-      "value": "#1557A6",
+      "value": "#135FCD",
       "description": "Primitive Blue 800"
     },
     {
       "name": "palette/blue-900",
       "type": "COLOR",
-      "value": "#0D47A1",
+      "value": "#0B4596",
       "description": "Primitive Blue 900"
     },
     {
       "name": "palette/blue-1000",
       "type": "COLOR",
-      "value": "#0A337A",
+      "value": "#032451",
       "description": "Primitive Blue 1000"
     },
     {
       "name": "palette/green-100",
       "type": "COLOR",
-      "value": "#E8F5E9",
+      "value": "#EDFAF6",
       "description": "Primitive Green 100"
     },
     {
       "name": "palette/green-200",
       "type": "COLOR",
-      "value": "#C8E6C9",
+      "value": "#D9F6E9",
       "description": "Primitive Green 200"
     },
     {
       "name": "palette/green-300",
       "type": "COLOR",
-      "value": "#A5D6A7",
+      "value": "#B9E9D2",
       "description": "Primitive Green 300"
     },
     {
       "name": "palette/green-400",
       "type": "COLOR",
-      "value": "#66BB6A",
+      "value": "#7DDCB3",
       "description": "Primitive Green 400"
     },
     {
       "name": "palette/green-500",
       "type": "COLOR",
-      "value": "#4CAF50",
+      "value": "#42C593",
       "description": "Primitive Green 500"
     },
     {
       "name": "palette/green-600",
       "type": "COLOR",
-      "value": "#43A047",
+      "value": "#10AB7D",
       "description": "Primitive Green 600"
     },
     {
       "name": "palette/green-700",
       "type": "COLOR",
-      "value": "#388E3C",
+      "value": "#079171",
       "description": "Primitive Green 700"
     },
     {
       "name": "palette/green-800",
       "type": "COLOR",
-      "value": "#2E7D32",
+      "value": "#00745F",
       "description": "Primitive Green 800"
     },
     {
       "name": "palette/green-900",
       "type": "COLOR",
-      "value": "#1B5E20",
+      "value": "#075445",
       "description": "Primitive Green 900"
     },
     {
       "name": "palette/green-1000",
       "type": "COLOR",
-      "value": "#124216",
+      "value": "#0A2B24",
       "description": "Primitive Green 1000"
     },
     {
       "name": "palette/red-100",
       "type": "COLOR",
-      "value": "#FFEBEE",
+      "value": "#FDF0F0",
       "description": "Primitive Red 100"
     },
     {
       "name": "palette/red-200",
       "type": "COLOR",
-      "value": "#FFCDD2",
+      "value": "#FDE7E7",
       "description": "Primitive Red 200"
     },
     {
       "name": "palette/red-300",
       "type": "COLOR",
-      "value": "#EF9A9A",
+      "value": "#FED4D2",
       "description": "Primitive Red 300"
     },
     {
       "name": "palette/red-400",
       "type": "COLOR",
-      "value": "#E57373",
+      "value": "#FEB7B3",
       "description": "Primitive Red 400"
     },
     {
       "name": "palette/red-500",
       "type": "COLOR",
-      "value": "#F44336",
+      "value": "#FE928D",
       "description": "Primitive Red 500"
     },
     {
       "name": "palette/red-600",
       "type": "COLOR",
-      "value": "#E53935",
+      "value": "#FC6A66",
       "description": "Primitive Red 600"
     },
     {
       "name": "palette/red-700",
       "type": "COLOR",
-      "value": "#C62828",
+      "value": "#FA342C",
       "description": "Primitive Red 700"
     },
     {
       "name": "palette/red-800",
       "type": "COLOR",
-      "value": "#B71C1C",
+      "value": "#CA1D13",
       "description": "Primitive Red 800"
     },
     {
       "name": "palette/red-900",
       "type": "COLOR",
-      "value": "#8C1313",
+      "value": "#921708",
       "description": "Primitive Red 900"
     },
     {
       "name": "palette/red-1000",
       "type": "COLOR",
-      "value": "#5C0B0B",
+      "value": "#4A1209",
       "description": "Primitive Red 1000"
     },
     {
       "name": "palette/yellow-100",
       "type": "COLOR",
-      "value": "#FFFDE7",
+      "value": "#FFF7DE",
       "description": "Primitive Yellow 100"
     },
     {
       "name": "palette/yellow-200",
       "type": "COLOR",
-      "value": "#FFF59D",
+      "value": "#FDEFB9",
       "description": "Primitive Yellow 200"
     },
     {
       "name": "palette/yellow-300",
       "type": "COLOR",
-      "value": "#FFF176",
+      "value": "#FBDC65",
       "description": "Primitive Yellow 300"
     },
     {
       "name": "palette/yellow-400",
       "type": "COLOR",
-      "value": "#FFEE58",
+      "value": "#E9C647",
       "description": "Primitive Yellow 400"
     },
     {
       "name": "palette/yellow-500",
       "type": "COLOR",
-      "value": "#FFEB3B",
+      "value": "#D4AB28",
       "description": "Primitive Yellow 500"
     },
     {
       "name": "palette/yellow-600",
       "type": "COLOR",
-      "value": "#FDD835",
+      "value": "#C49725",
       "description": "Primitive Yellow 600"
     },
     {
       "name": "palette/yellow-700",
       "type": "COLOR",
-      "value": "#F57F17",
+      "value": "#9B7821",
       "description": "Primitive Yellow 700"
     },
     {
       "name": "palette/yellow-800",
       "type": "COLOR",
-      "value": "#F57F17",
+      "value": "#755B22",
       "description": "Primitive Yellow 800"
     },
     {
       "name": "palette/yellow-900",
       "type": "COLOR",
-      "value": "#E65100",
+      "value": "#4F3E1F",
       "description": "Primitive Yellow 900"
     },
     {
       "name": "palette/yellow-1000",
       "type": "COLOR",
-      "value": "#BF360C",
+      "value": "#2C2512",
       "description": "Primitive Yellow 1000"
     },
     {
@@ -435,61 +435,61 @@
     {
       "name": "palette/purple-100",
       "type": "COLOR",
-      "value": "#F3E5F5",
+      "value": "#F5F3FE",
       "description": "Primitive Purple 100"
     },
     {
       "name": "palette/purple-200",
       "type": "COLOR",
-      "value": "#E1BEE7",
+      "value": "#EFEAFE",
       "description": "Primitive Purple 200"
     },
     {
       "name": "palette/purple-300",
       "type": "COLOR",
-      "value": "#CE93D8",
+      "value": "#E1D8FF",
       "description": "Primitive Purple 300"
     },
     {
       "name": "palette/purple-400",
       "type": "COLOR",
-      "value": "#AB47BC",
+      "value": "#D0C0FF",
       "description": "Primitive Purple 400"
     },
     {
       "name": "palette/purple-500",
       "type": "COLOR",
-      "value": "#9C27B0",
+      "value": "#B8A1FF",
       "description": "Primitive Purple 500"
     },
     {
       "name": "palette/purple-600",
       "type": "COLOR",
-      "value": "#8E24AA",
+      "value": "#9F84FB",
       "description": "Primitive Purple 600"
     },
     {
       "name": "palette/purple-700",
       "type": "COLOR",
-      "value": "#7B1FA2",
+      "value": "#8969EA",
       "description": "Primitive Purple 700"
     },
     {
       "name": "palette/purple-800",
       "type": "COLOR",
-      "value": "#6A1B9A",
+      "value": "#6D50CB",
       "description": "Primitive Purple 800"
     },
     {
       "name": "palette/purple-900",
       "type": "COLOR",
-      "value": "#4A148C",
+      "value": "#50379B",
       "description": "Primitive Purple 900"
     },
     {
       "name": "palette/purple-1000",
       "type": "COLOR",
-      "value": "#310C5D",
+      "value": "#29175D",
       "description": "Primitive Purple 1000"
     },
     {
@@ -556,211 +556,325 @@
       "name": "fg/neutral",
       "type": "COLOR",
       "alias": "palette/gray-1000",
-      "description": "기본 본문 텍스트"
+      "description": "텍스트, 아이콘 등 UI의 전경 요소에 사용하는 색상입니다. 본문 텍스트처럼 가장 기본이 되는 전경 요소에 사용합니다."
     },
     {
       "name": "fg/neutral-muted",
       "type": "COLOR",
       "alias": "palette/gray-800",
-      "description": "보조 설명 텍스트"
+      "description": "전경 요소 중 본문보다 강조도를 낮춰야 하는 보조 설명 텍스트에 사용합니다."
     },
     {
       "name": "fg/neutral-subtle",
       "type": "COLOR",
-      "alias": "palette/gray-600",
-      "description": "약한 힌트 텍스트"
+      "alias": "palette/gray-700",
+      "description": "전경 요소 중 가장 약한 강조도가 필요한 힌트성 텍스트에 사용합니다."
     },
     {
       "name": "fg/neutral-inverted",
       "type": "COLOR",
       "alias": "palette/gray-00",
-      "description": "다크 반전 텍스트"
+      "description": "어두운 배경(다크 버튼, 반전 영역) 위에 올라가는 텍스트·아이콘에 사용합니다."
+    },
+    {
+      "name": "fg/placeholder",
+      "type": "COLOR",
+      "alias": "palette/gray-600",
+      "description": "입력창의 placeholder 텍스트처럼, 아직 값이 입력되지 않은 상태를 안내하는 텍스트에 사용합니다."
     },
     {
       "name": "fg/brand",
       "type": "COLOR",
       "alias": "palette/carrot-600",
-      "description": "브랜드 포인트 텍스트"
+      "description": "브랜드를 즉각적으로 인식시켜야 하는 텍스트·링크·아이콘에 사용합니다."
+    },
+    {
+      "name": "fg/brand-contrast",
+      "type": "COLOR",
+      "alias": "palette/carrot-700",
+      "description": "브랜드 텍스트 중 저채도 배경 위나 작은 글씨처럼 더 높은 대비가 필요한 경우에 사용합니다."
     },
     {
       "name": "fg/disabled",
       "type": "COLOR",
       "alias": "palette/gray-500",
-      "description": "비활성 텍스트"
+      "description": "비활성화된 컴포넌트의 텍스트·아이콘에 사용합니다."
     },
     {
       "name": "fg/positive",
       "type": "COLOR",
       "alias": "palette/green-700",
-      "description": "성공 텍스트"
+      "description": "성공적인 작업, 확인 등 긍정적인 상태를 나타내는 텍스트·아이콘에 사용합니다."
+    },
+    {
+      "name": "fg/positive-contrast",
+      "type": "COLOR",
+      "alias": "palette/green-900",
+      "description": "성공 상태 텍스트 중 더 높은 대비가 필요한 경우에 사용합니다."
     },
     {
       "name": "fg/critical",
       "type": "COLOR",
       "alias": "palette/red-700",
-      "description": "에러 텍스트"
+      "description": "오류, 실패 등 즉각적인 주의가 필요한 상태를 나타내는 텍스트·아이콘에 사용합니다."
+    },
+    {
+      "name": "fg/critical-contrast",
+      "type": "COLOR",
+      "alias": "palette/red-900",
+      "description": "에러 상태 텍스트 중 더 높은 대비가 필요한 경우에 사용합니다."
     },
     {
       "name": "fg/warning",
       "type": "COLOR",
       "alias": "palette/yellow-700",
-      "description": "주의 텍스트"
+      "description": "사용자의 주의가 필요한 경고 메시지나 안내 텍스트·아이콘에 사용합니다."
+    },
+    {
+      "name": "fg/warning-contrast",
+      "type": "COLOR",
+      "alias": "palette/yellow-900",
+      "description": "경고 상태 텍스트 중 더 높은 대비가 필요한 경우에 사용합니다."
     },
     {
       "name": "fg/informative",
       "type": "COLOR",
       "alias": "palette/blue-700",
-      "description": "정보 텍스트"
+      "description": "사용자에게 유용한 정보나 상태를 설명하는 텍스트·아이콘에 사용합니다."
+    },
+    {
+      "name": "fg/informative-contrast",
+      "type": "COLOR",
+      "alias": "palette/blue-900",
+      "description": "정보 텍스트 중 더 높은 대비가 필요한 경우에 사용합니다."
     },
     {
       "name": "bg-layer/default",
       "type": "COLOR",
       "alias": "palette/gray-00",
-      "description": "기본 화면 배경"
+      "description": "전체 화면 또는 UI의 배경에 사용하는 색상입니다. 화면 전체의 기본 배경에 사용합니다."
     },
     {
       "name": "bg-layer/fill",
       "type": "COLOR",
       "alias": "palette/gray-100",
-      "description": "섹션 배경"
+      "description": "화면 내 구획을 나누는 섹션 배경에 사용합니다."
     },
     {
       "name": "bg-layer/floating",
       "type": "COLOR",
       "alias": "palette/gray-00",
-      "description": "카드/모달/드롭다운 배경"
+      "description": "카드, 모달, 드롭다운처럼 기본 배경 위에 떠 있는(floating) 요소의 배경에 사용합니다."
     },
     {
       "name": "bg-layer/basement",
       "type": "COLOR",
       "alias": "palette/gray-200",
-      "description": "앱 최하단 외곽 배경"
+      "description": "앱 최하단, 화면 바깥 여백처럼 가장 아래에 깔리는 레이어의 배경에 사용합니다."
     },
     {
       "name": "bg-brand/solid",
       "type": "COLOR",
       "alias": "palette/carrot-600",
-      "description": "Primary 버튼 배경 (Default)"
+      "description": "Primary 버튼처럼 화면에서 가장 중요한 액션을 강조하는 고강조 브랜드 배경에 사용합니다."
     },
     {
       "name": "bg-brand/solid-pressed",
       "type": "COLOR",
       "alias": "palette/carrot-700",
-      "description": "Primary 버튼 Hover/Pressed 배경 [CSS :hover/:active 자동 처리]"
+      "description": "브랜드 고강조 배경 요소를 눌렀을 때(hover/pressed) 사용합니다. [CSS :hover/:active 자동 처리]"
     },
     {
       "name": "bg-brand/weak",
       "type": "COLOR",
       "alias": "palette/carrot-100",
-      "description": "연한 브랜드 강조 배경"
+      "description": "브랜드 배경 중 저강조로 은은하게 브랜드를 드러내야 할 때 사용합니다."
     },
     {
       "name": "bg-brand/weak-pressed",
       "type": "COLOR",
       "alias": "palette/carrot-200",
-      "description": "연한 브랜드 배경 Hover [CSS :hover/:active 자동 처리]"
+      "description": "저강조 브랜드 배경 요소를 눌렀을 때(hover/pressed) 사용합니다. [CSS :hover/:active 자동 처리]"
     },
     {
       "name": "bg-neutral/inverted",
       "type": "COLOR",
       "alias": "palette/gray-900",
-      "description": "다크 테마 버튼 배경"
+      "description": "라이트 화면 안에서 다크 톤으로 반전된 배경(다크 버튼, 툴팁 등)에 사용합니다."
     },
     {
       "name": "bg-neutral/solid",
       "type": "COLOR",
-      "alias": "palette/gray-200",
-      "description": "중성 서브 버튼 배경"
+      "alias": "palette/gray-1000",
+      "description": "중성색 중 가장 강한 강조가 필요한 배경(다크 버튼 등)에 사용합니다."
     },
     {
       "name": "bg-neutral/weak",
       "type": "COLOR",
-      "alias": "palette/gray-100",
-      "description": "hover 아이템 배경"
+      "alias": "palette/gray-200",
+      "description": "hover 아이템 배경처럼 저강조 중성 배경이 필요할 때 사용합니다."
     },
     {
       "name": "bg-neutral/weak-alpha",
       "type": "COLOR",
-      "value": "rgba(0,0,0,0.04)",
-      "description": "반투명 hover 릴리프 [CSS 반투명 hover 자동 처리]"
+      "value": "#0000000C",
+      "description": "이미지 등 다양한 배경 위에서도 자연스럽게 어우러져야 하는 반투명 hover 배경에 사용합니다. [CSS 반투명 hover 자동 처리]"
     },
     {
       "name": "bg-neutral/disabled",
       "type": "COLOR",
       "alias": "palette/gray-200",
-      "description": "비활성화 배경"
+      "description": "체크박스, 버튼 등 비활성화된 컴포넌트의 배경에 사용합니다."
     },
     {
       "name": "bg-status/positive-solid",
       "type": "COLOR",
       "alias": "palette/green-700",
-      "description": "성공 뱃지/배경"
+      "description": "성공 뱃지, 알림처럼 긍정적인 상태를 고강조로 알리는 배경에 사용합니다."
+    },
+    {
+      "name": "bg-status/positive-weak",
+      "type": "COLOR",
+      "alias": "palette/green-100",
+      "description": "성공 상태를 저강조로 은은하게 알리는 배경에 사용합니다."
     },
     {
       "name": "bg-status/critical-solid",
       "type": "COLOR",
       "alias": "palette/red-700",
-      "description": "에러 뱃지/배경"
+      "description": "에러 뱃지, 알림처럼 오류 상태를 고강조로 알리는 배경에 사용합니다."
+    },
+    {
+      "name": "bg-status/critical-weak",
+      "type": "COLOR",
+      "alias": "palette/red-100",
+      "description": "오류 상태를 저강조로 은은하게 알리는 배경에 사용합니다."
     },
     {
       "name": "bg-status/warning-solid",
       "type": "COLOR",
-      "alias": "palette/yellow-700",
-      "description": "경고 뱃지/배경"
+      "alias": "palette/yellow-300",
+      "description": "경고 뱃지, 알림처럼 주의가 필요한 상태를 고강조로 알리는 배경에 사용합니다. 노란색 계열은 진한 톤일수록 가독성이 떨어지므로 SEED에서도 옅은 300단계를 고강조 배경으로 씁니다."
+    },
+    {
+      "name": "bg-status/warning-weak",
+      "type": "COLOR",
+      "alias": "palette/yellow-100",
+      "description": "경고 상태를 저강조로 은은하게 알리는 배경에 사용합니다."
     },
     {
       "name": "bg-status/informative-solid",
       "type": "COLOR",
       "alias": "palette/blue-700",
-      "description": "정보 뱃지/배경"
+      "description": "정보 뱃지, 알림처럼 안내 상태를 고강조로 알리는 배경에 사용합니다."
+    },
+    {
+      "name": "bg-status/informative-weak",
+      "type": "COLOR",
+      "alias": "palette/blue-100",
+      "description": "정보 상태를 저강조로 은은하게 알리는 배경에 사용합니다."
     },
     {
       "name": "bg-status/overlay",
       "type": "COLOR",
-      "value": "rgba(0,0,0,0.5)",
-      "description": "모달 Dimmer 오버레이"
+      "value": "#00000074",
+      "description": "모달, 바텀시트 등이 열렸을 때 뒤 화면을 어둡게 덮는 Dimmer 배경에 사용합니다."
     },
     {
       "name": "stroke/neutral-subtle",
       "type": "COLOR",
-      "value": "rgba(0,0,0,0.08)",
-      "description": "카드 연한 테두리 및 구분선"
+      "value": "#0000000C",
+      "description": "경계를 구분하는 선 또는 UI 요소의 윤곽선에 사용하는 색상입니다. 카드 연한 테두리 및 구분선처럼 가장 옅은 반투명 테두리에 사용합니다."
     },
     {
       "name": "stroke/neutral-muted",
       "type": "COLOR",
-      "value": "rgba(0,0,0,0.16)",
-      "description": "중간 테두리"
+      "value": "#00000010",
+      "description": "옅은 것보다 한 단계 진한 중간 강도의 반투명 테두리에 사용합니다."
+    },
+    {
+      "name": "stroke/neutral-weak",
+      "type": "COLOR",
+      "alias": "palette/gray-400",
+      "description": "카드, 인풋 등에서 가장 옅은 톤의 불투명 테두리가 필요할 때 사용합니다."
     },
     {
       "name": "stroke/neutral-solid",
       "type": "COLOR",
       "alias": "palette/gray-800",
-      "description": "강한 외곽 테두리"
+      "description": "강조가 필요한 외곽 테두리에 사용합니다."
     },
     {
       "name": "stroke/neutral-contrast",
       "type": "COLOR",
       "alias": "palette/gray-1000",
-      "description": "고대비 테두리"
+      "description": "가장 높은 대비가 필요한 고대비 테두리에 사용합니다."
     },
     {
       "name": "stroke/brand-solid",
       "type": "COLOR",
-      "alias": "palette/carrot-600",
-      "description": "브랜드 포인트 테두리"
+      "alias": "palette/carrot-700",
+      "description": "브랜드를 강조하는 고강조 테두리(포커스, 선택 상태 등)에 사용합니다."
+    },
+    {
+      "name": "stroke/brand-weak",
+      "type": "COLOR",
+      "alias": "palette/carrot-300",
+      "description": "브랜드 테두리 중 저강조로 은은하게 사용해야 할 때 사용합니다."
     },
     {
       "name": "stroke/critical-solid",
       "type": "COLOR",
       "alias": "palette/red-700",
-      "description": "에러 강조 테두리"
+      "description": "경계를 구분하는 선 또는 UI 요소의 윤곽선에 사용하는 색상입니다. 에러 인풋처럼 오류 상태를 강조하는 고강조 테두리에 사용합니다."
+    },
+    {
+      "name": "stroke/critical-weak",
+      "type": "COLOR",
+      "alias": "palette/red-300",
+      "description": "오류 상태를 저강조로 나타내는 테두리에 사용합니다."
+    },
+    {
+      "name": "stroke/positive-solid",
+      "type": "COLOR",
+      "alias": "palette/green-700",
+      "description": "경계를 구분하는 선 또는 UI 요소의 윤곽선에 사용하는 색상입니다. 성공 상태를 강조하는 고강조 테두리에 사용합니다."
+    },
+    {
+      "name": "stroke/positive-weak",
+      "type": "COLOR",
+      "alias": "palette/green-300",
+      "description": "성공 상태를 저강조로 나타내는 테두리에 사용합니다."
+    },
+    {
+      "name": "stroke/warning-solid",
+      "type": "COLOR",
+      "alias": "palette/yellow-700",
+      "description": "경계를 구분하는 선 또는 UI 요소의 윤곽선에 사용하는 색상입니다. 경고 상태를 강조하는 고강조 테두리에 사용합니다."
+    },
+    {
+      "name": "stroke/warning-weak",
+      "type": "COLOR",
+      "alias": "palette/yellow-300",
+      "description": "경고 상태를 저강조로 나타내는 테두리에 사용합니다."
+    },
+    {
+      "name": "stroke/informative-solid",
+      "type": "COLOR",
+      "alias": "palette/blue-700",
+      "description": "경계를 구분하는 선 또는 UI 요소의 윤곽선에 사용하는 색상입니다. 정보 상태를 강조하는 고강조 테두리에 사용합니다."
+    },
+    {
+      "name": "stroke/informative-weak",
+      "type": "COLOR",
+      "alias": "palette/blue-300",
+      "description": "정보 상태를 저강조로 나타내는 테두리에 사용합니다."
     },
     {
       "name": "stroke/focus-ring",
       "type": "COLOR",
-      "alias": "palette/carrot-400",
-      "description": "접근성 Focus Ring"
+      "alias": "palette/blue-600",
+      "description": "접근성 Focus Ring (브랜드 컬러와 무관하게 항상 blue-600 고정 — 브랜드 컬러가 바뀌어도 독립적으로 유지되어야 하는 접근성 표준 색)"
     },
     {
       "name": "dimension/x0_5",
@@ -877,6 +991,42 @@
       "description": "64px Desktop 컨테이너 패딩"
     },
     {
+      "name": "spacing-x/between-chips",
+      "type": "FLOAT",
+      "alias": "dimension/x2",
+      "description": "Chip 사이의 수평 간격에 사용합니다. (SEED 공식 정의: $dimension.spacing-x.between-chips)"
+    },
+    {
+      "name": "spacing-x/global-gutter",
+      "type": "FLOAT",
+      "alias": "dimension/x4",
+      "description": "화면 전체에 적용되는 기본 수평 padding 값입니다. (SEED 공식 정의: $dimension.spacing-x.global-gutter)"
+    },
+    {
+      "name": "spacing-y/component-default",
+      "type": "FLOAT",
+      "alias": "dimension/x3",
+      "description": "컴포넌트 간 수직 간격 토큰이 정의되지 않은 컴포넌트 사이의 수직 간격에 사용합니다. (SEED 공식 정의: $dimension.spacing-y.component-default)"
+    },
+    {
+      "name": "spacing-y/nav-to-title",
+      "type": "FLOAT",
+      "alias": "dimension/x5",
+      "description": "Top Navigation과 Page Title 사이의 간격입니다. (SEED 공식 정의: $dimension.spacing-y.nav-to-title)"
+    },
+    {
+      "name": "spacing-y/screen-bottom",
+      "type": "FLOAT",
+      "alias": "dimension/x14",
+      "description": "화면 하단의 여백입니다. (SEED 공식 정의: $dimension.spacing-y.screen-bottom)"
+    },
+    {
+      "name": "spacing-y/between-text",
+      "type": "FLOAT",
+      "alias": "dimension/x1_5",
+      "description": "텍스트 요소 간의 수직 간격입니다. (SEED 공식 정의: $dimension.spacing-y.between-text)"
+    },
+    {
       "name": "radius/r0_5",
       "type": "FLOAT",
       "value": 2,
@@ -981,20 +1131,20 @@
     {
       "name": "elevation/s1",
       "type": "STRING",
-      "value": "0 1px 3px rgba(0,0,0,0.08)",
-      "description": "1단계 가벼운 그림자"
+      "value": "0px 1px 4px 0px rgba(0,0,0,0.078)",
+      "description": "1단계 가벼운 그림자 (SEED 공식 값: 0px 1px 4px 0px #00000014)"
     },
     {
       "name": "elevation/s2",
       "type": "STRING",
-      "value": "0 4px 12px rgba(0,0,0,0.12)",
-      "description": "2단계 카드 그림자"
+      "value": "0px 2px 10px 0px rgba(0,0,0,0.102)",
+      "description": "2단계 카드 그림자 (SEED 공식 값: 0px 2px 10px 0px #0000001a)"
     },
     {
       "name": "elevation/s3",
       "type": "STRING",
-      "value": "0 8px 24px rgba(0,0,0,0.18)",
-      "description": "3단계 모달/팝업 그림자"
+      "value": "0px 4px 16px 0px rgba(0,0,0,0.122)",
+      "description": "3단계 모달/팝업 그림자 (SEED 공식 값: 0px 4px 16px 0px #0000001f)"
     },
     {
       "name": "scale/s95",
@@ -1017,362 +1167,338 @@
     {
       "name": "font-size/t1",
       "type": "FLOAT",
-      "value": "t1 size",
-      "description": "Seed Typography Size t1"
+      "value": 11,
+      "description": "Seed Typography Size t1 (11px, 캡션 등 최소 크기)"
     },
     {
       "name": "font-size/t1-static",
       "type": "FLOAT",
-      "value": "t1 static size",
-      "description": "Seed Static Typography Size t1"
+      "value": 11,
+      "description": "Seed Static Typography Size t1 (fluid clamp() 미적용 고정값)"
     },
     {
       "name": "line-height/t1",
       "type": "FLOAT",
-      "value": "t1 lh",
+      "value": 15,
       "description": "Seed Typography Line-Height t1"
     },
     {
       "name": "line-height/t1-static",
       "type": "FLOAT",
-      "value": "t1 static lh",
+      "value": 15,
       "description": "Seed Static Typography Line-Height t1"
     },
     {
       "name": "font-size/t2",
       "type": "FLOAT",
-      "value": "t2 size",
-      "description": "Seed Typography Size t2"
+      "value": 12,
+      "description": "Seed Typography Size t2 (12px)"
     },
     {
       "name": "font-size/t2-static",
       "type": "FLOAT",
-      "value": "t2 static size",
+      "value": 12,
       "description": "Seed Static Typography Size t2"
     },
     {
       "name": "line-height/t2",
       "type": "FLOAT",
-      "value": "t2 lh",
+      "value": 16,
       "description": "Seed Typography Line-Height t2"
     },
     {
       "name": "line-height/t2-static",
       "type": "FLOAT",
-      "value": "t2 static lh",
+      "value": 16,
       "description": "Seed Static Typography Line-Height t2"
     },
     {
       "name": "font-size/t3",
       "type": "FLOAT",
-      "value": "t3 size",
-      "description": "Seed Typography Size t3"
+      "value": 13,
+      "description": "Seed Typography Size t3 (13px)"
     },
     {
       "name": "font-size/t3-static",
       "type": "FLOAT",
-      "value": "t3 static size",
+      "value": 13,
       "description": "Seed Static Typography Size t3"
     },
     {
       "name": "line-height/t3",
       "type": "FLOAT",
-      "value": "t3 lh",
+      "value": 18,
       "description": "Seed Typography Line-Height t3"
     },
     {
       "name": "line-height/t3-static",
       "type": "FLOAT",
-      "value": "t3 static lh",
+      "value": 18,
       "description": "Seed Static Typography Line-Height t3"
     },
     {
       "name": "font-size/t4",
       "type": "FLOAT",
-      "value": "t4 size",
-      "description": "Seed Typography Size t4"
+      "value": 14,
+      "description": "Seed Typography Size t4 (14px, 본문 기본 크기)"
     },
     {
       "name": "font-size/t4-static",
       "type": "FLOAT",
-      "value": "t4 static size",
+      "value": 14,
       "description": "Seed Static Typography Size t4"
     },
     {
       "name": "line-height/t4",
       "type": "FLOAT",
-      "value": "t4 lh",
+      "value": 19,
       "description": "Seed Typography Line-Height t4"
     },
     {
       "name": "line-height/t4-static",
       "type": "FLOAT",
-      "value": "t4 static lh",
+      "value": 19,
       "description": "Seed Static Typography Line-Height t4"
     },
     {
       "name": "font-size/t5",
       "type": "FLOAT",
-      "value": "t5 size",
-      "description": "Seed Typography Size t5"
+      "value": 16,
+      "description": "Seed Typography Size t5 (16px)"
     },
     {
       "name": "font-size/t5-static",
       "type": "FLOAT",
-      "value": "t5 static size",
+      "value": 16,
       "description": "Seed Static Typography Size t5"
     },
     {
       "name": "line-height/t5",
       "type": "FLOAT",
-      "value": "t5 lh",
+      "value": 22,
       "description": "Seed Typography Line-Height t5"
     },
     {
       "name": "line-height/t5-static",
       "type": "FLOAT",
-      "value": "t5 static lh",
+      "value": 22,
       "description": "Seed Static Typography Line-Height t5"
     },
     {
       "name": "font-size/t6",
       "type": "FLOAT",
-      "value": "t6 size",
-      "description": "Seed Typography Size t6"
+      "value": 18,
+      "description": "Seed Typography Size t6 (18px)"
     },
     {
       "name": "font-size/t6-static",
       "type": "FLOAT",
-      "value": "t6 static size",
+      "value": 18,
       "description": "Seed Static Typography Size t6"
     },
     {
       "name": "line-height/t6",
       "type": "FLOAT",
-      "value": "t6 lh",
+      "value": 24,
       "description": "Seed Typography Line-Height t6"
     },
     {
       "name": "line-height/t6-static",
       "type": "FLOAT",
-      "value": "t6 static lh",
+      "value": 24,
       "description": "Seed Static Typography Line-Height t6"
     },
     {
       "name": "font-size/t7",
       "type": "FLOAT",
-      "value": "t7 size",
-      "description": "Seed Typography Size t7"
+      "value": 20,
+      "description": "Seed Typography Size t7 (20px)"
     },
     {
       "name": "font-size/t7-static",
       "type": "FLOAT",
-      "value": "t7 static size",
+      "value": 20,
       "description": "Seed Static Typography Size t7"
     },
     {
       "name": "line-height/t7",
       "type": "FLOAT",
-      "value": "t7 lh",
+      "value": 27,
       "description": "Seed Typography Line-Height t7"
     },
     {
       "name": "line-height/t7-static",
       "type": "FLOAT",
-      "value": "t7 static lh",
+      "value": 27,
       "description": "Seed Static Typography Line-Height t7"
     },
     {
       "name": "font-size/t8",
       "type": "FLOAT",
-      "value": "t8 size",
-      "description": "Seed Typography Size t8"
+      "value": 22,
+      "description": "Seed Typography Size t8 (22px)"
     },
     {
       "name": "font-size/t8-static",
       "type": "FLOAT",
-      "value": "t8 static size",
+      "value": 22,
       "description": "Seed Static Typography Size t8"
     },
     {
       "name": "line-height/t8",
       "type": "FLOAT",
-      "value": "t8 lh",
+      "value": 30,
       "description": "Seed Typography Line-Height t8"
     },
     {
       "name": "line-height/t8-static",
       "type": "FLOAT",
-      "value": "t8 static lh",
+      "value": 30,
       "description": "Seed Static Typography Line-Height t8"
     },
     {
       "name": "font-size/t9",
       "type": "FLOAT",
-      "value": "t9 size",
-      "description": "Seed Typography Size t9"
+      "value": 24,
+      "description": "Seed Typography Size t9 (24px, Desktop 기준값). 실제 SEED는 t9~t14를 clamp() 기반 fluid 스케일링하므로, 코드 구현 시에는 이 값을 그대로 쓰지 말고 seed-tokens.css의 fluid 버전을 사용하세요."
     },
     {
       "name": "font-size/t9-static",
       "type": "FLOAT",
-      "value": "t9 static size",
-      "description": "Seed Static Typography Size t9"
+      "value": 24,
+      "description": "Seed Static Typography Size t9 (fluid clamp() 미적용 고정값)"
     },
     {
       "name": "line-height/t9",
       "type": "FLOAT",
-      "value": "t9 lh",
-      "description": "Seed Typography Line-Height t9"
+      "value": 32,
+      "description": "Seed Typography Line-Height t9 (Desktop 기준값, 실제로는 fluid)"
     },
     {
       "name": "line-height/t9-static",
       "type": "FLOAT",
-      "value": "t9 static lh",
+      "value": 32,
       "description": "Seed Static Typography Line-Height t9"
     },
     {
       "name": "font-size/t10",
       "type": "FLOAT",
-      "value": "t10 size",
-      "description": "Seed Typography Size t10"
+      "value": 26,
+      "description": "Seed Typography Size t10 (26px, Desktop 기준값, 실제로는 fluid)"
     },
     {
       "name": "font-size/t10-static",
       "type": "FLOAT",
-      "value": "t10 static size",
+      "value": 26,
       "description": "Seed Static Typography Size t10"
     },
     {
       "name": "line-height/t10",
       "type": "FLOAT",
-      "value": "t10 lh",
-      "description": "Seed Typography Line-Height t10"
+      "value": 35,
+      "description": "Seed Typography Line-Height t10 (Desktop 기준값, 실제로는 fluid)"
     },
     {
       "name": "line-height/t10-static",
       "type": "FLOAT",
-      "value": "t10 static lh",
+      "value": 35,
       "description": "Seed Static Typography Line-Height t10"
     },
     {
       "name": "font-size/t11",
       "type": "FLOAT",
-      "value": "t11 size",
-      "description": "Seed Typography Size t11"
+      "value": 28,
+      "description": "Seed Typography Size t11 (28px, Desktop 기준값, 실제로는 fluid)"
     },
     {
       "name": "font-size/t11-static",
       "type": "FLOAT",
-      "value": "t11 static size",
+      "value": 28,
       "description": "Seed Static Typography Size t11"
     },
     {
       "name": "line-height/t11",
       "type": "FLOAT",
-      "value": "t11 lh",
-      "description": "Seed Typography Line-Height t11"
+      "value": 38,
+      "description": "Seed Typography Line-Height t11 (Desktop 기준값, 실제로는 fluid)"
     },
     {
       "name": "line-height/t11-static",
       "type": "FLOAT",
-      "value": "t11 static lh",
+      "value": 38,
       "description": "Seed Static Typography Line-Height t11"
     },
     {
       "name": "font-size/t12",
       "type": "FLOAT",
-      "value": "t12 size",
-      "description": "Seed Typography Size t12"
+      "value": 32,
+      "description": "Seed Typography Size t12 (32px, Desktop 기준값, 실제로는 fluid)"
     },
     {
       "name": "font-size/t12-static",
       "type": "FLOAT",
-      "value": "t12 static size",
+      "value": 32,
       "description": "Seed Static Typography Size t12"
     },
     {
       "name": "line-height/t12",
       "type": "FLOAT",
-      "value": "t12 lh",
-      "description": "Seed Typography Line-Height t12"
+      "value": 42,
+      "description": "Seed Typography Line-Height t12 (Desktop 기준값, 실제로는 fluid)"
     },
     {
       "name": "line-height/t12-static",
       "type": "FLOAT",
-      "value": "t12 static lh",
+      "value": 42,
       "description": "Seed Static Typography Line-Height t12"
     },
     {
       "name": "font-size/t13",
       "type": "FLOAT",
-      "value": "t13 size",
-      "description": "Seed Typography Size t13"
+      "value": 40,
+      "description": "Seed Typography Size t13 (40px, Desktop 기준값, 실제로는 fluid)"
     },
     {
       "name": "font-size/t13-static",
       "type": "FLOAT",
-      "value": "t13 static size",
+      "value": 40,
       "description": "Seed Static Typography Size t13"
     },
     {
       "name": "line-height/t13",
       "type": "FLOAT",
-      "value": "t13 lh",
-      "description": "Seed Typography Line-Height t13"
+      "value": 52,
+      "description": "Seed Typography Line-Height t13 (Desktop 기준값, 실제로는 fluid)"
     },
     {
       "name": "line-height/t13-static",
       "type": "FLOAT",
-      "value": "t13 static lh",
+      "value": 52,
       "description": "Seed Static Typography Line-Height t13"
     },
     {
       "name": "font-size/t14",
       "type": "FLOAT",
-      "value": "t14 size",
-      "description": "Seed Typography Size t14"
+      "value": 48,
+      "description": "Seed Typography Size t14 (48px, Desktop 기준값, 실제로는 fluid — SEED 스케일 중 가장 큰 t14가 최댓값이며 t15/t16은 존재하지 않습니다)"
     },
     {
       "name": "font-size/t14-static",
       "type": "FLOAT",
-      "value": "t14 static size",
+      "value": 48,
       "description": "Seed Static Typography Size t14"
     },
     {
       "name": "line-height/t14",
       "type": "FLOAT",
-      "value": "t14 lh",
-      "description": "Seed Typography Line-Height t14"
+      "value": 60,
+      "description": "Seed Typography Line-Height t14 (Desktop 기준값, 실제로는 fluid)"
     },
     {
       "name": "line-height/t14-static",
       "type": "FLOAT",
-      "value": "t14 static lh",
+      "value": 60,
       "description": "Seed Static Typography Line-Height t14"
-    },
-    {
-      "name": "font-size/t15",
-      "type": "FLOAT",
-      "value": "t15 size",
-      "description": "Extended Display Size t15"
-    },
-    {
-      "name": "line-height/t15",
-      "type": "FLOAT",
-      "value": "t15 lh",
-      "description": "Extended Display Line-Height t15"
-    },
-    {
-      "name": "font-size/t16",
-      "type": "FLOAT",
-      "value": "t16 size",
-      "description": "Extended Display Size t16"
-    },
-    {
-      "name": "line-height/t16",
-      "type": "FLOAT",
-      "value": "t16 lh",
-      "description": "Extended Display Line-Height t16"
     },
     {
       "name": "font-weight/regular",
@@ -1427,6 +1553,102 @@
       "type": "FLOAT",
       "value": 12,
       "description": "Desktop 뷰포트 레이아웃 그리드 (12열)"
+    },
+    {
+      "name": "breakpoint/base",
+      "type": "FLOAT",
+      "value": 0,
+      "description": "기본 breakpoint 최소 너비 (prefix 없음). responsive-rules.md 1-1 기준."
+    },
+    {
+      "name": "breakpoint/sm",
+      "type": "FLOAT",
+      "value": 480,
+      "description": "sm breakpoint 최소 너비. responsive-rules.md 1-1 기준."
+    },
+    {
+      "name": "breakpoint/md",
+      "type": "FLOAT",
+      "value": 768,
+      "description": "md breakpoint 최소 너비 (Tablet 레이아웃 분기 기준). responsive-rules.md 1-1 기준."
+    },
+    {
+      "name": "breakpoint/lg",
+      "type": "FLOAT",
+      "value": 1280,
+      "description": "lg breakpoint 최소 너비 (Desktop 레이아웃 분기 기준). responsive-rules.md 1-1 기준."
+    },
+    {
+      "name": "breakpoint/xl",
+      "type": "FLOAT",
+      "value": 1440,
+      "description": "xl breakpoint 최소 너비 (콘텐츠 최대폭 도달 지점). responsive-rules.md 1-1 기준."
+    },
+    {
+      "name": "container/max-width",
+      "type": "FLOAT",
+      "value": 1440,
+      "description": "콘텐츠 컨테이너 최대 너비. responsive-rules.md 1-2 기준."
+    },
+    {
+      "name": "container/padding-base",
+      "type": "FLOAT",
+      "alias": "dimension/x3",
+      "description": "base~sm 구간 컨테이너 좌우 패딩(Margin). responsive-rules.md 1-2 기준."
+    },
+    {
+      "name": "container/padding-sm",
+      "type": "FLOAT",
+      "alias": "dimension/x3",
+      "description": "base~sm 구간 컨테이너 좌우 패딩(Margin). responsive-rules.md 1-2 기준."
+    },
+    {
+      "name": "container/padding-md",
+      "type": "FLOAT",
+      "alias": "dimension/x6",
+      "description": "md~xl 구간 컨테이너 좌우 패딩(Margin). responsive-rules.md 1-2 기준."
+    },
+    {
+      "name": "container/padding-lg",
+      "type": "FLOAT",
+      "alias": "dimension/x6",
+      "description": "md~xl 구간 컨테이너 좌우 패딩(Margin). responsive-rules.md 1-2 기준."
+    },
+    {
+      "name": "container/padding-xl",
+      "type": "FLOAT",
+      "alias": "dimension/x6",
+      "description": "md~xl 구간 컨테이너 좌우 패딩(Margin). responsive-rules.md 1-2 기준."
+    },
+    {
+      "name": "container/gutter-base",
+      "type": "FLOAT",
+      "alias": "dimension/x4",
+      "description": "base~sm 구간 컨테이너 내부 Gutter. responsive-rules.md 1-2 기준."
+    },
+    {
+      "name": "container/gutter-sm",
+      "type": "FLOAT",
+      "alias": "dimension/x4",
+      "description": "base~sm 구간 컨테이너 내부 Gutter. responsive-rules.md 1-2 기준."
+    },
+    {
+      "name": "container/gutter-md",
+      "type": "FLOAT",
+      "alias": "dimension/x8",
+      "description": "md~xl 구간 컨테이너 내부 Gutter. responsive-rules.md 1-2 기준."
+    },
+    {
+      "name": "container/gutter-lg",
+      "type": "FLOAT",
+      "alias": "dimension/x8",
+      "description": "md~xl 구간 컨테이너 내부 Gutter. responsive-rules.md 1-2 기준."
+    },
+    {
+      "name": "container/gutter-xl",
+      "type": "FLOAT",
+      "alias": "dimension/x8",
+      "description": "md~xl 구간 컨테이너 내부 Gutter. responsive-rules.md 1-2 기준."
     }
   ]
 }

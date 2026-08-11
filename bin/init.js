@@ -82,9 +82,9 @@ async function main() {
   const templateFiles = [
     'axpublish-orchestrator.md',
     'responsive-rules.md',
-    'tokens.css',
-    'generate-theme.js',
-    'figma-semantic-variables.json',
+    'seed-tokens.css',
+    'generate-seed-brand.js',
+    'figma-seed-variables.json',
   ];
 
   console.log(`  ${b('파일 생성 중...')}`);
@@ -115,9 +115,9 @@ async function main() {
   console.log(`  ${dim('├── PROMPT.md               ← Claude에 붙여넣을 시작 프롬프트')}`);
   console.log(`  ${dim('├── axpublish-orchestrator.md')}`);
   console.log(`  ${dim('├── responsive-rules.md')}`);
-  console.log(`  ${dim('├── tokens.css               ← Tailwind v4 네이티브 (tailwind.config.js 없음)')}`);
-  console.log(`  ${dim('├── generate-theme.js')}`);
-  console.log(`  ${dim('└── figma-semantic-variables.json')}`);
+  console.log(`  ${dim('├── seed-tokens.css          ← Tailwind v4 네이티브 (tailwind.config.js 없음)')}`);
+  console.log(`  ${dim('├── generate-seed-brand.js')}`);
+  console.log(`  ${dim('└── figma-seed-variables.json')}`);
   console.log();
   console.log(`  ${b('다음 단계:')}`);
   console.log(`  ${dim('1.')} Claude에 Figma MCP 연결`);
@@ -137,9 +137,9 @@ function generatePrompt({ name, figmaUrl, primary, secondary, screens }) {
 
 - \`axpublish-orchestrator.md\` — 워크플로우 지침서. **이 파일이 모든 행동의 최우선 기준입니다.**
 - \`responsive-rules.md\` — 반응형 변환 규칙. 코드 생성 시 항상 이 문서를 기준으로 합니다.
-- \`tokens.css\` — Seed Design 시맨틱 토큰 전체 (Tailwind v4 네이티브, tailwind.config.js 없음). 하드코딩 금지, 이 파일의 변수만 사용합니다.
-- \`generate-theme.js\` — Primary/Secondary hex를 받아 theme.css를 생성하는 스크립트.
-- \`figma-semantic-variables.json\` — Figma Variable Collection 생성 템플릿 (52개).
+- \`seed-tokens.css\` — Seed Design 시맨틱 토큰 전체 (Tailwind v4 네이티브, tailwind.config.js 없음). 하드코딩 금지, 이 파일의 변수만 사용합니다.
+- \`generate-seed-brand.js\` — Primary hex를 받아 브랜드 팔레트 override CSS를 생성하는 스크립트.
+- \`figma-seed-variables.json\` — Figma Variable Collection 생성 템플릿.
 
 ---
 

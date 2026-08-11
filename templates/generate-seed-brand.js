@@ -18,31 +18,31 @@ function getArg(flag) {
 const primaryInput = getArg('--primary') || '#0066FF';
 const outputPath = getArg('--output') || './seed-tokens.css';
 
-// Seed Primitive Palettes (94개 원본 10단계 스케일)
+// Seed Primitive Palettes (@seed-design/css@2.3.0 원본 10단계 스케일 그대로)
 const SEED_PALETTES = {
   carrot: {
-    100: "#EBF2FF", 200: "#C7DCFF", 300: "#99BFFF", 400: "#5C99FF", 500: "#3385FF",
-    600: "#0066FF", 700: "#005EEB", 800: "#0054D1", 900: "#004AB8", 1000: "#003A8F"
+    100: "#FFF2EC", 200: "#FFE8DB", 300: "#FFD5C0", 400: "#FFB999", 500: "#FF9364",
+    600: "#FF6600", 700: "#E14D00", 800: "#B93901", 900: "#862B00", 1000: "#471601"
   },
   blue: {
-    100: "#E3F2FD", 200: "#BBDEFB", 300: "#90CAF9", 400: "#42A5F5", 500: "#2196F3",
-    600: "#1E88E5", 700: "#1565C0", 800: "#1557A6", 900: "#0D47A1", 1000: "#0A337A"
+    100: "#EFF6FF", 200: "#E2EDFC", 300: "#CBDFFA", 400: "#AACEFD", 500: "#85B8FD",
+    600: "#5E98FE", 700: "#217CF9", 800: "#135FCD", 900: "#0B4596", 1000: "#032451"
   },
   green: {
-    100: "#E8F5E9", 200: "#C8E6C9", 300: "#A5D6A7", 400: "#66BB6A", 500: "#4CAF50",
-    600: "#43A047", 700: "#388E3C", 800: "#2E7D32", 900: "#1B5E20", 1000: "#124216"
+    100: "#EDFAF6", 200: "#D9F6E9", 300: "#B9E9D2", 400: "#7DDCB3", 500: "#42C593",
+    600: "#10AB7D", 700: "#079171", 800: "#00745F", 900: "#075445", 1000: "#0A2B24"
   },
   red: {
-    100: "#FFEBEE", 200: "#FFCDD2", 300: "#EF9A9A", 400: "#E57373", 500: "#F44336",
-    600: "#E53935", 700: "#C62828", 800: "#B71C1C", 900: "#8C1313", 1000: "#5C0B0B"
+    100: "#FDF0F0", 200: "#FDE7E7", 300: "#FED4D2", 400: "#FEB7B3", 500: "#FE928D",
+    600: "#FC6A66", 700: "#FA342C", 800: "#CA1D13", 900: "#921708", 1000: "#4A1209"
+  },
+  yellow: {
+    100: "#FFF7DE", 200: "#FDEFB9", 300: "#FBDC65", 400: "#E9C647", 500: "#D4AB28",
+    600: "#C49725", 700: "#9B7821", 800: "#755B22", 900: "#4F3E1F", 1000: "#2C2512"
   },
   purple: {
-    100: "#F3E5F5", 200: "#E1BEE7", 300: "#CE93D8", 400: "#AB47BC", 500: "#9C27B0",
-    600: "#8E24AA", 700: "#7B1FA2", 800: "#6A1B9A", 900: "#4A148C", 1000: "#310C5D"
-  },
-  teal: {
-    100: "#E0F2F1", 200: "#B2DFDB", 300: "#80CBC4", 400: "#26A69A", 500: "#009688",
-    600: "#00897B", 700: "#00796B", 800: "#00695C", 900: "#004D40", 1000: "#00332B"
+    100: "#F5F3FE", 200: "#EFEAFE", 300: "#E1D8FF", 400: "#D0C0FF", 500: "#B8A1FF",
+    600: "#9F84FB", 700: "#8969EA", 800: "#6D50CB", 900: "#50379B", 1000: "#29175D"
   }
 };
 
@@ -74,21 +74,21 @@ const matchedScale = SEED_PALETTES[bestMatch];
 
 const cssContent = `/**
  * axpublish v2.0 — seed-seed-tokens.css (Brand Override)
- * Primary Hex (\${primaryInput}) ➔ Seed Primitive [\${bestMatch}] 10단계 스케일 자동 매칭
+ * Primary Hex (${primaryInput}) ➔ Seed Primitive [${bestMatch}] 10단계 스케일 자동 매칭
  */
 
 :root {
-  /* Brand Primitive Overrides (\${bestMatch} Palette Match) */
-  --seed-color-palette-carrot-100: \${matchedScale[100]};
-  --seed-color-palette-carrot-200: \${matchedScale[200]};
-  --seed-color-palette-carrot-300: \${matchedScale[300]};
-  --seed-color-palette-carrot-400: \${matchedScale[400]};
-  --seed-color-palette-carrot-500: \${matchedScale[500]};
-  --seed-color-palette-carrot-600: \${primaryInput}; /* Original Primary Input */
-  --seed-color-palette-carrot-700: \${matchedScale[700]};
-  --seed-color-palette-carrot-800: \${matchedScale[800]};
-  --seed-color-palette-carrot-900: \${matchedScale[900]};
-  --seed-color-palette-carrot-1000: \${matchedScale[1000]};
+  /* Brand Primitive Overrides (${bestMatch} Palette Match) */
+  --seed-color-palette-carrot-100: ${matchedScale[100]};
+  --seed-color-palette-carrot-200: ${matchedScale[200]};
+  --seed-color-palette-carrot-300: ${matchedScale[300]};
+  --seed-color-palette-carrot-400: ${matchedScale[400]};
+  --seed-color-palette-carrot-500: ${matchedScale[500]};
+  --seed-color-palette-carrot-600: ${primaryInput}; /* Original Primary Input */
+  --seed-color-palette-carrot-700: ${matchedScale[700]};
+  --seed-color-palette-carrot-800: ${matchedScale[800]};
+  --seed-color-palette-carrot-900: ${matchedScale[900]};
+  --seed-color-palette-carrot-1000: ${matchedScale[1000]};
 
   /* Brand Semantic Overrides */
   --seed-color-fg-brand: var(--seed-color-palette-carrot-600);
@@ -96,7 +96,7 @@ const cssContent = `/**
   --seed-color-bg-brand-solid-pressed: var(--seed-color-palette-carrot-700); /* [CSS :hover / :active로 자동 처리] */
   --seed-color-bg-brand-weak: var(--seed-color-palette-carrot-100);
   --seed-color-bg-brand-weak-pressed: var(--seed-color-palette-carrot-200); /* [CSS :hover / :active로 자동 처리] */
-  --seed-color-stroke-brand-solid: var(--seed-color-palette-carrot-600);
+  --seed-color-stroke-brand-solid: var(--seed-color-palette-carrot-700);
 }
 `;
 
