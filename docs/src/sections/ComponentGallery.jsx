@@ -840,21 +840,15 @@ const COMPONENTS = [
     name: 'Extended FAB',
     slug: 'ui:extended-fab',
     demo: (
-      <div style={{ display:'flex', gap:12, flexWrap:'wrap', alignItems:'center' }}>
-        {[
-          { variant:'solid',    bg:'var(--seed-color-palette-carrot-500)', color:'#fff' },
-          { variant:'outlined', bg:'var(--seed-color-bg-layer-default)',   color:'var(--seed-color-fg-neutral)' },
-        ].map(({ variant, bg, color }) => (
-          <button key={variant}
-            className={`seed-extended-fab seed-extended-fab--variant_${variant} seed-extended-fab--size_medium`}
-            style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'12px 20px',
-              borderRadius:999, border: variant==='outlined' ? '1px solid var(--seed-color-stroke-neutral)' : 'none',
-              background:bg, color, fontWeight:700, fontSize:15,
-              boxShadow:'var(--seed-shadow-s3)', cursor:'pointer' }}>
-            <span>+</span>
-            <span>글쓰기</span>
-          </button>
-        ))}
+      <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+        <button className="seed-extended-fab seed-extended-fab--variant_neutralSolid seed-extended-fab--size_medium">
+          <IconAddRegular style={{ width: 18, height: 18 }} />
+          <span>작성하기</span>
+        </button>
+        <button className="seed-extended-fab seed-extended-fab--variant_layerFloating seed-extended-fab--size_medium">
+          <IconAddRegular style={{ width: 18, height: 18 }} />
+          <span>글쓰기</span>
+        </button>
       </div>
     ),
   },
@@ -863,31 +857,9 @@ const COMPONENTS = [
     name: 'FAB',
     slug: 'ui:fab',
     demo: (
-      <div style={{ display:'flex', gap:16, alignItems:'center' }}>
-        {[
-          { size:'small',  px:40 },
-          { size:'medium', px:52 },
-          { size:'large',  px:64 },
-        ].map(({ size, px }) => (
-          <button key={size}
-            className={`seed-fab seed-fab--variant_solid seed-fab--size_${size}`}
-            style={{ width:px, height:px, borderRadius:'50%', display:'flex',
-              alignItems:'center', justifyContent:'center', border:'none',
-              background:'var(--seed-color-palette-carrot-500)',
-              boxShadow:'var(--seed-shadow-s3)', cursor:'pointer',
-              fontSize: px*0.35, color:'#fff', fontWeight:700 }}>
-            +
-          </button>
-        ))}
-        <button
-          className="seed-fab seed-fab seed-fab"
-          style={{ width:52, height:52, borderRadius:'50%', display:'flex',
-            alignItems:'center', justifyContent:'center',
-            border:'1px solid var(--seed-color-stroke-neutral)',
-            background:'var(--seed-color-bg-layer-default)',
-            boxShadow:'var(--seed-shadow-s3)', cursor:'pointer',
-            fontSize:20, color:'var(--seed-color-fg-neutral)', fontWeight:700 }}>
-          +
+      <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+        <button className="seed-fab">
+          <IconAddRegular style={{ width: 24, height: 24 }} />
         </button>
       </div>
     ),
@@ -925,22 +897,15 @@ const COMPONENTS = [
     name: 'Floating Action Button',
     slug: 'ui:floating-action-button',
     demo: (
-      <div style={{ display:'flex', gap:16, alignItems:'center' }}>
-        {[
-          { size:'small',  px:40 },
-          { size:'medium', px:52 },
-          { size:'large',  px:64 },
-        ].map(({ size, px }) => (
-          <button key={size}
-            className={`seed-floating-action-button seed-floating-action-button--variant_solid seed-floating-action-button--size_${size}`}
-            style={{ width:px, height:px, borderRadius:'50%', display:'flex',
-              alignItems:'center', justifyContent:'center', border:'none',
-              background:'var(--seed-color-palette-carrot-500)',
-              boxShadow:'var(--seed-shadow-s3)', cursor:'pointer' }}>
-            <img src="/icons/icon_add_regular.svg" width={px*0.38} height={px*0.38} alt=""
-              style={{ filter:'invert(1)' }} />
-          </button>
-        ))}
+      <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+        <button className="seed-floating-action-button__root seed-floating-action-button__root--extended_true">
+          <span className="seed-floating-action-button__icon seed-floating-action-button__icon--extended_true">
+            <IconAddRegular style={{ width: 20, height: 20 }} />
+          </span>
+          <span className="seed-floating-action-button__label seed-floating-action-button__label--extended_true">
+            새 글 작성
+          </span>
+        </button>
       </div>
     ),
   },
@@ -1017,25 +982,10 @@ const COMPONENTS = [
     name: 'Layout',
     slug: 'ui:layout',
     demo: (
-      <div style={{ display:'flex', flexDirection:'column', gap:10, width:'100%' }}>
-        {[
-          { density:'low',    maxW:'720px',  color:'var(--seed-color-palette-blue-200)' },
-          { density:'medium', maxW:'1040px', color:'var(--seed-color-palette-green-200)' },
-          { density:'high',   maxW:'100%',   color:'var(--seed-color-palette-carrot-200)' },
-        ].map(({ density, maxW, color }) => (
-          <div key={density} style={{ display:'flex', alignItems:'center', gap:10 }}>
-            <span style={{ fontSize:12, color:'var(--seed-color-fg-neutral-subtle)', width:60, flexShrink:0 }}>{density}</span>
-            <div style={{ flex:1, height:32, borderRadius:6, position:'relative',
-              background:'var(--seed-color-palette-gray-100)',
-              border:'1px solid var(--seed-color-stroke-neutral-subtle)' }}>
-              <div className={`seed-layout__content seed-layout__content--density_${density}`}
-                style={{ height:'100%', background:color, borderRadius:4,
-                  display:'flex', alignItems:'center', justifyContent:'center', maxWidth:maxW }}>
-                <span style={{ fontSize:11, color:'var(--seed-color-fg-neutral)' }}>max: {maxW}</span>
-              </div>
-            </div>
-          </div>
-        ))}
+      <div className="seed-layout__root" style={{ width: '100%', minHeight: 120 }}>
+        <div className="seed-layout__content seed-layout__content--density_low">
+          <span>컨텐츠 레이아웃 영역 (density: low)</span>
+        </div>
       </div>
     ),
   },
@@ -1577,41 +1527,13 @@ const COMPONENTS = [
     name: 'Toggle Button',
     slug: 'ui:toggle-button',
     demo: (
-      <div style={{ display:'flex', flexDirection:'column', gap:12 }}>
-        <div style={{ display:'flex', gap:8 }}>
-          {[
-            { label:'좋아요', pressed:true  },
-            { label:'저장',   pressed:false },
-            { label:'공유',   pressed:false },
-          ].map(({ label, pressed }) => (
-            <button key={label}
-              className={`seed-toggle-button seed-toggle-button--size_medium seed-toggle-button--variant_outlined`}
-              data-pressed={pressed ? '' : undefined}
-              style={{ display:'inline-flex', alignItems:'center', gap:6, padding:'8px 16px',
-                borderRadius:8, border:'1px solid',
-                borderColor: pressed ? 'var(--seed-color-palette-carrot-500)' : 'var(--seed-color-stroke-neutral)',
-                background: pressed ? 'var(--seed-color-palette-carrot-50)' : 'transparent',
-                color: pressed ? 'var(--seed-color-palette-carrot-600)' : 'var(--seed-color-fg-neutral)',
-                fontSize:14, fontWeight:700, cursor:'pointer' }}>
-              {label}
-            </button>
-          ))}
-        </div>
-        <div style={{ display:'flex', gap:6 }}>
-          {['xsmall','small','medium','large'].map((size, i) => (
-            <button key={size}
-              className={`seed-toggle-button seed-toggle-button--size_${size} seed-toggle-button--variant_ghost`}
-              data-pressed={i===0 ? '' : undefined}
-              style={{ padding: size==='xsmall' ? '4px 10px' : size==='small' ? '6px 12px' : size==='large' ? '12px 20px' : '8px 16px',
-                borderRadius:8, border:'none',
-                background: i===0 ? 'var(--seed-color-bg-neutral-inverted)' : 'var(--seed-color-bg-transparent)',
-                color: i===0 ? 'var(--seed-color-fg-neutral-inverted)' : 'var(--seed-color-fg-neutral)',
-                fontSize: size==='xsmall' ? 11 : size==='small' ? 13 : size==='large' ? 17 : 15,
-                fontWeight:700, cursor:'pointer' }}>
-              {size}
-            </button>
-          ))}
-        </div>
+      <div style={{ display: 'flex', gap: 8 }}>
+        <button className="seed-toggle-button seed-toggle-button--variant_brandSolid seed-toggle-button--size_small" data-selected="true">
+          선택됨
+        </button>
+        <button className="seed-toggle-button seed-toggle-button--variant_neutralWeak seed-toggle-button--size_small">
+          미선택
+        </button>
       </div>
     ),
   },
