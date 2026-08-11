@@ -92,7 +92,7 @@ export default function App() {
         <div className="sec" id="overview">
           <h2>Overview</h2>
           <p>
-            Seed Design System의 Foundation 토큰 전수 + 공식 아이콘팩(모노크롬 588개) + UI 컴포넌트 갤러리.
+            이롬넷이 채택한 Seed Design System의 Foundation 토큰 전수 + 공식 아이콘팩(모노크롬 588개) + UI 컴포넌트 갤러리.
             <br />
             컴포넌트는 <code>@seed-design/css</code>를 npm으로 정식 임포트하여{' '}
             <code>packages/css/recipes/*.css</code>의 실제 BEM 클래스명을 사용합니다.

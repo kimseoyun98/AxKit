@@ -15,7 +15,7 @@ export function WritingSection() {
   return (
     <Sec id="f-writing">
       <h2>Writing</h2>
-      <p>일관된 서비스 글쓰기 방법입니다.</p>
+      <p>이롬넷에서 일관되게 글쓰는 방법입니다.</p>
 
       <h3>Familiar — 익숙한 단어 사용</h3>
       <p>기술적인 용어나 한자어는 지양해요. 에러 메시지에는 직접 해결할 수 있는 방법을 함께 알려주세요.</p>

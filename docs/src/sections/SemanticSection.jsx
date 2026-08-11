@@ -46,7 +46,6 @@ const bgNeutralRows = [
   { css: '--seed-color-bg-neutral-weak-alpha', prim: 'static-black-alpha-200', desc: '투명 중성 오버레이' },
   { css: '--seed-color-bg-neutral-weak-alpha-pressed', prim: 'static-black-alpha-300', desc: '투명 중성 오버레이 눌림' },
   { css: '--seed-color-bg-disabled', prim: 'gray-200', desc: '비활성 배경' },
-  { css: '--seed-color-bg-magic-weak', prim: '#f9f2ee (light) / #201f1f (dark)', desc: 'AI/매직 기능 배경' },
 ]
 
 const bgStatusRows = [
@@ -77,55 +76,36 @@ const bgEtcRows = [
   { css: '--seed-color-bg-transparent-selected-pressed', prim: 'static-black-alpha-300', desc: '투명 배경 선택+눌림' },
 ]
 
-// 공식 CSS: --seed-color-stroke-neutral-solid = gray-300 (light) / gray-400 (dark)
 const strokeRows = [
-  { css: '--seed-color-stroke-neutral', prim: 'gray-300 / dark: gray-300', desc: '기본 선 (field, divider)' },
-  { css: '--seed-color-stroke-neutral-solid', prim: 'gray-300 / dark: gray-400', desc: '강한 선 ⚠️ fix/missing-stoke-neutral-solid' },
-  { css: '--seed-color-stroke-neutral-muted', prim: 'gray-200 / dark: gray-200', desc: '흐린 선' },
-  { css: '--seed-color-stroke-on-image', prim: 'static-black-alpha-50', desc: '이미지 위 선' },
-  { css: '--seed-color-stroke-control', prim: 'gray-400 / dark: gray-400', desc: '컨트롤(체크박스 등) 테두리' },
-  { css: '--seed-color-stroke-field', prim: 'gray-400 / dark: gray-400', desc: '인풋 필드 테두리' },
-  { css: '--seed-color-stroke-field-focused', prim: 'gray-800 / dark: gray-800', desc: '포커스된 인풋 테두리' },
-  { css: '--seed-color-stroke-brand', prim: 'carrot-300 / dark: carrot-300', desc: '브랜드 테두리' },
-  { css: '--seed-color-stroke-positive', prim: 'green-300 / dark: green-300', desc: '성공 테두리' },
-  { css: '--seed-color-stroke-critical', prim: 'red-300 / dark: red-300', desc: '에러 테두리' },
-  { css: '--seed-color-stroke-informative', prim: 'blue-300 / dark: blue-300', desc: '정보 테두리' },
+  { css: '--seed-color-stroke-neutral-solid', prim: 'gray-800', desc: '강한 선' },
+  { css: '--seed-color-stroke-neutral-subtle', prim: 'static-black-alpha-200', desc: '카드 연한 선' },
+  { css: '--seed-color-stroke-neutral-muted', prim: 'static-black-alpha-300', desc: '톤다운된 선' },
+  { css: '--seed-color-stroke-neutral-weak', prim: 'gray-400', desc: '연한 선' },
+  { css: '--seed-color-stroke-neutral-contrast', prim: 'gray-1000', desc: '고대비 선' },
+  { css: '--seed-color-stroke-brand-solid', prim: 'carrot-700', desc: '브랜드 테두리' },
+  { css: '--seed-color-stroke-brand-weak', prim: 'carrot-300', desc: '연한 브랜드 테두리' },
+  { css: '--seed-color-stroke-focus-ring', prim: 'blue-600', desc: 'Focus Ring' },
+  { css: '--seed-color-stroke-positive-solid', prim: 'green-700', desc: '성공 테두리' },
+  { css: '--seed-color-stroke-positive-weak', prim: 'green-300', desc: '연한 성공 테두리' },
+  { css: '--seed-color-stroke-critical-solid', prim: 'red-700', desc: '에러 테두리' },
+  { css: '--seed-color-stroke-critical-weak', prim: 'red-300', desc: '연한 에러 테두리' },
+  { css: '--seed-color-stroke-warning-solid', prim: 'yellow-700', desc: '경고 테두리' },
+  { css: '--seed-color-stroke-warning-weak', prim: 'yellow-300', desc: '연한 경고 테두리' },
+  { css: '--seed-color-stroke-informative-solid', prim: 'blue-700', desc: '정보 테두리' },
+  { css: '--seed-color-stroke-informative-weak', prim: 'blue-300', desc: '연한 정보 테두리' },
 ]
 
 const bannerRows = [
-  { css: '--seed-color-banner-blue', prim: '#e1f7ff / dark: #0d2a3a', desc: '배너 배경 - 블루' },
-  { css: '--seed-color-banner-cool-gray', prim: '#ebf1f5 / dark: #242c33', desc: '배너 배경 - 쿨그레이' },
-  { css: '--seed-color-banner-green', prim: '#f0fbe5 / dark: #1e361c', desc: '배너 배경 - 그린' },
-  { css: '--seed-color-banner-orange', prim: '#fff2e1 / dark: #42230a', desc: '배너 배경 - 오렌지' },
-  { css: '--seed-color-banner-pink', prim: '#ffebf1 / dark: #3b172c', desc: '배너 배경 - 핑크' },
-  { css: '--seed-color-banner-purple', prim: '#f5ecff / dark: #2e1e45', desc: '배너 배경 - 퍼플' },
-  { css: '--seed-color-banner-red', prim: '#ffecee / dark: #3a0f15', desc: '배너 배경 - 레드' },
-  { css: '--seed-color-banner-teal', prim: '#e6faf6 / dark: #143633', desc: '배너 배경 - 틸' },
-  { css: '--seed-color-banner-warm-gray', prim: '#f2f0ee / dark: #2f2b27', desc: '배너 배경 - 웜그레이' },
-  { css: '--seed-color-banner-yellow', prim: '#fffae1 / dark: #3e2b00', desc: '배너 배경 - 옐로우' },
-]
-
-const mannerTempRows = [
-  { css: '--seed-color-manner-temp-l1-bg', prim: '#f1f2f3 / dark: #292929', desc: '매너온도 L1 배경 (가장 낮음)' },
-  { css: '--seed-color-manner-temp-l1-text', prim: '#757b85 / dark: #b8b8b9', desc: '매너온도 L1 텍스트' },
-  { css: '--seed-color-manner-temp-l2-bg', prim: '#f8f4ec / dark: #332605', desc: '매너온도 L2 배경' },
-  { css: '--seed-color-manner-temp-l2-text', prim: '#ab863f / dark: #f5db97', desc: '매너온도 L2 텍스트' },
-  { css: '--seed-color-manner-temp-l3-bg', prim: '#fff5e5 / dark: #372b01', desc: '매너온도 L3 배경' },
-  { css: '--seed-color-manner-temp-l3-text', prim: '#e08a00 / dark: #fdda65', desc: '매너온도 L3 텍스트' },
-  { css: '--seed-color-manner-temp-l4-bg', prim: '#fff3e5 / dark: #372301', desc: '매너온도 L4 배경' },
-  { css: '--seed-color-manner-temp-l4-text', prim: '#f57e00 / dark: #fbbe55', desc: '매너온도 L4 텍스트' },
-  { css: '--seed-color-manner-temp-l5-bg', prim: '#fff1e5 / dark: #371f01', desc: '매너온도 L5 배경' },
-  { css: '--seed-color-manner-temp-l5-text', prim: '#ff7300 / dark: #faac4b', desc: '매너온도 L5 텍스트' },
-  { css: '--seed-color-manner-temp-l6-bg', prim: '#fff0e5 / dark: #351b03', desc: '매너온도 L6 배경' },
-  { css: '--seed-color-manner-temp-l6-text', prim: '#ff6600 / dark: #fc9855', desc: '매너온도 L6 텍스트 (브랜드 기준)' },
-  { css: '--seed-color-manner-temp-l7-bg', prim: '#ffefe5 / dark: #371701', desc: '매너온도 L7 배경' },
-  { css: '--seed-color-manner-temp-l7-text', prim: '#ff5100 / dark: #f97a25', desc: '매너온도 L7 텍스트' },
-  { css: '--seed-color-manner-temp-l8-bg', prim: '#ffeee5 / dark: #380f00', desc: '매너온도 L8 배경' },
-  { css: '--seed-color-manner-temp-l8-text', prim: '#ff3300 / dark: #fe6a34', desc: '매너온도 L8 텍스트' },
-  { css: '--seed-color-manner-temp-l9-bg', prim: '#fdeded / dark: #380500', desc: '매너온도 L9 배경' },
-  { css: '--seed-color-manner-temp-l9-text', prim: '#e82c45 / dark: #fe6a5d', desc: '매너온도 L9 텍스트' },
-  { css: '--seed-color-manner-temp-l10-bg', prim: '#ffebee / dark: #34040a', desc: '매너온도 L10 배경 (가장 높음)' },
-  { css: '--seed-color-manner-temp-l10-text', prim: '#cb0123 / dark: #fb6f82', desc: '매너온도 L10 텍스트' },
+  { css: '--seed-color-banner-blue', prim: '#e1f7ff', desc: '배너 배경 - 블루' },
+  { css: '--seed-color-banner-cool-gray', prim: '#ebf1f5', desc: '배너 배경 - 쿨그레이' },
+  { css: '--seed-color-banner-green', prim: '#f0fbe5', desc: '배너 배경 - 그린' },
+  { css: '--seed-color-banner-orange', prim: '#fff2e1', desc: '배너 배경 - 오렌지' },
+  { css: '--seed-color-banner-pink', prim: '#ffebf1', desc: '배너 배경 - 핑크' },
+  { css: '--seed-color-banner-purple', prim: '#f5ecff', desc: '배너 배경 - 퍼플' },
+  { css: '--seed-color-banner-red', prim: '#ffecee', desc: '배너 배경 - 레드' },
+  { css: '--seed-color-banner-teal', prim: '#e6faf6', desc: '배너 배경 - 틸' },
+  { css: '--seed-color-banner-warm-gray', prim: '#f2f0ee', desc: '배너 배경 - 웜그레이' },
+  { css: '--seed-color-banner-yellow', prim: '#fffae1', desc: '배너 배경 - 옐로우' },
 ]
 
 const Table = ({ rows }) => (
@@ -151,7 +131,7 @@ const Table = ({ rows }) => (
 
 export function SemanticSection() {
   const total = fgRows.length + bgLayerRows.length + bgBrandRows.length + bgNeutralRows.length
-    + bgStatusRows.length + bgEtcRows.length + strokeRows.length + bannerRows.length + mannerTempRows.length
+    + bgStatusRows.length + bgEtcRows.length + strokeRows.length + bannerRows.length
 
   return (
     <Sec id="f-semantic">
@@ -197,13 +177,6 @@ export function SemanticSection() {
 
       <h3>Banner</h3>
       <Table rows={bannerRows} />
-
-      <h3>Manner Temp <span style={{ fontSize: 12, fontWeight: 500, color: '#9CA3AF' }}>매너온도 전용 색상 (l1~l10 × bg/text = 20개)</span></h3>
-      <p style={{ fontSize: 12.5, color: '#6B7280' }}>
-        매너온도 컴포넌트 전용 색상 토큰. L1(낮음)~L10(높음) 10단계로 구성되며 각 단계마다 배경(bg)과 텍스트(text) 색상을 제공합니다.
-        라이트/다크 모드 모두 정의되어 있습니다.
-      </p>
-      <Table rows={mannerTempRows} />
     </Sec>
   )
 }
