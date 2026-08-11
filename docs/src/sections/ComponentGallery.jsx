@@ -999,7 +999,16 @@ export function ComponentGallery() {
   }
 
   return (
-    <section className="comp-gallery-container">
+    <section className="comp-gallery-container" id="showcase">
+      <div style={{ marginBottom: 20, padding: '0 16px' }}>
+        <h2 style={{ fontSize: 19, fontWeight: 700, marginBottom: 8 }}>Components Gallery</h2>
+        <p style={{ fontSize: 13.5, color: '#4B5563' }}>
+          <code>packages/css/recipes/*.css</code> 실제 BEM 클래스명과 실제 DOM 구조를 그대로 재현할 수 있는
+          컴포넌트만 수록합니다. 이 목록에 없는 컴포넌트도 SEED 패키지에는 전부 존재하니, 코드에서는{' '}
+          <code>@seed-design/css/recipes/*.css</code>를 그대로 import해서 사용하면 됩니다. (List Item까지 검수 완료)
+        </p>
+      </div>
+
       <div className="comp-carousel-viewport">
         <div className="comp-carousel-track" style={{ transform: `translateX(-${cur * 100}%)` }}>
           {COMPONENTS.map((c) => (
