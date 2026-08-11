@@ -360,7 +360,7 @@ const COMPONENTS = [
       <div style={{ display:'flex', gap:16, alignItems:'center' }}>
         {/* stroke: false */}
         <div style={{ width:120, height:120, borderRadius:12 }}>
-          <div className="seed-image-frame__root seed-image-frame__root--stroke_false">
+          <div className="seed-image-frame__root seed-image-frame__root">
             <div className="seed-image-frame__fallback"
               style={{ background:'var(--seed-color-palette-gray-200)',
                 display:'flex', alignItems:'center', justifyContent:'center',
@@ -451,7 +451,7 @@ const COMPONENTS = [
     demo: (
       <div style={{ display:'flex', flexDirection:'column', gap:16, width:'100%' }}>
         {/* t4, truncate false */}
-        <div className="seed-tag-group__root seed-tag-group__root--size_t4-truncate_false">
+        <div className="seed-tag-group-item__root seed-tag-group-item__root">
           {[
             { tone:'brand',         label:'브랜드' },
             { tone:'neutral',       label:'중립' },
@@ -473,7 +473,7 @@ const COMPONENTS = [
           ))}
         </div>
         {/* t3, truncate true (말줄임) */}
-        <div className="seed-tag-group__root seed-tag-group__root--size_t3-truncate_true"
+        <div className="seed-tag-group-item__root seed-tag-group-item__root"
           style={{ maxWidth:200 }}>
           <span className="seed-tag-group-item__root seed-tag-group-item__root--size_t3 seed-tag-group-item__root--tone_neutral">
             <span className="seed-tag-group-item__label seed-tag-group-item__label--size_t3 seed-tag-group-item__label--tone_neutral seed-tag-group-item__label--weight_regular">
@@ -534,9 +534,9 @@ const COMPONENTS = [
     slug: 'ui:attachment-input',
     demo: (
       <div style={{ display:'flex', flexDirection:'column', gap:12, width:'100%' }}>
-        <div className="seed-attachment-input" style={{ display:'flex', gap:8, flexWrap:'wrap' }}>
+        <div className="seed-attachment-input__root" style={{ display:'flex', gap:8, flexWrap:'wrap' }}>
           {/* 트리거 버튼 */}
-          <button className="seed-attachment-input-trigger seed-attachment-input-trigger--variant_outlined seed-attachment-input-trigger--size_medium"
+          <button className="seed-attachment-input-trigger__root seed-attachment-input-trigger__root"
             style={{ width:80, height:80, borderRadius:12, display:'flex', flexDirection:'column',
               alignItems:'center', justifyContent:'center', gap:4,
               border:'1.5px dashed var(--seed-color-stroke-neutral)',
@@ -546,7 +546,7 @@ const COMPONENTS = [
           </button>
           {/* 업로드 아이템 */}
           {[1,2].map(i => (
-            <div key={i} className="seed-attachment-input-item seed-attachment-input-item--size_medium"
+            <div key={i} className="seed-attachment-input-item__root seed-attachment-input-item__root seed-attachment-input-item__root--type_general"
               style={{ width:80, height:80, borderRadius:12, overflow:'hidden', position:'relative',
                 background:'var(--seed-color-palette-gray-300)' }}>
               <svg viewBox="0 0 64 64" fill="none" style={{ width:'100%', height:'100%' }}>
@@ -880,7 +880,7 @@ const COMPONENTS = [
           </button>
         ))}
         <button
-          className="seed-fab seed-fab--variant_outlined seed-fab--size_medium"
+          className="seed-fab seed-fab seed-fab"
           style={{ width:52, height:52, borderRadius:'50%', display:'flex',
             alignItems:'center', justifyContent:'center',
             border:'1px solid var(--seed-color-stroke-neutral)',
@@ -949,9 +949,7 @@ const COMPONENTS = [
     name: 'Footer',
     slug: 'ui:footer',
     demo: (
-      <div className="seed-footer__root"
-        style={{ display:'flex', flexWrap:'wrap', gap:'8px 16px', padding:'12px 0',
-          borderTop:'1px solid var(--seed-color-stroke-neutral-subtle)' }}>
+      <div style={{ display:'flex', flexWrap:'wrap', gap:'8px 16px', padding:'12px 0', borderTop:'1px solid var(--seed-color-stroke-neutral-subtle)' }}>
         {['이용약관','개인정보처리방침','위치기반서비스 이용약관','고객센터'].map(link => (
           <a key={link} href="#" onClick={e=>e.preventDefault()}
             className="seed-footer__linkText seed-footer__linkText--size_medium"
@@ -1071,7 +1069,7 @@ const COMPONENTS = [
                   overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>
                 {title}
               </p>
-              <p className="seed-list-item__description"
+              <p className="seed-list-item__title"
                 style={{ fontSize:13, color:'var(--seed-color-fg-neutral-subtle)', marginTop:2 }}>
                 {desc}
               </p>
@@ -1101,7 +1099,7 @@ const COMPONENTS = [
             minWidth:160, animation:'none' }}>
           {['수정','복사','공유','삭제'].map((item, i) => (
             <button key={item}
-              className="seed-menu-item"
+              className="seed-menu-item__root"
               style={{ display:'flex', width:'100%', alignItems:'center', gap:10,
                 padding:'12px 16px', border:'none', background:'transparent',
                 cursor:'pointer', fontSize:14, textAlign:'left',
@@ -1130,7 +1128,7 @@ const COMPONENTS = [
             color:'var(--seed-color-fg-neutral)' }}>내보내기</p>
           {['카카오톡으로 공유','링크 복사','Instagram 스토리','더 보기'].map((item, i) => (
             <button key={item}
-              className="seed-menu-sheet-item"
+              className="seed-menu-sheet-item__root"
               style={{ display:'flex', width:'100%', alignItems:'center', gap:14,
                 padding:'14px 20px', border:'none', background:'transparent',
                 cursor:'pointer', fontSize:15, color:'var(--seed-color-fg-neutral)',
@@ -1192,7 +1190,7 @@ const COMPONENTS = [
                 style={{ width:h, height:h, display:'flex', alignItems:'center', justifyContent:'center',
                   border:'none', background:'transparent', cursor:'pointer',
                   fontSize:fs+4, color:'var(--seed-color-fg-neutral)' }}>−</button>
-              <span className="seed-quantity-picker__value"
+              <span className="seed-quantity-picker__valueDisplay"
                 style={{ minWidth:40, textAlign:'center', fontSize:fs, fontWeight:700,
                   color:'var(--seed-color-fg-neutral)' }}>3</span>
               <button className="seed-quantity-picker__incrementButton"
@@ -1253,8 +1251,8 @@ const COMPONENTS = [
               borderColor: selected ? 'var(--seed-color-palette-carrot-500)' : 'var(--seed-color-stroke-neutral)',
               background: selected ? 'var(--seed-color-palette-carrot-50)' : 'var(--seed-color-bg-layer-default)',
               cursor:'pointer', fontSize:13, fontWeight:500 }}>
-            <span className="seed-reaction-button__icon">{emoji}</span>
-            <span className="seed-reaction-button__count"
+            <span className="seed-reaction-button">{emoji}</span>
+            <span className="seed-reaction-button"
               style={{ color: selected ? 'var(--seed-color-palette-carrot-500)' : 'var(--seed-color-fg-neutral)' }}>
               {count}
             </span>
@@ -1309,7 +1307,7 @@ const COMPONENTS = [
                   background: i===0 ? 'var(--seed-color-bg-layer-default)' : 'transparent',
                   color: i===0 ? 'var(--seed-color-fg-neutral)' : 'var(--seed-color-fg-neutral-subtle)',
                   boxShadow: i===0 ? 'var(--seed-shadow-s1)' : 'none' }}>
-                <span className="seed-segmented-control__label">{tab}</span>
+                <span className="seed-segmented-control__item">{tab}</span>
               </button>
             ))}
           </div>
@@ -1325,10 +1323,10 @@ const COMPONENTS = [
       <div style={{ display:'flex', flexDirection:'column', gap:10, width:'100%' }}>
         {['outlined','filled'].map(variant => (
           <div key={variant}
-            className="seed-select"
+            className="seed-select-trigger__root"
             style={{ position:'relative', display:'flex', alignItems:'center' }}>
             <select
-              className="seed-select-trigger"
+              className="seed-select-trigger__root"
               style={{ width:'100%', appearance:'none', padding:'11px 36px 11px 14px',
                 borderRadius:8, fontSize:14, fontWeight:400,
                 border: variant==='outlined' ? '1px solid var(--seed-color-stroke-neutral)' : 'none',
@@ -1357,7 +1355,7 @@ const COMPONENTS = [
           { label:'무통장입금', desc:'3일 내 입금',  selected:false },
         ].map(({ label, desc, selected }) => (
           <button key={label}
-            className={`seed-select-box__root seed-select-box__root--size_medium seed-select-box__root--layout_vertical`}
+            className={`seed-select-trigger__root-box__root seed-select-trigger__root-box__root--size_medium seed-select-trigger__root-box__root--layout_vertical`}
             data-checked={selected ? '' : undefined}
             style={{ display:'flex', flexDirection:'column', alignItems:'flex-start',
               padding:'14px 16px', borderRadius:12, border:'1.5px solid',
@@ -1386,7 +1384,7 @@ const COMPONENTS = [
       <div style={{ display:'flex', gap:16 }}>
         {['expanded','collapsed'].map(state => (
           <div key={state}
-            className="seed-side-navigation__root seed-side-navigation__root--tone_transparent"
+            className="seed-side-navigation__root seed-side-navigation__root"
             data-side-navigation-state={state}
             style={{ width: state==='expanded' ? 180 : 52, height:200,
               background:'var(--seed-color-bg-layer-default)',
@@ -1468,7 +1466,7 @@ const COMPONENTS = [
               {msg}
             </span>
             {action && (
-              <button className="seed-snackbar__action"
+              <button className="seed-snackbar__actionButton"
                 style={{ fontSize:14, fontWeight:700, color:'var(--seed-color-palette-carrot-400)',
                   background:'none', border:'none', cursor:'pointer', whiteSpace:'nowrap' }}>
                 {action}
@@ -1527,7 +1525,7 @@ const COMPONENTS = [
               background:'var(--seed-color-bg-layer-default)', marginBottom:16 }}>
             {['판매중','예약중','거래완료'].map((tab, i) => (
               <button key={tab}
-                className="seed-tabs__trigger seed-tabs__trigger--size_medium seed-tabs__trigger--variant_underlined"
+                className="seed-tabs__trigger seed-tabs__trigger--size_medium seed-tabs__trigger"
                 data-selected={i===0 ? '' : undefined}
                 style={{ flex:1, padding:'13px 8px', border:'none', background:'transparent',
                   fontSize:14, fontWeight: i===0 ? 700 : 500, cursor:'pointer',
