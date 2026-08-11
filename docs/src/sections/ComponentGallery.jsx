@@ -1686,12 +1686,14 @@ export function ComponentGallery() {
       </div>
 
       {/* 캐러셀 */}
-      <div className="comp-carousel-wrap" ref={wrapRef}>
-        {COMPONENTS.map((c) => (
-          <div key={c.name} className="comp-carousel-slide">
-            {c.demo}
-          </div>
-        ))}
+      <div className="comp-carousel-wrap">
+        <div className="comp-carousel-track" style={{ transform: `translateX(-${cur * 100}%)` }}>
+          {COMPONENTS.map((c) => (
+            <div key={c.name} className="comp-carousel-slide">
+              {c.demo}
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* 하단 정보 바 */}
