@@ -118,9 +118,9 @@ const COMPONENTS = [
       <div className="seed-inline-banner__root seed-inline-banner__root--variant_neutralWeak" style={{ width: "100%" }}>
         <IconArticleRegular 
           style={{ 
-            width: "var(--seed-prefix-icon-size)", 
-            height: "var(--seed-prefix-icon-size)", 
-            color: "var(--seed-prefix-icon-color)", 
+            width: "var(--seed-prefix-icon-size, 18px)", 
+            height: "var(--seed-prefix-icon-size, 18px)", 
+            color: "var(--seed-prefix-icon-color, currentColor)", 
             marginRight: "var(--seed-prefix-icon-margin-right)", 
             marginTop: "var(--seed-prefix-icon-margin-top)",
             flexShrink: 0
@@ -134,9 +134,9 @@ const COMPONENTS = [
         <button className="seed-inline-banner__closeButton">
           <IconCloseRegular 
             style={{ 
-              width: "var(--seed-suffix-icon-size)", 
-              height: "var(--seed-suffix-icon-size)", 
-              color: "var(--seed-suffix-icon-color)", 
+              width: "var(--seed-suffix-icon-size, 18px)", 
+              height: "var(--seed-suffix-icon-size, 18px)", 
+              color: "var(--seed-suffix-icon-color, currentColor)", 
               marginLeft: "var(--seed-suffix-icon-margin-left)", 
               alignSelf: "var(--seed-suffix-icon-align-self)",
               flexShrink: 0
@@ -822,11 +822,11 @@ const COMPONENTS = [
           <div className="seed-extended-action-sheet__list">
             <div className="seed-extended-action-sheet__group">
               <button className="seed-extended-action-sheet-item seed-extended-action-sheet-item--tone_neutral" style={{ border: "none", cursor: "pointer", width: "100%", textAlign: "left", margin: 0 }}>
-                <IconArticleRegular style={{ width: "var(--seed-prefix-icon-size)", height: "var(--seed-prefix-icon-size)", color: "var(--seed-prefix-icon-color)", flexShrink: 0 }} />
+                <IconArticleRegular style={{ width: "var(--seed-prefix-icon-size, 18px)", height: "var(--seed-prefix-icon-size, 18px)", color: "var(--seed-prefix-icon-color, currentColor)", flexShrink: 0 }} />
                 <span style={{ display: "inline-flex", alignItems: "center" }}>링크 복사</span>
               </button>
               <button className="seed-extended-action-sheet-item seed-extended-action-sheet-item--tone_critical" style={{ border: "none", cursor: "pointer", width: "100%", textAlign: "left", margin: 0 }}>
-                <IconArticleRegular style={{ width: "var(--seed-prefix-icon-size)", height: "var(--seed-prefix-icon-size)", color: "var(--seed-prefix-icon-color)", flexShrink: 0 }} />
+                <IconArticleRegular style={{ width: "var(--seed-prefix-icon-size, 18px)", height: "var(--seed-prefix-icon-size, 18px)", color: "var(--seed-prefix-icon-color, currentColor)", flexShrink: 0 }} />
                 <span style={{ display: "inline-flex", alignItems: "center" }}>삭제하기</span>
               </button>
             </div>
@@ -909,7 +909,7 @@ const COMPONENTS = [
         </div>
         <div className="seed-field__footer">
           <span className="seed-field__description" style={{ display: "inline-flex", alignItems: "flex-start" }}>
-            <IconArticleRegular style={{ width: "var(--seed-prefix-icon-size)", height: "var(--seed-prefix-icon-size)", color: "var(--seed-prefix-icon-color)", marginRight: "var(--seed-prefix-icon-margin-right)", marginTop: "var(--seed-prefix-icon-margin-top)", flexShrink: 0 }} />
+            <IconArticleRegular style={{ width: "var(--seed-prefix-icon-size, 18px)", height: "var(--seed-prefix-icon-size, 18px)", color: "var(--seed-prefix-icon-color, currentColor)", marginRight: "var(--seed-prefix-icon-margin-right)", marginTop: "var(--seed-prefix-icon-margin-top)", flexShrink: 0 }} />
             <span>설명을 입력해주세요.</span>
           </span>
           <span className="seed-field__characterCountArea">
@@ -981,7 +981,7 @@ const COMPONENTS = [
             <span className="seed-help-bubble__description" style={{ display: "inline-flex", alignItems: "center" }}>도움말 말풍선의 내용이 여기에 들어갑니다.</span>
           </div>
           <button className="seed-help-bubble__closeButton">
-            <IconCloseRegular style={{ width: "var(--seed-icon-size)", height: "var(--seed-icon-size)", color: "var(--seed-icon-color)", flexShrink: 0 }} />
+            <IconCloseRegular style={{ width: "var(--seed-icon-size, 18px)", height: "var(--seed-icon-size, 18px)", color: "var(--seed-icon-color, currentColor)", flexShrink: 0 }} />
           </button>
         </div>
       </div>
@@ -1624,11 +1624,11 @@ const COMPONENTS = [
     demo: (
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         <button className="seed-action-chip seed-action-chip--size_medium seed-action-chip--layout_withText">
-          <IconSearchRegular width="var(--seed-prefix-icon-size)" height="var(--seed-prefix-icon-size)" style={{ color: "var(--seed-prefix-icon-color)" }} />
+          <IconSearchRegular width="var(--seed-prefix-icon-size, 18px)" height="var(--seed-prefix-icon-size, 18px)" style={{ color: "var(--seed-prefix-icon-color, currentColor)" }} />
           Action Chip
         </button>
         <button className="seed-action-chip seed-action-chip--size_medium seed-action-chip--layout_withText" disabled>
-          <IconSearchRegular width="var(--seed-prefix-icon-size)" height="var(--seed-prefix-icon-size)" style={{ color: "var(--seed-prefix-icon-color)" }} />
+          <IconSearchRegular width="var(--seed-prefix-icon-size, 18px)" height="var(--seed-prefix-icon-size, 18px)" style={{ color: "var(--seed-prefix-icon-color, currentColor)" }} />
           Disabled
         </button>
       </div>
