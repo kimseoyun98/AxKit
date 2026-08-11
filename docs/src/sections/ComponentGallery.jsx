@@ -1,3 +1,11 @@
+/**
+ * [컴포넌트 갤러리 로드맵 코멘트]
+ * - 현재 구현된 컴포넌트 목록은 처음부터 전면 재검수 대상입니다.
+ * - 추후 작업 계획:
+ *   1) https://seed-design.io/llms/components/*.txt (예: accordion.txt 등) 명세를 기반으로 컴포넌트 마크업/구조 전면 재반영
+ *   2) Seed Design 공식 GitHub 리포지토리를 클론하여 BEM 클래스명 및 구현 적합성을 더 면밀하게 검증할 예정입니다.
+ */
+
 import { useState, useRef, useEffect } from 'react'
 import {
   IconCheckFill,
@@ -1588,7 +1596,7 @@ export function ComponentGallery() {
       <div style={{ marginBottom: 16 }}>
         <h2 style={{ fontSize: 19, fontWeight: 700, marginBottom: 6 }}>Components Gallery</h2>
         <p style={{ fontSize: 13.5, color: '#4B5563' }}>
-          <code>@seed-design/css/recipes/*.css</code> 실제 클래스 구조 재현. List Item까지 검수 완료.
+          <code>@seed-design/css/recipes/*.css</code> 실제 클래스 구조 재현. 처음부터 전면 검수 예정.
         </p>
       </div>
 
