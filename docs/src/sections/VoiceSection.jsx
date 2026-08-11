@@ -4,7 +4,7 @@ export function VoiceSection() {
   return (
     <Sec id="f-voice">
       <h2>Voice and Tone</h2>
-      <p>이롬넷에서 일관되게 말하는 방법입니다.</p>
+      <p>일관된 서비스 언어 사용 방법입니다.</p>
 
       <h3>Role — Service Usability</h3>
       <ul style={{ marginLeft: 20, fontSize: 13.5, color: '#4B5563', lineHeight: 1.9 }}>
@@ -12,7 +12,7 @@ export function VoiceSection() {
         <li>언어, 문화 등과 관계없이 누구나 쉽게 사용할 수 있어요.</li>
         <li>사용자의 의사결정 과정을 즐겁게 만들어요.</li>
         <li>모든 사용자는 서비스 내에서 일관적인 경험을 해요.</li>
-        <li>이롬넷을 신뢰할 수 있는 공간으로 만들어요.</li>
+        <li>서비스를 신뢰할 수 있는 공간으로 만들어요.</li>
       </ul>
 
       <h3>Role — Brand Engagement</h3>
@@ -20,7 +20,7 @@ export function VoiceSection() {
         <li>브랜드의 가치를 전달하고 정서적 유대감을 형성해요.</li>
         <li>국경과 통화에 상관없이 안전하게 연결된다는 신뢰를 느낄 수 있게 도와요.</li>
         <li>사용자가 글로벌 비즈니스 네트워크의 일원임을 자각하게 돕고, 파트너·가맹점과의 연결을 알려 활발한 거래를 끌어내요.</li>
-        <li>지금보다 더 이롬넷을 신뢰하게 만들어요.</li>
+        <li>지금보다 더 서비스를 신뢰하게 만들어요.</li>
       </ul>
 
       <h3>Principle — 명확한, 이해하기 쉬운, 사려깊은</h3>

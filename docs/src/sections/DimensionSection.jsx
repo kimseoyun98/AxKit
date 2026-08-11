@@ -51,13 +51,14 @@ export function DimensionSection() {
     { token: 's2', val: '0px 2px 10px 0px rgba(0,0,0,.102)' },
     { token: 's3', val: '0px 4px 16px 0px rgba(0,0,0,.122)' },
   ]
+  // ⚠️ update-gradient-token 브랜치: shimmer-neutral → neutral-shimmer 로 리네이밍 예정
   const gradientRows = [
-    { token: 'shimmer-neutral', val: '90deg, transparent 0%, rgba(255,255,255,.67) 46-54%, transparent 100%' },
-    { token: 'shimmer-magic', val: '90deg, transparent 0%, rgba(255,249,245,.8) 46-54%, transparent 100%' },
-    { token: 'glow-magic', val: '88deg, #fef6f7 0%, #fef0e7 80%, #f9f7f5 100%' },
-    { token: 'glow-magic-pressed', val: '88deg, #fbf0f2 0%, #ffe8db 80%, #f5f2ef 100%' },
-    { token: 'highlight-magic', val: '#f60 20%, #d25aca 100%' },
-    { token: 'highlight-magic-pressed', val: '#e14f00 20%, #ae58bf 100%' },
+    { token: 'shimmer-neutral', val: '90deg, transparent 0%, rgba(255,255,255,.67) 46-54%, transparent 100%', dark: '90deg, transparent 0%, rgba(255,255,255,.10) 46-54%, transparent 100%' },
+    { token: 'shimmer-magic', val: '90deg, transparent 0%, rgba(255,249,245,.80) 46-54%, transparent 100%', dark: '90deg, transparent 0%, rgba(255,249,245,.10) 46-54%, transparent 100%' },
+    { token: 'glow-magic', val: '88deg, #fef6f7 0%, #fef0e7 80%, #f9f7f5 100%', dark: '88deg, #2d252d 0%, #3a312b 80%, #333232 100%' },
+    { token: 'glow-magic-pressed', val: '88deg, #fbf0f2 0%, #ffe8db 80%, #f5f2ef 100%', dark: '88deg, #3e333e 0%, #51453e 80%, #434242 100%' },
+    { token: 'highlight-magic', val: 'linear: #f60 20%, #d25aca 100%', dark: '(same)' },
+    { token: 'highlight-magic-pressed', val: 'linear: #e14f00 20%, #ae58bf 100%', dark: '#ff9e65 20%, #e89bee 100%' },
   ]
 
   return (
@@ -104,11 +105,11 @@ export function DimensionSection() {
       </TokenTable>
 
       <h3 id="f-gradient">Gradients</h3>
-      <p>배경과 아이콘 등에서 입체감이나 AI 기능을 표현할 때 사용하는 색상 토큰입니다.</p>
+      <p>배경과 아이콘 등에서 입체감이나 AI 기능을 표현할 때 사용하는 색상 토큰입니다. 라이트/다크 모드 각각 다른 값이 적용됩니다.</p>
       <TokenTable>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
+        <thead><tr><th>Token</th><th>Light</th><th>Dark</th></tr></thead>
         <tbody>
-          {gradientRows.map(r => <tr key={r.token}><td>{r.token}</td><td><code>{r.val}</code></td></tr>)}
+          {gradientRows.map(r => <tr key={r.token}><td>{r.token}</td><td><code style={{fontSize:10.5}}>{r.val}</code></td><td><code style={{fontSize:10.5,color:'#9CA3AF'}}>{r.dark}</code></td></tr>)}
         </tbody>
       </TokenTable>
     </Sec>

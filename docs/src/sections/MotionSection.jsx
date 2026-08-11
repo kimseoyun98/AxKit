@@ -7,7 +7,14 @@ export function MotionSection() {
     { t: 'd3', val: '150ms' },
     { t: 'd4', val: '200ms' },
     { t: 'd5', val: '250ms' },
-    { t: 'd6', val: '300ms' }
+    { t: 'd6', val: '300ms' },
+    { t: 'color-transition', val: '150ms (= d3)', desc: '색상 전환 애니메이션' },
+    { t: 'pressed-scale', val: '150ms (= d3)', desc: '눌림 스케일 애니메이션' },
+  ]
+  const scaleRows = [
+    { t: 's95', preferred: '0.95', reduced: '1 (reduce-motion 시)', usage: '리스트 하이라이트, 선택되는 카드 등 강조 혁식' },
+    { t: 's97', preferred: '0.97', reduced: '1 (reduce-motion 시)', usage: '일반 버튼 누름 스케일' },
+    { t: 's98', preferred: '0.98', reduced: '1 (reduce-motion 시)', usage: '연한 누름 피드백' },
   ]
   const easeRows = [
     { t: 'linear', val: 'cubic-bezier(0, 0, 1, 1)', usage: '등속' },
@@ -43,6 +50,26 @@ export function MotionSection() {
         <thead><tr><th>Token</th><th>Value</th><th>용도</th></tr></thead>
         <tbody>
           {easeRows.map(r => <tr key={r.t}><td>{r.t}</td><td><code>{r.val}</code></td><td>{r.usage}</td></tr>)}
+        </tbody>
+      </TokenTable>
+
+      <h3>Scale Tokens</h3>
+      <p style={{fontSize:12.5,color:'#6B7280'}}>
+        누름 상태에서 요소를 축소하는 스케일 애니메이션에 사용합니다. 동작 감소(reduce-motion)
+        설정 시 preferred 값 대신 reduced(1) 값을 사용합니다.
+        CSS: <code>transform: scale(var(--seed-scale-s97))</code>
+      </p>
+      <TokenTable>
+        <thead><tr><th>Token</th><th>preferred</th><th>reduced</th><th>용도</th></tr></thead>
+        <tbody>
+          {scaleRows.map(r => (
+            <tr key={r.t}>
+              <td>{r.t}</td>
+              <td><strong>{r.preferred}</strong></td>
+              <td>{r.reduced}</td>
+              <td style={{fontSize:12}}>{r.usage}</td>
+            </tr>
+          ))}
         </tbody>
       </TokenTable>
     </Sec>
