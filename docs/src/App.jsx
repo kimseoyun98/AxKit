@@ -71,7 +71,7 @@ export default function App() {
           <div>
             <h1>axpublish v2.0 · Seed Design</h1>
             <p style={{ fontSize: 14, color: '#6B7280' }}>
-              <code>@seed-design/css</code> npm import · 모노크롬 아이콘 588개 · 공식 BEM 클래스 컴포넌트 갤러리
+              <code>@seed-design/css</code> npm import · 모노크롬 아이콘 588개 · SEED 2.0 CLI UI 컴포넌트 & 디자인 토큰 갤러리
             </p>
           </div>
           <a
@@ -94,8 +94,8 @@ export default function App() {
           <p>
             이롬넷이 채택한 Seed Design System의 Foundation 토큰 전수 + 공식 아이콘팩(모노크롬 588개) + UI 컴포넌트 갤러리.
             <br />
-            컴포넌트는 <code>@seed-design/css</code>를 npm으로 정식 임포트하여{' '}
-            <code>packages/css/recipes/*.css</code>의 실제 BEM 클래스명을 사용합니다.
+            컴포넌트는 <code>npx @seed-design/cli add ui:*</code>로 설치된 공식 SEED React UI 컴포넌트와{' '}
+            <code>@seed-design/css/vars</code>의 100% 시맨틱 디자인 토큰(<code>var(--seed-*)</code>)을 사용합니다.
           </p>
           <div style={{ display: 'flex', gap: 12, marginTop: 14, flexWrap: 'wrap' }}>
             {[
