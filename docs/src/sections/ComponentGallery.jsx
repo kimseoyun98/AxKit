@@ -40,7 +40,7 @@ import { ContextualFloatingButton } from '../components/ui/contextual-floating-b
 import { DatePicker, TwoMonthDatePicker, WeekDatePicker, ContinuousDatePicker } from '../components/ui/date-picker';
 import { DialogRoot, DialogTrigger, DialogContent, DialogBody, DialogFooter, DialogAction } from '../components/ui/dialog';
 import { ResponsiveDialogRoot, ResponsiveDialogTrigger, ResponsiveDialogContent, ResponsiveDialogBody, ResponsiveDialogFooter, ResponsiveDialogAction } from '../components/ui/responsive-dialog';
-import { Float, Divider } from '../components/ui/layout';
+import { Float, Divider, ImageFrame } from '../components/ui/layout';
 import { FieldButton, FieldButtonValue, FieldButtonPlaceholder } from '../components/ui/field-button';
 import { FloatingActionButton } from '../components/ui/floating-action-button';
 import { HelpBubbleTrigger, HelpBubbleAnchor } from '../components/ui/help-bubble';
@@ -1336,6 +1336,51 @@ function IdentityPlaceholderDemo() {
   );
 }
 
+function ImageFrameDemo() {
+  const [ratio, setRatio] = useState(4 / 3);
+  const [showFallback, setShowFallback] = useState(false);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Aspect Ratio · Fallback (ContentPlaceholder) · Stroke
+      </div>
+
+      {/* Controls */}
+      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <ActionButton size="small" variant={ratio === 4 / 3 ? "brandSolid" : "neutralOutline"} onClick={() => setRatio(4 / 3)}>
+          4 : 3 비율
+        </ActionButton>
+        <ActionButton size="small" variant={ratio === 1 ? "brandSolid" : "neutralOutline"} onClick={() => setRatio(1)}>
+          1 : 1 정사각형
+        </ActionButton>
+        <ActionButton size="small" variant={ratio === 16 / 9 ? "brandSolid" : "neutralOutline"} onClick={() => setRatio(16 / 9)}>
+          16 : 9 와이드
+        </ActionButton>
+        <ActionButton size="small" variant={showFallback ? "brandSolid" : "neutralOutline"} onClick={() => setShowFallback(!showFallback)}>
+          {showFallback ? "Fallback 이미지 켜짐" : "정상 이미지"}
+        </ActionButton>
+      </div>
+
+      {/* ImageFrame Card */}
+      <div style={{ width: '100%', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)' }}>
+        <ImageFrame
+          ratio={ratio}
+          borderRadius="r2"
+          stroke
+          src={showFallback ? "https://invalid-image-url-error.png" : "https://images.unsplash.com/photo-1535025183041-0991a977e25b?w=500&dpr=2&q=80"}
+          alt="상품 피드 이미지"
+          fallback={<ContentPlaceholder type="commerce" />}
+        />
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)', textAlign: 'center', lineHeight: 1.5 }}>
+          상품/피드 업로드 이미지 전용 프레임입니다.<br />
+          이미지 로드 실패 시 <b>ContentPlaceholder (commerce/image/article)</b>가 대체 노출됩니다.
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -1455,6 +1500,12 @@ const COMPONENTS = [
     name: 'Identity Placeholder',
     slug: 'ui:identity-placeholder',
     demo: <IdentityPlaceholderDemo />,
+  },
+
+  {
+    name: 'Image Frame',
+    slug: 'ui:image-frame',
+    demo: <ImageFrameDemo />,
   },
 ];
 

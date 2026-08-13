@@ -16,6 +16,7 @@ export {
   Skeleton,
   VisuallyHidden,
   AspectRatio,
+  ImageFrame,
   type BoxProps,
   type FlexProps,
   type GridProps,
