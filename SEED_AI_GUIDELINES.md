@@ -38,6 +38,14 @@
 - Use `maxLines={N}` (e.g. `maxLines={2}`) for clean multi-line truncation with automatic ellipsis (`…`).
 - Use `textStyle="t3StaticRegular"` for static non-scaling typography when required.
 
+### 2.4. Layout Primitives (`Box`, `Flex`, `Grid`, `VStack`, `HStack`, `Float`)
+- Always prefer SEED React Layout Primitives (`Box`, `Flex`, `Grid`, `VStack`, `HStack`, `Float`) from `@seed-design/react` over un-tokenized manual divs for component layout composition.
+- **`Box`**: Token-aware container (`bg="bg.neutralWeak"`, `px="x3"`, `py="x2"`, `borderRadius="r2"`, `backgroundGradient="highlightMagic"`).
+- **`VStack` / `HStack`**: Vertical/Horizontal stack containers with token spacing (`gap="x2"`, `align="center"`, `justify="space-between"`).
+- **`Flex`**: Flexbox layout container (`direction="column" | "row"`, `wrap="wrap"`).
+- **`Grid`**: Responsive CSS grid container (`columns={{ base: 1, md: 2, xl: 4 }}`, `gap={{ base: "x3", md: "x4" }}`).
+- **`Float`**: Floating/Absolute placement container for floating buttons, badges, tooltips (`placement="top-start" | "bottom-end"`).
+
 ---
 
 ## 3. Interaction States & Responsive System
