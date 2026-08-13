@@ -74,45 +74,42 @@ function AlertDialogDemo() {
           <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Layout: {layout.label}
           </div>
-          <div className="seed-dialog__positioner" style={{ position: 'relative', top: 'auto', left: 'auto', right: 'auto', bottom: 'auto', transform: 'none', zIndex: 1 }}>
-            <div className="seed-dialog__backdrop" style={{ position: 'absolute', inset: 0, borderRadius: 20 }} />
-            <div className="seed-dialog__content" data-state="open" style={{ width: '100%' }}>
-              <div className="seed-dialog__header">
-                <h2 className="seed-dialog__title" data-anatomy={lIdx === 0 ? "Title" : undefined}>{layout.title}</h2>
-                {layout.desc && <p className="seed-dialog__description" data-anatomy={lIdx === 0 ? "Description" : undefined}>{layout.desc}</p>}
-              </div>
-              <div className="seed-dialog__footer" data-anatomy={lIdx === 0 ? "Footer" : undefined}>
-                {layout.kind === 'stack' ? (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', alignItems: 'stretch' }}>
-                    {layout.buttons.map((b, i) => (
-                      <button
-                        key={i}
-                        type="button"
-                        className={`seed-action-button seed-action-button--variant_${b.variant} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
-                        style={b.muted ? { color: 'var(--seed-color-fg-neutral-muted)', fontWeight: 'var(--seed-font-weight-bold)' } : undefined}
-                      >
-                        {b.label}
-                      </button>
-                    ))}
-                  </div>
-                ) : (
-                  <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: 'var(--seed-dimension-x2)' }}>
-                    {layout.buttons.map((b, i) => (
-                      <button
-                        key={i}
-                        type="button"
-                        className={`seed-action-button seed-action-button--variant_${b.variant} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
-                        style={{
-                          '--seed-box-flex-grow': 1,
-                          '--seed-box-min-width': `calc(${100 / layout.buttons.length}% - var(--seed-dimension-x2) / ${layout.buttons.length})`,
-                        }}
-                      >
-                        {b.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
+          <div className="seed-dialog__content" data-state="open" style={{ width: '100%', boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)' }}>
+            <div className="seed-dialog__header">
+              <h2 className="seed-dialog__title" data-anatomy={lIdx === 0 ? "Title" : undefined}>{layout.title}</h2>
+              {layout.desc && <p className="seed-dialog__description" data-anatomy={lIdx === 0 ? "Description" : undefined}>{layout.desc}</p>}
+            </div>
+            <div className="seed-dialog__footer" data-anatomy={lIdx === 0 ? "Footer" : undefined}>
+              {layout.kind === 'stack' ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', alignItems: 'stretch' }}>
+                  {layout.buttons.map((b, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      className={`seed-action-button seed-action-button--variant_${b.variant} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
+                      style={b.muted ? { color: 'var(--seed-color-fg-neutral-muted)', fontWeight: 'var(--seed-font-weight-bold)' } : undefined}
+                    >
+                      {b.label}
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: 'var(--seed-dimension-x2)' }}>
+                  {layout.buttons.map((b, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      className={`seed-action-button seed-action-button--variant_${b.variant} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
+                      style={{
+                        '--seed-box-flex-grow': 1,
+                        '--seed-box-min-width': `calc(${100 / layout.buttons.length}% - var(--seed-dimension-x2) / ${layout.buttons.length})`,
+                      }}
+                    >
+                      {b.label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>

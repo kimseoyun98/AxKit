@@ -83,27 +83,24 @@ tr:last-child td { border-bottom: none; }
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 340px;
   border-radius: 20px;
   background: #EBECEF;
 }
 .comp-carousel-track {
   display: flex;
+  align-items: flex-start;
   width: 100%;
-  height: 100%;
   transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
   will-change: transform;
 }
 .comp-carousel-slide {
   flex: 0 0 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 28px;
+  padding: 32px 24px;
   box-sizing: border-box;
-  overflow-y: auto;
   /* position:fixed 데모(Alert Dialog 등)가 트랙 전체가 아니라 자기 슬라이드 안에서만
      "화면 전체를 덮도록" containing block을 슬라이드 단위로 스코프한다 (시각적 영향 없음). */
   transform: translateZ(0);
