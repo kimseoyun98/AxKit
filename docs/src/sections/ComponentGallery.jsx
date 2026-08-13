@@ -33,6 +33,7 @@ import {
   AlertDialogFooter,
   AlertDialogAction,
 } from '../components/ui/alert-dialog';
+import { Badge } from '../components/ui/badge';
 
 // Alert Dialog Layout Variants
 const ALERT_DIALOG_LAYOUTS = [
@@ -381,6 +382,64 @@ function AttachmentFieldDemo() {
   );
 }
 
+function BadgeDemo() {
+  const tones = [
+    { key: 'neutral', label: 'Neutral' },
+    { key: 'brand', label: 'Brand' },
+    { key: 'informative', label: 'Informative' },
+    { key: 'positive', label: 'Positive' },
+    { key: 'warning', label: 'Warning' },
+    { key: 'critical', label: 'Critical' },
+  ];
+  const variants = ['solid', 'weak', 'outline'];
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 420, margin: '0 auto' }}>
+      {/* Tone & Variant Matrix */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+          Badge Tones & Variants (Medium Size)
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '80px repeat(3, 1fr)', gap: 'var(--seed-dimension-x2)', alignItems: 'center', textAlign: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-subtle)', textAlign: 'left' }}>Tone</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Solid</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Weak</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Outline</span>
+
+          {tones.map(({ key, label }) => (
+            <React.Fragment key={key}>
+              <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textAlign: 'left' }}>{label}</span>
+              {variants.map((v) => (
+                <div key={v} style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Badge tone={key} variant={v} size="medium">
+                    라벨
+                  </Badge>
+                </div>
+              ))}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+
+      {/* Sizes Comparison */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%', alignItems: 'center' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Sizes (Medium / Large)
+        </div>
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x4)', alignItems: 'center' }}>
+          <Badge tone="brand" variant="solid" size="medium">
+            Medium
+          </Badge>
+          <Badge tone="brand" variant="solid" size="large">
+            Large
+          </Badge>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -410,6 +469,12 @@ const COMPONENTS = [
     name: 'Avatar',
     slug: 'ui:avatar',
     demo: <AvatarDemo />,
+  },
+
+  {
+    name: 'Badge',
+    slug: 'ui:badge',
+    demo: <BadgeDemo />,
   },
 ];
 
