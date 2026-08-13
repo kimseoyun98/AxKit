@@ -46,6 +46,13 @@
 - **`Grid`**: Responsive CSS grid container (`columns={{ base: 1, md: 2, xl: 4 }}`, `gap={{ base: "x3", md: "x4" }}`).
 - **`Float`**: Floating/Absolute placement container for floating buttons, badges, tooltips (`placement="top-start" | "bottom-end"`).
 
+### 2.5. Foundation Utility Components (`Article`, `Divider`, `Skeleton`, `VisuallyHidden`, `AspectRatio`)
+- **`<Article>`**: Text selection & multilingual word-break utility. Enables text selection (`user-select: text`) inside `user-select: none` mobile views and handles language-specific line breaks (`lang="ko-KR"` / `"ja-JP"` / `"en-US"`).
+- **`<Divider>`**: Structural separator (`orientation="horizontal" | "vertical"`).
+- **`<Skeleton>`**: Shimmering loading placeholder (`width`, `height`, `borderRadius`).
+- **`<VisuallyHidden>`**: Accessible screen-reader text utility (`<VisuallyHidden>닫기</VisuallyHidden>`).
+- **`<AspectRatio>`**: Fixed ratio image/video container (`ratio={16 / 9}`).
+
 ---
 
 ## 3. Interaction States & Responsive System
