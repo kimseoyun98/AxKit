@@ -30,6 +30,13 @@ import { Avatar, AvatarBadge, AvatarStack } from '../components/ui/avatar';
 import { AttachmentField, AttachmentInput, AttachmentDropzone } from '../components/ui/attachment-field';
 import { AttachmentDisplayField, AttachmentDisplay } from '../components/ui/attachment-display-field';
 import {
+  BottomSheetRoot,
+  BottomSheetTrigger,
+  BottomSheetContent,
+  BottomSheetBody,
+  BottomSheetFooter,
+} from '../components/ui/bottom-sheet';
+import {
   AlertDialogRoot,
   AlertDialogContent,
   AlertDialogHeader,
@@ -582,6 +589,35 @@ function BottomNavigationDemo() {
   );
 }
 
+function BottomSheetDemo() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 420, margin: '0 auto', alignItems: 'center' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        CLI Component · Max Width 480px · Backdrop & Handle
+      </div>
+      <BottomSheetRoot>
+        <BottomSheetTrigger asChild>
+          <ActionButton variant="neutralSolid" size="medium">
+            Bottom Sheet 모달 열기
+          </ActionButton>
+        </BottomSheetTrigger>
+        <BottomSheetContent title="하단 모달 바텀시트" description="SEED 2.0 하단 슬라이드 모달 컴포넌트입니다.">
+          <BottomSheetBody>
+            <div style={{ padding: 'var(--seed-dimension-x3) 0', fontSize: 'var(--seed-font-size-t4)', color: 'var(--seed-color-fg-neutral)', lineHeight: 1.6 }}>
+              하단 모달 바텀시트는 최대 480px 너비를 유지하며, 드래그/배경 터치 닫기 동작 및 접근성(a11y) 속성을 자동 관리합니다.
+            </div>
+          </BottomSheetBody>
+          <BottomSheetFooter>
+            <ActionButton variant="brandSolid" size="large" style={{ width: '100%' }}>
+              확인 및 닫기
+            </ActionButton>
+          </BottomSheetFooter>
+        </BottomSheetContent>
+      </BottomSheetRoot>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -623,6 +659,12 @@ const COMPONENTS = [
     name: 'Bottom Navigation',
     slug: 'pattern:bottom-navigation',
     demo: <BottomNavigationDemo />,
+  },
+
+  {
+    name: 'Bottom Sheet',
+    slug: 'ui:bottom-sheet',
+    demo: <BottomSheetDemo />,
   },
 ];
 
