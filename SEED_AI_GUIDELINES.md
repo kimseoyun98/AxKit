@@ -65,6 +65,12 @@
 - Mobile-First Breakpoints: `base` (0px), `sm` (480px), `md` (768px), `lg` (1280px), `xl` (1440px).
 - Prefer CSS-based responsive props (`padding={{ base: "x4", md: "x6" }}`) and `hideFrom` over JS hooks. Use `useBreakpoint` / `useBreakpointValue` only when runtime JS logic requires it.
 
+### 3.3. Loading Patterns & UX Rules
+- **No Loading UI for < 1s**: Do NOT show spinners/skeletons for fast actions under 1 second (prevents UI flickering).
+- **1 ~ 4s Short Loading**: Use `ProgressCircle` (`ui:progress-circle`) or `Skeleton`.
+- **4 ~ 10s Content Loading**: Use `Skeleton` for structured list/card views so users anticipate incoming layout.
+- **> 10s Long Processing**: Use `ProgressCircle` (Determinate) with retry/cancel options.
+
 ---
 
 ## 4. Library Dependencies & Single Bundle Policy
