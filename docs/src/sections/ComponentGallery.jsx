@@ -35,6 +35,7 @@ import { Chip } from '../components/ui/chip';
 import { ChipTabsRoot, ChipTabsList, ChipTabsTrigger } from '../components/ui/chip-tabs';
 import { ContentPlaceholder } from '../components/ui/content-placeholder';
 import { ContextualFloatingButton } from '../components/ui/contextual-floating-button';
+import { Float } from '../components/ui/layout';
 import {
   BottomSheetRoot,
   BottomSheetTrigger,
@@ -220,25 +221,20 @@ function AvatarDemo() {
         </AvatarStack>
       </div>
 
-      {/* 4. Fallback Placeholders (ContentPlaceholder) */}
+      {/* 4. Fallback */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          Fallback Placeholders (ContentPlaceholder)
+          Fallback Placeholders
         </div>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x5)', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
-            <Avatar size="64" />
-            <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Default</span>
+            <Avatar size="64" fallback={<IconPersonFill style={{ width: '60%', height: '60%', color: 'var(--seed-color-fg-neutral-subtle)' }} />} />
+            <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Person</span>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
-            <Avatar size="64" fallback={<ContentPlaceholder type="business" style={{ width: '100%', height: '100%' }} />} />
+            <Avatar size="64" fallback={<IconStoreFill style={{ width: '55%', height: '55%', color: 'var(--seed-color-fg-neutral-subtle)' }} />} />
             <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Business</span>
-          </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
-            <Avatar size="64" fallback={<ContentPlaceholder type="group" style={{ width: '100%', height: '100%' }} />} />
-            <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Group</span>
           </div>
         </div>
       </div>
@@ -872,6 +868,7 @@ function ChipDemo() {
 function ContentPlaceholderDemo() {
   const types = [
     { type: "default", label: "Default" },
+    { type: "profile", label: "Profile" },
     { type: "coupon", label: "Coupon" },
     { type: "realty", label: "Realty" },
     { type: "car", label: "Car" },

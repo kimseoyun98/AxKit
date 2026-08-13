@@ -4,7 +4,6 @@
  * @requires @seed-design/css@^2.0.0
  **/
 
-import { ContentPlaceholder } from "./content-placeholder";
 import { Avatar as SeedAvatar } from "@seed-design/react";
 import * as React from "react";
 
@@ -23,9 +22,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
   ({ src, alt, fallback, children, ...otherProps }, ref) => {
     return (
       <SeedAvatar.Root ref={ref} {...otherProps}>
-        <SeedAvatar.Fallback>
-          {fallback ?? <ContentPlaceholder style={{ width: "100%", height: "100%" }} />}
-        </SeedAvatar.Fallback>
+        <SeedAvatar.Fallback>{fallback}</SeedAvatar.Fallback>
         <SeedAvatar.Image src={src} alt={alt} />
         {children}
       </SeedAvatar.Root>

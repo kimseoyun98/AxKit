@@ -4,6 +4,8 @@
  * @requires @seed-design/css@^2.0.0
  **/
 
+import IconPersonFill from "@karrotmarket/react-monochrome-icon/IconPersonFill";
+import IconDot3HorizontalChatbubbleLeftFill from "@karrotmarket/react-monochrome-icon/IconDot3HorizontalChatbubbleLeftFill";
 import { ContentPlaceholder as SeedContentPlaceholder } from "@seed-design/react";
 import * as React from "react";
 
@@ -19,13 +21,18 @@ const defaultImageSvg = (
   </svg>
 );
 
+const customPresets: Record<string, React.ReactNode> = {
+  default: defaultImageSvg,
+  profile: <IconPersonFill style={{ width: "60%", height: "60%" }} />,
+  chat: <IconDot3HorizontalChatbubbleLeftFill style={{ width: "60%", height: "60%" }} />,
+};
+
 /**
  * @see https://seed-design.io/react/components/content-placeholder
  */
 export const ContentPlaceholder = React.forwardRef<HTMLDivElement, ContentPlaceholderProps>(
   ({ children, type = "default", ...props }, ref) => {
-    // If type is "default" and no custom children provided, use thick 64x64 image SVG artwork
-    const content = children || (type === "default" ? defaultImageSvg : undefined);
+    const content = children || customPresets[type] || undefined;
 
     return (
       <SeedContentPlaceholder.Root type={type} {...props} ref={ref}>
