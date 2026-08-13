@@ -46,6 +46,7 @@ import { FloatingActionButton } from '../components/ui/floating-action-button';
 import { HelpBubbleTrigger, HelpBubbleAnchor } from '../components/ui/help-bubble';
 import { HelpBubbleTooltipTrigger } from '../components/ui/help-bubble-tooltip';
 import { IdentityPlaceholder } from '../components/ui/identity-placeholder';
+import { ProgressCircle } from '../components/ui/progress-circle';
 import IconQuestionmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconQuestionmarkCircleFill";
 import IconMapLocationpinFill from "@karrotmarket/react-monochrome-icon/IconMapLocationpinFill";
 import {
@@ -1392,6 +1393,59 @@ function ImageFrameDemo() {
   );
 }
 
+function ProgressCircleDemo() {
+  const [progress, setProgress] = useState(65);
+  const [tone, setTone] = useState("brand");
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Circular Loading Indicator & Progress Meter
+      </div>
+
+      {/* Control Buttons */}
+      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <ActionButton size="small" variant={tone === "brand" ? "brandSolid" : "neutralOutline"} onClick={() => setTone("brand")}>
+          Brand Tone
+        </ActionButton>
+        <ActionButton size="small" variant={tone === "neutral" ? "brandSolid" : "neutralOutline"} onClick={() => setTone("neutral")}>
+          Neutral Tone
+        </ActionButton>
+        <ActionButton size="small" variant={tone === "critical" ? "brandSolid" : "neutralOutline"} onClick={() => setTone("critical")}>
+          Critical Tone
+        </ActionButton>
+      </div>
+
+      {/* Progress Circle Interactive Box */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x5)', padding: 'var(--seed-dimension-x6)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--seed-dimension-x6)' }}>
+          {['24', '36', '40', '48'].map((sz) => (
+            <div key={sz} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
+              <ProgressCircle size={sz} tone={tone} value={progress / 100} />
+              <span style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-subtle)' }}>{sz}px</span>
+            </div>
+          ))}
+        </div>
+
+        {/* Progress Slider Controls */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)', minWidth: 48, textAlign: 'right' }}>
+            {progress}%
+          </span>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={progress}
+            onChange={(e) => setProgress(Number(e.target.value))}
+            style={{ flexGrow: 1, cursor: 'pointer' }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -1517,6 +1571,12 @@ const COMPONENTS = [
     name: 'Image Frame',
     slug: 'ui:image-frame',
     demo: <ImageFrameDemo />,
+  },
+
+  {
+    name: 'Progress Circle',
+    slug: 'ui:progress-circle',
+    demo: <ProgressCircleDemo />,
   },
 ];
 
