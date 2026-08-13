@@ -235,16 +235,16 @@ function AvatarDemo() {
       {/* 4. Fallback */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          Fallback Placeholders
+          Fallback Placeholders (IdentityPlaceholder)
         </div>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x5)', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
-            <Avatar size="64" fallback={<IconPersonFill style={{ width: '60%', height: '60%', color: 'var(--seed-color-fg-neutral-subtle)' }} />} />
+            <Avatar size="64" fallback={<IdentityPlaceholder identity="person" />} />
             <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Person</span>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
-            <Avatar size="64" fallback={<IconStoreFill style={{ width: '55%', height: '55%', color: 'var(--seed-color-fg-neutral-subtle)' }} />} />
+            <Avatar size="64" fallback={<IdentityPlaceholder identity="business" />} />
             <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Business</span>
           </div>
         </div>
