@@ -31,6 +31,15 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '..
 import { ActionButton, PrefixIcon, SuffixIcon, Icon } from '../components/ui/action-button';
 import { Avatar, AvatarBadge, AvatarStack } from '../components/ui/avatar';
 import { AttachmentField, AttachmentInput, AttachmentDropzone } from '../components/ui/attachment-field';
+import {
+  AlertDialogRoot,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogAction,
+} from '../components/ui/alert-dialog';
 
 // Alert Dialog의 6가지 Layout 변형(공식 문서 기준: Single / Neutral / Neutral(Overflow) /
 // Critical / Critical(Overflow) / NonePreferred). 출처:
@@ -74,45 +83,45 @@ const ALERT_DIALOG_LAYOUTS = [
 
 function AlertDialogDemo() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, width: '100%', maxWidth: 360, margin: '0 auto' }}>
-      {ALERT_DIALOG_LAYOUTS.map((layout, lIdx) => (
-        <div key={layout.key} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 360, margin: '0 auto' }}>
+      {ALERT_DIALOG_LAYOUTS.map((layout) => (
+        <div key={layout.key} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)' }}>
+          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Layout: {layout.label}
           </div>
           <div className="seed-dialog__content" data-state="open" style={{ width: '100%', boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)' }}>
             <div className="seed-dialog__header">
-              <h2 className="seed-dialog__title" data-anatomy={lIdx === 0 ? "Title" : undefined}>{layout.title}</h2>
-              {layout.desc && <p className="seed-dialog__description" data-anatomy={lIdx === 0 ? "Description" : undefined}>{layout.desc}</p>}
+              <h2 className="seed-dialog__title">{layout.title}</h2>
+              {layout.desc && <p className="seed-dialog__description">{layout.desc}</p>}
             </div>
-            <div className="seed-dialog__footer" data-anatomy={lIdx === 0 ? "Footer" : undefined}>
+            <div className="seed-dialog__footer">
               {layout.kind === 'stack' ? (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', alignItems: 'stretch' }}>
                   {layout.buttons.map((b, i) => (
-                    <button
+                    <AlertDialogAction
                       key={i}
-                      type="button"
-                      className={`seed-action-button seed-action-button--variant_${b.variant} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
+                      variant={b.variant}
+                      size="medium"
                       style={b.muted ? { color: 'var(--seed-color-fg-neutral-muted)', fontWeight: 'var(--seed-font-weight-bold)' } : undefined}
                     >
                       {b.label}
-                    </button>
+                    </AlertDialogAction>
                   ))}
                 </div>
               ) : (
                 <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: 'var(--seed-dimension-x2)' }}>
                   {layout.buttons.map((b, i) => (
-                    <button
+                    <AlertDialogAction
                       key={i}
-                      type="button"
-                      className={`seed-action-button seed-action-button--variant_${b.variant} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
+                      variant={b.variant}
+                      size="medium"
                       style={{
-                        '--seed-box-flex-grow': 1,
-                        '--seed-box-min-width': `calc(${100 / layout.buttons.length}% - var(--seed-dimension-x2) / ${layout.buttons.length})`,
+                        flexGrow: 1,
+                        minWidth: `calc(${100 / layout.buttons.length}% - var(--seed-dimension-x2) / ${layout.buttons.length})`,
                       }}
                     >
                       {b.label}
-                    </button>
+                    </AlertDialogAction>
                   ))}
                 </div>
               )}
@@ -121,7 +130,7 @@ function AlertDialogDemo() {
         </div>
       ))}
     </div>
-  )
+  );
 }
 
 function IdentityPlaceholderSVG({ size = 48, identity = "person" }) {
