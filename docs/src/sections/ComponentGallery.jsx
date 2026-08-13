@@ -406,33 +406,23 @@ function ActionButtonDemo() {
       {/* 1. Hierarchy & State Matrix (User Image Request) */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%' }}>
         <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
-          Hierarchy & States (Enabled / Pressed / Loading / Disabled)
+          Hierarchy & States (Enabled / Loading / Disabled)
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, width: '100%', textAlign: 'center', fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-subtle)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, width: '100%', textAlign: 'center', fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-subtle)' }}>
           <span>Enabled</span>
-          <span>Pressed</span>
           <span>Loading</span>
           <span>Disabled</span>
         </div>
 
         {stateVariants.map(({ key }) => (
-          <div key={key} style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, width: '100%', alignItems: 'center' }}>
+          <div key={key} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, width: '100%', alignItems: 'center' }}>
             <button
               type="button"
               className={`seed-action-button seed-action-button--variant_${key} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
               style={{ width: '100%' }}
             >
               Enabled
-            </button>
-
-            <button
-              type="button"
-              data-active=""
-              className={`seed-action-button seed-action-button--variant_${key} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
-              style={{ width: '100%' }}
-            >
-              Pressed
             </button>
 
             <button
