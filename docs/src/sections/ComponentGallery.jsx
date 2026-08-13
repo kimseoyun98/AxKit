@@ -484,10 +484,10 @@ function BottomNavigationDemo() {
 
   const tabs = [
     { label: '홈', icon: <IconHouseFill style={{ width: 22, height: 22 }} />, badge: null },
-    { label: '동네생활', icon: <IconBuilding2Fill style={{ width: 22, height: 22 }} />, badge: null },
+    { label: '내회사', icon: <IconBuilding2Fill style={{ width: 22, height: 22 }} />, badge: null },
     { label: '내 근처', icon: <IconLocationpinFill style={{ width: 22, height: 22 }} />, badge: null },
     { label: '채팅', icon: <IconDot3HorizontalChatbubbleLeftFill style={{ width: 22, height: 22 }} />, badge: '3' },
-    { label: '나의 당근', icon: <IconPersonFill style={{ width: 22, height: 22 }} />, badge: null },
+    { label: '프로필', icon: <IconPersonFill style={{ width: 22, height: 22 }} />, badge: null },
   ];
 
   return (
