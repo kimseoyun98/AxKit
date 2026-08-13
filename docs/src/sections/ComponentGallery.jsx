@@ -591,29 +591,92 @@ function BottomNavigationDemo() {
 
 function BottomSheetDemo() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 420, margin: '0 auto', alignItems: 'center' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
       <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
-        CLI Component · Max Width 480px · Backdrop & Handle
+        Inline Preview & Interactive Modal · Max Width 480px
       </div>
-      <BottomSheetRoot>
-        <BottomSheetTrigger asChild>
-          <ActionButton variant="neutralSolid" size="medium">
-            Bottom Sheet 모달 열기
-          </ActionButton>
-        </BottomSheetTrigger>
-        <BottomSheetContent title="하단 모달 바텀시트" description="SEED 2.0 하단 슬라이드 모달 컴포넌트입니다.">
-          <BottomSheetBody>
-            <div style={{ padding: 'var(--seed-dimension-x3) 0', fontSize: 'var(--seed-font-size-t4)', color: 'var(--seed-color-fg-neutral)', lineHeight: 1.6 }}>
-              하단 모달 바텀시트는 최대 480px 너비를 유지하며, 드래그/배경 터치 닫기 동작 및 접근성(a11y) 속성을 자동 관리합니다.
+
+      {/* Inline Permanent Sheet Preview */}
+      <div
+        style={{
+          width: '100%',
+          height: 280,
+          background: 'var(--seed-color-bg-neutral-weak)',
+          borderRadius: 'var(--seed-dimension-x4)',
+          border: '1px solid var(--seed-color-stroke-neutral-weak)',
+          boxShadow: 'var(--seed-elevation-s2, 0 4px 20px rgba(0,0,0,0.06))',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Backdrop overlay */}
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.25)' }} />
+
+        {/* Bottom Sheet Modal Frame */}
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 1,
+            background: 'var(--seed-color-bg-layer-default)',
+            borderTopLeftRadius: 'var(--seed-dimension-x4)',
+            borderTopRightRadius: 'var(--seed-dimension-x4)',
+            padding: 'var(--seed-dimension-x4)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 'var(--seed-dimension-x3)',
+            boxShadow: '0 -4px 16px rgba(0,0,0,0.08)',
+          }}
+        >
+          {/* Drag Handle */}
+          <div style={{ width: 36, height: 4, background: 'var(--seed-color-stroke-neutral-muted, #CBD5E1)', borderRadius: 999, margin: '0 auto var(--seed-dimension-x1)' }} />
+
+          {/* Header */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x1)' }}>
+            <div style={{ fontSize: 'var(--seed-font-size-t5)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>
+              하단 모달 바텀시트
             </div>
-          </BottomSheetBody>
-          <BottomSheetFooter>
-            <ActionButton variant="brandSolid" size="large" style={{ width: '100%' }}>
-              확인 및 닫기
+            <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
+              SEED 2.0 하단 슬라이드 모달 컴포넌트입니다.
+            </div>
+          </div>
+
+          {/* Body */}
+          <div style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral)', lineHeight: 1.5 }}>
+            하단 모달 바텀시트는 화면 하단에서 올라오며 최대 480px 너비를 지원합니다.
+          </div>
+
+          {/* Footer */}
+          <ActionButton variant="brandSolid" size="medium" style={{ width: '100%' }}>
+            확인 및 닫기
+          </ActionButton>
+        </div>
+      </div>
+
+      {/* Trigger Modal Button */}
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <BottomSheetRoot>
+          <BottomSheetTrigger asChild>
+            <ActionButton variant="neutralOutline" size="medium">
+              실제 팝업 모달 테스트
             </ActionButton>
-          </BottomSheetFooter>
-        </BottomSheetContent>
-      </BottomSheetRoot>
+          </BottomSheetTrigger>
+          <BottomSheetContent title="하단 모달 바텀시트" description="SEED 2.0 하단 슬라이드 모달 컴포넌트입니다.">
+            <BottomSheetBody>
+              <div style={{ padding: 'var(--seed-dimension-x3) 0', fontSize: 'var(--seed-font-size-t4)', color: 'var(--seed-color-fg-neutral)', lineHeight: 1.6 }}>
+                하단 모달 바텀시트는 최대 480px 너비를 유지하며, 드래그/배경 터치 닫기 동작 및 접근성(a11y) 속성을 자동 관리합니다.
+              </div>
+            </BottomSheetBody>
+            <BottomSheetFooter>
+              <ActionButton variant="brandSolid" size="large" style={{ width: '100%' }}>
+                확인 및 닫기
+              </ActionButton>
+            </BottomSheetFooter>
+          </BottomSheetContent>
+        </BottomSheetRoot>
+      </div>
     </div>
   );
 }
