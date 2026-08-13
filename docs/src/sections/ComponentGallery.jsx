@@ -47,7 +47,7 @@ import { HelpBubbleTrigger, HelpBubbleAnchor } from '../components/ui/help-bubbl
 import { HelpBubbleTooltipTrigger } from '../components/ui/help-bubble-tooltip';
 import { IdentityPlaceholder } from '../components/ui/identity-placeholder';
 import { ProgressCircle } from '../components/ui/progress-circle';
-import { List, ListItem, ListButtonItem, ListSwitchItem, ListDivider } from '../components/ui/list';
+import { List, ListItem, ListButtonItem, ListSwitchItem, ListCheckItem, ListRadioItem, ListDivider } from '../components/ui/list';
 import { ListHeader } from '../components/ui/list-header';
 import IconQuestionmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconQuestionmarkCircleFill";
 import IconMapLocationpinFill from "@karrotmarket/react-monochrome-icon/IconMapLocationpinFill";
@@ -1484,14 +1484,16 @@ function ProgressCircleDemo() {
 
 function ListDemo() {
   const [pushNotif, setPushNotif] = useState(true);
+  const [agreeTerms, setAgreeTerms] = useState(true);
+  const [selectedTheme, setSelectedTheme] = useState("system");
   const [highlightFirst, setHighlightFirst] = useState(true);
   const [align, setAlign] = useState("center"); // "center" | "flex-start"
   const [showCardContainer, setShowCardContainer] = useState(false);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
       <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
-        Native Borderless List · ListHeader · ListItem · ListSwitchItem · ListButtonItem
+        ListItem · ListButtonItem · ListSwitchItem · ListCheckItem · ListRadioItem
       </div>
 
       {/* Control Buttons */}
@@ -1545,7 +1547,28 @@ function ListDemo() {
           />
           <ListDivider />
 
-          {/* 3. ListButtonItem */}
+          {/* 3. ListCheckItem */}
+          <ListCheckItem
+            alignItems={align}
+            checked={agreeTerms}
+            onCheckedChange={setAgreeTerms}
+            title="필수 서비스 이용약관 동의"
+            detail="개인정보 처리방침 및 위치 기반 서비스 이용 동의"
+          />
+          <ListDivider />
+
+          {/* 4. ListRadioItem */}
+          <ListRadioItem
+            alignItems={align}
+            value="system"
+            checked={selectedTheme === "system"}
+            onChange={() => setSelectedTheme("system")}
+            title="시스템 테마 자동 동기화"
+            detail="기기 설정에 따라 다크 모드와 라이트 모드를 자동 전환합니다."
+          />
+          <ListDivider />
+
+          {/* 5. ListButtonItem */}
           <ListButtonItem
             alignItems={align}
             onClick={() => alert("프로필 수정 페이지로 이동합니다.")}
