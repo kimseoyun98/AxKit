@@ -23,12 +23,8 @@ export function GridSection() {
         다양한 화면 밀도와 디바이스 환경에 대응할 수 있도록 유연한 그리드 시스템과 중단점(Breakpoint)을 제공합니다.
       </p>
       <Notice>
-        <strong>Column/Gutter/Margin 숫자는 <code>@seed-design/css</code>의 공식 CSS 토큰이 아닙니다.</strong>{' '}
-        실제 컴파일된 CSS의 <code>--seed-grid-columns-*</code>는 값이 없는 빈 통로(<code>none</code>/<code>initial</code>)일
-        뿐이고, 이 페이지의 표는 SEED가 문서로만 제공하는 권장 가이드라인입니다. Breakpoint 뷰포트
-        기준값(0/480/768/1280/1440)만 패키지에 실제 상수로 존재합니다. 이롬넷 Figma의 Column(12)/Gutter
-        변수는 이 가이드라인 숫자를 <strong>Figma의 Layout Grid Style 기능에 매핑하기 위해</strong> 직접
-        만든 값이며, 코드에 그대로 대응하는 토큰이 아닙니다.
+        <strong>SEED 2.0 그리드는 CSS 고정값 대신 JSX 반응형 Prop과 1fr 비율로 작동합니다.</strong>{' '}
+        Column/Gutter/Margin 숫자는 Figma 디자인 가이드라인이며, 코드에서는 JSX 반응형 Prop(<code>gap={`{{ base: "x3", md: "x4" }}`}</code>)이나 1fr 비율(<code>grid-template-columns: repeat(12, 1fr)</code>)을 활용하여 브라우저가 뷰포트 크기에 따라 유연하게 자동 계산하도록 설계되어 있습니다. (Breakpoint 0 / 480 / 768 / 1280 / 1440px 지원)
       </Notice>
 
       <h3>Layout Types</h3>
