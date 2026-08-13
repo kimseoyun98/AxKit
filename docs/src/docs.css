@@ -2,8 +2,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
-/* SEED 레시피는 button/input의 배경·테두리 UA 기본값이 이미 리셋돼 있다고 가정하고 작성됨
-   (레시피가 명시적으로 background를 정의하지 않는 state가 있음, 예: control-chip 미선택 상태) */
+/* SEED 레시피 UA 기본값 리셋 */
 button, input { font: inherit; color: inherit; background: none; border: none; appearance: none; -webkit-appearance: none; }
 button { cursor: pointer; }
 
@@ -13,91 +12,139 @@ html, body {
 }
 
 body {
-  font-family: 'Inter', -apple-system, sans-serif;
-  background: #F4F5F7;
-  color: #111827;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #FFFFFF;
+  color: #0F172A;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ─── Sidebar ────────────────────────────────────────── */
+/* ─── Sidebar (Toss / M3 Modern Style) ────────────────── */
 aside {
-  width: 236px; flex-shrink: 0;
+  width: 250px; flex-shrink: 0;
   position: fixed; top: 0; left: 0; bottom: 0;
-  background: #fff; border-right: 1px solid #E5E7EB;
-  padding: 20px 12px; overflow-y: auto; z-index: 100;
+  background: #FAFAFA; border-right: 1px solid #F1F5F9;
+  padding: 24px 16px; overflow-y: auto; z-index: 100;
 }
-.logo { font-size: 18px; font-weight: 800; color: #FF6F0F; margin-bottom: 18px; display: block; }
-.nav-sec { font-size: 10px; font-weight: 700; letter-spacing: .7px; text-transform: uppercase; color: #9CA3AF; margin: 14px 0 4px 8px; }
-.nav-link { display: block; padding: 6px 10px; font-size: 13px; color: #374151; font-weight: 500; border-radius: 7px; text-decoration: none; transition: background .12s, color .12s; }
-.nav-link:hover { background: #FFF3EB; color: #FF6F0F; font-weight: 600; }
+.logo {
+  font-size: 19px; font-weight: 800; color: #2563EB;
+  margin-bottom: 24px; display: block; letter-spacing: -0.02em;
+}
+.nav-sec {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: #94A3B8; margin: 20px 0 6px 8px;
+}
+.nav-link {
+  display: block; padding: 7px 12px; font-size: 13.5px;
+  color: #334155; font-weight: 500; border-radius: 8px;
+  text-decoration: none; transition: background .12s, color .12s;
+  margin-bottom: 2px;
+}
+.nav-link:hover { background: #F1F5F9; color: #2563EB; }
+.nav-link.active {
+  background: #EFF6FF; color: #2563EB; font-weight: 600;
+}
 
 /* ─── Main ───────────────────────────────────────────── */
-main { margin-left: 236px; width: calc(100% - 236px); min-width: 0; padding: 40px 44px; box-sizing: border-box; }
+main {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  max-width: 1080px;
+  min-width: 0;
+  padding: 48px 56px 96px;
+  box-sizing: border-box;
+}
 
-/* ─── Section ────────────────────────────────────────── */
-.sec { background: #fff; border: 1px solid #E5E7EB; border-radius: 20px; padding: 32px; margin-bottom: 28px; scroll-margin-top: 40px; }
-h1 { font-size: 28px; font-weight: 800; margin-bottom: 6px; }
-h2 { font-size: 19px; font-weight: 700; padding-bottom: 14px; margin-bottom: 20px; border-bottom: 2px solid #F3F4F6; }
-h3 { font-size: 15px; font-weight: 600; color: #1F2937; margin: 20px 0 8px; scroll-margin-top: 40px; }
-p { font-size: 13.5px; color: #4B5563; line-height: 1.7; margin-bottom: 10px; }
-code { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; background: #F3F4F6; padding: 2px 5px; border-radius: 4px; color: #2563EB; word-break: break-all; }
+/* ─── Section (Clean Border & Spacing - Toss/M3) ──────── */
+.sec {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  margin-bottom: 56px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid #F1F5F9;
+  scroll-margin-top: 40px;
+}
+.sec:last-of-type {
+  border-bottom: none;
+}
+
+h1 { font-size: 30px; font-weight: 800; color: #0F172A; letter-spacing: -0.02em; margin-bottom: 8px; }
+h2 { font-size: 21px; font-weight: 700; color: #0F172A; letter-spacing: -0.01em; margin-bottom: 16px; }
+h3 { font-size: 16px; font-weight: 600; color: #1E293B; margin: 28px 0 12px; scroll-margin-top: 40px; }
+p { font-size: 14.5px; color: #475569; line-height: 1.75; margin-bottom: 12px; }
+code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; background: #F1F5F9;
+  padding: 3px 6px; border-radius: 6px;
+  color: #2563EB; word-break: break-all;
+  border: 1px solid #E2E8F0;
+}
 
 /* ─── Tables ─────────────────────────────────────────── */
-.tbl { width: 100%; overflow-x: auto; border-radius: 10px; border: 1px solid #E5E7EB; margin: 10px 0; }
-table { width: 100%; min-width: 500px; border-collapse: collapse; font-size: 12.5px; }
-th { background: #F9FAFB; padding: 9px 12px; text-align: left; font-weight: 600; color: #374151; border-bottom: 1px solid #E5E7EB; white-space: nowrap; }
-td { padding: 9px 12px; border-bottom: 1px solid #F3F4F6; color: #4B5563; }
+.tbl {
+  width: 100%; overflow-x: auto;
+  border-radius: 12px; border: 1px solid #E2E8F0;
+  margin: 16px 0; background: #FFFFFF;
+}
+table { width: 100%; min-width: 500px; border-collapse: collapse; font-size: 13px; }
+th {
+  background: #F8FAFC; padding: 10px 14px;
+  text-align: left; font-weight: 600; color: #334155;
+  border-bottom: 1px solid #E2E8F0; white-space: nowrap;
+}
+td { padding: 11px 14px; border-bottom: 1px solid #F1F5F9; color: #475569; }
 tr:last-child td { border-bottom: none; }
 
 /* ─── Swatches ───────────────────────────────────────── */
-.pal-group { margin-bottom: 16px; }
-.pal-label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: #6B7280; margin-bottom: 8px; }
-.pal-row { display: flex; flex-wrap: wrap; gap: 8px; }
-.sw { width: 80px; }
-.sw-color { height: 36px; border-radius: 8px; }
-.sw-name { font-size: 10px; font-weight: 600; color: #111827; margin-top: 4px; }
-.sw-hex { font-size: 10px; color: #9CA3AF; font-family: monospace; }
+.pal-group { margin-bottom: 20px; }
+.pal-label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: #64748B; margin-bottom: 8px; letter-spacing: 0.05em; }
+.pal-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.sw { width: 84px; }
+.sw-color { height: 38px; border-radius: 8px; border: 1px solid rgba(0, 0, 0, 0.06); }
+.sw-name { font-size: 10.5px; font-weight: 600; color: #1E293B; margin-top: 5px; }
+.sw-hex { font-size: 10px; color: #94A3B8; font-family: monospace; }
 
 /* ─── Component Gallery ──────────────────────────────── */
 #showcase { overflow: hidden; }
 
 /* 네비 토글 바 */
-.comp-nav { display: flex; flex-wrap: wrap; gap: 6px; padding-bottom: 14px; }
+.comp-nav { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 16px; }
 .comp-nav::-webkit-scrollbar { display: none; }
 .comp-nav-btn {
-  flex-shrink: 0; padding: 5px 14px; border-radius: 999px;
-  border: 1.5px solid #E5E7EB; background: transparent;
-  cursor: pointer; font-size: 12.5px; font-weight: 600;
-  color: #6B7280; white-space: nowrap; transition: all 0.15s;
+  flex-shrink: 0; padding: 6px 16px; border-radius: 999px;
+  border: 1px solid #E2E8F0; background: #FFFFFF;
+  cursor: pointer; font-size: 13px; font-weight: 600;
+  color: #64748B; white-space: nowrap; transition: all 0.15s ease;
   font-family: inherit;
 }
-.comp-nav-btn:hover { border-color: #FF6F0F; color: #FF6F0F; }
+.comp-nav-btn:hover { border-color: #93C5FD; color: #2563EB; }
 .comp-nav-btn.active {
-  border-color: #FF6F0F; background: #FFF3EB; color: #FF6F0F;
+  border-color: #2563EB; background: #EFF6FF; color: #2563EB;
 }
-/* 데모 카드의 반투명 회색 backdrop 위에 얹는 토글(예: Alert Dialog 레이아웃 스위처)은
-   기본 comp-nav-btn의 투명 배경이 배경색과 비슷해져서 안 보이므로 불투명 배경을 준다. */
 .comp-nav-btn--overlay {
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, .18);
+  background: #FFFFFF;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
 }
-.comp-nav-btn--overlay.active { background: #FFF3EB; }
+.comp-nav-btn--overlay.active { background: #EFF6FF; }
 
-/* 캐러셀 래퍼 — wrap 자체가 flex 컨테이너, scrollLeft로 이동 */
+/* 캐러셀 래퍼 */
 .comp-carousel-wrap {
   position: relative;
   overflow: hidden;
   width: 100%;
-  border-radius: 20px;
-  background: #ffffff;
-  border: 1px solid #E5E7EB;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border-radius: 16px;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 .comp-carousel-track {
   display: flex;
   align-items: flex-start;
   width: 100%;
-  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
 }
 .comp-carousel-slide {
@@ -106,7 +153,7 @@ tr:last-child td { border-bottom: none; }
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 32px 24px;
+  padding: 40px 32px;
   box-sizing: border-box;
   transform: translateZ(0);
 }
@@ -123,15 +170,7 @@ tr:last-child td { border-bottom: none; }
   opacity: 1;
   transition: opacity 0.25s ease;
 }
-/* 이 문서 사이트 자체의 "프로즈" 스타일(위 34~44행: h1/h2/h3/p/code/table/th/td)은
-   태그 자체에 걸려 있어서(클래스로 스코프 안 됨) 데모 카드 안에서 SEED가 실제로 같은 태그를
-   쓰면(Dialog title=h2, description=p 등) 그대로 새어 들어온다. 컴포넌트 하나 추가할 때마다
-   충돌을 발견해서 땜질하는 대신, 데모 영역 전체를 미리 한 번에 면역시켜둔다.
-   :where()로 이 선택자의 명시도를 0으로 낮춰서 — 34~44행의 원래 태그 셀렉터(명시도 0,0,1)는
-   이기되(소스 순서상 더 뒤에 있으므로), SEED 클래스(명시도 0,1,0 이상)한테는 항상 지도록 만든다.
-   즉 "사이트 기본값보다는 우선하지만 실제 SEED 스타일은 절대 못 덮어씀"이 명시도로 보장됨 —
-   그래서 all:revert로 전부 되돌려도 안전하다. 새 컴포넌트가 이 목록에 없는 태그(ul/li/dl 등)를
-   쓰게 되면 여기 추가할 것. */
+
 :where(.comp-carousel-slide) :is(h1, h2, h3, p, code, table, th, td) {
   all: revert;
   box-sizing: border-box;
@@ -141,7 +180,6 @@ tr:last-child td { border-bottom: none; }
   background-color: var(--seed-color-bg-layer-default, #ffffff);
 }
 
-/* 데모 쇼케이스 슬라이드 안에서 Dialog의 흑색 fixed 백드롭 박스 제거 및 모달 카드 중앙 배치 */
 .comp-carousel-slide .seed-dialog__backdrop {
   display: none;
 }
@@ -156,39 +194,29 @@ tr:last-child td { border-bottom: none; }
   padding: 8px 0;
 }
 
-/* Anatomy 라벨 오버레이 — 데모 마크업에 data-anatomy="파츠 이름"을 붙여두면,
-   "Anatomy 라벨 보기" 토글로 comp-carousel-wrap에 data-show-anatomy가 붙었을 때만
-   점선 테두리 + 이름표가 나타난다. 기본 상태(토글 off)에서는 완전히 안 보임 — 데모 자체는 깔끔.
-   :where()로 이 규칙의 명시도를 0으로 낮춘다 — Badge/Backdrop/RemoveButton처럼 실제 SEED 클래스가
-   이미 position:absolute를 지정한 파츠에서는 항상 그 실제 값이 이기고(명시도상 뭘 붙여도 짐),
-   position이 따로 지정 안 된 대부분의 파츠(Trigger, Thumbnail 등)에서만 조용히 relative가 적용된다.
-   (처음엔 명시도가 실제보다 높아서 Badge/Backdrop/RemoveButton의 진짜 absolute를 덮어써
-   레이아웃이 깨지는 사고가 있었음 — Alert Dialog의 backdrop/positioner(position:fixed)를 아예
-   라벨링 제외했던 것과 같은 종류의 문제라, 이번엔 제외 대신 명시도를 0으로 낮춰 근본적으로 해결.) */
+/* Anatomy 라벨 오버레이 */
 :where([data-show-anatomy] [data-anatomy]) {
   position: relative;
-  outline: 1px dashed #FF6F0F;
+  outline: 1.5px dashed #2563EB;
   outline-offset: 2px;
 }
 :where([data-show-anatomy] [data-anatomy])::before {
   content: attr(data-anatomy);
   position: absolute;
-  top: -17px;
+  top: -18px;
   left: -1px;
   z-index: 50;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 9.5px;
   font-weight: 700;
   line-height: 1.4;
   white-space: nowrap;
-  color: #fff;
-  background: #FF6F0F;
-  padding: 1px 5px;
+  color: #FFFFFF;
+  background: #2563EB;
+  padding: 1px 6px;
   border-radius: 4px;
   pointer-events: none;
 }
-/* .seed-accordion__content 자신이 overflow:hidden이라 그 위(top:-17px)에 놓인 라벨은
-   자기 자신한테 잘려서 안 보인다 — 이 파츠만 박스 안쪽 위로 라벨 위치를 바꾼다. */
 [data-show-anatomy] [data-anatomy="Content Panel"]::before {
   top: 2px;
   left: 2px;
@@ -197,45 +225,54 @@ tr:last-child td { border-bottom: none; }
 /* 하단 컴포넌트 정보 바 */
 .comp-info-bar {
   display: flex; align-items: center; justify-content: space-between;
-  margin-top: 12px;
+  margin-top: 16px;
 }
-.comp-info-bar .comp-name { font-size: 15px; font-weight: 700; color: #111827; }
-.comp-info-bar .comp-slug { font-size: 11.5px; color: #9CA3AF; font-family: monospace; }
-.comp-info-bar .comp-arrows { display: flex; gap: 6px; }
+.comp-info-bar .comp-name { font-size: 16px; font-weight: 700; color: #0F172A; }
+.comp-info-bar .comp-slug { font-size: 12px; color: #64748B; font-family: monospace; }
+.comp-info-bar .comp-arrows { display: flex; gap: 8px; }
 .comp-arrow-btn {
-  width: 30px; height: 30px; border-radius: 999px;
-  border: 1.5px solid #E5E7EB; background: #fff;
+  width: 32px; height: 32px; border-radius: 999px;
+  border: 1px solid #E2E8F0; background: #FFFFFF;
   cursor: pointer; font-size: 14px; display: flex;
   align-items: center; justify-content: center;
-  color: #374151; transition: all 0.15s;
+  color: #334155; transition: all 0.15s ease;
 }
-.comp-arrow-btn:hover:not(:disabled) { border-color: #FF6F0F; color: #FF6F0F; }
+.comp-arrow-btn:hover:not(:disabled) { border-color: #2563EB; color: #2563EB; background: #EFF6FF; }
 .comp-arrow-btn:disabled { opacity: 0.35; cursor: default; }
 
 /* dot 인디케이터 */
-.comp-dots { display: flex; gap: 5px; justify-content: center; margin-top: 10px; }
+.comp-dots { display: flex; gap: 6px; justify-content: center; margin-top: 12px; }
 .comp-dot {
-  width: 5px; height: 5px; border-radius: 999px;
-  background: #D1D5DB; transition: all 0.2s; border: none; padding: 0; cursor: pointer;
+  width: 6px; height: 6px; border-radius: 999px;
+  background: #CBD5E1; transition: all 0.2s ease; border: none; padding: 0; cursor: pointer;
 }
-.comp-dot.active { width: 16px; background: #FF6F0F; }
+.comp-dot.active { width: 18px; background: #2563EB; }
 
 /* ─── Icon Grid ──────────────────────────────────────── */
 .icon-grid { display: flex; flex-wrap: wrap; gap: 12px; }
 .icon-item {
-  display: flex; flex-direction: column; align-items: center; gap: 5px;
-  padding: 10px 7px; border-radius: 10px; border: 1px solid #E5E7EB;
-  background: #fff; width: 84px; cursor: default;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 12px 8px; border-radius: 12px; border: 1px solid #E2E8F0;
+  background: #FFFFFF; width: 88px; cursor: default; transition: all 0.12s ease;
 }
-.icon-item:hover { background: #FFF3EB; border-color: #FF6F0F; }
-.icon-item span { font-size: 9px; color: #6B7280; text-align: center; word-break: break-all; line-height: 1.3; }
+.icon-item:hover { background: #EFF6FF; border-color: #2563EB; }
+.icon-item span { font-size: 9.5px; color: #64748B; text-align: center; word-break: break-all; line-height: 1.3; }
 
 /* ─── Misc ───────────────────────────────────────────── */
-.chip-info { display: inline-block; background: #FFF3EB; color: #FF6F0F; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 9999px; margin-left: 8px; }
-.notice { background: #FEFCE8; border: 1px solid #FDE68A; border-left: 3px solid #F59E0B; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: #78350F; line-height: 1.65; }
+.chip-info {
+  display: inline-block; background: #EFF6FF; color: #2563EB;
+  font-size: 11.5px; font-weight: 700; padding: 2px 10px; border-radius: 9999px;
+  margin-left: 8px; border: 1px solid #BFDBFE;
+}
+.notice {
+  background: #EFF6FF; border: 1px solid #BFDBFE; border-left: 4px solid #2563EB;
+  border-radius: 10px; padding: 14px 18px; margin-bottom: 24px;
+  display: flex; gap: 12px; align-items: flex-start;
+  font-size: 13.5px; color: #1E3A8A; line-height: 1.65;
+}
 .notice > span:first-child { margin-top: 1px; }
-.notice strong { font-weight: 700; color: #92400E; }
-.notice code { background: rgba(180,83,9,.1); padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+.notice strong { font-weight: 700; color: #1E40AF; }
+.notice code { background: rgba(37, 99, 235, 0.1); border-color: transparent; padding: 2px 6px; border-radius: 4px; font-size: 12px; }
 
 @keyframes shimmer { 0% { background-position: 200% center } 100% { background-position: -200% center } }
 @keyframes seed-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }

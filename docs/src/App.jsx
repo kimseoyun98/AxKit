@@ -67,10 +67,10 @@ export default function App() {
       </aside>
 
       <main>
-        <header style={{ marginBottom: 28, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16 }}>
+        <header style={{ marginBottom: 40, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16, paddingBottom: 28, borderBottom: '1px solid #F1F5F9' }}>
           <div>
             <h1>axpublish v2.0 · Seed Design</h1>
-            <p style={{ fontSize: 14, color: '#6B7280' }}>
+            <p style={{ fontSize: 14.5, color: '#64748B', marginTop: 4 }}>
               <code>@seed-design/css</code> npm import · 모노크롬 아이콘 588개 · SEED 2.0 CLI UI 컴포넌트 & 디자인 토큰 갤러리
             </p>
           </div>
@@ -80,8 +80,9 @@ export default function App() {
             rel="noopener noreferrer"
             style={{
               flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: '#111827', color: '#fff', fontSize: 13, fontWeight: 700,
-              padding: '10px 16px', borderRadius: 9999, textDecoration: 'none', whiteSpace: 'nowrap',
+              background: '#2563EB', color: '#fff', fontSize: 13.5, fontWeight: 700,
+              padding: '10px 18px', borderRadius: 9999, textDecoration: 'none', whiteSpace: 'nowrap',
+              boxShadow: '0 2px 8px rgba(37, 99, 235, 0.25)', transition: 'all 0.15s ease',
             }}
           >
             ↓ 템플릿 다운로드 (GitHub)
@@ -97,16 +98,16 @@ export default function App() {
             컴포넌트는 <code>npx @seed-design/cli add ui:*</code>로 설치된 공식 SEED React UI 컴포넌트와{' '}
             <code>@seed-design/css/vars</code>의 100% 시맨틱 디자인 토큰(<code>var(--seed-*)</code>)을 사용합니다.
           </p>
-          <div style={{ display: 'flex', gap: 12, marginTop: 14, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
             {[
               ['@seed-design/css', 'npm install @seed-design/css'],
               ['@seed-design/react', 'npm install @seed-design/react'],
               ['@seed-design/icon', 'npm install @seed-design/icon'],
               ['@seed-design/cli', 'npx @seed-design/cli add ui:*'],
             ].map(([label, cmd]) => (
-              <div key={label} style={{ background: '#F9FAFB', border: '1px solid #E5E7EB', borderRadius: 10, padding: '10px 14px' }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: '#374151', marginBottom: 4 }}>{label}</div>
-                <code style={{ fontSize: 11 }}>{cmd}</code>
+              <div key={label} style={{ background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: 10, padding: '12px 16px' }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: '#334155', marginBottom: 4 }}>{label}</div>
+                <code style={{ fontSize: 11.5 }}>{cmd}</code>
               </div>
             ))}
           </div>
