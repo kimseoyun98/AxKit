@@ -381,6 +381,12 @@ function AttachmentFieldDemo() {
 
 const COMPONENTS = [
   {
+    name: 'Accordion',
+    slug: 'ui:accordion',
+    demo: <AccordionDemo />,
+  },
+
+  {
     name: 'Action Button',
     slug: 'ui:action-button',
     demo: <ActionButtonDemo />,
