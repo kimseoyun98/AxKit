@@ -133,14 +133,31 @@ function AlertDialogDemo() {
   )
 }
 
-const COMPONENTS = [
-  {
-    name: 'Accordion',
-    slug: 'ui:accordion',
-    // 출처 대조: packages/css/recipes/accordion.css (seed-accordion__* BEM) +
-    // docs/registry/react/ui/accordion.tsx (Header > Trigger > Prefix/Body(Title+Description)/SuffixIcon, Content)
-    demo: (
-      <div className="seed-accordion__root" style={{ width: '100%', maxWidth: 320 }}>
+function AccordionDemo() {
+  const [variant, setVariant] = useState('inline')
+
+  return (
+    <>
+      <div style={{
+        position: 'absolute', top: 12, left: 12, right: 12, zIndex: 20,
+        display: 'flex', justifyContent: 'center', gap: 6,
+      }}>
+        {['inline', 'separated'].map((v) => (
+          <button
+            key={v}
+            type="button"
+            className={`comp-nav-btn comp-nav-btn--overlay${v === variant ? ' active' : ''}`}
+            onClick={() => setVariant(v)}
+          >
+            Variant: {v}
+          </button>
+        ))}
+      </div>
+
+      <div
+        className={`seed-accordion__root${variant === 'separated' ? ' seed-accordion__root--variant_separated-size_medium' : ''}`}
+        style={{ width: '100%', maxWidth: 320 }}
+      >
         {[
           {
             title: '배송 방법',
@@ -159,11 +176,11 @@ const COMPONENTS = [
             disabled: true,
           },
         ].map(({ title, description, prefix, open, disabled, content }, i) => (
-          <div key={i} className="seed-accordion__item seed-accordion__item--variant_inline">
+          <div key={i} className={`seed-accordion__item seed-accordion__item--variant_${variant}`}>
             <h3 className="seed-accordion__header">
               <button
                 type="button"
-                className="seed-accordion__trigger seed-accordion__trigger--variant_inline seed-accordion__trigger--size_medium"
+                className={`seed-accordion__trigger seed-accordion__trigger--variant_${variant} seed-accordion__trigger--size_medium`}
                 data-state={open ? 'open' : 'closed'}
                 disabled={disabled}
               >
@@ -205,7 +222,17 @@ const COMPONENTS = [
           </div>
         ))}
       </div>
-    ),
+    </>
+  )
+}
+
+const COMPONENTS = [
+  {
+    name: 'Accordion',
+    slug: 'ui:accordion',
+    // 출처 대조: packages/css/recipes/accordion.css (seed-accordion__* BEM) +
+    // docs/registry/react/ui/accordion.tsx (Header > Trigger > Prefix/Body(Title+Description)/SuffixIcon, Content)
+    demo: <AccordionDemo />,
   },
 
   {
