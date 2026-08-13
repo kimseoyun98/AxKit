@@ -500,16 +500,16 @@ function BottomNavigationDemo() {
       <div
         style={{
           width: '100%',
-          background: 'var(--seed-color-bg-layer-default, #FFFFFF)',
-          border: '1px solid var(--seed-color-stroke-neutral-weak, #E2E8F0)',
-          borderRadius: 16,
-          boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
+          background: 'var(--seed-color-bg-layer-default)',
+          border: '1px solid var(--seed-color-stroke-neutral-weak)',
+          borderRadius: 'var(--seed-dimension-x4)',
+          boxShadow: 'var(--seed-elevation-s2, 0 4px 20px rgba(0,0,0,0.06))',
           overflow: 'hidden',
         }}
       >
         {/* Screen Mock Area */}
-        <div style={{ height: 120, background: '#F8FAFC', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, color: '#64748B' }}>
-          선택된 탭: <strong style={{ color: '#2563EB', marginLeft: 6 }}>{tabs[activeTab].label}</strong>
+        <div style={{ height: 120, background: 'var(--seed-color-bg-neutral-weak)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
+          선택된 탭: <strong style={{ color: 'var(--seed-color-fg-brand)', marginLeft: 'var(--seed-dimension-x1_5)' }}>{tabs[activeTab].label}</strong>
         </div>
 
         {/* Bottom Navigation Bar */}
@@ -518,8 +518,8 @@ function BottomNavigationDemo() {
             display: 'grid',
             gridTemplateColumns: 'repeat(5, 1fr)',
             height: 56,
-            background: '#FFFFFF',
-            borderTop: '1px solid #F1F5F9',
+            background: 'var(--seed-color-bg-layer-default)',
+            borderTop: '1px solid var(--seed-color-stroke-neutral-weak)',
             position: 'relative',
           }}
         >
@@ -534,13 +534,13 @@ function BottomNavigationDemo() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: 3,
+                  gap: 'var(--seed-dimension-x0_5)',
                   border: 'none',
                   background: 'transparent',
                   cursor: 'pointer',
                   padding: 0,
                   position: 'relative',
-                  color: isActive ? 'var(--seed-color-fg-neutral, #2563EB)' : 'var(--seed-color-fg-neutral-subtle, #94A3B8)',
+                  color: isActive ? 'var(--seed-color-fg-neutral)' : 'var(--seed-color-fg-neutral-subtle)',
                   transition: 'color 0.15s ease',
                 }}
               >
@@ -552,13 +552,13 @@ function BottomNavigationDemo() {
                         position: 'absolute',
                         top: -3,
                         right: -8,
-                        background: 'var(--seed-color-bg-critical-solid, #EF4444)',
-                        color: '#FFFFFF',
-                        fontSize: 10,
-                        fontWeight: 700,
+                        background: 'var(--seed-color-bg-critical-solid)',
+                        color: 'var(--seed-color-palette-static-white)',
+                        fontSize: 'var(--seed-font-size-t1)',
+                        fontWeight: 'var(--seed-font-weight-bold)',
                         height: 15,
                         minWidth: 15,
-                        padding: '0 4px',
+                        padding: '0 var(--seed-dimension-x1)',
                         borderRadius: 999,
                         display: 'flex',
                         alignItems: 'center',
@@ -570,7 +570,7 @@ function BottomNavigationDemo() {
                     </span>
                   )}
                 </div>
-                <span style={{ fontSize: 11, fontWeight: isActive ? 700 : 500 }}>
+                <span style={{ fontSize: 'var(--seed-font-size-t1)', fontWeight: isActive ? 'var(--seed-font-weight-bold)' : 'var(--seed-font-weight-regular)' }}>
                   {t.label}
                 </span>
               </button>
