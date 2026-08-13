@@ -8,6 +8,7 @@ import {
   PrefixIcon,
   SwipeableMenuSheet as SeedSwipeableMenuSheet,
   VisuallyHidden,
+  Portal,
 } from "@seed-design/react";
 import { forwardRef } from "react";
 import type * as React from "react";
@@ -51,35 +52,37 @@ export const SwipeableMenuSheetContent = forwardRef<HTMLDivElement, SwipeableMen
     }
 
     return (
-      <SeedSwipeableMenuSheet.Positioner
-        style={{ "--layer-index": layerIndex } as React.CSSProperties}
-      >
-        <SeedSwipeableMenuSheet.Backdrop />
-        <SeedSwipeableMenuSheet.Content ref={ref} {...otherProps}>
-          <SeedSwipeableMenuSheet.Handle />
-          {(title || description) && (
-            <SeedSwipeableMenuSheet.Header>
-              {title && <SeedSwipeableMenuSheet.Title>{title}</SeedSwipeableMenuSheet.Title>}
-              {description && (
-                <SeedSwipeableMenuSheet.Description>
-                  {description}
-                </SeedSwipeableMenuSheet.Description>
-              )}
-            </SeedSwipeableMenuSheet.Header>
-          )}
-          <SeedSwipeableMenuSheet.List>{children}</SeedSwipeableMenuSheet.List>
-          {/* You may implement your own i18n for dismiss label */}
-          {showCloseButton ? (
-            <SeedSwipeableMenuSheet.Footer>
-              <SeedSwipeableMenuSheet.CloseButton>닫기</SeedSwipeableMenuSheet.CloseButton>
-            </SeedSwipeableMenuSheet.Footer>
-          ) : (
-            <VisuallyHidden asChild>
-              <SeedSwipeableMenuSheet.CloseButton>닫기</SeedSwipeableMenuSheet.CloseButton>
-            </VisuallyHidden>
-          )}
-        </SeedSwipeableMenuSheet.Content>
-      </SeedSwipeableMenuSheet.Positioner>
+      <Portal>
+        <SeedSwipeableMenuSheet.Positioner
+          style={{ "--layer-index": layerIndex } as React.CSSProperties}
+        >
+          <SeedSwipeableMenuSheet.Backdrop />
+          <SeedSwipeableMenuSheet.Content ref={ref} {...otherProps}>
+            <SeedSwipeableMenuSheet.Handle />
+            {(title || description) && (
+              <SeedSwipeableMenuSheet.Header>
+                {title && <SeedSwipeableMenuSheet.Title>{title}</SeedSwipeableMenuSheet.Title>}
+                {description && (
+                  <SeedSwipeableMenuSheet.Description>
+                    {description}
+                  </SeedSwipeableMenuSheet.Description>
+                )}
+              </SeedSwipeableMenuSheet.Header>
+            )}
+            <SeedSwipeableMenuSheet.List>{children}</SeedSwipeableMenuSheet.List>
+            {/* You may implement your own i18n for dismiss label */}
+            {showCloseButton ? (
+              <SeedSwipeableMenuSheet.Footer>
+                <SeedSwipeableMenuSheet.CloseButton>닫기</SeedSwipeableMenuSheet.CloseButton>
+              </SeedSwipeableMenuSheet.Footer>
+            ) : (
+              <VisuallyHidden asChild>
+                <SeedSwipeableMenuSheet.CloseButton>닫기</SeedSwipeableMenuSheet.CloseButton>
+              </VisuallyHidden>
+            )}
+          </SeedSwipeableMenuSheet.Content>
+        </SeedSwipeableMenuSheet.Positioner>
+      </Portal>
     );
   },
 );

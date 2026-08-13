@@ -4,7 +4,7 @@
  * @requires @seed-design/css@^2.0.0
  **/
 
-import { PrefixIcon, SuffixIcon, Menu as SeedMenu } from "@seed-design/react";
+import { PrefixIcon, SuffixIcon, Menu as SeedMenu, Portal } from "@seed-design/react";
 import * as React from "react";
 
 export interface MenuRootProps extends SeedMenu.RootProps {}
@@ -38,11 +38,13 @@ export interface MenuContentProps extends SeedMenu.ContentProps {
 export const MenuContent = React.forwardRef<HTMLDivElement, MenuContentProps>(
   ({ children, positionerContainer, ...props }, ref) => {
     return (
-      <SeedMenu.Positioner container={positionerContainer}>
-        <SeedMenu.Content ref={ref} {...props}>
-          <SeedMenu.ScrollArea>{children}</SeedMenu.ScrollArea>
-        </SeedMenu.Content>
-      </SeedMenu.Positioner>
+      <Portal>
+        <SeedMenu.Positioner container={positionerContainer}>
+          <SeedMenu.Content ref={ref} {...props}>
+            <SeedMenu.ScrollArea>{children}</SeedMenu.ScrollArea>
+          </SeedMenu.Content>
+        </SeedMenu.Positioner>
+      </Portal>
     );
   },
 );
