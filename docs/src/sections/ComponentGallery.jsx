@@ -4,7 +4,7 @@
  * - 100% SEED Design System 시맨틱 CSS 토큰 (`var(--seed-*)`) 적용
  */
 
-import { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   IconDeliveryRegular,
   IconAddRegular,
