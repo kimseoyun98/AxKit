@@ -1394,53 +1394,85 @@ function ImageFrameDemo() {
 }
 
 function ProgressCircleDemo() {
-  const [progress, setProgress] = useState(65);
-  const [tone, setTone] = useState("brand");
+  const [isIndeterminate, setIsIndeterminate] = useState(false);
+  const [progress, setProgress] = useState(40);
+  const [tone, setTone] = useState("brand"); // "brand" | "neutral" | "staticWhite"
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 480, margin: '0 auto' }}>
       <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
-        Circular Loading Indicator & Progress Meter
+        Behavior (Indeterminate · Determinate) · Tone (Neutral · Brand · Static White) · Size (40 · 24)
       </div>
 
-      {/* Control Buttons */}
+      {/* Controls */}
       <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <ActionButton size="small" variant={!isIndeterminate ? "brandSolid" : "neutralOutline"} onClick={() => setIsIndeterminate(false)}>
+          Determinate ({progress}%)
+        </ActionButton>
+        <ActionButton size="small" variant={isIndeterminate ? "brandSolid" : "neutralOutline"} onClick={() => setIsIndeterminate(true)}>
+          Indeterminate (무한 회전)
+        </ActionButton>
         <ActionButton size="small" variant={tone === "brand" ? "brandSolid" : "neutralOutline"} onClick={() => setTone("brand")}>
           Brand Tone
         </ActionButton>
         <ActionButton size="small" variant={tone === "neutral" ? "brandSolid" : "neutralOutline"} onClick={() => setTone("neutral")}>
           Neutral Tone
         </ActionButton>
-        <ActionButton size="small" variant={tone === "critical" ? "brandSolid" : "neutralOutline"} onClick={() => setTone("critical")}>
-          Critical Tone
+        <ActionButton size="small" variant={tone === "staticWhite" ? "brandSolid" : "neutralOutline"} onClick={() => setTone("staticWhite")}>
+          Static White
         </ActionButton>
       </div>
 
-      {/* Progress Circle Interactive Box */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x5)', padding: 'var(--seed-dimension-x6)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--seed-dimension-x6)' }}>
-          {['24', '36', '40', '48'].map((sz) => (
-            <div key={sz} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
-              <ProgressCircle size={sz} tone={tone} value={progress / 100} />
-              <span style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-subtle)' }}>{sz}px</span>
-            </div>
-          ))}
+      {/* Main Preview Container */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', padding: 'var(--seed-dimension-x6)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: tone === "staticWhite" ? '#1e1e1e' : 'var(--seed-color-bg-layer-default)', transition: 'background-color 0.2s' }}>
+        
+        {/* Sizes Showcase */}
+        <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+          {/* Size 40 (Page level) */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
+            <ProgressCircle
+              size="40"
+              tone={tone}
+              minValue={0}
+              maxValue={100}
+              value={isIndeterminate ? undefined : progress}
+            />
+            <span style={{ fontSize: 'var(--seed-font-size-t2)', color: tone === "staticWhite" ? '#aaa' : 'var(--seed-color-fg-neutral-subtle)' }}>
+              Size 40 (전체 페이지)
+            </span>
+          </div>
+
+          {/* Size 24 (Component level) */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
+            <ProgressCircle
+              size="24"
+              tone={tone}
+              minValue={0}
+              maxValue={100}
+              value={isIndeterminate ? undefined : progress}
+            />
+            <span style={{ fontSize: 'var(--seed-font-size-t2)', color: tone === "staticWhite" ? '#aaa' : 'var(--seed-color-fg-neutral-subtle)' }}>
+              Size 24 (컴포넌트 수준)
+            </span>
+          </div>
         </div>
 
-        {/* Progress Slider Controls */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)', minWidth: 48, textAlign: 'right' }}>
-            {progress}%
-          </span>
-          <input
-            type="range"
-            min="0"
-            max="100"
-            value={progress}
-            onChange={(e) => setProgress(Number(e.target.value))}
-            style={{ flexGrow: 1, cursor: 'pointer' }}
-          />
-        </div>
+        {/* Determinate Progress Control Slider */}
+        {!isIndeterminate && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--seed-dimension-x3)', width: '100%', paddingTop: 'var(--seed-dimension-x2)' }}>
+            <span style={{ fontSize: 'var(--seed-font-size-t2)', color: tone === "staticWhite" ? '#fff' : 'var(--seed-color-fg-neutral-muted)', minWidth: 44, textAlign: 'right' }}>
+              {progress}%
+            </span>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={progress}
+              onChange={(e) => setProgress(Number(e.target.value))}
+              style={{ flexGrow: 1, cursor: 'pointer' }}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
