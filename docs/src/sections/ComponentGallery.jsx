@@ -29,6 +29,7 @@ import { ActionButton, PrefixIcon, SuffixIcon, Icon } from '../components/ui/act
 import { Avatar, AvatarBadge, AvatarStack } from '../components/ui/avatar';
 import { AttachmentField, AttachmentInput, AttachmentDropzone } from '../components/ui/attachment-field';
 import { AttachmentDisplayField, AttachmentDisplay } from '../components/ui/attachment-display-field';
+import { Callout, ActionableCallout, DismissibleCallout } from '../components/ui/callout';
 import {
   BottomSheetRoot,
   BottomSheetTrigger,
@@ -681,6 +682,50 @@ function BottomSheetDemo() {
   );
 }
 
+function CalloutDemo() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Display · Actionable · Dismissible (6 Tones)
+      </div>
+
+      {/* 1. Static Display Callouts */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <Callout
+          tone="informative"
+          title="안내"
+          description="기능에 대한 주요 정보 및 팁을 시각적으로 강조하여 전달합니다."
+          prefixIcon={<IconCheckmarkCircleFill />}
+        />
+        <Callout
+          tone="warning"
+          title="주의"
+          description="중요한 설정 변경 전 주의가 필요합니다."
+        />
+        <Callout
+          tone="magic"
+          title="새 기능"
+          description="프리미엄 AI 유틸리티 기능이 새로 추가되었습니다!"
+        />
+      </div>
+
+      {/* 2. Actionable & Dismissible */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <ActionableCallout
+          tone="neutral"
+          title="이동"
+          description="선택하여 하위 메뉴나 상세 페이지로 바로 이동합니다."
+        />
+        <DismissibleCallout
+          tone="positive"
+          title="성공"
+          description="새로운 프로필 정보 저장이 완료되었습니다."
+        />
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -728,6 +773,12 @@ const COMPONENTS = [
     name: 'Bottom Sheet',
     slug: 'ui:bottom-sheet',
     demo: <BottomSheetDemo />,
+  },
+
+  {
+    name: 'Callout',
+    slug: 'ui:callout',
+    demo: <CalloutDemo />,
   },
 ];
 
