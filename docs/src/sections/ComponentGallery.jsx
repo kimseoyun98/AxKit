@@ -309,21 +309,21 @@ function ActionButtonDemo() {
   ];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 28, width: '100%', maxWidth: 480, margin: '0 auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x7)', width: '100%', maxWidth: 480, margin: '0 auto' }}>
       {/* 1. Hierarchy & State Matrix */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%' }}>
-        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
           Hierarchy & States (Enabled / Loading / Disabled)
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, width: '100%', textAlign: 'center', fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-subtle)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--seed-dimension-x2_5)', width: '100%', textAlign: 'center', fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
           <span>Enabled</span>
           <span>Loading</span>
           <span>Disabled</span>
         </div>
 
         {stateVariants.map(({ key }) => (
-          <div key={key} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, width: '100%', alignItems: 'center' }}>
+          <div key={key} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--seed-dimension-x2_5)', width: '100%', alignItems: 'center' }}>
             <ActionButton variant={key} size="medium" style={{ width: '100%' }}>
               Enabled
             </ActionButton>
@@ -340,11 +340,11 @@ function ActionButtonDemo() {
       </div>
 
       {/* 2. Sizes & Layouts */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%', alignItems: 'center' }}>
-        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%', alignItems: 'center' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
           Sizes & Layouts
         </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', alignItems: 'center' }}>
           <ActionButton variant="brandSolid" size="medium">
             <PrefixIcon svg={<IconAddRegular />} />
             글쓰기
