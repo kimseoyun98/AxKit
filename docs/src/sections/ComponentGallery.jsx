@@ -40,7 +40,7 @@ import { ContextualFloatingButton } from '../components/ui/contextual-floating-b
 import { DatePicker, TwoMonthDatePicker, WeekDatePicker, ContinuousDatePicker } from '../components/ui/date-picker';
 import { DialogRoot, DialogTrigger, DialogContent, DialogBody, DialogFooter, DialogAction } from '../components/ui/dialog';
 import { ResponsiveDialogRoot, ResponsiveDialogTrigger, ResponsiveDialogContent, ResponsiveDialogBody, ResponsiveDialogFooter, ResponsiveDialogAction } from '../components/ui/responsive-dialog';
-import { Float } from '../components/ui/layout';
+import { Float, Divider } from '../components/ui/layout';
 import {
   BottomSheetRoot,
   BottomSheetTrigger,
@@ -1112,6 +1112,45 @@ function DialogDemo() {
   );
 }
 
+function DividerDemo() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Horizontal · Vertical · Inset Layout Utility
+      </div>
+
+      {/* Horizontal Divider Example */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', padding: 'var(--seed-dimension-x4)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t3)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>
+          가로 구분선 (Horizontal Divider)
+        </div>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
+          상단 콘텐츠 영역입니다.
+        </div>
+        <Divider />
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
+          하단 콘텐츠 영역입니다.
+        </div>
+      </div>
+
+      {/* Inset & Vertical Divider Example */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', padding: 'var(--seed-dimension-x4)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t3)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>
+          여백 구분선 (Inset) & 세로 구분선 (Vertical)
+        </div>
+        <Divider inset />
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', height: 48, padding: '0 var(--seed-dimension-x2)' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral)' }}>옵션 A</span>
+          <Divider orientation="vertical" />
+          <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral)' }}>옵션 B</span>
+          <Divider orientation="vertical" inset />
+          <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral)' }}>옵션 C</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -1201,6 +1240,12 @@ const COMPONENTS = [
     name: 'Dialog',
     slug: 'ui:dialog',
     demo: <DialogDemo />,
+  },
+
+  {
+    name: 'Divider',
+    slug: 'ui:divider',
+    demo: <DividerDemo />,
   },
 ];
 
