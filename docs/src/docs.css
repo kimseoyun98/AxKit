@@ -7,6 +7,11 @@ html { scroll-behavior: smooth; }
 button, input { font: inherit; color: inherit; background: none; border: none; appearance: none; -webkit-appearance: none; }
 button { cursor: pointer; }
 
+html, body {
+  overflow-y: auto !important;
+  pointer-events: auto !important;
+}
+
 body {
   font-family: 'Inter', -apple-system, sans-serif;
   background: #F4F5F7;
