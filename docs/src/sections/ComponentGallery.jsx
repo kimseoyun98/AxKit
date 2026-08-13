@@ -47,6 +47,7 @@ import { HelpBubbleTrigger, HelpBubbleAnchor } from '../components/ui/help-bubbl
 import { HelpBubbleTooltipTrigger } from '../components/ui/help-bubble-tooltip';
 import { IdentityPlaceholder } from '../components/ui/identity-placeholder';
 import IconQuestionmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconQuestionmarkCircleFill";
+import IconMapLocationpinFill from "@karrotmarket/react-monochrome-icon/IconMapLocationpinFill";
 import {
   BottomSheetRoot,
   BottomSheetTrigger,
@@ -1186,7 +1187,7 @@ function FieldButtonDemo() {
           showRequiredIndicator
           disabled={isDisabled}
           invalid={isInvalid}
-          prefix={hasPrefix ? "📍" : undefined}
+          prefixIcon={hasPrefix ? <IconMapLocationpinFill /> : undefined}
           description="현재 거주하시는 지역을 선택해 주세요."
           errorMessage="거주 지역을 반드시 선택해 주세요."
           showClearButton={!!selectedCity}
