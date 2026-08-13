@@ -45,6 +45,7 @@ import { FieldButton, FieldButtonValue, FieldButtonPlaceholder } from '../compon
 import { FloatingActionButton } from '../components/ui/floating-action-button';
 import { HelpBubbleTrigger, HelpBubbleAnchor } from '../components/ui/help-bubble';
 import { HelpBubbleTooltipTrigger } from '../components/ui/help-bubble-tooltip';
+import { IdentityPlaceholder } from '../components/ui/identity-placeholder';
 import IconQuestionmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconQuestionmarkCircleFill";
 import {
   BottomSheetRoot,
@@ -1302,6 +1303,39 @@ function HelpBubbleDemo() {
   );
 }
 
+function IdentityPlaceholderDemo() {
+  const [identity, setIdentity] = useState("person");
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Person & Business Identity Fallback Asset
+      </div>
+
+      {/* Control Buttons */}
+      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center' }}>
+        <ActionButton size="small" variant={identity === "person" ? "brandSolid" : "neutralOutline"} onClick={() => setIdentity("person")}>
+          Person (개인 프로필)
+        </ActionButton>
+        <ActionButton size="small" variant={identity === "business" ? "brandSolid" : "neutralOutline"} onClick={() => setIdentity("business")}>
+          Business (비즈니스/비즈프로필)
+        </ActionButton>
+      </div>
+
+      {/* Identity Placeholder Card */}
+      <div style={{ width: '100%', padding: 'var(--seed-dimension-x6)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x4)' }}>
+        <div style={{ width: 80, height: 80, borderRadius: '50%', overflow: 'hidden' }}>
+          <IdentityPlaceholder identity={identity} />
+        </div>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)', textAlign: 'center', lineHeight: 1.6 }}>
+          Avatar 이미지가 없거나 표시할 수 없는 상태일 때 쓰이는 대체 이미지입니다.<br />
+          <b>identity="{identity}"</b>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -1415,6 +1449,12 @@ const COMPONENTS = [
     name: 'Help Bubble',
     slug: 'ui:help-bubble / ui:help-bubble-tooltip',
     demo: <HelpBubbleDemo />,
+  },
+
+  {
+    name: 'Identity Placeholder',
+    slug: 'ui:identity-placeholder',
+    demo: <IdentityPlaceholderDemo />,
   },
 ];
 
