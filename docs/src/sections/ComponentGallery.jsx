@@ -1169,11 +1169,11 @@ function FieldButtonDemo() {
       {/* FieldButton Demo Card */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
         <FieldButton
-          label="거래 희망 지역"
+          label="거주 지역"
           showRequiredIndicator
           invalid={isInvalid}
-          description="피커 모달이나 바텀시트를 호출하는 버튼 필드입니다."
-          errorMessage="거래 희망 지역을 반드시 선택해 주세요."
+          description="현재 거주하시는 지역을 선택해 주세요."
+          errorMessage="거주 지역을 반드시 선택해 주세요."
           showClearButton={!!selectedCity}
           values={selectedCity ? [selectedCity] : []}
           onValuesChange={(vals) => setSelectedCity(vals[0] || "")}
@@ -1183,13 +1183,13 @@ function FieldButtonDemo() {
                 setSelectedCity("서울특별시 강남구 역삼동");
               }
             },
-            "aria-label": selectedCity ? `현재 선택: ${selectedCity}` : "지역 선택",
+            "aria-label": selectedCity ? `현재 선택: ${selectedCity}` : "거주 지역 선택",
           }}
         >
           {selectedCity ? (
             <FieldButtonValue>{selectedCity}</FieldButtonValue>
           ) : (
-            <FieldButtonPlaceholder>클릭하여 지역을 선택해 주세요</FieldButtonPlaceholder>
+            <FieldButtonPlaceholder>클릭하여 거주 지역을 선택해 주세요</FieldButtonPlaceholder>
           )}
         </FieldButton>
       </div>
