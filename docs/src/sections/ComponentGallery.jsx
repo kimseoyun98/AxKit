@@ -9,7 +9,7 @@
  *   커스텀 px 값 등)으로 SEED에 없는 걸 흉내내지 않는다. 데모에 필요한 하위 컴포넌트가 아직
  *   갤러리에 없으면 그 부분은 비워두고, 해당 컴포넌트를 구현한 뒤 다시 채운다.
  *   (예: Action Button의 loading state는 ProgressCircle 컴포넌트 구현 후 추가)
- * - 완료: Accordion, Action Button (loading state 제외), Alert Dialog, Attachment Field (loading backdrop 제외)
+ * - 완료: Accordion, Action Button (loading state 제외), Alert Dialog, Attachment Field (loading backdrop 제외), Avatar
  * - 다음: (검수 후 결정)
  */
 
@@ -131,6 +131,139 @@ function AlertDialogDemo() {
       </div>
     </>
   )
+}
+
+function IdentityPlaceholderSVG({ size = 48, identity = "person" }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
+      <rect width="48" height="48" rx="24" fill="var(--seed-color-bg-neutral-weak)" />
+      {identity === "person" ? (
+        <path d="M24 14C20.6863 14 18 16.6863 18 20C18 23.3137 20.6863 26 24 26C27.3137 26 30 23.3137 30 20C30 16.6863 27.3137 14 24 14ZM14 34C14 29.5817 18.4772 26 24 26C29.5228 26 34 29.5817 34 34V35H14V34Z" fill="var(--seed-color-fg-neutral-muted)" />
+      ) : (
+        <path d="M16 16H32V34H16V16ZM20 20H24V24H20V20ZM20 26H24V30H20V26ZM26 20H28V24H26V20ZM26 26H28V30H26V26Z" fill="var(--seed-color-fg-neutral-muted)" />
+      )}
+    </svg>
+  );
+}
+
+function AvatarDemo() {
+  const [tab, setTab] = useState('sizes'); // sizes | badge | stack | fallback
+  const sampleImg = "https://avatars.githubusercontent.com/u/54893898?v=4";
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: '100%', alignItems: 'center' }}>
+      <div style={{
+        position: 'absolute', top: 12, left: 12, right: 12, zIndex: 20,
+        display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 6,
+      }}>
+        {[
+          ['sizes', 'Sizes (24~96)'],
+          ['badge', 'Badge & Mask'],
+          ['stack', 'Avatar Stack'],
+          ['fallback', 'Fallback'],
+        ].map(([key, label]) => (
+          <button
+            key={key}
+            type="button"
+            className={`comp-nav-btn comp-nav-btn--overlay${tab === key ? ' active' : ''}`}
+            onClick={() => setTab(key)}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      {tab === 'sizes' && (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', justifyContent: 'center', paddingTop: 24 }}>
+          {['24', '36', '48', '64', '80', '96'].map((sz) => (
+            <div key={sz} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+              <div className={`seed-avatar__root seed-avatar__root--size_${sz} seed-avatar__root--badgeMask_none`} data-anatomy={sz === '64' ? 'Image Area' : undefined}>
+                <img className="seed-avatar__image" src={sampleImg} alt={`Avatar ${sz}`} />
+              </div>
+              <span style={{ fontSize: 11, color: 'var(--seed-color-fg-neutral-muted)' }}>{sz}px</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {tab === 'badge' && (
+        <div style={{ display: 'flex', gap: 20, alignItems: 'center', justifyContent: 'center', paddingTop: 24 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+            <div className="seed-avatar__root seed-avatar__root--size_64 seed-avatar__root--badgeMask_circle" data-anatomy="Circle Badge">
+              <img className="seed-avatar__image" src={sampleImg} alt="Avatar" />
+              <div className="seed-avatar__badge seed-avatar__badge--size_64 seed-avatar__badge--badgeMask_circle">
+                <div style={{ width: '100%', height: '100%', borderRadius: '50%', backgroundColor: 'var(--seed-color-palette-green-600)' }} />
+              </div>
+            </div>
+            <span style={{ fontSize: 12, color: 'var(--seed-color-fg-neutral-subtle)' }}>Circle Badge</span>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+            <div className="seed-avatar__root seed-avatar__root--size_64 seed-avatar__root--badgeMask_flower" data-anatomy="Flower Badge">
+              <img className="seed-avatar__image" src={sampleImg} alt="Avatar" />
+              <div className="seed-avatar__badge seed-avatar__badge--size_64 seed-avatar__badge--badgeMask_flower">
+                <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C10.9 2 9.9 2.6 9.4 3.5C8.4 3.1 7.2 3.4 6.5 4.2C5.8 5 5.5 6.2 5.9 7.2C5 7.7 4.4 8.7 4.4 9.8C4.4 10.9 5 11.9 5.9 12.4C5.5 13.4 5.8 14.6 6.5 15.4C7.2 16.2 8.4 16.5 9.4 16.1C9.9 17 10.9 17.6 12 17.6C13.1 17.6 14.1 17 14.6 16.1C15.6 16.5 16.8 16.2 17.5 15.4C18.2 14.6 18.5 13.4 18.1 12.4C19 11.9 19.6 10.9 19.6 9.8C19.6 8.7 19 7.7 18.1 7.2C18.5 6.2 18.2 5 17.5 4.2C16.8 3.4 15.6 3.1 14.6 3.5C14.1 2.6 13.1 2 12 2Z" fill="var(--seed-color-palette-green-600)" />
+                  <path d="M9.5 9.8L11 11.3L14.5 7.8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            </div>
+            <span style={{ fontSize: 12, color: 'var(--seed-color-fg-neutral-subtle)' }}>Flower Badge</span>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+            <div className="seed-avatar__root seed-avatar__root--size_64 seed-avatar__root--badgeMask_shield" data-anatomy="Shield Badge">
+              <img className="seed-avatar__image" src={sampleImg} alt="Avatar" />
+              <div className="seed-avatar__badge seed-avatar__badge--size_64 seed-avatar__badge--badgeMask_shield">
+                <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L4 5V11C4 16.5 7.4 21.6 12 23C16.6 21.6 20 16.5 20 11V5L12 2Z" fill="var(--seed-color-palette-blue-600)" />
+                  <path d="M9.5 11.5L11 13L14.5 9.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+            </div>
+            <span style={{ fontSize: 12, color: 'var(--seed-color-fg-neutral-subtle)' }}>Shield Badge</span>
+          </div>
+        </div>
+      )}
+
+      {tab === 'stack' && (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, paddingTop: 24 }}>
+          <div className="seed-avatar-stack__root" data-anatomy="Avatar Stack">
+            {[0, 1, 2, 3].map((idx) => (
+              <div key={idx} className="seed-avatar-stack__item seed-avatar-stack__item--size_48">
+                <div className="seed-avatar__root seed-avatar__root--size_48 seed-avatar__root--badgeMask_none">
+                  <img className="seed-avatar__image" src={sampleImg} alt={`User ${idx}`} />
+                </div>
+              </div>
+            ))}
+          </div>
+          <span style={{ fontSize: 12, color: 'var(--seed-color-fg-neutral-subtle)' }}>Avatar Stack (size: 48)</span>
+        </div>
+      )}
+
+      {tab === 'fallback' && (
+        <div style={{ display: 'flex', gap: 20, alignItems: 'center', justifyContent: 'center', paddingTop: 24 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+            <div className="seed-avatar__root seed-avatar__root--size_64 seed-avatar__root--badgeMask_none" data-anatomy="Fallback (Person)">
+              <div className="seed-avatar__fallback">
+                <IdentityPlaceholderSVG size={64} identity="person" />
+              </div>
+            </div>
+            <span style={{ fontSize: 12, color: 'var(--seed-color-fg-neutral-subtle)' }}>Person Placeholder</span>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+            <div className="seed-avatar__root seed-avatar__root--size_64 seed-avatar__root--badgeMask_none" data-anatomy="Fallback (Business)">
+              <div className="seed-avatar__fallback">
+                <IdentityPlaceholderSVG size={64} identity="business" />
+              </div>
+            </div>
+            <span style={{ fontSize: 12, color: 'var(--seed-color-fg-neutral-subtle)' }}>Business Placeholder</span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 function AccordionDemo() {
@@ -434,6 +567,17 @@ const COMPONENTS = [
         </div>
       </div>
     ),
+  },
+
+  {
+    name: 'Avatar',
+    slug: 'ui:avatar',
+    // 출처 대조:
+    // - https://seed-design.io/llms/components/avatar.txt
+    // - https://seed-design.io/llms/react/components/avatar.txt
+    // - packages/css/recipes/avatar.css (.seed-avatar__root/image/fallback/badge, --size_*, --badgeMask_*)
+    // - packages/css/recipes/avatar-stack.css (.seed-avatar-stack__root/item, --size_*)
+    demo: <AvatarDemo />,
   },
 ];
 
