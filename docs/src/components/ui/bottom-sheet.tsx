@@ -5,7 +5,7 @@
  **/
 
 import IconXmarkLine from "@karrotmarket/react-monochrome-icon/IconXmarkLine";
-import { Icon, BottomSheet as SeedBottomSheet, VisuallyHidden } from "@seed-design/react";
+import { Icon, BottomSheet as SeedBottomSheet, VisuallyHidden, Portal } from "@seed-design/react";
 import type * as React from "react";
 import { forwardRef } from "react";
 
@@ -68,7 +68,7 @@ export const BottomSheetContent = forwardRef<HTMLDivElement, BottomSheetContentP
     const shouldRenderHeader = title || description;
 
     return (
-      <SeedBottomSheet.Portal>
+      <Portal>
         <SeedBottomSheet.Positioner style={{ "--layer-index": layerIndex } as React.CSSProperties}>
           <SeedBottomSheet.Backdrop />
           <SeedBottomSheet.Content ref={ref} {...otherProps}>
@@ -96,7 +96,7 @@ export const BottomSheetContent = forwardRef<HTMLDivElement, BottomSheetContentP
             )}
           </SeedBottomSheet.Content>
         </SeedBottomSheet.Positioner>
-      </SeedBottomSheet.Portal>
+      </Portal>
     );
   },
 );
