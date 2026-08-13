@@ -237,7 +237,16 @@ function AvatarDemo() {
 
 function AccordionDemo() {
   const renderContent = (text) => (
-    <div style={{ paddingInline: 16, paddingTop: 8, paddingBottom: 16, fontSize: 14, lineHeight: 1.6, color: 'var(--seed-color-fg-neutral-subtle)' }}>
+    <div
+      style={{
+        paddingInline: 'var(--seed-dimension-spacing-x-global-gutter)',
+        paddingTop: 'var(--seed-dimension-x2)',
+        paddingBottom: 'var(--seed-dimension-x3)',
+        fontSize: 'var(--seed-font-size-t4)',
+        lineHeight: 'var(--seed-line-height-t4)',
+        color: 'var(--seed-color-fg-neutral-subtle)',
+      }}
+    >
       {text}
     </div>
   );
