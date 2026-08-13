@@ -1485,7 +1485,7 @@ function ProgressCircleDemo() {
 function ListDemo() {
   const [pushNotif, setPushNotif] = useState(true);
   const [highlightFirst, setHighlightFirst] = useState(true);
-  const [align, setAlign] = useState("center");
+  const [align, setAlign] = useState("center"); // "center" | "flex-start"
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
@@ -1499,10 +1499,10 @@ function ListDemo() {
           {highlightFirst ? "강조(Highlighted) ON" : "강조 OFF"}
         </ActionButton>
         <ActionButton size="small" variant={align === "center" ? "brandSolid" : "neutralOutline"} onClick={() => setAlign("center")}>
-          Align: Center (기본)
+          Align: Center (수직 중앙)
         </ActionButton>
-        <ActionButton size="small" variant={align === "top" ? "brandSolid" : "neutralOutline"} onClick={() => setAlign("top")}>
-          Align: Top (상단)
+        <ActionButton size="small" variant={align === "flex-start" ? "brandSolid" : "neutralOutline"} onClick={() => setAlign("flex-start")}>
+          Align: Top (첫 줄 상단 고정)
         </ActionButton>
       </div>
 
@@ -1510,13 +1510,13 @@ function ListDemo() {
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', overflow: 'hidden' }}>
         <ListHeader as="h3">계정 및 알림 설정</ListHeader>
         <List width="full">
-          {/* 1. Highlighted / Standard ListItem */}
+          {/* 1. Highlighted / Standard ListItem with Multi-line Detail */}
           <ListItem
             alignItems={align}
             highlighted={highlightFirst}
             prefix={<Icon svg={<IconBellFill />} />}
-            title="마케팅 혜택 알림"
-            detail="이벤트 및 세일 소식을 실시간으로 받아봅니다."
+            title="마케팅 혜택 및 쇼핑 알림"
+            detail="이벤트, 할인 쿠폰, 맞춤형 추천 상품 및 서비스 업데이트 소식을 실시간 알림으로 받아보실 수 있습니다."
             suffix={<Icon svg={<IconChevronRightLine />} />}
           />
           <ListDivider />
@@ -1527,8 +1527,8 @@ function ListDemo() {
             checked={pushNotif}
             onCheckedChange={setPushNotif}
             prefix={<Icon svg={<IconLockFill />} />}
-            title="보안 및 푸시 알림"
-            detail="로그인 기기 및 거래 관련 중요 알림을 수신합니다."
+            title="보안 및 로그인 푸시 알림"
+            detail="새로운 기기에서 로그인 시 즉시 보안 승인 알림을 받습니다."
           />
           <ListDivider />
 
@@ -1537,8 +1537,8 @@ function ListDemo() {
             alignItems={align}
             onClick={() => alert("프로필 수정 페이지로 이동합니다.")}
             prefix={<Icon svg={<IconPersonFill />} />}
-            title="프로필 수정"
-            detail="닉네임, 프로필 사진 및 거주 지역 관리"
+            title="프로필 및 개인정보 수정"
+            detail="닉네임, 프로필 사진, 거주 지역 및 전화번호 변경"
             suffix={<Icon svg={<IconChevronRightLine />} />}
           />
         </List>
