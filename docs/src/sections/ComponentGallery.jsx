@@ -81,7 +81,7 @@ function AlertDialogDemo() {
             </div>
             <div className="seed-dialog__footer" data-anatomy={lIdx === 0 ? "Footer" : undefined}>
               {layout.kind === 'stack' ? (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', alignItems: 'stretch' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', alignItems: 'stretch' }}>
                   {layout.buttons.map((b, i) => (
                     <button
                       key={i}
