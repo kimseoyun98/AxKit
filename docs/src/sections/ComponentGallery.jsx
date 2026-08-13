@@ -34,6 +34,7 @@ import { Checkbox, CheckboxGroup } from '../components/ui/checkbox';
 import { Chip } from '../components/ui/chip';
 import { ChipTabsRoot, ChipTabsList, ChipTabsTrigger } from '../components/ui/chip-tabs';
 import { ContentPlaceholder } from '../components/ui/content-placeholder';
+import { ContextualFloatingButton } from '../components/ui/contextual-floating-button';
 import {
   BottomSheetRoot,
   BottomSheetTrigger,
@@ -905,6 +906,49 @@ function ContentPlaceholderDemo() {
   );
 }
 
+function ContextualFloatingButtonDemo() {
+  const [loading, setLoading] = useState(false);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Solid & Layer Tones · Float Composition · Loading State
+      </div>
+
+      {/* Mock Floating Frame */}
+      <div style={{ position: 'relative', width: '100%', height: 200, backgroundColor: 'var(--seed-color-bg-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', border: '1px solid var(--seed-color-stroke-neutral-weak)', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-muted)', padding: 'var(--seed-dimension-x4)', textAlign: 'center' }}>
+          콘텐츠 목록 영역 (하단 유동 배치 플로팅 팝업)
+        </div>
+
+        <Float placement="bottom-center" offsetY="x4">
+          <ContextualFloatingButton variant="solid" loading={loading} onClick={() => { setLoading(true); setTimeout(() => setLoading(false), 2000); }}>
+            <PrefixIcon svg={<IconBellFill />} />
+            {loading ? "알림 설정 중..." : "알림 받기 설정"}
+          </ContextualFloatingButton>
+        </Float>
+      </div>
+
+      {/* Variant & Layout Grid */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x3)', justifyContent: 'center', alignItems: 'center' }}>
+        <ContextualFloatingButton variant="solid">
+          <PrefixIcon svg={<IconPlusLine />} />
+          Solid Variant
+        </ContextualFloatingButton>
+
+        <ContextualFloatingButton variant="layer">
+          <PrefixIcon svg={<IconPlusLine />} />
+          Layer Variant
+        </ContextualFloatingButton>
+
+        <ContextualFloatingButton variant="layer" layout="iconOnly" aria-label="추가">
+          <Icon svg={<IconPlusLine />} />
+        </ContextualFloatingButton>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -976,6 +1020,12 @@ const COMPONENTS = [
     name: 'Content Placeholder',
     slug: 'ui:content-placeholder',
     demo: <ContentPlaceholderDemo />,
+  },
+
+  {
+    name: 'Contextual Floating Button',
+    slug: 'ui:contextual-floating-button',
+    demo: <ContextualFloatingButtonDemo />,
   },
 ];
 
