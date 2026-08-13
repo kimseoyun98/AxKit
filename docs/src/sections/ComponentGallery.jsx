@@ -203,13 +203,39 @@ function AlertDialogDemo() {
             {layout.desc}
           </div>
         )}
-        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', marginTop: 'var(--seed-dimension-x2)' }}>
-          {layout.buttons.map((b, i) => (
-            <ActionButton key={i} variant={b.variant} size="medium" style={{ flexGrow: 1 }} onClick={() => setIsOpen(true)}>
-              {b.label}
-            </ActionButton>
-          ))}
-        </div>
+        {/* Inline Preview Footer matching exact Modal layout */}
+        {layout.kind === 'stack' ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', alignItems: 'stretch', width: '100%', marginTop: 'var(--seed-dimension-x2)' }}>
+            {layout.buttons.map((b, i) => (
+              <ActionButton
+                key={i}
+                variant={b.variant}
+                size="medium"
+                onClick={() => setIsOpen(true)}
+                style={b.muted ? { color: 'var(--seed-color-fg-neutral-muted)', fontWeight: 'var(--seed-font-weight-bold)' } : undefined}
+              >
+                {b.label}
+              </ActionButton>
+            ))}
+          </div>
+        ) : (
+          <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: 'var(--seed-dimension-x2)', width: '100%', marginTop: 'var(--seed-dimension-x2)' }}>
+            {layout.buttons.map((b, i) => (
+              <ActionButton
+                key={i}
+                variant={b.variant}
+                size="medium"
+                onClick={() => setIsOpen(true)}
+                style={{
+                  flexGrow: 1,
+                  minWidth: `calc(${100 / layout.buttons.length}% - var(--seed-dimension-x2) / ${layout.buttons.length})`,
+                }}
+              >
+                {b.label}
+              </ActionButton>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
