@@ -534,107 +534,12 @@ const COMPONENTS = [
   {
     name: 'Attachment Field',
     slug: 'ui:attachment-field',
-    // 출처 대조:
-    // - packages/css/recipes/attachment-input.css (.seed-attachment-input__root/dropzone/container/itemGroup)
-    // - packages/css/recipes/attachment-input-trigger.css (.seed-attachment-input-trigger__root/icon/itemCountArea/itemCount/maxItemCount)
-    // - packages/css/recipes/attachment-input-item.css (.seed-attachment-input-item__root/image/thumbnail/metadata/
-    //   name/size/backdrop/actionButton/removeButton/badge, --type_image vs --type_general 두 variant)
-    // - docs/registry/react/ui/attachment-field.tsx: Trigger는 camera(이미지)/paperclip(파일) 아이콘 +
-    //   itemCount, Item은 Image/Thumbnail + Metadata(Name+Size) + Backdrop(loading/error) + RemoveButton으로 합성.
-    //   실제 아이콘(IconCameraFill 등)은 @karrotmarket/react-monochrome-icon 소속이라 미설치 —
-    //   @seed-design/icon에 동일하게 있는 IconCameraFill은 그대로, 나머지(파일=IconFileFill,
-    //   삭제=IconCloseFill, 재시도=IconRetryFill)는 의미가 같은 걸로 대체.
-    // Loading backdrop(ProgressCircle 필요)은 아직 구현 안 함 — 규칙대로 비워둠, Error backdrop은
-    // ActionButton 없이 실제 __actionButton 클래스로 재현 가능해서 포함.
-    demo: (
-      <div className="seed-attachment-input__root" style={{ width: '100%', maxWidth: 320, marginInline: 0 }}>
-        {/* 실제 구조: Container가 Trigger + ItemGroup을 함께 감싸는 가로 스크롤 행 하나다
-            (docs/registry/react/ui/attachment-field.tsx의 AttachmentInput 컴포넌트 참고).
-            처음엔 이 container 클래스를 아이템 목록 <ul>에 잘못 붙이고 Trigger를 바깥 별도
-            블록으로 분리했었음 — 실제 구조와 달라서 바로잡음. */}
-        <div className="seed-attachment-input__container" style={{ marginInline: 0, paddingInline: 0 }}>
-          <button
-            type="button"
-            className="seed-attachment-input-trigger__root"
-            aria-label="파일 선택"
-            data-anatomy="Trigger"
-          >
-            <IconCameraFill className="seed-attachment-input-trigger__icon" />
-            <span className="seed-attachment-input-trigger__itemCountArea">
-              <span className="seed-attachment-input-trigger__itemCount">2</span>
-              <span className="seed-attachment-input-trigger__maxItemCount">/5</span>
-            </span>
-          </button>
-
-          <ul className="seed-attachment-input__itemGroup">
-          <li className="seed-attachment-input-item__root seed-attachment-input-item__root--type_image">
-            <svg className="seed-attachment-input-item__image" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" data-anatomy="Thumbnail">
-              <rect width="48" height="48" fill="var(--seed-color-bg-neutral-weak)" />
-              <circle cx="18" cy="19" r="4" stroke="var(--seed-color-fg-neutral-subtle)" strokeWidth="2.5" />
-              <path d="M6 34l10-9 8 7 6-6 12 10" stroke="var(--seed-color-fg-neutral-subtle)" strokeWidth="2.5" strokeLinejoin="round" />
-            </svg>
-            <div className="seed-attachment-input-item__badge seed-attachment-input-item__badge--type_image" data-anatomy="Preview Badge">
-              <span className="seed-attachment-input-item__badgeLabel seed-attachment-input-item__badgeLabel--type_image">대표</span>
-            </div>
-            <button
-              type="button"
-              className="seed-attachment-input-item__removeButton"
-              aria-label="파일 제거"
-              data-anatomy="Remove Button"
-            >
-              <IconCloseFill style={{ width: 'var(--seed-icon-size)', height: 'var(--seed-icon-size)', color: 'var(--seed-icon-color)' }} />
-            </button>
-          </li>
-
-          <li className="seed-attachment-input-item__root seed-attachment-input-item__root--type_image">
-            <svg className="seed-attachment-input-item__image" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="48" height="48" fill="var(--seed-color-bg-neutral-weak)" />
-            </svg>
-            <div className="seed-attachment-input-item__backdrop seed-attachment-input-item__backdrop--type_image" data-anatomy="Error Backdrop">
-              <button type="button" className="seed-attachment-input-item__actionButton seed-attachment-input-item__actionButton--type_image">
-                <IconRetryFill style={{ width: 'var(--seed-icon-size)', height: 'var(--seed-icon-size)', color: 'var(--seed-icon-color)' }} />
-                재시도
-              </button>
-            </div>
-            <button
-              type="button"
-              className="seed-attachment-input-item__removeButton"
-              aria-label="파일 제거"
-            >
-              <IconCloseFill style={{ width: 'var(--seed-icon-size)', height: 'var(--seed-icon-size)', color: 'var(--seed-icon-color)' }} />
-            </button>
-          </li>
-
-          <li className="seed-attachment-input-item__root seed-attachment-input-item__root--type_general">
-            <div className="seed-attachment-input-item__thumbnail seed-attachment-input-item__thumbnail--type_general" data-anatomy="Thumbnail (File)">
-              <IconFileFill style={{ width: 'var(--seed-icon-size)', height: 'var(--seed-icon-size)', color: 'var(--seed-icon-color)' }} />
-            </div>
-            <div className="seed-attachment-input-item__metadata seed-attachment-input-item__metadata--type_general" data-anatomy="Metadata">
-              <span className="seed-attachment-input-item__name seed-attachment-input-item__name--type_general">포트폴리오.pdf</span>
-              <span className="seed-attachment-input-item__size seed-attachment-input-item__size--type_general">1.2MB</span>
-            </div>
-            <button
-              type="button"
-              className="seed-attachment-input-item__removeButton"
-              aria-label="파일 제거"
-            >
-              <IconCloseFill style={{ width: 'var(--seed-icon-size)', height: 'var(--seed-icon-size)', color: 'var(--seed-icon-color)' }} />
-            </button>
-          </li>
-          </ul>
-        </div>
-      </div>
-    ),
+    demo: <AttachmentFieldDemo />,
   },
 
   {
     name: 'Avatar',
     slug: 'ui:avatar',
-    // 출처 대조:
-    // - https://seed-design.io/llms/components/avatar.txt
-    // - https://seed-design.io/llms/react/components/avatar.txt
-    // - packages/css/recipes/avatar.css (.seed-avatar__root/image/fallback/badge, --size_*, --badgeMask_*)
-    // - packages/css/recipes/avatar-stack.css (.seed-avatar-stack__root/item, --size_*)
     demo: <AvatarDemo />,
   },
 ];
