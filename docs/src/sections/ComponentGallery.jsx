@@ -864,21 +864,34 @@ function ChipDemo() {
 }
 
 function ContentPlaceholderDemo() {
-  const types = ["default", "profile", "image", "document", "chat"];
+  const types = [
+    { type: "default", label: "Default" },
+    { type: "coupon", label: "Coupon" },
+    { type: "realty", label: "Realty" },
+    { type: "car", label: "Car" },
+    { type: "jobs", label: "Jobs" },
+    { type: "buySell", label: "Buy-sell" },
+    { type: "business", label: "Business" },
+    { type: "post", label: "Post" },
+    { type: "group", label: "Group" },
+    { type: "image", label: "Image" },
+    { type: "food", label: "Food" },
+    { type: "commerce", label: "Commerce" },
+  ];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 540, margin: '0 auto' }}>
       <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
-        Fallback Image & Asset Placeholders (Preset Types)
+        SEED 2.0 Native Artwork Asset Presets (12 Types)
       </div>
 
       {/* Preset Types Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))', gap: 'var(--seed-dimension-x3)', justifyItems: 'center' }}>
-        {types.map((t) => (
-          <div key={t} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
-            <ContentPlaceholder type={t} style={{ width: 100, height: 100, borderRadius: 'var(--seed-dimension-x3)' }} />
-            <span style={{ fontSize: 'var(--seed-font-size-t1)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
-              {t}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(95px, 1fr))', gap: 'var(--seed-dimension-x3)', justifyItems: 'center' }}>
+        {types.map(({ type, label }) => (
+          <div key={type} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
+            <ContentPlaceholder type={type} style={{ width: 90, height: 90, borderRadius: 'var(--seed-dimension-x3)' }} />
+            <span style={{ fontSize: 'var(--seed-font-size-t1)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-subtle)', textAlign: 'center' }}>
+              {label}
             </span>
           </div>
         ))}
