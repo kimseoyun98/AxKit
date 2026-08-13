@@ -49,9 +49,13 @@ import { IdentityPlaceholder } from '../components/ui/identity-placeholder';
 import { ProgressCircle } from '../components/ui/progress-circle';
 import { List, ListItem, ListButtonItem, ListSwitchItem, ListCheckItem, ListRadioItem, ListDivider } from '../components/ui/list';
 import { ListHeader } from '../components/ui/list-header';
+import { MenuRoot, MenuTrigger, MenuContent, MenuGroup, MenuGroupLabel, MenuItem } from '../components/ui/menu';
+import { SwipeableMenuSheetRoot, SwipeableMenuSheetTrigger, SwipeableMenuSheetContent, SwipeableMenuSheetGroup, SwipeableMenuSheetItem } from '../components/ui/swipeable-menu-sheet';
 import IconQuestionmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconQuestionmarkCircleFill";
 import IconMapLocationpinFill from "@karrotmarket/react-monochrome-icon/IconMapLocationpinFill";
 import IconChevronRightLine from "@karrotmarket/react-monochrome-icon/IconChevronRightLine";
+import IconPencilLine from "@karrotmarket/react-monochrome-icon/IconPencilLine";
+import IconTrashcanLine from "@karrotmarket/react-monochrome-icon/IconTrashcanLine";
 import { RadioGroup as RadioGroupPrimitive } from "@seed-design/react/primitive";
 import IconLockFill from "@karrotmarket/react-monochrome-icon/IconLockFill";
 import {
@@ -1571,6 +1575,60 @@ function ListDemo() {
   );
 }
 
+function MenuDemo() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x4)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Desktop Popover Menu (ui:menu) · Smart Positioning
+      </div>
+
+      <MenuRoot>
+        <MenuTrigger asChild>
+          <ActionButton variant="brandSolid">옵션 메뉴 열기 (Popover)</ActionButton>
+        </MenuTrigger>
+        <MenuContent>
+          <MenuGroup>
+            <MenuGroupLabel>게시물 작업</MenuGroupLabel>
+            <MenuItem label="게시물 수정" description="제목 및 내용을 수정합니다" prefixIcon={<IconPencilLine />} />
+          </MenuGroup>
+          <MenuGroup>
+            <MenuGroupLabel>위험 영역</MenuGroupLabel>
+            <MenuItem label="게시물 삭제" description="이 작업은 되돌릴 수 없습니다" tone="critical" prefixIcon={<IconTrashcanLine />} />
+          </MenuGroup>
+        </MenuContent>
+      </MenuRoot>
+    </div>
+  );
+}
+
+function SwipeableMenuSheetDemo() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x4)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Mobile Swipeable Menu Sheet (ui:swipeable-menu-sheet)
+      </div>
+
+      <SwipeableMenuSheetRoot>
+        <SwipeableMenuSheetTrigger asChild>
+          <ActionButton variant="neutralSolid">모바일 메뉴 시트 열기 (Bottom Sheet)</ActionButton>
+        </SwipeableMenuSheetTrigger>
+        <SwipeableMenuSheetContent
+          title="게시글 설정"
+          description="원하는 작업 메뉴를 선택해주세요."
+          showCloseButton
+        >
+          <SwipeableMenuSheetGroup>
+            <SwipeableMenuSheetItem label="게시글 수정" description="내용 및 프로필 정보를 수정합니다" prefixIcon={<IconPencilLine />} />
+          </SwipeableMenuSheetGroup>
+          <SwipeableMenuSheetGroup>
+            <SwipeableMenuSheetItem label="게시글 삭제하기" tone="critical" prefixIcon={<IconTrashcanLine />} />
+          </SwipeableMenuSheetGroup>
+        </SwipeableMenuSheetContent>
+      </SwipeableMenuSheetRoot>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -1708,6 +1766,18 @@ const COMPONENTS = [
     name: 'List',
     slug: 'ui:list',
     demo: <ListDemo />,
+  },
+
+  {
+    name: 'Menu',
+    slug: 'ui:menu',
+    demo: <MenuDemo />,
+  },
+
+  {
+    name: 'Swipeable Menu Sheet',
+    slug: 'ui:swipeable-menu-sheet',
+    demo: <SwipeableMenuSheetDemo />,
   },
 ];
 
