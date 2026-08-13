@@ -172,7 +172,7 @@ function AvatarDemo() {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
             <div className="seed-avatar__root seed-avatar__root--size_64 seed-avatar__root--badgeMask_flower" data-anatomy="Flower Badge">
               <img className="seed-avatar__image" src={sampleImg} alt="Avatar" />
-              <div className="seed-avatar__badge seed-avatar__badge--size_64 seed-avatar__badge--badgeMask_flower">
+              <div className="seed-avatar__badge seed-avatar__badge--size_64">
                 <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 2C10.9 2 9.9 2.6 9.4 3.5C8.4 3.1 7.2 3.4 6.5 4.2C5.8 5 5.5 6.2 5.9 7.2C5 7.7 4.4 8.7 4.4 9.8C4.4 10.9 5 11.9 5.9 12.4C5.5 13.4 5.8 14.6 6.5 15.4C7.2 16.2 8.4 16.5 9.4 16.1C9.9 17 10.9 17.6 12 17.6C13.1 17.6 14.1 17 14.6 16.1C15.6 16.5 16.8 16.2 17.5 15.4C18.2 14.6 18.5 13.4 18.1 12.4C19 11.9 19.6 10.9 19.6 9.8C19.6 8.7 19 7.7 18.1 7.2C18.5 6.2 18.2 5 17.5 4.2C16.8 3.4 15.6 3.1 14.6 3.5C14.1 2.6 13.1 2 12 2Z" fill="var(--seed-color-palette-green-600)" />
                   <path d="M9.5 9.8L11 11.3L14.5 7.8" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -185,7 +185,7 @@ function AvatarDemo() {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
             <div className="seed-avatar__root seed-avatar__root--size_64 seed-avatar__root--badgeMask_shield" data-anatomy="Shield Badge">
               <img className="seed-avatar__image" src={sampleImg} alt="Avatar" />
-              <div className="seed-avatar__badge seed-avatar__badge--size_64 seed-avatar__badge--badgeMask_shield">
+              <div className="seed-avatar__badge seed-avatar__badge--size_64">
                 <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M12 2L4 5V11C4 16.5 7.4 21.6 12 23C16.6 21.6 20 16.5 20 11V5L12 2Z" fill="var(--seed-color-palette-blue-600)" />
                   <path d="M9.5 11.5L11 13L14.5 9.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
