@@ -185,7 +185,7 @@ const COMPONENTS = [
                   data-state={open ? 'open' : 'closed'}
                   data-anatomy={i === 0 ? 'Chevron Icon' : undefined}
                 >
-                  <IconExpandMoreRegular />
+                  <IconExpandMoreRegular style={{ width: 'var(--seed-suffix-icon-size, var(--seed-dimension-x5))', height: 'var(--seed-suffix-icon-size, var(--seed-dimension-x5))' }} />
                 </span>
               </button>
             </h3>
@@ -195,8 +195,8 @@ const COMPONENTS = [
               data-state={open ? 'open' : 'closed'}
               style={open ? { height: 'auto', opacity: 1 } : undefined}
             >
-              <div style={{ padding: 'var(--seed-dimension-x4)', paddingTop: 0 }}>
-                <p style={{ margin: 0, fontSize: 14, lineHeight: 1.5, color: 'var(--seed-color-fg-neutral-subtle)' }}>
+              <div style={{ paddingInline: 'var(--seed-dimension-spacing-x-global-gutter)', paddingTop: 'var(--seed-dimension-x2)', paddingBottom: 'var(--seed-dimension-x5)' }}>
+                <p style={{ margin: 0, fontSize: 14, lineHeight: 1.6, color: 'var(--seed-color-fg-neutral-subtle)' }}>
                   {content}
                 </p>
               </div>
