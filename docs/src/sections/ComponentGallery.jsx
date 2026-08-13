@@ -236,6 +236,12 @@ function AvatarDemo() {
 }
 
 function AccordionDemo() {
+  const renderContent = (text) => (
+    <div style={{ paddingInline: 16, paddingTop: 8, paddingBottom: 16, fontSize: 14, lineHeight: 1.6, color: 'var(--seed-color-fg-neutral-subtle)' }}>
+      {text}
+    </div>
+  );
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24, width: '100%', maxWidth: 360, margin: '0 auto' }}>
       {/* 1. Inline Variant */}
@@ -246,15 +252,15 @@ function AccordionDemo() {
         <Accordion defaultValue={["1"]} variant="inline" style={{ width: '100%' }}>
           <AccordionItem value="0">
             <AccordionTrigger title="배송 방법 안내" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>기본 배송은 당일 발송되며 1~2일 내에 안전하게 도착해요.</AccordionContent>
+            <AccordionContent>{renderContent("기본 배송은 당일 발송되며 1~2일 내에 안전하게 도착해요.")}</AccordionContent>
           </AccordionItem>
           <AccordionItem value="1">
             <AccordionTrigger title="반품/교환은 어떻게 하나요?" description="구매 후 7일 이내 신청" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>상품 상세페이지의 [반품/교환 신청] 버튼을 눌러 접수해주세요.</AccordionContent>
+            <AccordionContent>{renderContent("상품 상세페이지의 [반품/교환 신청] 버튼을 눌러 접수해주세요.")}</AccordionContent>
           </AccordionItem>
           <AccordionItem value="2" disabled>
             <AccordionTrigger title="고객센터 문의하기" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>운영시간은 평일 09:00 ~ 18:00 입니다.</AccordionContent>
+            <AccordionContent>{renderContent("운영시간은 평일 09:00 ~ 18:00 입니다.")}</AccordionContent>
           </AccordionItem>
         </Accordion>
       </div>
@@ -267,15 +273,15 @@ function AccordionDemo() {
         <Accordion defaultValue={["1"]} variant="separated" style={{ width: '100%' }}>
           <AccordionItem value="0">
             <AccordionTrigger title="배송 방법 안내" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>기본 배송은 당일 발송되며 1~2일 내에 안전하게 도착해요.</AccordionContent>
+            <AccordionContent>{renderContent("기본 배송은 당일 발송되며 1~2일 내에 안전하게 도착해요.")}</AccordionContent>
           </AccordionItem>
           <AccordionItem value="1">
             <AccordionTrigger title="반품/교환은 어떻게 하나요?" description="구매 후 7일 이내 신청" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>상품 상세페이지의 [반품/교환 신청] 버튼을 눌러 접수해주세요.</AccordionContent>
+            <AccordionContent>{renderContent("상품 상세페이지의 [반품/교환 신청] 버튼을 눌러 접수해주세요.")}</AccordionContent>
           </AccordionItem>
           <AccordionItem value="2" disabled>
             <AccordionTrigger title="고객센터 문의하기" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>운영시간은 평일 09:00 ~ 18:00 입니다.</AccordionContent>
+            <AccordionContent>{renderContent("운영시간은 평일 09:00 ~ 18:00 입니다.")}</AccordionContent>
           </AccordionItem>
         </Accordion>
       </div>
