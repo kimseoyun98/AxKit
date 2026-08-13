@@ -47,8 +47,11 @@ import { HelpBubbleTrigger, HelpBubbleAnchor } from '../components/ui/help-bubbl
 import { HelpBubbleTooltipTrigger } from '../components/ui/help-bubble-tooltip';
 import { IdentityPlaceholder } from '../components/ui/identity-placeholder';
 import { ProgressCircle } from '../components/ui/progress-circle';
+import { List, ListItem, ListButtonItem, ListSwitchItem, ListDivider } from '../components/ui/list';
+import { ListHeader } from '../components/ui/list-header';
 import IconQuestionmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconQuestionmarkCircleFill";
 import IconMapLocationpinFill from "@karrotmarket/react-monochrome-icon/IconMapLocationpinFill";
+import IconChevronRightLine from "@karrotmarket/react-monochrome-icon/IconChevronRightLine";
 import {
   BottomSheetRoot,
   BottomSheetTrigger,
@@ -1478,6 +1481,71 @@ function ProgressCircleDemo() {
   );
 }
 
+function ListDemo() {
+  const [pushNotif, setPushNotif] = useState(true);
+  const [highlightFirst, setHighlightFirst] = useState(true);
+  const [align, setAlign] = useState("center");
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        List Header · ListItem · ListButtonItem · ListSwitchItem · Align (Center / Top)
+      </div>
+
+      {/* Control Buttons */}
+      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <ActionButton size="small" variant={highlightFirst ? "brandSolid" : "neutralOutline"} onClick={() => setHighlightFirst(!highlightFirst)}>
+          {highlightFirst ? "강조(Highlighted) ON" : "강조 OFF"}
+        </ActionButton>
+        <ActionButton size="small" variant={align === "center" ? "brandSolid" : "neutralOutline"} onClick={() => setAlign("center")}>
+          Align: Center (기본)
+        </ActionButton>
+        <ActionButton size="small" variant={align === "top" ? "brandSolid" : "neutralOutline"} onClick={() => setAlign("top")}>
+          Align: Top (상단)
+        </ActionButton>
+      </div>
+
+      {/* List Container */}
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', overflow: 'hidden' }}>
+        <ListHeader as="h3">계정 및 알림 설정</ListHeader>
+        <List width="full">
+          {/* 1. Highlighted / Standard ListItem */}
+          <ListItem
+            alignItems={align}
+            highlighted={highlightFirst}
+            prefix={<Icon svg={<IconBellFill />} />}
+            title="마케팅 혜택 알림"
+            detail="이벤트 및 세일 소식을 실시간으로 받아봅니다."
+            suffix={<Icon svg={<IconChevronRightLine />} />}
+          />
+          <ListDivider />
+
+          {/* 2. ListSwitchItem */}
+          <ListSwitchItem
+            alignItems={align}
+            checked={pushNotif}
+            onCheckedChange={setPushNotif}
+            prefix="🔔"
+            title="푸시 알림"
+            detail="채팅 및 중고거래 관련 푸시 알림을 수신합니다."
+          />
+          <ListDivider />
+
+          {/* 3. ListButtonItem */}
+          <ListButtonItem
+            alignItems={align}
+            onClick={() => alert("프로필 수정 페이지로 이동합니다.")}
+            prefix="👤"
+            title="프로필 수정"
+            detail="닉네임, 프로필 사진 및 거주 지역 관리"
+            suffix={<Icon svg={<IconChevronRightLine />} />}
+          />
+        </List>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -1609,6 +1677,12 @@ const COMPONENTS = [
     name: 'Progress Circle',
     slug: 'ui:progress-circle',
     demo: <ProgressCircleDemo />,
+  },
+
+  {
+    name: 'List',
+    slug: 'ui:list',
+    demo: <ListDemo />,
   },
 ];
 
