@@ -5,7 +5,7 @@
  **/
 
 import IconXmarkLine from "@karrotmarket/react-monochrome-icon/IconXmarkLine";
-import { ContentDialog, Icon } from "@seed-design/react";
+import { ContentDialog, Icon, Portal } from "@seed-design/react";
 import { forwardRef } from "react";
 import { ActionButton, type ActionButtonProps } from "./action-button";
 import type * as React from "react";
@@ -58,23 +58,25 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
     const shouldRenderHeader = title || description || showCloseButton;
 
     return (
-      <ContentDialog.Positioner style={{ "--layer-index": layerIndex } as React.CSSProperties}>
-        <ContentDialog.Backdrop />
-        <ContentDialog.Content ref={ref} {...otherProps}>
-          {shouldRenderHeader && (
-            <ContentDialog.Header>
-              {title && <ContentDialog.Title>{title}</ContentDialog.Title>}
-              {description && <ContentDialog.Description>{description}</ContentDialog.Description>}
-              {showCloseButton && (
-                <ContentDialog.CloseButton aria-label="닫기">
-                  <Icon svg={<IconXmarkLine />} />
-                </ContentDialog.CloseButton>
-              )}
-            </ContentDialog.Header>
-          )}
-          {children}
-        </ContentDialog.Content>
-      </ContentDialog.Positioner>
+      <Portal>
+        <ContentDialog.Positioner style={{ "--layer-index": layerIndex } as React.CSSProperties}>
+          <ContentDialog.Backdrop />
+          <ContentDialog.Content ref={ref} {...otherProps}>
+            {shouldRenderHeader && (
+              <ContentDialog.Header>
+                {title && <ContentDialog.Title>{title}</ContentDialog.Title>}
+                {description && <ContentDialog.Description>{description}</ContentDialog.Description>}
+                {showCloseButton && (
+                  <ContentDialog.CloseButton aria-label="닫기">
+                    <Icon svg={<IconXmarkLine />} />
+                  </ContentDialog.CloseButton>
+                )}
+              </ContentDialog.Header>
+            )}
+            {children}
+          </ContentDialog.Content>
+        </ContentDialog.Positioner>
+      </Portal>
     );
   },
 );
