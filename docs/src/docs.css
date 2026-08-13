@@ -136,6 +136,21 @@ tr:last-child td { border-bottom: none; }
   background-color: var(--seed-color-bg-layer-default, #ffffff);
 }
 
+/* 데모 쇼케이스 슬라이드 안에서 Dialog의 흑색 fixed 백드롭 박스 제거 및 모달 카드 중앙 배치 */
+.comp-carousel-slide .seed-dialog__backdrop {
+  display: none;
+}
+.comp-carousel-slide .seed-dialog__positioner {
+  position: relative;
+  inset: auto;
+  z-index: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 8px 0;
+}
+
 /* Anatomy 라벨 오버레이 — 데모 마크업에 data-anatomy="파츠 이름"을 붙여두면,
    "Anatomy 라벨 보기" 토글로 comp-carousel-wrap에 data-show-anatomy가 붙었을 때만
    점선 테두리 + 이름표가 나타난다. 기본 상태(토글 off)에서는 완전히 안 보임 — 데모 자체는 깔끔.
