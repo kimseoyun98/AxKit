@@ -137,8 +137,6 @@ function AlertDialogDemo() {
 }
 
 function AvatarDemo() {
-  const sampleImg = "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80";
-
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x7)', width: '100%', alignItems: 'center' }}>
       {/* 1. Sizes */}
@@ -149,7 +147,7 @@ function AvatarDemo() {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x3)', alignItems: 'center', justifyContent: 'center' }}>
           {['24', '36', '48', '64', '80', '96'].map((sz) => (
             <div key={sz} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1)' }}>
-              <Avatar size={sz} src={sampleImg} alt={`Avatar ${sz}`} />
+              <Avatar size={sz} fallback={<IconPersonFill style={{ width: '60%', height: '60%', color: 'var(--seed-color-fg-neutral-subtle)' }} />} alt={`Avatar ${sz}`} />
               <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>{sz}px</span>
             </div>
           ))}
@@ -163,7 +161,7 @@ function AvatarDemo() {
         </div>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x5)', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
-            <Avatar size="64" badgeMask="circle" src={sampleImg} alt="Avatar">
+            <Avatar size="64" badgeMask="circle" fallback={<IconPersonFill style={{ width: '60%', height: '60%', color: 'var(--seed-color-fg-neutral-subtle)' }} />} alt="Avatar">
               <AvatarBadge>
                 <IconCheckmarkCircleFill style={{ width: '100%', height: '100%', color: 'var(--seed-color-palette-green-600)' }} />
               </AvatarBadge>
@@ -172,7 +170,7 @@ function AvatarDemo() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
-            <Avatar size="64" badgeMask="flower" src={sampleImg} alt="Avatar">
+            <Avatar size="64" badgeMask="flower" fallback={<IconPersonFill style={{ width: '60%', height: '60%', color: 'var(--seed-color-fg-neutral-subtle)' }} />} alt="Avatar">
               <AvatarBadge>
                 <IconCheckmarkFlowerFill style={{ width: '100%', height: '100%', color: 'var(--seed-color-palette-green-600)' }} />
               </AvatarBadge>
@@ -181,7 +179,7 @@ function AvatarDemo() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
-            <Avatar size="64" badgeMask="shield" src={sampleImg} alt="Avatar">
+            <Avatar size="64" badgeMask="shield" fallback={<IconPersonFill style={{ width: '60%', height: '60%', color: 'var(--seed-color-fg-neutral-subtle)' }} />} alt="Avatar">
               <AvatarBadge>
                 <IconCheckmarkShieldFill style={{ width: '100%', height: '100%', color: 'var(--seed-color-palette-blue-600)' }} />
               </AvatarBadge>
@@ -198,7 +196,7 @@ function AvatarDemo() {
         </div>
         <AvatarStack size="48">
           {[0, 1, 2, 3].map((idx) => (
-            <Avatar key={idx} size="48" src={sampleImg} alt={`User ${idx}`} />
+            <Avatar key={idx} size="48" fallback={<IconPersonFill style={{ width: '60%', height: '60%', color: 'var(--seed-color-fg-neutral-subtle)' }} />} alt={`User ${idx}`} />
           ))}
         </AvatarStack>
       </div>
