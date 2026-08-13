@@ -42,6 +42,7 @@ import { DialogRoot, DialogTrigger, DialogContent, DialogBody, DialogFooter, Dia
 import { ResponsiveDialogRoot, ResponsiveDialogTrigger, ResponsiveDialogContent, ResponsiveDialogBody, ResponsiveDialogFooter, ResponsiveDialogAction } from '../components/ui/responsive-dialog';
 import { Float, Divider } from '../components/ui/layout';
 import { FieldButton, FieldButtonValue, FieldButtonPlaceholder } from '../components/ui/field-button';
+import { FloatingActionButton } from '../components/ui/floating-action-button';
 import {
   BottomSheetRoot,
   BottomSheetTrigger,
@@ -1197,6 +1198,42 @@ function FieldButtonDemo() {
   );
 }
 
+function FloatingActionButtonDemo() {
+  const [extended, setExtended] = useState(true);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Floating Action Button · Extended Toggle · Float Composition
+      </div>
+
+      {/* Control Buttons */}
+      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center' }}>
+        <ActionButton size="small" variant={extended ? "brandSolid" : "neutralOutline"} onClick={() => setExtended(!extended)}>
+          {extended ? "Extended (라벨 포함)" : "Collapsed (아이콘 전용)"}
+        </ActionButton>
+      </div>
+
+      {/* FAB Canvas Preview */}
+      <div style={{ position: 'relative', width: '100%', height: 260, border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', overflow: 'hidden' }}>
+        <div style={{ padding: 'var(--seed-dimension-x4)', fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
+          📱 화면 우측 하단에 고정 배치되는 메인 액션 버튼입니다.
+        </div>
+
+        {/* Float Positioned FAB */}
+        <Float placement="bottom-end" offsetX="x4" offsetY="x4">
+          <FloatingActionButton
+            icon={<IconPlusLine />}
+            label="글쓰기"
+            extended={extended}
+            onClick={() => alert("글쓰기 FAB 클릭됨")}
+          />
+        </Float>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -1298,6 +1335,12 @@ const COMPONENTS = [
     name: 'Field Button',
     slug: 'ui:field-button',
     demo: <FieldButtonDemo />,
+  },
+
+  {
+    name: 'Floating Action Button',
+    slug: 'ui:floating-action-button',
+    demo: <FloatingActionButtonDemo />,
   },
 ];
 
