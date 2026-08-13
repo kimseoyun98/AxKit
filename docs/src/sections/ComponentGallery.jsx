@@ -82,55 +82,69 @@ const ALERT_DIALOG_LAYOUTS = [
 ]
 
 function AlertDialogDemo() {
+  const [selectedLayoutKey, setSelectedLayoutKey] = useState('single');
+  const layout = ALERT_DIALOG_LAYOUTS.find((l) => l.key === selectedLayoutKey) || ALERT_DIALOG_LAYOUTS[0];
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 360, margin: '0 auto' }}>
-      {ALERT_DIALOG_LAYOUTS.map((layout) => (
-        <div key={layout.key} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)' }}>
-          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-            Layout: {layout.label}
-          </div>
-          <AlertDialogRoot open={true}>
-            <AlertDialogContent style={{ width: '100%', position: 'relative', transform: 'none', boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)' }}>
-              <AlertDialogHeader>
-                <AlertDialogTitle>{layout.title}</AlertDialogTitle>
-                {layout.desc && <AlertDialogDescription>{layout.desc}</AlertDialogDescription>}
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                {layout.kind === 'stack' ? (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', alignItems: 'stretch' }}>
-                    {layout.buttons.map((b, i) => (
-                      <AlertDialogAction
-                        key={i}
-                        variant={b.variant}
-                        size="medium"
-                        style={b.muted ? { color: 'var(--seed-color-fg-neutral-muted)', fontWeight: 'var(--seed-font-weight-bold)' } : undefined}
-                      >
-                        {b.label}
-                      </AlertDialogAction>
-                    ))}
-                  </div>
-                ) : (
-                  <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: 'var(--seed-dimension-x2)' }}>
-                    {layout.buttons.map((b, i) => (
-                      <AlertDialogAction
-                        key={i}
-                        variant={b.variant}
-                        size="medium"
-                        style={{
-                          flexGrow: 1,
-                          minWidth: `calc(${100 / layout.buttons.length}% - var(--seed-dimension-x2) / ${layout.buttons.length})`,
-                        }}
-                      >
-                        {b.label}
-                      </AlertDialogAction>
-                    ))}
-                  </div>
-                )}
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialogRoot>
-        </div>
-      ))}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: '100%', maxWidth: 360, margin: '0 auto' }}>
+      {/* Layout Variant Selector Tabs */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center' }}>
+        {ALERT_DIALOG_LAYOUTS.map((l) => (
+          <button
+            key={l.key}
+            type="button"
+            className={`comp-nav-btn${l.key === selectedLayoutKey ? ' active' : ''}`}
+            onClick={() => setSelectedLayoutKey(l.key)}
+            style={{ fontSize: 11, padding: '4px 8px' }}
+          >
+            {l.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Selected Layout Dialog Card */}
+      <div style={{ position: 'relative', width: '100%' }}>
+        <AlertDialogRoot open={true}>
+          <AlertDialogContent style={{ width: '100%', position: 'relative', transform: 'none', boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)' }}>
+            <AlertDialogHeader>
+              <AlertDialogTitle>{layout.title}</AlertDialogTitle>
+              {layout.desc && <AlertDialogDescription>{layout.desc}</AlertDialogDescription>}
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              {layout.kind === 'stack' ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', alignItems: 'stretch', width: '100%' }}>
+                  {layout.buttons.map((b, i) => (
+                    <AlertDialogAction
+                      key={i}
+                      variant={b.variant}
+                      size="medium"
+                      style={b.muted ? { color: 'var(--seed-color-fg-neutral-muted)', fontWeight: 'var(--seed-font-weight-bold)' } : undefined}
+                    >
+                      {b.label}
+                    </AlertDialogAction>
+                  ))}
+                </div>
+              ) : (
+                <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: 'var(--seed-dimension-x2)', width: '100%' }}>
+                  {layout.buttons.map((b, i) => (
+                    <AlertDialogAction
+                      key={i}
+                      variant={b.variant}
+                      size="medium"
+                      style={{
+                        flexGrow: 1,
+                        minWidth: `calc(${100 / layout.buttons.length}% - var(--seed-dimension-x2) / ${layout.buttons.length})`,
+                      }}
+                    >
+                      {b.label}
+                    </AlertDialogAction>
+                  ))}
+                </div>
+              )}
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogRoot>
+      </div>
     </div>
   );
 }
