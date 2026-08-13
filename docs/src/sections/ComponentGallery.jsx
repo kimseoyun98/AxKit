@@ -52,6 +52,7 @@ import { ListHeader } from '../components/ui/list-header';
 import IconQuestionmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconQuestionmarkCircleFill";
 import IconMapLocationpinFill from "@karrotmarket/react-monochrome-icon/IconMapLocationpinFill";
 import IconChevronRightLine from "@karrotmarket/react-monochrome-icon/IconChevronRightLine";
+import { RadioGroup as RadioGroupPrimitive } from "@seed-design/react/primitive";
 import IconLockFill from "@karrotmarket/react-monochrome-icon/IconLockFill";
 import {
   BottomSheetRoot,
@@ -1558,14 +1559,14 @@ function ListDemo() {
           <ListDivider />
 
           {/* 4. ListRadioItem */}
-          <ListRadioItem
-            alignItems={align}
-            value="system"
-            checked={selectedTheme === "system"}
-            onChange={() => setSelectedTheme("system")}
-            title="시스템 테마 자동 동기화"
-            detail="기기 설정에 따라 다크 모드와 라이트 모드를 자동 전환합니다."
-          />
+          <RadioGroupPrimitive.Root value={selectedTheme} onValueChange={setSelectedTheme}>
+            <ListRadioItem
+              alignItems={align}
+              value="system"
+              title="시스템 테마 자동 동기화"
+              detail="기기 설정에 따라 다크 모드와 라이트 모드를 자동 전환합니다."
+            />
+          </RadioGroupPrimitive.Root>
           <ListDivider />
 
           {/* 5. ListButtonItem */}
