@@ -33,6 +33,7 @@ import { Callout, ActionableCallout, DismissibleCallout } from '../components/ui
 import { Checkbox, CheckboxGroup } from '../components/ui/checkbox';
 import { Chip } from '../components/ui/chip';
 import { ChipTabsRoot, ChipTabsList, ChipTabsTrigger } from '../components/ui/chip-tabs';
+import { ContentPlaceholder } from '../components/ui/content-placeholder';
 import {
   BottomSheetRoot,
   BottomSheetTrigger,
@@ -862,6 +863,30 @@ function ChipDemo() {
   );
 }
 
+function ContentPlaceholderDemo() {
+  const types = ["default", "profile", "image", "document", "chat"];
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Fallback Image & Asset Placeholders (Preset Types)
+      </div>
+
+      {/* Preset Types Grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))', gap: 'var(--seed-dimension-x3)', justifyItems: 'center' }}>
+        {types.map((t) => (
+          <div key={t} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
+            <ContentPlaceholder type={t} style={{ width: 100, height: 100, borderRadius: 'var(--seed-dimension-x3)' }} />
+            <span style={{ fontSize: 'var(--seed-font-size-t1)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
+              {t}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -927,6 +952,12 @@ const COMPONENTS = [
     name: 'Chip',
     slug: 'ui:chip / ui:chip-tabs',
     demo: <ChipDemo />,
+  },
+
+  {
+    name: 'Content Placeholder',
+    slug: 'ui:content-placeholder',
+    demo: <ContentPlaceholderDemo />,
   },
 ];
 
