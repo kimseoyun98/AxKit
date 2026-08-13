@@ -381,37 +381,14 @@ function AttachmentFieldDemo() {
 
 const COMPONENTS = [
   {
-    name: 'Accordion',
-    slug: 'ui:accordion',
-    demo: <AccordionDemo />,
-  },
-
-  {
     name: 'Action Button',
     slug: 'ui:action-button',
-    // 출처 대조: packages/css/recipes/action-button.css (.seed-action-button + --variant_*/--size_*/--layout_* BEM) +
-    // docs/registry/react/ui/action-button.tsx (SeedActionButton, loading prop → LoadingIndicator로 children 감쌈) +
-    // 위계 매트릭스: neutralSolid, brandSolid, criticalSolid, neutralWeak, brandOutline, neutralOutline 6종 x 4가지 State (Enabled, Pressed, Loading, Disabled)
     demo: <ActionButtonDemo />,
   },
 
   {
     name: 'Alert Dialog',
     slug: 'ui:alert-dialog',
-    // 출처 대조: Alert Dialog는 자체 recipe css가 없고 Dialog를 그대로 재사용함
-    // (docs/registry/react/ui/alert-dialog.tsx: Dialog.Root role="alertdialog" 래핑).
-    // packages/css/recipes/dialog.css의 .seed-dialog__positioner/backdrop/content/header/title/description/footer 클래스 그대로 사용.
-    // Footer 버튼은 이미 구현한 seed-action-button 재사용.
-    // 버튼 배치는 ResponsivePair(packages/react/src/components/ResponsivePair/ResponsivePair.tsx)를 그대로 재현 —
-    // 별도 BEM 클래스가 없는 순수 레이아웃 유틸이라 flexWrap + seed-action-button이 원래 읽는
-    // --seed-box-min-width/--seed-box-flex-grow 변수를 동일하게 사용해 재현.
-    // position 조정 없음: .seed-dialog__positioner/backdrop는 원래 클래스 그대로(position: fixed) 사용.
-    // .comp-carousel-slide(docs.css)에 transform: translateZ(0)을 줘서, CSS 스펙상 position:fixed
-    // 자손의 containing block이 뷰포트가 아니라 자기 슬라이드로 스코프되게 함(시각적 영향 없는 no-op
-    // transform) — 그 결과 별도 override 없이도 "전체 화면을 덮는" 진짜 fixed 동작이 자기 슬라이드
-    // 안에서만 자연스럽게 재현됨.
-    // Layout 속성 6종(Single/Neutral/Neutral Overflow/Critical/Critical Overflow/NonePreferred)은
-    // 카드 상단 토글로 전환 — AlertDialogDemo 컴포넌트 정의 참고.
     demo: <AlertDialogDemo />,
   },
 
@@ -430,7 +407,6 @@ const COMPONENTS = [
 
 export function ComponentGallery() {
   const [cur, setCur] = useState(0)
-  const [showAnatomy, setShowAnatomy] = useState(false)
   const wrapRef = useRef(null)
   const navRef = useRef(null)
   const total = COMPONENTS.length
@@ -458,21 +434,6 @@ export function ComponentGallery() {
 
   return (
     <section className="comp-gallery-container" id="showcase">
-      <div style={{ marginBottom: 16 }}>
-        <h2 style={{ fontSize: 19, fontWeight: 700, marginBottom: 6 }}>Components Gallery</h2>
-        <p style={{ fontSize: 13.5, color: '#4B5563' }}>
-          <code>@seed-design/css/recipes/*.css</code> 실제 클래스 구조 재현. 처음부터 전면 검수 예정.
-        </p>
-        <button
-          type="button"
-          className={`comp-nav-btn${showAnatomy ? ' active' : ''}`}
-          onClick={() => setShowAnatomy((v) => !v)}
-          style={{ marginTop: 8 }}
-        >
-          {showAnatomy ? '✓ ' : ''}Anatomy 라벨 보기
-        </button>
-      </div>
-
       {/* 토글 네비 */}
       <div className="comp-nav" ref={navRef}>
         {COMPONENTS.map((c, i) => (
@@ -509,7 +470,7 @@ export function ComponentGallery() {
       </div>
 
       {/* 캐러셀 */}
-      <div className="comp-carousel-wrap" data-show-anatomy={showAnatomy ? '' : undefined}>
+      <div className="comp-carousel-wrap">
         <div className="comp-carousel-track" style={{ transform: `translateX(-${cur * 100}%)` }}>
           {COMPONENTS.map((c, i) => (
             <div key={c.name} className={`comp-carousel-slide${i === cur ? ' active' : ''}`}>
