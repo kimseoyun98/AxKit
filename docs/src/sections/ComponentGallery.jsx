@@ -243,20 +243,33 @@ function AvatarDemo() {
 }
 
 function AccordionDemo() {
+  const numBadge = (n, disabled) => (
+    <span style={{
+      width: 22, height: 22, borderRadius: '50%',
+      backgroundColor: disabled ? 'var(--seed-color-fg-disabled)' : 'var(--seed-color-fg-neutral)',
+      color: '#ffffff', fontSize: 12, fontWeight: 700,
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+      flexShrink: 0
+    }}>
+      {n}
+    </span>
+  );
+
   const items = [
     {
-      title: '배송 방법',
-      prefix: <IconDeliveryRegular style={{ width: 'var(--seed-icon-size)', height: 'var(--seed-icon-size)' }} />,
+      title: '차량 진단 후 경매 시작',
+      prefix: (disabled) => numBadge(1, disabled),
+      open: true,
+      content: '차를 잘 몰라도 괜찮아요! 진단평가사가 차 상태를 확인 후 경매에 대신 등록해 드려요. 진단 후, 경매가 시작돼요.',
+    },
+    {
+      title: '경매 종료 후 판매 결정',
+      prefix: (disabled) => numBadge(2, disabled),
       open: false,
     },
     {
-      title: '반품/교환은 어떻게 하나요?',
-      description: '구매 후 7일 이내에 신청할 수 있어요.',
-      open: true,
-      content: '상품 상세페이지의 [반품/교환 신청] 버튼을 눌러 접수해주세요.',
-    },
-    {
-      title: '고객센터 문의',
+      title: '차량 탁송 및 정산',
+      prefix: (disabled) => numBadge(3, disabled),
       open: false,
       disabled: true,
     },
@@ -281,7 +294,7 @@ function AccordionDemo() {
                 >
                   {prefix && (
                     <span className="seed-accordion__prefix seed-accordion__prefix--size_medium" data-disabled={disabled ? '' : undefined} data-anatomy={i === 0 ? 'Prefix' : undefined}>
-                      {prefix}
+                      {typeof prefix === 'function' ? prefix(disabled) : prefix}
                     </span>
                   )}
                   <span className="seed-accordion__body">
@@ -336,7 +349,7 @@ function AccordionDemo() {
                 >
                   {prefix && (
                     <span className="seed-accordion__prefix seed-accordion__prefix--size_medium" data-disabled={disabled ? '' : undefined}>
-                      {prefix}
+                      {typeof prefix === 'function' ? prefix(disabled) : prefix}
                     </span>
                   )}
                   <span className="seed-accordion__body">
