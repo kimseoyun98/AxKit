@@ -71,6 +71,13 @@
 - **4 ~ 10s Content Loading**: Use `Skeleton` for structured list/card views so users anticipate incoming layout.
 - **> 10s Long Processing**: Use `ProgressCircle` (Determinate) with retry/cancel options.
 
+### 3.4. Bottom Navigation UX & Layout Rules
+- **React Package Status**: React package component is `Not Planned` (handled at Native/Webview container level).
+- **Max Container Width**: Capped at `max-width: 480px` (`margin: 0 auto`) to prevent items stretching excessively on tablet/desktop.
+- **Max Item Count**: Maximum 5 items. Never exceed 5 tab items in Bottom Navigation (use top `Tabs` for more items).
+- **Icon Style Rule**: Always use **Fill style icons** for all tab items. NEVER mix Line and Fill icons. Distinguish active/inactive state using color tone.
+- **Notification Badges**: Small (dot) or Large (numbers 1~99, 99+). Max 3 items with badges simultaneously.
+
 ---
 
 ## 4. Library Dependencies & Single Bundle Policy
