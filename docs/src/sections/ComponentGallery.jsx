@@ -50,6 +50,7 @@ import { ProgressCircle } from '../components/ui/progress-circle';
 import { List, ListItem, ListButtonItem, ListSwitchItem, ListCheckItem, ListRadioItem, ListDivider } from '../components/ui/list';
 import { ListHeader } from '../components/ui/list-header';
 import { MenuRoot, MenuTrigger, MenuContent, MenuGroup, MenuGroupLabel, MenuItem } from '../components/ui/menu';
+import { NotificationBadge, NotificationBadgePositioner } from '../components/ui/notification-badge';
 import IconQuestionmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconQuestionmarkCircleFill";
 import IconMapLocationpinFill from "@karrotmarket/react-monochrome-icon/IconMapLocationpinFill";
 import IconChevronRightLine from "@karrotmarket/react-monochrome-icon/IconChevronRightLine";
@@ -645,30 +646,12 @@ function BottomNavigationDemo() {
                   transition: 'color 0.15s ease',
                 }}
               >
-                <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
                   {t.icon}
                   {t.badge && (
-                    <span
-                      style={{
-                        position: 'absolute',
-                        top: -3,
-                        right: -8,
-                        background: 'var(--seed-color-bg-critical-solid)',
-                        color: 'var(--seed-color-palette-static-white)',
-                        fontSize: 'var(--seed-font-size-t1)',
-                        fontWeight: 'var(--seed-font-weight-bold)',
-                        height: 15,
-                        minWidth: 15,
-                        padding: '0 var(--seed-dimension-x1)',
-                        borderRadius: 999,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        lineHeight: 1,
-                      }}
-                    >
-                      {t.badge}
-                    </span>
+                    <NotificationBadgePositioner>
+                      <NotificationBadge size="large">{t.badge}</NotificationBadge>
+                    </NotificationBadgePositioner>
                   )}
                 </div>
                 <span style={{ fontSize: 'var(--seed-font-size-t1)', fontWeight: isActive ? 'var(--seed-font-weight-bold)' : 'var(--seed-font-weight-regular)' }}>
@@ -1666,6 +1649,57 @@ function MenuDemo() {
   );
 }
 
+function NotificationBadgeDemo() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 440, margin: '0 auto', alignItems: 'center' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Notification Badge · Large (Text/Number) · Small (Dot) · Positioner
+      </div>
+
+      {/* Size Comparison Showcase */}
+      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x6)', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
+          <NotificationBadge size="large">3</NotificationBadge>
+          <span style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Large (3)</span>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
+          <NotificationBadge size="large">99+</NotificationBadge>
+          <span style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Large (99+)</span>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
+          <NotificationBadge size="small" />
+          <span style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Small (Dot)</span>
+        </div>
+      </div>
+
+      {/* Positioner Showcase on Icons */}
+      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x8)', alignItems: 'center', justifyContent: 'center', padding: 'var(--seed-dimension-x4)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', width: '100%', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
+        {/* Chat Icon + Large Badge */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
+          <div style={{ position: 'relative', display: 'inline-flex' }}>
+            <Icon svg={<IconDot3HorizontalChatbubbleLeftFill />} style={{ width: 28, height: 28 }} />
+            <NotificationBadgePositioner>
+              <NotificationBadge size="large">3</NotificationBadge>
+            </NotificationBadgePositioner>
+          </div>
+          <span style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-muted)' }}>채팅 아이콘 + Large</span>
+        </div>
+
+        {/* Bell Icon + Small Dot Badge */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
+          <div style={{ position: 'relative', display: 'inline-flex' }}>
+            <Icon svg={<IconBellFill />} style={{ width: 28, height: 28 }} />
+            <NotificationBadgePositioner>
+              <NotificationBadge size="small" />
+            </NotificationBadgePositioner>
+          </div>
+          <span style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-muted)' }}>알림 아이콘 + Small</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -1809,6 +1843,12 @@ const COMPONENTS = [
     name: 'Menu',
     slug: 'ui:menu',
     demo: <MenuDemo />,
+  },
+
+  {
+    name: 'Notification Badge',
+    slug: 'ui:notification-badge',
+    demo: <NotificationBadgeDemo />,
   },
 ];
 
