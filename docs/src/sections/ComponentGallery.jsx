@@ -976,30 +976,71 @@ function DatePickerDemo() {
         >
           한 주 (Week)
         </ActionButton>
-        <ActionButton
-          variant={layoutMode === "twoMonths" ? "brandSolid" : "neutralOutline"}
-          size="small"
-          onClick={() => setLayoutMode("twoMonths")}
-        >
-          두 달 (Two Months)
-        </ActionButton>
       </div>
 
       {/* Calendar Card Frame */}
-      <div style={{ width: '100%', maxWidth: layoutMode === 'twoMonths' ? 680 : 380, border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', padding: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', boxShadow: 'var(--seed-shadow-s1)', boxSizing: 'border-box', overflow: 'hidden', transition: 'max-width 0.2s ease' }}>
-        {layoutMode === "month" && (
+      <div style={{ width: '100%', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', padding: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', boxShadow: 'var(--seed-shadow-s1)' }}>
+        {layoutMode === "month" ? (
           <DatePicker today={today} defaultValue={today} />
-        )}
-        {layoutMode === "week" && (
+        ) : (
           <WeekDatePicker today={today} defaultValue={today} />
         )}
-        {layoutMode === "twoMonths" && (
-          <div style={{ width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: 'var(--seed-dimension-x2)' }}>
-            <div style={{ minWidth: 600 }}>
-              <TwoMonthDatePicker today={today} defaultValue={today} />
-            </div>
+      </div>
+    </div>
+  );
+}
+
+function DialogDemo() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Modal Dialog · Header · Body · Footer Actions
+      </div>
+
+      {/* Permanent Frame Preview */}
+      <div style={{ width: '100%', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', padding: 'var(--seed-dimension-x5)', backgroundColor: 'var(--seed-color-bg-layer-default)', boxShadow: 'var(--seed-shadow-s2)', display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ fontSize: 'var(--seed-font-size-t5)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>
+            회원 프로필 설정 안내
           </div>
-        )}
+        </div>
+        <div style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)', lineHeight: 1.6 }}>
+          서비스 이용에 필요한 추가 프로필 정보를 입력해 주세요. 등록된 정보는 마이페이지에서 언제든지 수정이 가능합니다.
+        </div>
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'flex-end' }}>
+          <ActionButton variant="neutralOutline" size="medium">
+            다음에 하기
+          </ActionButton>
+          <ActionButton variant="brandSolid" size="medium">
+            지금 설정하기
+          </ActionButton>
+        </div>
+      </div>
+
+      {/* Trigger Interactive Popup */}
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <DialogRoot>
+          <DialogTrigger asChild>
+            <ActionButton variant="brandSolid" size="medium">
+              실제 모달 팝업 열기
+            </ActionButton>
+          </DialogTrigger>
+          <DialogContent title="프로필 설정 확인" description="입력하신 정보를 저장하시겠습니까?">
+            <DialogBody>
+              <div style={{ padding: 'var(--seed-dimension-x3) 0', fontSize: 'var(--seed-font-size-t4)', color: 'var(--seed-color-fg-neutral)', lineHeight: 1.6 }}>
+                SEED 2.0 Dialog 모달은 최상위 계층(Level 3)에서 동작하며, 화면 중앙에 안전하게 배치됩니다.
+              </div>
+            </DialogBody>
+            <DialogFooter>
+              <DialogAction variant="neutralOutline" size="medium">
+                취소
+              </DialogAction>
+              <DialogAction variant="brandSolid" size="medium">
+                확인 및 저장
+              </DialogAction>
+            </DialogFooter>
+          </DialogContent>
+        </DialogRoot>
       </div>
     </div>
   );
