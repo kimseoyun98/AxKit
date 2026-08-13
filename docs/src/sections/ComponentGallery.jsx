@@ -30,6 +30,7 @@ import { Avatar, AvatarBadge, AvatarStack } from '../components/ui/avatar';
 import { AttachmentField, AttachmentInput, AttachmentDropzone } from '../components/ui/attachment-field';
 import { AttachmentDisplayField, AttachmentDisplay } from '../components/ui/attachment-display-field';
 import { Callout, ActionableCallout, DismissibleCallout } from '../components/ui/callout';
+import { Checkbox, CheckboxGroup } from '../components/ui/checkbox';
 import {
   BottomSheetRoot,
   BottomSheetTrigger,
@@ -726,6 +727,68 @@ function CalloutDemo() {
   );
 }
 
+function CheckboxDemo() {
+  const [checkedItems, setCheckedItems] = useState([true, false, true]);
+
+  const allChecked = checkedItems.every(Boolean);
+  const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 420, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Square & Ghost · Sizes (Medium/Large) · Indeterminate Parent Group
+      </div>
+
+      {/* 1. Shapes & Sizes */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <CheckboxGroup label="알림 동의 항목 (Square)" indicator="필수">
+          <Checkbox label="서비스 이용약관 동의 (Large, Bold)" size="large" weight="bold" defaultChecked tone="neutral" />
+          <Checkbox label="개인정보 처리방침 동의 (Medium)" size="medium" defaultChecked tone="neutral" />
+        </CheckboxGroup>
+
+        <CheckboxGroup label="마케팅 수신 항목 (Ghost)" indicator="선택">
+          <Checkbox label="이메일 마케팅 알림" variant="ghost" size="medium" defaultChecked tone="neutral" />
+          <Checkbox label="SMS 마케팅 알림" variant="ghost" size="medium" tone="neutral" />
+        </CheckboxGroup>
+      </div>
+
+      {/* 2. Parent-Child Indeterminate Group */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <CheckboxGroup label="약관 전체 동의 그룹 (Parent/Child)">
+          <Checkbox
+            label="전체 동의하기"
+            size="large"
+            weight="bold"
+            checked={allChecked}
+            indeterminate={isIndeterminate}
+            onCheckedChange={(checked) => setCheckedItems([Boolean(checked), Boolean(checked), Boolean(checked)])}
+          />
+          <div style={{ paddingLeft: 'var(--seed-dimension-x5)', display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)' }}>
+            <Checkbox
+              label="[필수] 서비스 약관 동의"
+              size="medium"
+              checked={checkedItems[0]}
+              onCheckedChange={(checked) => setCheckedItems([Boolean(checked), checkedItems[1], checkedItems[2]])}
+            />
+            <Checkbox
+              label="[필수] 개인정보 제공 동의"
+              size="medium"
+              checked={checkedItems[1]}
+              onCheckedChange={(checked) => setCheckedItems([checkedItems[0], Boolean(checked), checkedItems[2]])}
+            />
+            <Checkbox
+              label="[선택] 혜택 알림 수신 동의"
+              size="medium"
+              checked={checkedItems[2]}
+              onCheckedChange={(checked) => setCheckedItems([checkedItems[0], checkedItems[1], Boolean(checked)])}
+            />
+          </div>
+        </CheckboxGroup>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -779,6 +842,12 @@ const COMPONENTS = [
     name: 'Callout',
     slug: 'ui:callout',
     demo: <CalloutDemo />,
+  },
+
+  {
+    name: 'Checkbox',
+    slug: 'ui:checkbox',
+    demo: <CheckboxDemo />,
   },
 ];
 
