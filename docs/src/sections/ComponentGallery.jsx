@@ -37,6 +37,7 @@ import { Chip } from '../components/ui/chip';
 import { ChipTabsRoot, ChipTabsList, ChipTabsTrigger } from '../components/ui/chip-tabs';
 import { ContentPlaceholder } from '../components/ui/content-placeholder';
 import { ContextualFloatingButton } from '../components/ui/contextual-floating-button';
+import { DatePicker, TwoMonthDatePicker, WeekDatePicker, ContinuousDatePicker } from '../components/ui/date-picker';
 import { Float } from '../components/ui/layout';
 import {
   BottomSheetRoot,
@@ -948,6 +949,59 @@ function ContextualFloatingButtonDemo() {
   );
 }
 
+function DatePickerDemo() {
+  const [layoutMode, setLayoutMode] = useState("month");
+  const today = { year: 2026, month: 8, day: 14 };
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 480, margin: '0 auto', alignItems: 'center' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Month · Two Months · Week · Continuous Layouts
+      </div>
+
+      {/* Mode Selector Buttons */}
+      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <ActionButton
+          variant={layoutMode === "month" ? "brandSolid" : "neutralOutline"}
+          size="small"
+          onClick={() => setLayoutMode("month")}
+        >
+          한 달 (Month)
+        </ActionButton>
+        <ActionButton
+          variant={layoutMode === "week" ? "brandSolid" : "neutralOutline"}
+          size="small"
+          onClick={() => setLayoutMode("week")}
+        >
+          한 주 (Week)
+        </ActionButton>
+        <ActionButton
+          variant={layoutMode === "twoMonths" ? "brandSolid" : "neutralOutline"}
+          size="small"
+          onClick={() => setLayoutMode("twoMonths")}
+        >
+          두 달 (Two Months)
+        </ActionButton>
+      </div>
+
+      {/* Calendar Card Frame */}
+      <div style={{ width: '100%', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', padding: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', boxShadow: 'var(--seed-shadow-s1)' }}>
+        {layoutMode === "month" && (
+          <DatePicker today={today} defaultValue={today} />
+        )}
+        {layoutMode === "week" && (
+          <WeekDatePicker today={today} defaultValue={today} />
+        )}
+        {layoutMode === "twoMonths" && (
+          <div style={{ overflowX: 'auto', maxWidth: '100%' }}>
+            <TwoMonthDatePicker today={today} defaultValue={today} />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -1025,6 +1079,12 @@ const COMPONENTS = [
     name: 'Contextual Floating Button',
     slug: 'ui:contextual-floating-button',
     demo: <ContextualFloatingButtonDemo />,
+  },
+
+  {
+    name: 'Date Picker',
+    slug: 'ui:date-picker',
+    demo: <DatePickerDemo />,
   },
 ];
 
