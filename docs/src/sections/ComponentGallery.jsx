@@ -89,7 +89,7 @@ function AlertDialogDemo() {
           <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Layout: {layout.label}
           </div>
-          <AlertDialogRoot defaultOpen>
+          <AlertDialogRoot open={true}>
             <AlertDialogContent style={{ width: '100%', position: 'relative', transform: 'none', boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)' }}>
               <AlertDialogHeader>
                 <AlertDialogTitle>{layout.title}</AlertDialogTitle>
