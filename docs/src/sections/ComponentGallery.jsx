@@ -38,6 +38,7 @@ import { ChipTabsRoot, ChipTabsList, ChipTabsTrigger } from '../components/ui/ch
 import { ContentPlaceholder } from '../components/ui/content-placeholder';
 import { ContextualFloatingButton } from '../components/ui/contextual-floating-button';
 import { DatePicker, TwoMonthDatePicker, WeekDatePicker, ContinuousDatePicker } from '../components/ui/date-picker';
+import { DialogRoot, DialogTrigger, DialogContent, DialogBody, DialogFooter, DialogAction } from '../components/ui/dialog';
 import { Float } from '../components/ui/layout';
 import {
   BottomSheetRoot,
@@ -954,13 +955,13 @@ function DatePickerDemo() {
   const today = { year: 2026, month: 8, day: 14 };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: '100%', margin: '0 auto', alignItems: 'center' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 420, margin: '0 auto', alignItems: 'center' }}>
       <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
-        Month · Two Months · Week · Continuous Layouts
+        Month · Week Layouts
       </div>
 
       {/* Mode Selector Buttons */}
-      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center' }}>
         <ActionButton
           variant={layoutMode === "month" ? "brandSolid" : "neutralOutline"}
           size="small"
@@ -1087,6 +1088,12 @@ const COMPONENTS = [
     name: 'Date Picker',
     slug: 'ui:date-picker',
     demo: <DatePickerDemo />,
+  },
+
+  {
+    name: 'Dialog',
+    slug: 'ui:dialog',
+    demo: <DialogDemo />,
   },
 ];
 
