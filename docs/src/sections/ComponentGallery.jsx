@@ -24,6 +24,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '..
 import { ActionButton, PrefixIcon, SuffixIcon, Icon } from '../components/ui/action-button';
 import { Avatar, AvatarBadge, AvatarStack } from '../components/ui/avatar';
 import { AttachmentField, AttachmentInput, AttachmentDropzone } from '../components/ui/attachment-field';
+import { AttachmentDisplayField, AttachmentDisplay } from '../components/ui/attachment-display-field';
 import {
   AlertDialogRoot,
   AlertDialogContent,
@@ -440,6 +441,45 @@ function BadgeDemo() {
   );
 }
 
+function AttachmentDisplayFieldDemo() {
+  const sampleEntries = [
+    {
+      id: "1",
+      thumbnailUrl: "https://picsum.photos/seed/attachment1/200/200",
+      status: "success",
+    },
+    {
+      id: "2",
+      thumbnailUrl: "https://picsum.photos/seed/attachment2/200/200",
+      status: "success",
+    },
+  ];
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x7)', width: '100%', maxWidth: 420, margin: '0 auto' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          URL Thumbnail Display (CLI Component)
+        </div>
+        <AttachmentDisplayField label="첨부 미디어 썸네일 (URL)" description="서버에 업로드된 미디어 리소스 썸네일 미리보기" defaultEntries={sampleEntries} maxEntries={5}>
+          <AttachmentDisplay
+            onTriggerClick={({ addEntries }) => {
+              const newId = Math.random().toString(36).substring(7);
+              addEntries([
+                {
+                  id: newId,
+                  thumbnailUrl: `https://picsum.photos/seed/${newId}/200/200`,
+                  status: "success",
+                },
+              ]);
+            }}
+          />
+        </AttachmentDisplayField>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -463,6 +503,12 @@ const COMPONENTS = [
     name: 'Attachment Field',
     slug: 'ui:attachment-field',
     demo: <AttachmentFieldDemo />,
+  },
+
+  {
+    name: 'Attachment Display Field',
+    slug: 'ui:attachment-display-field',
+    demo: <AttachmentDisplayFieldDemo />,
   },
 
   {
