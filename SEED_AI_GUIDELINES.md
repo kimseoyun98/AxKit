@@ -26,12 +26,17 @@
 
 ---
 
-## 2. Component Composition & `asChild` Rules
+### 2.2. Icon Composition Pattern (`PrefixIcon`, `SuffixIcon`, `Icon`)
+- Use `<Icon svg={<IconComponent />} />` for standalone icons or icon-only buttons (`layout="iconOnly"`).
+- Use `<PrefixIcon svg={<IconComponent />} />` for icons placed BEFORE text in buttons/chips.
+- Use `<SuffixIcon svg={<IconComponent />} />` for icons placed AFTER text in buttons/chips.
+- Icons MUST be wrapped in these standard SEED wrappers to ensure proper flex alignment and DOM prop cleanliness.
 
-### 2.1. `asChild` Pattern (Radix UI Slot)
-- Use `asChild` to compose component functionality onto child elements (e.g. `<FAB asChild><a href="/create">...</a></FAB>` or `<Button asChild><Link to="...">...</Link></Button>`).
-- **Rule 1: Props Spreading**: Custom wrapped components MUST spread `{...props}` to receive ARIA accessibility and state handlers from SEED primitives.
-- **Rule 2: Ref Forwarding**: Custom wrapped components MUST use `React.forwardRef` to forward DOM references correctly.
+### 2.3. Typography `<Text>` Component & Text Styles
+- Use `<Text>` from `@seed-design/react` for typography rendering.
+- Always prefer `textStyle` prop for 1:1 Figma Text Style mapping (e.g. `textStyle="t5Regular"` or `textStyle="t14Bold"`).
+- Use `maxLines={N}` (e.g. `maxLines={2}`) for clean multi-line truncation with automatic ellipsis (`…`).
+- Use `textStyle="t3StaticRegular"` for static non-scaling typography when required.
 
 ---
 

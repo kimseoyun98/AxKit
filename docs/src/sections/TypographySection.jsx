@@ -54,6 +54,14 @@ export function TypographySection() {
         표현할 수 있어서 fluid 스케일을 각 breakpoint의 스냅샷으로 근사 매핑해둔 것일 뿐입니다 — 개발
         시에는 이 정적 값을 그대로 3단계로 옮기지 말고 SEED의 fluid clamp() 공식을 적용하세요.
       </Notice>
+
+      <h3 style={{ marginTop: 28 }}>React <code>&lt;Text&gt;</code> 컴포넌트 활용 (`@seed-design/react`)</h3>
+      <p>피그마 텍스트 스타일과 1:1 매핑되는 <code>textStyle</code> 속성 및 멀티라인 말줄임 <code>maxLines</code> 속성을 활용합니다.</p>
+      <div style={{ background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: 10, padding: '14px 16px', margin: '14px 0', fontSize: 13, color: '#334155' }}>
+        <div>• <strong>Figma 1:1 매핑</strong>: <code>&lt;Text color="fg.neutral" textStyle="t5Regular"&gt;텍스트&lt;/Text&gt;</code></div>
+        <div>• <strong>말줄임(Ellipsis)</strong>: <code>&lt;Text maxLines={2}&gt;긴 텍스트...&lt;/Text&gt;</code> (지정한 줄 수 초과 시 <code>…</code> 자동 처리)</div>
+        <div>• <strong>고정 스케일(Static)</strong>: <code>&lt;Text textStyle="t3StaticRegular"&gt;고정 텍스트&lt;/Text&gt;</code></div>
+      </div>
     </Sec>
   )
 }
