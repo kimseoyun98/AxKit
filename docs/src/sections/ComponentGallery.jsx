@@ -111,10 +111,15 @@ const ALERT_DIALOG_LAYOUTS = [
 
 function AlertDialogDemo() {
   const [selectedLayoutKey, setSelectedLayoutKey] = useState('single');
+  const [isOpen, setIsOpen] = useState(false);
   const layout = ALERT_DIALOG_LAYOUTS.find((l) => l.key === selectedLayoutKey) || ALERT_DIALOG_LAYOUTS[0];
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', width: '100%', maxWidth: 360, margin: '0 auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', width: '100%', maxWidth: 400, margin: '0 auto', alignItems: 'center' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Alert Dialog · Interactive Modal & Layout Variants
+      </div>
+
       {/* Layout Variant Selector Tabs */}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x1_5)', justifyContent: 'center' }}>
         {ALERT_DIALOG_LAYOUTS.map((l) => (
@@ -130,48 +135,81 @@ function AlertDialogDemo() {
         ))}
       </div>
 
-      {/* Selected Layout Dialog Card */}
-      <div style={{ position: 'relative', width: '100%' }}>
-        <AlertDialogRoot open={true}>
-          <AlertDialogContent style={{ width: '100%', position: 'relative', transform: 'none' }}>
-            <AlertDialogHeader>
-              <AlertDialogTitle>{layout.title}</AlertDialogTitle>
-              {layout.desc && <AlertDialogDescription>{layout.desc}</AlertDialogDescription>}
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              {layout.kind === 'stack' ? (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', alignItems: 'stretch', width: '100%' }}>
-                  {layout.buttons.map((b, i) => (
-                    <AlertDialogAction
-                      key={i}
-                      variant={b.variant}
-                      size="medium"
-                      style={b.muted ? { color: 'var(--seed-color-fg-neutral-muted)', fontWeight: 'var(--seed-font-weight-bold)' } : undefined}
-                    >
-                      {b.label}
-                    </AlertDialogAction>
-                  ))}
-                </div>
-              ) : (
-                <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: 'var(--seed-dimension-x2)', width: '100%' }}>
-                  {layout.buttons.map((b, i) => (
-                    <AlertDialogAction
-                      key={i}
-                      variant={b.variant}
-                      size="medium"
-                      style={{
-                        flexGrow: 1,
-                        minWidth: `calc(${100 / layout.buttons.length}% - var(--seed-dimension-x2) / ${layout.buttons.length})`,
-                      }}
-                    >
-                      {b.label}
-                    </AlertDialogAction>
-                  ))}
-                </div>
-              )}
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogRoot>
+      {/* Trigger Modal Button */}
+      <ActionButton variant="brandSolid" onClick={() => setIsOpen(true)}>
+        대화상자 모달 띄우기 ({layout.label})
+      </ActionButton>
+
+      {/* Real Floating Modal via Portal */}
+      <AlertDialogRoot open={isOpen} onOpenChange={setIsOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{layout.title}</AlertDialogTitle>
+            {layout.desc && <AlertDialogDescription>{layout.desc}</AlertDialogDescription>}
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            {layout.kind === 'stack' ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', alignItems: 'stretch', width: '100%' }}>
+                {layout.buttons.map((b, i) => (
+                  <AlertDialogAction
+                    key={i}
+                    variant={b.variant}
+                    size="medium"
+                    onClick={() => setIsOpen(false)}
+                    style={b.muted ? { color: 'var(--seed-color-fg-neutral-muted)', fontWeight: 'var(--seed-font-weight-bold)' } : undefined}
+                  >
+                    {b.label}
+                  </AlertDialogAction>
+                ))}
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: 'var(--seed-dimension-x2)', width: '100%' }}>
+                {layout.buttons.map((b, i) => (
+                  <AlertDialogAction
+                    key={i}
+                    variant={b.variant}
+                    size="medium"
+                    onClick={() => setIsOpen(false)}
+                    style={{
+                      flexGrow: 1,
+                      minWidth: `calc(${100 / layout.buttons.length}% - var(--seed-dimension-x2) / ${layout.buttons.length})`,
+                    }}
+                  >
+                    {b.label}
+                  </AlertDialogAction>
+                ))}
+              </div>
+            )}
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialogRoot>
+
+      {/* Inline Static Preview Box */}
+      <div style={{
+        width: '100%',
+        padding: 'var(--seed-dimension-x4)',
+        border: '1px solid var(--seed-color-stroke-neutral-weak)',
+        borderRadius: 'var(--seed-dimension-x4)',
+        backgroundColor: 'var(--seed-color-bg-layer-default)',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 'var(--seed-dimension-x3)'
+      }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t3)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>
+          {layout.title}
+        </div>
+        {layout.desc && (
+          <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+            {layout.desc}
+          </div>
+        )}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', marginTop: 'var(--seed-dimension-x2)' }}>
+          {layout.buttons.map((b, i) => (
+            <ActionButton key={i} variant={b.variant} size="medium" style={{ flexGrow: 1 }} onClick={() => setIsOpen(true)}>
+              {b.label}
+            </ActionButton>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@
  * @requires @seed-design/css@^2.0.0
  **/
 
-import { Dialog } from "@seed-design/react";
+import { Dialog, Portal } from "@seed-design/react";
 import { forwardRef } from "react";
 import { ActionButton, type ActionButtonProps } from "./action-button";
 import type * as React from "react";
@@ -39,12 +39,14 @@ export interface AlertDialogContentProps extends Dialog.ContentProps {
 export const AlertDialogContent = forwardRef<HTMLDivElement, AlertDialogContentProps>(
   ({ children, layerIndex, ...otherProps }, ref) => {
     return (
-      <Dialog.Positioner style={{ "--layer-index": layerIndex } as React.CSSProperties}>
-        <Dialog.Backdrop />
-        <Dialog.Content ref={ref} {...otherProps}>
-          {children}
-        </Dialog.Content>
-      </Dialog.Positioner>
+      <Portal>
+        <Dialog.Positioner style={{ "--layer-index": layerIndex } as React.CSSProperties}>
+          <Dialog.Backdrop />
+          <Dialog.Content ref={ref} {...otherProps}>
+            {children}
+          </Dialog.Content>
+        </Dialog.Positioner>
+      </Portal>
     );
   },
 );
