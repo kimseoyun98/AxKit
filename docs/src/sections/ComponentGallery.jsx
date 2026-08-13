@@ -89,44 +89,46 @@ function AlertDialogDemo() {
           <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Layout: {layout.label}
           </div>
-          <div className="seed-dialog__content" data-state="open" style={{ width: '100%', boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)' }}>
-            <div className="seed-dialog__header">
-              <h2 className="seed-dialog__title">{layout.title}</h2>
-              {layout.desc && <p className="seed-dialog__description">{layout.desc}</p>}
-            </div>
-            <div className="seed-dialog__footer">
-              {layout.kind === 'stack' ? (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', alignItems: 'stretch' }}>
-                  {layout.buttons.map((b, i) => (
-                    <AlertDialogAction
-                      key={i}
-                      variant={b.variant}
-                      size="medium"
-                      style={b.muted ? { color: 'var(--seed-color-fg-neutral-muted)', fontWeight: 'var(--seed-font-weight-bold)' } : undefined}
-                    >
-                      {b.label}
-                    </AlertDialogAction>
-                  ))}
-                </div>
-              ) : (
-                <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: 'var(--seed-dimension-x2)' }}>
-                  {layout.buttons.map((b, i) => (
-                    <AlertDialogAction
-                      key={i}
-                      variant={b.variant}
-                      size="medium"
-                      style={{
-                        flexGrow: 1,
-                        minWidth: `calc(${100 / layout.buttons.length}% - var(--seed-dimension-x2) / ${layout.buttons.length})`,
-                      }}
-                    >
-                      {b.label}
-                    </AlertDialogAction>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
+          <AlertDialogRoot defaultOpen>
+            <AlertDialogContent style={{ width: '100%', position: 'relative', transform: 'none', boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)' }}>
+              <AlertDialogHeader>
+                <AlertDialogTitle>{layout.title}</AlertDialogTitle>
+                {layout.desc && <AlertDialogDescription>{layout.desc}</AlertDialogDescription>}
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                {layout.kind === 'stack' ? (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', alignItems: 'stretch' }}>
+                    {layout.buttons.map((b, i) => (
+                      <AlertDialogAction
+                        key={i}
+                        variant={b.variant}
+                        size="medium"
+                        style={b.muted ? { color: 'var(--seed-color-fg-neutral-muted)', fontWeight: 'var(--seed-font-weight-bold)' } : undefined}
+                      >
+                        {b.label}
+                      </AlertDialogAction>
+                    ))}
+                  </div>
+                ) : (
+                  <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: 'var(--seed-dimension-x2)' }}>
+                    {layout.buttons.map((b, i) => (
+                      <AlertDialogAction
+                        key={i}
+                        variant={b.variant}
+                        size="medium"
+                        style={{
+                          flexGrow: 1,
+                          minWidth: `calc(${100 / layout.buttons.length}% - var(--seed-dimension-x2) / ${layout.buttons.length})`,
+                        }}
+                      >
+                        {b.label}
+                      </AlertDialogAction>
+                    ))}
+                  </div>
+                )}
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialogRoot>
         </div>
       ))}
     </div>
