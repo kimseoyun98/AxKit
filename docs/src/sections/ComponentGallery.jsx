@@ -39,6 +39,7 @@ import { ContentPlaceholder } from '../components/ui/content-placeholder';
 import { ContextualFloatingButton } from '../components/ui/contextual-floating-button';
 import { DatePicker, TwoMonthDatePicker, WeekDatePicker, ContinuousDatePicker } from '../components/ui/date-picker';
 import { DialogRoot, DialogTrigger, DialogContent, DialogBody, DialogFooter, DialogAction } from '../components/ui/dialog';
+import { ResponsiveDialogRoot, ResponsiveDialogTrigger, ResponsiveDialogContent, ResponsiveDialogBody, ResponsiveDialogFooter, ResponsiveDialogAction } from '../components/ui/responsive-dialog';
 import { Float } from '../components/ui/layout';
 import {
   BottomSheetRoot,
@@ -991,56 +992,121 @@ function DatePickerDemo() {
 }
 
 function DialogDemo() {
+  const [size, setSize] = useState("medium");
+  const [footerLayout, setFooterLayout] = useState("horizontal");
+  const [showClose, setShowClose] = useState(true);
+  const [longBody, setLongBody] = useState(false);
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 540, margin: '0 auto' }}>
       <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
-        Modal Dialog · Header · Body · Footer Actions
+        Sizes · Footer Layouts (HStack / VStack) · Scroll Fog · Responsive
       </div>
 
-      {/* Permanent Frame Preview */}
-      <div style={{ width: '100%', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', padding: 'var(--seed-dimension-x5)', backgroundColor: 'var(--seed-color-bg-layer-default)', boxShadow: 'var(--seed-shadow-s2)', display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div style={{ fontSize: 'var(--seed-font-size-t5)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>
-            회원 프로필 설정 안내
-          </div>
+      {/* Control Option Badges / Buttons */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
+        {/* Size Selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Size:</span>
+          <ActionButton size="small" variant={size === "medium" ? "brandSolid" : "neutralOutline"} onClick={() => setSize("medium")}>Medium (480px)</ActionButton>
+          <ActionButton size="small" variant={size === "large" ? "brandSolid" : "neutralOutline"} onClick={() => setSize("large")}>Large (800px)</ActionButton>
         </div>
-        <div style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)', lineHeight: 1.6 }}>
-          서비스 이용에 필요한 추가 프로필 정보를 입력해 주세요. 등록된 정보는 마이페이지에서 언제든지 수정이 가능합니다.
+
+        {/* Footer Layout Selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Footer:</span>
+          <ActionButton size="small" variant={footerLayout === "horizontal" ? "brandSolid" : "neutralOutline"} onClick={() => setFooterLayout("horizontal")}>가로 우측정렬 (HStack)</ActionButton>
+          <ActionButton size="small" variant={footerLayout === "vertical" ? "brandSolid" : "neutralOutline"} onClick={() => setFooterLayout("vertical")}>세로 전체너비 (VStack)</ActionButton>
         </div>
-        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'flex-end' }}>
-          <ActionButton variant="neutralOutline" size="medium">
-            다음에 하기
+
+        {/* Toggle Controls */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <ActionButton size="small" variant={showClose ? "brandSolid" : "neutralOutline"} onClick={() => setShowClose(!showClose)}>
+            {showClose ? "닫기 버튼 (X) 포함" : "닫기 버튼 (X) 제거"}
           </ActionButton>
-          <ActionButton variant="brandSolid" size="medium">
-            지금 설정하기
+          <ActionButton size="small" variant={longBody ? "brandSolid" : "neutralOutline"} onClick={() => setLongBody(!longBody)}>
+            {longBody ? "긴 본문 (Scroll Fog)" : "짧은 본문"}
           </ActionButton>
         </div>
       </div>
 
-      {/* Trigger Interactive Popup */}
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <DialogRoot>
+      {/* Interactive Triggers */}
+      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x3)', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <DialogRoot size={size}>
           <DialogTrigger asChild>
             <ActionButton variant="brandSolid" size="medium">
-              실제 모달 팝업 열기
+              설정값대로 Dialog 모달 열기
             </ActionButton>
           </DialogTrigger>
-          <DialogContent title="프로필 설정 확인" description="입력하신 정보를 저장하시겠습니까?">
-            <DialogBody>
-              <div style={{ padding: 'var(--seed-dimension-x3) 0', fontSize: 'var(--seed-font-size-t4)', color: 'var(--seed-color-fg-neutral)', lineHeight: 1.6 }}>
-                SEED 2.0 Dialog 모달은 최상위 계층(Level 3)에서 동작하며, 화면 중앙에 안전하게 배치됩니다.
-              </div>
+          <DialogContent
+            title="프로필 설정 확인"
+            description="입력하신 프로필 정보를 저장하시겠습니까?"
+            showCloseButton={showClose}
+          >
+            <DialogBody maxHeight={longBody ? "220px" : undefined}>
+              {longBody ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', padding: 'var(--seed-dimension-x2) 0' }}>
+                  {Array.from({ length: 10 }, (_, i) => (
+                    <div key={i} style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral)', lineHeight: 1.6 }}>
+                      {i + 1}. 본문 내용이 뷰포트를 넘어 220px 이상 길어지면 하단에 서서히 사라지는 Scroll Fog 마스크와 구분선이 표시됩니다.
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div style={{ padding: 'var(--seed-dimension-x3) 0', fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral)', lineHeight: 1.6 }}>
+                  SEED 2.0 Dialog 모달은 최상위 계층(Level 3)에서 동작하며, 화면 중앙에 안전하게 배치됩니다.
+                </div>
+              )}
             </DialogBody>
             <DialogFooter>
-              <DialogAction variant="neutralOutline" size="medium">
-                취소
-              </DialogAction>
-              <DialogAction variant="brandSolid" size="medium">
-                확인 및 저장
-              </DialogAction>
+              {footerLayout === "horizontal" ? (
+                <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'flex-end', width: '100%' }}>
+                  <DialogAction variant="neutralOutline" size="medium">
+                    취소
+                  </DialogAction>
+                  <DialogAction variant="brandSolid" size="medium">
+                    확인 및 저장
+                  </DialogAction>
+                </div>
+              ) : (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', width: '100%' }}>
+                  <DialogAction variant="brandSolid" size="medium">
+                    확인 및 저장
+                  </DialogAction>
+                  <DialogAction variant="neutralOutline" size="medium">
+                    취소
+                  </DialogAction>
+                </div>
+              )}
             </DialogFooter>
           </DialogContent>
         </DialogRoot>
+
+        {/* Responsive Dialog */}
+        <ResponsiveDialogRoot>
+          <ResponsiveDialogTrigger asChild>
+            <ActionButton variant="neutralSolid" size="medium">
+              반응형 Responsive Dialog
+            </ActionButton>
+          </ResponsiveDialogTrigger>
+          <ResponsiveDialogContent title="반응형 모달" description="데스크탑은 Dialog, 모바일은 Bottom Sheet">
+            <ResponsiveDialogBody>
+              <div style={{ padding: 'var(--seed-dimension-x3) 0', fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral)', lineHeight: 1.6 }}>
+                뷰포트 크기에 따라 데스크탑(768px 이상)에서는 다이얼로그 모달로, 모바일에서는 바텀시트로 자동 전환됩니다.
+              </div>
+            </ResponsiveDialogBody>
+            <ResponsiveDialogFooter>
+              <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'flex-end', width: '100%' }}>
+                <ResponsiveDialogAction variant="neutralOutline" size="medium">
+                  닫기
+                </ResponsiveDialogAction>
+                <ResponsiveDialogAction variant="brandSolid" size="medium">
+                  확인
+                </ResponsiveDialogAction>
+              </div>
+            </ResponsiveDialogFooter>
+          </ResponsiveDialogContent>
+        </ResponsiveDialogRoot>
       </div>
     </div>
   );
