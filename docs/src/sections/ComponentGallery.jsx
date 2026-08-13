@@ -1489,7 +1489,6 @@ function ListDemo() {
   const [selectedTheme, setSelectedTheme] = useState("system");
   const [highlightFirst, setHighlightFirst] = useState(true);
   const [align, setAlign] = useState("center"); // "center" | "flex-start"
-  const [showCardContainer, setShowCardContainer] = useState(false);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
@@ -1499,9 +1498,6 @@ function ListDemo() {
 
       {/* Control Buttons */}
       <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', flexWrap: 'wrap' }}>
-        <ActionButton size="small" variant={showCardContainer ? "brandSolid" : "neutralOutline"} onClick={() => setShowCardContainer(!showCardContainer)}>
-          {showCardContainer ? "카드 감싸기 (Card Box)" : "보더 없음 (Native List)"}
-        </ActionButton>
         <ActionButton size="small" variant={highlightFirst ? "brandSolid" : "neutralOutline"} onClick={() => setHighlightFirst(!highlightFirst)}>
           {highlightFirst ? "강조(Highlighted) ON" : "강조 OFF"}
         </ActionButton>
@@ -1513,17 +1509,8 @@ function ListDemo() {
         </ActionButton>
       </div>
 
-      {/* List Container (Borderless natively by SEED spec, option for card wrapper) */}
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-        border: showCardContainer ? '1px solid var(--seed-color-stroke-neutral-weak)' : 'none',
-        borderRadius: showCardContainer ? 'var(--seed-dimension-x4)' : 0,
-        backgroundColor: showCardContainer ? 'var(--seed-color-bg-layer-default)' : 'transparent',
-        overflow: 'hidden',
-        transition: 'all 0.2s ease',
-      }}>
+      {/* Native Borderless List */}
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
         <ListHeader as="h3">계정 및 알림 설정</ListHeader>
         <List width="full">
           {/* 1. Highlighted / Standard ListItem with Multi-line Detail */}
