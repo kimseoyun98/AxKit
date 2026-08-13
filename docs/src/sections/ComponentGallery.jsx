@@ -375,46 +375,93 @@ function AccordionDemo() {
   );
 }
 
-const COMPONENTS = [
-  {
-    name: 'Accordion',
-    slug: 'ui:accordion',
-    // 출처 대조: packages/css/recipes/accordion.css (seed-accordion__* BEM) +
-    // docs/registry/react/ui/accordion.tsx (Header > Trigger > Prefix/Body(Title+Description)/SuffixIcon, Content)
-    demo: <AccordionDemo />,
-  },
+function ButtonProgressCircleSVG({ size = 18 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ animation: 'seed-spin 0.8s linear infinite' }}
+    >
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2.5" strokeOpacity="0.25" />
+      <path d="M12 3C16.9706 3 21 7.02944 21 12" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    </svg>
+  );
+}
 
-  {
-    name: 'Action Button',
-    slug: 'ui:action-button',
-    // 출처 대조: packages/css/recipes/action-button.css (.seed-action-button + --variant_*/--size_*/--layout_* BEM) +
-    // docs/registry/react/ui/action-button.tsx (SeedActionButton, loading prop → LoadingIndicator로 children 감쌈) +
-    // docs/examples/react/action-button/*.tsx (PrefixIcon/Icon 사용법, icon-only는 layout="iconOnly" + aria-label 필수)
-    demo: (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: '100%', alignItems: 'center' }}>
-        {/* variant 7종 — size medium, text only */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center' }}>
-          {[
-            ['neutralSolid', '기본'],
-            ['brandSolid', '채팅하기'],
-            ['neutralWeak', '더보기'],
-            ['brandOutline', '단골 맺기'],
-            ['neutralOutline', '공유'],
-            ['criticalSolid', '삭제'],
-            ['ghost', '취소'],
-          ].map(([variant, label], vi) => (
-            <button
-              key={variant}
-              type="button"
-              className={`seed-action-button seed-action-button--variant_${variant} seed-action-button--size_small seed-action-button--size_small-layout_withText seed-action-button--layout_withText`}
-            >
-              {vi === 0 ? <span data-anatomy="Label">{label}</span> : label}
-            </button>
-          ))}
+function ActionButtonDemo() {
+  const stateVariants = [
+    { key: 'neutralSolid', label: 'Neutral Solid' },
+    { key: 'brandSolid', label: 'Brand Solid' },
+    { key: 'criticalSolid', label: 'Critical Solid' },
+    { key: 'neutralWeak', label: 'Neutral Weak' },
+    { key: 'brandOutline', label: 'Brand Outline' },
+    { key: 'neutralOutline', label: 'Neutral Outline' },
+  ];
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 28, width: '100%', maxWidth: 520, margin: '0 auto' }}>
+      {/* 1. Hierarchy & State Matrix (User Image Request) */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%' }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+          Hierarchy & States (Enabled / Pressed / Loading / Disabled)
         </div>
 
-        {/* layout: prefix / suffix / icon only, size medium */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, width: '100%', textAlign: 'center', fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-subtle)' }}>
+          <span>Enabled</span>
+          <span>Pressed</span>
+          <span>Loading</span>
+          <span>Disabled</span>
+        </div>
+
+        {stateVariants.map(({ key }) => (
+          <div key={key} style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, width: '100%', alignItems: 'center' }}>
+            <button
+              type="button"
+              className={`seed-action-button seed-action-button--variant_${key} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
+              style={{ width: '100%' }}
+            >
+              Enabled
+            </button>
+
+            <button
+              type="button"
+              data-active=""
+              className={`seed-action-button seed-action-button--variant_${key} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
+              style={{ width: '100%' }}
+            >
+              Pressed
+            </button>
+
+            <button
+              type="button"
+              data-loading=""
+              className={`seed-action-button seed-action-button--variant_${key} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
+              style={{ width: '100%' }}
+            >
+              <ButtonProgressCircleSVG size={18} />
+            </button>
+
+            <button
+              type="button"
+              disabled
+              className={`seed-action-button seed-action-button--variant_${key} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
+              style={{ width: '100%' }}
+            >
+              Disabled
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* 2. Sizes & Layouts */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12, width: '100%', alignItems: 'center' }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Sizes & Layouts (Prefix / Suffix / Icon-Only)
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', alignItems: 'center' }}>
           <button
             type="button"
             className="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText"
@@ -440,33 +487,38 @@ const COMPONENTS = [
           >
             <IconHeartRegular style={{ width: 'var(--seed-icon-size)', height: 'var(--seed-icon-size)', color: 'var(--seed-icon-color)' }} />
           </button>
-        </div>
-
-        {/* size: xsmall(pill) ↔ large, state: disabled / loading */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center', alignItems: 'center' }}>
           <button
             type="button"
             className="seed-action-button seed-action-button--variant_neutralWeak seed-action-button--size_xsmall seed-action-button--size_xsmall-layout_withText seed-action-button--layout_withText"
           >
-            필터
+            필터 (XSmall)
           </button>
           <button
             type="button"
             className="seed-action-button seed-action-button--variant_brandSolid seed-action-button--size_large seed-action-button--size_large-layout_withText seed-action-button--layout_withText"
           >
-            구매하기
+            구매하기 (Large)
           </button>
-          <button
-            type="button"
-            disabled
-            className="seed-action-button seed-action-button--variant_neutralSolid seed-action-button--size_small seed-action-button--size_small-layout_withText seed-action-button--layout_withText"
-          >
-            비활성
-          </button>
-          {/* loading state: ProgressCircle 컴포넌트 구현 후 추가 예정 */}
         </div>
       </div>
-    ),
+    </div>
+  );
+}
+
+const COMPONENTS = [
+  {
+    name: 'Accordion',
+    slug: 'ui:accordion',
+    demo: <AccordionDemo />,
+  },
+
+  {
+    name: 'Action Button',
+    slug: 'ui:action-button',
+    // 출처 대조: packages/css/recipes/action-button.css (.seed-action-button + --variant_*/--size_*/--layout_* BEM) +
+    // docs/registry/react/ui/action-button.tsx (SeedActionButton, loading prop → LoadingIndicator로 children 감쌈) +
+    // 위계 매트릭스: neutralSolid, brandSolid, criticalSolid, neutralWeak, brandOutline, neutralOutline 6종 x 4가지 State (Enabled, Pressed, Loading, Disabled)
+    demo: <ActionButtonDemo />,
   },
 
   {

@@ -216,3 +216,4 @@ tr:last-child td { border-bottom: none; }
 .notice code { background: rgba(180,83,9,.1); padding: 1px 5px; border-radius: 4px; font-size: 12px; }
 
 @keyframes shimmer { 0% { background-position: 200% center } 100% { background-position: -200% center } }
+@keyframes seed-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
