@@ -51,16 +51,44 @@ const NAV = [
   },
 ]
 
+import { useState } from 'react';
+
 export default function App() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
     <>
-      <aside>
+      {/* Mobile GNB Header (< 768px) */}
+      <div className="mobile-gnb">
+        <span className="logo">axpublish v2</span>
+        <button
+          className="mobile-menu-btn"
+          onClick={() => setMobileOpen(!mobileOpen)}
+        >
+          {mobileOpen ? '✕ 닫기' : '☰ 메뉴'}
+        </button>
+      </div>
+
+      {/* Mobile Backdrop */}
+      {mobileOpen && (
+        <div className="mobile-backdrop" onClick={() => setMobileOpen(false)} />
+      )}
+
+      {/* Side Navigation Sidebar */}
+      <aside className={mobileOpen ? 'mobile-open' : ''}>
         <span className="logo">axpublish v2</span>
         {NAV.map(group => (
           <div key={group.sec}>
             <div className="nav-sec">{group.sec}</div>
             {group.links.map(l => (
-              <a key={l.href} href={l.href} className="nav-link">{l.label}</a>
+              <a
+                key={l.href}
+                href={l.href}
+                className="nav-link"
+                onClick={() => setMobileOpen(false)}
+              >
+                {l.label}
+              </a>
             ))}
           </div>
         ))}

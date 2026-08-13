@@ -55,6 +55,64 @@ main {
   box-sizing: border-box;
 }
 
+/* Mobile GNB Header (Shown only on < 768px) */
+.mobile-gnb {
+  display: none;
+}
+.mobile-backdrop {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  .mobile-gnb {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 150;
+    height: 56px;
+    padding: 0 16px;
+    background: #FFFFFF;
+    border-bottom: 1px solid #F1F5F9;
+  }
+  .mobile-gnb .logo {
+    margin-bottom: 0;
+    font-size: 17px;
+  }
+  .mobile-menu-btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2563EB;
+    background: #EFF6FF;
+    border-radius: 6px;
+    border: 1px solid #BFDBFE;
+  }
+  aside {
+    transform: translateX(-100%);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 200;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+  }
+  aside.mobile-open {
+    transform: translateX(0);
+  }
+  .mobile-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.4);
+    z-index: 190;
+    backdrop-filter: blur(2px);
+  }
+  main {
+    margin-left: 0;
+    width: 100%;
+    padding: 24px 16px 64px;
+  }
+}
+
 /* ─── Section (Clean Border & Spacing - Toss/M3) ──────── */
 .sec {
   background: transparent;
