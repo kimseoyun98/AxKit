@@ -68,33 +68,35 @@ export const BottomSheetContent = forwardRef<HTMLDivElement, BottomSheetContentP
     const shouldRenderHeader = title || description;
 
     return (
-      <SeedBottomSheet.Positioner style={{ "--layer-index": layerIndex } as React.CSSProperties}>
-        <SeedBottomSheet.Backdrop />
-        <SeedBottomSheet.Content ref={ref} {...otherProps}>
-          {showHandle && <SeedBottomSheet.Handle />}
-          {shouldRenderHeader && (
-            <SeedBottomSheet.Header>
-              {title ? (
-                <SeedBottomSheet.Title>{title}</SeedBottomSheet.Title>
-              ) : (
-                <VisuallyHidden asChild>
-                  <SeedBottomSheet.Title>{otherProps["aria-label"] || ""}</SeedBottomSheet.Title>
-                </VisuallyHidden>
-              )}
-              {description && (
-                <SeedBottomSheet.Description>{description}</SeedBottomSheet.Description>
-              )}
-            </SeedBottomSheet.Header>
-          )}
-          {children}
-          {showCloseButton && (
-            // You may implement your own i18n for dismiss label
-            <SeedBottomSheet.CloseButton aria-label="닫기">
-              <Icon svg={<IconXmarkLine />} />
-            </SeedBottomSheet.CloseButton>
-          )}
-        </SeedBottomSheet.Content>
-      </SeedBottomSheet.Positioner>
+      <SeedBottomSheet.Portal>
+        <SeedBottomSheet.Positioner style={{ "--layer-index": layerIndex } as React.CSSProperties}>
+          <SeedBottomSheet.Backdrop />
+          <SeedBottomSheet.Content ref={ref} {...otherProps}>
+            {showHandle && <SeedBottomSheet.Handle />}
+            {shouldRenderHeader && (
+              <SeedBottomSheet.Header>
+                {title ? (
+                  <SeedBottomSheet.Title>{title}</SeedBottomSheet.Title>
+                ) : (
+                  <VisuallyHidden asChild>
+                    <SeedBottomSheet.Title>{otherProps["aria-label"] || ""}</SeedBottomSheet.Title>
+                  </VisuallyHidden>
+                )}
+                {description && (
+                  <SeedBottomSheet.Description>{description}</SeedBottomSheet.Description>
+                )}
+              </SeedBottomSheet.Header>
+            )}
+            {children}
+            {showCloseButton && (
+              // You may implement your own i18n for dismiss label
+              <SeedBottomSheet.CloseButton aria-label="닫기">
+                <Icon svg={<IconXmarkLine />} />
+              </SeedBottomSheet.CloseButton>
+            )}
+          </SeedBottomSheet.Content>
+        </SeedBottomSheet.Positioner>
+      </SeedBottomSheet.Portal>
     );
   },
 );
