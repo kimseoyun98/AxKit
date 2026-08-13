@@ -513,6 +513,126 @@ function ActionButtonDemo() {
   );
 }
 
+function AttachmentFieldDemo() {
+  const sampleImg = "https://avatars.githubusercontent.com/u/54893898?v=4";
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 28, width: '100%', maxWidth: 420, margin: '0 auto' }}>
+      {/* 1. Standard Trigger & Items (Media vs File Types) */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: '100%' }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Standard Input (Media & File Variants)
+        </div>
+        <div className="seed-attachment-input__root" style={{ width: '100%' }}>
+          <div className="seed-attachment-input__container" style={{ marginInline: 0, paddingInline: 0 }}>
+            {/* Trigger */}
+            <button
+              type="button"
+              className="seed-attachment-input-trigger__root"
+              aria-label="파일 선택"
+              data-anatomy="Trigger"
+            >
+              <IconCameraFill className="seed-attachment-input-trigger__icon" />
+              <span className="seed-attachment-input-trigger__itemCountArea">
+                <span className="seed-attachment-input-trigger__itemCount">2</span>
+                <span className="seed-attachment-input-trigger__maxItemCount">/5</span>
+              </span>
+            </button>
+
+            <ul className="seed-attachment-input__itemGroup">
+              {/* Media Item with Representative Badge */}
+              <li className="seed-attachment-input-item__root seed-attachment-input-item__root--type_image">
+                <img className="seed-attachment-input-item__image" src={sampleImg} alt="Sample Upload" data-anatomy="Thumbnail" />
+                <div className="seed-attachment-input-item__badge seed-attachment-input-item__badge--type_image" data-anatomy="Preview Badge">
+                  <span className="seed-attachment-input-item__badgeLabel seed-attachment-input-item__badgeLabel--type_image">대표</span>
+                </div>
+                <button
+                  type="button"
+                  className="seed-attachment-input-item__removeButton"
+                  aria-label="파일 제거"
+                  data-anatomy="Remove Button"
+                >
+                  <IconCloseFill style={{ width: 'var(--seed-icon-size)', height: 'var(--seed-icon-size)', color: 'var(--seed-icon-color)' }} />
+                </button>
+              </li>
+
+              {/* General File Item */}
+              <li className="seed-attachment-input-item__root seed-attachment-input-item__root--type_general">
+                <div className="seed-attachment-input-item__thumbnail seed-attachment-input-item__thumbnail--type_general" data-anatomy="Thumbnail (File)">
+                  <IconFileFill style={{ width: 'var(--seed-icon-size)', height: 'var(--seed-icon-size)', color: 'var(--seed-icon-color)' }} />
+                </div>
+                <div className="seed-attachment-input-item__metadata seed-attachment-input-item__metadata--type_general" data-anatomy="Metadata">
+                  <span className="seed-attachment-input-item__name seed-attachment-input-item__name--type_general">포트폴리오.pdf</span>
+                  <span className="seed-attachment-input-item__size seed-attachment-input-item__size--type_general">1.2MB</span>
+                </div>
+                <button
+                  type="button"
+                  className="seed-attachment-input-item__removeButton"
+                  aria-label="파일 제거"
+                >
+                  <IconCloseFill style={{ width: 'var(--seed-icon-size)', height: 'var(--seed-icon-size)', color: 'var(--seed-icon-color)' }} />
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* 2. States (Loading & Error Retry) */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: '100%' }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Item States (Loading & Error Retry)
+        </div>
+        <div className="seed-attachment-input__root" style={{ width: '100%' }}>
+          <div className="seed-attachment-input__container" style={{ marginInline: 0, paddingInline: 0 }}>
+            <ul className="seed-attachment-input__itemGroup">
+              {/* Loading State Item */}
+              <li className="seed-attachment-input-item__root seed-attachment-input-item__root--type_image">
+                <img className="seed-attachment-input-item__image" src={sampleImg} alt="Uploading" />
+                <div className="seed-attachment-input-item__backdrop seed-attachment-input-item__backdrop--type_image" data-anatomy="Loading State">
+                  <ButtonProgressCircleSVG size={24} />
+                </div>
+                <button type="button" className="seed-attachment-input-item__removeButton" aria-label="파일 제거">
+                  <IconCloseFill style={{ width: 'var(--seed-icon-size)', height: 'var(--seed-icon-size)', color: 'var(--seed-icon-color)' }} />
+                </button>
+              </li>
+
+              {/* Error State Item */}
+              <li className="seed-attachment-input-item__root seed-attachment-input-item__root--type_image">
+                <img className="seed-attachment-input-item__image" src={sampleImg} alt="Upload Error" />
+                <div className="seed-attachment-input-item__backdrop seed-attachment-input-item__backdrop--type_image" data-anatomy="Error Backdrop">
+                  <button type="button" className="seed-attachment-input-item__actionButton seed-attachment-input-item__actionButton--type_image">
+                    <IconRetryFill style={{ width: 'var(--seed-icon-size)', height: 'var(--seed-icon-size)', color: 'var(--seed-icon-color)' }} />
+                    재시도
+                  </button>
+                </div>
+                <button type="button" className="seed-attachment-input-item__removeButton" aria-label="파일 제거">
+                  <IconCloseFill style={{ width: 'var(--seed-icon-size)', height: 'var(--seed-icon-size)', color: 'var(--seed-icon-color)' }} />
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Dropzone Layout */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, width: '100%' }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Dropzone (Drag & Drop Area)
+        </div>
+        <div className="seed-attachment-input__root" style={{ width: '100%' }}>
+          <div className="seed-attachment-input__dropzone" data-anatomy="Dropzone">
+            <IconCameraFill style={{ width: 28, height: 28, color: 'var(--seed-color-fg-neutral-subtle)' }} />
+            <span className="seed-attachment-input__dropzoneLabel">
+              파일을 선택하거나 이곳으로 드래그하세요
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
