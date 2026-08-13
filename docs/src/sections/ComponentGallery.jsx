@@ -1157,17 +1157,25 @@ function DividerDemo() {
 function FieldButtonDemo() {
   const [selectedCity, setSelectedCity] = useState("");
   const [isInvalid, setIsInvalid] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+  const [hasPrefix, setHasPrefix] = useState(true);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
       <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
-        Input Button Container · Picker Trigger · Validation
+        Prefix Icon · Disabled · Invalid · Clear Button Props
       </div>
 
       {/* Control Buttons */}
-      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <ActionButton size="small" variant={hasPrefix ? "brandSolid" : "neutralOutline"} onClick={() => setHasPrefix(!hasPrefix)}>
+          {hasPrefix ? "Prefix 아이콘 ON" : "Prefix 아이콘 OFF"}
+        </ActionButton>
         <ActionButton size="small" variant={isInvalid ? "brandSolid" : "neutralOutline"} onClick={() => setIsInvalid(!isInvalid)}>
-          {isInvalid ? "오류 상태 ON" : "정상 상태"}
+          {isInvalid ? "오류 상태 (Invalid)" : "정상 상태"}
+        </ActionButton>
+        <ActionButton size="small" variant={isDisabled ? "brandSolid" : "neutralOutline"} onClick={() => setIsDisabled(!isDisabled)}>
+          {isDisabled ? "비활성화 (Disabled)" : "활성화"}
         </ActionButton>
       </div>
 
@@ -1176,7 +1184,9 @@ function FieldButtonDemo() {
         <FieldButton
           label="거주 지역"
           showRequiredIndicator
+          disabled={isDisabled}
           invalid={isInvalid}
+          prefix={hasPrefix ? "📍" : undefined}
           description="현재 거주하시는 지역을 선택해 주세요."
           errorMessage="거주 지역을 반드시 선택해 주세요."
           showClearButton={!!selectedCity}
@@ -1184,7 +1194,7 @@ function FieldButtonDemo() {
           onValuesChange={(vals) => setSelectedCity(vals[0] || "")}
           buttonProps={{
             onClick: () => {
-              if (!selectedCity) {
+              if (!isDisabled && !selectedCity) {
                 setSelectedCity("서울특별시 강남구 역삼동");
               }
             },
