@@ -31,7 +31,6 @@ export function ChipInfo({ children }) {
 export function Notice({ children }) {
   return (
     <div className="notice">
-      <span style={{ fontSize: 20, flexShrink: 0 }}>💡</span>
       <div>{children}</div>
     </div>
   )
