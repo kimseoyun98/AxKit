@@ -1114,43 +1114,34 @@ function DialogDemo() {
 
 function DividerDemo() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
       <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
-        Horizontal · Vertical · Inset Layout Examples
+        Horizontal · Inset · Vertical Divider
       </div>
 
-      {/* Horizontal Divider Example */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', padding: 'var(--seed-dimension-x4)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t3)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>
-          1. 가로 구분선 (Horizontal Divider)
+      {/* Single Flat Container */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
+        {/* Horizontal Divider Example */}
+        <div style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral)' }}>
+          상단 섹션 (가로 전체 Full-width 구분선)
         </div>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
-          상단 섹션 콘텐츠 (예: 게시글 헤더)
-        </div>
+
         <Divider />
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
-          하단 섹션 콘텐츠 (예: 게시글 본문 및 댓글)
-        </div>
-      </div>
 
-      {/* Inset & Vertical Divider Example */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', padding: 'var(--seed-dimension-x4)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t3)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>
-          2. 안쪽 여백(Inset) & 세로 구분선 (Vertical)
+        {/* Inset Divider Example */}
+        <div style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral)' }}>
+          중간 섹션 (양 옆 Gutter 여백 Inset 구분선)
         </div>
-        {/* Inset Divider */}
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          ▼ 양 옆 16px Gutter 여백이 적용된 Inset Divider
-        </div>
+
         <Divider inset />
 
-        {/* Vertical Divider Filter Bar */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', height: 44, padding: '0 var(--seed-dimension-x2)', backgroundColor: 'var(--seed-color-bg-neutral-weak)', borderRadius: 'var(--seed-dimension-x2)', marginTop: 'var(--seed-dimension-x2)' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>최신순</span>
+        {/* Vertical Divider Inline Filter Bar */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--seed-dimension-x4)', paddingTop: 'var(--seed-dimension-x2)' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t3)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>최신순</span>
           <Divider orientation="vertical" style={{ height: 14 }} />
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>인기순</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>인기순</span>
           <Divider orientation="vertical" style={{ height: 14 }} />
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>거리순</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>거리순</span>
         </div>
       </div>
     </div>
