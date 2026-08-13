@@ -169,6 +169,7 @@ tr:last-child td { border-bottom: none; }
 #showcase { overflow: hidden; }
 
 /* 네비 토글 바 */
+.comp-gallery-container { margin-bottom: 56px; padding-bottom: 40px; border-bottom: 1px solid #F1F5F9; }
 .comp-nav { display: flex; flex-wrap: wrap; gap: 8px; padding-bottom: 16px; }
 .comp-nav::-webkit-scrollbar { display: none; }
 .comp-nav-btn {
