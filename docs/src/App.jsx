@@ -100,7 +100,9 @@ export default function App() {
           <div style={{ display: 'flex', gap: 12, marginTop: 14, flexWrap: 'wrap' }}>
             {[
               ['@seed-design/css', 'npm install @seed-design/css'],
+              ['@seed-design/react', 'npm install @seed-design/react'],
               ['@seed-design/icon', 'npm install @seed-design/icon'],
+              ['@seed-design/cli', 'npx @seed-design/cli add ui:*'],
             ].map(([label, cmd]) => (
               <div key={label} style={{ background: '#F9FAFB', border: '1px solid #E5E7EB', borderRadius: 10, padding: '10px 14px' }}>
                 <div style={{ fontSize: 12, fontWeight: 700, color: '#374151', marginBottom: 4 }}>{label}</div>
