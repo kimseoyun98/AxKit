@@ -300,7 +300,7 @@ function AccordionDemo() {
                     data-disabled={disabled ? '' : undefined}
                     data-anatomy={i === 0 ? 'Chevron Icon' : undefined}
                   >
-                    <IconExpandMoreRegular style={{ width: 'var(--seed-suffix-icon-size, var(--seed-dimension-x5))', height: 'var(--seed-suffix-icon-size, var(--seed-dimension-x5))' }} />
+                    <IconExpandMoreRegular style={{ width: 18, height: 18 }} />
                   </span>
                 </button>
               </h3>
@@ -310,7 +310,7 @@ function AccordionDemo() {
                 data-state={open ? 'open' : 'closed'}
                 style={open ? { height: 'auto', opacity: 1 } : undefined}
               >
-                <div style={{ paddingInline: 'var(--seed-dimension-spacing-x-global-gutter)', paddingTop: 'var(--seed-dimension-x2)', paddingBottom: 'var(--seed-dimension-x5)' }}>
+                <div style={{ paddingInline: 'var(--seed-dimension-spacing-x-global-gutter)', paddingTop: 'var(--seed-dimension-x2)', paddingBottom: 'var(--seed-dimension-x3)' }}>
                   <p style={{ margin: 0, fontSize: 14, lineHeight: 1.6, color: 'var(--seed-color-fg-neutral-subtle)' }}>
                     {content}
                   </p>
@@ -352,7 +352,7 @@ function AccordionDemo() {
                     data-state={open ? 'open' : 'closed'}
                     data-disabled={disabled ? '' : undefined}
                   >
-                    <IconExpandMoreRegular style={{ width: 'var(--seed-suffix-icon-size, var(--seed-dimension-x5))', height: 'var(--seed-suffix-icon-size, var(--seed-dimension-x5))' }} />
+                    <IconExpandMoreRegular style={{ width: 18, height: 18 }} />
                   </span>
                 </button>
               </h3>
@@ -361,7 +361,7 @@ function AccordionDemo() {
                 data-state={open ? 'open' : 'closed'}
                 style={open ? { height: 'auto', opacity: 1 } : undefined}
               >
-                <div style={{ paddingInline: 'var(--seed-dimension-spacing-x-global-gutter)', paddingTop: 'var(--seed-dimension-x2)', paddingBottom: 'var(--seed-dimension-x5)' }}>
+                <div style={{ paddingInline: 'var(--seed-dimension-spacing-x-global-gutter)', paddingTop: 'var(--seed-dimension-x2)', paddingBottom: 'var(--seed-dimension-x3)' }}>
                   <p style={{ margin: 0, fontSize: 14, lineHeight: 1.6, color: 'var(--seed-color-fg-neutral-subtle)' }}>
                     {content}
                   </p>
