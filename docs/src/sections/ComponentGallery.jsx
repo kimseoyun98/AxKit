@@ -1486,28 +1486,41 @@ function ListDemo() {
   const [pushNotif, setPushNotif] = useState(true);
   const [highlightFirst, setHighlightFirst] = useState(true);
   const [align, setAlign] = useState("center"); // "center" | "flex-start"
+  const [showCardContainer, setShowCardContainer] = useState(false);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
       <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
-        List Header · ListItem · ListButtonItem · ListSwitchItem · Align (Center / Top)
+        Native Borderless List · ListHeader · ListItem · ListSwitchItem · ListButtonItem
       </div>
 
       {/* Control Buttons */}
       <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <ActionButton size="small" variant={showCardContainer ? "brandSolid" : "neutralOutline"} onClick={() => setShowCardContainer(!showCardContainer)}>
+          {showCardContainer ? "카드 감싸기 (Card Box)" : "보더 없음 (Native List)"}
+        </ActionButton>
         <ActionButton size="small" variant={highlightFirst ? "brandSolid" : "neutralOutline"} onClick={() => setHighlightFirst(!highlightFirst)}>
           {highlightFirst ? "강조(Highlighted) ON" : "강조 OFF"}
         </ActionButton>
         <ActionButton size="small" variant={align === "center" ? "brandSolid" : "neutralOutline"} onClick={() => setAlign("center")}>
-          Align: Center (수직 중앙)
+          Align: Center
         </ActionButton>
         <ActionButton size="small" variant={align === "flex-start" ? "brandSolid" : "neutralOutline"} onClick={() => setAlign("flex-start")}>
-          Align: Top (첫 줄 상단 고정)
+          Align: Top
         </ActionButton>
       </div>
 
-      {/* List Container */}
-      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', overflow: 'hidden' }}>
+      {/* List Container (Borderless natively by SEED spec, option for card wrapper) */}
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+        border: showCardContainer ? '1px solid var(--seed-color-stroke-neutral-weak)' : 'none',
+        borderRadius: showCardContainer ? 'var(--seed-dimension-x4)' : 0,
+        backgroundColor: showCardContainer ? 'var(--seed-color-bg-layer-default)' : 'transparent',
+        overflow: 'hidden',
+        transition: 'all 0.2s ease',
+      }}>
         <ListHeader as="h3">계정 및 알림 설정</ListHeader>
         <List width="full">
           {/* 1. Highlighted / Standard ListItem with Multi-line Detail */}
