@@ -47,76 +47,9 @@ export function GridSection() {
         Column/Gutter/Margin 숫자는 Figma 디자인 가이드라인이며, 코드에서는 JSX 반응형 Prop(<code>gap={`{{ base: "x3", md: "x4" }}`}</code>)이나 1fr 비율(<code>grid-template-columns: repeat(12, 1fr)</code>)을 활용하여 브라우저가 뷰포트 크기에 따라 유연하게 자동 계산하도록 설계되어 있습니다.
       </Notice>
 
-      {/* 시각적 Figma Frame ➔ SEED Breakpoint 매핑 카운터 카드 */}
-      <h3 style={{ marginTop: 32 }}>Figma Frame ➔ SEED Breakpoint 시각적 매핑</h3>
-      <p>디자이너가 피그마에서 시안을 그릴 때 사용하는 3가지 대표 시안 프레임과 코드 중단점의 1:1 매핑입니다.</p>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16, margin: '20px 0' }}>
-        {viewportMapping.map(v => (
-          <div
-            key={v.device}
-            style={{
-              background: '#FFFFFF',
-              border: '1px solid #E2E8F0',
-              borderRadius: 14,
-              padding: 18,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 12,
-              boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
-            }}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: 16, fontWeight: 800, color: '#0F172A' }}>{v.device}</span>
-              <span
-                style={{
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: '#2563EB',
-                  background: '#EFF6FF',
-                  border: '1px solid #BFDBFE',
-                  padding: '2px 8px',
-                  borderRadius: 999,
-                }}
-              >
-                SEED {v.bp}
-              </span>
-            </div>
-
-            {/* 디바이스 형태 시각 프레임 모형 */}
-            <div
-              style={{
-                height: 72,
-                background: '#F8FAFC',
-                border: '1.5px dashed #CBD5E1',
-                borderRadius: 8,
-                display: 'flex',
-                alignItems: 'center',
-                justify: 'center',
-                flexDirection: 'column',
-                gap: 4,
-              }}
-            >
-              <span style={{ fontSize: 12, fontWeight: 700, color: '#334155' }}>
-                Figma Frame {v.figmaFrame}
-              </span>
-              <span style={{ fontSize: 11, color: '#64748B' }}>
-                대응 Viewport: <strong>{v.range}</strong>
-              </span>
-            </div>
-
-            <div style={{ fontSize: 12, color: '#475569', display: 'flex', flexDirection: 'column', gap: 4 }}>
-              <div>• Grid: <strong>{v.figmaGrid}</strong></div>
-              <div>• Gutter Token: <code>{v.gutterToken}</code></div>
-              <div>• Margin: <strong>{v.margin}</strong></div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Figma ➔ Code 매핑 테이블 */}
-      <h3>Figma Layout Grid ➔ React Code 매핑 가이드</h3>
-      <p>피그마 디자인 시스템 사양과 실제 React JSX 코드 구현 매핑 사양표입니다.</p>
+      {/* Figma ➔ Code 매핑 사양표 */}
+      <h3 style={{ marginTop: 28 }}>Figma Layout Grid ➔ React Code 사양표</h3>
+      <p>디자이너의 피그마 프레임 규격과 개발자의 SEED Breakpoint &amp; React JSX 코드 매핑 사양입니다.</p>
       <TokenTable>
         <thead>
           <tr>
@@ -124,7 +57,9 @@ export function GridSection() {
             <th>Figma Frame 너비</th>
             <th>SEED Breakpoint</th>
             <th>타겟 Viewport</th>
+            <th>Figma Grid Type</th>
             <th>Gutter (스페이싱 토큰)</th>
+            <th>Margin</th>
             <th>React Code Prop 예시</th>
           </tr>
         </thead>
@@ -135,7 +70,9 @@ export function GridSection() {
               <td><code>{r.figmaFrame}</code></td>
               <td><code>{r.bp}</code></td>
               <td>{r.range}</td>
+              <td>{r.figmaGrid}</td>
               <td><code>{r.gutterToken}</code></td>
+              <td>{r.margin}</td>
               <td><code>{r.codeProp}</code></td>
             </tr>
           ))}
