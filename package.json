@@ -18,9 +18,13 @@
     "node": ">=16.0.0"
   },
   "peerDependencies": {
-    "@seed-design/css": "^2.0.0"
+    "@seed-design/css": "^2.0.0",
+    "@seed-design/react": "^2.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "devDependencies": {
-    "@seed-design/css": "^2.3.0"
+    "@seed-design/css": "^2.3.0",
+    "@seed-design/react": "^2.2.2"
   }
 }
