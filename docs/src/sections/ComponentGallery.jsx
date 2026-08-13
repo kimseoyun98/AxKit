@@ -31,6 +31,8 @@ import { AttachmentField, AttachmentInput, AttachmentDropzone } from '../compone
 import { AttachmentDisplayField, AttachmentDisplay } from '../components/ui/attachment-display-field';
 import { Callout, ActionableCallout, DismissibleCallout } from '../components/ui/callout';
 import { Checkbox, CheckboxGroup } from '../components/ui/checkbox';
+import { Chip } from '../components/ui/chip';
+import { ChipTabsRoot, ChipTabsList, ChipTabsTrigger } from '../components/ui/chip-tabs';
 import {
   BottomSheetRoot,
   BottomSheetTrigger,
@@ -789,6 +791,77 @@ function CheckboxDemo() {
   );
 }
 
+function ChipDemo() {
+  const [radioVal, setRadioVal] = useState("all");
+  const [tabVal, setTabVal] = useState("1");
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x7)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Button & Toggle · Radio Selection · Chip Tabs
+      </div>
+
+      {/* 1. Chip Button & Toggle */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          1. Button & Toggle Chips
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)', alignItems: 'center' }}>
+          <Chip.Button size="medium" variant="solid">
+            <Chip.Label>Solid Button</Chip.Label>
+          </Chip.Button>
+          <Chip.Button size="medium" variant="outlineStrong">
+            <Chip.Label>Outline Strong</Chip.Label>
+          </Chip.Button>
+          <Chip.Toggle size="medium" defaultChecked>
+            <Chip.Label>Toggle (Checked)</Chip.Label>
+          </Chip.Toggle>
+          <Chip.Toggle size="medium" variant="ghost">
+            <Chip.Label>Ghost Toggle</Chip.Label>
+          </Chip.Toggle>
+        </div>
+      </div>
+
+      {/* 2. Chip Radio Selection */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          2. Radio Single Selection (Chip.RadioGroup)
+        </div>
+        <Chip.RadioRoot value={radioVal} onValueChange={setRadioVal} aria-label="필터 선택">
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)' }}>
+            <Chip.RadioItem value="all" size="medium">
+              <Chip.Label>전체</Chip.Label>
+            </Chip.RadioItem>
+            <Chip.RadioItem value="tech" size="medium">
+              <Chip.Label>개발/기술</Chip.Label>
+            </Chip.RadioItem>
+            <Chip.RadioItem value="design" size="medium">
+              <Chip.Label>디자인</Chip.Label>
+            </Chip.RadioItem>
+            <Chip.RadioItem value="career" size="medium">
+              <Chip.Label>커리어</Chip.Label>
+            </Chip.RadioItem>
+          </div>
+        </Chip.RadioRoot>
+      </div>
+
+      {/* 3. Chip Tabs Navigation */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          3. Chip Tabs (Category Navigation)
+        </div>
+        <ChipTabsRoot variant="neutralSolid" size="medium" value={tabVal} onValueChange={setTabVal}>
+          <ChipTabsList>
+            <ChipTabsTrigger value="1" notification>추천소식</ChipTabsTrigger>
+            <ChipTabsTrigger value="2">인기글</ChipTabsTrigger>
+            <ChipTabsTrigger value="3">최신질문</ChipTabsTrigger>
+          </ChipTabsList>
+        </ChipTabsRoot>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -848,6 +921,12 @@ const COMPONENTS = [
     name: 'Checkbox',
     slug: 'ui:checkbox',
     demo: <CheckboxDemo />,
+  },
+
+  {
+    name: 'Chip',
+    slug: 'ui:chip / ui:chip-tabs',
+    demo: <ChipDemo />,
   },
 ];
 
