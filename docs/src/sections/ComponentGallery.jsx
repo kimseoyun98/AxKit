@@ -1147,9 +1147,9 @@ function DividerDemo() {
         {/* Vertical Divider Filter Bar */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around', height: 44, padding: '0 var(--seed-dimension-x2)', backgroundColor: 'var(--seed-color-bg-neutral-weak)', borderRadius: 'var(--seed-dimension-x2)', marginTop: 'var(--seed-dimension-x2)' }}>
           <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>최신순</span>
-          <Divider orientation="vertical" />
+          <Divider orientation="vertical" style={{ height: 14 }} />
           <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>인기순</span>
-          <Divider orientation="vertical" inset />
+          <Divider orientation="vertical" style={{ height: 14 }} />
           <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>거리순</span>
         </div>
       </div>
