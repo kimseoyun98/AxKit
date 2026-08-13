@@ -357,13 +357,26 @@ function ActionButtonDemo() {
   );
 }
 
-function AttachmentFieldDemo() {
+function AttachmentDemo() {
+  const sampleEntries = [
+    {
+      id: "1",
+      thumbnailUrl: "https://picsum.photos/seed/attachment1/200/200",
+      status: "success",
+    },
+    {
+      id: "2",
+      thumbnailUrl: "https://picsum.photos/seed/attachment2/200/200",
+      status: "success",
+    },
+  ];
+
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x7)', width: '100%', maxWidth: 420, margin: '0 auto' }}>
-      {/* 1. Standard Input */}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x7)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
+      {/* 1. Attachment Field (Standard File Upload) */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          Standard Input (CLI Component)
+          1. Attachment Field (Local File Upload)
         </div>
         <AttachmentField label="증빙 파일 업로드" description="최대 5개까지 업로드할 수 있습니다." maxFiles={5}>
           <AttachmentInput />
@@ -373,11 +386,32 @@ function AttachmentFieldDemo() {
       {/* 2. Dropzone Variant */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          Dropzone (CLI Component)
+          2. Dropzone Variant
         </div>
         <AttachmentField label="드래그 앤 드롭 업로드" maxFiles={5}>
           <AttachmentDropzone />
         </AttachmentField>
+      </div>
+
+      {/* 3. Attachment Display Field (URL Thumbnail Display) */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          3. Attachment Display Field (URL Thumbnail Preview)
+        </div>
+        <AttachmentDisplayField label="첨부 미디어 썸네일 (URL)" description="서버에 업로드된 미디어 리소스 썸네일 미리보기" defaultEntries={sampleEntries} maxEntries={5}>
+          <AttachmentDisplay
+            onTriggerClick={({ addEntries }) => {
+              const newId = Math.random().toString(36).substring(7);
+              addEntries([
+                {
+                  id: newId,
+                  thumbnailUrl: `https://picsum.photos/seed/${newId}/200/200`,
+                  status: "success",
+                },
+              ]);
+            }}
+          />
+        </AttachmentDisplayField>
       </div>
     </div>
   );
@@ -441,45 +475,6 @@ function BadgeDemo() {
   );
 }
 
-function AttachmentDisplayFieldDemo() {
-  const sampleEntries = [
-    {
-      id: "1",
-      thumbnailUrl: "https://picsum.photos/seed/attachment1/200/200",
-      status: "success",
-    },
-    {
-      id: "2",
-      thumbnailUrl: "https://picsum.photos/seed/attachment2/200/200",
-      status: "success",
-    },
-  ];
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x7)', width: '100%', maxWidth: 420, margin: '0 auto' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          URL Thumbnail Display (CLI Component)
-        </div>
-        <AttachmentDisplayField label="첨부 미디어 썸네일 (URL)" description="서버에 업로드된 미디어 리소스 썸네일 미리보기" defaultEntries={sampleEntries} maxEntries={5}>
-          <AttachmentDisplay
-            onTriggerClick={({ addEntries }) => {
-              const newId = Math.random().toString(36).substring(7);
-              addEntries([
-                {
-                  id: newId,
-                  thumbnailUrl: `https://picsum.photos/seed/${newId}/200/200`,
-                  status: "success",
-                },
-              ]);
-            }}
-          />
-        </AttachmentDisplayField>
-      </div>
-    </div>
-  );
-}
-
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -500,15 +495,9 @@ const COMPONENTS = [
   },
 
   {
-    name: 'Attachment Field',
-    slug: 'ui:attachment-field',
-    demo: <AttachmentFieldDemo />,
-  },
-
-  {
-    name: 'Attachment Display Field',
-    slug: 'ui:attachment-display-field',
-    demo: <AttachmentDisplayFieldDemo />,
+    name: 'Attachment',
+    slug: 'ui:attachment-field / ui:attachment-display-field',
+    demo: <AttachmentDemo />,
   },
 
   {
