@@ -214,7 +214,6 @@ tr:last-child td { border-bottom: none; }
   justify-content: flex-start;
   padding: 40px 32px;
   box-sizing: border-box;
-  transform: translateZ(0);
 }
 .comp-carousel-slide:not(.active) {
   height: 0;

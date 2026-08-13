@@ -86,67 +86,63 @@ export const ResponsiveDialogContent = forwardRef<HTMLDivElement, ResponsiveDial
       const shouldRenderHeader = title || description;
 
       return (
-        <SeedResponsiveDialog.Portal>
-          <SeedResponsiveDialog.Positioner
-            style={{ "--layer-index": layerIndex } as React.CSSProperties}
-          >
-            <SeedResponsiveDialog.Backdrop />
-            <SeedResponsiveDialog.Content ref={ref} {...otherProps}>
-              {showHandle && <SeedResponsiveDialog.Handle />}
-              {shouldRenderHeader && (
-                <SeedResponsiveDialog.Header>
-                  {title ? (
-                    <SeedResponsiveDialog.Title>{title}</SeedResponsiveDialog.Title>
-                  ) : (
-                    <VisuallyHidden asChild>
-                      <SeedResponsiveDialog.Title>
-                        {otherProps["aria-label"] || ""}
-                      </SeedResponsiveDialog.Title>
-                    </VisuallyHidden>
-                  )}
-                  {description && (
-                    <SeedResponsiveDialog.Description>{description}</SeedResponsiveDialog.Description>
-                  )}
-                </SeedResponsiveDialog.Header>
-              )}
-              {children}
-              {showCloseButton && (
-                <SeedResponsiveDialog.CloseButton aria-label="닫기">
-                  <Icon svg={<IconXmarkLine />} />
-                </SeedResponsiveDialog.CloseButton>
-              )}
-            </SeedResponsiveDialog.Content>
-          </SeedResponsiveDialog.Positioner>
-        </SeedResponsiveDialog.Portal>
+        <SeedResponsiveDialog.Positioner
+          style={{ "--layer-index": layerIndex } as React.CSSProperties}
+        >
+          <SeedResponsiveDialog.Backdrop />
+          <SeedResponsiveDialog.Content ref={ref} {...otherProps}>
+            {showHandle && <SeedResponsiveDialog.Handle />}
+            {shouldRenderHeader && (
+              <SeedResponsiveDialog.Header>
+                {title ? (
+                  <SeedResponsiveDialog.Title>{title}</SeedResponsiveDialog.Title>
+                ) : (
+                  <VisuallyHidden asChild>
+                    <SeedResponsiveDialog.Title>
+                      {otherProps["aria-label"] || ""}
+                    </SeedResponsiveDialog.Title>
+                  </VisuallyHidden>
+                )}
+                {description && (
+                  <SeedResponsiveDialog.Description>{description}</SeedResponsiveDialog.Description>
+                )}
+              </SeedResponsiveDialog.Header>
+            )}
+            {children}
+            {showCloseButton && (
+              <SeedResponsiveDialog.CloseButton aria-label="닫기">
+                <Icon svg={<IconXmarkLine />} />
+              </SeedResponsiveDialog.CloseButton>
+            )}
+          </SeedResponsiveDialog.Content>
+        </SeedResponsiveDialog.Positioner>
       );
     }
 
     const shouldRenderHeader = title || description || showCloseButton;
 
     return (
-      <SeedResponsiveDialog.Portal>
-        <SeedResponsiveDialog.Positioner
-          style={{ "--layer-index": layerIndex } as React.CSSProperties}
-        >
-          <SeedResponsiveDialog.Backdrop />
-          <SeedResponsiveDialog.Content ref={ref} {...otherProps}>
-            {shouldRenderHeader && (
-              <SeedResponsiveDialog.Header>
-                {title && <SeedResponsiveDialog.Title>{title}</SeedResponsiveDialog.Title>}
-                {description && (
-                  <SeedResponsiveDialog.Description>{description}</SeedResponsiveDialog.Description>
-                )}
-                {showCloseButton && (
-                  <SeedResponsiveDialog.CloseButton aria-label="닫기">
-                    <Icon svg={<IconXmarkLine />} />
-                  </SeedResponsiveDialog.CloseButton>
-                )}
-              </SeedResponsiveDialog.Header>
-            )}
-            {children}
-          </SeedResponsiveDialog.Content>
-        </SeedResponsiveDialog.Positioner>
-      </SeedResponsiveDialog.Portal>
+      <SeedResponsiveDialog.Positioner
+        style={{ "--layer-index": layerIndex } as React.CSSProperties}
+      >
+        <SeedResponsiveDialog.Backdrop />
+        <SeedResponsiveDialog.Content ref={ref} {...otherProps}>
+          {shouldRenderHeader && (
+            <SeedResponsiveDialog.Header>
+              {title && <SeedResponsiveDialog.Title>{title}</SeedResponsiveDialog.Title>}
+              {description && (
+                <SeedResponsiveDialog.Description>{description}</SeedResponsiveDialog.Description>
+              )}
+              {showCloseButton && (
+                <SeedResponsiveDialog.CloseButton aria-label="닫기">
+                  <Icon svg={<IconXmarkLine />} />
+                </SeedResponsiveDialog.CloseButton>
+              )}
+            </SeedResponsiveDialog.Header>
+          )}
+          {children}
+        </SeedResponsiveDialog.Content>
+      </SeedResponsiveDialog.Positioner>
     );
   },
 );

@@ -58,25 +58,23 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
     const shouldRenderHeader = title || description || showCloseButton;
 
     return (
-      <ContentDialog.Portal>
-        <ContentDialog.Positioner style={{ "--layer-index": layerIndex } as React.CSSProperties}>
-          <ContentDialog.Backdrop />
-          <ContentDialog.Content ref={ref} {...otherProps}>
-            {shouldRenderHeader && (
-              <ContentDialog.Header>
-                {title && <ContentDialog.Title>{title}</ContentDialog.Title>}
-                {description && <ContentDialog.Description>{description}</ContentDialog.Description>}
-                {showCloseButton && (
-                  <ContentDialog.CloseButton aria-label="닫기">
-                    <Icon svg={<IconXmarkLine />} />
-                  </ContentDialog.CloseButton>
-                )}
-              </ContentDialog.Header>
-            )}
-            {children}
-          </ContentDialog.Content>
-        </ContentDialog.Positioner>
-      </ContentDialog.Portal>
+      <ContentDialog.Positioner style={{ "--layer-index": layerIndex } as React.CSSProperties}>
+        <ContentDialog.Backdrop />
+        <ContentDialog.Content ref={ref} {...otherProps}>
+          {shouldRenderHeader && (
+            <ContentDialog.Header>
+              {title && <ContentDialog.Title>{title}</ContentDialog.Title>}
+              {description && <ContentDialog.Description>{description}</ContentDialog.Description>}
+              {showCloseButton && (
+                <ContentDialog.CloseButton aria-label="닫기">
+                  <Icon svg={<IconXmarkLine />} />
+                </ContentDialog.CloseButton>
+              )}
+            </ContentDialog.Header>
+          )}
+          {children}
+        </ContentDialog.Content>
+      </ContentDialog.Positioner>
     );
   },
 );
