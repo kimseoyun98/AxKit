@@ -25,7 +25,7 @@ export interface AlertDialogRootProps extends Dialog.RootProps {
  */
 export const AlertDialogRoot = ({ children, ...otherProps }: AlertDialogRootProps) => {
   return (
-    <Dialog.Root role="alertdialog" closeOnInteractOutside={false} {...otherProps}>
+    <Dialog.Root role="alertdialog" closeOnInteractOutside={false} preventScroll={false} trapFocus={false} {...otherProps}>
       {children}
     </Dialog.Root>
   );
