@@ -219,20 +219,25 @@ function AvatarDemo() {
         </AvatarStack>
       </div>
 
-      {/* 4. Fallback */}
+      {/* 4. Fallback Placeholders (ContentPlaceholder) */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          Fallback Placeholders
+          Fallback Placeholders (ContentPlaceholder)
         </div>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x5)', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
-            <Avatar size="64" fallback={<IconPersonFill style={{ width: '60%', height: '60%', color: 'var(--seed-color-fg-neutral-subtle)' }} />} />
-            <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Person</span>
+            <Avatar size="64" />
+            <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Default</span>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
-            <Avatar size="64" fallback={<IconStoreFill style={{ width: '55%', height: '55%', color: 'var(--seed-color-fg-neutral-subtle)' }} />} />
+            <Avatar size="64" fallback={<ContentPlaceholder type="business" style={{ width: '100%', height: '100%' }} />} />
             <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Business</span>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
+            <Avatar size="64" fallback={<ContentPlaceholder type="group" style={{ width: '100%', height: '100%' }} />} />
+            <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>Group</span>
           </div>
         </div>
       </div>
