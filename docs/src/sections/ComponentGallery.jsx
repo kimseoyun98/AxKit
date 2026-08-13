@@ -243,96 +243,134 @@ function AvatarDemo() {
 }
 
 function AccordionDemo() {
-  const [variant, setVariant] = useState('inline')
+  const items = [
+    {
+      title: '배송 방법',
+      prefix: <IconDeliveryRegular style={{ width: 'var(--seed-icon-size)', height: 'var(--seed-icon-size)' }} />,
+      open: false,
+    },
+    {
+      title: '반품/교환은 어떻게 하나요?',
+      description: '구매 후 7일 이내에 신청할 수 있어요.',
+      open: true,
+      content: '상품 상세페이지의 [반품/교환 신청] 버튼을 눌러 접수해주세요.',
+    },
+    {
+      title: '고객센터 문의',
+      open: false,
+      disabled: true,
+    },
+  ];
 
   return (
-    <>
-      <div style={{
-        position: 'absolute', top: 12, left: 12, right: 12, zIndex: 20,
-        display: 'flex', justifyContent: 'center', gap: 6,
-      }}>
-        {['inline', 'separated'].map((v) => (
-          <button
-            key={v}
-            type="button"
-            className={`comp-nav-btn comp-nav-btn--overlay${v === variant ? ' active' : ''}`}
-            onClick={() => setVariant(v)}
-          >
-            Variant: {v}
-          </button>
-        ))}
-      </div>
-
-      <div
-        className={`seed-accordion__root${variant === 'separated' ? ' seed-accordion__root--variant_separated-size_medium' : ''}`}
-        style={{ width: '100%', maxWidth: 320 }}
-      >
-        {[
-          {
-            title: '배송 방법',
-            prefix: <IconDeliveryRegular style={{ width: 'var(--seed-icon-size)', height: 'var(--seed-icon-size)' }} />,
-            open: false,
-          },
-          {
-            title: '반품/교환은 어떻게 하나요?',
-            description: '구매 후 7일 이내에 신청할 수 있어요.',
-            open: true,
-            content: '상품 상세페이지의 [반품/교환 신청] 버튼을 눌러 접수해주세요.',
-          },
-          {
-            title: '고객센터 문의',
-            open: false,
-            disabled: true,
-          },
-        ].map(({ title, description, prefix, open, disabled, content }, i) => (
-          <div key={i} className={`seed-accordion__item seed-accordion__item--variant_${variant}`}>
-            <h3 className="seed-accordion__header">
-              <button
-                type="button"
-                className={`seed-accordion__trigger seed-accordion__trigger--variant_${variant} seed-accordion__trigger--size_medium`}
-                data-state={open ? 'open' : 'closed'}
-                disabled={disabled}
-              >
-                {prefix && (
-                  <span className="seed-accordion__prefix seed-accordion__prefix--size_medium" data-disabled={disabled ? '' : undefined} data-anatomy={i === 0 ? 'Prefix' : undefined}>
-                    {prefix}
-                  </span>
-                )}
-                <span className="seed-accordion__body">
-                  <span className="seed-accordion__title seed-accordion__title--size_medium" data-disabled={disabled ? '' : undefined} data-anatomy={i === 0 ? 'Title' : undefined}>{title}</span>
-                  {description && (
-                    <span className="seed-accordion__description seed-accordion__description--size_medium" data-disabled={disabled ? '' : undefined} data-anatomy="Description">
-                      {description}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, width: '100%', maxWidth: 360, margin: '0 auto' }}>
+      {/* 1. Inline Variant */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Variant: Inline
+        </div>
+        <div className="seed-accordion__root" style={{ width: '100%' }}>
+          {items.map(({ title, description, prefix, open, disabled, content }, i) => (
+            <div key={i} className="seed-accordion__item seed-accordion__item--variant_inline">
+              <h3 className="seed-accordion__header">
+                <button
+                  type="button"
+                  className="seed-accordion__trigger seed-accordion__trigger--variant_inline seed-accordion__trigger--size_medium"
+                  data-state={open ? 'open' : 'closed'}
+                  disabled={disabled}
+                >
+                  {prefix && (
+                    <span className="seed-accordion__prefix seed-accordion__prefix--size_medium" data-disabled={disabled ? '' : undefined} data-anatomy={i === 0 ? 'Prefix' : undefined}>
+                      {prefix}
                     </span>
                   )}
-                </span>
-                <span
-                  className="seed-accordion__suffixIcon seed-accordion__suffixIcon--size_medium"
-                  data-state={open ? 'open' : 'closed'}
-                  data-disabled={disabled ? '' : undefined}
-                  data-anatomy={i === 0 ? 'Chevron Icon' : undefined}
-                >
-                  <IconExpandMoreRegular style={{ width: 'var(--seed-suffix-icon-size, var(--seed-dimension-x5))', height: 'var(--seed-suffix-icon-size, var(--seed-dimension-x5))' }} />
-                </span>
-              </button>
-            </h3>
-            <div
-              data-anatomy={open ? 'Content Panel' : undefined}
-              className="seed-accordion__content"
-              data-state={open ? 'open' : 'closed'}
-              style={open ? { height: 'auto', opacity: 1 } : undefined}
-            >
-              <div style={{ paddingInline: 'var(--seed-dimension-spacing-x-global-gutter)', paddingTop: 'var(--seed-dimension-x2)', paddingBottom: 'var(--seed-dimension-x5)' }}>
-                <p style={{ margin: 0, fontSize: 14, lineHeight: 1.6, color: 'var(--seed-color-fg-neutral-subtle)' }}>
-                  {content}
-                </p>
+                  <span className="seed-accordion__body">
+                    <span className="seed-accordion__title seed-accordion__title--size_medium" data-disabled={disabled ? '' : undefined} data-anatomy={i === 0 ? 'Title' : undefined}>{title}</span>
+                    {description && (
+                      <span className="seed-accordion__description seed-accordion__description--size_medium" data-disabled={disabled ? '' : undefined} data-anatomy="Description">
+                        {description}
+                      </span>
+                    )}
+                  </span>
+                  <span
+                    className="seed-accordion__suffixIcon seed-accordion__suffixIcon--size_medium"
+                    data-state={open ? 'open' : 'closed'}
+                    data-disabled={disabled ? '' : undefined}
+                    data-anatomy={i === 0 ? 'Chevron Icon' : undefined}
+                  >
+                    <IconExpandMoreRegular style={{ width: 'var(--seed-suffix-icon-size, var(--seed-dimension-x5))', height: 'var(--seed-suffix-icon-size, var(--seed-dimension-x5))' }} />
+                  </span>
+                </button>
+              </h3>
+              <div
+                data-anatomy={open ? 'Content Panel' : undefined}
+                className="seed-accordion__content"
+                data-state={open ? 'open' : 'closed'}
+                style={open ? { height: 'auto', opacity: 1 } : undefined}
+              >
+                <div style={{ paddingInline: 'var(--seed-dimension-spacing-x-global-gutter)', paddingTop: 'var(--seed-dimension-x2)', paddingBottom: 'var(--seed-dimension-x5)' }}>
+                  <p style={{ margin: 0, fontSize: 14, lineHeight: 1.6, color: 'var(--seed-color-fg-neutral-subtle)' }}>
+                    {content}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </>
-  )
+
+      {/* 2. Separated Variant */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Variant: Separated
+        </div>
+        <div className="seed-accordion__root seed-accordion__root--variant_separated-size_medium" style={{ width: '100%' }}>
+          {items.map(({ title, description, prefix, open, disabled, content }, i) => (
+            <div key={i} className="seed-accordion__item seed-accordion__item--variant_separated">
+              <h3 className="seed-accordion__header">
+                <button
+                  type="button"
+                  className="seed-accordion__trigger seed-accordion__trigger--variant_separated seed-accordion__trigger--size_medium"
+                  data-state={open ? 'open' : 'closed'}
+                  disabled={disabled}
+                >
+                  {prefix && (
+                    <span className="seed-accordion__prefix seed-accordion__prefix--size_medium" data-disabled={disabled ? '' : undefined}>
+                      {prefix}
+                    </span>
+                  )}
+                  <span className="seed-accordion__body">
+                    <span className="seed-accordion__title seed-accordion__title--size_medium" data-disabled={disabled ? '' : undefined}>{title}</span>
+                    {description && (
+                      <span className="seed-accordion__description seed-accordion__description--size_medium" data-disabled={disabled ? '' : undefined}>{description}</span>
+                    )}
+                  </span>
+                  <span
+                    className="seed-accordion__suffixIcon seed-accordion__suffixIcon--size_medium"
+                    data-state={open ? 'open' : 'closed'}
+                    data-disabled={disabled ? '' : undefined}
+                  >
+                    <IconExpandMoreRegular style={{ width: 'var(--seed-suffix-icon-size, var(--seed-dimension-x5))', height: 'var(--seed-suffix-icon-size, var(--seed-dimension-x5))' }} />
+                  </span>
+                </button>
+              </h3>
+              <div
+                className="seed-accordion__content"
+                data-state={open ? 'open' : 'closed'}
+                style={open ? { height: 'auto', opacity: 1 } : undefined}
+              >
+                <div style={{ paddingInline: 'var(--seed-dimension-spacing-x-global-gutter)', paddingTop: 'var(--seed-dimension-x2)', paddingBottom: 'var(--seed-dimension-x5)' }}>
+                  <p style={{ margin: 0, fontSize: 14, lineHeight: 1.6, color: 'var(--seed-color-fg-neutral-subtle)' }}>
+                    {content}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 const COMPONENTS = [
