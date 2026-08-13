@@ -52,6 +52,7 @@ import { ListHeader } from '../components/ui/list-header';
 import IconQuestionmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconQuestionmarkCircleFill";
 import IconMapLocationpinFill from "@karrotmarket/react-monochrome-icon/IconMapLocationpinFill";
 import IconChevronRightLine from "@karrotmarket/react-monochrome-icon/IconChevronRightLine";
+import IconLockFill from "@karrotmarket/react-monochrome-icon/IconLockFill";
 import {
   BottomSheetRoot,
   BottomSheetTrigger,
@@ -1525,9 +1526,9 @@ function ListDemo() {
             alignItems={align}
             checked={pushNotif}
             onCheckedChange={setPushNotif}
-            prefix="🔔"
-            title="푸시 알림"
-            detail="채팅 및 중고거래 관련 푸시 알림을 수신합니다."
+            prefix={<Icon svg={<IconLockFill />} />}
+            title="보안 및 푸시 알림"
+            detail="로그인 기기 및 거래 관련 중요 알림을 수신합니다."
           />
           <ListDivider />
 
@@ -1535,7 +1536,7 @@ function ListDemo() {
           <ListButtonItem
             alignItems={align}
             onClick={() => alert("프로필 수정 페이지로 이동합니다.")}
-            prefix="👤"
+            prefix={<Icon svg={<IconPersonFill />} />}
             title="프로필 수정"
             detail="닉네임, 프로필 사진 및 거주 지역 관리"
             suffix={<Icon svg={<IconChevronRightLine />} />}
