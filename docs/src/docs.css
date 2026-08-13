@@ -239,18 +239,14 @@ tr:last-child td { border-bottom: none; }
   background-color: var(--seed-color-bg-layer-default, #ffffff);
 }
 
-.comp-carousel-slide .seed-dialog__backdrop {
-  display: none;
-}
-.comp-carousel-slide .seed-dialog__positioner {
-  position: relative;
-  inset: auto;
-  z-index: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 8px 0;
+/* DatePicker Month-Year Wheel Item Wrap Fix */
+.seed-wheel-picker__item,
+.seed-date-picker__wheelItem,
+[class*="wheel-picker__item"],
+[class*="date-picker__wheelItem"] {
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  min-width: max-content;
 }
 
 /* Anatomy 라벨 오버레이 */
