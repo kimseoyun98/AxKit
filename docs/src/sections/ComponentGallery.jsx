@@ -649,7 +649,7 @@ function BottomNavigationDemo() {
                 <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
                   {t.icon}
                   {t.badge && (
-                    <NotificationBadgePositioner>
+                    <NotificationBadgePositioner attach="icon" size="large">
                       <NotificationBadge size="large">{t.badge}</NotificationBadge>
                     </NotificationBadgePositioner>
                   )}
@@ -1678,7 +1678,7 @@ function NotificationBadgeDemo() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
           <div style={{ position: 'relative', display: 'inline-flex' }}>
             <Icon svg={<IconDot3HorizontalChatbubbleLeftFill />} style={{ width: 28, height: 28 }} />
-            <NotificationBadgePositioner>
+            <NotificationBadgePositioner attach="icon" size="large">
               <NotificationBadge size="large">3</NotificationBadge>
             </NotificationBadgePositioner>
           </div>
@@ -1689,7 +1689,7 @@ function NotificationBadgeDemo() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
           <div style={{ position: 'relative', display: 'inline-flex' }}>
             <Icon svg={<IconBellFill />} style={{ width: 28, height: 28 }} />
-            <NotificationBadgePositioner>
+            <NotificationBadgePositioner attach="icon" size="small">
               <NotificationBadge size="small" />
             </NotificationBadgePositioner>
           </div>
