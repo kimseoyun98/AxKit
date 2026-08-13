@@ -640,8 +640,8 @@ export function ComponentGallery() {
       {/* 캐러셀 */}
       <div className="comp-carousel-wrap" data-show-anatomy={showAnatomy ? '' : undefined}>
         <div className="comp-carousel-track" style={{ transform: `translateX(-${cur * 100}%)` }}>
-          {COMPONENTS.map((c) => (
-            <div key={c.name} className="comp-carousel-slide">
+          {COMPONENTS.map((c, i) => (
+            <div key={c.name} className={`comp-carousel-slide${i === cur ? ' active' : ''}`}>
               {c.demo}
             </div>
           ))}

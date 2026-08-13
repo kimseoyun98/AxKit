@@ -101,9 +101,20 @@ tr:last-child td { border-bottom: none; }
   justify-content: flex-start;
   padding: 32px 24px;
   box-sizing: border-box;
-  /* position:fixed 데모(Alert Dialog 등)가 트랙 전체가 아니라 자기 슬라이드 안에서만
-     "화면 전체를 덮도록" containing block을 슬라이드 단위로 스코프한다 (시각적 영향 없음). */
   transform: translateZ(0);
+}
+.comp-carousel-slide:not(.active) {
+  height: 0;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.comp-carousel-slide.active {
+  height: auto;
+  opacity: 1;
+  transition: opacity 0.25s ease;
 }
 /* 이 문서 사이트 자체의 "프로즈" 스타일(위 34~44행: h1/h2/h3/p/code/table/th/td)은
    태그 자체에 걸려 있어서(클래스로 스코프 안 됨) 데모 카드 안에서 SEED가 실제로 같은 태그를
