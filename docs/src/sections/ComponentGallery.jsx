@@ -1479,8 +1479,8 @@ const COMPONENTS = [
   },
 
   {
-    name: 'Field Button',
-    slug: 'ui:field-button',
+    name: 'Field Button (Input Button)',
+    slug: 'ui:field-button (Input Button + Field)',
     demo: <FieldButtonDemo />,
   },
 
