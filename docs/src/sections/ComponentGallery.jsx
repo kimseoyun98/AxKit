@@ -954,7 +954,7 @@ function DatePickerDemo() {
   const today = { year: 2026, month: 8, day: 14 };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: layoutMode === 'twoMonths' ? 720 : 420, margin: '0 auto', alignItems: 'center', transition: 'max-width 0.2s ease' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: '100%', margin: '0 auto', alignItems: 'center' }}>
       <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
         Month · Two Months · Week · Continuous Layouts
       </div>
@@ -985,7 +985,7 @@ function DatePickerDemo() {
       </div>
 
       {/* Calendar Card Frame */}
-      <div style={{ width: '100%', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', padding: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', boxShadow: 'var(--seed-shadow-s1)', overflowX: 'auto' }}>
+      <div style={{ width: '100%', maxWidth: layoutMode === 'twoMonths' ? 680 : 380, border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', padding: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', boxShadow: 'var(--seed-shadow-s1)', boxSizing: 'border-box', overflow: 'hidden', transition: 'max-width 0.2s ease' }}>
         {layoutMode === "month" && (
           <DatePicker today={today} defaultValue={today} />
         )}
@@ -993,8 +993,10 @@ function DatePickerDemo() {
           <WeekDatePicker today={today} defaultValue={today} />
         )}
         {layoutMode === "twoMonths" && (
-          <div style={{ minWidth: 620 }}>
-            <TwoMonthDatePicker today={today} defaultValue={today} />
+          <div style={{ width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch', paddingBottom: 'var(--seed-dimension-x2)' }}>
+            <div style={{ minWidth: 600 }}>
+              <TwoMonthDatePicker today={today} defaultValue={today} />
+            </div>
           </div>
         )}
       </div>
