@@ -43,6 +43,9 @@ import { ResponsiveDialogRoot, ResponsiveDialogTrigger, ResponsiveDialogContent,
 import { Float, Divider } from '../components/ui/layout';
 import { FieldButton, FieldButtonValue, FieldButtonPlaceholder } from '../components/ui/field-button';
 import { FloatingActionButton } from '../components/ui/floating-action-button';
+import { HelpBubbleTrigger, HelpBubbleAnchor } from '../components/ui/help-bubble';
+import { HelpBubbleTooltipTrigger } from '../components/ui/help-bubble-tooltip';
+import IconQuestionmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconQuestionmarkCircleFill";
 import {
   BottomSheetRoot,
   BottomSheetTrigger,
@@ -1234,95 +1237,65 @@ function FloatingActionButtonDemo() {
   );
 }
 
-function FooterDemo() {
-  const [preset, setPreset] = useState("business"); // "minimal" | "business" | "full"
+function HelpBubbleDemo() {
+  const [showClose, setShowClose] = useState(true);
+  const [placement, setPlacement] = useState("top");
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 540, margin: '0 auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
       <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
-        Building Blocks & Presets (Minimal · Business · Full)
+        Help Bubble (Popover) · Help Bubble Tooltip (Hover/Focus)
       </div>
 
-      {/* Preset Selector Buttons */}
+      {/* Control Buttons */}
       <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', flexWrap: 'wrap' }}>
-        <ActionButton size="small" variant={preset === "minimal" ? "brandSolid" : "neutralOutline"} onClick={() => setPreset("minimal")}>
-          최소 구성 (비즈프로필)
+        <ActionButton size="small" variant={showClose ? "brandSolid" : "neutralOutline"} onClick={() => setShowClose(!showClose)}>
+          {showClose ? "닫기 버튼 (X) 포함" : "닫기 버튼 (X) 제거"}
         </ActionButton>
-        <ActionButton size="small" variant={preset === "business" ? "brandSolid" : "neutralOutline"} onClick={() => setPreset("business")}>
-          표준 구성 (당근비즈니스)
+        <ActionButton size="small" variant={placement === "top" ? "brandSolid" : "neutralOutline"} onClick={() => setPlacement("top")}>
+          위쪽 (Top)
         </ActionButton>
-        <ActionButton size="small" variant={preset === "full" ? "brandSolid" : "neutralOutline"} onClick={() => setPreset("full")}>
-          풀 사이트맵 (당근닷컴)
+        <ActionButton size="small" variant={placement === "bottom" ? "brandSolid" : "neutralOutline"} onClick={() => setPlacement("bottom")}>
+          아래쪽 (Bottom)
         </ActionButton>
       </div>
 
-      {/* Footer Preview Frame */}
-      <div style={{ width: '100%', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', padding: 'var(--seed-dimension-x5)', display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)' }}>
+      {/* Interactive Frame */}
+      <div style={{ width: '100%', minHeight: 240, border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', padding: 'var(--seed-dimension-x6)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 'var(--seed-dimension-x6)' }}>
         
-        {/* Full Sitemap Exploration Area (Top) */}
-        {preset === "full" && (
-          <>
-            <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--seed-dimension-x4)' }}>
-              {/* Brand Logo & Country */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)' }}>
-                <div style={{ fontSize: 'var(--seed-font-size-t4)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>
-                  🥕 당근
-                </div>
-                <div style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-subtle)', padding: '4px 8px', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x1)', display: 'inline-block' }}>
-                  🌐 대한민국 ▾
-                </div>
-              </div>
+        {/* 1. Click Trigger Popover Help Bubble */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--seed-dimension-x3)' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t3)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>
+            클릭하여 팝오버 도움말 열기:
+          </span>
+          <HelpBubbleTrigger
+            placement={placement}
+            title="첫 거래 수수료 50% 할인"
+            description="매월 첫 번째 중고거래 시 결제 수수료가 자동으로 할인 적용됩니다."
+            showCloseButton={showClose}
+          >
+            <ActionButton variant="neutralSolid" size="medium">
+              수수료 혜택 안내
+            </ActionButton>
+          </HelpBubbleTrigger>
+        </div>
 
-              {/* Sitemap Columns */}
-              <div style={{ display: 'flex', gap: 'var(--seed-dimension-x6)' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', fontSize: 'var(--seed-font-size-t2)' }}>
-                  <span style={{ fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>회사</span>
-                  <span style={{ color: 'var(--seed-color-fg-neutral-subtle)' }}>당근 소개</span>
-                  <span style={{ color: 'var(--seed-color-fg-neutral-subtle)' }}>채용</span>
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', fontSize: 'var(--seed-font-size-t2)' }}>
-                  <span style={{ fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>탐색</span>
-                  <span style={{ color: 'var(--seed-color-[#FF6F0F])' }}>중고거래</span>
-                  <span style={{ color: 'var(--seed-color-fg-neutral-subtle)' }}>동네업체</span>
-                </div>
-              </div>
-            </div>
-            <Divider />
-          </>
-        )}
+        <Divider inset />
 
-        {/* Info Area (Policy Links, Business Info, Copyright) */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)' }}>
-          {/* Policy Links */}
-          <div style={{ display: 'flex', gap: 'var(--seed-dimension-x3)', flexWrap: 'wrap', fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>
-            <span>개인정보처리방침 ↗</span>
-            <span>이용약관</span>
-            <span>위치기반서비스 이용약관</span>
-            {preset !== "minimal" && <span>운영정책</span>}
-          </div>
-
-          {/* Business Info */}
-          <div style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-subtle)', lineHeight: 1.6 }}>
-            (주)당근마켓 | 대표: 김용현, 황도연 | 사업자등록번호: 375-87-00088
-            {preset !== "minimal" && (
-              <>
-                <br />
-                통신판매업신고: 2021-서울서초-2856 | 주소: 서울특별시 서초구 강남대로 381
-              </>
-            )}
-          </div>
-
-          {/* Contact & Copyright */}
-          {preset !== "minimal" && (
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)', paddingTop: 'var(--seed-dimension-x1)' }}>
-              <div style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-                고객문의: cs@daangnservice.com | © Danggeun Market Inc.
-              </div>
-              <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
-                <span>FB</span> · <span>IG</span> · <span>YT</span>
-              </div>
-            </div>
-          )}
+        {/* 2. Hover / Focus Trigger Tooltip Help Bubble */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--seed-dimension-x3)' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
+            마우스를 올리거나 포커스하면 노출:
+          </span>
+          <HelpBubbleTooltipTrigger
+            title="도서산간 지역 배송 안내"
+            description="제주 및 도서산간 지역은 추가 배송비 3,000원이 부과됩니다."
+            placement="bottom"
+          >
+            <ActionButton variant="ghost" size="small" layout="iconOnly" aria-label="배송 안내 도움말">
+              <Icon svg={<IconQuestionmarkCircleFill />} />
+            </ActionButton>
+          </HelpBubbleTooltipTrigger>
         </div>
       </div>
     </div>
@@ -1439,9 +1412,9 @@ const COMPONENTS = [
   },
 
   {
-    name: 'Footer',
-    slug: 'ui:footer',
-    demo: <FooterDemo />,
+    name: 'Help Bubble',
+    slug: 'ui:help-bubble / ui:help-bubble-tooltip',
+    demo: <HelpBubbleDemo />,
   },
 ];
 
