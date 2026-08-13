@@ -41,6 +41,7 @@ import { DatePicker, TwoMonthDatePicker, WeekDatePicker, ContinuousDatePicker } 
 import { DialogRoot, DialogTrigger, DialogContent, DialogBody, DialogFooter, DialogAction } from '../components/ui/dialog';
 import { ResponsiveDialogRoot, ResponsiveDialogTrigger, ResponsiveDialogContent, ResponsiveDialogBody, ResponsiveDialogFooter, ResponsiveDialogAction } from '../components/ui/responsive-dialog';
 import { Float, Divider } from '../components/ui/layout';
+import { FieldButton, FieldButtonValue, FieldButtonPlaceholder } from '../components/ui/field-button';
 import {
   BottomSheetRoot,
   BottomSheetTrigger,
@@ -1148,6 +1149,54 @@ function DividerDemo() {
   );
 }
 
+function FieldButtonDemo() {
+  const [selectedCity, setSelectedCity] = useState("");
+  const [isInvalid, setIsInvalid] = useState(false);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Input Button Container · Picker Trigger · Validation
+      </div>
+
+      {/* Control Buttons */}
+      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center' }}>
+        <ActionButton size="small" variant={isInvalid ? "brandSolid" : "neutralOutline"} onClick={() => setIsInvalid(!isInvalid)}>
+          {isInvalid ? "오류 상태 ON" : "정상 상태"}
+        </ActionButton>
+      </div>
+
+      {/* FieldButton Demo Card */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
+        <FieldButton
+          label="거래 희망 지역"
+          showRequiredIndicator
+          invalid={isInvalid}
+          description="피커 모달이나 바텀시트를 호출하는 버튼 필드입니다."
+          errorMessage="거래 희망 지역을 반드시 선택해 주세요."
+          showClearButton={!!selectedCity}
+          values={selectedCity ? [selectedCity] : []}
+          onValuesChange={(vals) => setSelectedCity(vals[0] || "")}
+          buttonProps={{
+            onClick: () => {
+              if (!selectedCity) {
+                setSelectedCity("서울특별시 강남구 역삼동");
+              }
+            },
+            "aria-label": selectedCity ? `현재 선택: ${selectedCity}` : "지역 선택",
+          }}
+        >
+          {selectedCity ? (
+            <FieldButtonValue>{selectedCity}</FieldButtonValue>
+          ) : (
+            <FieldButtonPlaceholder>클릭하여 지역을 선택해 주세요</FieldButtonPlaceholder>
+          )}
+        </FieldButton>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -1243,6 +1292,12 @@ const COMPONENTS = [
     name: 'Divider',
     slug: 'ui:divider',
     demo: <DividerDemo />,
+  },
+
+  {
+    name: 'Field Button',
+    slug: 'ui:field-button',
+    demo: <FieldButtonDemo />,
   },
 ];
 
