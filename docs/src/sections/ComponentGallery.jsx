@@ -1234,6 +1234,101 @@ function FloatingActionButtonDemo() {
   );
 }
 
+function FooterDemo() {
+  const [preset, setPreset] = useState("business"); // "minimal" | "business" | "full"
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 540, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Building Blocks & Presets (Minimal · Business · Full)
+      </div>
+
+      {/* Preset Selector Buttons */}
+      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <ActionButton size="small" variant={preset === "minimal" ? "brandSolid" : "neutralOutline"} onClick={() => setPreset("minimal")}>
+          최소 구성 (비즈프로필)
+        </ActionButton>
+        <ActionButton size="small" variant={preset === "business" ? "brandSolid" : "neutralOutline"} onClick={() => setPreset("business")}>
+          표준 구성 (당근비즈니스)
+        </ActionButton>
+        <ActionButton size="small" variant={preset === "full" ? "brandSolid" : "neutralOutline"} onClick={() => setPreset("full")}>
+          풀 사이트맵 (당근닷컴)
+        </ActionButton>
+      </div>
+
+      {/* Footer Preview Frame */}
+      <div style={{ width: '100%', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', padding: 'var(--seed-dimension-x5)', display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)' }}>
+        
+        {/* Full Sitemap Exploration Area (Top) */}
+        {preset === "full" && (
+          <>
+            <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: 'var(--seed-dimension-x4)' }}>
+              {/* Brand Logo & Country */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)' }}>
+                <div style={{ fontSize: 'var(--seed-font-size-t4)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>
+                  🥕 당근
+                </div>
+                <div style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-subtle)', padding: '4px 8px', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x1)', display: 'inline-block' }}>
+                  🌐 대한민국 ▾
+                </div>
+              </div>
+
+              {/* Sitemap Columns */}
+              <div style={{ display: 'flex', gap: 'var(--seed-dimension-x6)' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', fontSize: 'var(--seed-font-size-t2)' }}>
+                  <span style={{ fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>회사</span>
+                  <span style={{ color: 'var(--seed-color-fg-neutral-subtle)' }}>당근 소개</span>
+                  <span style={{ color: 'var(--seed-color-fg-neutral-subtle)' }}>채용</span>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', fontSize: 'var(--seed-font-size-t2)' }}>
+                  <span style={{ fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>탐색</span>
+                  <span style={{ color: 'var(--seed-color-[#FF6F0F])' }}>중고거래</span>
+                  <span style={{ color: 'var(--seed-color-fg-neutral-subtle)' }}>동네업체</span>
+                </div>
+              </div>
+            </div>
+            <Divider />
+          </>
+        )}
+
+        {/* Info Area (Policy Links, Business Info, Copyright) */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)' }}>
+          {/* Policy Links */}
+          <div style={{ display: 'flex', gap: 'var(--seed-dimension-x3)', flexWrap: 'wrap', fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>
+            <span>개인정보처리방침 ↗</span>
+            <span>이용약관</span>
+            <span>위치기반서비스 이용약관</span>
+            {preset !== "minimal" && <span>운영정책</span>}
+          </div>
+
+          {/* Business Info */}
+          <div style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-subtle)', lineHeight: 1.6 }}>
+            (주)당근마켓 | 대표: 김용현, 황도연 | 사업자등록번호: 375-87-00088
+            {preset !== "minimal" && (
+              <>
+                <br />
+                통신판매업신고: 2021-서울서초-2856 | 주소: 서울특별시 서초구 강남대로 381
+              </>
+            )}
+          </div>
+
+          {/* Contact & Copyright */}
+          {preset !== "minimal" && (
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)', paddingTop: 'var(--seed-dimension-x1)' }}>
+              <div style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+                고객문의: cs@daangnservice.com | © Danggeun Market Inc.
+              </div>
+              <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
+                <span>FB</span> · <span>IG</span> · <span>YT</span>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -1341,6 +1436,12 @@ const COMPONENTS = [
     name: 'Floating Action Button',
     slug: 'ui:floating-action-button',
     demo: <FloatingActionButtonDemo />,
+  },
+
+  {
+    name: 'Footer',
+    slug: 'ui:footer',
+    demo: <FooterDemo />,
   },
 ];
 
