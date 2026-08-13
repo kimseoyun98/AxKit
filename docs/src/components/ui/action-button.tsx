@@ -7,9 +7,14 @@
 import {
   ActionButton as SeedActionButton,
   type ActionButtonProps as SeedActionButtonProps,
+  PrefixIcon,
+  SuffixIcon,
+  Icon,
 } from "@seed-design/react";
 import * as React from "react";
 import { LoadingIndicator } from "./loading-indicator";
+
+export { PrefixIcon, SuffixIcon, Icon };
 
 export interface ActionButtonProps extends SeedActionButtonProps {}
 
