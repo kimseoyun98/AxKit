@@ -195,14 +195,10 @@ function AlertDialogDemo() {
         flexDirection: 'column',
         gap: 'var(--seed-dimension-x3)'
       }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t3)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>
-          {layout.title}
-        </div>
-        {layout.desc && (
-          <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-            {layout.desc}
-          </div>
-        )}
+        <AlertDialogHeader>
+          <AlertDialogTitle>{layout.title}</AlertDialogTitle>
+          {layout.desc && <AlertDialogDescription>{layout.desc}</AlertDialogDescription>}
+        </AlertDialogHeader>
         {/* Inline Preview Footer matching exact Modal layout */}
         {layout.kind === 'stack' ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', alignItems: 'stretch', width: '100%', marginTop: 'var(--seed-dimension-x2)' }}>
