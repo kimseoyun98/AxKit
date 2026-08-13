@@ -185,54 +185,56 @@ function AlertDialogDemo() {
       </AlertDialogRoot>
 
       {/* Inline Static Preview Box */}
-      <div style={{
-        width: '100%',
-        padding: 'var(--seed-dimension-x4)',
-        border: '1px solid var(--seed-color-stroke-neutral-weak)',
-        borderRadius: 'var(--seed-dimension-x4)',
-        backgroundColor: 'var(--seed-color-bg-layer-default)',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 'var(--seed-dimension-x3)'
-      }}>
-        <AlertDialogHeader>
-          <AlertDialogTitle>{layout.title}</AlertDialogTitle>
-          {layout.desc && <AlertDialogDescription>{layout.desc}</AlertDialogDescription>}
-        </AlertDialogHeader>
-        {/* Inline Preview Footer matching exact Modal layout */}
-        {layout.kind === 'stack' ? (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', alignItems: 'stretch', width: '100%', marginTop: 'var(--seed-dimension-x2)' }}>
-            {layout.buttons.map((b, i) => (
-              <ActionButton
-                key={i}
-                variant={b.variant}
-                size="medium"
-                onClick={() => setIsOpen(true)}
-                style={b.muted ? { color: 'var(--seed-color-fg-neutral-muted)', fontWeight: 'var(--seed-font-weight-bold)' } : undefined}
-              >
-                {b.label}
-              </ActionButton>
-            ))}
-          </div>
-        ) : (
-          <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: 'var(--seed-dimension-x2)', width: '100%', marginTop: 'var(--seed-dimension-x2)' }}>
-            {layout.buttons.map((b, i) => (
-              <ActionButton
-                key={i}
-                variant={b.variant}
-                size="medium"
-                onClick={() => setIsOpen(true)}
-                style={{
-                  flexGrow: 1,
-                  minWidth: `calc(${100 / layout.buttons.length}% - var(--seed-dimension-x2) / ${layout.buttons.length})`,
-                }}
-              >
-                {b.label}
-              </ActionButton>
-            ))}
-          </div>
-        )}
-      </div>
+      <DialogRoot open={true}>
+        <div style={{
+          width: '100%',
+          padding: 'var(--seed-dimension-x4)',
+          border: '1px solid var(--seed-color-stroke-neutral-weak)',
+          borderRadius: 'var(--seed-dimension-x4)',
+          backgroundColor: 'var(--seed-color-bg-layer-default)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--seed-dimension-x3)'
+        }}>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{layout.title}</AlertDialogTitle>
+            {layout.desc && <AlertDialogDescription>{layout.desc}</AlertDialogDescription>}
+          </AlertDialogHeader>
+          {/* Inline Preview Footer matching exact Modal layout */}
+          {layout.kind === 'stack' ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', alignItems: 'stretch', width: '100%', marginTop: 'var(--seed-dimension-x2)' }}>
+              {layout.buttons.map((b, i) => (
+                <ActionButton
+                  key={i}
+                  variant={b.variant}
+                  size="medium"
+                  onClick={() => setIsOpen(true)}
+                  style={b.muted ? { color: 'var(--seed-color-fg-neutral-muted)', fontWeight: 'var(--seed-font-weight-bold)' } : undefined}
+                >
+                  {b.label}
+                </ActionButton>
+              ))}
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: 'var(--seed-dimension-x2)', width: '100%', marginTop: 'var(--seed-dimension-x2)' }}>
+              {layout.buttons.map((b, i) => (
+                <ActionButton
+                  key={i}
+                  variant={b.variant}
+                  size="medium"
+                  onClick={() => setIsOpen(true)}
+                  style={{
+                    flexGrow: 1,
+                    minWidth: `calc(${100 / layout.buttons.length}% - var(--seed-dimension-x2) / ${layout.buttons.length})`,
+                  }}
+                >
+                  {b.label}
+                </ActionButton>
+              ))}
+            </div>
+          )}
+        </div>
+      </DialogRoot>
     </div>
   );
 }
