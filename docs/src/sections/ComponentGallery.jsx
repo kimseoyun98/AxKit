@@ -67,69 +67,57 @@ const ALERT_DIALOG_LAYOUTS = [
 ]
 
 function AlertDialogDemo() {
-  const [layoutKey, setLayoutKey] = useState('critical')
-  const layout = ALERT_DIALOG_LAYOUTS.find((l) => l.key === layoutKey)
-
   return (
-    <>
-      <div style={{
-        position: 'absolute', top: 12, left: 12, right: 12, zIndex: 20,
-        display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 6,
-      }}>
-        {ALERT_DIALOG_LAYOUTS.map((l) => (
-          <button
-            key={l.key}
-            type="button"
-            className={`comp-nav-btn comp-nav-btn--overlay${l.key === layoutKey ? ' active' : ''}`}
-            onClick={() => setLayoutKey(l.key)}
-          >
-            {l.label}
-          </button>
-        ))}
-      </div>
-
-      <div className="seed-dialog__positioner">
-        <div className="seed-dialog__backdrop" />
-        <div className="seed-dialog__content" data-state="open">
-          <div className="seed-dialog__header">
-            <h2 className="seed-dialog__title" data-anatomy="Title">{layout.title}</h2>
-            <p className="seed-dialog__description" data-anatomy="Description">{layout.desc}</p>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, width: '100%', maxWidth: 360, margin: '0 auto' }}>
+      {ALERT_DIALOG_LAYOUTS.map((layout, lIdx) => (
+        <div key={layout.key} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            Layout: {layout.label}
           </div>
-          <div className="seed-dialog__footer" data-anatomy="Footer">
-            {layout.kind === 'stack' ? (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', alignItems: 'stretch' }}>
-                {layout.buttons.map((b, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    className={`seed-action-button seed-action-button--variant_${b.variant} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
-                    style={b.muted ? { color: 'var(--seed-color-fg-neutral-muted)', fontWeight: 'var(--seed-font-weight-bold)' } : undefined}
-                  >
-                    {b.label}
-                  </button>
-                ))}
+          <div className="seed-dialog__positioner" style={{ position: 'relative', top: 'auto', left: 'auto', right: 'auto', bottom: 'auto', transform: 'none', zIndex: 1 }}>
+            <div className="seed-dialog__backdrop" style={{ position: 'absolute', inset: 0, borderRadius: 20 }} />
+            <div className="seed-dialog__content" data-state="open" style={{ width: '100%' }}>
+              <div className="seed-dialog__header">
+                <h2 className="seed-dialog__title" data-anatomy={lIdx === 0 ? "Title" : undefined}>{layout.title}</h2>
+                {layout.desc && <p className="seed-dialog__description" data-anatomy={lIdx === 0 ? "Description" : undefined}>{layout.desc}</p>}
               </div>
-            ) : (
-              <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: 'var(--seed-dimension-x2)' }}>
-                {layout.buttons.map((b, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    className={`seed-action-button seed-action-button--variant_${b.variant} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
-                    style={{
-                      '--seed-box-flex-grow': 1,
-                      '--seed-box-min-width': `calc(${100 / layout.buttons.length}% - var(--seed-dimension-x2) / ${layout.buttons.length})`,
-                    }}
-                  >
-                    {b.label}
-                  </button>
-                ))}
+              <div className="seed-dialog__footer" data-anatomy={lIdx === 0 ? "Footer" : undefined}>
+                {layout.kind === 'stack' ? (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', alignItems: 'stretch' }}>
+                    {layout.buttons.map((b, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        className={`seed-action-button seed-action-button--variant_${b.variant} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
+                        style={b.muted ? { color: 'var(--seed-color-fg-neutral-muted)', fontWeight: 'var(--seed-font-weight-bold)' } : undefined}
+                      >
+                        {b.label}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div style={{ display: 'flex', flexWrap: 'wrap-reverse', gap: 'var(--seed-dimension-x2)' }}>
+                    {layout.buttons.map((b, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        className={`seed-action-button seed-action-button--variant_${b.variant} seed-action-button--size_medium seed-action-button--size_medium-layout_withText seed-action-button--layout_withText`}
+                        style={{
+                          '--seed-box-flex-grow': 1,
+                          '--seed-box-min-width': `calc(${100 / layout.buttons.length}% - var(--seed-dimension-x2) / ${layout.buttons.length})`,
+                        }}
+                      >
+                        {b.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
         </div>
-      </div>
-    </>
+      ))}
+    </div>
   )
 }
 
@@ -147,34 +135,16 @@ function IdentityPlaceholderSVG({ size = 48, identity = "person" }) {
 }
 
 function AvatarDemo() {
-  const [tab, setTab] = useState('sizes'); // sizes | badge | stack | fallback
   const sampleImg = "https://avatars.githubusercontent.com/u/54893898?v=4";
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: '100%', alignItems: 'center' }}>
-      <div style={{
-        position: 'absolute', top: 12, left: 12, right: 12, zIndex: 20,
-        display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 6,
-      }}>
-        {[
-          ['sizes', 'Sizes (24~96)'],
-          ['badge', 'Badge & Mask'],
-          ['stack', 'Avatar Stack'],
-          ['fallback', 'Fallback'],
-        ].map(([key, label]) => (
-          <button
-            key={key}
-            type="button"
-            className={`comp-nav-btn comp-nav-btn--overlay${tab === key ? ' active' : ''}`}
-            onClick={() => setTab(key)}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
-
-      {tab === 'sizes' && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', justifyContent: 'center', paddingTop: 24 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 28, width: '100%', alignItems: 'center' }}>
+      {/* 1. Sizes */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, width: '100%' }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Sizes (24px ~ 96px)
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', justifyContent: 'center' }}>
           {['24', '36', '48', '64', '80', '96'].map((sz) => (
             <div key={sz} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
               <div className={`seed-avatar__root seed-avatar__root--size_${sz} seed-avatar__root--badgeMask_none`} data-anatomy={sz === '64' ? 'Image Area' : undefined}>
@@ -184,10 +154,14 @@ function AvatarDemo() {
             </div>
           ))}
         </div>
-      )}
+      </div>
 
-      {tab === 'badge' && (
-        <div style={{ display: 'flex', gap: 20, alignItems: 'center', justifyContent: 'center', paddingTop: 24 }}>
+      {/* 2. Badge & Mask */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, width: '100%' }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Badge & Mask (Circle, Flower, Shield)
+        </div>
+        <div style={{ display: 'flex', gap: 20, alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
             <div className="seed-avatar__root seed-avatar__root--size_64 seed-avatar__root--badgeMask_circle" data-anatomy="Circle Badge">
               <img className="seed-avatar__image" src={sampleImg} alt="Avatar" />
@@ -224,32 +198,37 @@ function AvatarDemo() {
             <span style={{ fontSize: 12, color: 'var(--seed-color-fg-neutral-subtle)' }}>Shield Badge</span>
           </div>
         </div>
-      )}
+      </div>
 
-      {tab === 'stack' && (
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, paddingTop: 24 }}>
-          <div className="seed-avatar-stack__root" data-anatomy="Avatar Stack">
-            {[0, 1, 2, 3].map((idx) => (
-              <div key={idx} className="seed-avatar-stack__item seed-avatar-stack__item--size_48">
-                <div className="seed-avatar__root seed-avatar__root--size_48 seed-avatar__root--badgeMask_none">
-                  <img className="seed-avatar__image" src={sampleImg} alt={`User ${idx}`} />
-                </div>
-              </div>
-            ))}
-          </div>
-          <span style={{ fontSize: 12, color: 'var(--seed-color-fg-neutral-subtle)' }}>Avatar Stack (size: 48)</span>
+      {/* 3. Avatar Stack */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, width: '100%' }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Avatar Stack
         </div>
-      )}
+        <div className="seed-avatar-stack__root" data-anatomy="Avatar Stack">
+          {[0, 1, 2, 3].map((idx) => (
+            <div key={idx} className="seed-avatar-stack__item seed-avatar-stack__item--size_48">
+              <div className="seed-avatar__root seed-avatar__root--size_48 seed-avatar__root--badgeMask_none">
+                <img className="seed-avatar__image" src={sampleImg} alt={`User ${idx}`} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
-      {tab === 'fallback' && (
-        <div style={{ display: 'flex', gap: 20, alignItems: 'center', justifyContent: 'center', paddingTop: 24 }}>
+      {/* 4. Fallback */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, width: '100%' }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+          Fallback Placeholders
+        </div>
+        <div style={{ display: 'flex', gap: 20, alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
             <div className="seed-avatar__root seed-avatar__root--size_64 seed-avatar__root--badgeMask_none" data-anatomy="Fallback (Person)">
               <div className="seed-avatar__fallback">
                 <IdentityPlaceholderSVG size={64} identity="person" />
               </div>
             </div>
-            <span style={{ fontSize: 12, color: 'var(--seed-color-fg-neutral-subtle)' }}>Person Placeholder</span>
+            <span style={{ fontSize: 12, color: 'var(--seed-color-fg-neutral-subtle)' }}>Person</span>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
@@ -258,10 +237,10 @@ function AvatarDemo() {
                 <IdentityPlaceholderSVG size={64} identity="business" />
               </div>
             </div>
-            <span style={{ fontSize: 12, color: 'var(--seed-color-fg-neutral-subtle)' }}>Business Placeholder</span>
+            <span style={{ fontSize: 12, color: 'var(--seed-color-fg-neutral-subtle)' }}>Business</span>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }
@@ -639,6 +618,28 @@ export function ComponentGallery() {
         ))}
       </div>
 
+      {/* 상단 정보 바 (컴포넌트 이름/슬러그, dot 인디케이터, 이전/다음 화살표) */}
+      <div className="comp-info-bar" style={{ marginTop: 14, marginBottom: 14 }}>
+        <div>
+          <div className="comp-name">{COMPONENTS[cur].name}</div>
+          <div className="comp-slug">{COMPONENTS[cur].slug}</div>
+        </div>
+        <div className="comp-dots" style={{ marginTop: 0 }}>
+          {COMPONENTS.map((_, i) => (
+            <button
+              key={i}
+              className={`comp-dot${i === cur ? ' active' : ''}`}
+              onClick={() => go(i)}
+              aria-label={COMPONENTS[i].name}
+            />
+          ))}
+        </div>
+        <div className="comp-arrows">
+          <button className="comp-arrow-btn" onClick={() => go(cur - 1)} disabled={cur === 0}>‹</button>
+          <button className="comp-arrow-btn" onClick={() => go(cur + 1)} disabled={cur === total - 1}>›</button>
+        </div>
+      </div>
+
       {/* 캐러셀 */}
       <div className="comp-carousel-wrap" data-show-anatomy={showAnatomy ? '' : undefined}>
         <div className="comp-carousel-track" style={{ transform: `translateX(-${cur * 100}%)` }}>
@@ -648,30 +649,6 @@ export function ComponentGallery() {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* 하단 정보 바 */}
-      <div className="comp-info-bar">
-        <div>
-          <div className="comp-name">{COMPONENTS[cur].name}</div>
-          <div className="comp-slug">{COMPONENTS[cur].slug}</div>
-        </div>
-        <div className="comp-arrows">
-          <button className="comp-arrow-btn" onClick={() => go(cur - 1)} disabled={cur === 0}>‹</button>
-          <button className="comp-arrow-btn" onClick={() => go(cur + 1)} disabled={cur === total - 1}>›</button>
-        </div>
-      </div>
-
-      {/* dot 인디케이터 */}
-      <div className="comp-dots">
-        {COMPONENTS.map((_, i) => (
-          <button
-            key={i}
-            className={`comp-dot${i === cur ? ' active' : ''}`}
-            onClick={() => go(i)}
-            aria-label={COMPONENTS[i].name}
-          />
-        ))}
       </div>
     </section>
   )
