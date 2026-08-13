@@ -168,14 +168,14 @@ const COMPONENTS = [
                 disabled={disabled}
               >
                 {prefix && (
-                  <span className="seed-accordion__prefix seed-accordion__prefix--size_medium" data-anatomy={i === 0 ? 'Prefix' : undefined}>
+                  <span className="seed-accordion__prefix seed-accordion__prefix--size_medium" data-disabled={disabled ? '' : undefined} data-anatomy={i === 0 ? 'Prefix' : undefined}>
                     {prefix}
                   </span>
                 )}
                 <span className="seed-accordion__body">
-                  <span className="seed-accordion__title seed-accordion__title--size_medium" data-anatomy={i === 0 ? 'Title' : undefined}>{title}</span>
+                  <span className="seed-accordion__title seed-accordion__title--size_medium" data-disabled={disabled ? '' : undefined} data-anatomy={i === 0 ? 'Title' : undefined}>{title}</span>
                   {description && (
-                    <span className="seed-accordion__description seed-accordion__description--size_medium" data-anatomy="Description">
+                    <span className="seed-accordion__description seed-accordion__description--size_medium" data-disabled={disabled ? '' : undefined} data-anatomy="Description">
                       {description}
                     </span>
                   )}
@@ -183,6 +183,7 @@ const COMPONENTS = [
                 <span
                   className="seed-accordion__suffixIcon seed-accordion__suffixIcon--size_medium"
                   data-state={open ? 'open' : 'closed'}
+                  data-disabled={disabled ? '' : undefined}
                   data-anatomy={i === 0 ? 'Chevron Icon' : undefined}
                 >
                   <IconExpandMoreRegular style={{ width: 'var(--seed-suffix-icon-size, var(--seed-dimension-x5))', height: 'var(--seed-suffix-icon-size, var(--seed-dimension-x5))' }} />
