@@ -2669,7 +2669,8 @@ function SidePanelDemo() {
 
 
 function SideNavigationDemo() {
-  const [collapsed, setCollapsed] = useState(false);
+  const [breakpoint, setBreakpoint] = useState("lg"); // "lg" | "md" | "sm"
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("전체 상품 목록");
 
   const navItemProps = (label) => ({
@@ -2677,97 +2678,201 @@ function SideNavigationDemo() {
     onClick: () => setActiveItem(label),
   });
 
+  const isCollapsed = breakpoint === "md";
+
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 720, margin: "0 auto", alignItems: "center" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 760, margin: "0 auto", alignItems: "center" }}>
       <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
-        Side Navigation · Collapsible Accordions · Collapsed Flyout Popovers & Tooltips
+        Side Navigation · Responsive Design Breakpoints (lg ≥ 1280 · md ≥ 768 · sm &lt; 768)
+      </div>
+
+      {/* Breakpoint Simulation Controls */}
+      <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+        <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Breakpoint:</span>
+        {[
+          { label: "lg (≥ 1280) · Expanded", value: "lg" },
+          { label: "md (≥ 768) · Collapsed", value: "md" },
+          { label: "sm (< 768) · Mobile Drawer", value: "sm" },
+        ].map((b) => (
+          <ActionButton
+            key={b.value}
+            size="small"
+            variant={breakpoint === b.value ? "brandSolid" : "neutralOutline"}
+            onClick={() => setBreakpoint(b.value)}
+          >
+            {b.label}
+          </ActionButton>
+        ))}
       </div>
 
       {/* Showcase Canvas */}
-      <div style={{ display: "flex", width: "100%", height: 480, border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", overflow: "hidden", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
-        <SideNavigationProvider collapsed={collapsed} onCollapsedChange={setCollapsed}>
-          <SideNavigationRoot style={{ height: "100%" }}>
-            <SideNavigationHeader>
-              {!collapsed && (
-                <HStack align="center" gap="x2" overflow="hidden" flex="1">
-                  <Box width="28px" height="28px" borderRadius="r2" bgColor="bg.brandSolid" display="flex" align="center" justify="center" color="fg.neutralInverted" fontWeight="bold" fontSize="14px">
-                    🥕
-                  </Box>
-                  <Text fontWeight="bold" textStyle="t4" whiteSpace="nowrap">
-                    당근 비즈니스
+      <div style={{ display: "flex", flexDirection: "column", width: "100%", height: 500, border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", overflow: "hidden", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
+        {breakpoint !== "sm" ? (
+          /* Desktop / Tablet View (lg & md) */
+          <div style={{ display: "flex", width: "100%", height: "100%" }}>
+            <SideNavigationProvider collapsed={isCollapsed}>
+              <SideNavigationRoot style={{ height: "100%" }}>
+                <SideNavigationHeader>
+                  {!isCollapsed && (
+                    <HStack align="center" gap="x2" overflow="hidden" flex="1">
+                      <Box width="28px" height="28px" borderRadius="r2" bgColor="bg.brandSolid" display="flex" align="center" justify="center" color="fg.neutralInverted" fontWeight="bold" fontSize="14px">
+                        🥕
+                      </Box>
+                      <Text fontWeight="bold" textStyle="t4" whiteSpace="nowrap">
+                        당근 비즈니스
+                      </Text>
+                    </HStack>
+                  )}
+                  <SideNavigationTrigger />
+                </SideNavigationHeader>
+
+                <SideNavigationContent>
+                  <SideNavigationGroup
+                    items={[
+                      { label: "홈", prefixIcon: <IconHouseFill />, ...navItemProps("홈") },
+                      { label: "대시보드", prefixIcon: <IconHeartFill />, ...navItemProps("대시보드") },
+                    ]}
+                  />
+
+                  <SideNavigationGroup
+                    label="콘텐츠 및 상품"
+                    items={[
+                      {
+                        label: "상품 관리",
+                        prefixIcon: <IconMapLocationpinFill />,
+                        defaultOpen: true,
+                        items: [
+                          { label: "전체 상품 목록", ...navItemProps("전체 상품 목록") },
+                          { label: "카테고리 관리", ...navItemProps("카테고리 관리") },
+                          { label: "재고 현황", ...navItemProps("재고 현황") },
+                        ],
+                      },
+                      {
+                        label: "주문 및 배송",
+                        prefixIcon: <IconExclamationmarkCircleFill />,
+                        items: [
+                          { label: "신규 주문 내역", ...navItemProps("신규 주문 내역") },
+                          { label: "배송 처리 현황", ...navItemProps("배송 처리 현황") },
+                        ],
+                      },
+                    ]}
+                  />
+
+                  <SideNavigationGroup
+                    label="고객 지원"
+                    items={[
+                      { label: "고객 센터 문의", prefixIcon: <IconQuestionmarkCircleFill />, ...navItemProps("고객 센터 문의") },
+                      { label: "서비스 만족도 설문", prefixIcon: <IconFaceSmileCircleFill />, ...navItemProps("서비스 만족도 설문") },
+                    ]}
+                  />
+                </SideNavigationContent>
+
+                <SideNavigationFooter>
+                  <SideNavigationItemButton
+                    prefixIcon={<IconGearFill />}
+                    label="환경설정"
+                    {...navItemProps("환경설정")}
+                  />
+                  <SideNavigationItemButton
+                    prefixIcon={<IconPersonFill />}
+                    label="내 프로필"
+                    {...navItemProps("내 프로필")}
+                  />
+                </SideNavigationFooter>
+              </SideNavigationRoot>
+
+              <SideNavigationInset style={{ flex: 1, backgroundColor: "var(--seed-color-bg-layer-basement)", padding: "var(--seed-dimension-x6)", display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x4)" }}>
+                <Text fontWeight="bold" textStyle="t5">
+                  {activeItem}
+                </Text>
+                <Box p="x4" borderRadius="r2" bgColor="bg.layerDefault" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
+                  <Text color="fg.neutralSubtle" textStyle="t3">
+                    [{breakpoint.toUpperCase()} 뷰포트] {activeItem} 페이지 메인 업무 영역입니다.
                   </Text>
-                </HStack>
-              )}
-              <SideNavigationTrigger />
-            </SideNavigationHeader>
+                </Box>
+              </SideNavigationInset>
+            </SideNavigationProvider>
+          </div>
+        ) : (
+          /* Mobile View (sm < 768px): Top Header Bar + Left Drawer */
+          <div style={{ display: "flex", flexDirection: "column", width: "100%", height: "100%" }}>
+            {/* Top Navigation Bar */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", borderBottom: "1px solid var(--seed-color-stroke-neutral-weak)", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
+              <HStack align="center" gap="x2">
+                <Box width="28px" height="28px" borderRadius="r2" bgColor="bg.brandSolid" display="flex" align="center" justify="center" color="fg.neutralInverted" fontWeight="bold" fontSize="14px">
+                  🥕
+                </Box>
+                <Text fontWeight="bold" textStyle="t4">당근 비즈니스</Text>
+              </HStack>
 
-            <SideNavigationContent>
-              <SideNavigationGroup
-                items={[
-                  { label: "홈", prefixIcon: <IconHouseFill />, ...navItemProps("홈") },
-                  { label: "대시보드", prefixIcon: <IconHeartFill />, ...navItemProps("대시보드") },
-                ]}
-              />
+              <SidePanelRoot direction="left" open={isDrawerOpen} onOpenChange={setIsDrawerOpen}>
+                <SidePanelTrigger asChild>
+                  <ActionButton variant="neutralOutline" size="small">
+                    ☰ 메뉴
+                  </ActionButton>
+                </SidePanelTrigger>
+                <SidePanelContent title="당근 비즈니스">
+                  <SidePanelBody px="x4" py="x2">
+                    <SideNavigationProvider collapsed={false}>
+                      <SideNavigationContent>
+                        <SideNavigationGroup
+                          items={[
+                            { label: "홈", prefixIcon: <IconHouseFill />, ...navItemProps("홈") },
+                            { label: "대시보드", prefixIcon: <IconHeartFill />, ...navItemProps("대시보드") },
+                          ]}
+                        />
 
-              <SideNavigationGroup
-                label="콘텐츠 및 상품"
-                items={[
-                  {
-                    label: "상품 관리",
-                    prefixIcon: <IconMapLocationpinFill />,
-                    defaultOpen: true,
-                    items: [
-                      { label: "전체 상품 목록", ...navItemProps("전체 상품 목록") },
-                      { label: "카테고리 관리", ...navItemProps("카테고리 관리") },
-                      { label: "재고 현황", ...navItemProps("재고 현황") },
-                    ],
-                  },
-                  {
-                    label: "주문 및 배송",
-                    prefixIcon: <IconExclamationmarkCircleFill />,
-                    items: [
-                      { label: "신규 주문 내역", ...navItemProps("신규 주문 내역") },
-                      { label: "배송 처리 현황", ...navItemProps("배송 처리 현황") },
-                    ],
-                  },
-                ]}
-              />
+                        <SideNavigationGroup
+                          label="콘텐츠 및 상품"
+                          items={[
+                            {
+                              label: "상품 관리",
+                              prefixIcon: <IconMapLocationpinFill />,
+                              defaultOpen: true,
+                              items: [
+                                { label: "전체 상품 목록", ...navItemProps("전체 상품 목록") },
+                                { label: "카테고리 관리", ...navItemProps("카테고리 관리") },
+                                { label: "재고 현황", ...navItemProps("재고 현황") },
+                              ],
+                            },
+                            {
+                              label: "주문 및 배송",
+                              prefixIcon: <IconExclamationmarkCircleFill />,
+                              items: [
+                                { label: "신규 주문 내역", ...navItemProps("신규 주문 내역") },
+                                { label: "배송 처리 현황", ...navItemProps("배송 처리 현황") },
+                              ],
+                            },
+                          ]}
+                        />
 
-              <SideNavigationGroup
-                label="고객 지원"
-                items={[
-                  { label: "고객 센터 문의", prefixIcon: <IconQuestionmarkCircleFill />, ...navItemProps("고객 센터 문의") },
-                  { label: "서비스 만족도 설문", prefixIcon: <IconFaceSmileCircleFill />, ...navItemProps("서비스 만족도 설문") },
-                ]}
-              />
-            </SideNavigationContent>
+                        <SideNavigationGroup
+                          label="고객 지원"
+                          items={[
+                            { label: "고객 센터 문의", prefixIcon: <IconQuestionmarkCircleFill />, ...navItemProps("고객 센터 문의") },
+                            { label: "서비스 만족도 설문", prefixIcon: <IconFaceSmileCircleFill />, ...navItemProps("서비스 만족도 설문") },
+                          ]}
+                        />
+                      </SideNavigationContent>
+                    </SideNavigationProvider>
+                  </SidePanelBody>
+                </SidePanelContent>
+              </SidePanelRoot>
+            </div>
 
-            <SideNavigationFooter>
-              <SideNavigationItemButton
-                prefixIcon={<IconGearFill />}
-                label="환경설정"
-                {...navItemProps("환경설정")}
-              />
-              <SideNavigationItemButton
-                prefixIcon={<IconPersonFill />}
-                label="내 프로필"
-                {...navItemProps("내 프로필")}
-              />
-            </SideNavigationFooter>
-          </SideNavigationRoot>
-
-          {/* Main Body Canvas via SideNavigationInset */}
-          <SideNavigationInset style={{ flex: 1, backgroundColor: "var(--seed-color-bg-layer-basement)", padding: "var(--seed-dimension-x6)", display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x4)" }}>
-            <Text fontWeight="bold" textStyle="t5">
-              {activeItem}
-            </Text>
-            <Box p="x4" borderRadius="r2" bgColor="bg.layerDefault" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
-              <Text color="fg.neutralSubtle" textStyle="t3">
-                {activeItem} 페이지의 메인 콘텐츠 영역입니다.
+            {/* Mobile Body Canvas */}
+            <div style={{ flex: 1, padding: "var(--seed-dimension-x6)", backgroundColor: "var(--seed-color-bg-layer-basement)", display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x4)" }}>
+              <Text fontWeight="bold" textStyle="t5">
+                📱 모바일 뷰어 (&lt; 768px)
               </Text>
-            </Box>
-          </SideNavigationInset>
-        </SideNavigationProvider>
+              <Box p="x4" borderRadius="r2" bgColor="bg.layerDefault" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
+                <Text color="fg.neutralSubtle" textStyle="t3">
+                  상단 우측 <b>☰ 메뉴</b> 버튼을 누르면 좌측에서 모바일 내비게이션 Drawer가 올라옵니다.
+                </Text>
+              </Box>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
