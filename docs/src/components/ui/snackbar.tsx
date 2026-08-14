@@ -54,6 +54,7 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       <SeedSnackbar.Root ref={ref} variant={variant} {...otherProps}>
         {variant !== "default" && (
           <SeedSnackbar.PrefixIcon
+            variant={variant}
             svg={
               variant === "positive" ? (
                 <IconCheckmarkCircleFill />
