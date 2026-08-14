@@ -20,7 +20,7 @@ import {
   type CheckboxGroupVariantProps,
 } from "@seed-design/css/recipes/checkbox-group";
 
-export interface CheckboxGroupProps extends SeedFieldset.RootProps, CheckboxGroupVariantProps {
+export interface CheckboxGroupProps extends SeedFieldset.RootProps {
   label?: React.ReactNode;
   /**
    * @default "medium"
@@ -31,7 +31,13 @@ export interface CheckboxGroupProps extends SeedFieldset.RootProps, CheckboxGrou
 
   description?: React.ReactNode;
   errorMessage?: React.ReactNode;
+
+  size?: "medium" | "large";
+  weight?: "regular" | "bold";
+  tone?: "neutral" | "brand";
 }
+
+const CheckboxGroupContext = React.createContext<{ size?: "medium" | "large"; weight?: "regular" | "bold"; tone?: "neutral" | "brand" }>({});
 
 /**
  * @see https://seed-design.io/react/components/checkbox
@@ -46,6 +52,10 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps
 
       description,
       errorMessage,
+
+      size,
+      weight,
+      tone,
 
       children,
       ...props
@@ -66,36 +76,38 @@ export const CheckboxGroup = React.forwardRef<HTMLDivElement, CheckboxGroupProps
     }
 
     return (
-      <SeedFieldset.Root ref={ref} {...restProps}>
-        {(label || indicator) && (
-          <SeedFieldset.Header>
-            <SeedFieldset.Label weight={labelWeight}>
-              {label}
-              {showRequiredIndicator && <SeedFieldset.RequiredIndicator />}
-              {indicator && <SeedFieldset.IndicatorText>{indicator}</SeedFieldset.IndicatorText>}
-            </SeedFieldset.Label>
-          </SeedFieldset.Header>
-        )}
-        <SeedCheckbox.Group {...variantProps}>{children}</SeedCheckbox.Group>
-        {(description || errorMessage) && (
-          <SeedFieldset.Footer>
-            {description &&
-              (errorMessage ? (
-                <VisuallyHidden asChild>
+      <CheckboxGroupContext.Provider value={{ size, weight, tone }}>
+        <SeedFieldset.Root ref={ref} {...restProps}>
+          {(label || indicator) && (
+            <SeedFieldset.Header>
+              <SeedFieldset.Label weight={labelWeight}>
+                {label}
+                {showRequiredIndicator && <SeedFieldset.RequiredIndicator />}
+                {indicator && <SeedFieldset.IndicatorText>{indicator}</SeedFieldset.IndicatorText>}
+              </SeedFieldset.Label>
+            </SeedFieldset.Header>
+          )}
+          <SeedCheckbox.Group {...variantProps}>{children}</SeedCheckbox.Group>
+          {(description || errorMessage) && (
+            <SeedFieldset.Footer>
+              {description &&
+                (errorMessage ? (
+                  <VisuallyHidden asChild>
+                    <SeedFieldset.Description>{description}</SeedFieldset.Description>
+                  </VisuallyHidden>
+                ) : (
                   <SeedFieldset.Description>{description}</SeedFieldset.Description>
-                </VisuallyHidden>
-              ) : (
-                <SeedFieldset.Description>{description}</SeedFieldset.Description>
-              ))}
-            {errorMessage && (
-              <SeedFieldset.ErrorMessage>
-                <PrefixIcon svg={<IconExclamationmarkCircleFill />} />
-                {errorMessage}
-              </SeedFieldset.ErrorMessage>
-            )}
-          </SeedFieldset.Footer>
-        )}
-      </SeedFieldset.Root>
+                ))}
+              {errorMessage && (
+                <SeedFieldset.ErrorMessage>
+                  <PrefixIcon svg={<IconExclamationmarkCircleFill />} />
+                  {errorMessage}
+                </SeedFieldset.ErrorMessage>
+              )}
+            </SeedFieldset.Footer>
+          )}
+        </SeedFieldset.Root>
+      </CheckboxGroupContext.Provider>
     );
   },
 );
@@ -107,23 +119,34 @@ export interface CheckboxProps extends SeedCheckbox.RootProps {
   rootRef?: React.Ref<HTMLLabelElement>;
 
   label?: React.ReactNode;
+
+  size?: "medium" | "large";
+
+  weight?: "regular" | "bold";
+
+  tone?: "neutral" | "brand";
 }
 
 /**
  * @see https://seed-design.io/react/components/checkbox
  */
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  ({ inputProps, rootRef, label, ...otherProps }, ref) => {
+  ({ inputProps, rootRef, label, size: itemSize, weight: itemWeight, tone: itemTone, ...otherProps }, ref) => {
+    const ctx = React.useContext(CheckboxGroupContext);
+    const size = itemSize ?? ctx.size;
+    const weight = itemWeight ?? ctx.weight;
+    const tone = itemTone ?? ctx.tone;
+
     return (
-      <SeedCheckbox.Root ref={rootRef} {...otherProps}>
-        <SeedCheckbox.Control>
+      <SeedCheckbox.Root ref={rootRef} size={size} weight={weight} tone={tone} {...otherProps}>
+        <SeedCheckbox.Control size={size} tone={tone}>
           <SeedCheckbox.Indicator
             unchecked={otherProps.variant === "ghost" ? <IconCheckmarkFatFill /> : null}
             checked={<IconCheckmarkFatFill />}
             indeterminate={<IconMinusFatFill />}
           />
         </SeedCheckbox.Control>
-        <SeedCheckbox.Label>{label}</SeedCheckbox.Label>
+        <SeedCheckbox.Label size={size} weight={weight}>{label}</SeedCheckbox.Label>
         <SeedCheckbox.HiddenInput ref={ref} {...inputProps} />
       </SeedCheckbox.Root>
     );
