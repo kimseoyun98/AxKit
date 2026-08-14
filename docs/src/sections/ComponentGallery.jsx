@@ -2773,36 +2773,42 @@ function SnackbarDemoInner() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 600, margin: "0 auto", alignItems: "center" }}>
       <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
-        Snackbar · 4-Second Auto Dismiss (Default SEED Spec) · Default, Positive, Critical
+        Snackbar · Demo Canvas Relative Placement · 4-Second Auto Dismiss
       </div>
 
-      {/* Trigger Buttons */}
-      <div style={{ display: "flex", gap: "var(--seed-dimension-x3)", flexWrap: "wrap", justifyContent: "center" }}>
-        <ActionButton
-          variant="neutralSolid"
-          onClick={() => showSnackbar("default")}
-        >
-          기본 스낵바 (Default)
-        </ActionButton>
+      {/* Demo Canvas Box with Relative Positioning for Snackbar Region */}
+      <div style={{ position: "relative", width: "100%", height: 220, border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-basement)", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", paddingTop: "var(--seed-dimension-x6)" }}>
+        <div style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-subtle)", marginBottom: "var(--seed-dimension-x3)" }}>
+          아래 버튼을 누르면 이 화면 캔버스 영역 하단에 스낵바가 표출됩니다 (4초간 유지)
+        </div>
 
-        <ActionButton
-          variant="brandSolid"
-          onClick={() => showSnackbar("positive")}
-        >
-          긍정 스낵바 (Positive)
-        </ActionButton>
+        {/* Trigger Buttons */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x2)", flexWrap: "wrap", justifyContent: "center" }}>
+          <ActionButton
+            size="small"
+            variant="neutralSolid"
+            onClick={() => showSnackbar("default")}
+          >
+            기본 (Default)
+          </ActionButton>
 
-        <ActionButton
-          variant="criticalSolid"
-          onClick={() => showSnackbar("critical")}
-        >
-          경고 스낵바 (Critical)
-        </ActionButton>
+          <ActionButton
+            size="small"
+            variant="brandSolid"
+            onClick={() => showSnackbar("positive")}
+          >
+            긍정 (Positive)
+          </ActionButton>
+
+          <ActionButton
+            size="small"
+            variant="criticalSolid"
+            onClick={() => showSnackbar("critical")}
+          >
+            경고 (Critical)
+          </ActionButton>
+        </div>
       </div>
-
-      <Text fontSize="t2" color="fg.neutralMuted" style={{ textAlign: "center" }}>
-        👆 버튼을 클릭하면 표준 SEED 사양대로 4초(4000ms)간 유지 후 자동으로 닫힙니다.
-      </Text>
     </div>
   );
 }
