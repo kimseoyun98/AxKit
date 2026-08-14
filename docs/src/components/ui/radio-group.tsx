@@ -144,21 +144,23 @@ export const RadioGroupItem = React.forwardRef<HTMLInputElement, RadioGroupItemP
     return (
       <SeedRadioGroup.Item
         ref={rootRef}
+        size={size}
         className={[radioRecipe.root, className].filter(Boolean).join(" ")}
         {...otherProps}
       >
-        <SeedRadioGroup.ItemControl className={radiomarkRecipe.root}>
+        <SeedRadioGroup.ItemControl size={size} className={radiomarkRecipe.root}>
           <SeedRadioGroup.ItemIndicator
+            size={size}
             className={radiomarkRecipe.icon}
             checked={
-              <svg aria-hidden="true" viewBox="0 0 24 24">
+              <svg aria-hidden="true" viewBox="0 0 24 24" className={radiomarkRecipe.icon} style={{ width: "100%", height: "100%" }}>
                 <circle cx="12" cy="12" r="12" fill="currentColor" />
               </svg>
             }
           />
         </SeedRadioGroup.ItemControl>
         {label && (
-          <SeedRadioGroup.ItemLabel className={radioRecipe.label}>
+          <SeedRadioGroup.ItemLabel size={size} weight={weight} className={radioRecipe.label}>
             {label}
           </SeedRadioGroup.ItemLabel>
         )}
