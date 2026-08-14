@@ -1004,7 +1004,7 @@ function DividerDemo() {
       </div>
 
       {/* Single Flat Container */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', width: '100%' }}>
         {/* Horizontal Divider Example */}
         <div style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral)' }}>
           상단 섹션 (가로 전체 Full-width 구분선)
@@ -1300,7 +1300,7 @@ function ProgressCircleDemo() {
       </div>
 
       {/* Main Preview Container */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', padding: 'var(--seed-dimension-x6)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: tone === "staticWhite" ? '#1e1e1e' : 'var(--seed-color-bg-layer-default)', transition: 'background-color 0.2s' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%' }}>
         
         {/* Sizes Showcase */}
         <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
@@ -1488,7 +1488,7 @@ function NotificationBadgeDemo() {
       </div>
 
       {/* Positioner Showcase on Icons */}
-      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x8)', alignItems: 'center', justifyContent: 'center', padding: 'var(--seed-dimension-x4)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', width: '100%', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
+      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x8)', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
         {/* Chat Icon + Large Badge */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
           <div style={{ position: 'relative', display: 'inline-flex' }}>
@@ -1757,7 +1757,7 @@ function QuantityPickerDemo() {
       </div>
 
       {/* Interactive QuantityPicker Showcase */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', alignItems: 'center', width: '100%', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', alignItems: 'center', width: '100%' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
           <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>수량 선택 (단위 포함)</span>
           <QuantityPicker
@@ -1857,7 +1857,7 @@ function RadioGroupDemo() {
       </div>
 
       {/* Interactive RadioGroup Showcase */}
-      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
         <RadioGroup
           label="결제 수단 선택"
           labelWeight={weight}
@@ -1945,7 +1945,7 @@ function ReactionButtonDemo() {
       </div>
 
       {/* Interactive ReactionButton Showcase */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', width: '100%', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', alignItems: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', width: '100%', alignItems: 'center' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>클릭하여 리액션 피드백을 전달해 보세요</div>
 
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x3)', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
@@ -2138,7 +2138,7 @@ function SegmentedControlDemo() {
       </div>
 
       {/* Interactive SegmentedControl Showcase */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', width: '100%', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', alignItems: 'center' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', width: '100%', alignItems: 'center' }}>
         <div style={{ width: '100%' }}>
           {count === 2 && (
             <SegmentedControl
@@ -2292,7 +2292,7 @@ function SelectBoxDemo() {
       </div>
 
       {/* Interactive SelectBox Showcase */}
-      <div style={{ display: "flex", flexDirection: "column", width: "100%", padding: "var(--seed-dimension-x5)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", alignItems: "center" }}>
+      <div style={{ display: "flex", flexDirection: "column", width: "100%", alignItems: "center" }}>
         {mode === "radio" ? (
           <RadioSelectBoxRoot
             value={radioValue}
@@ -2440,7 +2440,7 @@ function SelectDemo() {
       </div>
 
       {/* Interactive Select Showcase */}
-      <div style={{ display: "flex", flexDirection: "column", width: "100%", minHeight: 180, padding: "var(--seed-dimension-x5)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", alignItems: "center" }}>
+      <div style={{ display: "flex", flexDirection: "column", width: "100%", alignItems: "center" }}>
         <Box width="100%" maxWidth="320px">
           <SelectRoot
             size={size}
