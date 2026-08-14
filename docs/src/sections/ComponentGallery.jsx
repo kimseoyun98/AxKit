@@ -1815,11 +1815,6 @@ function PageBannerDemo() {
 
 const COMPONENTS = [
   {
-    name: 'Page Banner',
-    slug: 'ui:page-banner',
-    demo: <PageBannerDemo />,
-  },
-  {
     name: 'Accordion',
     slug: 'ui:accordion',
     demo: <AccordionDemo />,
@@ -1967,6 +1962,12 @@ const COMPONENTS = [
     name: 'Notification Badge',
     slug: 'ui:notification-badge',
     demo: <NotificationBadgeDemo />,
+  },
+
+  {
+    name: 'Page Banner',
+    slug: 'ui:page-banner',
+    demo: <PageBannerDemo />,
   },
 ];
 
