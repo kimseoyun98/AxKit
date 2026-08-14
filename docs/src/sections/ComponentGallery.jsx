@@ -2322,12 +2322,6 @@ const COMPONENTS = [
     slug: 'ui:result-section',
     demo: <ResultSectionDemo />,
   },
-
-  {
-    name: 'Scroll Fog',
-    slug: 'ui:scroll-fog',
-    demo: <ScrollFogDemo />,
-  },
 ];
 
 export function ComponentGallery() {
