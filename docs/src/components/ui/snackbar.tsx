@@ -21,7 +21,7 @@ export const SnackbarProvider = (props: SnackbarProviderProps) => {
   return (
     <SeedSnackbar.RootProvider {...otherProps}>
       {children}
-      <SeedSnackbar.Region style={{ position: "absolute", bottom: 16, left: 0, right: 0, zIndex: 100, display: "flex", flexDirection: "column", alignItems: "center", pointerEvents: "none" }}>
+      <SeedSnackbar.Region>
         <SeedSnackbar.Renderer />
       </SeedSnackbar.Region>
     </SeedSnackbar.RootProvider>
@@ -54,7 +54,6 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
       <SeedSnackbar.Root ref={ref} variant={variant} {...otherProps}>
         {variant !== "default" && (
           <SeedSnackbar.PrefixIcon
-            variant={variant}
             svg={
               variant === "positive" ? (
                 <IconCheckmarkCircleFill />
@@ -77,42 +76,6 @@ export const Snackbar = React.forwardRef<HTMLDivElement, SnackbarProps>(
   },
 );
 Snackbar.displayName = "Snackbar";
-
-export interface StaticSnackbarProps {
-  variant?: "default" | "positive" | "critical";
-  message: string;
-  actionLabel?: string;
-  onAction?: () => void;
-}
-
-export const StaticSnackbar = ({
-  variant = "default",
-  message,
-  actionLabel,
-  onAction,
-}: StaticSnackbarProps) => {
-  return (
-    <div className="seed-snackbar__root" data-open="" data-variant={variant}>
-      {variant !== "default" && (
-        <div className={`seed-snackbar__prefixIcon seed-snackbar__prefixIcon--variant_${variant}`}>
-          {variant === "positive" ? (
-            <IconCheckmarkCircleFill />
-          ) : variant === "critical" ? (
-            <IconExclamationmarkCircleFill />
-          ) : null}
-        </div>
-      )}
-      <div className="seed-snackbar__content">
-        <span className="seed-snackbar__message">{message}</span>
-        {actionLabel && (
-          <button type="button" className="seed-snackbar__actionButton" onClick={onAction}>
-            {actionLabel}
-          </button>
-        )}
-      </div>
-    </div>
-  );
-};
 
 // TODO: re-export is ugly; should we namespace CreateSnackbarOptions into Snackbar?
 export interface CreateSnackbarOptions extends SeedCreateSnackbarOptions {}
