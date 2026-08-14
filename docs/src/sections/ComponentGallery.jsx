@@ -55,7 +55,8 @@ import { PageBanner, PageBannerButton, ActionablePageBanner, DismissiblePageBann
 import { QuantityPicker } from '../components/ui/quantity-picker';
 import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
 import { ReactionButton } from '../components/ui/reaction-button';
-import { Count } from '@seed-design/react';
+import { ResultSection } from '../components/ui/result-section';
+import { Count, Box } from '@seed-design/react';
 import IconFaceSmileCircleFill from "@karrotmarket/react-monochrome-icon/IconFaceSmileCircleFill";
 import IconHeartFill from "@karrotmarket/react-monochrome-icon/IconHeartFill";
 import IconExclamationmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconExclamationmarkCircleFill";
@@ -1945,6 +1946,112 @@ function ReactionButtonDemo() {
   );
 }
 
+function ResultSectionDemo() {
+  const [size, setSize] = useState("large");
+  const [assetType, setAssetType] = useState("icon");
+  const [showPrimary, setShowPrimary] = useState(true);
+  const [showSecondary, setShowSecondary] = useState(true);
+
+  const getAssetNode = () => {
+    if (assetType === "icon") {
+      return (
+        <Box pb="x4">
+          <IconCheckmarkCircleFill style={{ width: 48, height: 48, color: 'var(--seed-color-fg-neutral)' }} />
+        </Box>
+      );
+    }
+    if (assetType === "lock") {
+      return (
+        <Box pb="x4">
+          <IconLockFill style={{ width: 48, height: 48, color: 'var(--seed-color-fg-neutral-subtle)' }} />
+        </Box>
+      );
+    }
+    return null;
+  };
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 440, margin: '0 auto', alignItems: 'center' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Result Section Template · Asset · Title · Description · Actions
+      </div>
+
+      {/* Interactive Controls */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
+        {/* Size Selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Size:</span>
+          {["large", "medium"].map((s) => (
+            <ActionButton
+              key={s}
+              size="small"
+              variant={size === s ? "brandSolid" : "neutralOutline"}
+              onClick={() => setSize(s)}
+            >
+              {s}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Asset Selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Asset:</span>
+          {[
+            { label: "완료 아이콘", value: "icon" },
+            { label: "잠금 아이콘", value: "lock" },
+            { label: "에셋 없음", value: "none" },
+          ].map((a) => (
+            <ActionButton
+              key={a.value}
+              size="small"
+              variant={assetType === a.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setAssetType(a.value)}
+            >
+              {a.label}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Button Toggles */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', alignItems: 'center', justifyContent: 'center' }}>
+          <ActionButton
+            size="small"
+            variant={showPrimary ? "brandSolid" : "neutralOutline"}
+            onClick={() => setShowPrimary(!showPrimary)}
+          >
+            {showPrimary ? "Primary 버튼 켜짐" : "Primary 제거"}
+          </ActionButton>
+          <ActionButton
+            size="small"
+            variant={showSecondary ? "brandSolid" : "neutralOutline"}
+            onClick={() => setShowSecondary(!showSecondary)}
+          >
+            {showSecondary ? "Secondary 버튼 켜짐" : "Secondary 제거"}
+          </ActionButton>
+        </div>
+      </div>
+
+      {/* Interactive ResultSection Canvas */}
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', minHeight: size === "large" ? 420 : 340, border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', overflow: 'hidden' }}>
+        <ResultSection
+          size={size}
+          asset={getAssetNode()}
+          title={assetType === "lock" ? "접근 권한이 없습니다" : "결제가 성공적으로 완료되었습니다"}
+          description={assetType === "lock" ? "해당 페이지는 인증된 사용자만 접근 가능합니다.\n로그인 후 다시 시도해 주세요." : "주문하신 내역은 마이페이지에서 확인하실 수 있습니다."}
+          primaryActionProps={showPrimary ? {
+            children: assetType === "lock" ? "로그인하기" : "주문 내역 보기",
+            onClick: () => alert("Primary Action 클릭됨"),
+          } : undefined}
+          secondaryActionProps={showSecondary ? {
+            children: "메인 화면으로 이동",
+            onClick: () => alert("Secondary Action 클릭됨"),
+          } : undefined}
+        />
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -2112,6 +2219,12 @@ const COMPONENTS = [
     name: 'Reaction Button',
     slug: 'ui:reaction-button',
     demo: <ReactionButtonDemo />,
+  },
+
+  {
+    name: 'Result Section',
+    slug: 'ui:result-section',
+    demo: <ResultSectionDemo />,
   },
 ];
 
