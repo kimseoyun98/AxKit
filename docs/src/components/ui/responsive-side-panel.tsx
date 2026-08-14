@@ -7,6 +7,7 @@
 import IconXmarkLine from "@karrotmarket/react-monochrome-icon/IconXmarkLine";
 import {
   Icon,
+  Portal,
   ResponsiveSidePanel as SeedResponsiveSidePanel,
   useResponsiveSidePanelContext,
   VisuallyHidden,
@@ -74,67 +75,71 @@ export const ResponsiveSidePanelContent = forwardRef<
       const shouldRenderHeader = title || description;
 
       return (
-        <SeedResponsiveSidePanel.Positioner
-          style={{ "--layer-index": layerIndex } as React.CSSProperties}
-        >
-          <SeedResponsiveSidePanel.Backdrop />
-          <SeedResponsiveSidePanel.Content ref={ref} {...otherProps}>
-            {showHandle && <SeedResponsiveSidePanel.Handle />}
-            {shouldRenderHeader && (
-              <SeedResponsiveSidePanel.Header>
-                {title ? (
-                  <SeedResponsiveSidePanel.Title>{title}</SeedResponsiveSidePanel.Title>
-                ) : (
-                  <VisuallyHidden asChild>
-                    <SeedResponsiveSidePanel.Title>
-                      {otherProps["aria-label"] || ""}
-                    </SeedResponsiveSidePanel.Title>
-                  </VisuallyHidden>
-                )}
-                {description && (
-                  <SeedResponsiveSidePanel.Description>
-                    {description}
-                  </SeedResponsiveSidePanel.Description>
-                )}
-              </SeedResponsiveSidePanel.Header>
-            )}
-            {children}
-            {showCloseButton && (
-              <SeedResponsiveSidePanel.CloseButton aria-label="닫기">
-                <Icon svg={<IconXmarkLine />} />
-              </SeedResponsiveSidePanel.CloseButton>
-            )}
-          </SeedResponsiveSidePanel.Content>
-        </SeedResponsiveSidePanel.Positioner>
+        <Portal>
+          <SeedResponsiveSidePanel.Positioner
+            style={{ "--layer-index": layerIndex } as React.CSSProperties}
+          >
+            <SeedResponsiveSidePanel.Backdrop />
+            <SeedResponsiveSidePanel.Content ref={ref} {...otherProps}>
+              {showHandle && <SeedResponsiveSidePanel.Handle />}
+              {shouldRenderHeader && (
+                <SeedResponsiveSidePanel.Header>
+                  {title ? (
+                    <SeedResponsiveSidePanel.Title>{title}</SeedResponsiveSidePanel.Title>
+                  ) : (
+                    <VisuallyHidden asChild>
+                      <SeedResponsiveSidePanel.Title>
+                        {otherProps["aria-label"] || ""}
+                      </SeedResponsiveSidePanel.Title>
+                    </VisuallyHidden>
+                  )}
+                  {description && (
+                    <SeedResponsiveSidePanel.Description>
+                      {description}
+                    </SeedResponsiveSidePanel.Description>
+                  )}
+                </SeedResponsiveSidePanel.Header>
+              )}
+              {children}
+              {showCloseButton && (
+                <SeedResponsiveSidePanel.CloseButton aria-label="닫기">
+                  <Icon svg={<IconXmarkLine />} />
+                </SeedResponsiveSidePanel.CloseButton>
+              )}
+            </SeedResponsiveSidePanel.Content>
+          </SeedResponsiveSidePanel.Positioner>
+        </Portal>
       );
     }
 
     const shouldRenderHeader = title || description || showCloseButton;
 
     return (
-      <SeedResponsiveSidePanel.Positioner
-        style={{ "--layer-index": layerIndex } as React.CSSProperties}
-      >
-        <SeedResponsiveSidePanel.Backdrop />
-        <SeedResponsiveSidePanel.Content ref={ref} {...otherProps}>
-          {shouldRenderHeader && (
-            <SeedResponsiveSidePanel.Header>
-              {title && <SeedResponsiveSidePanel.Title>{title}</SeedResponsiveSidePanel.Title>}
-              {description && (
-                <SeedResponsiveSidePanel.Description>
-                  {description}
-                </SeedResponsiveSidePanel.Description>
-              )}
-              {showCloseButton && (
-                <SeedResponsiveSidePanel.CloseButton aria-label="닫기">
-                  <Icon svg={<IconXmarkLine />} />
-                </SeedResponsiveSidePanel.CloseButton>
-              )}
-            </SeedResponsiveSidePanel.Header>
-          )}
-          {children}
-        </SeedResponsiveSidePanel.Content>
-      </SeedResponsiveSidePanel.Positioner>
+      <Portal>
+        <SeedResponsiveSidePanel.Positioner
+          style={{ "--layer-index": layerIndex } as React.CSSProperties}
+        >
+          <SeedResponsiveSidePanel.Backdrop />
+          <SeedResponsiveSidePanel.Content ref={ref} {...otherProps}>
+            {shouldRenderHeader && (
+              <SeedResponsiveSidePanel.Header>
+                {title && <SeedResponsiveSidePanel.Title>{title}</SeedResponsiveSidePanel.Title>}
+                {description && (
+                  <SeedResponsiveSidePanel.Description>
+                    {description}
+                  </SeedResponsiveSidePanel.Description>
+                )}
+                {showCloseButton && (
+                  <SeedResponsiveSidePanel.CloseButton aria-label="닫기">
+                    <Icon svg={<IconXmarkLine />} />
+                  </SeedResponsiveSidePanel.CloseButton>
+                )}
+              </SeedResponsiveSidePanel.Header>
+            )}
+            {children}
+          </SeedResponsiveSidePanel.Content>
+        </SeedResponsiveSidePanel.Positioner>
+      </Portal>
     );
   },
 );

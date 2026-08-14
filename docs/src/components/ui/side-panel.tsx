@@ -5,7 +5,7 @@
  **/
 
 import IconXmarkLine from "@karrotmarket/react-monochrome-icon/IconXmarkLine";
-import { Icon, SidePanel as SeedSidePanel } from "@seed-design/react";
+import { Icon, Portal, SidePanel as SeedSidePanel } from "@seed-design/react";
 import type * as React from "react";
 import { forwardRef } from "react";
 
@@ -49,23 +49,25 @@ export const SidePanelContent = forwardRef<HTMLDivElement, SidePanelContentProps
     const shouldRenderHeader = title || description || showCloseButton;
 
     return (
-      <SeedSidePanel.Positioner style={{ "--layer-index": layerIndex } as React.CSSProperties}>
-        <SeedSidePanel.Backdrop />
-        <SeedSidePanel.Content ref={ref} {...otherProps}>
-          {shouldRenderHeader && (
-            <SeedSidePanel.Header>
-              {title && <SeedSidePanel.Title>{title}</SeedSidePanel.Title>}
-              {description && <SeedSidePanel.Description>{description}</SeedSidePanel.Description>}
-              {showCloseButton && (
-                <SeedSidePanel.CloseButton aria-label="닫기">
-                  <Icon svg={<IconXmarkLine />} />
-                </SeedSidePanel.CloseButton>
-              )}
-            </SeedSidePanel.Header>
-          )}
-          {children}
-        </SeedSidePanel.Content>
-      </SeedSidePanel.Positioner>
+      <Portal>
+        <SeedSidePanel.Positioner style={{ "--layer-index": layerIndex } as React.CSSProperties}>
+          <SeedSidePanel.Backdrop />
+          <SeedSidePanel.Content ref={ref} {...otherProps}>
+            {shouldRenderHeader && (
+              <SeedSidePanel.Header>
+                {title && <SeedSidePanel.Title>{title}</SeedSidePanel.Title>}
+                {description && <SeedSidePanel.Description>{description}</SeedSidePanel.Description>}
+                {showCloseButton && (
+                  <SeedSidePanel.CloseButton aria-label="닫기">
+                    <Icon svg={<IconXmarkLine />} />
+                  </SeedSidePanel.CloseButton>
+                )}
+              </SeedSidePanel.Header>
+            )}
+            {children}
+          </SeedSidePanel.Content>
+        </SeedSidePanel.Positioner>
+      </Portal>
     );
   },
 );
