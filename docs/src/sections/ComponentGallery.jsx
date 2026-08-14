@@ -2502,6 +2502,8 @@ function SelectDemo() {
 function SidePanelDemo() {
   const [size, setSize] = useState("small"); // "small" | "medium" | "large"
   const [showDescription, setShowDescription] = useState(true);
+  const [name, setName] = useState("김당근");
+  const [email, setEmail] = useState("karrot@example.com");
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 520, margin: "0 auto", alignItems: "center" }}>
@@ -2551,31 +2553,65 @@ function SidePanelDemo() {
             </ActionButton>
           </SidePanelTrigger>
           <SidePanelContent
-            title="타이틀을 작성해주세요"
-            description={showDescription ? "디스크립션을 작성해주세요." : undefined}
+            title="프로필 정보 수정"
+            description={showDescription ? "계정 프로필 정보 및 기본 설정을 변경합니다." : undefined}
           >
             <SidePanelBody px="x6" py="x4">
-              <VStack gap="x4">
-                <Box p="x4" borderRadius="r3" bgColor="bg.layerBasement" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
-                  <Text fontWeight="bold" textStyle="t4" mb="x2">
-                    패널 상세 영역 ({size.toUpperCase()})
-                  </Text>
-                  <Text color="fg.neutralSubtle" textStyle="t2">
-                    가로 너비가 {size === "small" ? "480px" : size === "medium" ? "720px" : "960px"} 로 적용되어 우측에서 슬라이드로 오픈됩니다.
-                  </Text>
-                </Box>
+              <VStack gap="x5">
+                <VStack gap="x2">
+                  <Text fontWeight="bold" textStyle="t3">이름</Text>
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    style={{
+                      width: "100%",
+                      padding: "10px 14px",
+                      borderRadius: "var(--seed-dimension-x2)",
+                      border: "1px solid var(--seed-color-stroke-neutral-weak)",
+                      backgroundColor: "var(--seed-color-bg-layer-default)",
+                      color: "var(--seed-color-fg-neutral)",
+                      fontSize: "var(--seed-font-size-t3)",
+                      boxSizing: "border-box",
+                    }}
+                  />
+                </VStack>
 
-                <VStack gap="x3">
-                  <Text fontWeight="bold" textStyle="t3">설정 항목 1</Text>
-                  <Box p="x3" borderRadius="r2" bgColor="bg.layerDefault" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
-                    <Text color="fg.neutral" textStyle="t2">기본 옵션 선택 및 상세 입력 폼 영역입니다.</Text>
-                  </Box>
+                <VStack gap="x2">
+                  <Text fontWeight="bold" textStyle="t3">이메일 주소</Text>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    style={{
+                      width: "100%",
+                      padding: "10px 14px",
+                      borderRadius: "var(--seed-dimension-x2)",
+                      border: "1px solid var(--seed-color-stroke-neutral-weak)",
+                      backgroundColor: "var(--seed-color-bg-layer-default)",
+                      color: "var(--seed-color-fg-neutral)",
+                      fontSize: "var(--seed-font-size-t3)",
+                      boxSizing: "border-box",
+                    }}
+                  />
+                </VStack>
+
+                <VStack gap="x2">
+                  <Text fontWeight="bold" textStyle="t3">알림 설정</Text>
+                  <HStack gap="x3" align="center">
+                    <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: "14px", cursor: "pointer" }}>
+                      <input type="checkbox" defaultChecked /> 서비스 소식 수신
+                    </label>
+                    <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: "14px", cursor: "pointer" }}>
+                      <input type="checkbox" defaultChecked /> 마케팅 정보 수신
+                    </label>
+                  </HStack>
                 </VStack>
               </VStack>
             </SidePanelBody>
             <SidePanelFooter style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x2)" }}>
               <ActionButton variant="neutralSolid" size="medium" style={{ width: "100%" }}>
-                확인
+                저장하기
               </ActionButton>
               <ActionButton variant="neutralWeak" size="medium" style={{ width: "100%" }}>
                 취소
