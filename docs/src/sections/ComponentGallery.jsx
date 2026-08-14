@@ -2742,7 +2742,7 @@ function SliderDemo() {
   );
 }
 
-function SnackbarDemo() {
+function SnackbarDemoInner() {
   const [variant, setVariant] = useState("default");
   const [showAction, setShowAction] = useState(true);
 
@@ -2804,6 +2804,14 @@ function SnackbarDemo() {
         </div>
       </div>
     </div>
+  );
+}
+
+function SnackbarDemo() {
+  return (
+    <SnackbarProvider>
+      <SnackbarDemoInner />
+    </SnackbarProvider>
   );
 }
 
