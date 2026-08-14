@@ -82,6 +82,7 @@ import {
 import SideNavigation1 from '../components/ui/blocks/side-navigation-01';
 import { TextField, TextFieldInput } from '../components/ui/text-field';
 import { Slider } from '../components/ui/slider';
+import { Snackbar, SnackbarProvider, useSnackbarAdapter } from '../components/ui/snackbar';
 import {
   ResponsiveSidePanelRoot,
   ResponsiveSidePanelTrigger,
@@ -2740,6 +2741,74 @@ function SliderDemo() {
   );
 }
 
+function SnackbarDemoInner() {
+  const adapter = useSnackbarAdapter();
+
+  const showSnackbar = (variant, message, actionLabel) => {
+    adapter.create({
+      onClose: () => {},
+      render: () => (
+        <Snackbar
+          variant={variant}
+          message={message}
+          actionLabel={actionLabel}
+          onAction={() => alert(`${actionLabel} 클릭됨`)}
+        />
+      ),
+    });
+  };
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 600, margin: "0 auto", alignItems: "center" }}>
+      <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
+        Snackbar · Temporary Floating Toast Notifications · Default, Positive, Critical Variants
+      </div>
+
+      {/* Trigger Buttons */}
+      <div style={{ display: "flex", gap: "var(--seed-dimension-x3)", flexWrap: "wrap", justifyContent: "center" }}>
+        <ActionButton
+          variant="neutralSolid"
+          onClick={() => showSnackbar("default", "설정이 성공적으로 저장되었습니다.", "확인")}
+        >
+          기본 스낵바 (Default)
+        </ActionButton>
+
+        <ActionButton
+          variant="brandSolid"
+          onClick={() => showSnackbar("positive", "프로필 정보가 업데이트되었습니다.", "보기")}
+        >
+          긍정 스낵바 (Positive)
+        </ActionButton>
+
+        <ActionButton
+          variant="criticalSolid"
+          onClick={() => showSnackbar("critical", "네트워크 연결이 끊어졌습니다.", "재시도")}
+        >
+          경고 스낵바 (Critical)
+        </ActionButton>
+      </div>
+
+      {/* Static Visual Preview */}
+      <VStack gap="x3" width="full" align="center">
+        <Text fontWeight="bold" textStyle="t3">미리보기 (Variant Preview)</Text>
+        <VStack gap="x3" width="full" maxWidth="480px">
+          <Snackbar variant="default" message="기본 안내 메시지입니다." actionLabel="확인" />
+          <Snackbar variant="positive" message="성공적으로 처리되었습니다." actionLabel="보기" />
+          <Snackbar variant="critical" message="오류가 발생하였습니다. 다시 시도해 주세요." actionLabel="재시도" />
+        </VStack>
+      </VStack>
+    </div>
+  );
+}
+
+function SnackbarDemo() {
+  return (
+    <SnackbarProvider>
+      <SnackbarDemoInner />
+    </SnackbarProvider>
+  );
+}
+
 function SideNavigationDemo() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 760, margin: "0 auto", alignItems: "center" }}>
@@ -2969,6 +3038,12 @@ const COMPONENTS = [
     name: 'Slider',
     slug: 'ui:slider',
     demo: <SliderDemo />,
+  },
+
+  {
+    name: 'Snackbar',
+    slug: 'ui:snackbar',
+    demo: <SnackbarDemo />,
   },
 ];
 
