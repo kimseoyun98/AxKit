@@ -83,6 +83,7 @@ import SideNavigation1 from '../components/ui/blocks/side-navigation-01';
 import { TextField, TextFieldInput } from '../components/ui/text-field';
 import { Slider } from '../components/ui/slider';
 import { Snackbar, SnackbarProvider, useSnackbarAdapter } from '../components/ui/snackbar';
+import { Switch } from '../components/ui/switch';
 import {
   ResponsiveSidePanelRoot,
   ResponsiveSidePanelTrigger,
@@ -2741,66 +2742,157 @@ function SliderDemo() {
   );
 }
 
-function SnackbarDemoInner() {
-  const adapter = useSnackbarAdapter();
+function SnackbarDemo() {
+  const [variant, setVariant] = useState("default");
+  const [showAction, setShowAction] = useState(true);
 
-  const showSnackbar = (variant, message, actionLabel) => {
-    adapter.create({
-      onClose: () => {},
-      render: () => (
-        <Snackbar
-          variant={variant}
-          message={message}
-          actionLabel={actionLabel}
-          onAction={() => alert(`${actionLabel} 클릭됨`)}
-        />
-      ),
-    });
+  const messages = {
+    default: "설정이 성공적으로 저장되었습니다.",
+    positive: "프로필 정보가 안전하게 업데이트되었습니다.",
+    critical: "네트워크 연결이 끊어졌습니다. 다시 시도해 주세요.",
+  };
+
+  const actionLabels = {
+    default: "확인",
+    positive: "보기",
+    critical: "재시도",
   };
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 600, margin: "0 auto", alignItems: "center" }}>
       <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
-        Snackbar · Temporary Floating Toast Notifications · Default, Positive, Critical Variants
+        Snackbar · Inline Demo Canvas · Default, Positive, Critical Variants
       </div>
 
-      {/* Trigger Buttons */}
-      <div style={{ display: "flex", gap: "var(--seed-dimension-x3)", flexWrap: "wrap", justifyContent: "center" }}>
-        <ActionButton
-          variant="neutralSolid"
-          onClick={() => showSnackbar("default", "설정이 성공적으로 저장되었습니다.", "확인")}
-        >
-          기본 스낵바 (Default)
-        </ActionButton>
+      {/* Control Buttons */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Variant:</span>
+          {["default", "positive", "critical"].map((v) => (
+            <ActionButton
+              key={v}
+              size="small"
+              variant={variant === v ? "brandSolid" : "neutralOutline"}
+              onClick={() => setVariant(v)}
+            >
+              {v}
+            </ActionButton>
+          ))}
+        </div>
 
-        <ActionButton
-          variant="brandSolid"
-          onClick={() => showSnackbar("positive", "프로필 정보가 업데이트되었습니다.", "보기")}
-        >
-          긍정 스낵바 (Positive)
-        </ActionButton>
-
-        <ActionButton
-          variant="criticalSolid"
-          onClick={() => showSnackbar("critical", "네트워크 연결이 끊어졌습니다.", "재시도")}
-        >
-          경고 스낵바 (Critical)
-        </ActionButton>
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x2)", alignItems: "center" }}>
+          <ActionButton
+            size="small"
+            variant={showAction ? "brandSolid" : "neutralOutline"}
+            onClick={() => setShowAction(!showAction)}
+          >
+            {showAction ? "액션 버튼 표시" : "액션 버튼 숨김"}
+          </ActionButton>
+        </div>
       </div>
 
-      {/* Information Tip */}
-      <Text fontSize="t2" color="fg.neutralMuted" style={{ textAlign: "center" }}>
-        👆 위 버튼을 누르면 하단에 단일 스낵바 알림이 3초간 플로팅 표출됩니다.
-      </Text>
+      {/* Inline Demo Canvas Frame */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", minHeight: 140, padding: "var(--seed-dimension-x5)", backgroundColor: "var(--seed-color-bg-layer-basement)", borderRadius: "var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
+        <div style={{ width: "100%", maxWidth: "440px" }}>
+          <Snackbar
+            key={variant}
+            variant={variant}
+            message={messages[variant]}
+            actionLabel={showAction ? actionLabels[variant] : undefined}
+            onAction={() => alert(`${actionLabels[variant]} 액션이 클릭되었습니다.`)}
+          />
+        </div>
+      </div>
     </div>
   );
 }
 
-function SnackbarDemo() {
+function SwitchDemo() {
+  const [size, setSize] = useState("32"); // "32" | "24" | "16"
+  const [tone, setTone] = useState("brand"); // "brand" | "neutral"
+  const [checked, setChecked] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(false);
+
   return (
-    <SnackbarProvider>
-      <SnackbarDemoInner />
-    </SnackbarProvider>
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 460, margin: "0 auto", alignItems: "center" }}>
+      <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
+        Switch · Sizes (32, 24, 16) · Tones (Brand, Neutral) · Disabled · Label
+      </div>
+
+      {/* Control Buttons */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
+        {/* Size Selection */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Size:</span>
+          {["32", "24", "16"].map((s) => (
+            <ActionButton
+              key={s}
+              size="small"
+              variant={size === s ? "brandSolid" : "neutralOutline"}
+              onClick={() => setSize(s)}
+            >
+              {s}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Tone Selection */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Tone:</span>
+          {["brand", "neutral"].map((t) => (
+            <ActionButton
+              key={t}
+              size="small"
+              variant={tone === t ? "brandSolid" : "neutralOutline"}
+              onClick={() => setTone(t)}
+            >
+              {t}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Toggles */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x2)", alignItems: "center", justifyContent: "center" }}>
+          <ActionButton
+            size="small"
+            variant={checked ? "brandSolid" : "neutralOutline"}
+            onClick={() => setChecked(!checked)}
+          >
+            {checked ? "ON (켜짐)" : "OFF (꺼짐)"}
+          </ActionButton>
+          <ActionButton
+            size="small"
+            variant={isDisabled ? "brandSolid" : "neutralOutline"}
+            onClick={() => setIsDisabled(!isDisabled)}
+          >
+            {isDisabled ? "비활성화 (Disabled)" : "활성화"}
+          </ActionButton>
+        </div>
+      </div>
+
+      {/* Interactive Switch Showcase */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x4)", width: "100%", alignItems: "center" }}>
+        <Switch
+          size={size}
+          tone={tone}
+          checked={checked}
+          onCheckedChange={setChecked}
+          disabled={isDisabled}
+          label="푸시 알림 및 이벤트 소식 받기"
+        />
+
+        <Divider style={{ width: "100%" }} />
+
+        <VStack gap="x3" width="full">
+          <Text fontWeight="bold" textStyle="t3">크기별 (Sizes) 비교</Text>
+          <VStack gap="x3" align="flex-start">
+            <Switch size="32" tone={tone} defaultChecked label="32 size (Default)" />
+            <Switch size="24" tone={tone} defaultChecked label="24 size" />
+            <Switch size="16" tone={tone} defaultChecked label="16 size" />
+          </VStack>
+        </VStack>
+      </div>
+    </div>
   );
 }
 
@@ -3039,6 +3131,12 @@ const COMPONENTS = [
     name: 'Snackbar',
     slug: 'ui:snackbar',
     demo: <SnackbarDemo />,
+  },
+
+  {
+    name: 'Switch',
+    slug: 'ui:switch',
+    demo: <SwitchDemo />,
   },
 ];
 
