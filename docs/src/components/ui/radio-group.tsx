@@ -141,24 +141,47 @@ export const RadioGroupItem = React.forwardRef<HTMLInputElement, RadioGroupItemP
     const radioRecipe = radio({ size, weight });
     const radiomarkRecipe = radiomark({ size, tone });
 
+    const isLarge = size === "large";
+
     return (
       <SeedRadioGroup.Item
         ref={rootRef}
+        size={size}
         className={[radioRecipe.root, className].filter(Boolean).join(" ")}
+        style={{
+          minHeight: isLarge ? 48 : 36,
+          padding: isLarge ? "8px 0" : "4px 0",
+        }}
         {...otherProps}
       >
-        <SeedRadioGroup.ItemControl className={radiomarkRecipe.root}>
+        <SeedRadioGroup.ItemControl
+          size={size}
+          className={radiomarkRecipe.root}
+          style={{
+            width: isLarge ? 24 : 18,
+            height: isLarge ? 24 : 18,
+          }}
+        >
           <SeedRadioGroup.ItemIndicator
+            size={size}
             className={radiomarkRecipe.icon}
             checked={
-              <svg aria-hidden="true" viewBox="0 0 24 24">
+              <svg aria-hidden="true" viewBox="0 0 24 24" style={{ width: isLarge ? 12 : 9, height: isLarge ? 12 : 9 }}>
                 <circle cx="12" cy="12" r="12" fill="currentColor" />
               </svg>
             }
           />
         </SeedRadioGroup.ItemControl>
         {label && (
-          <SeedRadioGroup.ItemLabel className={radioRecipe.label}>
+          <SeedRadioGroup.ItemLabel
+            size={size}
+            weight={weight}
+            className={radioRecipe.label}
+            style={{
+              fontSize: isLarge ? 17 : 14,
+              fontWeight: weight === "bold" ? 700 : 400,
+            }}
+          >
             {label}
           </SeedRadioGroup.ItemLabel>
         )}
