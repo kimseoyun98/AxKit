@@ -62,6 +62,7 @@ export const QuantityPicker = React.forwardRef<
 >(
   (
     {
+      size = "medium",
       decrementAriaLabel = "수량 줄이기",
       incrementAriaLabel = "수량 늘리기",
       removeAriaLabel = "상품 삭제",
@@ -75,7 +76,7 @@ export const QuantityPicker = React.forwardRef<
     ref,
   ) => {
     return (
-      <SeedQuantityPicker.Root ref={ref} removeAriaLabel={removeAriaLabel} {...rootProps}>
+      <SeedQuantityPicker.Root ref={ref} size={size} removeAriaLabel={removeAriaLabel} {...rootProps}>
         <SeedQuantityPicker.DecrementButton
           aria-label={decrementAriaLabel}
           icon={decrementIcon}
