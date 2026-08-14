@@ -95,7 +95,9 @@ export default function SideNavigation1() {
                     { label: "연동", ...navItemProps("연동") },
                   ],
                 },
-                { label: "결제", prefixIcon: <IconReceiptFill />, ...navItemProps("결제") },
+                { label: "결제 및 정산", prefixIcon: <IconReceiptFill />, ...navItemProps("결제 및 정산") },
+                { label: "리포트 & 분석", prefixIcon: <IconBarchartBoardFill />, ...navItemProps("리포트 & 분석") },
+                { label: "보안 & 로그", prefixIcon: <IconWrenchFill />, ...navItemProps("보안 & 로그") },
               ]}
             />
           </SideNavigationContent>
