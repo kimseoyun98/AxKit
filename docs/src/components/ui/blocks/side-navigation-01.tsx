@@ -116,9 +116,9 @@ export default function SideNavigation1() {
 
         <SideNavigationInset>
           <Layout.Content>
-            <VStack px="spacingX.globalGutter" py="x4">
-              <Text as="p" textStyle="articleBody">
-                현재 선택: {currentItem}
+            <VStack px="spacingX.globalGutter" py="x4" gap="x3">
+              <Text as="h2" textStyle="t5" fontWeight="bold">
+                {currentItem}
               </Text>
             </VStack>
           </Layout.Content>

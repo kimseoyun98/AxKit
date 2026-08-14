@@ -1159,7 +1159,7 @@ function HelpBubbleDemo() {
           <HelpBubbleTrigger
             placement={placement}
             title="첫 거래 수수료 50% 할인"
-            description="매월 첫 번째 중고거래 시 결제 수수료가 자동으로 할인 적용됩니다."
+            description="매월 첫 번째 결제 진행 시 서비스 이용 수수료가 자동으로 할인 적용됩니다."
             showCloseButton={showClose}
           >
             <ActionButton variant="neutralSolid" size="medium">
@@ -2504,8 +2504,8 @@ function SelectDemo() {
 function SidePanelDemo() {
   const [size, setSize] = useState("small"); // "small" | "medium" | "large"
   const [showDescription, setShowDescription] = useState(true);
-  const [name, setName] = useState("김당근");
-  const [email, setEmail] = useState("karrot@example.com");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 680, margin: "0 auto", alignItems: "center", boxSizing: "border-box" }}>
