@@ -1146,32 +1146,6 @@ function DialogDemo() {
             </DialogFooter>
           </DialogContent>
         </DialogRoot>
-
-        {/* Responsive Dialog */}
-        <ResponsiveDialogRoot>
-          <ResponsiveDialogTrigger asChild>
-            <ActionButton variant="neutralSolid" size="medium">
-              반응형 Responsive Dialog
-            </ActionButton>
-          </ResponsiveDialogTrigger>
-          <ResponsiveDialogContent title="반응형 모달" description="데스크탑은 Dialog, 모바일은 Bottom Sheet">
-            <ResponsiveDialogBody>
-              <div style={{ padding: 'var(--seed-dimension-x3) 0', fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral)', lineHeight: 1.6 }}>
-                뷰포트 크기에 따라 데스크탑(768px 이상)에서는 다이얼로그 모달로, 모바일에서는 바텀시트로 자동 전환됩니다.
-              </div>
-            </ResponsiveDialogBody>
-            <ResponsiveDialogFooter>
-              <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'flex-end', width: '100%' }}>
-                <ResponsiveDialogAction variant="neutralOutline" size="medium">
-                  닫기
-                </ResponsiveDialogAction>
-                <ResponsiveDialogAction variant="brandSolid" size="medium">
-                  확인
-                </ResponsiveDialogAction>
-              </div>
-            </ResponsiveDialogFooter>
-          </ResponsiveDialogContent>
-        </ResponsiveDialogRoot>
       </div>
     </div>
   );
