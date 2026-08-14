@@ -84,6 +84,7 @@ import { TextField, TextFieldInput } from '../components/ui/text-field';
 import { Slider } from '../components/ui/slider';
 import { Snackbar, SnackbarProvider, useSnackbarAdapter, StaticSnackbar } from '../components/ui/snackbar';
 import { Switch } from '../components/ui/switch';
+import { TabsRoot, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
 import {
   ResponsiveSidePanelRoot,
   ResponsiveSidePanelTrigger,
@@ -2876,6 +2877,79 @@ function SwitchDemo() {
   );
 }
 
+function TabsDemo() {
+  const [layout, setLayout] = useState("fill"); // "fill" | "fit"
+  const [hasNotification, setHasNotification] = useState(true);
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 500, margin: "0 auto", alignItems: "center" }}>
+      <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
+        Tabs · Navigation Tabs · Fill / Fit Layout · Notification Badge
+      </div>
+
+      {/* Controls */}
+      <div style={{ display: "flex", gap: "var(--seed-dimension-x2)", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Layout:</span>
+          {["fill", "fit"].map((l) => (
+            <ActionButton
+              key={l}
+              size="small"
+              variant={layout === l ? "brandSolid" : "neutralOutline"}
+              onClick={() => setLayout(l)}
+            >
+              {l} ({l === "fill" ? "전체너비" : "콘텐츠맞춤"})
+            </ActionButton>
+          ))}
+        </div>
+
+        <ActionButton
+          size="small"
+          variant={hasNotification ? "brandSolid" : "neutralOutline"}
+          onClick={() => setHasNotification(!hasNotification)}
+        >
+          {hasNotification ? "알림 배지 켜짐" : "알림 배지 꺼짐"}
+        </ActionButton>
+      </div>
+
+      {/* Interactive Tabs Showcase */}
+      <div style={{ width: "100%" }}>
+        <TabsRoot defaultValue="1" triggerLayout={layout}>
+          <TabsList>
+            <TabsTrigger value="1" notification={hasNotification}>
+              전체소식
+            </TabsTrigger>
+            <TabsTrigger value="2">
+              인기상품
+            </TabsTrigger>
+            <TabsTrigger value="3">
+              우리동네
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="1">
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: 140, padding: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "0 0 var(--seed-dimension-x4) var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderTop: "none" }}>
+              <Text fontSize="t3" color="fg.neutral">📢 실시간 동네 소식과 마케팅 이벤트 목록입니다.</Text>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="2">
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: 140, padding: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "0 0 var(--seed-dimension-x4) var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderTop: "none" }}>
+              <Text fontSize="t3" color="fg.neutral">🔥 이번 주 당근 인기 거래 상품 랭킹 TOP 10</Text>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="3">
+            <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: 140, padding: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "0 0 var(--seed-dimension-x4) var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderTop: "none" }}>
+              <Text fontSize="t3" color="fg.neutral">🏡 이웃들과 나누는 정겨운 질문과 커뮤니티 답변</Text>
+            </div>
+          </TabsContent>
+        </TabsRoot>
+      </div>
+    </div>
+  );
+}
+
 function SideNavigationDemo() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 760, margin: "0 auto", alignItems: "center" }}>
@@ -3117,6 +3191,12 @@ const COMPONENTS = [
     name: 'Switch',
     slug: 'ui:switch',
     demo: <SwitchDemo />,
+  },
+
+  {
+    name: 'Tabs',
+    slug: 'ui:tabs',
+    demo: <TabsDemo />,
   },
 ];
 
