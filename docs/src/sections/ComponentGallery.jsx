@@ -57,6 +57,7 @@ import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
 import { ReactionButton } from '../components/ui/reaction-button';
 import { Count } from '@seed-design/react';
 import IconFaceSmileCircleFill from "@karrotmarket/react-monochrome-icon/IconFaceSmileCircleFill";
+import IconHeartFill from "@karrotmarket/react-monochrome-icon/IconHeartFill";
 import IconExclamationmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconExclamationmarkCircleFill";
 import IconQuestionmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconQuestionmarkCircleFill";
 import IconMapLocationpinFill from "@karrotmarket/react-monochrome-icon/IconMapLocationpinFill";
