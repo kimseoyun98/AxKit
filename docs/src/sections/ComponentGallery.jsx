@@ -1352,7 +1352,6 @@ function ListDemo() {
             detail="이벤트, 할인 쿠폰, 맞춤형 추천 상품 및 서비스 업데이트 소식을 실시간 알림으로 받아보실 수 있습니다."
             suffix={<Icon svg={<IconChevronRightLine />} />}
           />
-          <ListDivider />
 
           {/* 2. ListSwitchItem */}
           <ListSwitchItem
@@ -1363,7 +1362,6 @@ function ListDemo() {
             title="보안 및 로그인 푸시 알림"
             detail="새로운 기기에서 로그인 시 즉시 보안 승인 알림을 받습니다."
           />
-          <ListDivider />
 
           {/* 3. ListCheckItem */}
           <ListCheckItem
@@ -1373,7 +1371,6 @@ function ListDemo() {
             title="필수 서비스 이용약관 동의"
             detail="개인정보 처리방침 및 위치 기반 서비스 이용 동의"
           />
-          <ListDivider />
 
           {/* 4. ListRadioItem */}
           <RadioGroupPrimitive.Root value={selectedTheme} onValueChange={setSelectedTheme}>
@@ -1384,7 +1381,6 @@ function ListDemo() {
               detail="기기 설정에 따라 다크 모드와 라이트 모드를 자동 전환합니다."
             />
           </RadioGroupPrimitive.Root>
-          <ListDivider />
 
           {/* 5. ListButtonItem */}
           <ListButtonItem
