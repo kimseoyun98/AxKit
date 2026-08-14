@@ -249,16 +249,16 @@ tr:last-child td { border-bottom: none; }
 }
 
 /* Vertical & Horizontal Divider Layout Fix */
-:is(.seed-divider, [class*="divider"])[data-orientation="vertical"],
-:is(.seed-divider, [class*="divider"])[aria-orientation="vertical"] {
+.seed-divider[data-orientation="vertical"],
+.seed-divider[aria-orientation="vertical"] {
   width: 1px !important;
   min-height: 12px;
   background-color: var(--seed-color-stroke-neutral-weak, var(--seed-color-stroke-neutral-muted, #e2e8f0));
 }
 
-:is(.seed-divider, [class*="divider"])[data-orientation="horizontal"],
-:is(.seed-divider, [class*="divider"])[aria-orientation="horizontal"],
-:is(.seed-divider, [class*="divider"]):not([data-orientation="vertical"]):not([aria-orientation="vertical"]) {
+.seed-divider[data-orientation="horizontal"],
+.seed-divider[aria-orientation="horizontal"],
+.seed-divider:not([data-orientation="vertical"]):not([aria-orientation="vertical"]) {
   border-top: 1px solid var(--seed-color-stroke-neutral-weak, #e5e7eb) !important;
   border-bottom: none !important;
   height: 0 !important;
