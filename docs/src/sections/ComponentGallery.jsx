@@ -2054,7 +2054,6 @@ function ResultSectionDemo() {
 }
 
 function SegmentedControlDemo() {
-  const [size, setSize] = useState("medium");
   const [count, setCount] = useState(3);
   const [value, setValue] = useState("popular");
   const [hasNotification, setHasNotification] = useState(true);
@@ -2068,21 +2067,6 @@ function SegmentedControlDemo() {
 
       {/* Controls */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
-        {/* Size Selection */}
-        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Size:</span>
-          {["medium", "large"].map((s) => (
-            <ActionButton
-              key={s}
-              size="small"
-              variant={size === s ? "brandSolid" : "neutralOutline"}
-              onClick={() => setSize(s)}
-            >
-              {s}
-            </ActionButton>
-          ))}
-        </div>
-
         {/* Control Count Selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
           <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Items:</span>
@@ -2129,7 +2113,6 @@ function SegmentedControlDemo() {
         <div style={{ width: '100%' }}>
           {count === 2 && (
             <SegmentedControl
-              size={size}
               value={value}
               disabled={isDisabled}
               onValueChange={setValue}
@@ -2144,7 +2127,6 @@ function SegmentedControlDemo() {
 
           {count === 3 && (
             <SegmentedControl
-              size={size}
               value={value}
               disabled={isDisabled}
               onValueChange={setValue}
@@ -2160,7 +2142,6 @@ function SegmentedControlDemo() {
 
           {count === 4 && (
             <SegmentedControl
-              size={size}
               value={value}
               disabled={isDisabled}
               onValueChange={setValue}
