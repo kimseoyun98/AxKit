@@ -207,14 +207,16 @@ SideNavigationGroup.displayName = "SideNavigationGroup";
 export interface SideNavigationProviderProps extends SeedSideNavigation.ProviderProps {}
 export const SideNavigationProvider = SeedSideNavigation.Provider;
 
-export interface SideNavigationRootProps extends SeedSideNavigation.RootProps {}
+export interface SideNavigationRootProps extends SeedSideNavigation.ProviderProps {}
 export const SideNavigationRoot = React.forwardRef<HTMLElement, SideNavigationRootProps>(
   ({ children, ...props }, ref) => (
-    <SeedSideNavigation.Root ref={ref} {...props}>
-      <NavigationMenuProvider placement="right-start" size="responsive">
-        {children}
-      </NavigationMenuProvider>
-    </SeedSideNavigation.Root>
+    <SeedSideNavigation.Provider {...props}>
+      <SeedSideNavigation.Root ref={ref}>
+        <NavigationMenuProvider placement="right-start" size="responsive">
+          {children}
+        </NavigationMenuProvider>
+      </SeedSideNavigation.Root>
+    </SeedSideNavigation.Provider>
   ),
 );
 SideNavigationRoot.displayName = "SideNavigationRoot";
