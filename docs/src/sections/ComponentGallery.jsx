@@ -773,7 +773,7 @@ function ChipDemo() {
         </div>
         <ChipTabsRoot variant="neutralSolid" size="medium" value={tabVal} onValueChange={setTabVal}>
           <ChipTabsList>
-            <ChipTabsTrigger value="1" notification>추천소식</ChipTabsTrigger>
+            <ChipTabsTrigger value="1" notification>정산알림</ChipTabsTrigger>
             <ChipTabsTrigger value="2">인기글</ChipTabsTrigger>
             <ChipTabsTrigger value="3">최신질문</ChipTabsTrigger>
           </ChipTabsList>
@@ -2321,7 +2321,7 @@ function SelectBoxDemo() {
             <RadioSelectBoxItem
               value="option3"
               label="매장 직접 방문 수령"
-              description={showDescription ? "가까운 당근 공식 매장에서 무료 수령 가능" : undefined}
+              description={showDescription ? "지정 결제 수령처 및 가맹점 정산 확인 가능" : undefined}
               prefixIcon={showPrefix ? <IconFaceSmileCircleFill /> : undefined}
               suffix={controlType === "mark" ? <RadioSelectBoxRadiomark /> : undefined}
             />
@@ -2333,7 +2333,7 @@ function SelectBoxDemo() {
             description="관심 있는 혜택을 모두 선택해 보세요."
           >
             <CheckSelectBox
-              label="당근 페이 보너스 적립"
+              label="결제사 우대 정산 포인트 적립"
               description={showDescription ? "결제 시 마다 최대 3% 현금 적립 혜택" : undefined}
               checked={checkState.option1}
               onCheckedChange={() => toggleCheck("option1")}
@@ -2341,8 +2341,8 @@ function SelectBoxDemo() {
               suffix={controlType === "mark" ? <CheckSelectBoxCheckmark /> : undefined}
             />
             <CheckSelectBox
-              label="동네 소식 알림 서비스"
-              description={showDescription ? "실시간 인기 동네 소식 우선 알림 제공" : undefined}
+              label="결제사 일괄 정산 알림"
+              description={showDescription ? "실시간 영세·중소 가맹점 정산 내역 제공" : undefined}
               checked={checkState.option2}
               onCheckedChange={() => toggleCheck("option2")}
               prefixIcon={showPrefix ? <IconExclamationmarkCircleFill /> : undefined}
@@ -2917,31 +2917,31 @@ function TabsDemo() {
         <TabsRoot defaultValue="1" triggerLayout={layout}>
           <TabsList>
             <TabsTrigger value="1" notification={hasNotification}>
-              전체소식
+              전체정산
             </TabsTrigger>
             <TabsTrigger value="2">
-              인기상품
+              결제사내역
             </TabsTrigger>
             <TabsTrigger value="3">
-              우리동네
+              영세중소
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="1">
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: 140, padding: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "0 0 var(--seed-dimension-x4) var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderTop: "none" }}>
-              <Text fontSize="t3" color="fg.neutral">📢 실시간 동네 소식과 마케팅 이벤트 목록입니다.</Text>
+              <Text fontSize="t3" color="fg.neutral">📢 카드사/PG사 일별 정산 및 가맹점 수수료 내역입니다.</Text>
             </div>
           </TabsContent>
 
           <TabsContent value="2">
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: 140, padding: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "0 0 var(--seed-dimension-x4) var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderTop: "none" }}>
-              <Text fontSize="t3" color="fg.neutral">🔥 이번 주 당근 인기 거래 상품 랭킹 TOP 10</Text>
+              <Text fontSize="t3" color="fg.neutral">💳 결제수단별 매출 승인/취소 및 입금 예정 내역</Text>
             </div>
           </TabsContent>
 
           <TabsContent value="3">
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: 140, padding: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "0 0 var(--seed-dimension-x4) var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderTop: "none" }}>
-              <Text fontSize="t3" color="fg.neutral">🏡 이웃들과 나누는 정겨운 질문과 커뮤니티 답변</Text>
+              <Text fontSize="t3" color="fg.neutral">🏢 국세청 영세·중소 가맹점 우대수수료 환급 안내</Text>
             </div>
           </TabsContent>
         </TabsRoot>
