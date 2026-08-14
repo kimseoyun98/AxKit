@@ -79,6 +79,7 @@ import {
   SidePanelBody,
   SidePanelFooter,
 } from '../components/ui/side-panel';
+import { TextField, TextFieldInput } from '../components/ui/text-field';
 import {
   ResponsiveSidePanelRoot,
   ResponsiveSidePanelTrigger,
@@ -2558,53 +2559,19 @@ function SidePanelDemo() {
           >
             <SidePanelBody px="x6" py="x4">
               <VStack gap="x5">
-                <VStack gap="x2">
-                  <Text fontWeight="bold" textStyle="t3">이름</Text>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    style={{
-                      width: "100%",
-                      padding: "10px 14px",
-                      borderRadius: "var(--seed-dimension-x2)",
-                      border: "1px solid var(--seed-color-stroke-neutral-weak)",
-                      backgroundColor: "var(--seed-color-bg-layer-default)",
-                      color: "var(--seed-color-fg-neutral)",
-                      fontSize: "var(--seed-font-size-t3)",
-                      boxSizing: "border-box",
-                    }}
-                  />
-                </VStack>
+                <TextField label="이름">
+                  <TextFieldInput value={name} onChange={(e) => setName(e.target.value)} placeholder="이름을 입력하세요" />
+                </TextField>
 
-                <VStack gap="x2">
-                  <Text fontWeight="bold" textStyle="t3">이메일 주소</Text>
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    style={{
-                      width: "100%",
-                      padding: "10px 14px",
-                      borderRadius: "var(--seed-dimension-x2)",
-                      border: "1px solid var(--seed-color-stroke-neutral-weak)",
-                      backgroundColor: "var(--seed-color-bg-layer-default)",
-                      color: "var(--seed-color-fg-neutral)",
-                      fontSize: "var(--seed-font-size-t3)",
-                      boxSizing: "border-box",
-                    }}
-                  />
-                </VStack>
+                <TextField label="이메일 주소">
+                  <TextFieldInput type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="이메일을 입력하세요" />
+                </TextField>
 
                 <VStack gap="x2">
                   <Text fontWeight="bold" textStyle="t3">알림 설정</Text>
-                  <HStack gap="x3" align="center">
-                    <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: "14px", cursor: "pointer" }}>
-                      <input type="checkbox" defaultChecked /> 서비스 소식 수신
-                    </label>
-                    <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: "14px", cursor: "pointer" }}>
-                      <input type="checkbox" defaultChecked /> 마케팅 정보 수신
-                    </label>
+                  <HStack gap="x4">
+                    <Checkbox defaultChecked label="서비스 소식 수신" />
+                    <Checkbox defaultChecked label="마케팅 정보 수신" />
                   </HStack>
                 </VStack>
               </VStack>
