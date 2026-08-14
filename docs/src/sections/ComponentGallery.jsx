@@ -52,6 +52,7 @@ import { ListHeader } from '../components/ui/list-header';
 import { MenuRoot, MenuTrigger, MenuContent, MenuGroup, MenuGroupLabel, MenuItem } from '../components/ui/menu';
 import { NotificationBadge, NotificationBadgePositioner } from '../components/ui/notification-badge';
 import { PageBanner, PageBannerButton, ActionablePageBanner, DismissiblePageBanner } from '../components/ui/page-banner';
+import { QuantityPicker } from '../components/ui/quantity-picker';
 import IconExclamationmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconExclamationmarkCircleFill";
 import IconQuestionmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconQuestionmarkCircleFill";
 import IconMapLocationpinFill from "@karrotmarket/react-monochrome-icon/IconMapLocationpinFill";
@@ -1668,6 +1669,88 @@ function PageBannerDemo() {
   );
 }
 
+function QuantityPickerDemo() {
+  const [size, setSize] = useState("medium");
+  const [removable, setRemovable] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 440, margin: '0 auto', alignItems: 'center' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Sizes (Small / Medium / Large) · Removable Mode · Value Unit Text
+      </div>
+
+      {/* Control Option Badges */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
+        {/* Size Selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Size:</span>
+          {["small", "medium", "large"].map((s) => (
+            <ActionButton
+              key={s}
+              size="small"
+              variant={size === s ? "brandSolid" : "neutralOutline"}
+              onClick={() => setSize(s)}
+            >
+              {s}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Toggles */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', alignItems: 'center', justifyContent: 'center' }}>
+          <ActionButton
+            size="small"
+            variant={removable ? "brandSolid" : "neutralOutline"}
+            onClick={() => setRemovable(!removable)}
+          >
+            {removable ? "Removable ON (최소값 시 쓰레기통)" : "Removable OFF"}
+          </ActionButton>
+          <ActionButton
+            size="small"
+            variant={isDisabled ? "brandSolid" : "neutralOutline"}
+            onClick={() => setIsDisabled(!isDisabled)}
+          >
+            {isDisabled ? "비활성화 (Disabled)" : "활성화"}
+          </ActionButton>
+        </div>
+      </div>
+
+      {/* Interactive QuantityPicker Showcase */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', alignItems: 'center', width: '100%', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>수량 선택 (단위 포함)</span>
+          <QuantityPicker
+            size={size}
+            min={1}
+            max={10}
+            defaultValue={1}
+            disabled={isDisabled}
+            removable={removable}
+            getValueText={(val) => `${val}개`}
+            aria-label="상품 수량 선택"
+          />
+        </div>
+
+        {/* Fill Layout Variant Showcase */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', width: '100%' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)', textAlign: 'center' }}>Fill 너비 차지 레이아웃 (`layout="fill"`)</span>
+          <QuantityPicker
+            layout="fill"
+            size={size}
+            min={1}
+            max={99}
+            defaultValue={3}
+            disabled={isDisabled}
+            getValueText={(val) => `${val}개 수량`}
+            aria-label="Fill 수량 선택"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -1817,6 +1900,12 @@ const COMPONENTS = [
     name: 'Page Banner',
     slug: 'ui:page-banner',
     demo: <PageBannerDemo />,
+  },
+
+  {
+    name: 'Quantity Picker',
+    slug: 'ui:quantity-picker',
+    demo: <QuantityPickerDemo />,
   },
 ];
 
