@@ -2568,14 +2568,13 @@ function SidePanelDemo() {
         </div>
 
         {!isResponsive ? (
-          <SidePanelRoot>
+          <SidePanelRoot direction={placement}>
             <SidePanelTrigger asChild>
               <ActionButton variant="brandSolid" size="medium">
                 {placement === "right" ? "우측 사이드 패널 열기 ➔" : "⬅ 좌측 사이드 패널 열기"}
               </ActionButton>
             </SidePanelTrigger>
             <SidePanelContent
-              placement={placement}
               title="사이드 패널 설정"
               description={showDescription ? "패널 본문에서 필요한 옵션이나 상세 정보를 작성하세요." : undefined}
             >
