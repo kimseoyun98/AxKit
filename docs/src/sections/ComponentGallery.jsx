@@ -2746,8 +2746,7 @@ function SnackbarDemoInner() {
 
   const showSnackbar = (variant, message, actionLabel) => {
     adapter.create({
-      id: `snackbar-${variant}-${Date.now()}`,
-      timeout: 3000,
+      onClose: () => {},
       render: () => (
         <Snackbar
           variant={variant}
