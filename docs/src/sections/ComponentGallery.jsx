@@ -2687,19 +2687,23 @@ function SideNavigationDemo() {
           collapsed={collapsed}
           onCollapsedChange={setCollapsed}
           variant={variant}
-          style={{ height: "100%", borderRight: "1px solid var(--seed-color-stroke-neutral-weak)" }}
+          style={{ height: "100%" }}
         >
-          <SideNavigationHeader style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "var(--seed-dimension-x4)" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "var(--seed-dimension-x2)", overflow: "hidden" }}>
-              <div style={{ width: 28, height: 28, borderRadius: 6, backgroundColor: "var(--seed-color-bg-brand-solid)", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: "bold", fontSize: 14 }}>🥕</div>
-              {!collapsed && <span style={{ fontWeight: 700, fontSize: "var(--seed-font-size-t4)", whiteSpace: "nowrap" }}>당근 비즈니스</span>}
-            </div>
+          <SideNavigationHeader>
+            <HStack align="center" gap="x2" overflow="hidden" flex="1">
+              <Box width="28px" height="28px" borderRadius="r2" backgroundColor="bg.brandSolid" display="flex" align="center" justify="center" color="fg.neutralInverted" fontWeight="bold" fontSize="14px">
+                🥕
+              </Box>
+              <Text fontWeight="bold" textStyle="t4" whiteSpace="nowrap">
+                당근 비즈니스
+              </Text>
+            </HStack>
             <SideNavigationTrigger />
           </SideNavigationHeader>
 
           <SideNavigationContent>
             <SideNavigationGroup
-              label={!collapsed ? "메인 서비스" : undefined}
+              label="메인 서비스"
               items={[
                 {
                   label: "대시보드 홈",
@@ -2749,7 +2753,7 @@ function SideNavigationDemo() {
             />
 
             <SideNavigationGroup
-              label={!collapsed ? "고객 지원" : undefined}
+              label="고객 지원"
               items={[
                 {
                   label: "고객 센터 문의",
@@ -2767,8 +2771,10 @@ function SideNavigationDemo() {
             />
           </SideNavigationContent>
 
-          <SideNavigationFooter style={{ padding: "var(--seed-dimension-x3_5)", fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-subtle)", borderTop: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
-            {!collapsed ? "© 당근마켓 가이드북 & 지원센터" : "© 🥕"}
+          <SideNavigationFooter>
+            <Text color="fg.neutralSubtle" textStyle="t2">
+              © 당근 비즈니스 지원센터
+            </Text>
           </SideNavigationFooter>
         </SideNavigationRoot>
 
