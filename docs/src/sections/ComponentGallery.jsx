@@ -1112,7 +1112,7 @@ function FloatingActionButtonDemo() {
       {/* Screen Canvas Preview for Float Placement */}
       <div style={{ position: 'relative', width: '100%', height: 240, border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', overflow: 'hidden' }}>
         <div style={{ padding: 'var(--seed-dimension-x4)', fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
-          📱 화면 우측 하단에 고정 배치되는 메인 액션 버튼입니다.
+          화면 우측 하단에 고정 배치되는 메인 액션 버튼입니다.
         </div>
 
         {/* Float Positioned FAB */}
@@ -2929,19 +2929,19 @@ function TabsDemo() {
 
           <TabsContent value="1">
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: 140, padding: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "0 0 var(--seed-dimension-x4) var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderTop: "none" }}>
-              <Text fontSize="t3" color="fg.neutral">📢 카드사/PG사 일별 정산 및 가맹점 수수료 내역입니다.</Text>
+              <Text fontSize="t3" color="fg.neutral">카드사/PG사 일별 정산 및 가맹점 수수료 내역입니다.</Text>
             </div>
           </TabsContent>
 
           <TabsContent value="2">
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: 140, padding: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "0 0 var(--seed-dimension-x4) var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderTop: "none" }}>
-              <Text fontSize="t3" color="fg.neutral">💳 결제수단별 매출 승인/취소 및 입금 예정 내역</Text>
+              <Text fontSize="t3" color="fg.neutral">결제수단별 매출 승인/취소 및 입금 예정 내역</Text>
             </div>
           </TabsContent>
 
           <TabsContent value="3">
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: 140, padding: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "0 0 var(--seed-dimension-x4) var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderTop: "none" }}>
-              <Text fontSize="t3" color="fg.neutral">🏢 국세청 영세·중소 가맹점 우대수수료 환급 안내</Text>
+              <Text fontSize="t3" color="fg.neutral">국세청 영세·중소 가맹점 우대수수료 환급 안내</Text>
             </div>
           </TabsContent>
         </TabsRoot>
