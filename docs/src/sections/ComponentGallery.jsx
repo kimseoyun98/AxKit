@@ -2502,6 +2502,7 @@ function SidePanelDemo() {
   const [isResponsive, setIsResponsive] = useState(false);
   const [placement, setPlacement] = useState("right"); // "right" | "left"
   const [showDescription, setShowDescription] = useState(true);
+  const [forceMobile, setForceMobile] = useState(false);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
@@ -2516,7 +2517,7 @@ function SidePanelDemo() {
           <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Type:</span>
           {[
             { label: "기본 사이드 패널 (Default)", value: false },
-            { label: "반응형 (Responsive)", value: true },
+            { label: "반응형 패널 (Responsive)", value: true },
           ].map((t) => (
             <ActionButton
               key={String(t.value)}
@@ -2530,7 +2531,7 @@ function SidePanelDemo() {
         </div>
 
         {/* Placement Selection */}
-        {!isResponsive && (
+        {!isResponsive ? (
           <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
             <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Placement:</span>
             {[
@@ -2546,6 +2547,17 @@ function SidePanelDemo() {
                 {p.label}
               </ActionButton>
             ))}
+          </div>
+        ) : (
+          <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+            <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Breakpoint Mode:</span>
+            <ActionButton
+              size="small"
+              variant={forceMobile ? "brandSolid" : "neutralOutline"}
+              onClick={() => setForceMobile(!forceMobile)}
+            >
+              {forceMobile ? "📱 모바일 모드 강제 적용 (Bottom Sheet)" : "💻 데스크톱 자동 감지 (Side Panel)"}
+            </ActionButton>
           </div>
         )}
 
@@ -2564,7 +2576,11 @@ function SidePanelDemo() {
       {/* Interactive SidePanel Showcase Canvas */}
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x4)", width: "100%", padding: "var(--seed-dimension-x6)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", alignItems: "center" }}>
         <div style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-subtle)", textAlign: "center" }}>
-          {isResponsive ? "모바일 화면에서는 하단 Bottom Sheet로 자동 전환됩니다" : "버튼을 클릭하여 사이드 패널을 열어보세요"}
+          {isResponsive
+            ? (forceMobile
+                ? "📱 모바일 상태로 강제 전환되어 Bottom Sheet(바텀 시트) 형태로 출력됩니다."
+                : "💻 현재 데스크톱 해상도(≥768px)에서는 Side Panel로 동작합니다. (브라우저 너비를 줄이거나 '모바일 모드 강제 적용' 버튼을 눌러보세요)")
+            : "버튼을 클릭하여 사이드 패널을 열어보세요"}
         </div>
 
         {!isResponsive ? (
@@ -2596,23 +2612,25 @@ function SidePanelDemo() {
             </SidePanelContent>
           </SidePanelRoot>
         ) : (
-          <ResponsiveSidePanelRoot>
+          <ResponsiveSidePanelRoot sidePanelBreakpoint={forceMobile ? "2xl" : "md"}>
             <ResponsiveSidePanelTrigger asChild>
               <ActionButton variant="brandSolid" size="medium">
-                반응형 패널 열기 (Responsive) 📱💻
+                {forceMobile ? "📱 바텀 시트 열기 (Bottom Sheet)" : "반응형 패널 열기 (Responsive)"}
               </ActionButton>
             </ResponsiveSidePanelTrigger>
             <ResponsiveSidePanelContent
-              title="반응형 패널"
-              description={showDescription ? "뷰포트 크기에 따라 데스크톱은 Side Panel, 모바일은 Bottom Sheet로 변환됩니다." : undefined}
+              title={forceMobile ? "하단 바텀 시트 (Bottom Sheet)" : "반응형 패널"}
+              description={showDescription ? "뷰포트 크기에 따라 데스크톱은 Side Panel, 모바일은 Bottom Sheet로 자동 변환됩니다." : undefined}
               showHandle
             >
               <ResponsiveSidePanelBody px="x6" py="x4">
                 <VStack gap="x4">
                   <Box p="x4" borderRadius="r2" style={{ backgroundColor: "var(--seed-color-bg-layer-basement)", border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
-                    <div style={{ fontSize: "var(--seed-font-size-t3)", fontWeight: 600, marginBottom: 4 }}>💡 반응형 시트/패널</div>
+                    <div style={{ fontSize: "var(--seed-font-size-t3)", fontWeight: 600, marginBottom: 4 }}>
+                      {forceMobile ? "📱 모바일 전용 Bottom Sheet 모드" : "💡 반응형 시트/패널 동작"}
+                    </div>
                     <div style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-subtle)" }}>
-                      화면 폭이 좁아지면 모바일 사용성에 최적화된 하단 시트로 부드럽게 스위칭됩니다.
+                      모바일 환경에서는 상단 핸들(Handle)과 함께 하단에서 올라오는 슬라이드 시트로 변환됩니다.
                     </div>
                   </Box>
                 </VStack>
