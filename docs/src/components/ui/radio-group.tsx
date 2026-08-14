@@ -44,6 +44,9 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       description,
       errorMessage,
 
+      size,
+      weight,
+
       children,
 
       ...props
@@ -67,7 +70,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     const renderFooter = description || renderErrorMessage;
 
     return (
-      <RadioGroupContext.Provider value={{ size: variantProps.size, weight: variantProps.weight }}>
+      <RadioGroupContext.Provider value={{ size, weight }}>
         <SeedRadioGroupField.Root ref={ref} {...restProps}>
           {(label || indicator) && (
             <SeedRadioGroupField.Header>
