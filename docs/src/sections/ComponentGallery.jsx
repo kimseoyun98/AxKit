@@ -2752,7 +2752,7 @@ function SnackbarDemoInner() {
       </div>
 
       {/* Relative Canvas Frame Box */}
-      <div style={{ position: "relative", width: "100%", height: 220, border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-basement)", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", paddingTop: "var(--seed-dimension-x6)" }}>
+      <div style={{ position: "relative", width: "100%", minHeight: 240, border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", paddingTop: "var(--seed-dimension-x6)", paddingBottom: "var(--seed-dimension-x16)" }}>
         <div style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-subtle)", marginBottom: "var(--seed-dimension-x4)" }}>
           아래 버튼을 누르면 이 화면 캔버스 영역 하단에 스낵바가 표출됩니다 (4초간 유지)
         </div>
