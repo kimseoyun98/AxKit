@@ -41,7 +41,7 @@ export default function SideNavigation1() {
   });
 
   return (
-    <Layout.Root>
+    <Layout.Root style={{ height: "100%", minHeight: 0 }}>
       <SideNavigationProvider>
         <SideNavigationRoot>
           <SideNavigationHeader>
