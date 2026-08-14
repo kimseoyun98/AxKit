@@ -2667,42 +2667,23 @@ function SidePanelDemo() {
 function SideNavigationDemo() {
   const [collapsed, setCollapsed] = useState(false);
   const [activeItem, setActiveItem] = useState("all-products");
-  const [variant, setVariant] = useState("neutral"); // "neutral" | "transparent"
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 680, margin: "0 auto", alignItems: "center" }}>
       <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
-        Side Navigation · Collapsible Accordions · Collapsed Flyout Popovers & Tooltips · Responsive
+        Side Navigation · Collapsible Accordions · Collapsed Flyout Popovers & Tooltips
       </div>
 
       {/* Controls */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
-        {/* Collapsed Toggle */}
-        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>State:</span>
-          <ActionButton
-            size="small"
-            variant={collapsed ? "brandSolid" : "neutralOutline"}
-            onClick={() => setCollapsed(!collapsed)}
-          >
-            {collapsed ? "사이드바 접힘 (Collapsed - 아이콘 전용)" : "사이드바 펼침 (Expanded)"}
-          </ActionButton>
-        </div>
-
-        {/* Background Variant Toggle */}
-        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Background:</span>
-          {["neutral", "transparent"].map((v) => (
-            <ActionButton
-              key={v}
-              size="small"
-              variant={variant === v ? "brandSolid" : "neutralOutline"}
-              onClick={() => setVariant(v)}
-            >
-              {v}
-            </ActionButton>
-          ))}
-        </div>
+      <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+        <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>State:</span>
+        <ActionButton
+          size="small"
+          variant={collapsed ? "brandSolid" : "neutralOutline"}
+          onClick={() => setCollapsed(!collapsed)}
+        >
+          {collapsed ? "접힘 (Collapsed)" : "펼침 (Expanded)"}
+        </ActionButton>
       </div>
 
       {/* Showcase Canvas */}
@@ -2711,18 +2692,20 @@ function SideNavigationDemo() {
         <SideNavigationRoot
           collapsed={collapsed}
           onCollapsedChange={setCollapsed}
-          variant={variant}
+          variant="neutral"
           style={{ height: "100%" }}
         >
           <SideNavigationHeader>
-            <HStack align="center" gap="x2" overflow="hidden" flex="1">
-              <Box width="28px" height="28px" borderRadius="r2" bgColor="bg.brandSolid" display="flex" align="center" justify="center" color="fg.neutralInverted" fontWeight="bold" fontSize="14px">
-                🥕
-              </Box>
-              <Text fontWeight="bold" textStyle="t4" whiteSpace="nowrap">
-                당근 비즈니스
-              </Text>
-            </HStack>
+            {!collapsed && (
+              <HStack align="center" gap="x2" overflow="hidden" flex="1">
+                <Box width="28px" height="28px" borderRadius="r2" bgColor="bg.brandSolid" display="flex" align="center" justify="center" color="fg.neutralInverted" fontWeight="bold" fontSize="14px">
+                  🥕
+                </Box>
+                <Text fontWeight="bold" textStyle="t4" whiteSpace="nowrap">
+                  당근 비즈니스
+                </Text>
+              </HStack>
+            )}
             <SideNavigationTrigger />
           </SideNavigationHeader>
 
@@ -2797,23 +2780,29 @@ function SideNavigationDemo() {
           </SideNavigationContent>
 
           <SideNavigationFooter>
-            <Text color="fg.neutralSubtle" textStyle="t2">
-              © 당근 비즈니스 지원센터
+            <Text color="fg.neutralSubtle" textStyle="t2" whiteSpace="nowrap" overflow="hidden">
+              {!collapsed ? "© 당근 비즈니스" : "© 🥕"}
             </Text>
           </SideNavigationFooter>
         </SideNavigationRoot>
 
         {/* Main Content Area Preview */}
-        <div style={{ flex: 1, padding: "var(--seed-dimension-x6)", backgroundColor: "var(--seed-color-bg-layer-basement)", display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x4)" }}>
-          <div style={{ fontSize: "var(--seed-font-size-t5)", fontWeight: "bold" }}>
-            현재 선택 메뉴: <span style={{ color: "var(--seed-color-fg-brand)" }}>{activeItem}</span>
-          </div>
-          <div style={{ fontSize: "var(--seed-font-size-t3)", color: "var(--seed-color-fg-neutral-subtle)", lineHeight: 1.6 }}>
-            {collapsed
-              ? "👈 사이드바가 접힌 상태입니다! 아이콘에 마우스를 올려 팝오버 메뉴 및 툴팁을 테스트해보세요."
-              : "👈 사이드바 Header 우측 아이콘 버튼을 누르거나 위의 토글 버튼으로 접을 수 있습니다."}
-          </div>
-        </div>
+        <Box flex="1" p="x6" bgColor="bg.layerBasement" display="flex" flexDirection="column" gap="x4">
+          <Text fontWeight="bold" textStyle="t5">
+            {activeItem === "dashboard" ? "대시보드 홈" :
+             activeItem === "all-products" ? "전체 상품 목록" :
+             activeItem === "categories" ? "카테고리 관리" :
+             activeItem === "inventory" ? "재고 현황" :
+             activeItem === "new-orders" ? "신규 주문 내역" :
+             activeItem === "shipping" ? "배송 처리 현황" :
+             activeItem === "support" ? "고객 센터 문의" : "서비스 만족도 설문"}
+          </Text>
+          <Box p="x4" borderRadius="r2" bgColor="bg.layerDefault" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
+            <Text color="fg.neutralSubtle" textStyle="t3">
+              선택한 메뉴의 메인 업무 콘텐츠 영역입니다.
+            </Text>
+          </Box>
+        </Box>
       </div>
     </div>
   );
