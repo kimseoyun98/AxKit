@@ -88,7 +88,7 @@ import {
   ResponsiveSidePanelBody,
   ResponsiveSidePanelFooter,
 } from '../components/ui/responsive-side-panel';
-import { Count, Box, ScrollFog, HStack, VStack, Text } from '@seed-design/react';
+import { Count, Box, ScrollFog, HStack, VStack, Text, Skeleton } from '@seed-design/react';
 import IconFaceSmileCircleFill from "@karrotmarket/react-monochrome-icon/IconFaceSmileCircleFill";
 import IconHeartFill from "@karrotmarket/react-monochrome-icon/IconHeartFill";
 import IconExclamationmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconExclamationmarkCircleFill";
@@ -2594,6 +2594,99 @@ function SidePanelDemo() {
   );
 }
 
+function SkeletonDemo() {
+  const [tone, setTone] = useState("neutral"); // "neutral" | "magic"
+  const [radius, setRadius] = useState("8"); // "0" | "8" | "16" | "full"
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 640, margin: "0 auto", alignItems: "center" }}>
+      <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
+        Skeleton · Content Loading Placeholder · Radius & Tone Presets
+      </div>
+
+      {/* Controls */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
+        {/* Tone Selection */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Tone:</span>
+          {[
+            { label: "Neutral (기본)", value: "neutral" },
+            { label: "Magic (매직)", value: "magic" },
+          ].map((t) => (
+            <ActionButton
+              key={t.value}
+              size="small"
+              variant={tone === t.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setTone(t.value)}
+            >
+              {t.label}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Radius Selection */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Radius:</span>
+          {[
+            { label: "0 (직각)", value: "0" },
+            { label: "8 (Small)", value: "8" },
+            { label: "16 (Medium)", value: "16" },
+            { label: "full (원형/알약)", value: "full" },
+          ].map((r) => (
+            <ActionButton
+              key={r.value}
+              size="small"
+              variant={radius === r.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setRadius(r.value)}
+            >
+              {r.label}
+            </ActionButton>
+          ))}
+        </div>
+      </div>
+
+      {/* Interactive Showcase Frame */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x5)", width: "100%", padding: "var(--seed-dimension-x6)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
+        {/* Radius Comparison */}
+        <VStack gap="x3">
+          <Text fontWeight="bold" textStyle="t3">반경 (Radius) 프리셋 비교</Text>
+          <HStack gap="x4" align="center">
+            <Skeleton tone={tone} radius={radius} width="x12" height="x12" />
+            <VStack gap="x2" flex={1}>
+              <Skeleton tone={tone} radius={radius} height="x4" width="70%" />
+              <Skeleton tone={tone} radius={radius} height="x3" width="90%" />
+              <Skeleton tone={tone} radius={radius} height="x3" width="40%" />
+            </VStack>
+          </HStack>
+        </VStack>
+
+        <Divider />
+
+        {/* Card Pattern Loading Skeleton */}
+        <VStack gap="x3">
+          <Text fontWeight="bold" textStyle="t3">피드 / 카드 로딩 스켈레톤 레이아웃 패턴</Text>
+          <Box p="x4" borderRadius="r3" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)", backgroundColor: "var(--seed-color-bg-layer-basement)" }}>
+            <VStack gap="x4">
+              <HStack gap="x3" align="center">
+                <Skeleton tone={tone} radius="full" width="x10" height="x10" />
+                <VStack gap="x1_5" flex={1}>
+                  <Skeleton tone={tone} radius="8" height="x4" width="140px" />
+                  <Skeleton tone={tone} radius="8" height="x3" width="80px" />
+                </VStack>
+              </HStack>
+              <Skeleton tone={tone} radius="16" height="120px" width="100%" />
+              <VStack gap="x2">
+                <Skeleton tone={tone} radius="8" height="x3" width="100%" />
+                <Skeleton tone={tone} radius="8" height="x3" width="80%" />
+              </VStack>
+            </VStack>
+          </Box>
+        </VStack>
+      </div>
+    </div>
+  );
+}
+
 function SideNavigationDemo() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 760, margin: "0 auto", alignItems: "center" }}>
@@ -2811,6 +2904,12 @@ const COMPONENTS = [
     name: 'Side Navigation',
     slug: 'block:side-navigation-01',
     demo: <SideNavigationDemo />,
+  },
+
+  {
+    name: 'Skeleton',
+    slug: '@seed-design/react:Skeleton',
+    demo: <SkeletonDemo />,
   },
 ];
 
