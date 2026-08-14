@@ -527,91 +527,6 @@ function BadgeDemo() {
   );
 }
 
-function BottomNavigationDemo() {
-  const [activeTab, setActiveTab] = useState(0);
-
-  const tabs = [
-    { label: '홈', icon: <IconHouseFill style={{ width: 22, height: 22 }} />, badge: null },
-    { label: '내회사', icon: <IconBuilding2Fill style={{ width: 22, height: 22 }} />, badge: null },
-    { label: '내 근처', icon: <IconLocationpinFill style={{ width: 22, height: 22 }} />, badge: null },
-    { label: '채팅', icon: <IconDot3HorizontalChatbubbleLeftFill style={{ width: 22, height: 22 }} />, badge: '3' },
-    { label: '프로필', icon: <IconPersonFill style={{ width: 22, height: 22 }} />, badge: null },
-  ];
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 480, margin: '0 auto' }}>
-      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
-        5 Tabs Max · Fill Icons · Max Width 480px · Notification Badge
-      </div>
-
-      {/* Bottom Navigation Mock Phone Container */}
-      <div
-        style={{
-          width: '100%',
-          background: 'var(--seed-color-bg-layer-default)',
-          border: '1px solid var(--seed-color-stroke-neutral-weak)',
-          borderRadius: 'var(--seed-dimension-x4)',
-          boxShadow: 'var(--seed-elevation-s2, 0 4px 20px rgba(0,0,0,0.06))',
-          overflow: 'hidden',
-        }}
-      >
-        {/* Screen Mock Area */}
-        <div style={{ height: 120, background: 'var(--seed-color-bg-neutral-weak)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
-          선택된 탭: <strong style={{ color: 'var(--seed-color-fg-brand)', marginLeft: 'var(--seed-dimension-x1_5)' }}>{tabs[activeTab].label}</strong>
-        </div>
-
-        {/* Bottom Navigation Bar */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(5, 1fr)',
-            height: 56,
-            background: 'var(--seed-color-bg-layer-default)',
-            borderTop: '1px solid var(--seed-color-stroke-neutral-weak)',
-            position: 'relative',
-          }}
-        >
-          {tabs.map((t, idx) => {
-            const isActive = idx === activeTab;
-            return (
-              <button
-                key={t.label}
-                onClick={() => setActiveTab(idx)}
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 'var(--seed-dimension-x0_5)',
-                  border: 'none',
-                  background: 'transparent',
-                  cursor: 'pointer',
-                  padding: 0,
-                  position: 'relative',
-                  color: isActive ? 'var(--seed-color-fg-neutral)' : 'var(--seed-color-fg-neutral-subtle)',
-                  transition: 'color 0.15s ease',
-                }}
-              >
-                <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-                  {t.icon}
-                  {t.badge && (
-                    <NotificationBadgePositioner attach="icon" size="large">
-                      <NotificationBadge size="large">{t.badge}</NotificationBadge>
-                    </NotificationBadgePositioner>
-                  )}
-                </div>
-                <span style={{ fontSize: 'var(--seed-font-size-t1)', fontWeight: isActive ? 'var(--seed-font-weight-bold)' : 'var(--seed-font-weight-regular)' }}>
-                  {t.label}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function BottomSheetDemo() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 480, margin: '0 auto', alignItems: 'center' }}>
@@ -1792,12 +1707,6 @@ const COMPONENTS = [
     name: 'Badge',
     slug: 'ui:badge',
     demo: <BadgeDemo />,
-  },
-
-  {
-    name: 'Bottom Navigation',
-    slug: 'pattern:bottom-navigation',
-    demo: <BottomNavigationDemo />,
   },
 
   {
