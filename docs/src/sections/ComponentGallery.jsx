@@ -2744,30 +2744,27 @@ function SliderDemo() {
 
 function SnackbarDemoInner() {
   const adapter = useSnackbarAdapter();
-  const [variant, setVariant] = useState("default");
-  const [showAction, setShowAction] = useState(true);
 
-  const messages = {
-    default: "설정이 성공적으로 저장되었습니다.",
-    positive: "프로필 정보가 안전하게 업데이트되었습니다.",
-    critical: "네트워크 연결이 끊어졌습니다. 다시 시도해 주세요.",
-  };
+  const showSnackbar = (variant) => {
+    const messages = {
+      default: "설정이 성공적으로 저장되었습니다.",
+      positive: "프로필 정보가 업데이트되었습니다.",
+      critical: "네트워크 연결이 끊어졌습니다. 다시 시도해 주세요.",
+    };
+    const actionLabels = {
+      default: "확인",
+      positive: "보기",
+      critical: "재시도",
+    };
 
-  const actionLabels = {
-    default: "확인",
-    positive: "보기",
-    critical: "재시도",
-  };
-
-  const triggerLiveToast = () => {
     adapter.create({
-      timeout: 10000,
+      onClose: () => {},
       render: () => (
         <Snackbar
           variant={variant}
           message={messages[variant]}
-          actionLabel={showAction ? actionLabels[variant] : undefined}
-          onAction={() => alert(`${actionLabels[variant]} 액션이 클릭되었습니다.`)}
+          actionLabel={actionLabels[variant]}
+          onAction={() => alert(`${actionLabels[variant]} 클릭됨`)}
         />
       ),
     });
@@ -2776,58 +2773,36 @@ function SnackbarDemoInner() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 600, margin: "0 auto", alignItems: "center" }}>
       <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
-        Snackbar · Permanent Canvas Preview & Live Floating Toast (10s)
+        Snackbar · 4-Second Auto Dismiss (Default SEED Spec) · Default, Positive, Critical
       </div>
 
-      {/* Control Buttons */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
-        {/* Variant Selection */}
-        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Variant:</span>
-          {["default", "positive", "critical"].map((v) => (
-            <ActionButton
-              key={v}
-              size="small"
-              variant={variant === v ? "brandSolid" : "neutralOutline"}
-              onClick={() => setVariant(v)}
-            >
-              {v}
-            </ActionButton>
-          ))}
-        </div>
+      {/* Trigger Buttons */}
+      <div style={{ display: "flex", gap: "var(--seed-dimension-x3)", flexWrap: "wrap", justifyContent: "center" }}>
+        <ActionButton
+          variant="neutralSolid"
+          onClick={() => showSnackbar("default")}
+        >
+          기본 스낵바 (Default)
+        </ActionButton>
 
-        {/* Option Toggles & Live Toast Button */}
-        <div style={{ display: "flex", gap: "var(--seed-dimension-x2)", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
-          <ActionButton
-            size="small"
-            variant={showAction ? "brandSolid" : "neutralOutline"}
-            onClick={() => setShowAction(!showAction)}
-          >
-            {showAction ? "액션 버튼 표시" : "액션 버튼 숨김"}
-          </ActionButton>
+        <ActionButton
+          variant="brandSolid"
+          onClick={() => showSnackbar("positive")}
+        >
+          긍정 스낵바 (Positive)
+        </ActionButton>
 
-          <ActionButton
-            size="small"
-            variant="brandSolid"
-            onClick={triggerLiveToast}
-          >
-            🔔 실시간 토스트 팝업 (10초)
-          </ActionButton>
-        </div>
+        <ActionButton
+          variant="criticalSolid"
+          onClick={() => showSnackbar("critical")}
+        >
+          경고 스낵바 (Critical)
+        </ActionButton>
       </div>
 
-      {/* Permanent Non-disappearing Canvas Frame */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", minHeight: 140, padding: "var(--seed-dimension-x5)", backgroundColor: "var(--seed-color-bg-layer-basement)", borderRadius: "var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
-        <div style={{ width: "100%", maxWidth: "440px" }}>
-          <StaticSnackbar
-            key={`${variant}-${showAction}`}
-            variant={variant}
-            message={messages[variant]}
-            actionLabel={showAction ? actionLabels[variant] : undefined}
-            onAction={() => alert(`${actionLabels[variant]} 액션이 클릭되었습니다.`)}
-          />
-        </div>
-      </div>
+      <Text fontSize="t2" color="fg.neutralMuted" style={{ textAlign: "center" }}>
+        👆 버튼을 클릭하면 표준 SEED 사양대로 4초(4000ms)간 유지 후 자동으로 닫힙니다.
+      </Text>
     </div>
   );
 }
