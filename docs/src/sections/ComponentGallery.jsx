@@ -828,7 +828,7 @@ function ContextualFloatingButtonDemo() {
       </div>
 
       {/* Mock Floating Frame */}
-      <div style={{ position: 'relative', width: '100%', height: 200, backgroundColor: 'var(--seed-color-bg-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', border: '1px solid var(--seed-color-stroke-neutral-weak)', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      <div style={{ position: 'relative', width: '100%', height: 180, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-muted)', padding: 'var(--seed-dimension-x4)', textAlign: 'center' }}>
           콘텐츠 목록 영역 (하단 유동 배치 플로팅 팝업)
         </div>
@@ -889,8 +889,8 @@ function DatePickerDemo() {
         </ActionButton>
       </div>
 
-      {/* Calendar Card Frame */}
-      <div style={{ width: '100%', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', padding: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', boxShadow: 'var(--seed-shadow-s1)' }}>
+      {/* Calendar Frame */}
+      <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
         {layoutMode === "month" ? (
           <DatePicker today={today} defaultValue={today} />
         ) : (
@@ -1057,8 +1057,8 @@ function FieldButtonDemo() {
         </ActionButton>
       </div>
 
-      {/* FieldButton Demo Card */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
+      {/* FieldButton Demo */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', width: '100%' }}>
         <FieldButton
           label="거주 지역"
           showRequiredIndicator
@@ -1107,7 +1107,7 @@ function FloatingActionButtonDemo() {
       </div>
 
       {/* FAB Canvas Preview */}
-      <div style={{ position: 'relative', width: '100%', height: 260, border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', width: '100%', height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div style={{ padding: 'var(--seed-dimension-x4)', fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
           📱 화면 우측 하단에 고정 배치되는 메인 액션 버튼입니다.
         </div>
@@ -1150,7 +1150,7 @@ function HelpBubbleDemo() {
       </div>
 
       {/* Interactive Frame */}
-      <div style={{ width: '100%', minHeight: 240, border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', padding: 'var(--seed-dimension-x6)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 'var(--seed-dimension-x6)' }}>
+      <div style={{ width: '100%', minHeight: 180, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 'var(--seed-dimension-x6)' }}>
         
         {/* 1. Click Trigger Popover Help Bubble */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--seed-dimension-x3)' }}>
@@ -1210,8 +1210,8 @@ function IdentityPlaceholderDemo() {
         </ActionButton>
       </div>
 
-      {/* Identity Placeholder Card */}
-      <div style={{ width: '100%', padding: 'var(--seed-dimension-x6)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x4)' }}>
+      {/* Identity Placeholder */}
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x4)' }}>
         <div style={{ width: 80, height: 80, borderRadius: '50%', overflow: 'hidden' }}>
           <IdentityPlaceholder identity={identity} />
         </div>
@@ -1250,8 +1250,8 @@ function ImageFrameDemo() {
         </ActionButton>
       </div>
 
-      {/* ImageFrame Card */}
-      <div style={{ width: '100%', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)' }}>
+      {/* ImageFrame */}
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)' }}>
         <ImageFrame
           ratio={ratio}
           borderRadius="r2"
@@ -2547,8 +2547,8 @@ function SidePanelDemo() {
         </div>
       </div>
 
-      {/* Interactive SidePanel Showcase Canvas */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x4)", width: "100%", padding: "var(--seed-dimension-x6)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", alignItems: "center" }}>
+      {/* Interactive SidePanel Showcase */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x4)", width: "100%", alignItems: "center" }}>
         <SidePanelRoot direction="right" size={size}>
           <SidePanelTrigger asChild>
             <ActionButton variant="brandSolid" size="medium">
@@ -2647,7 +2647,7 @@ function SkeletonDemo() {
       </div>
 
       {/* Interactive Showcase Frame */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x5)", width: "100%", padding: "var(--seed-dimension-x6)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x5)", width: "100%" }}>
         {/* Radius Comparison */}
         <VStack gap="x3">
           <Text fontWeight="bold" textStyle="t3">반경 (Radius) 프리셋 비교</Text>
@@ -2699,7 +2699,7 @@ function SliderDemo() {
       </div>
 
       {/* Interactive Showcase Frame */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", padding: "var(--seed-dimension-x6)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%" }}>
         {/* 1. Single Thumb Slider */}
         <VStack gap="x3" width="full">
           <Text fontWeight="bold" textStyle="t3">단일 조절 슬라이더 (Single Thumb)</Text>
