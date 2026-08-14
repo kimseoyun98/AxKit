@@ -56,7 +56,7 @@ import { QuantityPicker } from '../components/ui/quantity-picker';
 import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
 import { ReactionButton } from '../components/ui/reaction-button';
 import { ResultSection } from '../components/ui/result-section';
-import { Count, Box } from '@seed-design/react';
+import { Count, Box, ScrollFog, HStack, VStack } from '@seed-design/react';
 import IconFaceSmileCircleFill from "@karrotmarket/react-monochrome-icon/IconFaceSmileCircleFill";
 import IconHeartFill from "@karrotmarket/react-monochrome-icon/IconHeartFill";
 import IconExclamationmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconExclamationmarkCircleFill";
@@ -2052,6 +2052,105 @@ function ResultSectionDemo() {
   );
 }
 
+function ScrollFogDemo() {
+  const [direction, setDirection] = useState("vertical");
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 440, margin: '0 auto', alignItems: 'center' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Scroll Fog Visual Hint · Overlap Gradient · Vertical / Horizontal
+      </div>
+
+      {/* Direction Selection */}
+      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
+        <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Direction:</span>
+        {[
+          { label: "세로 스크롤 (Vertical)", value: "vertical" },
+          { label: "가로 스크롤 (Horizontal)", value: "horizontal" },
+        ].map((d) => (
+          <ActionButton
+            key={d.value}
+            size="small"
+            variant={direction === d.value ? "brandSolid" : "neutralOutline"}
+            onClick={() => setDirection(d.value)}
+          >
+            {d.label}
+          </ActionButton>
+        ))}
+      </div>
+
+      {/* Demo Canvas */}
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', alignItems: 'center' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)', marginBottom: 'var(--seed-dimension-x4)' }}>
+          {direction === "vertical" ? "상하 가장자리의 은은한 그라디언트 힌트를 확인해 보세요" : "좌우 가장자리의 은은한 그라디언트 힌트를 확인해 보세요"}
+        </div>
+
+        {direction === "vertical" ? (
+          <div
+            style={{
+              height: "240px",
+              width: "100%",
+              border: "1px solid var(--seed-color-stroke-neutral-weak)",
+              borderRadius: "var(--seed-dimension-x3)",
+              overflow: "hidden",
+            }}
+          >
+            <ScrollFog placement={["top", "bottom"]}>
+              <VStack gap="x3" px="x4" py="20px" width="full">
+                {Array.from({ length: 15 }, (_, i) => (
+                  <Box
+                    key={i}
+                    px="x4"
+                    py="x3"
+                    borderRadius="r2"
+                    style={{
+                      backgroundColor: "var(--seed-color-bg-layer-basement)",
+                      border: "1px solid var(--seed-color-stroke-neutral-weak)",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span style={{ fontSize: "var(--seed-font-size-t3)", fontWeight: 600 }}>스크롤 항목 #{i + 1}</span>
+                    <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>상세보기 ➔</span>
+                  </Box>
+                ))}
+              </VStack>
+            </ScrollFog>
+          </div>
+        ) : (
+          <div
+            style={{
+              height: "100px",
+              width: "100%",
+              border: "1px solid var(--seed-color-stroke-neutral-weak)",
+              borderRadius: "var(--seed-dimension-x3)",
+              overflow: "hidden",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <ScrollFog placement={["left", "right"]}>
+              <HStack gap="x3" px="20px" py="x3" style={{ width: "max-content" }}>
+                {Array.from({ length: 12 }, (_, i) => (
+                  <Chip
+                    key={i}
+                    size="medium"
+                    variant={i === 0 ? "solid" : "outline"}
+                    selected={i === 0}
+                  >
+                    추천 카테고리 #{i + 1}
+                  </Chip>
+                ))}
+              </HStack>
+            </ScrollFog>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -2225,6 +2324,12 @@ const COMPONENTS = [
     name: 'Result Section',
     slug: 'ui:result-section',
     demo: <ResultSectionDemo />,
+  },
+
+  {
+    name: 'Scroll Fog',
+    slug: 'ui:scroll-fog',
+    demo: <ScrollFogDemo />,
   },
 ];
 
