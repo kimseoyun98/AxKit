@@ -1908,6 +1908,12 @@ const COMPONENTS = [
     slug: 'ui:quantity-picker',
     demo: <QuantityPickerDemo />,
   },
+
+  {
+    name: 'Radio Group',
+    slug: 'ui:radio-group',
+    demo: <RadioGroupDemo />,
+  },
 ];
 
 export function ComponentGallery() {
