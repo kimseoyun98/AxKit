@@ -82,7 +82,7 @@ import {
 import SideNavigation1 from '../components/ui/blocks/side-navigation-01';
 import { TextField, TextFieldInput } from '../components/ui/text-field';
 import { Slider } from '../components/ui/slider';
-import { Snackbar, SnackbarProvider, useSnackbarAdapter } from '../components/ui/snackbar';
+import { Snackbar, SnackbarProvider, useSnackbarAdapter, StaticSnackbar } from '../components/ui/snackbar';
 import { Switch } from '../components/ui/switch';
 import {
   ResponsiveSidePanelRoot,
@@ -2743,6 +2743,7 @@ function SliderDemo() {
 }
 
 function SnackbarDemoInner() {
+  const adapter = useSnackbarAdapter();
   const [variant, setVariant] = useState("default");
   const [showAction, setShowAction] = useState(true);
 
@@ -2758,14 +2759,29 @@ function SnackbarDemoInner() {
     critical: "재시도",
   };
 
+  const triggerLiveToast = () => {
+    adapter.create({
+      timeout: 10000,
+      render: () => (
+        <Snackbar
+          variant={variant}
+          message={messages[variant]}
+          actionLabel={showAction ? actionLabels[variant] : undefined}
+          onAction={() => alert(`${actionLabels[variant]} 액션이 클릭되었습니다.`)}
+        />
+      ),
+    });
+  };
+
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 600, margin: "0 auto", alignItems: "center" }}>
       <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
-        Snackbar · Inline Demo Canvas · Default, Positive, Critical Variants
+        Snackbar · Permanent Canvas Preview & Live Floating Toast (10s)
       </div>
 
       {/* Control Buttons */}
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
+        {/* Variant Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
           <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Variant:</span>
           {["default", "positive", "critical"].map((v) => (
@@ -2780,7 +2796,8 @@ function SnackbarDemoInner() {
           ))}
         </div>
 
-        <div style={{ display: "flex", gap: "var(--seed-dimension-x2)", alignItems: "center" }}>
+        {/* Option Toggles & Live Toast Button */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x2)", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
           <ActionButton
             size="small"
             variant={showAction ? "brandSolid" : "neutralOutline"}
@@ -2788,14 +2805,22 @@ function SnackbarDemoInner() {
           >
             {showAction ? "액션 버튼 표시" : "액션 버튼 숨김"}
           </ActionButton>
+
+          <ActionButton
+            size="small"
+            variant="brandSolid"
+            onClick={triggerLiveToast}
+          >
+            🔔 실시간 토스트 팝업 (10초)
+          </ActionButton>
         </div>
       </div>
 
-      {/* Inline Demo Canvas Frame */}
+      {/* Permanent Non-disappearing Canvas Frame */}
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", width: "100%", minHeight: 140, padding: "var(--seed-dimension-x5)", backgroundColor: "var(--seed-color-bg-layer-basement)", borderRadius: "var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
         <div style={{ width: "100%", maxWidth: "440px" }}>
-          <Snackbar
-            key={variant}
+          <StaticSnackbar
+            key={`${variant}-${showAction}`}
             variant={variant}
             message={messages[variant]}
             actionLabel={showAction ? actionLabels[variant] : undefined}
