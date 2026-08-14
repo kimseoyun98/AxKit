@@ -827,8 +827,8 @@ function ContextualFloatingButtonDemo() {
         Solid & Layer Tones · Float Composition · Loading State
       </div>
 
-      {/* Mock Floating Frame */}
-      <div style={{ position: 'relative', width: '100%', height: 180, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+      {/* Mock Screen Canvas Frame for Float */}
+      <div style={{ position: 'relative', width: '100%', height: 200, backgroundColor: 'var(--seed-color-bg-layer-basement)', borderRadius: 'var(--seed-dimension-x4)', border: '1px solid var(--seed-color-stroke-neutral-weak)', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-muted)', padding: 'var(--seed-dimension-x4)', textAlign: 'center' }}>
           콘텐츠 목록 영역 (하단 유동 배치 플로팅 팝업)
         </div>
@@ -1106,8 +1106,8 @@ function FloatingActionButtonDemo() {
         </ActionButton>
       </div>
 
-      {/* FAB Canvas Preview */}
-      <div style={{ position: 'relative', width: '100%', height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      {/* Screen Canvas Preview for Float Placement */}
+      <div style={{ position: 'relative', width: '100%', height: 240, border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', overflow: 'hidden' }}>
         <div style={{ padding: 'var(--seed-dimension-x4)', fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
           📱 화면 우측 하단에 고정 배치되는 메인 액션 버튼입니다.
         </div>
@@ -1380,8 +1380,8 @@ function ListDemo() {
         </ActionButton>
       </div>
 
-      {/* Native Borderless List */}
-      <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
+      {/* Card Bounded List Container */}
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', padding: 'var(--seed-dimension-x3)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
         <ListHeader as="h3">계정 및 알림 설정</ListHeader>
         <List width="full">
           {/* 1. Highlighted / Standard ListItem with Multi-line Detail */}
