@@ -2576,13 +2576,15 @@ function SidePanelDemo() {
                 </VStack>
               </VStack>
             </SidePanelBody>
-            <SidePanelFooter style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x2)" }}>
-              <ActionButton variant="neutralSolid" size="medium" style={{ width: "100%" }}>
-                저장하기
-              </ActionButton>
-              <ActionButton variant="neutralWeak" size="medium" style={{ width: "100%" }}>
-                취소
-              </ActionButton>
+            <SidePanelFooter>
+              <VStack width="full" gap="x2">
+                <ActionButton variant="neutralSolid" size="medium" style={{ width: "100%" }}>
+                  저장하기
+                </ActionButton>
+                <ActionButton variant="neutralWeak" size="medium" style={{ width: "100%" }}>
+                  취소
+                </ActionButton>
+              </VStack>
             </SidePanelFooter>
           </SidePanelContent>
         </SidePanelRoot>
