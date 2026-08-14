@@ -2501,70 +2501,34 @@ function SelectDemo() {
 
 function SidePanelDemo() {
   const [size, setSize] = useState("small"); // "small" | "medium" | "large"
-  const [isResponsive, setIsResponsive] = useState(false);
   const [showDescription, setShowDescription] = useState(true);
-  const [forceMobile, setForceMobile] = useState(false);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 520, margin: "0 auto", alignItems: "center" }}>
       <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
-        Side Panel · Slide-in Navigation & Form Panel · Sizes (Small 480px / Med 720px / Lg 960px)
+        Side Panel · Slide-in Right Navigation & Form Panel
       </div>
 
       {/* Controls */}
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
         {/* Size Selection */}
-        {!isResponsive && (
-          <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-            <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Size:</span>
-            {[
-              { label: "Small (480px)", value: "small" },
-              { label: "Medium (720px)", value: "medium" },
-              { label: "Large (960px)", value: "large" },
-            ].map((s) => (
-              <ActionButton
-                key={s.value}
-                size="small"
-                variant={size === s.value ? "brandSolid" : "neutralOutline"}
-                onClick={() => setSize(s.value)}
-              >
-                {s.label}
-              </ActionButton>
-            ))}
-          </div>
-        )}
-
-        {/* Panel Type Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Type:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Size:</span>
           {[
-            { label: "기본 사이드 패널 (Default)", value: false },
-            { label: "반응형 패널 (Responsive)", value: true },
-          ].map((t) => (
+            { label: "Small (480px)", value: "small" },
+            { label: "Medium (720px)", value: "medium" },
+            { label: "Large (960px)", value: "large" },
+          ].map((s) => (
             <ActionButton
-              key={String(t.value)}
+              key={s.value}
               size="small"
-              variant={isResponsive === t.value ? "brandSolid" : "neutralOutline"}
-              onClick={() => setIsResponsive(t.value)}
+              variant={size === s.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setSize(s.value)}
             >
-              {t.label}
+              {s.label}
             </ActionButton>
           ))}
         </div>
-
-        {/* Breakpoint Mode Override */}
-        {isResponsive && (
-          <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-            <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Breakpoint Mode:</span>
-            <ActionButton
-              size="small"
-              variant={forceMobile ? "brandSolid" : "neutralOutline"}
-              onClick={() => setForceMobile(!forceMobile)}
-            >
-              {forceMobile ? "📱 모바일 모드 강제 적용 (Bottom Sheet)" : "💻 데스크톱 자동 감지 (Side Panel)"}
-            </ActionButton>
-          </div>
-        )}
 
         {/* Toggles */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x2)", alignItems: "center", justifyContent: "center" }}>
@@ -2573,84 +2537,52 @@ function SidePanelDemo() {
             variant={showDescription ? "brandSolid" : "neutralOutline"}
             onClick={() => setShowDescription(!showDescription)}
           >
-            {showDescription ? "설명(Description) 표시" : "설명 숨김"}
+            {showDescription ? "디스크립션 표시" : "디스크립션 숨김"}
           </ActionButton>
         </div>
       </div>
 
       {/* Interactive SidePanel Showcase Canvas */}
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x4)", width: "100%", padding: "var(--seed-dimension-x6)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", alignItems: "center" }}>
-        <div style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-subtle)", textAlign: "center" }}>
-          {isResponsive
-            ? (forceMobile
-                ? "📱 모바일 상태로 강제 전환되어 Bottom Sheet(바텀 시트) 형태로 출력됩니다."
-                : "💻 현재 데스크톱 해상도(≥768px)에서는 우측 Side Panel로 동작합니다.")
-            : "버튼을 클릭하여 우측 사이드 패널을 열어보세요"}
-        </div>
+        <SidePanelRoot direction="right" size={size}>
+          <SidePanelTrigger asChild>
+            <ActionButton variant="brandSolid" size="medium">
+              우측 사이드 패널 열기 ➔ ({size.toUpperCase()} - {size === "small" ? "480px" : size === "medium" ? "720px" : "960px"})
+            </ActionButton>
+          </SidePanelTrigger>
+          <SidePanelContent
+            title="타이틀을 작성해주세요"
+            description={showDescription ? "디스크립션을 작성해주세요." : undefined}
+          >
+            <SidePanelBody px="x6" py="x4">
+              <VStack gap="x4">
+                <Box p="x4" borderRadius="r3" bgColor="bg.layerBasement" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
+                  <Text fontWeight="bold" textStyle="t4" mb="x2">
+                    패널 상세 영역 ({size.toUpperCase()})
+                  </Text>
+                  <Text color="fg.neutralSubtle" textStyle="t2">
+                    가로 너비가 {size === "small" ? "480px" : size === "medium" ? "720px" : "960px"} 로 적용되어 우측에서 슬라이드로 오픈됩니다.
+                  </Text>
+                </Box>
 
-        {!isResponsive ? (
-          <SidePanelRoot direction="right">
-            <SidePanelTrigger asChild>
-              <ActionButton variant="brandSolid" size="medium">
-                우측 사이드 패널 열기 ➔ ({size})
-              </ActionButton>
-            </SidePanelTrigger>
-            <SidePanelContent
-              size={size}
-              title="사이드 패널 설정"
-              description={showDescription ? `선택된 너비: ${size === "small" ? "Small (480px)" : size === "medium" ? "Medium (720px)" : "Large (960px)"}` : undefined}
-            >
-              <SidePanelBody px="x6" py="x4">
-                <VStack gap="x4">
-                  <Box p="x4" borderRadius="r2" bgColor="bg.layerBasement" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
-                    <Text fontWeight="bold" textStyle="t3" mb="x1">📌 규격별 사용 가이드라인</Text>
-                    <Text color="fg.neutralSubtle" textStyle="t2">
-                      • Small (480px): 단순 상세 조회, 설정 및 단일 입력 폼<br/>
-                      • Medium (720px): 2열 입력 폼 및 리스트-상세 대조 화면<br/>
-                      • Large (960px): 복잡한 대시보드 및 리치 에디터 도구
-                    </Text>
+                <VStack gap="x3">
+                  <Text fontWeight="bold" textStyle="t3">설정 항목 1</Text>
+                  <Box p="x3" borderRadius="r2" bgColor="bg.layerDefault" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
+                    <Text color="fg.neutral" textStyle="t2">기본 옵션 선택 및 상세 입력 폼 영역입니다.</Text>
                   </Box>
                 </VStack>
-              </SidePanelBody>
-              <SidePanelFooter>
-                <ActionButton variant="neutralSolid" size="medium" style={{ width: "100%" }}>
-                  확인 및 완료
-                </ActionButton>
-              </SidePanelFooter>
-            </SidePanelContent>
-          </SidePanelRoot>
-        ) : (
-          <ResponsiveSidePanelRoot sidePanelBreakpoint={forceMobile ? "2xl" : "md"}>
-            <ResponsiveSidePanelTrigger asChild>
-              <ActionButton variant="brandSolid" size="medium">
-                {forceMobile ? "📱 바텀 시트 열기 (Bottom Sheet)" : "반응형 패널 열기 (Responsive)"}
+              </VStack>
+            </SidePanelBody>
+            <SidePanelFooter style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x2)" }}>
+              <ActionButton variant="neutralSolid" size="medium" style={{ width: "100%" }}>
+                확인
               </ActionButton>
-            </ResponsiveSidePanelTrigger>
-            <ResponsiveSidePanelContent
-              title={forceMobile ? "하단 바텀 시트 (Bottom Sheet)" : "반응형 패널"}
-              description={showDescription ? "뷰포트 크기에 따라 데스크톱은 Side Panel, 모바일은 Bottom Sheet로 자동 변환됩니다." : undefined}
-              showHandle
-            >
-              <ResponsiveSidePanelBody px="x6" py="x4">
-                <VStack gap="x4">
-                  <Box p="x4" borderRadius="r2" bgColor="bg.layerBasement" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
-                    <Text fontWeight="bold" textStyle="t3" mb="x1">
-                      {forceMobile ? "📱 모바일 전용 Bottom Sheet 모드" : "💡 반응형 시트/패널 동작"}
-                    </Text>
-                    <Text color="fg.neutralSubtle" textStyle="t2">
-                      모바일 환경에서는 상단 핸들(Handle)과 함께 하단에서 올라오는 슬라이드 시트로 변환됩니다.
-                    </Text>
-                  </Box>
-                </VStack>
-              </ResponsiveSidePanelBody>
-              <ResponsiveSidePanelFooter>
-                <ActionButton variant="neutralSolid" size="medium" style={{ width: "100%" }}>
-                  확인
-                </ActionButton>
-              </ResponsiveSidePanelFooter>
-            </ResponsiveSidePanelContent>
-          </ResponsiveSidePanelRoot>
-        )}
+              <ActionButton variant="neutralWeak" size="medium" style={{ width: "100%" }}>
+                취소
+              </ActionButton>
+            </SidePanelFooter>
+          </SidePanelContent>
+        </SidePanelRoot>
       </div>
     </div>
   );
