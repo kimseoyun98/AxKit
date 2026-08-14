@@ -2666,7 +2666,7 @@ function SkeletonDemo() {
         {/* Card Pattern Loading Skeleton */}
         <VStack gap="x3">
           <Text fontWeight="bold" textStyle="t3">피드 / 카드 로딩 스켈레톤 레이아웃 패턴</Text>
-          <Box p="x4" borderRadius="r3" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)", backgroundColor: "var(--seed-color-bg-layer-basement)" }}>
+          <Box p="x4" borderRadius="r3" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
             <VStack gap="x4">
               <HStack gap="x3" align="center">
                 <Skeleton tone={tone} radius="full" width="x10" height="x10" />
