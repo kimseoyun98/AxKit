@@ -2095,7 +2095,7 @@ function ScrollFogDemo() {
               overflow: "hidden",
             }}
           >
-            <ScrollFog placement={["top", "bottom"]}>
+            <ScrollFog placement={["top", "bottom"]} style={{ height: "100%", overflowY: "auto" }}>
               <VStack gap="x3" px="x4" py="20px" width="full">
                 {Array.from({ length: 15 }, (_, i) => (
                   <Box
@@ -2121,17 +2121,14 @@ function ScrollFogDemo() {
         ) : (
           <div
             style={{
-              height: "100px",
               width: "100%",
               border: "1px solid var(--seed-color-stroke-neutral-weak)",
               borderRadius: "var(--seed-dimension-x3)",
               overflow: "hidden",
-              display: "flex",
-              alignItems: "center",
             }}
           >
-            <ScrollFog placement={["left", "right"]}>
-              <HStack gap="x3" px="20px" py="x3" style={{ width: "max-content" }}>
+            <ScrollFog placement={["left", "right"]} style={{ width: "100%", overflowX: "auto" }}>
+              <HStack gap="x3" px="20px" py="x4" style={{ width: "max-content" }}>
                 {Array.from({ length: 12 }, (_, i) => (
                   <Chip
                     key={i}
