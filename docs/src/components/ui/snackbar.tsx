@@ -21,7 +21,7 @@ export const SnackbarProvider = (props: SnackbarProviderProps) => {
   return (
     <SeedSnackbar.RootProvider {...otherProps}>
       {children}
-      <SeedSnackbar.Region>
+      <SeedSnackbar.Region style={{ position: "absolute", bottom: 16, left: 0, right: 0, zIndex: 100, display: "flex", flexDirection: "column", alignItems: "center", pointerEvents: "none" }}>
         <SeedSnackbar.Renderer />
       </SeedSnackbar.Region>
     </SeedSnackbar.RootProvider>

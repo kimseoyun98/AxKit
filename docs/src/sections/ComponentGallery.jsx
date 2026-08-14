@@ -2748,45 +2748,55 @@ function SnackbarDemoInner() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 600, margin: "0 auto", alignItems: "center" }}>
       <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
-        Snackbar · SEED CLI Standard Official Implementation
+        Snackbar · Interactive Demo Canvas (Relative Placement)
       </div>
 
-      <div style={{ display: "flex", gap: "var(--seed-dimension-x3)", flexWrap: "wrap", justifyContent: "center" }}>
-        <ActionButton
-          variant="neutralSolid"
-          onClick={() =>
-            adapter.create({
-              onClose: () => {},
-              render: () => <Snackbar message="기본 알림 메세지입니다." actionLabel="확인" onAction={() => alert("확인 클릭")} />,
-            })
-          }
-        >
-          기본 스낵바 실행
-        </ActionButton>
+      {/* Relative Canvas Frame Box */}
+      <div style={{ position: "relative", width: "100%", height: 220, border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-basement)", overflow: "hidden", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", paddingTop: "var(--seed-dimension-x6)" }}>
+        <div style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-subtle)", marginBottom: "var(--seed-dimension-x4)" }}>
+          아래 버튼을 누르면 이 화면 캔버스 영역 하단에 스낵바가 표출됩니다 (4초간 유지)
+        </div>
 
-        <ActionButton
-          variant="brandSolid"
-          onClick={() =>
-            adapter.create({
-              onClose: () => {},
-              render: () => <Snackbar variant="positive" message="성공 알림 메세지입니다." actionLabel="확인" onAction={() => alert("확인 클릭")} />,
-            })
-          }
-        >
-          긍정 스낵바 실행
-        </ActionButton>
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x2)", flexWrap: "wrap", justifyContent: "center" }}>
+          <ActionButton
+            size="small"
+            variant="neutralSolid"
+            onClick={() =>
+              adapter.create({
+                onClose: () => {},
+                render: () => <Snackbar message="기본 알림 메세지입니다." actionLabel="확인" onAction={() => alert("확인 클릭")} />,
+              })
+            }
+          >
+            기본 스낵바 (Default)
+          </ActionButton>
 
-        <ActionButton
-          variant="criticalSolid"
-          onClick={() =>
-            adapter.create({
-              onClose: () => {},
-              render: () => <Snackbar variant="critical" message="오류 알림 메세지입니다." actionLabel="확인" onAction={() => alert("확인 클릭")} />,
-            })
-          }
-        >
-          경고 스낵바 실행
-        </ActionButton>
+          <ActionButton
+            size="small"
+            variant="brandSolid"
+            onClick={() =>
+              adapter.create({
+                onClose: () => {},
+                render: () => <Snackbar variant="positive" message="성공 알림 메세지입니다." actionLabel="확인" onAction={() => alert("확인 클릭")} />,
+              })
+            }
+          >
+            긍정 스낵바 (Positive)
+          </ActionButton>
+
+          <ActionButton
+            size="small"
+            variant="criticalSolid"
+            onClick={() =>
+              adapter.create({
+                onClose: () => {},
+                render: () => <Snackbar variant="critical" message="오류 알림 메세지입니다." actionLabel="확인" onAction={() => alert("확인 클릭")} />,
+              })
+            }
+          >
+            경고 스낵바 (Critical)
+          </ActionButton>
+        </div>
       </div>
     </div>
   );
