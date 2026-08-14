@@ -740,7 +740,12 @@ function BottomSheetDemo() {
               실제 팝업 모달 테스트
             </ActionButton>
           </BottomSheetTrigger>
-          <BottomSheetContent title="하단 모달 바텀시트" description="SEED 2.0 하단 슬라이드 모달 컴포넌트입니다.">
+          <BottomSheetContent
+            title="하단 모달 바텀시트"
+            description="SEED 2.0 하단 슬라이드 모달 컴포넌트입니다."
+            showHandle={true}
+            showCloseButton={false}
+          >
             <BottomSheetBody>
               <div style={{ padding: 'var(--seed-dimension-x3) 0', fontSize: 'var(--seed-font-size-t4)', color: 'var(--seed-color-fg-neutral)', lineHeight: 1.6 }}>
                 하단 모달 바텀시트는 최대 480px 너비를 유지하며, 드래그/배경 터치 닫기 동작 및 접근성(a11y) 속성을 자동 관리합니다.
