@@ -51,6 +51,8 @@ import { List, ListItem, ListButtonItem, ListSwitchItem, ListCheckItem, ListRadi
 import { ListHeader } from '../components/ui/list-header';
 import { MenuRoot, MenuTrigger, MenuContent, MenuGroup, MenuGroupLabel, MenuItem } from '../components/ui/menu';
 import { NotificationBadge, NotificationBadgePositioner } from '../components/ui/notification-badge';
+import { PageBanner, PageBannerButton, ActionablePageBanner, DismissiblePageBanner } from '../components/ui/page-banner';
+import IconExclamationmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconExclamationmarkCircleFill";
 import IconQuestionmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconQuestionmarkCircleFill";
 import IconMapLocationpinFill from "@karrotmarket/react-monochrome-icon/IconMapLocationpinFill";
 import IconChevronRightLine from "@karrotmarket/react-monochrome-icon/IconChevronRightLine";
@@ -1617,7 +1619,206 @@ function NotificationBadgeDemo() {
   );
 }
 
+function PageBannerDemo() {
+  const [tone, setTone] = useState("informative");
+  const [variant, setVariant] = useState("weak");
+  const [type, setType] = useState("standard");
+  const [showPrefix, setShowPrefix] = useState(true);
+  const [showTitle, setShowTitle] = useState(true);
+
+  const effectiveVariant = tone === "magic" ? "weak" : variant;
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 580, margin: '0 auto' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        6 Tones · Weak / Solid Variants · Standard / Actionable / Dismissible
+      </div>
+
+      {/* Control Option Buttons */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
+        {/* Tone selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Tone:</span>
+          {["neutral", "informative", "positive", "warning", "critical", "magic"].map((t) => (
+            <ActionButton
+              key={t}
+              size="small"
+              variant={tone === t ? "brandSolid" : "neutralOutline"}
+              onClick={() => setTone(t)}
+            >
+              {t}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Variant selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Variant:</span>
+          <ActionButton
+            size="small"
+            variant={effectiveVariant === "weak" ? "brandSolid" : "neutralOutline"}
+            onClick={() => setVariant("weak")}
+          >
+            Weak (은은함)
+          </ActionButton>
+          <ActionButton
+            size="small"
+            variant={effectiveVariant === "solid" ? "brandSolid" : "neutralOutline"}
+            onClick={() => setVariant("solid")}
+            disabled={tone === "magic"}
+          >
+            Solid (선명함)
+          </ActionButton>
+        </div>
+
+        {/* Interaction Type selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Type:</span>
+          <ActionButton
+            size="small"
+            variant={type === "standard" ? "brandSolid" : "neutralOutline"}
+            onClick={() => setType("standard")}
+          >
+            Standard (버튼)
+          </ActionButton>
+          <ActionButton
+            size="small"
+            variant={type === "actionable" ? "brandSolid" : "neutralOutline"}
+            onClick={() => setType("actionable")}
+          >
+            Actionable (화살표)
+          </ActionButton>
+          <ActionButton
+            size="small"
+            variant={type === "dismissible" ? "brandSolid" : "neutralOutline"}
+            onClick={() => setType("dismissible")}
+          >
+            Dismissible (닫기)
+          </ActionButton>
+        </div>
+
+        {/* Toggles */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', alignItems: 'center', justifyContent: 'center' }}>
+          <ActionButton
+            size="small"
+            variant={showPrefix ? "brandSolid" : "neutralOutline"}
+            onClick={() => setShowPrefix(!showPrefix)}
+          >
+            {showPrefix ? "아이콘 표시" : "아이콘 숨김"}
+          </ActionButton>
+          <ActionButton
+            size="small"
+            variant={showTitle ? "brandSolid" : "neutralOutline"}
+            onClick={() => setShowTitle(!showTitle)}
+          >
+            {showTitle ? "타이틀 포함" : "타이틀 제거"}
+          </ActionButton>
+        </div>
+      </div>
+
+      {/* Interactive Live PageBanner Component Showcase */}
+      <div style={{ width: '100%', minHeight: 64 }}>
+        {type === "standard" && (
+          <PageBanner
+            tone={tone}
+            variant={effectiveVariant}
+            prefixIcon={showPrefix ? <IconExclamationmarkCircleFill /> : undefined}
+            title={showTitle ? "상태 안내" : undefined}
+            description="중요한 상태 변경 메시지 및 서비스 공지사항을 확인하세요."
+            suffix={<PageBannerButton onClick={() => alert("자세히 보기 클릭!")}>자세히 보기</PageBannerButton>}
+          />
+        )}
+
+        {type === "actionable" && (
+          <ActionablePageBanner
+            tone={tone}
+            variant={effectiveVariant}
+            prefixIcon={showPrefix ? <IconExclamationmarkCircleFill /> : undefined}
+            title={showTitle ? "정보 등록" : undefined}
+            description="사업자 정보 등록 페이지로 이동하려면 클릭하세요."
+            onClick={() => alert("Actionable PageBanner 클릭!")}
+          />
+        )}
+
+        {type === "dismissible" && (
+          <DismissiblePageBanner
+            tone={tone}
+            variant={effectiveVariant}
+            prefixIcon={showPrefix ? <IconExclamationmarkCircleFill /> : undefined}
+            title={showTitle ? "미노출 상태" : undefined}
+            description="배너 닫기 버튼(X)을 누르면 배너를 닫을 수 있습니다."
+            onDismiss={() => alert("배너 닫기 클릭!")}
+          />
+        )}
+      </div>
+
+      {/* Tone & Variant Preset Overview Matrix */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textAlign: 'center' }}>
+          전체 톤(Tones) 프리뷰 일괄 보기
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', width: '100%' }}>
+          <PageBanner
+            tone="neutral"
+            variant="weak"
+            prefixIcon={<IconExclamationmarkCircleFill />}
+            title="Neutral Weak"
+            description="일반적인 시스템 상태 안내 메시지입니다."
+            suffix={<PageBannerButton>확인</PageBannerButton>}
+          />
+          <PageBanner
+            tone="informative"
+            variant="weak"
+            prefixIcon={<IconExclamationmarkCircleFill />}
+            title="Informative Weak"
+            description="새로운 기능 출시 및 정보성 알림 메시지입니다."
+            suffix={<PageBannerButton>자세히 보기</PageBannerButton>}
+          />
+          <PageBanner
+            tone="positive"
+            variant="weak"
+            prefixIcon={<IconExclamationmarkCircleFill />}
+            title="Positive Weak"
+            description="인증 완료 및 작업 성공 안내 메시지입니다."
+            suffix={<PageBannerButton>결과 보기</PageBannerButton>}
+          />
+          <PageBanner
+            tone="warning"
+            variant="weak"
+            prefixIcon={<IconExclamationmarkCircleFill />}
+            title="Warning Weak"
+            description="주의가 필요한 미노출 상태 및 입력 권장 메시지입니다."
+            suffix={<PageBannerButton>등록하기</PageBannerButton>}
+          />
+          <PageBanner
+            tone="critical"
+            variant="solid"
+            prefixIcon={<IconExclamationmarkCircleFill />}
+            title="Critical Solid"
+            description="제재 또는 심각한 오류가 발생한 상태 메시지입니다."
+            suffix={<PageBannerButton>해결하기</PageBannerButton>}
+          />
+          <PageBanner
+            tone="magic"
+            variant="weak"
+            prefixIcon={<IconExclamationmarkCircleFill />}
+            title="Magic Weak"
+            description="특별하고 마법 같은 혜택 소식이 도착했습니다!"
+            suffix={<PageBannerButton>혜택 받기</PageBannerButton>}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
+  {
+    name: 'Page Banner',
+    slug: 'ui:page-banner',
+    demo: <PageBannerDemo />,
+  },
   {
     name: 'Accordion',
     slug: 'ui:accordion',
