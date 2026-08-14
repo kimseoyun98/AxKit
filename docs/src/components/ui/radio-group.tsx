@@ -15,7 +15,7 @@ import type { FieldLabelVariantProps } from "@seed-design/css/recipes/field-labe
 import { radioGroup, type RadioGroupVariantProps } from "@seed-design/css/recipes/radio-group";
 import * as React from "react";
 
-export interface RadioGroupProps extends SeedRadioGroupField.RootProps, RadioGroupVariantProps {
+export interface RadioGroupProps extends SeedRadioGroupField.RootProps {
   label?: React.ReactNode;
   /**
    * @default "medium"
@@ -26,9 +26,13 @@ export interface RadioGroupProps extends SeedRadioGroupField.RootProps, RadioGro
 
   description?: React.ReactNode;
   errorMessage?: React.ReactNode;
+
+  size?: "medium" | "large";
+  weight?: "regular" | "bold";
+  tone?: "neutral" | "brand";
 }
 
-const RadioGroupContext = React.createContext<{ size?: "medium" | "large"; weight?: "regular" | "bold" }>({});
+const RadioGroupContext = React.createContext<{ size?: "medium" | "large"; weight?: "regular" | "bold"; tone?: "neutral" | "brand" }>({});
 
 /**
  * @see https://seed-design.io/react/components/radio-group
@@ -44,8 +48,9 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       description,
       errorMessage,
 
-      size,
-      weight,
+      size = "medium",
+      weight = "regular",
+      tone = "neutral",
 
       children,
 
@@ -70,7 +75,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     const renderFooter = description || renderErrorMessage;
 
     return (
-      <RadioGroupContext.Provider value={{ size, weight }}>
+      <RadioGroupContext.Provider value={{ size, weight, tone }}>
         <SeedRadioGroupField.Root ref={ref} {...restProps}>
           {(label || indicator) && (
             <SeedRadioGroupField.Header>
@@ -116,6 +121,8 @@ export interface RadioGroupItemProps extends SeedRadioGroup.ItemProps {
 
   weight?: "regular" | "bold";
 
+  tone?: "neutral" | "brand";
+
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 
   rootRef?: React.Ref<HTMLLabelElement>;
@@ -125,16 +132,21 @@ import { radio } from "@seed-design/css/recipes/radio";
 import { radiomark } from "@seed-design/css/recipes/radiomark";
 
 export const RadioGroupItem = React.forwardRef<HTMLInputElement, RadioGroupItemProps>(
-  ({ label, inputProps, rootRef, size: itemSize, weight: itemWeight, ...otherProps }, ref) => {
+  ({ label, inputProps, rootRef, size: itemSize, weight: itemWeight, tone: itemTone, className, ...otherProps }, ref) => {
     const ctx = React.useContext(RadioGroupContext);
     const size = itemSize ?? ctx.size ?? "medium";
     const weight = itemWeight ?? ctx.weight ?? "regular";
+    const tone = itemTone ?? ctx.tone ?? "neutral";
 
     const radioRecipe = radio({ size, weight });
-    const radiomarkRecipe = radiomark({ size });
+    const radiomarkRecipe = radiomark({ size, tone });
 
     return (
-      <SeedRadioGroup.Item ref={rootRef} className={radioRecipe.root} {...otherProps}>
+      <SeedRadioGroup.Item
+        ref={rootRef}
+        className={[radioRecipe.root, className].filter(Boolean).join(" ")}
+        {...otherProps}
+      >
         <SeedRadioGroup.ItemControl className={radiomarkRecipe.root}>
           <SeedRadioGroup.ItemIndicator
             className={radiomarkRecipe.icon}
@@ -145,7 +157,11 @@ export const RadioGroupItem = React.forwardRef<HTMLInputElement, RadioGroupItemP
             }
           />
         </SeedRadioGroup.ItemControl>
-        {label && <SeedRadioGroup.ItemLabel className={radioRecipe.label}>{label}</SeedRadioGroup.ItemLabel>}
+        {label && (
+          <SeedRadioGroup.ItemLabel className={radioRecipe.label}>
+            {label}
+          </SeedRadioGroup.ItemLabel>
+        )}
         <SeedRadioGroup.ItemHiddenInput ref={ref} {...inputProps} />
       </SeedRadioGroup.Item>
     );

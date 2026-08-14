@@ -1821,7 +1821,7 @@ function RadioGroupDemo() {
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
         <RadioGroup
           label="결제 수단 선택"
-          labelWeight="bold"
+          labelWeight={weight}
           showRequiredIndicator
           description="하나의 결제 수단만 선택 가능합니다."
           errorMessage="선택하신 결제 수단은 현재 이용할 수 없습니다."
