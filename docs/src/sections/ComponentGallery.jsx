@@ -345,15 +345,15 @@ function AccordionDemo() {
         </div>
         <Accordion defaultValue={["1"]} variant="inline" style={{ width: '100%' }}>
           <AccordionItem value="0">
-            <AccordionTrigger title="배송 방법 안내" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>{renderContent("기본 배송은 당일 발송되며 1~2일 내에 안전하게 도착해요.")}</AccordionContent>
+            <AccordionTrigger title="PG 결제 및 정산 방식 안내" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
+            <AccordionContent>{renderContent("카드사 및 PG사 정산 대금은 지정 가맹점 입금 계좌로 자동 정산되어 입금됩니다.")}</AccordionContent>
           </AccordionItem>
           <AccordionItem value="1">
-            <AccordionTrigger title="반품/교환은 어떻게 하나요?" description="구매 후 7일 이내 신청" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>{renderContent("상품 상세페이지의 [반품/교환 신청] 버튼을 눌러 접수해주세요.")}</AccordionContent>
+            <AccordionTrigger title="정산 취소 및 환급 절차는 어떻게 되나요?" description="승인 후 30일 이내 취소 신청" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
+            <AccordionContent>{renderContent("관리자 페이지의 [결제 승인 내역] 메뉴에서 취소 요청을 접수해주세요.")}</AccordionContent>
           </AccordionItem>
           <AccordionItem value="2" disabled>
-            <AccordionTrigger title="고객센터 문의하기" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
+            <AccordionTrigger title="이롬넷 가맹점 지원센터" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
             <AccordionContent>{renderContent("운영시간은 평일 09:00 ~ 18:00 입니다.")}</AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -366,15 +366,15 @@ function AccordionDemo() {
         </div>
         <Accordion defaultValue={["1"]} variant="separated" style={{ width: '100%' }}>
           <AccordionItem value="0">
-            <AccordionTrigger title="배송 방법 안내" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>{renderContent("기본 배송은 당일 발송되며 1~2일 내에 안전하게 도착해요.")}</AccordionContent>
+            <AccordionTrigger title="PG 결제 및 정산 방식 안내" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
+            <AccordionContent>{renderContent("카드사 및 PG사 정산 대금은 지정 가맹점 입금 계좌로 자동 정산되어 입금됩니다.")}</AccordionContent>
           </AccordionItem>
           <AccordionItem value="1">
-            <AccordionTrigger title="반품/교환은 어떻게 하나요?" description="구매 후 7일 이내 신청" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>{renderContent("상품 상세페이지의 [반품/교환 신청] 버튼을 눌러 접수해주세요.")}</AccordionContent>
+            <AccordionTrigger title="정산 취소 및 환급 절차는 어떻게 되나요?" description="승인 후 30일 이내 취소 신청" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
+            <AccordionContent>{renderContent("관리자 페이지의 [결제 승인 내역] 메뉴에서 취소 요청을 접수해주세요.")}</AccordionContent>
           </AccordionItem>
           <AccordionItem value="2" disabled>
-            <AccordionTrigger title="고객센터 문의하기" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
+            <AccordionTrigger title="이롬넷 가맹점 지원센터" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
             <AccordionContent>{renderContent("운영시간은 평일 09:00 ~ 18:00 입니다.")}</AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -445,7 +445,7 @@ function ActionButtonDemo() {
             필터 (XSmall)
           </ActionButton>
           <ActionButton variant="brandSolid" size="large">
-            구매하기 (Large)
+            결제 승인 (Large)
           </ActionButton>
         </div>
       </div>
@@ -774,8 +774,8 @@ function ChipDemo() {
         <ChipTabsRoot variant="neutralSolid" size="medium" value={tabVal} onValueChange={setTabVal}>
           <ChipTabsList>
             <ChipTabsTrigger value="1" notification>정산알림</ChipTabsTrigger>
-            <ChipTabsTrigger value="2">인기글</ChipTabsTrigger>
-            <ChipTabsTrigger value="3">최신질문</ChipTabsTrigger>
+            <ChipTabsTrigger value="2">승인내역</ChipTabsTrigger>
+            <ChipTabsTrigger value="3">환급안내</ChipTabsTrigger>
           </ChipTabsList>
         </ChipTabsRoot>
       </div>
@@ -1162,8 +1162,8 @@ function HelpBubbleDemo() {
           </span>
           <HelpBubbleTrigger
             placement={placement}
-            title="첫 거래 수수료 50% 할인"
-            description="매월 첫 번째 결제 진행 시 서비스 이용 수수료가 자동으로 할인 적용됩니다."
+            title="신규 가맹점 결제 수수료 인하 혜택"
+            description="이롬넷 Payverse 신규 가맹점 등록 시 PG 결제 우대 수수료율이 자동 적용됩니다."
             showCloseButton={showClose}
           >
             <ActionButton variant="neutralSolid" size="medium">
@@ -1385,15 +1385,15 @@ function ListDemo() {
 
       {/* Official SEED List Layout */}
       <VStack width="full">
-        <ListHeader as="h3">계정 및 알림 설정</ListHeader>
+        <ListHeader as="h3">가맹점 및 정산 계좌 설정</ListHeader>
         <List width="full">
           {/* 1. Highlighted / Standard ListItem with Multi-line Detail */}
           <ListItem
             alignItems={align}
             highlighted={highlightFirst}
             prefix={<Icon svg={<IconBellFill />} />}
-            title="마케팅 혜택 및 쇼핑 알림"
-            detail="이벤트, 할인 쿠폰, 맞춤형 추천 상품 및 서비스 업데이트 소식을 실시간 알림으로 받아보실 수 있습니다."
+            title="가맹점 결제 및 정산 알림"
+            detail="카드사 승인, PG 일괄 정산, 입금 완료 및 수수료 환급 소식을 실시간 알림으로 받아보실 수 있습니다."
             suffix={<Icon svg={<IconChevronRightLine />} />}
           />
 
@@ -1403,8 +1403,8 @@ function ListDemo() {
             checked={pushNotif}
             onCheckedChange={setPushNotif}
             prefix={<Icon svg={<IconLockFill />} />}
-            title="보안 및 로그인 푸시 알림"
-            detail="새로운 기기에서 로그인 시 즉시 보안 승인 알림을 받습니다."
+            title="가맹점 보안 2차 인증 알림"
+            detail="PG 관리자 페이지 접속 및 정산 계좌 변경 시 보안 인증 알림을 받습니다."
           />
 
           {/* 3. ListCheckItem */}
@@ -1412,8 +1412,8 @@ function ListDemo() {
             alignItems={align}
             checked={agreeTerms}
             onCheckedChange={setAgreeTerms}
-            title="필수 서비스 이용약관 동의"
-            detail="개인정보 처리방침 및 위치 기반 서비스 이용 동의"
+            title="B2B PG 전자금융거래 약관 동의"
+            detail="이롬넷 Payverse 결제대금 정산 및 가맹점 개인정보 처리방침 동의"
           />
 
           {/* 4. ListRadioItem */}
@@ -1429,10 +1429,10 @@ function ListDemo() {
           {/* 5. ListButtonItem */}
           <ListButtonItem
             alignItems={align}
-            onClick={() => alert("프로필 수정 페이지로 이동합니다.")}
+            onClick={() => alert("가맹점 정보 수정 페이지로 이동합니다.")}
             prefix={<Icon svg={<IconPersonFill />} />}
-            title="프로필 및 개인정보 수정"
-            detail="닉네임, 프로필 사진, 거주 지역 및 전화번호 변경"
+            title="가맹점 사업자 정보 관리"
+            detail="대표자명, 사업자등록번호, 정산 입금 계좌 및 연동 API Key 관리"
             suffix={<Icon svg={<IconChevronRightLine />} />}
           />
         </List>
@@ -1454,12 +1454,12 @@ function MenuDemo() {
         </MenuTrigger>
         <MenuContent>
           <MenuGroup>
-            <MenuGroupLabel>게시물 작업</MenuGroupLabel>
-            <MenuItem label="게시물 수정" description="제목 및 내용을 수정합니다" prefixIcon={<IconPencilLine />} />
+            <MenuGroupLabel>가맹점 관리</MenuGroupLabel>
+            <MenuItem label="정산 계좌 변경" description="지정 정산 계좌 정보를 수정합니다" prefixIcon={<IconPencilLine />} />
           </MenuGroup>
           <MenuGroup>
-            <MenuGroupLabel>위험 영역</MenuGroupLabel>
-            <MenuItem label="게시물 삭제" description="이 작업은 되돌릴 수 없습니다" tone="critical" prefixIcon={<IconTrashcanLine />} />
+            <MenuGroupLabel>PG 연동 설정</MenuGroupLabel>
+            <MenuItem label="API Key 재발급" description="연동 인가 키를 재발급 처리합니다" tone="critical" prefixIcon={<IconTrashcanLine />} />
           </MenuGroup>
         </MenuContent>
       </MenuRoot>
@@ -1500,7 +1500,7 @@ function NotificationBadgeDemo() {
               <NotificationBadge size="large">3</NotificationBadge>
             </NotificationBadgePositioner>
           </div>
-          <span style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-muted)' }}>채팅 아이콘 + Large</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-muted)' }}>미정산 내역 알림 + Large</span>
         </div>
 
         {/* Bell Icon + Small Dot Badge */}
@@ -1511,7 +1511,7 @@ function NotificationBadgeDemo() {
               <NotificationBadge size="small" />
             </NotificationBadgePositioner>
           </div>
-          <span style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-muted)' }}>알림 아이콘 + Small</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-muted)' }}>실시간 승인 알림 + Small</span>
         </div>
       </div>
     </div>
@@ -1703,7 +1703,7 @@ function PageBannerDemo() {
             variant="weak"
             prefixIcon={<IconExclamationmarkCircleFill />}
             title="Magic Weak"
-            description="특별하고 마법 같은 혜택 소식이 도착했습니다!"
+            description="이롬넷 Payverse 글로벌 결제 연동 우대 혜택 적용 안내"
             suffix={<PageBannerButton>혜택 받기</PageBannerButton>}
           />
         </div>
@@ -1762,7 +1762,7 @@ function QuantityPickerDemo() {
       {/* Interactive QuantityPicker Showcase */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', alignItems: 'center', width: '100%' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>수량 선택 (단위 포함)</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>정산 차수 / 일자별 회차 선택</span>
           <QuantityPicker
             size={size}
             min={1}
@@ -1770,8 +1770,8 @@ function QuantityPickerDemo() {
             defaultValue={1}
             disabled={isDisabled}
             removable={removable}
-            getValueText={(val) => `${val}개`}
-            aria-label="상품 수량 선택"
+            getValueText={(val) => `${val}회차`}
+            aria-label="정산 회차 선택"
           />
         </div>
 
@@ -1785,8 +1785,8 @@ function QuantityPickerDemo() {
             max={99}
             defaultValue={3}
             disabled={isDisabled}
-            getValueText={(val) => `${val}개 수량`}
-            aria-label="Fill 수량 선택"
+            getValueText={(val) => `${val}건 정산`}
+            aria-label="Fill 정산 선택"
             style={{ width: '100%' }}
           />
         </div>
@@ -2370,7 +2370,7 @@ function SelectDemo() {
   const [showPrefix, setShowPrefix] = useState(true);
   const [isError, setIsError] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  const [value, setValue] = useState(["apple"]);
+  const [value, setValue] = useState(["card"]);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
