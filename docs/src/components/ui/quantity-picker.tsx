@@ -66,9 +66,9 @@ export const QuantityPicker = React.forwardRef<
       decrementAriaLabel = "수량 줄이기",
       incrementAriaLabel = "수량 늘리기",
       removeAriaLabel = "상품 삭제",
-      decrementIcon = <IconMinusLine style={{ width: "1.2em", height: "1.2em" }} />,
-      incrementIcon = <IconPlusLine style={{ width: "1.2em", height: "1.2em" }} />,
-      removeIcon = <IconTrashcanLine style={{ width: "1.2em", height: "1.2em" }} />,
+      decrementIcon = <IconMinusLine />,
+      incrementIcon = <IconPlusLine />,
+      removeIcon = <IconTrashcanLine />,
       loadingIndicator = <ProgressCircle size="inherit" tone="inherit" />,
       inputProps,
       ...rootProps
