@@ -2500,7 +2500,6 @@ function SelectDemo() {
 
 function SidePanelDemo() {
   const [isResponsive, setIsResponsive] = useState(false);
-  const [placement, setPlacement] = useState("right"); // "right" | "left"
   const [showDescription, setShowDescription] = useState(true);
   const [forceMobile, setForceMobile] = useState(false);
 
@@ -2530,25 +2529,8 @@ function SidePanelDemo() {
           ))}
         </div>
 
-        {/* Placement Selection */}
-        {!isResponsive ? (
-          <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-            <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Placement:</span>
-            {[
-              { label: "우측 슬라이드 (Right)", value: "right" },
-              { label: "좌측 슬라이드 (Left)", value: "left" },
-            ].map((p) => (
-              <ActionButton
-                key={p.value}
-                size="small"
-                variant={placement === p.value ? "brandSolid" : "neutralOutline"}
-                onClick={() => setPlacement(p.value)}
-              >
-                {p.label}
-              </ActionButton>
-            ))}
-          </div>
-        ) : (
+        {/* Breakpoint Mode Override */}
+        {isResponsive && (
           <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
             <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Breakpoint Mode:</span>
             <ActionButton
@@ -2579,15 +2561,15 @@ function SidePanelDemo() {
           {isResponsive
             ? (forceMobile
                 ? "📱 모바일 상태로 강제 전환되어 Bottom Sheet(바텀 시트) 형태로 출력됩니다."
-                : "💻 현재 데스크톱 해상도(≥768px)에서는 Side Panel로 동작합니다. (브라우저 너비를 줄이거나 '모바일 모드 강제 적용' 버튼을 눌러보세요)")
-            : "버튼을 클릭하여 사이드 패널을 열어보세요"}
+                : "💻 현재 데스크톱 해상도(≥768px)에서는 우측 Side Panel로 동작합니다.")
+            : "버튼을 클릭하여 우측 사이드 패널을 열어보세요"}
         </div>
 
         {!isResponsive ? (
-          <SidePanelRoot direction={placement}>
+          <SidePanelRoot direction="right">
             <SidePanelTrigger asChild>
               <ActionButton variant="brandSolid" size="medium">
-                {placement === "right" ? "우측 사이드 패널 열기 ➔" : "⬅ 좌측 사이드 패널 열기"}
+                우측 사이드 패널 열기 ➔
               </ActionButton>
             </SidePanelTrigger>
             <SidePanelContent
