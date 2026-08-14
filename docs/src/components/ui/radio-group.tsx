@@ -28,6 +28,8 @@ export interface RadioGroupProps extends SeedRadioGroupField.RootProps, RadioGro
   errorMessage?: React.ReactNode;
 }
 
+const RadioGroupContext = React.createContext<{ size?: "medium" | "large"; weight?: "regular" | "bold" }>({});
+
 /**
  * @see https://seed-design.io/react/components/radio-group
  */
@@ -65,38 +67,40 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     const renderFooter = description || renderErrorMessage;
 
     return (
-      <SeedRadioGroupField.Root ref={ref} {...restProps}>
-        {(label || indicator) && (
-          <SeedRadioGroupField.Header>
-            <SeedRadioGroupField.Label weight={labelWeight}>
-              {label}
-              {showRequiredIndicator && <SeedRadioGroupField.RequiredIndicator />}
-              {indicator && (
-                <SeedRadioGroupField.IndicatorText>{indicator}</SeedRadioGroupField.IndicatorText>
-              )}
-            </SeedRadioGroupField.Label>
-          </SeedRadioGroupField.Header>
-        )}
-        <SeedRadioGroup.Root {...variantProps}>{children}</SeedRadioGroup.Root>
-        {renderFooter && (
-          <SeedRadioGroupField.Footer>
-            {description &&
-              (renderErrorMessage ? (
-                <VisuallyHidden asChild>
+      <RadioGroupContext.Provider value={{ size: variantProps.size, weight: variantProps.weight }}>
+        <SeedRadioGroupField.Root ref={ref} {...restProps}>
+          {(label || indicator) && (
+            <SeedRadioGroupField.Header>
+              <SeedRadioGroupField.Label weight={labelWeight}>
+                {label}
+                {showRequiredIndicator && <SeedRadioGroupField.RequiredIndicator />}
+                {indicator && (
+                  <SeedRadioGroupField.IndicatorText>{indicator}</SeedRadioGroupField.IndicatorText>
+                )}
+              </SeedRadioGroupField.Label>
+            </SeedRadioGroupField.Header>
+          )}
+          <SeedRadioGroup.Root {...variantProps}>{children}</SeedRadioGroup.Root>
+          {renderFooter && (
+            <SeedRadioGroupField.Footer>
+              {description &&
+                (renderErrorMessage ? (
+                  <VisuallyHidden asChild>
+                    <SeedRadioGroupField.Description>{description}</SeedRadioGroupField.Description>
+                  </VisuallyHidden>
+                ) : (
                   <SeedRadioGroupField.Description>{description}</SeedRadioGroupField.Description>
-                </VisuallyHidden>
-              ) : (
-                <SeedRadioGroupField.Description>{description}</SeedRadioGroupField.Description>
-              ))}
-            {renderErrorMessage && (
-              <SeedRadioGroupField.ErrorMessage>
-                <PrefixIcon svg={<IconExclamationmarkCircleFill />} />
-                {errorMessage}
-              </SeedRadioGroupField.ErrorMessage>
-            )}
-          </SeedRadioGroupField.Footer>
-        )}
-      </SeedRadioGroupField.Root>
+                ))}
+              {renderErrorMessage && (
+                <SeedRadioGroupField.ErrorMessage>
+                  <PrefixIcon svg={<IconExclamationmarkCircleFill />} />
+                  {errorMessage}
+                </SeedRadioGroupField.ErrorMessage>
+              )}
+            </SeedRadioGroupField.Footer>
+          )}
+        </SeedRadioGroupField.Root>
+      </RadioGroupContext.Provider>
     );
   },
 );
@@ -104,6 +108,10 @@ RadioGroup.displayName = "RadioGroup";
 
 export interface RadioGroupItemProps extends SeedRadioGroup.ItemProps {
   label?: React.ReactNode;
+
+  size?: "medium" | "large";
+
+  weight?: "regular" | "bold";
 
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 
@@ -114,11 +122,16 @@ export interface RadioGroupItemProps extends SeedRadioGroup.ItemProps {
  * @see https://seed-design.io/react/components/radio-group
  */
 export const RadioGroupItem = React.forwardRef<HTMLInputElement, RadioGroupItemProps>(
-  ({ label, inputProps, rootRef, ...otherProps }, ref) => {
+  ({ label, inputProps, rootRef, size: itemSize, weight: itemWeight, ...otherProps }, ref) => {
+    const ctx = React.useContext(RadioGroupContext);
+    const size = itemSize ?? ctx.size;
+    const weight = itemWeight ?? ctx.weight;
+
     return (
-      <SeedRadioGroup.Item ref={rootRef} {...otherProps}>
-        <SeedRadioGroup.ItemControl>
+      <SeedRadioGroup.Item ref={rootRef} size={size} weight={weight} {...otherProps}>
+        <SeedRadioGroup.ItemControl size={size}>
           <SeedRadioGroup.ItemIndicator
+            size={size}
             checked={
               <svg aria-hidden="true" viewBox="0 0 24 24">
                 <circle cx="12" cy="12" r="12" fill="currentColor" />
@@ -126,7 +139,7 @@ export const RadioGroupItem = React.forwardRef<HTMLInputElement, RadioGroupItemP
             }
           />
         </SeedRadioGroup.ItemControl>
-        {label && <SeedRadioGroup.ItemLabel>{label}</SeedRadioGroup.ItemLabel>}
+        {label && <SeedRadioGroup.ItemLabel size={size} weight={weight}>{label}</SeedRadioGroup.ItemLabel>}
         <SeedRadioGroup.ItemHiddenInput ref={ref} {...inputProps} />
       </SeedRadioGroup.Item>
     );
