@@ -2565,21 +2565,11 @@ export function ComponentGallery() {
         ))}
       </div>
 
-      {/* 상단 정보 바 (컴포넌트 이름/슬러그, dot 인디케이터, 이전/다음 화살표) */}
+      {/* 상단 정보 바 (컴포넌트 이름/슬러그, 이전/다음 화살표) */}
       <div className="comp-info-bar" style={{ marginBlock: 'var(--seed-dimension-x3_5)' }}>
         <div>
           <div className="comp-name">{COMPONENTS[cur].name}</div>
           <div className="comp-slug">{COMPONENTS[cur].slug}</div>
-        </div>
-        <div className="comp-dots" style={{ marginTop: 0 }}>
-          {COMPONENTS.map((_, i) => (
-            <button
-              key={i}
-              className={`comp-dot${i === cur ? ' active' : ''}`}
-              onClick={() => go(i)}
-              aria-label={COMPONENTS[i].name}
-            />
-          ))}
         </div>
         <div className="comp-arrows">
           <button className="comp-arrow-btn" onClick={() => go(cur - 1)} disabled={cur === 0}>‹</button>
