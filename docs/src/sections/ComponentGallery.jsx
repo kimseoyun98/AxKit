@@ -2106,10 +2106,6 @@ function SegmentedControlDemo() {
 
       {/* Interactive SegmentedControl Showcase */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', width: '100%', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', alignItems: 'center' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
-          선택된 항목: <strong style={{ color: 'var(--seed-color-fg-neutral)' }}>{value}</strong>
-        </div>
-
         <div style={{ width: '100%' }}>
           {count === 2 && (
             <SegmentedControl
