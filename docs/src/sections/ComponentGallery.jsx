@@ -81,6 +81,7 @@ import {
 } from '../components/ui/side-panel';
 import SideNavigation1 from '../components/ui/blocks/side-navigation-01';
 import { TextField, TextFieldInput } from '../components/ui/text-field';
+import { Slider } from '../components/ui/slider';
 import {
   ResponsiveSidePanelRoot,
   ResponsiveSidePanelTrigger,
@@ -2687,6 +2688,58 @@ function SkeletonDemo() {
   );
 }
 
+function SliderDemo() {
+  const [singleValue, setSingleValue] = useState([50]);
+  const [rangeValues, setRangeValues] = useState([20, 80]);
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 640, margin: "0 auto", alignItems: "center" }}>
+      <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
+        Slider · Range & Step Controls · Value Indicators & Markers
+      </div>
+
+      {/* Interactive Showcase Frame */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", padding: "var(--seed-dimension-x6)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
+        {/* 1. Single Thumb Slider */}
+        <VStack gap="x3" width="full">
+          <Text fontWeight="bold" textStyle="t3">단일 조절 슬라이더 (Single Thumb)</Text>
+          <Slider
+            label="볼륨 조절"
+            description={`현재 값: ${singleValue[0]}%`}
+            min={0}
+            max={100}
+            values={singleValue}
+            onValuesChange={setSingleValue}
+            getAriaLabel={() => "볼륨 조절 슬라이더"}
+          />
+        </VStack>
+
+        <Divider />
+
+        {/* 2. Dual Thumb Range Slider */}
+        <VStack gap="x3" width="full">
+          <Text fontWeight="bold" textStyle="t3">범위 선택 슬라이더 (Dual Thumb Range)</Text>
+          <Slider
+            label="가격 범위 선택"
+            description={`선택된 범위: ₩${rangeValues[0] * 1000} ~ ₩${rangeValues[1] * 1000}`}
+            min={0}
+            max={100}
+            step={5}
+            values={rangeValues}
+            onValuesChange={setRangeValues}
+            markers={[
+              { value: 0, label: "최소" },
+              { value: 50, label: "50%" },
+              { value: 100, label: "최대" },
+            ]}
+            getAriaLabel={(idx) => (idx === 0 ? "최소 가격" : "최대 가격")}
+          />
+        </VStack>
+      </div>
+    </div>
+  );
+}
+
 function SideNavigationDemo() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 760, margin: "0 auto", alignItems: "center" }}>
@@ -2910,6 +2963,12 @@ const COMPONENTS = [
     name: 'Skeleton',
     slug: '@seed-design/react:Skeleton',
     demo: <SkeletonDemo />,
+  },
+
+  {
+    name: 'Slider',
+    slug: 'ui:slider',
+    demo: <SliderDemo />,
   },
 ];
 
