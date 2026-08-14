@@ -2669,7 +2669,6 @@ function SidePanelDemo() {
 
 
 function SideNavigationDemo() {
-  const [pattern, setPattern] = useState("block-01"); // "block-01" | "block-02"
   const [collapsed, setCollapsed] = useState(false);
   const [activeItem, setActiveItem] = useState("전체 상품 목록");
 
@@ -2681,186 +2680,80 @@ function SideNavigationDemo() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 720, margin: "0 auto", alignItems: "center" }}>
       <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
-        Side Navigation · Standard Block 01 / Profile & Account Switcher Block 02
-      </div>
-
-      {/* Controls */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
-        {/* Block Pattern Selection */}
-        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Pattern:</span>
-          {[
-            { label: "Block 01 (표준 기업/대시보드)", value: "block-01" },
-            { label: "Block 02 (프로필 & 계정 스위처)", value: "block-02" },
-          ].map((p) => (
-            <ActionButton
-              key={p.value}
-              size="small"
-              variant={pattern === p.value ? "brandSolid" : "neutralOutline"}
-              onClick={() => setPattern(p.value)}
-            >
-              {p.label}
-            </ActionButton>
-          ))}
-        </div>
-
-        {/* State Toggle */}
-        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>State:</span>
-          <ActionButton
-            size="small"
-            variant={collapsed ? "brandSolid" : "neutralOutline"}
-            onClick={() => setCollapsed(!collapsed)}
-          >
-            {collapsed ? "접힘 (Collapsed)" : "펼침 (Expanded)"}
-          </ActionButton>
-        </div>
+        Side Navigation · Collapsible Accordions · Collapsed Flyout Popovers & Tooltips
       </div>
 
       {/* Showcase Canvas */}
       <div style={{ display: "flex", width: "100%", height: 480, border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", overflow: "hidden", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
         <SideNavigationProvider collapsed={collapsed} onCollapsedChange={setCollapsed}>
           <SideNavigationRoot style={{ height: "100%" }}>
-            {pattern === "block-01" ? (
-              <>
-                <SideNavigationHeader>
-                  {!collapsed && (
-                    <HStack align="center" gap="x2" overflow="hidden" flex="1">
-                      <Box width="28px" height="28px" borderRadius="r2" bgColor="bg.brandSolid" display="flex" align="center" justify="center" color="fg.neutralInverted" fontWeight="bold" fontSize="14px">
-                        🥕
-                      </Box>
-                      <Text fontWeight="bold" textStyle="t4" whiteSpace="nowrap">
-                        당근 비즈니스
-                      </Text>
-                    </HStack>
-                  )}
-                  <SideNavigationTrigger />
-                </SideNavigationHeader>
+            <SideNavigationHeader>
+              {!collapsed && (
+                <HStack align="center" gap="x2" overflow="hidden" flex="1">
+                  <Box width="28px" height="28px" borderRadius="r2" bgColor="bg.brandSolid" display="flex" align="center" justify="center" color="fg.neutralInverted" fontWeight="bold" fontSize="14px">
+                    🥕
+                  </Box>
+                  <Text fontWeight="bold" textStyle="t4" whiteSpace="nowrap">
+                    당근 비즈니스
+                  </Text>
+                </HStack>
+              )}
+              <SideNavigationTrigger />
+            </SideNavigationHeader>
 
-                <SideNavigationContent>
-                  <SideNavigationGroup
-                    items={[
-                      { label: "홈", prefixIcon: <IconHouseFill />, ...navItemProps("홈") },
-                      { label: "대시보드", prefixIcon: <IconHeartFill />, ...navItemProps("대시보드") },
-                    ]}
-                  />
+            <SideNavigationContent>
+              <SideNavigationGroup
+                items={[
+                  { label: "홈", prefixIcon: <IconHouseFill />, ...navItemProps("홈") },
+                  { label: "대시보드", prefixIcon: <IconHeartFill />, ...navItemProps("대시보드") },
+                ]}
+              />
 
-                  <SideNavigationGroup
-                    label="콘텐츠 및 상품"
-                    items={[
-                      {
-                        label: "상품 관리",
-                        prefixIcon: <IconMapLocationpinFill />,
-                        defaultOpen: true,
-                        items: [
-                          { label: "전체 상품 목록", ...navItemProps("전체 상품 목록") },
-                          { label: "카테고리 관리", ...navItemProps("카테고리 관리") },
-                          { label: "재고 현황", ...navItemProps("재고 현황") },
-                        ],
-                      },
-                      {
-                        label: "주문 및 배송",
-                        prefixIcon: <IconExclamationmarkCircleFill />,
-                        items: [
-                          { label: "신규 주문 내역", ...navItemProps("신규 주문 내역") },
-                          { label: "배송 처리 현황", ...navItemProps("배송 처리 현황") },
-                        ],
-                      },
-                    ]}
-                  />
+              <SideNavigationGroup
+                label="콘텐츠 및 상품"
+                items={[
+                  {
+                    label: "상품 관리",
+                    prefixIcon: <IconMapLocationpinFill />,
+                    defaultOpen: true,
+                    items: [
+                      { label: "전체 상품 목록", ...navItemProps("전체 상품 목록") },
+                      { label: "카테고리 관리", ...navItemProps("카테고리 관리") },
+                      { label: "재고 현황", ...navItemProps("재고 현황") },
+                    ],
+                  },
+                  {
+                    label: "주문 및 배송",
+                    prefixIcon: <IconExclamationmarkCircleFill />,
+                    items: [
+                      { label: "신규 주문 내역", ...navItemProps("신규 주문 내역") },
+                      { label: "배송 처리 현황", ...navItemProps("배송 처리 현황") },
+                    ],
+                  },
+                ]}
+              />
 
-                  <SideNavigationGroup
-                    label="고객 지원"
-                    items={[
-                      { label: "고객 센터 문의", prefixIcon: <IconQuestionmarkCircleFill />, ...navItemProps("고객 센터 문의") },
-                      { label: "서비스 만족도 설문", prefixIcon: <IconFaceSmileCircleFill />, ...navItemProps("서비스 만족도 설문") },
-                    ]}
-                  />
-                </SideNavigationContent>
+              <SideNavigationGroup
+                label="고객 지원"
+                items={[
+                  { label: "고객 센터 문의", prefixIcon: <IconQuestionmarkCircleFill />, ...navItemProps("고객 센터 문의") },
+                  { label: "서비스 만족도 설문", prefixIcon: <IconFaceSmileCircleFill />, ...navItemProps("서비스 만족도 설문") },
+                ]}
+              />
+            </SideNavigationContent>
 
-                <SideNavigationFooter>
-                  <SideNavigationItemButton
-                    prefixIcon={<IconGearFill />}
-                    label="환경설정"
-                    {...navItemProps("환경설정")}
-                  />
-                  <SideNavigationItemButton
-                    prefixIcon={<IconPersonFill />}
-                    label="내 프로필"
-                    {...navItemProps("내 프로필")}
-                  />
-                </SideNavigationFooter>
-              </>
-            ) : (
-              <>
-                <SideNavigationHeader>
-                  <VStack paddingX="x2" paddingY="x2" gap="x3" align="flex-start">
-                    {!collapsed && (
-                      <>
-                        <Badge size="large" tone="neutral" variant="weak">
-                          당근 비즈니스
-                        </Badge>
-                        <MenuRoot matchReferenceWidth>
-                          <MenuTrigger asChild>
-                            <HStack
-                              alignItems="center"
-                              gap="x3"
-                              width="full"
-                              borderRadius="x2_5"
-                              style={{ cursor: "pointer" }}
-                            >
-                              <Box flexShrink={0}>
-                                <Avatar
-                                  size="36"
-                                  src="https://avatars.githubusercontent.com/u/54893898?v=4"
-                                  fallback={<IdentityPlaceholder />}
-                                />
-                              </Box>
-                              <Text fontSize="t4" lineHeight="t4" color="fg.neutral" maxLines={1}>
-                                김당근 님 ▾
-                              </Text>
-                            </HStack>
-                          </MenuTrigger>
-                          <MenuContent>
-                            <MenuGroup>
-                              <MenuItem label="프로필 설정" />
-                              <MenuItem label="계정 전환" />
-                              <MenuItem label="로그아웃" />
-                            </MenuGroup>
-                          </MenuContent>
-                        </MenuRoot>
-                      </>
-                    )}
-                  </VStack>
-                  <SideNavigationTrigger />
-                </SideNavigationHeader>
-
-                <SideNavigationContent>
-                  <SideNavigationGroup
-                    items={[
-                      { label: "홈", prefixIcon: <IconHouseFill />, ...navItemProps("홈") },
-                      {
-                        label: "설정",
-                        prefixIcon: <IconGearFill />,
-                        items: [
-                          { label: "일반 설정", ...navItemProps("일반 설정") },
-                          { label: "알림 설정", ...navItemProps("알림 설정") },
-                          { label: "보안 설정", ...navItemProps("보안 설정") },
-                        ],
-                      },
-                    ]}
-                  />
-                </SideNavigationContent>
-
-                <SideNavigationFooter>
-                  <SideNavigationItemButton
-                    prefixIcon={<IconPersonFill />}
-                    label="내 프로필"
-                    {...navItemProps("내 프로필")}
-                  />
-                </SideNavigationFooter>
-              </>
-            )}
+            <SideNavigationFooter>
+              <SideNavigationItemButton
+                prefixIcon={<IconGearFill />}
+                label="환경설정"
+                {...navItemProps("환경설정")}
+              />
+              <SideNavigationItemButton
+                prefixIcon={<IconPersonFill />}
+                label="내 프로필"
+                {...navItemProps("내 프로필")}
+              />
+            </SideNavigationFooter>
           </SideNavigationRoot>
 
           {/* Main Body Canvas via SideNavigationInset */}
