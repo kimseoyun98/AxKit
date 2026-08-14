@@ -56,6 +56,7 @@ import { QuantityPicker } from '../components/ui/quantity-picker';
 import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
 import { ReactionButton } from '../components/ui/reaction-button';
 import { ResultSection } from '../components/ui/result-section';
+import { SegmentedControl, SegmentedControlItem } from '../components/ui/segmented-control';
 import { Count, Box, ScrollFog, HStack, VStack } from '@seed-design/react';
 import IconFaceSmileCircleFill from "@karrotmarket/react-monochrome-icon/IconFaceSmileCircleFill";
 import IconHeartFill from "@karrotmarket/react-monochrome-icon/IconHeartFill";
