@@ -79,6 +79,7 @@ import {
   SidePanelBody,
   SidePanelFooter,
 } from '../components/ui/side-panel';
+import SideNavigation1 from '../components/ui/blocks/side-navigation-01';
 import { TextField, TextFieldInput } from '../components/ui/text-field';
 import {
   ResponsiveSidePanelRoot,
@@ -2593,8 +2594,19 @@ function SidePanelDemo() {
   );
 }
 
+function SideNavigationDemo() {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 760, margin: "0 auto", alignItems: "center" }}>
+      <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
+        Side Navigation · Official SEED Block 01
+      </div>
 
-
+      <div style={{ display: "flex", width: "100%", height: 520, border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", overflow: "hidden", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
+        <SideNavigation1 />
+      </div>
+    </div>
+  );
+}
 
 const COMPONENTS = [
   {
@@ -2793,6 +2805,12 @@ const COMPONENTS = [
     name: 'Side Panel',
     slug: 'ui:side-panel',
     demo: <SidePanelDemo />,
+  },
+
+  {
+    name: 'Side Navigation',
+    slug: 'block:side-navigation-01',
+    demo: <SideNavigationDemo />,
   },
 ];
 
