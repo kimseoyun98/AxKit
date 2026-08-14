@@ -145,7 +145,7 @@ export const RadioGroupItem = React.forwardRef<HTMLInputElement, RadioGroupItemP
       <SeedRadioGroup.Item
         ref={rootRef}
         size={size}
-        className={className}
+        className={[radioRecipe.root, className].filter(Boolean).join(" ")}
         {...otherProps}
       >
         <SeedRadioGroup.ItemControl size={size}>
@@ -158,7 +158,7 @@ export const RadioGroupItem = React.forwardRef<HTMLInputElement, RadioGroupItemP
           />
         </SeedRadioGroup.ItemControl>
         {label && (
-          <SeedRadioGroup.ItemLabel size={size} weight={weight}>
+          <SeedRadioGroup.ItemLabel size={size} weight={weight} className={radioRecipe.label}>
             {label}
           </SeedRadioGroup.ItemLabel>
         )}
