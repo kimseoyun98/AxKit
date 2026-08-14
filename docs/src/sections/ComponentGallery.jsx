@@ -2506,15 +2506,15 @@ function SidePanelDemo() {
   const [email, setEmail] = useState("karrot@example.com");
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 520, margin: "0 auto", alignItems: "center" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 680, margin: "0 auto", alignItems: "center", boxSizing: "border-box" }}>
       <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
         Side Panel · Slide-in Right Navigation & Form Panel
       </div>
 
       {/* Controls */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center", width: "100%" }}>
         {/* Size Selection */}
-        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
           <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Size:</span>
           {[
             { label: "Small (480px)", value: "small" },
@@ -2822,7 +2822,7 @@ const COMPONENTS = [
 
   {
     name: 'Side Panel',
-    slug: 'ui:side-panel / ui:responsive-side-panel',
+    slug: 'ui:side-panel',
     demo: <SidePanelDemo />,
   },
 ];
