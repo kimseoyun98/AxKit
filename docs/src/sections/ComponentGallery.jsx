@@ -72,6 +72,20 @@ import {
   SelectGroup,
   SelectItem,
 } from '../components/ui/select';
+import {
+  SidePanelRoot,
+  SidePanelTrigger,
+  SidePanelContent,
+  SidePanelBody,
+  SidePanelFooter,
+} from '../components/ui/side-panel';
+import {
+  ResponsiveSidePanelRoot,
+  ResponsiveSidePanelTrigger,
+  ResponsiveSidePanelContent,
+  ResponsiveSidePanelBody,
+  ResponsiveSidePanelFooter,
+} from '../components/ui/responsive-side-panel';
 import { Count, Box, ScrollFog, HStack, VStack } from '@seed-design/react';
 import IconFaceSmileCircleFill from "@karrotmarket/react-monochrome-icon/IconFaceSmileCircleFill";
 import IconHeartFill from "@karrotmarket/react-monochrome-icon/IconHeartFill";
@@ -2483,6 +2497,140 @@ function SelectDemo() {
   );
 }
 
+
+function SidePanelDemo() {
+  const [isResponsive, setIsResponsive] = useState(false);
+  const [placement, setPlacement] = useState("right"); // "right" | "left"
+  const [showDescription, setShowDescription] = useState(true);
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
+      <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
+        Side Panel · Slide-in Navigation & Form Panel · Default / Responsive Bottom Sheet
+      </div>
+
+      {/* Controls */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
+        {/* Panel Type Selection */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Type:</span>
+          {[
+            { label: "기본 사이드 패널 (Default)", value: false },
+            { label: "반응형 (Responsive)", value: true },
+          ].map((t) => (
+            <ActionButton
+              key={String(t.value)}
+              size="small"
+              variant={isResponsive === t.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setIsResponsive(t.value)}
+            >
+              {t.label}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Placement Selection */}
+        {!isResponsive && (
+          <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+            <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Placement:</span>
+            {[
+              { label: "우측 슬라이드 (Right)", value: "right" },
+              { label: "좌측 슬라이드 (Left)", value: "left" },
+            ].map((p) => (
+              <ActionButton
+                key={p.value}
+                size="small"
+                variant={placement === p.value ? "brandSolid" : "neutralOutline"}
+                onClick={() => setPlacement(p.value)}
+              >
+                {p.label}
+              </ActionButton>
+            ))}
+          </div>
+        )}
+
+        {/* Toggles */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x2)", alignItems: "center", justifyContent: "center" }}>
+          <ActionButton
+            size="small"
+            variant={showDescription ? "brandSolid" : "neutralOutline"}
+            onClick={() => setShowDescription(!showDescription)}
+          >
+            {showDescription ? "설명(Description) 표시" : "설명 숨김"}
+          </ActionButton>
+        </div>
+      </div>
+
+      {/* Interactive SidePanel Showcase Canvas */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x4)", width: "100%", padding: "var(--seed-dimension-x6)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", alignItems: "center" }}>
+        <div style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-subtle)", textAlign: "center" }}>
+          {isResponsive ? "모바일 화면에서는 하단 Bottom Sheet로 자동 전환됩니다" : "버튼을 클릭하여 사이드 패널을 열어보세요"}
+        </div>
+
+        {!isResponsive ? (
+          <SidePanelRoot>
+            <SidePanelTrigger asChild>
+              <ActionButton variant="brandSolid" size="medium">
+                {placement === "right" ? "우측 사이드 패널 열기 ➔" : "⬅ 좌측 사이드 패널 열기"}
+              </ActionButton>
+            </SidePanelTrigger>
+            <SidePanelContent
+              placement={placement}
+              title="사이드 패널 설정"
+              description={showDescription ? "패널 본문에서 필요한 옵션이나 상세 정보를 작성하세요." : undefined}
+            >
+              <SidePanelBody px="x6" py="x4">
+                <VStack gap="x4">
+                  <Box p="x4" borderRadius="r2" style={{ backgroundColor: "var(--seed-color-bg-layer-basement)", border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
+                    <div style={{ fontSize: "var(--seed-font-size-t3)", fontWeight: 600, marginBottom: 4 }}>📌 사이드 패널 특징</div>
+                    <div style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-subtle)" }}>
+                      데스크톱 및 태블릿 환경에서 화면 전환 없이 핵심 옵션 및 서브 보드를 열 수 있습니다.
+                    </div>
+                  </Box>
+                </VStack>
+              </SidePanelBody>
+              <SidePanelFooter>
+                <ActionButton variant="neutralSolid" size="medium" style={{ width: "100%" }}>
+                  확인 및 완료
+                </ActionButton>
+              </SidePanelFooter>
+            </SidePanelContent>
+          </SidePanelRoot>
+        ) : (
+          <ResponsiveSidePanelRoot>
+            <ResponsiveSidePanelTrigger asChild>
+              <ActionButton variant="brandSolid" size="medium">
+                반응형 패널 열기 (Responsive) 📱💻
+              </ActionButton>
+            </ResponsiveSidePanelTrigger>
+            <ResponsiveSidePanelContent
+              title="반응형 패널"
+              description={showDescription ? "뷰포트 크기에 따라 데스크톱은 Side Panel, 모바일은 Bottom Sheet로 변환됩니다." : undefined}
+              showHandle
+            >
+              <ResponsiveSidePanelBody px="x6" py="x4">
+                <VStack gap="x4">
+                  <Box p="x4" borderRadius="r2" style={{ backgroundColor: "var(--seed-color-bg-layer-basement)", border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
+                    <div style={{ fontSize: "var(--seed-font-size-t3)", fontWeight: 600, marginBottom: 4 }}>💡 반응형 시트/패널</div>
+                    <div style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-subtle)" }}>
+                      화면 폭이 좁아지면 모바일 사용성에 최적화된 하단 시트로 부드럽게 스위칭됩니다.
+                    </div>
+                  </Box>
+                </VStack>
+              </ResponsiveSidePanelBody>
+              <ResponsiveSidePanelFooter>
+                <ActionButton variant="neutralSolid" size="medium" style={{ width: "100%" }}>
+                  확인
+                </ActionButton>
+              </ResponsiveSidePanelFooter>
+            </ResponsiveSidePanelContent>
+          </ResponsiveSidePanelRoot>
+        )}
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -2674,6 +2822,12 @@ const COMPONENTS = [
     name: 'Select',
     slug: 'ui:select',
     demo: <SelectDemo />,
+  },
+
+  {
+    name: 'Side Panel',
+    slug: 'ui:side-panel / ui:responsive-side-panel',
+    demo: <SidePanelDemo />,
   },
 ];
 
