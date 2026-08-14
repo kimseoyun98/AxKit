@@ -54,6 +54,9 @@ import { NotificationBadge, NotificationBadgePositioner } from '../components/ui
 import { PageBanner, PageBannerButton, ActionablePageBanner, DismissiblePageBanner } from '../components/ui/page-banner';
 import { QuantityPicker } from '../components/ui/quantity-picker';
 import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
+import { ReactionButton } from '../components/ui/reaction-button';
+import { Count } from '@seed-design/react';
+import IconFaceSmileCircleFill from "@karrotmarket/react-monochrome-icon/IconFaceSmileCircleFill";
 import IconExclamationmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconExclamationmarkCircleFill";
 import IconQuestionmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconQuestionmarkCircleFill";
 import IconMapLocationpinFill from "@karrotmarket/react-monochrome-icon/IconMapLocationpinFill";
@@ -1842,6 +1845,105 @@ function RadioGroupDemo() {
   );
 }
 
+function ReactionButtonDemo() {
+  const [size, setSize] = useState("small");
+  const [isHelpful, setIsHelpful] = useState(false);
+  const [helpfulCount, setHelpfulCount] = useState(12);
+  const [isHearted, setIsHearted] = useState(true);
+  const [heartCount, setHeartCount] = useState(45);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const toggleHelpful = () => {
+    if (isLoading || isDisabled) return;
+    setIsHelpful(!isHelpful);
+    setHelpfulCount(isHelpful ? helpfulCount - 1 : helpfulCount + 1);
+  };
+
+  const toggleHeart = () => {
+    if (isLoading || isDisabled) return;
+    setIsHearted(!isHearted);
+    setHeartCount(isHearted ? heartCount - 1 : heartCount + 1);
+  };
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 440, margin: '0 auto', alignItems: 'center' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Emotional Feedback · Size · Selected State · Loading · Count
+      </div>
+
+      {/* Controls */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
+        {/* Size Selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Size:</span>
+          {["xsmall", "small"].map((s) => (
+            <ActionButton
+              key={s}
+              size="small"
+              variant={size === s ? "brandSolid" : "neutralOutline"}
+              onClick={() => setSize(s)}
+            >
+              {s}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* State Toggles */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', alignItems: 'center', justifyContent: 'center' }}>
+          <ActionButton
+            size="small"
+            variant={isLoading ? "brandSolid" : "neutralOutline"}
+            onClick={() => setIsLoading(!isLoading)}
+          >
+            {isLoading ? "로딩 중 (Loading)" : "정상 상태"}
+          </ActionButton>
+          <ActionButton
+            size="small"
+            variant={isDisabled ? "brandSolid" : "neutralOutline"}
+            onClick={() => setIsDisabled(!isDisabled)}
+          >
+            {isDisabled ? "비활성화 (Disabled)" : "활성화"}
+          </ActionButton>
+        </div>
+      </div>
+
+      {/* Interactive ReactionButton Showcase */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', width: '100%', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', alignItems: 'center' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>클릭하여 리액션 피드백을 전달해 보세요</div>
+
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x3)', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
+          {/* Reaction 1: 도움돼요 */}
+          <ReactionButton
+            size={size}
+            selected={isHelpful}
+            loading={isLoading}
+            disabled={isDisabled}
+            onClick={toggleHelpful}
+          >
+            <PrefixIcon svg={<IconFaceSmileCircleFill />} />
+            도움돼요
+            <Count>{helpfulCount}</Count>
+          </ReactionButton>
+
+          {/* Reaction 2: 관심있어요 (Heart) */}
+          <ReactionButton
+            size={size}
+            selected={isHearted}
+            loading={isLoading}
+            disabled={isDisabled}
+            onClick={toggleHeart}
+          >
+            <PrefixIcon svg={<IconHeartFill />} />
+            관심있어요
+            <Count>{heartCount}</Count>
+          </ReactionButton>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -2003,6 +2105,12 @@ const COMPONENTS = [
     name: 'Radio Group',
     slug: 'ui:radio-group',
     demo: <RadioGroupDemo />,
+  },
+
+  {
+    name: 'Reaction Button',
+    slug: 'ui:reaction-button',
+    demo: <ReactionButtonDemo />,
   },
 ];
 
