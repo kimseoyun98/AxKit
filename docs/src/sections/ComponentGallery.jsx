@@ -1745,8 +1745,98 @@ function QuantityPickerDemo() {
             disabled={isDisabled}
             getValueText={(val) => `${val}개 수량`}
             aria-label="Fill 수량 선택"
+            style={{ width: '100%' }}
           />
         </div>
+      </div>
+    </div>
+  );
+}
+
+function RadioGroupDemo() {
+  const [size, setSize] = useState("medium");
+  const [weight, setWeight] = useState("regular");
+  const [selectedValue, setSelectedValue] = useState("card");
+  const [isInvalid, setIsInvalid] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 440, margin: '0 auto', alignItems: 'center' }}>
+      <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
+        Single Choice · Radiomark · Field Label & Description · Error Message
+      </div>
+
+      {/* Control Option Buttons */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
+        {/* Size Selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Size:</span>
+          {["medium", "large"].map((s) => (
+            <ActionButton
+              key={s}
+              size="small"
+              variant={size === s ? "brandSolid" : "neutralOutline"}
+              onClick={() => setSize(s)}
+            >
+              {s}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Weight Selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Weight:</span>
+          {["regular", "bold"].map((w) => (
+            <ActionButton
+              key={w}
+              size="small"
+              variant={weight === w ? "brandSolid" : "neutralOutline"}
+              onClick={() => setWeight(w)}
+            >
+              {w}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* State Toggles */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', alignItems: 'center', justifyContent: 'center' }}>
+          <ActionButton
+            size="small"
+            variant={isInvalid ? "brandSolid" : "neutralOutline"}
+            onClick={() => setIsInvalid(!isInvalid)}
+          >
+            {isInvalid ? "오류 상태 (Invalid)" : "정상 상태"}
+          </ActionButton>
+          <ActionButton
+            size="small"
+            variant={isDisabled ? "brandSolid" : "neutralOutline"}
+            onClick={() => setIsDisabled(!isDisabled)}
+          >
+            {isDisabled ? "비활성화 (Disabled)" : "활성화"}
+          </ActionButton>
+        </div>
+      </div>
+
+      {/* Interactive RadioGroup Showcase */}
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
+        <RadioGroup
+          label="결제 수단 선택"
+          labelWeight="bold"
+          showRequiredIndicator
+          description="하나의 결제 수단만 선택 가능합니다."
+          errorMessage="선택하신 결제 수단은 현재 이용할 수 없습니다."
+          invalid={isInvalid}
+          disabled={isDisabled}
+          size={size}
+          weight={weight}
+          value={selectedValue}
+          onValueChange={setSelectedValue}
+        >
+          <RadioGroupItem value="card" label="신용/체크카드 (기본)" />
+          <RadioGroupItem value="pay" label="카카오페이 / 네이버페이" />
+          <RadioGroupItem value="bank" label="계좌이체 / 무통장입금" />
+          <RadioGroupItem value="phone" label="휴대폰 소액결제 (점검 중)" disabled />
+        </RadioGroup>
       </div>
     </div>
   );
