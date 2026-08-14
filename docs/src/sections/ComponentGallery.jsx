@@ -82,7 +82,7 @@ import {
 import SideNavigation1 from '../components/ui/blocks/side-navigation-01';
 import { TextField, TextFieldInput } from '../components/ui/text-field';
 import { Slider } from '../components/ui/slider';
-import { Snackbar, SnackbarProvider, useSnackbarAdapter } from '../components/ui/snackbar';
+import { Snackbar, SnackbarProvider, useSnackbarAdapter, StaticSnackbar } from '../components/ui/snackbar';
 import { Switch } from '../components/ui/switch';
 import {
   ResponsiveSidePanelRoot,
@@ -2742,71 +2742,48 @@ function SliderDemo() {
   );
 }
 
-function SnackbarDemoInner() {
-  const adapter = useSnackbarAdapter();
-
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 600, margin: "0 auto", alignItems: "center" }}>
-      <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
-        Snackbar · Interactive Demo Canvas (Relative Placement)
-      </div>
-
-      {/* Relative Canvas Frame Box */}
-      <div style={{ position: "relative", width: "100%", minHeight: 240, border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", paddingTop: "var(--seed-dimension-x6)", paddingBottom: "var(--seed-dimension-x16)" }}>
-        <div style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-subtle)", marginBottom: "var(--seed-dimension-x4)" }}>
-          아래 버튼을 누르면 이 화면 캔버스 영역 하단에 스낵바가 표출됩니다 (4초간 유지)
-        </div>
-
-        <div style={{ display: "flex", gap: "var(--seed-dimension-x2)", flexWrap: "wrap", justifyContent: "center" }}>
-          <ActionButton
-            size="small"
-            variant="neutralSolid"
-            onClick={() =>
-              adapter.create({
-                onClose: () => {},
-                render: () => <Snackbar message="기본 알림 메세지입니다." actionLabel="확인" onAction={() => alert("확인 클릭")} />,
-              })
-            }
-          >
-            기본 스낵바 (Default)
-          </ActionButton>
-
-          <ActionButton
-            size="small"
-            variant="brandSolid"
-            onClick={() =>
-              adapter.create({
-                onClose: () => {},
-                render: () => <Snackbar variant="positive" message="성공 알림 메세지입니다." actionLabel="확인" onAction={() => alert("확인 클릭")} />,
-              })
-            }
-          >
-            긍정 스낵바 (Positive)
-          </ActionButton>
-
-          <ActionButton
-            size="small"
-            variant="criticalSolid"
-            onClick={() =>
-              adapter.create({
-                onClose: () => {},
-                render: () => <Snackbar variant="critical" message="오류 알림 메세지입니다." actionLabel="확인" onAction={() => alert("확인 클릭")} />,
-              })
-            }
-          >
-            경고 스낵바 (Critical)
-          </ActionButton>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function SnackbarDemo() {
   return (
-    <SnackbarProvider>
-      <SnackbarDemoInner />
-    </SnackbarProvider>
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 540, margin: "0 auto", alignItems: "center" }}>
+      <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
+        Snackbar · Permanently Visible Variants (Default, Positive, Critical)
+      </div>
+
+      <VStack gap="x4" width="full">
+        {/* 1. Default Variant */}
+        <VStack gap="x1_5" width="full">
+          <Text fontWeight="bold" textStyle="t2" color="fg.neutralMuted">Default Variant (기본)</Text>
+          <StaticSnackbar
+            variant="default"
+            message="설정이 성공적으로 저장되었습니다."
+            actionLabel="확인"
+            onAction={() => alert("기본 확인 클릭됨")}
+          />
+        </VStack>
+
+        {/* 2. Positive Variant */}
+        <VStack gap="x1_5" width="full">
+          <Text fontWeight="bold" textStyle="t2" color="fg.neutralMuted">Positive Variant (긍정/성공)</Text>
+          <StaticSnackbar
+            variant="positive"
+            message="프로필 정보가 안전하게 업데이트되었습니다."
+            actionLabel="보기"
+            onAction={() => alert("긍정 보기 클릭됨")}
+          />
+        </VStack>
+
+        {/* 3. Critical Variant */}
+        <VStack gap="x1_5" width="full">
+          <Text fontWeight="bold" textStyle="t2" color="fg.neutralMuted">Critical Variant (경고/오류)</Text>
+          <StaticSnackbar
+            variant="critical"
+            message="네트워크 연결이 끊어졌습니다. 다시 시도해 주세요."
+            actionLabel="재시도"
+            onAction={() => alert("경고 재시도 클릭됨")}
+          />
+        </VStack>
+      </VStack>
+    </div>
   );
 }
 
