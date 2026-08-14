@@ -2917,31 +2917,31 @@ function TabsDemo() {
         <TabsRoot defaultValue="1" triggerLayout={layout}>
           <TabsList>
             <TabsTrigger value="1" notification={hasNotification}>
-              전체정산
+              통합정산
             </TabsTrigger>
             <TabsTrigger value="2">
-              결제사내역
+              거래명세
             </TabsTrigger>
             <TabsTrigger value="3">
-              영세중소
+              우대수수료
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="1">
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: 140, padding: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "0 0 var(--seed-dimension-x4) var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderTop: "none" }}>
-              <Text fontSize="t3" color="fg.neutral">카드사/PG사 일별 정산 및 가맹점 수수료 내역입니다.</Text>
+              <Text fontSize="t3" color="fg.neutral">PG사·카드사 일별 통합 정산 내역 및 입금 예정 금액 요약</Text>
             </div>
           </TabsContent>
 
           <TabsContent value="2">
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: 140, padding: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "0 0 var(--seed-dimension-x4) var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderTop: "none" }}>
-              <Text fontSize="t3" color="fg.neutral">결제수단별 매출 승인/취소 및 입금 예정 내역</Text>
+              <Text fontSize="t3" color="fg.neutral">실시간 결제 승인·취소 거래 내역 및 미정산 항목 조회</Text>
             </div>
           </TabsContent>
 
           <TabsContent value="3">
             <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", minHeight: 140, padding: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "0 0 var(--seed-dimension-x4) var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderTop: "none" }}>
-              <Text fontSize="t3" color="fg.neutral">국세청 영세·중소 가맹점 우대수수료 환급 안내</Text>
+              <Text fontSize="t3" color="fg.neutral">국세청 영세·중소 가맹점 차액 환급금 및 우대 수수료율 조회</Text>
             </div>
           </TabsContent>
         </TabsRoot>
