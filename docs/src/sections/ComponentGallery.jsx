@@ -57,6 +57,14 @@ import { RadioGroup, RadioGroupItem } from '../components/ui/radio-group';
 import { ReactionButton } from '../components/ui/reaction-button';
 import { ResultSection } from '../components/ui/result-section';
 import { SegmentedControl, SegmentedControlItem } from '../components/ui/segmented-control';
+import {
+  CheckSelectBoxGroup,
+  CheckSelectBox,
+  CheckSelectBoxCheckmark,
+  RadioSelectBoxRoot,
+  RadioSelectBoxItem,
+  RadioSelectBoxRadiomark,
+} from '../components/ui/select-box';
 import { Count, Box, ScrollFog, HStack, VStack } from '@seed-design/react';
 import IconFaceSmileCircleFill from "@karrotmarket/react-monochrome-icon/IconFaceSmileCircleFill";
 import IconHeartFill from "@karrotmarket/react-monochrome-icon/IconHeartFill";
@@ -2158,6 +2166,175 @@ function SegmentedControlDemo() {
 }
 
 
+
+function SelectBoxDemo() {
+  const [mode, setMode] = useState("radio"); // "radio" | "check"
+  const [controlType, setControlType] = useState("mark"); // "mark" | "none"
+  const [columns, setColumns] = useState(1); // 1 | 2 | 3
+  const [showDescription, setShowDescription] = useState(true);
+  const [showPrefix, setShowPrefix] = useState(true);
+
+  // State for radio mode
+  const [radioValue, setRadioValue] = useState("option1");
+
+  // State for check mode
+  const [checkState, setCheckState] = useState({
+    option1: true,
+    option2: false,
+    option3: false,
+  });
+
+  const toggleCheck = (key) => {
+    setCheckState(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
+      <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
+        Select Box · Single/Multi Selection · Control Mark · Multi Columns · Custom Content
+      </div>
+
+      {/* Controls */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
+        {/* Selection Mode */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Mode:</span>
+          {[
+            { label: "단일 선택 (Radio)", value: "radio" },
+            { label: "다중 선택 (Check)", value: "check" },
+          ].map((m) => (
+            <ActionButton
+              key={m.value}
+              size="small"
+              variant={mode === m.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setMode(m.value)}
+            >
+              {m.label}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Control Mark */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Control:</span>
+          {[
+            { label: "마크 표시 (Mark)", value: "mark" },
+            { label: "마크 없음 (None)", value: "none" },
+          ].map((c) => (
+            <ActionButton
+              key={c.value}
+              size="small"
+              variant={controlType === c.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setControlType(c.value)}
+            >
+              {c.label}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Grid Columns */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Columns:</span>
+          {[1, 2, 3].map((col) => (
+            <ActionButton
+              key={col}
+              size="small"
+              variant={columns === col ? "brandSolid" : "neutralOutline"}
+              onClick={() => setColumns(col)}
+            >
+              {col}열 ({col} Col)
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Content Toggles */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x2)", alignItems: "center", justifyContent: "center" }}>
+          <ActionButton
+            size="small"
+            variant={showDescription ? "brandSolid" : "neutralOutline"}
+            onClick={() => setShowDescription(!showDescription)}
+          >
+            {showDescription ? "설명(Description) 표시" : "설명 숨김"}
+          </ActionButton>
+          <ActionButton
+            size="small"
+            variant={showPrefix ? "brandSolid" : "neutralOutline"}
+            onClick={() => setShowPrefix(!showPrefix)}
+          >
+            {showPrefix ? "아이콘(Prefix) 표시" : "아이콘 숨김"}
+          </ActionButton>
+        </div>
+      </div>
+
+      {/* Interactive SelectBox Showcase */}
+      <div style={{ display: "flex", flexDirection: "column", width: "100%", padding: "var(--seed-dimension-x5)", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", alignItems: "center" }}>
+        {mode === "radio" ? (
+          <RadioSelectBoxRoot
+            value={radioValue}
+            onValueChange={setRadioValue}
+            columns={columns}
+            label="배송 옵션 선택"
+            description="원하시는 배송 수단을 선택해 주세요."
+          >
+            <RadioSelectBoxItem
+              value="option1"
+              label="일반 택배 배송"
+              description={showDescription ? "주문 후 2~3일 이내에 안전하게 도착합니다." : undefined}
+              prefixIcon={showPrefix ? <IconMapLocationpinFill /> : undefined}
+              suffix={controlType === "mark" ? <RadioSelectBoxRadiomark /> : undefined}
+            />
+            <RadioSelectBoxItem
+              value="option2"
+              label="당일 새벽 즉시 배송"
+              description={showDescription ? "오늘 밤 11시 전 주문 시 내일 아침 7시 전 도착" : undefined}
+              prefixIcon={showPrefix ? <IconHeartFill /> : undefined}
+              suffix={controlType === "mark" ? <RadioSelectBoxRadiomark /> : undefined}
+            />
+            <RadioSelectBoxItem
+              value="option3"
+              label="매장 직접 방문 수령"
+              description={showDescription ? "가까운 당근 공식 매장에서 무료 수령 가능" : undefined}
+              prefixIcon={showPrefix ? <IconFaceSmileCircleFill /> : undefined}
+              suffix={controlType === "mark" ? <RadioSelectBoxRadiomark /> : undefined}
+            />
+          </RadioSelectBoxRoot>
+        ) : (
+          <CheckSelectBoxGroup
+            columns={columns}
+            label="관심 서비스 선택 (다중 가능)"
+            description="관심 있는 혜택을 모두 선택해 보세요."
+          >
+            <CheckSelectBox
+              label="당근 페이 보너스 적립"
+              description={showDescription ? "결제 시 마다 최대 3% 현금 적립 혜택" : undefined}
+              checked={checkState.option1}
+              onCheckedChange={() => toggleCheck("option1")}
+              prefixIcon={showPrefix ? <IconHeartFill /> : undefined}
+              suffix={controlType === "mark" ? <CheckSelectBoxCheckmark /> : undefined}
+            />
+            <CheckSelectBox
+              label="동네 소식 알림 서비스"
+              description={showDescription ? "실시간 인기 동네 소식 우선 알림 제공" : undefined}
+              checked={checkState.option2}
+              onCheckedChange={() => toggleCheck("option2")}
+              prefixIcon={showPrefix ? <IconExclamationmarkCircleFill /> : undefined}
+              suffix={controlType === "mark" ? <CheckSelectBoxCheckmark /> : undefined}
+            />
+            <CheckSelectBox
+              label="VIP 전용 이벤트 응모권"
+              description={showDescription ? "매월 진행되는 프리미엄 경품 이벤트 자동 참가" : undefined}
+              checked={checkState.option3}
+              onCheckedChange={() => toggleCheck("option3")}
+              prefixIcon={showPrefix ? <IconFaceSmileCircleFill /> : undefined}
+              suffix={controlType === "mark" ? <CheckSelectBoxCheckmark /> : undefined}
+            />
+          </CheckSelectBoxGroup>
+        )}
+      </div>
+    </div>
+  );
+}
+
 const COMPONENTS = [
   {
     name: 'Accordion',
@@ -2337,6 +2514,12 @@ const COMPONENTS = [
     name: 'Segmented Control',
     slug: 'ui:segmented-control',
     demo: <SegmentedControlDemo />,
+  },
+
+  {
+    name: 'Select Box',
+    slug: 'ui:select-box',
+    demo: <SelectBoxDemo />,
   },
 ];
 
