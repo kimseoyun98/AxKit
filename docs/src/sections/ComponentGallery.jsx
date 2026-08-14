@@ -2789,15 +2789,10 @@ function SnackbarDemoInner() {
         </ActionButton>
       </div>
 
-      {/* Static Visual Preview */}
-      <VStack gap="x3" width="full" align="center">
-        <Text fontWeight="bold" textStyle="t3">미리보기 (Variant Preview)</Text>
-        <VStack gap="x3" width="full" maxWidth="480px">
-          <Snackbar variant="default" message="기본 안내 메시지입니다." actionLabel="확인" />
-          <Snackbar variant="positive" message="성공적으로 처리되었습니다." actionLabel="보기" />
-          <Snackbar variant="critical" message="오류가 발생하였습니다. 다시 시도해 주세요." actionLabel="재시도" />
-        </VStack>
-      </VStack>
+      {/* Information Tip */}
+      <Text fontSize="t2" color="fg.neutralMuted" style={{ textAlign: "center" }}>
+        👆 위 버튼을 누르면 하단에 단일 스낵바 알림이 3초간 플로팅 표출됩니다.
+      </Text>
     </div>
   );
 }
