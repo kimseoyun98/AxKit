@@ -94,7 +94,7 @@ import {
   SideNavigationGroup,
   SideNavigationTrigger,
 } from '../components/ui/side-navigation';
-import { Count, Box, ScrollFog, HStack, VStack } from '@seed-design/react';
+import { Count, Box, ScrollFog, HStack, VStack, Text } from '@seed-design/react';
 import IconFaceSmileCircleFill from "@karrotmarket/react-monochrome-icon/IconFaceSmileCircleFill";
 import IconHeartFill from "@karrotmarket/react-monochrome-icon/IconHeartFill";
 import IconExclamationmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconExclamationmarkCircleFill";
@@ -2691,7 +2691,7 @@ function SideNavigationDemo() {
         >
           <SideNavigationHeader>
             <HStack align="center" gap="x2" overflow="hidden" flex="1">
-              <Box width="28px" height="28px" borderRadius="r2" backgroundColor="bg.brandSolid" display="flex" align="center" justify="center" color="fg.neutralInverted" fontWeight="bold" fontSize="14px">
+              <Box width="28px" height="28px" borderRadius="r2" bgColor="bg.brandSolid" display="flex" align="center" justify="center" color="fg.neutralInverted" fontWeight="bold" fontSize="14px">
                 🥕
               </Box>
               <Text fontWeight="bold" textStyle="t4" whiteSpace="nowrap">
