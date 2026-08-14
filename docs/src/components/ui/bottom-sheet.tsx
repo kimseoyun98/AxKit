@@ -72,7 +72,11 @@ export const BottomSheetContent = forwardRef<HTMLDivElement, BottomSheetContentP
         <SeedBottomSheet.Positioner style={{ "--layer-index": layerIndex } as React.CSSProperties}>
           <SeedBottomSheet.Backdrop />
           <SeedBottomSheet.Content ref={ref} {...otherProps}>
-            {showHandle && <SeedBottomSheet.Handle />}
+            {showHandle && (
+              <SeedBottomSheet.CloseButton asChild aria-label="닫기">
+                <SeedBottomSheet.Handle style={{ cursor: "pointer" }} />
+              </SeedBottomSheet.CloseButton>
+            )}
             {shouldRenderHeader && (
               <SeedBottomSheet.Header>
                 {title ? (
