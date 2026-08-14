@@ -2346,6 +2346,7 @@ function SelectBoxDemo() {
 function SelectDemo() {
   const [size, setSize] = useState("large"); // "large" | "medium"
   const [isMultiple, setIsMultiple] = useState(false);
+  const [showPrefix, setShowPrefix] = useState(true);
   const [isError, setIsError] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
   const [value, setValue] = useState(["apple"]);
@@ -2353,7 +2354,7 @@ function SelectDemo() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
       <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
-        Select Dropdown · Single / Multi Selection · Size Large/Medium · Grouping
+        Select Dropdown · Single / Multi Selection · Prefix Icons · Size Large/Medium
       </div>
 
       {/* Controls */}
@@ -2394,8 +2395,15 @@ function SelectDemo() {
           ))}
         </div>
 
-        {/* State Toggles */}
+        {/* Option Toggles */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x2)", alignItems: "center", justifyContent: "center" }}>
+          <ActionButton
+            size="small"
+            variant={showPrefix ? "brandSolid" : "neutralOutline"}
+            onClick={() => setShowPrefix(!showPrefix)}
+          >
+            {showPrefix ? "Prefix 아이콘 켜짐" : "Prefix 아이콘 숨김"}
+          </ActionButton>
           <ActionButton
             size="small"
             variant={isError ? "brandSolid" : "neutralOutline"}
@@ -2427,16 +2435,45 @@ function SelectDemo() {
             description={isMultiple ? "여러 개 선택하실 수 있습니다." : "하나의 과일을 고르세요."}
             errorMessage={isError ? "필수 선택 항목입니다. 과일을 선택해 주세요." : undefined}
           >
-            <SelectTrigger aria-label="과일 선택" placeholder="과일을 선택하세요" />
+            <SelectTrigger
+              aria-label="과일 선택"
+              placeholder="과일을 선택하세요"
+              prefixIcon={showPrefix ? <IconFaceSmileCircleFill /> : undefined}
+            />
             <SelectContent>
               <SelectGroup label="국산 과일">
-                <SelectItem value="apple" label="사과" description="달콤하고 아삭한 제철 사과" />
-                <SelectItem value="pear" label="배" description="시원한 당도 1등 나주 배" />
-                <SelectItem value="strawberry" label="딸기" description="상큼함이 가득한 설향 딸기" />
+                <SelectItem
+                  value="apple"
+                  label="사과"
+                  description="달콤하고 아삭한 제철 사과"
+                  prefixIcon={showPrefix ? <IconHeartFill /> : undefined}
+                />
+                <SelectItem
+                  value="pear"
+                  label="배"
+                  description="시원한 당도 1등 나주 배"
+                  prefixIcon={showPrefix ? <IconMapLocationpinFill /> : undefined}
+                />
+                <SelectItem
+                  value="strawberry"
+                  label="딸기"
+                  description="상큼함이 가득한 설향 딸기"
+                  prefixIcon={showPrefix ? <IconExclamationmarkCircleFill /> : undefined}
+                />
               </SelectGroup>
               <SelectGroup label="수입 과일">
-                <SelectItem value="banana" label="바나나" description="영양 만점 프리미엄 바나나" />
-                <SelectItem value="mango" label="망고" description="입안에서 녹는 애플망고" />
+                <SelectItem
+                  value="banana"
+                  label="바나나"
+                  description="영양 만점 프리미엄 바나나"
+                  prefixIcon={showPrefix ? <IconQuestionmarkCircleFill /> : undefined}
+                />
+                <SelectItem
+                  value="mango"
+                  label="망고"
+                  description="입안에서 녹는 애플망고"
+                  prefixIcon={showPrefix ? <IconHeartFill /> : undefined}
+                />
               </SelectGroup>
             </SelectContent>
           </SelectRoot>
