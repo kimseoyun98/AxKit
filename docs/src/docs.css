@@ -248,24 +248,7 @@ tr:last-child td { border-bottom: none; }
   min-width: max-content;
 }
 
-/* Vertical & Horizontal Divider Layout Fix */
-.seed-divider[data-orientation="vertical"],
-.seed-divider[aria-orientation="vertical"] {
-  width: 1px !important;
-  min-height: 12px;
-  background-color: var(--seed-color-stroke-neutral-weak, var(--seed-color-stroke-neutral-muted, #e2e8f0));
-}
 
-.seed-divider[data-orientation="horizontal"],
-.seed-divider[aria-orientation="horizontal"],
-.seed-divider:not([data-orientation="vertical"]):not([aria-orientation="vertical"]) {
-  border-top: 1px solid var(--seed-color-stroke-neutral-weak, #e5e7eb) !important;
-  border-bottom: none !important;
-  height: 0 !important;
-  margin: 0 !important;
-  width: 100% !important;
-  list-style: none !important;
-}
 
 /* Anatomy 라벨 오버레이 */
 :where([data-show-anatomy] [data-anatomy]) {
