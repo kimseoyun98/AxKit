@@ -2052,101 +2052,133 @@ function ResultSectionDemo() {
   );
 }
 
-function ScrollFogDemo() {
-  const [direction, setDirection] = useState("vertical");
+function SegmentedControlDemo() {
+  const [size, setSize] = useState("medium");
+  const [count, setCount] = useState(3);
+  const [value, setValue] = useState("popular");
+  const [hasNotification, setHasNotification] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 440, margin: '0 auto', alignItems: 'center' }}>
       <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', textAlign: 'center' }}>
-        Scroll Fog Visual Hint · Overlap Gradient · Vertical / Horizontal
+        Segmented Control · Filter / View Toggle · 2~4 Controls · Notification Badge
       </div>
 
-      {/* Direction Selection */}
-      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
-        <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Direction:</span>
-        {[
-          { label: "세로 스크롤 (Vertical)", value: "vertical" },
-          { label: "가로 스크롤 (Horizontal)", value: "horizontal" },
-        ].map((d) => (
-          <ActionButton
-            key={d.value}
-            size="small"
-            variant={direction === d.value ? "brandSolid" : "neutralOutline"}
-            onClick={() => setDirection(d.value)}
-          >
-            {d.label}
-          </ActionButton>
-        ))}
-      </div>
-
-      {/* Demo Canvas */}
-      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', alignItems: 'center' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)', marginBottom: 'var(--seed-dimension-x4)' }}>
-          {direction === "vertical" ? "상하 가장자리의 은은한 그라디언트 힌트를 확인해 보세요" : "좌우 가장자리의 은은한 그라디언트 힌트를 확인해 보세요"}
+      {/* Controls */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
+        {/* Size Selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Size:</span>
+          {["medium", "large"].map((s) => (
+            <ActionButton
+              key={s}
+              size="small"
+              variant={size === s ? "brandSolid" : "neutralOutline"}
+              onClick={() => setSize(s)}
+            >
+              {s}
+            </ActionButton>
+          ))}
         </div>
 
-        {direction === "vertical" ? (
-          <div
-            style={{
-              height: "240px",
-              width: "100%",
-              border: "1px solid var(--seed-color-stroke-neutral-weak)",
-              borderRadius: "var(--seed-dimension-x3)",
-              overflow: "hidden",
-            }}
+        {/* Control Count Selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Items:</span>
+          {[2, 3, 4].map((n) => (
+            <ActionButton
+              key={n}
+              size="small"
+              variant={count === n ? "brandSolid" : "neutralOutline"}
+              onClick={() => {
+                setCount(n);
+                setValue(n === 2 ? "all" : n === 3 ? "popular" : "map");
+              }}
+            >
+              {n}개 세그먼트
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Toggles */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', alignItems: 'center', justifyContent: 'center' }}>
+          <ActionButton
+            size="small"
+            variant={hasNotification ? "brandSolid" : "neutralOutline"}
+            onClick={() => setHasNotification(!hasNotification)}
           >
-            <ScrollFog placement={["top", "bottom"]} style={{ height: "100%", overflowY: "auto" }}>
-              <VStack gap="x3" px="x4" py="20px" width="full">
-                {Array.from({ length: 15 }, (_, i) => (
-                  <Box
-                    key={i}
-                    px="x4"
-                    py="x3"
-                    borderRadius="r2"
-                    style={{
-                      backgroundColor: "var(--seed-color-bg-layer-basement)",
-                      border: "1px solid var(--seed-color-stroke-neutral-weak)",
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
-                    <span style={{ fontSize: "var(--seed-font-size-t3)", fontWeight: 600 }}>스크롤 항목 #{i + 1}</span>
-                    <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>상세보기 ➔</span>
-                  </Box>
-                ))}
-              </VStack>
-            </ScrollFog>
-          </div>
-        ) : (
-          <div
-            style={{
-              width: "100%",
-              border: "1px solid var(--seed-color-stroke-neutral-weak)",
-              borderRadius: "var(--seed-dimension-x3)",
-              overflow: "hidden",
-            }}
+            {hasNotification ? "배지 뱃지 켜짐" : "배지 뱃지 제거"}
+          </ActionButton>
+          <ActionButton
+            size="small"
+            variant={isDisabled ? "brandSolid" : "neutralOutline"}
+            onClick={() => setIsDisabled(!isDisabled)}
           >
-            <ScrollFog placement={["left", "right"]} style={{ width: "100%", overflowX: "auto" }}>
-              <HStack gap="x3" px="20px" py="x4" style={{ width: "max-content" }}>
-                {Array.from({ length: 12 }, (_, i) => (
-                  <Chip
-                    key={i}
-                    size="medium"
-                    variant={i === 0 ? "solid" : "outline"}
-                    selected={i === 0}
-                  >
-                    추천 카테고리 #{i + 1}
-                  </Chip>
-                ))}
-              </HStack>
-            </ScrollFog>
-          </div>
-        )}
+            {isDisabled ? "비활성화 (Disabled)" : "활성화"}
+          </ActionButton>
+        </div>
+      </div>
+
+      {/* Interactive SegmentedControl Showcase */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', width: '100%', padding: 'var(--seed-dimension-x5)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)', alignItems: 'center' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
+          선택된 항목: <strong style={{ color: 'var(--seed-color-fg-neutral)' }}>{value}</strong>
+        </div>
+
+        <div style={{ width: '100%' }}>
+          {count === 2 && (
+            <SegmentedControl
+              size={size}
+              value={value}
+              disabled={isDisabled}
+              onValueChange={setValue}
+              aria-label="Filter mode"
+            >
+              <SegmentedControlItem value="all">전체보기</SegmentedControlItem>
+              <SegmentedControlItem value="recommended" notification={hasNotification}>
+                추천상품
+              </SegmentedControlItem>
+            </SegmentedControl>
+          )}
+
+          {count === 3 && (
+            <SegmentedControl
+              size={size}
+              value={value}
+              disabled={isDisabled}
+              onValueChange={setValue}
+              aria-label="Sort options"
+            >
+              <SegmentedControlItem value="popular">인기순</SegmentedControlItem>
+              <SegmentedControlItem value="latest" notification={hasNotification}>
+                최신순
+              </SegmentedControlItem>
+              <SegmentedControlItem value="distance">거리순</SegmentedControlItem>
+            </SegmentedControl>
+          )}
+
+          {count === 4 && (
+            <SegmentedControl
+              size={size}
+              value={value}
+              disabled={isDisabled}
+              onValueChange={setValue}
+              aria-label="View mode"
+            >
+              <SegmentedControlItem value="map">지도로 보기</SegmentedControlItem>
+              <SegmentedControlItem value="list">목록보기</SegmentedControlItem>
+              <SegmentedControlItem value="street" notification={hasNotification}>
+                거리뷰
+              </SegmentedControlItem>
+              <SegmentedControlItem value="3d">3D뷰</SegmentedControlItem>
+            </SegmentedControl>
+          )}
+        </div>
       </div>
     </div>
   );
 }
+
 
 const COMPONENTS = [
   {
@@ -2321,6 +2353,12 @@ const COMPONENTS = [
     name: 'Result Section',
     slug: 'ui:result-section',
     demo: <ResultSectionDemo />,
+  },
+
+  {
+    name: 'Segmented Control',
+    slug: 'ui:segmented-control',
+    demo: <SegmentedControlDemo />,
   },
 ];
 
