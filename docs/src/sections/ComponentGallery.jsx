@@ -1380,8 +1380,8 @@ function ListDemo() {
         </ActionButton>
       </div>
 
-      {/* Card Bounded List Container */}
-      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', padding: 'var(--seed-dimension-x3)', border: '1px solid var(--seed-color-stroke-neutral-weak)', borderRadius: 'var(--seed-dimension-x4)', backgroundColor: 'var(--seed-color-bg-layer-default)' }}>
+      {/* Official SEED List Layout */}
+      <VStack width="full">
         <ListHeader as="h3">계정 및 알림 설정</ListHeader>
         <List width="full">
           {/* 1. Highlighted / Standard ListItem with Multi-line Detail */}
@@ -1433,7 +1433,7 @@ function ListDemo() {
             suffix={<Icon svg={<IconChevronRightLine />} />}
           />
         </List>
-      </div>
+      </VStack>
     </div>
   );
 }
