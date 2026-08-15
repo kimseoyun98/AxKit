@@ -126,33 +126,33 @@ import { Badge } from '../components/ui/badge';
 const ALERT_DIALOG_LAYOUTS = [
   {
     key: 'single', label: 'Single',
-    title: 'Title은 작성을 권장해요', desc: '본문 내용을 입력해주세요.',
-    kind: 'pair', buttons: [{ variant: 'neutralSolid', label: '라벨' }],
+    title: '정산 대금 지급 승인', desc: '선택하신 가맹점 지정 계좌로 정산금을 즉시 입금합니다.',
+    kind: 'pair', buttons: [{ variant: 'neutralSolid', label: '승인' }],
   },
   {
     key: 'neutral', label: 'Neutral',
-    title: 'Title은 작성을 권장해요', desc: '본문 내용을 입력해주세요.',
-    kind: 'pair', buttons: [{ variant: 'neutralWeak', label: '라벨' }, { variant: 'neutralSolid', label: '라벨' }],
+    title: 'PG 수수료 정산 주기 변경', desc: '정산 주기를 D+1 일일 자동 정산으로 전환하시겠습니까?',
+    kind: 'pair', buttons: [{ variant: 'neutralWeak', label: '취소' }, { variant: 'neutralSolid', label: '전환 신청' }],
   },
   {
     key: 'neutralOverflow', label: 'Neutral (Overflow)',
-    title: 'Title은 작성을 권장해요', desc: '본문 내용을 입력해주세요.',
-    kind: 'pair', buttons: [{ variant: 'neutralWeak', label: '취소할래요' }, { variant: 'neutralSolid', label: '네 확인했어요 진행할게요' }],
+    title: '가맹점 사업자 변경 등록', desc: '사업자등록증 정보 변경 시 국세청 영세·중소 우대 수수료 재산정이 진행됩니다.',
+    kind: 'pair', buttons: [{ variant: 'neutralWeak', label: '나중에 할래요' }, { variant: 'neutralSolid', label: '네 변경 등록 진행할게요' }],
   },
   {
     key: 'critical', label: 'Critical',
-    title: '삭제하시겠어요?', desc: '삭제한 게시글은 복구할 수 없어요.',
-    kind: 'pair', buttons: [{ variant: 'neutralWeak', label: '취소' }, { variant: 'criticalSolid', label: '삭제' }],
+    title: '결제 정산 입금 보류 처리', desc: '이상 거래(FDS) 감지로 해당 결제건의 입금이 일시 보류됩니다.',
+    kind: 'pair', buttons: [{ variant: 'neutralWeak', label: '닫기' }, { variant: 'criticalSolid', label: '보류 실행' }],
   },
   {
     key: 'criticalOverflow', label: 'Critical (Overflow)',
-    title: '삭제하시겠어요?', desc: '삭제한 게시글은 복구할 수 없어요.',
-    kind: 'pair', buttons: [{ variant: 'neutralWeak', label: '취소할래요' }, { variant: 'criticalSolid', label: '네 삭제할게요 진행할게요' }],
+    title: '가맹점 계약 해지 신청', desc: '계약 해지 시 미정산 대금 및 PG 가맹점 서비스 이용이 제한됩니다.',
+    kind: 'pair', buttons: [{ variant: 'neutralWeak', label: '돌아가기' }, { variant: 'criticalSolid', label: '네 해지 신청을 계속 진행할게요' }],
   },
   {
     key: 'nonePreferred', label: 'NonePreferred',
-    title: 'Title은 작성을 권장해요', desc: '본문 내용을 입력해주세요.',
-    kind: 'stack', buttons: [{ variant: 'neutralSolid', label: '라벨' }, { variant: 'ghost', label: '라벨', muted: true }],
+    title: 'Payverse 결제 승인 확인', desc: '거래 명세서 발송 및 수수료 내역을 확인해 주세요.',
+    kind: 'stack', buttons: [{ variant: 'neutralSolid', label: '확인' }, { variant: 'ghost', label: '닫기', muted: true }],
   },
 ];
 
@@ -345,16 +345,16 @@ function AccordionDemo() {
         </div>
         <Accordion defaultValue={["1"]} variant="inline" style={{ width: '100%' }}>
           <AccordionItem value="0">
-            <AccordionTrigger title="PG 결제 및 정산 방식 안내" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>{renderContent("카드사 및 PG사 정산 대금은 지정 가맹점 입금 계좌로 자동 정산되어 입금됩니다.")}</AccordionContent>
+            <AccordionTrigger title="PG 결제 정산 주기 안내" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
+            <AccordionContent>{renderContent("D+1 일일 정산은 영업일 기준 익일 오전 10시에 지정 계좌로 자동 입금됩니다.")}</AccordionContent>
           </AccordionItem>
           <AccordionItem value="1">
-            <AccordionTrigger title="정산 취소 및 환급 절차는 어떻게 되나요?" description="승인 후 30일 이내 취소 신청" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>{renderContent("관리자 페이지의 [결제 승인 내역] 메뉴에서 취소 요청을 접수해주세요.")}</AccordionContent>
+            <AccordionTrigger title="영세·중소 우대수수료 환급 신청" description="국세청 매출 확정 시 지원" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
+            <AccordionContent>{renderContent("국세청 매출 구간 확정 후 매 반기별 우대 수수료 차액이 자동 환급됩니다.")}</AccordionContent>
           </AccordionItem>
           <AccordionItem value="2" disabled>
-            <AccordionTrigger title="이롬넷 가맹점 지원센터" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>{renderContent("운영시간은 평일 09:00 ~ 18:00 입니다.")}</AccordionContent>
+            <AccordionTrigger title="가맹점 정산 계좌 변경 안내" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
+            <AccordionContent>{renderContent("마이페이지 > 가맹점 정산 정보 메뉴에서 통장 사본 첨부 후 신청 가능합니다.")}</AccordionContent>
           </AccordionItem>
         </Accordion>
       </div>
@@ -366,16 +366,16 @@ function AccordionDemo() {
         </div>
         <Accordion defaultValue={["1"]} variant="separated" style={{ width: '100%' }}>
           <AccordionItem value="0">
-            <AccordionTrigger title="PG 결제 및 정산 방식 안내" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>{renderContent("카드사 및 PG사 정산 대금은 지정 가맹점 입금 계좌로 자동 정산되어 입금됩니다.")}</AccordionContent>
+            <AccordionTrigger title="PG 결제 정산 주기 안내" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
+            <AccordionContent>{renderContent("D+1 일일 정산은 영업일 기준 익일 오전 10시에 지정 계좌로 자동 입금됩니다.")}</AccordionContent>
           </AccordionItem>
           <AccordionItem value="1">
-            <AccordionTrigger title="정산 취소 및 환급 절차는 어떻게 되나요?" description="승인 후 30일 이내 취소 신청" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>{renderContent("관리자 페이지의 [결제 승인 내역] 메뉴에서 취소 요청을 접수해주세요.")}</AccordionContent>
+            <AccordionTrigger title="영세·중소 우대수수료 환급 신청" description="국세청 매출 확정 시 지원" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
+            <AccordionContent>{renderContent("국세청 매출 구간 확정 후 매 반기별 우대 수수료 차액이 자동 환급됩니다.")}</AccordionContent>
           </AccordionItem>
           <AccordionItem value="2" disabled>
-            <AccordionTrigger title="이롬넷 가맹점 지원센터" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
-            <AccordionContent>{renderContent("운영시간은 평일 09:00 ~ 18:00 입니다.")}</AccordionContent>
+            <AccordionTrigger title="가맹점 정산 계좌 변경 안내" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
+            <AccordionContent>{renderContent("마이페이지 > 가맹점 정산 정보 메뉴에서 통장 사본 첨부 후 신청 가능합니다.")}</AccordionContent>
           </AccordionItem>
         </Accordion>
       </div>
@@ -445,7 +445,7 @@ function ActionButtonDemo() {
             필터 (XSmall)
           </ActionButton>
           <ActionButton variant="brandSolid" size="large">
-            결제 승인 (Large)
+            구매하기 (Large)
           </ActionButton>
         </div>
       </div>
@@ -585,14 +585,14 @@ function BottomSheetDemo() {
           </ActionButton>
         </BottomSheetTrigger>
         <BottomSheetContent
-          title="하단 모달 바텀시트"
-          description="SEED 2.0 하단 슬라이드 모달 컴포넌트입니다."
+          title="Payverse 가맹점 수수료율 안내"
+          description="이롬넷 PG 통합 가맹점 우대 수수료 정책입니다."
           showHandle={true}
           showCloseButton={false}
         >
           <BottomSheetBody>
             <div style={{ padding: 'var(--seed-dimension-x3) 0', fontSize: 'var(--seed-font-size-t4)', color: 'var(--seed-color-fg-neutral)', lineHeight: 1.6 }}>
-              하단 모달 바텀시트는 최대 480px 너비를 유지하며, 드래그/배경 터치 닫기 동작 및 접근성(a11y) 속성을 자동 관리합니다.
+              국세청 영세·중소 가맹점 선정 결과에 따라 체크카드 0.5%~1.3%, 신용카드 0.5%~1.5% 우대 수수료율이 자동 적용됩니다.
             </div>
           </BottomSheetBody>
           <BottomSheetFooter>
@@ -617,19 +617,19 @@ function CalloutDemo() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
         <Callout
           tone="informative"
-          title="안내"
-          description="기능에 대한 주요 정보 및 팁을 시각적으로 강조하여 전달합니다."
+          title="우대수수료 안내"
+          description="2026년 상반기 영세·중소 가맹점 수수료 차액 환급 대상입니다."
           prefixIcon={<IconCheckmarkCircleFill />}
         />
         <Callout
           tone="warning"
-          title="주의"
-          description="중요한 설정 변경 전 주의가 필요합니다."
+          title="FDS 모니터링 주의"
+          description="동일 카드 반복 승인 이상 거래가 감지되었습니다. 정산 내역을 확인해 주세요."
         />
         <Callout
           tone="magic"
-          title="새 기능"
-          description="프리미엄 AI 유틸리티 기능이 새로 추가되었습니다!"
+          title="Payverse 신기능"
+          description="글로벌 간편결제(Payverse Express) 자동 정산 서비스가 새로 출시되었습니다!"
         />
       </div>
 
@@ -637,13 +637,13 @@ function CalloutDemo() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
         <ActionableCallout
           tone="neutral"
-          title="이동"
-          description="선택하여 하위 메뉴나 상세 페이지로 바로 이동합니다."
+          title="정산 명세서 조회"
+          description="선택 시 월별 가맹점 세금계산서 및 정산 명세서 페이지로 이동합니다."
         />
         <DismissibleCallout
           tone="positive"
-          title="성공"
-          description="새로운 프로필 정보 저장이 완료되었습니다."
+          title="정산 완료"
+          description="오늘 입금 예정인 PG 정산금(₩14,250,000)이 계좌로 정상 입금되었습니다."
         />
       </div>
     </div>
@@ -664,14 +664,14 @@ function CheckboxDemo() {
 
       {/* 1. Shapes & Sizes */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
-        <CheckboxGroup label="알림 동의 항목 (Square)" indicator="필수">
-          <Checkbox label="서비스 이용약관 동의 (Large, Bold)" size="large" weight="bold" defaultChecked tone="neutral" />
-          <Checkbox label="개인정보 처리방침 동의 (Medium)" size="medium" defaultChecked tone="neutral" />
+        <CheckboxGroup label="Payverse 가맹점 정산 수신 동의 (Square)" indicator="필수">
+          <Checkbox label="전자금융거래법 가맹점 약관 동의 (Large, Bold)" size="large" weight="bold" defaultChecked tone="neutral" />
+          <Checkbox label="정산 대금 입금 및 명세서 수신 동의 (Medium)" size="medium" defaultChecked tone="neutral" />
         </CheckboxGroup>
 
-        <CheckboxGroup label="마케팅 수신 항목 (Ghost)" indicator="선택">
-          <Checkbox label="이메일 마케팅 알림" variant="ghost" size="medium" defaultChecked tone="neutral" />
-          <Checkbox label="SMS 마케팅 알림" variant="ghost" size="medium" tone="neutral" />
+        <CheckboxGroup label="알림 서비스 신청 (Ghost)" indicator="선택">
+          <Checkbox label="FDS 이상 결제 실시간 알림" variant="ghost" size="medium" defaultChecked tone="neutral" />
+          <Checkbox label="월간 정산 세금계산서 알림" variant="ghost" size="medium" tone="neutral" />
         </CheckboxGroup>
       </div>
 
@@ -679,7 +679,7 @@ function CheckboxDemo() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
         <CheckboxGroup label="약관 전체 동의 그룹 (Parent/Child)">
           <Checkbox
-            label="전체 동의하기"
+            label="가맹점 서비스 약관 전체 동의"
             size="large"
             weight="bold"
             checked={allChecked}
@@ -688,19 +688,19 @@ function CheckboxDemo() {
           />
           <div style={{ paddingLeft: 'var(--seed-dimension-x5)', display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)' }}>
             <Checkbox
-              label="[필수] 서비스 약관 동의"
+              label="[필수] PG 서비스 이용약관 동의"
               size="medium"
               checked={checkedItems[0]}
               onCheckedChange={(checked) => setCheckedItems([Boolean(checked), checkedItems[1], checkedItems[2]])}
             />
             <Checkbox
-              label="[필수] 개인정보 제공 동의"
+              label="[필수] 정산 대금 입금 계좌 정보 제공 동의"
               size="medium"
               checked={checkedItems[1]}
               onCheckedChange={(checked) => setCheckedItems([checkedItems[0], Boolean(checked), checkedItems[2]])}
             />
             <Checkbox
-              label="[선택] 혜택 알림 수신 동의"
+              label="[선택] 우대 수수료 환급 알림 수신 동의"
               size="medium"
               checked={checkedItems[2]}
               onCheckedChange={(checked) => setCheckedItems([checkedItems[0], checkedItems[1], Boolean(checked)])}
@@ -751,16 +751,16 @@ function ChipDemo() {
         <Chip.RadioRoot value={radioVal} onValueChange={setRadioVal} aria-label="필터 선택">
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)' }}>
             <Chip.RadioItem value="all" size="medium">
-              <Chip.Label>전체</Chip.Label>
+              <Chip.Label>전체 결제</Chip.Label>
             </Chip.RadioItem>
             <Chip.RadioItem value="tech" size="medium">
-              <Chip.Label>개발/기술</Chip.Label>
+              <Chip.Label>신용/체크카드</Chip.Label>
             </Chip.RadioItem>
             <Chip.RadioItem value="design" size="medium">
-              <Chip.Label>디자인</Chip.Label>
+              <Chip.Label>간편결제</Chip.Label>
             </Chip.RadioItem>
             <Chip.RadioItem value="career" size="medium">
-              <Chip.Label>커리어</Chip.Label>
+              <Chip.Label>가상계좌</Chip.Label>
             </Chip.RadioItem>
           </div>
         </Chip.RadioRoot>
@@ -774,8 +774,8 @@ function ChipDemo() {
         <ChipTabsRoot variant="neutralSolid" size="medium" value={tabVal} onValueChange={setTabVal}>
           <ChipTabsList>
             <ChipTabsTrigger value="1" notification>정산알림</ChipTabsTrigger>
-            <ChipTabsTrigger value="2">승인내역</ChipTabsTrigger>
-            <ChipTabsTrigger value="3">환급안내</ChipTabsTrigger>
+            <ChipTabsTrigger value="2">인기글</ChipTabsTrigger>
+            <ChipTabsTrigger value="3">최신질문</ChipTabsTrigger>
           </ChipTabsList>
         </ChipTabsRoot>
       </div>
@@ -948,12 +948,12 @@ function DialogDemo() {
         <DialogRoot size={size}>
           <DialogTrigger asChild>
             <ActionButton variant="brandSolid" size="medium">
-              설정값대로 Dialog 모달 열기
+              수수료율 인하 안내 모달 열기
             </ActionButton>
           </DialogTrigger>
           <DialogContent
-            title="프로필 설정 확인"
-            description="입력하신 프로필 정보를 저장하시겠습니까?"
+            title="Payverse 가맹점 정산 수수료율 인하 안내"
+            description="국세청 영세·중소 가맹점 재선정 결과에 따라 수수료율 변경을 적용합니다."
             showCloseButton={showClose}
           >
             <DialogBody maxHeight={longBody ? "220px" : undefined}>
@@ -961,13 +961,13 @@ function DialogDemo() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', padding: 'var(--seed-dimension-x2) 0' }}>
                   {Array.from({ length: 10 }, (_, i) => (
                     <div key={i} style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral)', lineHeight: 1.6 }}>
-                      {i + 1}. 본문 내용이 뷰포트를 넘어 220px 이상 길어지면 하단에 서서히 사라지는 Scroll Fog 마스크와 구분선이 표시됩니다.
+                      {i + 1}. 국세청 매출 구간 확정 결과 우대 수수료율(0.5%) 적용 대상 가맹점으로 자동 선정되었습니다.
                     </div>
                   ))}
                 </div>
               ) : (
                 <div style={{ padding: 'var(--seed-dimension-x3) 0', fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral)', lineHeight: 1.6 }}>
-                  SEED 2.0 Dialog 모달은 최상위 계층(Level 3)에서 동작하며, 화면 중앙에 안전하게 배치됩니다.
+                  국세청 매출 구간 조회 결과, 우대 수수료율(0.5%) 적용 대상 가맹점으로 확인되었습니다. 확인을 누르시면 차기 정산분부터 자동으로 인하된 수수료율이 적용됩니다.
                 </div>
               )}
             </DialogBody>
@@ -978,13 +978,13 @@ function DialogDemo() {
                     취소
                   </DialogAction>
                   <DialogAction variant="brandSolid" size="medium">
-                    확인 및 저장
+                    확인 및 적용
                   </DialogAction>
                 </div>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', width: '100%' }}>
                   <DialogAction variant="brandSolid" size="medium">
-                    확인 및 저장
+                    확인 및 적용
                   </DialogAction>
                   <DialogAction variant="neutralOutline" size="medium">
                     취소
@@ -1026,9 +1026,9 @@ function DividerDemo() {
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'var(--seed-dimension-x4)', paddingTop: 'var(--seed-dimension-x2)' }}>
           <span style={{ fontSize: 'var(--seed-font-size-t3)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>최신순</span>
           <Divider orientation="vertical" style={{ height: 14 }} />
-          <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>인기순</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>정산액순</span>
           <Divider orientation="vertical" style={{ height: 14 }} />
-          <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>거리순</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>건수순</span>
         </div>
       </div>
     </div>
@@ -1063,29 +1063,29 @@ function FieldButtonDemo() {
       {/* FieldButton Demo */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', width: '100%' }}>
         <FieldButton
-          label="거주 지역"
+          label="정산 입금 지정 계좌"
           showRequiredIndicator
           disabled={isDisabled}
           invalid={isInvalid}
           prefixIcon={hasPrefix ? <IconMapLocationpinFill /> : undefined}
-          description="현재 거주하시는 지역을 선택해 주세요."
-          errorMessage="거주 지역을 반드시 선택해 주세요."
+          description="PG 정산금이 입금될 대표자 명의 은행 계좌를 선택해 주세요."
+          errorMessage="정산 계좌 정보를 반드시 선택해 주세요."
           showClearButton={!!selectedCity}
           values={selectedCity ? [selectedCity] : []}
           onValuesChange={(vals) => setSelectedCity(vals[0] || "")}
           buttonProps={{
             onClick: () => {
               if (!isDisabled && !selectedCity) {
-                setSelectedCity("서울특별시 강남구 역삼동");
+                setSelectedCity("국민은행 123-4567-8901 (예금주: 이롬넷 가맹점)");
               }
             },
-            "aria-label": selectedCity ? `현재 선택: ${selectedCity}` : "거주 지역 선택",
+            "aria-label": selectedCity ? `현재 선택: ${selectedCity}` : "정산 입금 계좌 선택",
           }}
         >
           {selectedCity ? (
             <FieldButtonValue>{selectedCity}</FieldButtonValue>
           ) : (
-            <FieldButtonPlaceholder>클릭하여 거주 지역을 선택해 주세요</FieldButtonPlaceholder>
+            <FieldButtonPlaceholder>클릭하여 정산 입금 계좌를 선택해 주세요</FieldButtonPlaceholder>
           )}
         </FieldButton>
       </div>
@@ -1162,12 +1162,12 @@ function HelpBubbleDemo() {
           </span>
           <HelpBubbleTrigger
             placement={placement}
-            title="신규 가맹점 결제 수수료 인하 혜택"
-            description="이롬넷 Payverse 신규 가맹점 등록 시 PG 결제 우대 수수료율이 자동 적용됩니다."
+            title="Payverse 정산 주기 안내"
+            description="매월 정산 주기 변경은 영업일 기준 3일 전까지 신청 시 다음 정산 회차에 즉시 반영됩니다."
             showCloseButton={showClose}
           >
             <ActionButton variant="neutralSolid" size="medium">
-              수수료 혜택 안내
+              정산 주기 안내
             </ActionButton>
           </HelpBubbleTrigger>
         </div>
@@ -1180,11 +1180,11 @@ function HelpBubbleDemo() {
             마우스를 올리거나 포커스하면 노출:
           </span>
           <HelpBubbleTooltipTrigger
-            title="도서산간 지역 배송 안내"
-            description="제주 및 도서산간 지역은 추가 배송비 3,000원이 부과됩니다."
+            title="영세·중소 가맹점 환급 안내"
+            description="국세청 매출 구간 확정 후 반기별 우대 수수료 차액이 자동 환급됩니다."
             placement="bottom"
           >
-            <ActionButton variant="ghost" size="small" layout="iconOnly" aria-label="배송 안내 도움말">
+            <ActionButton variant="ghost" size="small" layout="iconOnly" aria-label="정산 안내 도움말">
               <Icon svg={<IconQuestionmarkCircleFill />} />
             </ActionButton>
           </HelpBubbleTooltipTrigger>
@@ -1385,15 +1385,15 @@ function ListDemo() {
 
       {/* Official SEED List Layout */}
       <VStack width="full">
-        <ListHeader as="h3">가맹점 및 정산 계좌 설정</ListHeader>
+        <ListHeader as="h3">Payverse 가맹점 계좌 & 정산 알림 설정</ListHeader>
         <List width="full">
           {/* 1. Highlighted / Standard ListItem with Multi-line Detail */}
           <ListItem
             alignItems={align}
             highlighted={highlightFirst}
             prefix={<Icon svg={<IconBellFill />} />}
-            title="가맹점 결제 및 정산 알림"
-            detail="카드사 승인, PG 일괄 정산, 입금 완료 및 수수료 환급 소식을 실시간 알림으로 받아보실 수 있습니다."
+            title="정산 대금 입금 및 세금계산서 알림"
+            detail="매일 자금 입금 시 등록된 이메일과 SMS로 정산 명세서를 자동 발송합니다."
             suffix={<Icon svg={<IconChevronRightLine />} />}
           />
 
@@ -1403,8 +1403,8 @@ function ListDemo() {
             checked={pushNotif}
             onCheckedChange={setPushNotif}
             prefix={<Icon svg={<IconLockFill />} />}
-            title="가맹점 보안 2차 인증 알림"
-            detail="PG 관리자 페이지 접속 및 정산 계좌 변경 시 보안 인증 알림을 받습니다."
+            title="PG 결제 이상 거래(FDS) 및 이상 승인 감지"
+            detail="동일 카드 연속 결제 및 도난/분실 위험 거래 발생 시 실시간 차단 알림을 제공합니다."
           />
 
           {/* 3. ListCheckItem */}
@@ -1412,8 +1412,8 @@ function ListDemo() {
             alignItems={align}
             checked={agreeTerms}
             onCheckedChange={setAgreeTerms}
-            title="B2B PG 전자금융거래 약관 동의"
-            detail="이롬넷 Payverse 결제대금 정산 및 가맹점 개인정보 처리방침 동의"
+            title="전자금융거래법 가맹점 약관 동의"
+            detail="이롬넷 PG 통합 결제 및 가맹점 정산 수수료 정책 동의"
           />
 
           {/* 4. ListRadioItem */}
@@ -1429,10 +1429,10 @@ function ListDemo() {
           {/* 5. ListButtonItem */}
           <ListButtonItem
             alignItems={align}
-            onClick={() => alert("가맹점 정보 수정 페이지로 이동합니다.")}
+            onClick={() => alert("정산 계좌 관리 페이지로 이동합니다.")}
             prefix={<Icon svg={<IconPersonFill />} />}
-            title="가맹점 사업자 정보 관리"
-            detail="대표자명, 사업자등록번호, 정산 입금 계좌 및 연동 API Key 관리"
+            title="가맹점 대표자 정산 계좌 관리"
+            detail="국민은행 (123-****-5678) / 예금주: 이롬넷 가맹점"
             suffix={<Icon svg={<IconChevronRightLine />} />}
           />
         </List>
@@ -1454,12 +1454,12 @@ function MenuDemo() {
         </MenuTrigger>
         <MenuContent>
           <MenuGroup>
-            <MenuGroupLabel>가맹점 관리</MenuGroupLabel>
-            <MenuItem label="정산 계좌 변경" description="지정 정산 계좌 정보를 수정합니다" prefixIcon={<IconPencilLine />} />
+            <MenuGroupLabel>게시물 작업</MenuGroupLabel>
+            <MenuItem label="게시물 수정" description="제목 및 내용을 수정합니다" prefixIcon={<IconPencilLine />} />
           </MenuGroup>
           <MenuGroup>
-            <MenuGroupLabel>PG 연동 설정</MenuGroupLabel>
-            <MenuItem label="API Key 재발급" description="연동 인가 키를 재발급 처리합니다" tone="critical" prefixIcon={<IconTrashcanLine />} />
+            <MenuGroupLabel>위험 영역</MenuGroupLabel>
+            <MenuItem label="게시물 삭제" description="이 작업은 되돌릴 수 없습니다" tone="critical" prefixIcon={<IconTrashcanLine />} />
           </MenuGroup>
         </MenuContent>
       </MenuRoot>
@@ -1500,7 +1500,7 @@ function NotificationBadgeDemo() {
               <NotificationBadge size="large">3</NotificationBadge>
             </NotificationBadgePositioner>
           </div>
-          <span style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-muted)' }}>미정산 내역 알림 + Large</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-muted)' }}>채팅 아이콘 + Large</span>
         </div>
 
         {/* Bell Icon + Small Dot Badge */}
@@ -1511,7 +1511,7 @@ function NotificationBadgeDemo() {
               <NotificationBadge size="small" />
             </NotificationBadgePositioner>
           </div>
-          <span style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-muted)' }}>실시간 승인 알림 + Small</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t1)', color: 'var(--seed-color-fg-neutral-muted)' }}>알림 아이콘 + Small</span>
         </div>
       </div>
     </div>
@@ -1662,49 +1662,49 @@ function PageBannerDemo() {
             tone="neutral"
             variant="weak"
             prefixIcon={<IconExclamationmarkCircleFill />}
-            title="Neutral Weak"
-            description="일반적인 시스템 상태 안내 메시지입니다."
+            title="시스템 점검 안내"
+            description="매월 3번째 일요일 새벽 02시~04시 금융결제원 시스템 점검이 진행됩니다."
             suffix={<PageBannerButton>확인</PageBannerButton>}
           />
           <PageBanner
             tone="informative"
             variant="weak"
             prefixIcon={<IconExclamationmarkCircleFill />}
-            title="Informative Weak"
-            description="새로운 기능 출시 및 정보성 알림 메시지입니다."
+            title="우대수수료 안내"
+            description="2026년 상반기 영세·중소 가맹점 수수료 차액 환급금 조회가 가능합니다."
             suffix={<PageBannerButton>자세히 보기</PageBannerButton>}
           />
           <PageBanner
             tone="positive"
             variant="weak"
             prefixIcon={<IconExclamationmarkCircleFill />}
-            title="Positive Weak"
-            description="인증 완료 및 작업 성공 안내 메시지입니다."
+            title="입금 완료"
+            description="금일 입금 예정인 PG 매출 정산금 지급이 정상 완료되었습니다."
             suffix={<PageBannerButton>결과 보기</PageBannerButton>}
           />
           <PageBanner
             tone="warning"
             variant="weak"
             prefixIcon={<IconExclamationmarkCircleFill />}
-            title="Warning Weak"
-            description="주의가 필요한 미노출 상태 및 입력 권장 메시지입니다."
+            title="계좌 확인 필요"
+            description="정산 계좌 예금주명 불일치로 입금이 지연되고 있습니다. 계좌를 확인해 주세요."
             suffix={<PageBannerButton>등록하기</PageBannerButton>}
           />
           <PageBanner
             tone="critical"
             variant="solid"
             prefixIcon={<IconExclamationmarkCircleFill />}
-            title="Critical Solid"
-            description="제재 또는 심각한 오류가 발생한 상태 메시지입니다."
+            title="FDS 이상 거래 차단"
+            description="동일 카드 반복 결제 부정 시도가 감지되어 해당 결제가 실시간 차단되었습니다."
             suffix={<PageBannerButton>해결하기</PageBannerButton>}
           />
           <PageBanner
             tone="magic"
             variant="weak"
             prefixIcon={<IconExclamationmarkCircleFill />}
-            title="Magic Weak"
-            description="이롬넷 Payverse 글로벌 결제 연동 우대 혜택 적용 안내"
-            suffix={<PageBannerButton>혜택 받기</PageBannerButton>}
+            title="Payverse Express"
+            description="글로벌 해외 결제(VISA/Master) 실시간 자동 정산 서비스가 오픈되었습니다!"
+            suffix={<PageBannerButton>신청하기</PageBannerButton>}
           />
         </div>
       </div>
@@ -1762,16 +1762,16 @@ function QuantityPickerDemo() {
       {/* Interactive QuantityPicker Showcase */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', alignItems: 'center', width: '100%' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2)' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>정산 차수 / 일자별 회차 선택</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>분할 정산 회차 선택 (할부/분할)</span>
           <QuantityPicker
             size={size}
             min={1}
-            max={10}
+            max={12}
             defaultValue={1}
             disabled={isDisabled}
             removable={removable}
             getValueText={(val) => `${val}회차`}
-            aria-label="정산 회차 선택"
+            aria-label="정산 분할 회차 선택"
           />
         </div>
 
@@ -1782,11 +1782,11 @@ function QuantityPickerDemo() {
             layout="fill"
             size={size}
             min={1}
-            max={99}
+            max={12}
             defaultValue={3}
             disabled={isDisabled}
-            getValueText={(val) => `${val}건 정산`}
-            aria-label="Fill 정산 선택"
+            getValueText={(val) => `${val}회차 정산`}
+            aria-label="Fill 정산 회차 선택"
             style={{ width: '100%' }}
           />
         </div>
@@ -1862,11 +1862,11 @@ function RadioGroupDemo() {
       {/* Interactive RadioGroup Showcase */}
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
         <RadioGroup
-          label="결제 수단 선택"
+          label="주요 PG 결제 수단 선택"
           labelWeight={weight}
           showRequiredIndicator
-          description="하나의 결제 수단만 선택 가능합니다."
-          errorMessage="선택하신 결제 수단은 현재 이용할 수 없습니다."
+          description="주 정산 계좌로 입금될 통합 결제 수단을 선택하세요."
+          errorMessage="선택하신 결제 수단은 현재 시스템 점검 중입니다."
           invalid={isInvalid}
           disabled={isDisabled}
           size={size}
@@ -1874,9 +1874,9 @@ function RadioGroupDemo() {
           value={selectedValue}
           onValueChange={setSelectedValue}
         >
-          <RadioGroupItem value="card" label="신용/체크카드 (기본)" />
-          <RadioGroupItem value="pay" label="카카오페이 / 네이버페이" />
-          <RadioGroupItem value="bank" label="계좌이체 / 무통장입금" />
+          <RadioGroupItem value="card" label="신용/체크카드 (국내/해외 통합 PG)" />
+          <RadioGroupItem value="pay" label="Payverse 간편결제 (카카오/네이버/토스)" />
+          <RadioGroupItem value="bank" label="가상계좌 / 무통장입금 (실시간 입금확인)" />
           <RadioGroupItem value="phone" label="휴대폰 소액결제 (점검 중)" disabled />
         </RadioGroup>
       </div>
@@ -2150,9 +2150,9 @@ function SegmentedControlDemo() {
               onValueChange={setValue}
               aria-label="Filter mode"
             >
-              <SegmentedControlItem value="all">전체보기</SegmentedControlItem>
+              <SegmentedControlItem value="all">전체정산</SegmentedControlItem>
               <SegmentedControlItem value="recommended" notification={hasNotification}>
-                추천상품
+                우대수수료
               </SegmentedControlItem>
             </SegmentedControl>
           )}
@@ -2164,11 +2164,11 @@ function SegmentedControlDemo() {
               onValueChange={setValue}
               aria-label="Sort options"
             >
-              <SegmentedControlItem value="popular">인기순</SegmentedControlItem>
+              <SegmentedControlItem value="popular">일별정산</SegmentedControlItem>
               <SegmentedControlItem value="latest" notification={hasNotification}>
-                최신순
+                월별명세
               </SegmentedControlItem>
-              <SegmentedControlItem value="distance">거리순</SegmentedControlItem>
+              <SegmentedControlItem value="distance">환급내역</SegmentedControlItem>
             </SegmentedControl>
           )}
 
@@ -2179,12 +2179,12 @@ function SegmentedControlDemo() {
               onValueChange={setValue}
               aria-label="View mode"
             >
-              <SegmentedControlItem value="map">지도로 보기</SegmentedControlItem>
-              <SegmentedControlItem value="list">목록보기</SegmentedControlItem>
+              <SegmentedControlItem value="map">통합정산</SegmentedControlItem>
+              <SegmentedControlItem value="list">거래명세</SegmentedControlItem>
               <SegmentedControlItem value="street" notification={hasNotification}>
-                거리뷰
+                수수료율
               </SegmentedControlItem>
-              <SegmentedControlItem value="3d">3D뷰</SegmentedControlItem>
+              <SegmentedControlItem value="3d">FDS감지</SegmentedControlItem>
             </SegmentedControl>
           )}
         </div>
@@ -2370,7 +2370,7 @@ function SelectDemo() {
   const [showPrefix, setShowPrefix] = useState(true);
   const [isError, setIsError] = useState(false);
   const [isDisabled, setIsDisabled] = useState(false);
-  const [value, setValue] = useState(["card"]);
+  const [value, setValue] = useState(["apple"]);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
@@ -2452,47 +2452,47 @@ function SelectDemo() {
             disabled={isDisabled}
             value={value}
             onValueChange={setValue}
-            label="선호하는 과일 선택"
-            description={isMultiple ? "여러 개 선택하실 수 있습니다." : "하나의 과일을 고르세요."}
-            errorMessage={isError ? "필수 선택 항목입니다. 과일을 선택해 주세요." : undefined}
+            label="가맹점 정산 주기 및 수수료율 선택"
+            description={isMultiple ? "여러 정산 주기를 동시에 선택하실 수 있습니다." : "주요 정산 주기를 선택해 주세요."}
+            errorMessage={isError ? "필수 선택 항목입니다. 정산 주기를 선택해 주세요." : undefined}
           >
             <SelectTrigger
-              aria-label="과일 선택"
-              placeholder="과일을 선택하세요"
+              aria-label="정산 주기 선택"
+              placeholder="정산 주기를 선택하세요"
               prefixIcon={showPrefix ? <IconFaceSmileCircleFill /> : undefined}
             />
             <SelectContent>
-              <SelectGroup label="국산 과일">
+              <SelectGroup label="국내 결제 (D+1/D+7)">
                 <SelectItem
                   value="apple"
-                  label="사과"
-                  description="달콤하고 아삭한 제철 사과"
+                  label="일일 자동 정산 (D+1)"
+                  description="매일 밤 12시 자금 자동 집계 및 입금"
                   prefixIcon={showPrefix ? <IconHeartFill /> : undefined}
                 />
                 <SelectItem
                   value="pear"
-                  label="배"
-                  description="시원한 당도 1등 나주 배"
+                  label="주간 통합 정산 (D+7)"
+                  description="매주 월요일 전주 매출 일괄 정산"
                   prefixIcon={showPrefix ? <IconMapLocationpinFill /> : undefined}
                 />
                 <SelectItem
                   value="strawberry"
-                  label="딸기"
-                  description="상큼함이 가득한 설향 딸기"
+                  label="월간 합산 정산 (익월 10일)"
+                  description="월 단위 세금계산서 및 수수료 정산"
                   prefixIcon={showPrefix ? <IconExclamationmarkCircleFill /> : undefined}
                 />
               </SelectGroup>
-              <SelectGroup label="수입 과일">
+              <SelectGroup label="글로벌/특수 결제">
                 <SelectItem
                   value="banana"
-                  label="바나나"
-                  description="영양 만점 프리미엄 바나나"
+                  label="해외 카드 결제 (VISA/Master)"
+                  description="글로벌 PG 수수료 우대 정산"
                   prefixIcon={showPrefix ? <IconQuestionmarkCircleFill /> : undefined}
                 />
                 <SelectItem
                   value="mango"
-                  label="망고"
-                  description="입안에서 녹는 애플망고"
+                  label="간편 결제 (Payverse Express)"
+                  description="실시간 승인 및 자금 입금"
                   prefixIcon={showPrefix ? <IconHeartFill /> : undefined}
                 />
               </SelectGroup>
@@ -2559,24 +2559,24 @@ function SidePanelDemo() {
             </ActionButton>
           </SidePanelTrigger>
           <SidePanelContent
-            title="프로필 정보 수정"
-            description={showDescription ? "계정 프로필 정보 및 기본 설정을 변경합니다." : undefined}
+            title="가맹점 정산 정보 관리"
+            description={showDescription ? "Payverse PG 정산 계좌 및 대금 입금 통보 이메일을 설정합니다." : undefined}
           >
             <SidePanelBody px="x6" py="x4">
               <VStack gap="x5">
-                <TextField label="이름">
-                  <TextFieldInput value={name} onChange={(e) => setName(e.target.value)} placeholder="이름을 입력하세요" />
+                <TextField label="대표자명 / 상호명">
+                  <TextFieldInput value={name} onChange={(e) => setName(e.target.value)} placeholder="가맹점 대표자 성명을 입력하세요" />
                 </TextField>
 
-                <TextField label="이메일 주소">
-                  <TextFieldInput type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="이메일을 입력하세요" />
+                <TextField label="정산 통보 이메일">
+                  <TextFieldInput type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="정산 명세서 수신 이메일을 입력하세요" />
                 </TextField>
 
                 <VStack gap="x2">
-                  <Text fontWeight="bold" textStyle="t3">알림 설정</Text>
+                  <Text fontWeight="bold" textStyle="t3">정산 알림 수신 설정</Text>
                   <HStack gap="x4">
-                    <Checkbox defaultChecked label="서비스 소식 수신" />
-                    <Checkbox defaultChecked label="마케팅 정보 수신" />
+                    <Checkbox defaultChecked label="일일 정산 입금 알림" />
+                    <Checkbox defaultChecked label="FDS 이상 거래 알림" />
                   </HStack>
                 </VStack>
               </VStack>
