@@ -3872,7 +3872,7 @@ const COMPONENTS = [
   },
 {
     name: 'Skeleton',
-    slug: '@seed-design/react:Skeleton',
+    slug: 'ui:skeleton',
     demo: <SkeletonDemo />,
   },
 {
