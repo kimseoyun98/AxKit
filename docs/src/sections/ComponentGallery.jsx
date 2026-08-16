@@ -3495,28 +3495,47 @@ function ResponsiveDialogDemo() {
 
 function ResponsiveSidePanelDemo() {
   const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
       <ActionButton variant="brandSolid" size="medium" onClick={() => setOpen(true)}>
-        정산 상세 필터 (반응형 사이드 패널 열기)
+        반응형 사이드 패널 열기 (데스크탑: 우측 / 모바일: 하단)
       </ActionButton>
       <ResponsiveSidePanelRoot open={open} onOpenChange={setOpen}>
-        <ResponsiveSidePanelContent title="정산 내역 상세 검색 필터" description="화면 크기에 따라 우측 사이드 패널 또는 모바일 하단 시트로 유연하게 전환됩니다.">
-          <ResponsiveSidePanelBody>
-            <VStack gap="x4" padding="x4">
-              <TextField label="가맹점 검색어">
-                <TextFieldInput placeholder="가맹점명 또는 거래 승인번호 입력" />
+        <ResponsiveSidePanelContent
+          title="가맹점 정산 정보 관리 (반응형)"
+          description="데스크탑에서는 우측 사이드 패널, 모바일에서는 하단 바텀 시트로 자동 전환됩니다."
+        >
+          <ResponsiveSidePanelBody px="x6" py="x4">
+            <VStack gap="x5">
+              <TextField label="대표자명 / 상호명">
+                <TextFieldInput value={name} onChange={(e) => setName(e.target.value)} placeholder="가맹점 대표자 성명을 입력하세요" />
               </TextField>
-              <TextField label="정산 조회 기간">
-                <TextFieldInput type="date" defaultValue="2026-08-17" />
+
+              <TextField label="정산 통보 이메일">
+                <TextFieldInput type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="정산 명세서 수신 이메일을 입력하세요" />
               </TextField>
+
+              <VStack gap="x2">
+                <Text fontWeight="bold" textStyle="t3">정산 알림 수신 설정</Text>
+                <HStack gap="x4">
+                  <Checkbox defaultChecked label="일일 정산 입금 알림" />
+                  <Checkbox defaultChecked label="FDS 이상 거래 알림" />
+                </HStack>
+              </VStack>
             </VStack>
           </ResponsiveSidePanelBody>
           <ResponsiveSidePanelFooter>
-            <ActionButton variant="brandSolid" size="medium" style={{ width: "100%" }} onClick={() => setOpen(false)}>
-              필터 적용하기
-            </ActionButton>
+            <VStack width="full" gap="x2">
+              <ActionButton variant="neutralSolid" size="medium" style={{ width: "100%" }} onClick={() => setOpen(false)}>
+                저장하기
+              </ActionButton>
+              <ActionButton variant="neutralWeak" size="medium" style={{ width: "100%" }} onClick={() => setOpen(false)}>
+                취소
+              </ActionButton>
+            </VStack>
           </ResponsiveSidePanelFooter>
         </ResponsiveSidePanelContent>
       </ResponsiveSidePanelRoot>
