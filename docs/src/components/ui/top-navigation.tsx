@@ -35,7 +35,7 @@ export function TopNavigation({
         alignItems: "center",
         justifyContent: "space-between",
         width: "100%",
-        height: theme === "android" ? "56px" : "44px",
+        height: theme === "android" ? "var(--seed-dimension-x14)" : "var(--seed-dimension-x11)",
         padding: "0 var(--seed-dimension-x3)",
         backgroundColor: tone === "transparent" ? "transparent" : "var(--seed-color-bg-layer-default)",
         borderBottom: tone === "transparent" ? "none" : "1px solid var(--seed-color-stroke-neutral-weak)",
@@ -58,7 +58,7 @@ export function TopNavigationLeft({ className, style, children, ...props }: TopN
         display: "flex",
         alignItems: "center",
         gap: "var(--seed-dimension-x1)",
-        minWidth: 40,
+        minWidth: "var(--seed-dimension-x9)",
         flexShrink: 0,
         ...style,
       }}
@@ -126,7 +126,7 @@ export function TopNavigationTitle({
           <span style={{ fontSize: "var(--seed-font-size-t4)", fontWeight: "var(--seed-font-weight-bold)" }}>
             {title}
           </span>
-          <IconChevronDownLine style={{ width: 16, height: 16 }} />
+          <IconChevronDownLine style={{ width: "var(--seed-dimension-x4)", height: "var(--seed-dimension-x4)" }} />
         </button>
       ) : (
         <>
@@ -176,7 +176,7 @@ export function TopNavigationRight({ className, style, children, ...props }: Top
         display: "flex",
         alignItems: "center",
         gap: "var(--seed-dimension-x1)",
-        minWidth: 40,
+        minWidth: "var(--seed-dimension-x9)",
         justifyContent: "flex-end",
         flexShrink: 0,
         ...style,
@@ -210,14 +210,14 @@ export function TopNavigationIconButton({
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
-          width: 36,
-          height: 36,
+          width: "var(--seed-dimension-x9)",
+          height: "var(--seed-dimension-x9)",
           border: "none",
           background: "transparent",
           cursor: "pointer",
           borderRadius: "var(--seed-dimension-x2)",
           color: "var(--seed-color-fg-neutral)",
-          transition: "background 0.15s ease",
+          transition: "background var(--seed-duration-d2) var(--seed-timing-function-easing)",
           ...style,
         }}
         {...props}
@@ -244,8 +244,8 @@ export function TopNavigationBackButton(props: TopNavigationBackButtonProps) {
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        width: 36,
-        height: 36,
+        width: "var(--seed-dimension-x9)",
+        height: "var(--seed-dimension-x9)",
         border: "none",
         background: "transparent",
         cursor: "pointer",
@@ -254,7 +254,7 @@ export function TopNavigationBackButton(props: TopNavigationBackButtonProps) {
       }}
       {...props}
     >
-      <IconChevronLeftLine style={{ width: 24, height: 24 }} />
+      <IconChevronLeftLine style={{ width: "var(--seed-dimension-x6)", height: "var(--seed-dimension-x6)" }} />
     </button>
   );
 }
@@ -270,8 +270,8 @@ export function TopNavigationCloseButton(props: TopNavigationCloseButtonProps) {
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        width: 36,
-        height: 36,
+        width: "var(--seed-dimension-x9)",
+        height: "var(--seed-dimension-x9)",
         border: "none",
         background: "transparent",
         cursor: "pointer",
@@ -280,7 +280,7 @@ export function TopNavigationCloseButton(props: TopNavigationCloseButtonProps) {
       }}
       {...props}
     >
-      <IconXmarkLine style={{ width: 24, height: 24 }} />
+      <IconXmarkLine style={{ width: "var(--seed-dimension-x6)", height: "var(--seed-dimension-x6)" }} />
     </button>
   );
 }
