@@ -49,11 +49,24 @@ export function TopNavigation({
   );
 }
 
-export interface TopNavigationLeftProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface TopNavigationLeftProps extends React.HTMLAttributes<HTMLDivElement> {
+  theme?: "cupertino" | "android";
+  tone?: "layer" | "transparent";
+}
 
-export function TopNavigationLeft({ className, style, children, ...props }: TopNavigationLeftProps) {
+export function TopNavigationLeft({
+  theme = "cupertino",
+  tone = "layer",
+  className,
+  style,
+  children,
+  ...props
+}: TopNavigationLeftProps) {
+  const styles = appBar({ theme, tone });
+
   return (
     <div
+      className={`${styles.left} ${className || ""}`}
       style={{
         display: "flex",
         alignItems: "center",
@@ -73,6 +86,8 @@ export interface TopNavigationTitleProps extends React.HTMLAttributes<HTMLDivEle
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
   align?: "left" | "center";
+  theme?: "cupertino" | "android";
+  tone?: "layer" | "transparent";
   onClickTitle?: () => void;
 }
 
@@ -80,17 +95,23 @@ export function TopNavigationTitle({
   title,
   subtitle,
   align = "center",
+  theme = "cupertino",
+  tone = "layer",
   onClickTitle,
   className,
   style,
   children,
   ...props
 }: TopNavigationTitleProps) {
-  const mainStyles = appBarMain({ layout: subtitle ? "withSubtitle" : "titleOnly", theme: "cupertino" });
+  const mainStyles = appBarMain({
+    layout: subtitle ? "withSubtitle" : "titleOnly",
+    theme,
+    tone,
+  });
 
   return (
     <div
-      className={mainStyles.root}
+      className={`${mainStyles.root} ${className || ""}`}
       style={{
         display: "flex",
         flexDirection: "column",
@@ -101,6 +122,7 @@ export function TopNavigationTitle({
         textAlign: align === "center" ? "center" : "left",
         padding: "0 var(--seed-dimension-x2)",
         overflow: "hidden",
+        pointerEvents: "auto",
         ...style,
       }}
       {...props}
@@ -123,7 +145,7 @@ export function TopNavigationTitle({
             color: "var(--seed-color-fg-neutral)",
           }}
         >
-          <span style={{ fontSize: "var(--seed-font-size-t4)", fontWeight: "var(--seed-font-weight-bold)" }}>
+          <span className={mainStyles.title}>
             {title}
           </span>
           <IconChevronDownLine style={{ width: "var(--seed-dimension-x4)", height: "var(--seed-dimension-x4)" }} />
@@ -131,33 +153,12 @@ export function TopNavigationTitle({
       ) : (
         <>
           {title && (
-            <span
-              className={mainStyles.title}
-              style={{
-                fontSize: "var(--seed-font-size-t4)",
-                fontWeight: "var(--seed-font-weight-bold)",
-                color: "var(--seed-color-fg-neutral)",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                width: "100%",
-              }}
-            >
+            <span className={mainStyles.title}>
               {title}
             </span>
           )}
           {subtitle && (
-            <span
-              className={mainStyles.subtitle}
-              style={{
-                fontSize: "var(--seed-font-size-t2)",
-                color: "var(--seed-color-fg-neutral-subtle)",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                width: "100%",
-              }}
-            >
+            <span className={mainStyles.subtitle}>
               {subtitle}
             </span>
           )}
@@ -167,11 +168,24 @@ export function TopNavigationTitle({
   );
 }
 
-export interface TopNavigationRightProps extends React.HTMLAttributes<HTMLDivElement> {}
+export interface TopNavigationRightProps extends React.HTMLAttributes<HTMLDivElement> {
+  theme?: "cupertino" | "android";
+  tone?: "layer" | "transparent";
+}
 
-export function TopNavigationRight({ className, style, children, ...props }: TopNavigationRightProps) {
+export function TopNavigationRight({
+  theme = "cupertino",
+  tone = "layer",
+  className,
+  style,
+  children,
+  ...props
+}: TopNavigationRightProps) {
+  const styles = appBar({ theme, tone });
+
   return (
     <div
+      className={`${styles.right} ${className || ""}`}
       style={{
         display: "flex",
         alignItems: "center",
@@ -191,33 +205,32 @@ export function TopNavigationRight({ className, style, children, ...props }: Top
 export interface TopNavigationIconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   badge?: React.ReactNode | number;
   badgeSize?: "small" | "large";
+  theme?: "cupertino" | "android";
+  tone?: "layer" | "transparent";
 }
 
 export function TopNavigationIconButton({
   badge,
   badgeSize = "large",
-  ariaLabel,
+  theme = "cupertino",
+  tone = "layer",
   children,
   className,
   style,
   ...props
-}: TopNavigationIconButtonProps & { "aria-label"?: string }) {
+}: TopNavigationIconButtonProps) {
+  const styles = appBar({ theme, tone });
+
   return (
     <div style={{ position: "relative", display: "inline-flex" }}>
       <button
         type="button"
+        className={`${styles.iconButton} ${className || ""}`}
         style={{
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
-          width: "var(--seed-dimension-x9)",
-          height: "var(--seed-dimension-x9)",
-          border: "none",
-          background: "transparent",
           cursor: "pointer",
-          borderRadius: "var(--seed-dimension-x2)",
-          color: "var(--seed-color-fg-neutral)",
-          transition: "background var(--seed-duration-d2) var(--seed-timing-function-easing)",
           ...style,
         }}
         {...props}
@@ -233,54 +246,68 @@ export function TopNavigationIconButton({
   );
 }
 
-export interface TopNavigationBackButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export interface TopNavigationBackButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  theme?: "cupertino" | "android";
+  tone?: "layer" | "transparent";
+}
 
-export function TopNavigationBackButton(props: TopNavigationBackButtonProps) {
+export function TopNavigationBackButton({
+  theme = "cupertino",
+  tone = "layer",
+  className,
+  style,
+  ...props
+}: TopNavigationBackButtonProps) {
+  const styles = appBar({ theme, tone });
+
   return (
     <button
       type="button"
       aria-label="뒤로가기"
+      className={`${styles.iconButton} ${className || ""}`}
       style={{
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        width: "var(--seed-dimension-x9)",
-        height: "var(--seed-dimension-x9)",
-        border: "none",
-        background: "transparent",
         cursor: "pointer",
-        borderRadius: "var(--seed-dimension-x2)",
-        color: "var(--seed-color-fg-neutral)",
+        ...style,
       }}
       {...props}
     >
-      <IconChevronLeftLine style={{ width: "var(--seed-dimension-x6)", height: "var(--seed-dimension-x6)" }} />
+      <IconChevronLeftLine className={styles.icon} />
     </button>
   );
 }
 
-export interface TopNavigationCloseButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export interface TopNavigationCloseButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  theme?: "cupertino" | "android";
+  tone?: "layer" | "transparent";
+}
 
-export function TopNavigationCloseButton(props: TopNavigationCloseButtonProps) {
+export function TopNavigationCloseButton({
+  theme = "cupertino",
+  tone = "layer",
+  className,
+  style,
+  ...props
+}: TopNavigationCloseButtonProps) {
+  const styles = appBar({ theme, tone });
+
   return (
     <button
       type="button"
       aria-label="닫기"
+      className={`${styles.iconButton} ${className || ""}`}
       style={{
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        width: "var(--seed-dimension-x9)",
-        height: "var(--seed-dimension-x9)",
-        border: "none",
-        background: "transparent",
         cursor: "pointer",
-        borderRadius: "var(--seed-dimension-x2)",
-        color: "var(--seed-color-fg-neutral)",
+        ...style,
       }}
       {...props}
     >
-      <IconXmarkLine style={{ width: "var(--seed-dimension-x6)", height: "var(--seed-dimension-x6)" }} />
+      <IconXmarkLine className={styles.icon} />
     </button>
   );
 }
