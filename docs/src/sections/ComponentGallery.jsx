@@ -3675,286 +3675,245 @@ function SideNavigationDemo() {
 }
 
 const COMPONENTS = [
-  {
-    name: 'Chip Tabs',
-    slug: 'ui:chip-tabs',
-    demo: <ChipTabsDemo />,
-  },
-  {
-    name: 'Loading Indicator',
-    slug: 'ui:loading-indicator',
-    demo: <LoadingIndicatorDemo />,
-  },
-  {
-    name: 'Responsive Dialog',
-    slug: 'ui:responsive-dialog',
-    demo: <ResponsiveDialogDemo />,
-  },
-  {
-    name: 'Responsive Side Panel',
-    slug: 'ui:responsive-side-panel',
-    demo: <ResponsiveSidePanelDemo />,
-  },
-  {
-    name: 'Swipeable Menu Sheet',
-    slug: 'ui:swipeable-menu-sheet',
-    demo: <SwipeableMenuSheetDemo />,
-  },
-  {
-    name: 'Time Picker',
-    slug: 'ui:time-picker',
-    demo: <TimePickerDemo />,
-  },
-  {
-    name: 'List Header',
-    slug: 'ui:list-header',
-    demo: <ListHeaderDemo />,
-  },
-
-  {
+{
     name: 'Accordion',
     slug: 'ui:accordion',
     demo: <AccordionDemo />,
   },
-
-  {
+{
     name: 'Action Button',
     slug: 'ui:action-button',
     demo: <ActionButtonDemo />,
   },
-
-  {
+{
     name: 'Alert Dialog',
     slug: 'ui:alert-dialog',
     demo: <AlertDialogDemo />,
   },
-
-  {
+{
     name: 'Attachment',
     slug: 'ui:attachment-field / ui:attachment-display-field',
     demo: <AttachmentDemo />,
   },
-
-  {
+{
     name: 'Avatar',
     slug: 'ui:avatar',
     demo: <AvatarDemo />,
   },
-
-  {
+{
     name: 'Badge',
     slug: 'ui:badge',
     demo: <BadgeDemo />,
   },
-
-  {
+{
     name: 'Bottom Sheet',
     slug: 'ui:bottom-sheet',
     demo: <BottomSheetDemo />,
   },
-
-  {
+{
     name: 'Callout',
     slug: 'ui:callout',
     demo: <CalloutDemo />,
   },
-
-  {
+{
     name: 'Checkbox',
     slug: 'ui:checkbox',
     demo: <CheckboxDemo />,
   },
-
-  {
+{
     name: 'Chip',
     slug: 'ui:chip / ui:chip-tabs',
     demo: <ChipDemo />,
   },
-
-  {
+{
+    name: 'Chip Tabs',
+    slug: 'ui:chip-tabs',
+    demo: <ChipTabsDemo />,
+  },
+{
     name: 'Content Placeholder',
     slug: 'ui:content-placeholder',
     demo: <ContentPlaceholderDemo />,
   },
-
-  {
+{
     name: 'Contextual Floating Button',
     slug: 'ui:contextual-floating-button',
     demo: <ContextualFloatingButtonDemo />,
   },
-
-  {
+{
     name: 'Date Picker',
     slug: 'ui:date-picker',
     demo: <DatePickerDemo />,
   },
-
-  {
+{
     name: 'Dialog',
     slug: 'ui:dialog',
     demo: <DialogDemo />,
   },
-
-  {
+{
     name: 'Divider',
     slug: 'ui:divider',
     demo: <DividerDemo />,
   },
-
-  {
+{
     name: 'Field Button (Input Button)',
     slug: 'ui:field-button (Input Button + Field)',
     demo: <FieldButtonDemo />,
   },
-
-  {
+{
     name: 'Floating Action Button',
     slug: 'ui:floating-action-button',
     demo: <FloatingActionButtonDemo />,
   },
-
-  {
+{
     name: 'Help Bubble',
     slug: 'ui:help-bubble / ui:help-bubble-tooltip',
     demo: <HelpBubbleDemo />,
   },
-
-  {
+{
     name: 'Identity Placeholder',
     slug: 'ui:identity-placeholder',
     demo: <IdentityPlaceholderDemo />,
   },
-
-  {
+{
     name: 'Image Frame',
     slug: 'ui:image-frame',
     demo: <ImageFrameDemo />,
   },
-
-  {
-    name: 'Progress Circle',
-    slug: 'ui:progress-circle',
-    demo: <ProgressCircleDemo />,
-  },
-
-  {
+{
     name: 'List',
     slug: 'ui:list',
     demo: <ListDemo />,
   },
-
-  {
+{
+    name: 'List Header',
+    slug: 'ui:list-header',
+    demo: <ListHeaderDemo />,
+  },
+{
+    name: 'Loading Indicator',
+    slug: 'ui:loading-indicator',
+    demo: <LoadingIndicatorDemo />,
+  },
+{
     name: 'Menu',
     slug: 'ui:menu',
     demo: <MenuDemo />,
   },
-
-  {
+{
     name: 'Notification Badge',
     slug: 'ui:notification-badge',
     demo: <NotificationBadgeDemo />,
   },
-
-  {
+{
     name: 'Page Banner',
     slug: 'ui:page-banner',
     demo: <PageBannerDemo />,
   },
-
-  {
+{
+    name: 'Progress Circle',
+    slug: 'ui:progress-circle',
+    demo: <ProgressCircleDemo />,
+  },
+{
     name: 'Quantity Picker',
     slug: 'ui:quantity-picker',
     demo: <QuantityPickerDemo />,
   },
-
-  {
+{
     name: 'Radio Group',
     slug: 'ui:radio-group',
     demo: <RadioGroupDemo />,
   },
-
-  {
+{
     name: 'Reaction Button',
     slug: 'ui:reaction-button',
     demo: <ReactionButtonDemo />,
   },
-
-  {
+{
+    name: 'Responsive Dialog',
+    slug: 'ui:responsive-dialog',
+    demo: <ResponsiveDialogDemo />,
+  },
+{
+    name: 'Responsive Side Panel',
+    slug: 'ui:responsive-side-panel',
+    demo: <ResponsiveSidePanelDemo />,
+  },
+{
     name: 'Result Section',
     slug: 'ui:result-section',
     demo: <ResultSectionDemo />,
   },
-
-  {
+{
     name: 'Segmented Control',
     slug: 'ui:segmented-control',
     demo: <SegmentedControlDemo />,
   },
-
-  {
-    name: 'Select Box',
-    slug: 'ui:select-box',
-    demo: <SelectBoxDemo />,
-  },
-
-  {
+{
     name: 'Select',
     slug: 'ui:select',
     demo: <SelectDemo />,
   },
-
-  {
-    name: 'Side Panel',
-    slug: 'ui:side-panel',
-    demo: <SidePanelDemo />,
+{
+    name: 'Select Box',
+    slug: 'ui:select-box',
+    demo: <SelectBoxDemo />,
   },
-
-  {
+{
     name: 'Side Navigation',
     slug: 'block:side-navigation-01',
     demo: <SideNavigationDemo />,
   },
-
-  {
+{
+    name: 'Side Panel',
+    slug: 'ui:side-panel',
+    demo: <SidePanelDemo />,
+  },
+{
     name: 'Skeleton',
     slug: '@seed-design/react:Skeleton',
     demo: <SkeletonDemo />,
   },
-
-  {
+{
     name: 'Slider',
     slug: 'ui:slider',
     demo: <SliderDemo />,
   },
-
-  {
+{
     name: 'Snackbar',
     slug: 'ui:snackbar',
     demo: <SnackbarDemo />,
   },
-
-  {
+{
+    name: 'Swipeable Menu Sheet',
+    slug: 'ui:swipeable-menu-sheet',
+    demo: <SwipeableMenuSheetDemo />,
+  },
+{
     name: 'Switch',
     slug: 'ui:switch',
     demo: <SwitchDemo />,
   },
-
-  {
+{
     name: 'Tabs',
     slug: 'ui:tabs',
     demo: <TabsDemo />,
   },
-
-  {
+{
     name: 'Tag Group',
     slug: 'ui:tag-group',
     demo: <TagGroupDemo />,
   },
-
-  {
+{
     name: 'Text Field',
     slug: 'ui:text-field',
     demo: <TextFieldDemo />,
+  },
+{
+    name: 'Time Picker',
+    slug: 'ui:time-picker',
+    demo: <TimePickerDemo />,
   },
 ];
 
