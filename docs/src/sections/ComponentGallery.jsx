@@ -2654,6 +2654,168 @@ function TagGroupDemo() {
   );
 }
 
+function TextFieldDemo() {
+  const [variant, setVariant] = useState("outline"); // "outline" | "underline"
+  const [size, setSize] = useState("large"); // "large" | "medium"
+  const [state, setState] = useState("normal"); // "normal" | "disabled" | "readOnly" | "invalid"
+
+  const [bizName, setBizName] = useState("이롬넷 가맹점 (강남본점)");
+  const [amount, setAmount] = useState("15,000,000");
+  const [website, setWebsite] = useState("payverse.eromnet.com");
+  const [memo, setMemo] = useState("PG 정산 대금 D+1 입금 신청 및 FDS 이상 거래 자동 차단 알림 수신 설정 완료.");
+
+  const isDisabled = state === "disabled";
+  const isReadOnly = state === "readOnly";
+  const isInvalid = state === "invalid";
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 460, margin: "0 auto", alignItems: "center" }}>
+      <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
+        Text Field Input & Textarea · Outline / Underline · Affixes & Grapheme Counter
+      </div>
+
+      {/* Controls */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
+        {/* Variant Selection */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Variant:</span>
+          {[
+            { label: "Outline (기본)", value: "outline" },
+            { label: "Underline (밑줄형)", value: "underline" },
+          ].map((v) => (
+            <ActionButton
+              key={v.value}
+              size="small"
+              variant={variant === v.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setVariant(v.value)}
+            >
+              {v.label}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Size Selection */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Size:</span>
+          {[
+            { label: "Large (대형)", value: "large" },
+            { label: "Medium (중형)", value: "medium" },
+          ].map((s) => (
+            <ActionButton
+              key={s.value}
+              size="small"
+              variant={size === s.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setSize(s.value)}
+            >
+              {s.label}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* State Selection */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>State:</span>
+          {[
+            { label: "Normal (정상)", value: "normal" },
+            { label: "Disabled (비활성화)", value: "disabled" },
+            { label: "ReadOnly (읽기전용)", value: "readOnly" },
+            { label: "Invalid (오류)", value: "invalid" },
+          ].map((st) => (
+            <ActionButton
+              key={st.value}
+              size="small"
+              variant={state === st.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setState(st.value)}
+            >
+              {st.label}
+            </ActionButton>
+          ))}
+        </div>
+      </div>
+
+      {/* Interactive TextField Showcase */}
+      <VStack gap="x5" width="full">
+        {/* 1. Basic TextFieldInput with Grapheme Counter & Indicator */}
+        <TextField
+          variant={variant}
+          size={size}
+          disabled={isDisabled}
+          readOnly={isReadOnly}
+          invalid={isInvalid}
+          label="가맹점 대표 상호명"
+          description="사업자등록증상의 공식 법인/상호명을 입력해 주세요."
+          errorMessage={isInvalid ? "가맹점 상호명 정보를 확인해 주세요." : undefined}
+          showRequiredIndicator
+          maxGraphemeCount={30}
+          value={bizName}
+          onValueChange={({ value }) => setBizName(value)}
+        >
+          <TextFieldInput placeholder="예: 이롬넷 주식회사" />
+        </TextField>
+
+        {/* 2. Affixes & Icons (Prefix / Suffix) */}
+        <TextField
+          variant={variant}
+          size={size}
+          disabled={isDisabled}
+          readOnly={isReadOnly}
+          invalid={isInvalid}
+          label="월 정산 예상 금액"
+          description="월 단위 예상 PG 거래 매출액을 정수로 입력해 주세요."
+          errorMessage={isInvalid ? "정산 예상 금액 입력을 완료해 주세요." : undefined}
+          prefix="₩"
+          suffix="원"
+          prefixIcon={<IconStoreFill />}
+          value={amount}
+          onValueChange={({ value }) => setAmount(value)}
+        >
+          <TextFieldInput placeholder="10,000,000" />
+        </TextField>
+
+        {/* 3. URL Prefix Input */}
+        <TextField
+          variant={variant}
+          size={size}
+          disabled={isDisabled}
+          readOnly={isReadOnly}
+          invalid={isInvalid}
+          label="가맹점 공식 웹사이트"
+          description="PG 심사에 필요한 온라인 쇼핑몰 URL을 입력하세요."
+          errorMessage={isInvalid ? "유효한 웹사이트 URL 주소를 입력하세요." : undefined}
+          prefix="https://"
+          indicator="선택"
+          value={website}
+          onValueChange={({ value }) => setWebsite(value)}
+        >
+          <TextFieldInput placeholder="example.com" />
+        </TextField>
+
+        <Divider inset />
+
+        {/* 4. Multi-line Auto-sizing TextFieldTextarea */}
+        <VStack gap="x2" width="full">
+          <Text textStyle="t2Bold" color="fg.neutralSubtle">Multi-line Textarea (자동 높이 조절 지원)</Text>
+          <TextField
+            variant={variant}
+            size={size}
+            disabled={isDisabled}
+            readOnly={isReadOnly}
+            invalid={isInvalid}
+            label="정산 특이사항 및 요체크 메모"
+            description="가맹점 맞춤 정산 조건이나 심사 관련 메모를 작성하세요."
+            errorMessage={isInvalid ? "입력하신 특이사항 내용을 다시 확인해 주세요." : undefined}
+            maxGraphemeCount={200}
+            value={memo}
+            onValueChange={({ value }) => setMemo(value)}
+          >
+            <TextFieldTextarea placeholder="정산 관련 특이사항을 작성해 주세요 (최대 200자)" rows={3} />
+          </TextField>
+        </VStack>
+      </VStack>
+    </div>
+  );
+}
+
 
 function SidePanelDemo() {
   const [size, setSize] = useState("small"); // "small" | "medium" | "large"
@@ -3353,6 +3515,12 @@ const COMPONENTS = [
     name: 'Tag Group',
     slug: 'ui:tag-group',
     demo: <TagGroupDemo />,
+  },
+
+  {
+    name: 'Text Field',
+    slug: 'ui:text-field',
+    demo: <TextFieldDemo />,
   },
 ];
 
