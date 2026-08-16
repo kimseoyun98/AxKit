@@ -2785,7 +2785,9 @@ function TextFieldDemo() {
 
         {/* 2. Custom Input: Auto-Formatting (Business Reg No, Phone, Currency) */}
         <VStack gap="x3" width="full">
-          <Text textStyle="t2Bold" color="fg.brand">Custom Input (자동 마스킹 & 포맷팅 적용)</Text>
+          <Text textStyle="t2Bold" color="fg.neutralSubtle">
+            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Custom Input</code> · 자동 마스킹 & 포맷팅 패턴
+          </Text>
           
           {/* 사업자등록번호 (자동 하이픈 XXX-XX-XXXXX) */}
           <TextField
@@ -2844,7 +2846,9 @@ function TextFieldDemo() {
 
         {/* 3. 2-Column Grid Layout */}
         <VStack gap="x3" width="full">
-          <Text textStyle="t2Bold" color="fg.neutralSubtle">Text Input 2열 레이아웃 구성</Text>
+          <Text textStyle="t2Bold" color="fg.neutralSubtle">
+            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>2-Column Layout</code> · 병렬 입력 레이아웃
+          </Text>
           <HStack gap="x3" width="full">
             <TextField
               variant={variant}
@@ -2879,7 +2883,9 @@ function TextFieldDemo() {
 
         {/* 4. Multi-line Auto-sizing TextFieldTextarea */}
         <VStack gap="x2" width="full">
-          <Text textStyle="t2Bold" color="fg.neutralSubtle">Multi-line Textarea (자동 높이 조절 지원)</Text>
+          <Text textStyle="t2Bold" color="fg.neutralSubtle">
+            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>TextFieldTextarea</code> · 자동 높이 조절 멀티라인
+          </Text>
           <TextField
             variant={variant}
             size={size}
