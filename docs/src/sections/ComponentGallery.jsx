@@ -92,6 +92,7 @@ import {
   ResponsiveSidePanelBody,
   ResponsiveSidePanelFooter,
 } from '../components/ui/responsive-side-panel';
+import { TagGroupRoot, TagGroupItem } from '../components/ui/tag-group';
 import { Count, Box, ScrollFog, HStack, VStack, Text, Skeleton } from '@seed-design/react';
 import IconFaceSmileCircleFill from "@karrotmarket/react-monochrome-icon/IconFaceSmileCircleFill";
 import IconHeartFill from "@karrotmarket/react-monochrome-icon/IconHeartFill";
@@ -2511,6 +2512,143 @@ function SelectDemo() {
   );
 }
 
+function TagGroupDemo() {
+  const [size, setSize] = useState("t3"); // "t2" | "t3" | "t4"
+  const [weight, setWeight] = useState("regular"); // "regular" | "bold"
+  const [tone, setTone] = useState("neutral"); // "neutralSubtle" | "neutral" | "brand"
+  const [separator, setSeparator] = useState("•");
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 460, margin: "0 auto", alignItems: "center" }}>
+      <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
+        Tag Group · Metadata Summary · Size t2/t3/t4 · Tone & Weight · Custom Separator
+      </div>
+
+      {/* Controls */}
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
+        {/* Size Selection */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Size:</span>
+          {[
+            { label: "t2 (12pt)", value: "t2" },
+            { label: "t3 (13pt)", value: "t3" },
+            { label: "t4 (14pt)", value: "t4" },
+          ].map((s) => (
+            <ActionButton
+              key={s.value}
+              size="small"
+              variant={size === s.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setSize(s.value)}
+            >
+              {s.label}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Weight Selection */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Weight:</span>
+          {[
+            { label: "Regular (일반)", value: "regular" },
+            { label: "Bold (볼드)", value: "bold" },
+          ].map((w) => (
+            <ActionButton
+              key={w.value}
+              size="small"
+              variant={weight === w.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setWeight(w.value)}
+            >
+              {w.label}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Tone Selection */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Tone:</span>
+          {[
+            { label: "Subtle", value: "neutralSubtle" },
+            { label: "Neutral", value: "neutral" },
+            { label: "Brand", value: "brand" },
+          ].map((t) => (
+            <ActionButton
+              key={t.value}
+              size="small"
+              variant={tone === t.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setTone(t.value)}
+            >
+              {t.label}
+            </ActionButton>
+          ))}
+        </div>
+
+        {/* Separator Selection */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Separator:</span>
+          {["•", "|", "/", " "].map((sep) => (
+            <ActionButton
+              key={sep}
+              size="small"
+              variant={separator === sep ? "brandSolid" : "neutralOutline"}
+              onClick={() => setSeparator(sep)}
+            >
+              {sep === " " ? "Space (공백)" : sep}
+            </ActionButton>
+          ))}
+        </div>
+      </div>
+
+      {/* Interactive TagGroup Showcase */}
+      <VStack gap="x6" width="full" align="center">
+        {/* 1. Dynamic Configured TagGroup */}
+        <VStack gap="x2" align="center">
+          <Text textStyle="t2Bold" color="fg.neutralSubtle">설정된 속성별 태그 그룹</Text>
+          <TagGroupRoot size={size} weight={weight} tone={tone} separator={separator}>
+            <TagGroupItem prefixIcon={<IconLocationpinFill />} label="서울 강남점" />
+            <TagGroupItem label="D+1 정산" />
+            <TagGroupItem label="승인완료" />
+            <TagGroupItem label="수수료 0.5%" />
+          </TagGroupRoot>
+        </VStack>
+
+        <Divider inset />
+
+        {/* 2. Mixed Tones & Custom Item Combination */}
+        <VStack gap="x2" align="center">
+          <Text textStyle="t2Bold" color="fg.neutralSubtle">혼합 속성 (Item별 커스텀 톤 & 아이콘)</Text>
+          <TagGroupRoot size="t3" separator="•">
+            <TagGroupItem tone="brand" weight="bold" prefixIcon={<IconCheckmarkCircleFill />} label="우대가맹점" />
+            <TagGroupItem tone="neutral" label="통합 PG 정산" />
+            <TagGroupItem tone="neutralSubtle" label="3분 전 입금" />
+          </TagGroupRoot>
+        </VStack>
+
+        <Divider inset />
+
+        {/* 3. Truncate & Shrink Behavior Showcase */}
+        <VStack gap="x2" align="center" width="full">
+          <Text textStyle="t2Bold" color="fg.neutralSubtle">말줄임(Truncate) & FlexShrink 오버플로우 테스트</Text>
+          <Box
+            width="100%"
+            maxWidth="320px"
+            padding="x3"
+            borderRadius="r2"
+            borderWidth={1}
+            borderColor="stroke.neutralWeak"
+            bg="bg.layerDefault"
+          >
+            <TagGroupRoot truncate size="t3">
+              <TagGroupItem prefixIcon={<IconLocationpinFill />} label="서울특별시 강남구 테헤란로 123" />
+              <TagGroupItem flexShrink={0} tone="brand" label="D+1" />
+              <TagGroupItem label="영세·중소 우대 수수료 환급 대상" />
+            </TagGroupRoot>
+          </Box>
+        </VStack>
+      </VStack>
+    </div>
+  );
+}
+
 
 function SidePanelDemo() {
   const [size, setSize] = useState("small"); // "small" | "medium" | "large"
@@ -3204,6 +3342,12 @@ const COMPONENTS = [
     name: 'Tabs',
     slug: 'ui:tabs',
     demo: <TabsDemo />,
+  },
+
+  {
+    name: 'Tag Group',
+    slug: 'ui:tag-group',
+    demo: <TagGroupDemo />,
   },
 ];
 
