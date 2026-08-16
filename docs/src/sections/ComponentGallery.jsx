@@ -3501,15 +3501,61 @@ function SwipeableMenuSheetDemo() {
 }
 
 function ListHeaderDemo() {
+  const [variant, setVariant] = useState("boldSolid");
+
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x4)", width: "100%", maxWidth: 440, margin: "0 auto" }}>
-      <List>
-        <ListHeader title="2026년 8월 17일 입금 내역" />
-        <ListItem title="카드사 통합 승인 입금" description="신한·삼성·KB 국민카드 승인분" suffix="₩ 1,250,000" />
-        <ListItem title="영세/중소 우대 환급금" description="국세청 우대 환급 차액" suffix="₩ 45,000" />
-        <ListHeader title="2026년 8월 16일 입금 내역" />
-        <ListItem title="PG 일별 통합 입금" description="카카오페이·네이버페이 수수료 차감" suffix="₩ 890,000" />
-      </List>
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 480, margin: "0 auto", alignItems: "center" }}>
+      <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center" }}>
+        <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
+          <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant</code>:
+        </span>
+        {["boldSolid", "mediumWeak"].map((v) => (
+          <ActionButton
+            key={v}
+            size="small"
+            variant={variant === v ? "brandSolid" : "neutralOutline"}
+            onClick={() => setVariant(v)}
+          >
+            {v}
+          </ActionButton>
+        ))}
+      </div>
+
+      <VStack width="100%" gap="x4">
+        <VStack width="100%">
+          <ListHeader as="h3" variant={variant}>
+            2026년 8월 17일 입금 내역
+          </ListHeader>
+          <List width="full">
+            <ListItem
+              title="카드사 통합 승인 입금"
+              detail="신한·삼성·KB 국민카드 승인분"
+              suffix="₩ 1,250,000"
+            />
+            <ListDivider />
+            <ListItem
+              title="영세/중소 우대 환급금"
+              detail="국세청 우대 환급 차액"
+              suffix="₩ 45,000"
+            />
+          </List>
+        </VStack>
+
+        <Divider />
+
+        <VStack width="100%">
+          <ListHeader as="h3" variant={variant}>
+            2026년 8월 16일 입금 내역
+          </ListHeader>
+          <List width="full">
+            <ListItem
+              title="PG 일별 통합 입금"
+              detail="카카오페이·네이버페이 수수료 차감"
+              suffix="₩ 890,000"
+            />
+          </List>
+        </VStack>
+      </VStack>
     </div>
   );
 }
