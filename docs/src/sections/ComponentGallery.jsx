@@ -3586,7 +3586,7 @@ function SwipeableMenuSheetDemo() {
               tone="critical"
               label="거래 내역 삭제 및 정산 중지"
               description="되돌릴 수 없으며 당일 정산이 즉시 중지됩니다."
-              prefixIcon={<IconPencilLine />}
+              prefixIcon={<IconTrashcanLine />}
               onClick={() => { alert("정산 중지 신청이 접수되었습니다."); setOpen(false); }}
             />
           </SwipeableMenuSheetGroup>
