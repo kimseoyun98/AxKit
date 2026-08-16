@@ -3495,10 +3495,6 @@ function ResponsiveDialogDemo() {
 
 function ResponsiveSidePanelDemo() {
   const [open, setOpen] = useState(false);
-  const [tab, setTab] = useState("date"); // "date" | "time"
-  const [cutoffTime, setCutoffTime] = useState({ hour: 18, minute: 0 });
-
-  const formattedTime = `${cutoffTime.hour < 12 ? "오전" : "오후"} ${cutoffTime.hour % 12 || 12}:${String(cutoffTime.minute).padStart(2, "0")}`;
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
@@ -3507,30 +3503,19 @@ function ResponsiveSidePanelDemo() {
       </ActionButton>
       <ResponsiveSidePanelRoot open={open} onOpenChange={setOpen}>
         <ResponsiveSidePanelContent title="정산 내역 상세 검색 필터" description="화면 크기에 따라 우측 사이드 패널 또는 모바일 하단 시트로 유연하게 전환됩니다.">
-          <ResponsiveSidePanelBody style={{ maxHeight: "65vh", overflowY: "auto" }}>
+          <ResponsiveSidePanelBody>
             <VStack gap="x4" padding="x4">
-              <SegmentedControl value={tab} onValueChange={setTab} size="medium" width="full">
-                <SegmentedControlItem value="date">조회 일자 선택</SegmentedControlItem>
-                <SegmentedControlItem value="time">마감 시각 선택 ({formattedTime})</SegmentedControlItem>
-              </SegmentedControl>
-
-              {tab === "date" ? (
-                <VStack gap="x2" align="center">
-                  <DatePicker defaultValue={{ year: 2026, month: 8, day: 17 }} />
-                </VStack>
-              ) : (
-                <VStack gap="x2" align="center">
-                  <Text textStyle="t2Medium" color="fg.neutralSubtle">일별 마감 정산 시각 설정</Text>
-                  <Box width="100%" maxWidth="360px">
-                    <TimePicker value={cutoffTime} onValueChange={setCutoffTime} />
-                  </Box>
-                </VStack>
-              )}
+              <TextField label="가맹점 검색어">
+                <TextFieldInput placeholder="가맹점명 또는 거래 승인번호 입력" />
+              </TextField>
+              <TextField label="정산 조회 기간">
+                <TextFieldInput type="date" defaultValue="2026-08-17" />
+              </TextField>
             </VStack>
           </ResponsiveSidePanelBody>
           <ResponsiveSidePanelFooter>
             <ActionButton variant="brandSolid" size="medium" style={{ width: "100%" }} onClick={() => setOpen(false)}>
-              필터 적용하기 ({formattedTime})
+              필터 적용하기
             </ActionButton>
           </ResponsiveSidePanelFooter>
         </ResponsiveSidePanelContent>
