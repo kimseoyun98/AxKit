@@ -3387,7 +3387,7 @@ function LoadingIndicatorDemo() {
           <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
             <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>:
           </span>
-          {["24", "36", "48"].map((s) => (
+          {["24", "36", "40", "48"].map((s) => (
             <ActionButton key={s} size="small" variant={size === s ? "brandSolid" : "neutralOutline"} onClick={() => setSize(s)}>
               {s}
             </ActionButton>
