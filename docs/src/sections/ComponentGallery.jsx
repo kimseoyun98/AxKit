@@ -2814,8 +2814,8 @@ function TextFieldDemo() {
 
         {/* 3. 2-Column Grid Layout */}
         <VStack gap="x4" width="full">
-          <Text textStyle="t2Bold" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
-            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>2-Column Layout</code> · 병렬 입력 레이아웃
+          <Text textStyle="t2Medium" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
+            2-Column Layout · 병렬 입력 레이아웃
           </Text>
           <HStack gap="x3" width="full">
             <TextField
