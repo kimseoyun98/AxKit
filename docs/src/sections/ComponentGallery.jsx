@@ -3457,13 +3457,11 @@ function ResponsiveSidePanelDemo() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
+      <ActionButton variant="brandSolid" size="medium" onClick={() => setOpen(true)}>
+        정산 상세 필터 (반응형 사이드 패널 열기)
+      </ActionButton>
       <ResponsiveSidePanelRoot open={open} onOpenChange={setOpen}>
-        <ResponsiveSidePanelTrigger asChild>
-          <ActionButton variant="neutralSolid" size="medium">
-            정산 상세 필터 (반응형 사이드 패널)
-          </ActionButton>
-        </ResponsiveSidePanelTrigger>
-        <ResponsiveSidePanelContent title="정산 내역 상세 검색 필터" description="화면 크기에 따라 부드럽게 우측/하단에서 슬라이드 연출됩니다.">
+        <ResponsiveSidePanelContent title="정산 내역 상세 검색 필터" description="화면 크기에 따라 우측 사이드 패널 또는 모바일 하단 시트로 유연하게 전환됩니다.">
           <ResponsiveSidePanelBody>
             <VStack gap="x4" padding="x4">
               <Text textStyle="t2Medium" color="fg.neutralSubtle">조회 기간 설정</Text>
@@ -3471,7 +3469,7 @@ function ResponsiveSidePanelDemo() {
             </VStack>
           </ResponsiveSidePanelBody>
           <ResponsiveSidePanelFooter>
-            <ActionButton variant="brandSolid" size="medium" onClick={() => setOpen(false)}>
+            <ActionButton variant="brandSolid" size="medium" style={{ width: "100%" }} onClick={() => setOpen(false)}>
               필터 적용하기
             </ActionButton>
           </ResponsiveSidePanelFooter>
