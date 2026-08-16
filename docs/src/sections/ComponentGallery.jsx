@@ -1251,19 +1251,31 @@ function ImageFrameDemo() {
       </div>
 
       {/* Controls */}
-      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', flexWrap: 'wrap' }}>
-        <ActionButton size="small" variant={ratio === 4 / 3 ? "brandSolid" : "neutralOutline"} onClick={() => setRatio(4 / 3)}>
-          4 : 3 비율
-        </ActionButton>
-        <ActionButton size="small" variant={ratio === 1 ? "brandSolid" : "neutralOutline"} onClick={() => setRatio(1)}>
-          1 : 1 정사각형
-        </ActionButton>
-        <ActionButton size="small" variant={ratio === 16 / 9 ? "brandSolid" : "neutralOutline"} onClick={() => setRatio(16 / 9)}>
-          16 : 9 와이드
-        </ActionButton>
-        <ActionButton size="small" variant={showFallback ? "brandSolid" : "neutralOutline"} onClick={() => setShowFallback(!showFallback)}>
-          {showFallback ? "Fallback 이미지 켜짐" : "정상 이미지"}
-        </ActionButton>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
+        {/* Ratio Prop Selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Ratio:</span>
+          <ActionButton size="small" variant={ratio === 4 / 3 ? "brandSolid" : "neutralOutline"} onClick={() => setRatio(4 / 3)}>
+            4 : 3 (기본)
+          </ActionButton>
+          <ActionButton size="small" variant={ratio === 1 ? "brandSolid" : "neutralOutline"} onClick={() => setRatio(1)}>
+            1 : 1 (정사각형)
+          </ActionButton>
+          <ActionButton size="small" variant={ratio === 16 / 9 ? "brandSolid" : "neutralOutline"} onClick={() => setRatio(16 / 9)}>
+            16 : 9 (와이드)
+          </ActionButton>
+        </div>
+
+        {/* State Prop Selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>State:</span>
+          <ActionButton size="small" variant={!showFallback ? "brandSolid" : "neutralOutline"} onClick={() => setShowFallback(false)}>
+            Normal (정상)
+          </ActionButton>
+          <ActionButton size="small" variant={showFallback ? "brandSolid" : "neutralOutline"} onClick={() => setShowFallback(true)}>
+            Fallback (대체)
+          </ActionButton>
+        </div>
       </div>
 
       {/* ImageFrame */}
@@ -1297,22 +1309,31 @@ function ProgressCircleDemo() {
       </div>
 
       {/* Controls */}
-      <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', flexWrap: 'wrap' }}>
-        <ActionButton size="small" variant={!isIndeterminate ? "brandSolid" : "neutralOutline"} onClick={() => setIsIndeterminate(false)}>
-          Determinate ({progress}%)
-        </ActionButton>
-        <ActionButton size="small" variant={isIndeterminate ? "brandSolid" : "neutralOutline"} onClick={() => setIsIndeterminate(true)}>
-          Indeterminate (무한 회전)
-        </ActionButton>
-        <ActionButton size="small" variant={tone === "brand" ? "brandSolid" : "neutralOutline"} onClick={() => setTone("brand")}>
-          Brand Tone
-        </ActionButton>
-        <ActionButton size="small" variant={tone === "neutral" ? "brandSolid" : "neutralOutline"} onClick={() => setTone("neutral")}>
-          Neutral Tone
-        </ActionButton>
-        <ActionButton size="small" variant={tone === "staticWhite" ? "brandSolid" : "neutralOutline"} onClick={() => setTone("staticWhite")}>
-          Static White
-        </ActionButton>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
+        {/* Behavior Prop Selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Behavior:</span>
+          <ActionButton size="small" variant={!isIndeterminate ? "brandSolid" : "neutralOutline"} onClick={() => setIsIndeterminate(false)}>
+            Determinate ({progress}%)
+          </ActionButton>
+          <ActionButton size="small" variant={isIndeterminate ? "brandSolid" : "neutralOutline"} onClick={() => setIsIndeterminate(true)}>
+            Indeterminate (무한 회전)
+          </ActionButton>
+        </div>
+
+        {/* Tone Prop Selection */}
+        <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Tone:</span>
+          <ActionButton size="small" variant={tone === "brand" ? "brandSolid" : "neutralOutline"} onClick={() => setTone("brand")}>
+            Brand (브랜드)
+          </ActionButton>
+          <ActionButton size="small" variant={tone === "neutral" ? "brandSolid" : "neutralOutline"} onClick={() => setTone("neutral")}>
+            Neutral (기본)
+          </ActionButton>
+          <ActionButton size="small" variant={tone === "staticWhite" ? "brandSolid" : "neutralOutline"} onClick={() => setTone("staticWhite")}>
+            Static White
+          </ActionButton>
+        </div>
       </div>
 
       {/* Main Preview Container */}
@@ -3325,8 +3346,9 @@ function TabsDemo() {
       </div>
 
       {/* Controls */}
-      <div style={{ display: "flex", gap: "var(--seed-dimension-x2)", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
-        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
+        {/* Layout Prop Selection */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
           <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Layout:</span>
           {["fill", "fit"].map((l) => (
             <ActionButton
@@ -3335,18 +3357,29 @@ function TabsDemo() {
               variant={layout === l ? "brandSolid" : "neutralOutline"}
               onClick={() => setLayout(l)}
             >
-              {l} ({l === "fill" ? "전체너비" : "콘텐츠맞춤"})
+              {l === "fill" ? "Fill (전체너비)" : "Fit (콘텐츠맞춤)"}
             </ActionButton>
           ))}
         </div>
 
-        <ActionButton
-          size="small"
-          variant={hasNotification ? "brandSolid" : "neutralOutline"}
-          onClick={() => setHasNotification(!hasNotification)}
-        >
-          {hasNotification ? "알림 배지 켜짐" : "알림 배지 꺼짐"}
-        </ActionButton>
+        {/* Badge Prop Selection */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Badge:</span>
+          <ActionButton
+            size="small"
+            variant={hasNotification ? "brandSolid" : "neutralOutline"}
+            onClick={() => setHasNotification(true)}
+          >
+            Show Badge (배지 켜짐)
+          </ActionButton>
+          <ActionButton
+            size="small"
+            variant={!hasNotification ? "brandSolid" : "neutralOutline"}
+            onClick={() => setHasNotification(false)}
+          >
+            Hide Badge (배지 꺼짐)
+          </ActionButton>
+        </div>
       </div>
 
       {/* Interactive Tabs Showcase */}
