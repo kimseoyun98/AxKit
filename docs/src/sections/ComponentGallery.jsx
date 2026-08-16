@@ -237,7 +237,7 @@ function AvatarDemo() {
       {/* 1. Sizes */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          Sizes (24px ~ 96px)
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Avatar Size</code> · 24px ~ 96px 규격 비교
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x3)', alignItems: 'center', justifyContent: 'center' }}>
           {['24', '36', '48', '64', '80', '96'].map((sz) => (
@@ -252,7 +252,7 @@ function AvatarDemo() {
       {/* 2. Badge & Mask */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          Badge & Mask (Circle, Flower, Shield)
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>AvatarBadge</code> · 뱃지 및 마스크 (Circle, Flower, Shield)
         </div>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x5)', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
@@ -287,7 +287,7 @@ function AvatarDemo() {
       {/* 3. Avatar Stack */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          Avatar Stack
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>AvatarStack</code> · 아바타 중첩 리스트
         </div>
         <AvatarStack size="48">
           {[0, 1, 2, 3].map((idx) => (
@@ -299,7 +299,7 @@ function AvatarDemo() {
       {/* 4. Fallback */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          Fallback Placeholders (IdentityPlaceholder)
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Avatar Fallback</code> · 아이콘 및 대체 플래스홀더
         </div>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x5)', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
@@ -338,7 +338,7 @@ function AccordionDemo() {
       {/* 1. Inline Variant */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          Variant: Inline
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Accordion Inline</code> · 기본 인라인 아코디언
         </div>
         <Accordion defaultValue={["1"]} variant="inline" style={{ width: '100%' }}>
           <AccordionItem value="0">
@@ -359,7 +359,7 @@ function AccordionDemo() {
       {/* 2. Separated Variant */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          Variant: Separated
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Accordion Separated</code> · 카드 분리형 아코디언
         </div>
         <Accordion defaultValue={["1"]} variant="separated" style={{ width: '100%' }}>
           <AccordionItem value="0">
@@ -394,6 +394,9 @@ function ActionButtonDemo() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x7)', width: '100%', maxWidth: 480, margin: '0 auto' }}>
       {/* 1. Hierarchy & State Matrix */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textAlign: 'center' }}>
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>ActionButton State</code> · 계층 및 상태 매트릭스
+        </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--seed-dimension-x2_5)', width: '100%', textAlign: 'center', fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
           <span>Enabled</span>
@@ -421,7 +424,7 @@ function ActionButtonDemo() {
       {/* 2. Sizes & Layouts */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%', alignItems: 'center' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          Sizes & Layouts
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>ActionButton Layout</code> · 크기 및 아이콘 레이아웃
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', alignItems: 'center' }}>
           <ActionButton variant="brandSolid" size="medium">
@@ -466,7 +469,7 @@ function AttachmentDemo() {
       {/* 1. Attachment Field (Standard File Upload) */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          1. Attachment Field (Local File Upload)
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>AttachmentField</code> · 로컬 파일 업로드 및 진행률
         </div>
         <AttachmentField label="증빙 파일 업로드" description="최대 5개까지 업로드할 수 있습니다." maxFiles={5}>
           <AttachmentInput />
@@ -476,7 +479,7 @@ function AttachmentDemo() {
       {/* 2. Dropzone Variant */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          2. Dropzone Variant
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>AttachmentDropzone</code> · 드래그 앤 드롭 업로드 영역
         </div>
         <AttachmentField label="드래그 앤 드롭 업로드" maxFiles={5}>
           <AttachmentDropzone />
@@ -486,7 +489,7 @@ function AttachmentDemo() {
       {/* 3. Attachment Display Field (URL Thumbnail Display) */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          3. Attachment Display Field (URL Thumbnail Preview)
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>AttachmentDisplayField</code> · 썸네일 미리보기 리스트
         </div>
         <AttachmentDisplayField label="첨부 미디어 썸네일 (URL)" description="서버에 업로드된 미디어 리소스 썸네일 미리보기" defaultEntries={sampleEntries} maxEntries={5}>
           <AttachmentDisplay
@@ -522,6 +525,9 @@ function BadgeDemo() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 420, margin: '0 auto' }}>
       {/* Tone & Variant Matrix */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textAlign: 'center' }}>
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Badge Tone</code> · 색상 톤 및 변형 매트릭스
+        </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '80px repeat(3, 1fr)', gap: 'var(--seed-dimension-x2)', alignItems: 'center', textAlign: 'center' }}>
           <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-subtle)', textAlign: 'left' }}>Tone</span>
@@ -547,7 +553,7 @@ function BadgeDemo() {
       {/* Sizes Comparison */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%', alignItems: 'center' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          Sizes (Medium / Large)
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Badge Size</code> · Medium / Large 크기 비교
         </div>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x4)', alignItems: 'center' }}>
           <Badge tone="brand" variant="solid" size="medium">
