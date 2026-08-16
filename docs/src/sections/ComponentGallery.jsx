@@ -2762,30 +2762,35 @@ function TextFieldDemo() {
       </div>
 
       {/* Interactive TextField Showcase */}
-      <VStack gap="x5" width="full">
+      <VStack gap="x6" width="full">
         {/* 1. Standard Input with Character Count */}
-        <TextField
-          variant={variant}
-          size={size}
-          disabled={isDisabled}
-          readOnly={isReadOnly}
-          invalid={isInvalid}
-          label="가맹점 대표 상호명"
-          description="사업자등록증상의 공식 법인/상호명을 입력해 주세요."
-          errorMessage={isInvalid ? "가맹점 상호명 정보를 확인해 주세요." : undefined}
-          showRequiredIndicator
-          maxGraphemeCount={30}
-          value={bizName}
-          onValueChange={({ value }) => setBizName(value)}
-        >
-          <TextFieldInput placeholder="예: 이롬넷 주식회사" />
-        </TextField>
+        <VStack gap="x4" width="full">
+          <Text textStyle="t2Bold" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
+            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Standard Input</code> · 기본 입력 필드 및 글자 수 카운터
+          </Text>
+          <TextField
+            variant={variant}
+            size={size}
+            disabled={isDisabled}
+            readOnly={isReadOnly}
+            invalid={isInvalid}
+            label="가맹점 대표 상호명"
+            description="사업자등록증상의 공식 법인/상호명을 입력해 주세요."
+            errorMessage={isInvalid ? "가맹점 상호명 정보를 확인해 주세요." : undefined}
+            showRequiredIndicator
+            maxGraphemeCount={30}
+            value={bizName}
+            onValueChange={({ value }) => setBizName(value)}
+          >
+            <TextFieldInput placeholder="예: 이롬넷 주식회사" />
+          </TextField>
+        </VStack>
 
-        <Divider inset />
+        <Divider style={{ marginBlock: "var(--seed-dimension-x3)" }} />
 
         {/* 2. Custom Input: Auto-Formatting (Business Reg No, Phone, Currency) */}
-        <VStack gap="x3" width="full">
-          <Text textStyle="t2Bold" color="fg.neutralSubtle">
+        <VStack gap="x4" width="full">
+          <Text textStyle="t2Bold" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
             <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Custom Input</code> · 자동 마스킹 & 포맷팅 패턴
           </Text>
           
@@ -2842,11 +2847,11 @@ function TextFieldDemo() {
           </TextField>
         </VStack>
 
-        <Divider inset />
+        <Divider style={{ marginBlock: "var(--seed-dimension-x3)" }} />
 
         {/* 3. 2-Column Grid Layout */}
-        <VStack gap="x3" width="full">
-          <Text textStyle="t2Bold" color="fg.neutralSubtle">
+        <VStack gap="x4" width="full">
+          <Text textStyle="t2Bold" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
             <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>2-Column Layout</code> · 병렬 입력 레이아웃
           </Text>
           <HStack gap="x3" width="full">
@@ -2879,11 +2884,11 @@ function TextFieldDemo() {
           </HStack>
         </VStack>
 
-        <Divider inset />
+        <Divider style={{ marginBlock: "var(--seed-dimension-x3)" }} />
 
         {/* 4. Multi-line Auto-sizing TextFieldTextarea */}
-        <VStack gap="x2" width="full">
-          <Text textStyle="t2Bold" color="fg.neutralSubtle">
+        <VStack gap="x4" width="full">
+          <Text textStyle="t2Bold" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
             <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>TextFieldTextarea</code> · 자동 높이 조절 멀티라인
           </Text>
           <TextField
