@@ -2305,27 +2305,27 @@ function SelectBoxDemo() {
             value={radioValue}
             onValueChange={setRadioValue}
             columns={columns}
-            label="배송 옵션 선택"
-            description="원하시는 배송 수단을 선택해 주세요."
+            label="PG 정산 대금 수령 방식"
+            description="원하시는 PG 정산금 수령 방식을 선택해 주세요."
           >
             <RadioSelectBoxItem
               value="option1"
-              label="일반 택배 배송"
-              description={showDescription ? "주문 후 2~3일 이내에 안전하게 도착합니다." : undefined}
+              label="익일 자동 입금 (D+1 정산)"
+              description={showDescription ? "영업일 기준 익일 오전 10시 지정 계좌로 즉시 입금" : undefined}
               prefixIcon={showPrefix ? <IconMapLocationpinFill /> : undefined}
               suffix={controlType === "mark" ? <RadioSelectBoxRadiomark /> : undefined}
             />
             <RadioSelectBoxItem
               value="option2"
-              label="당일 새벽 즉시 배송"
-              description={showDescription ? "오늘 밤 11시 전 주문 시 내일 아침 7시 전 도착" : undefined}
+              label="당일 즉시 정산 (Real-time Payout)"
+              description={showDescription ? "결제 승인 직후 실시간 수수료 차감 후 자동 입금" : undefined}
               prefixIcon={showPrefix ? <IconHeartFill /> : undefined}
               suffix={controlType === "mark" ? <RadioSelectBoxRadiomark /> : undefined}
             />
             <RadioSelectBoxItem
               value="option3"
-              label="매장 직접 방문 수령"
-              description={showDescription ? "지정 결제 수령처 및 가맹점 정산 확인 가능" : undefined}
+              label="주간 지정일 정산 (선택요일 정산)"
+              description={showDescription ? "매주 지정된 희망 요일에 정산 대금 일괄 지급" : undefined}
               prefixIcon={showPrefix ? <IconFaceSmileCircleFill /> : undefined}
               suffix={controlType === "mark" ? <RadioSelectBoxRadiomark /> : undefined}
             />
@@ -2333,28 +2333,28 @@ function SelectBoxDemo() {
         ) : (
           <CheckSelectBoxGroup
             columns={columns}
-            label="관심 서비스 선택 (다중 가능)"
-            description="관심 있는 혜택을 모두 선택해 보세요."
+            label="PG 정산 대금 수령 방식"
+            description="원하시는 PG 정산금 수령 방식을 선택해 주세요."
           >
             <CheckSelectBox
-              label="결제사 우대 정산 포인트 적립"
-              description={showDescription ? "결제 시 마다 최대 3% 현금 적립 혜택" : undefined}
+              label="익일 자동 입금 (D+1 정산)"
+              description={showDescription ? "영업일 기준 익일 오전 10시 지정 계좌로 즉시 입금" : undefined}
               checked={checkState.option1}
               onCheckedChange={() => toggleCheck("option1")}
+              prefixIcon={showPrefix ? <IconMapLocationpinFill /> : undefined}
+              suffix={controlType === "mark" ? <CheckSelectBoxCheckmark /> : undefined}
+            />
+            <CheckSelectBox
+              label="당일 즉시 정산 (Real-time Payout)"
+              description={showDescription ? "결제 승인 직후 실시간 수수료 차감 후 자동 입금" : undefined}
+              checked={checkState.option2}
+              onCheckedChange={() => toggleCheck("option2")}
               prefixIcon={showPrefix ? <IconHeartFill /> : undefined}
               suffix={controlType === "mark" ? <CheckSelectBoxCheckmark /> : undefined}
             />
             <CheckSelectBox
-              label="결제사 일괄 정산 알림"
-              description={showDescription ? "실시간 영세·중소 가맹점 정산 내역 제공" : undefined}
-              checked={checkState.option2}
-              onCheckedChange={() => toggleCheck("option2")}
-              prefixIcon={showPrefix ? <IconExclamationmarkCircleFill /> : undefined}
-              suffix={controlType === "mark" ? <CheckSelectBoxCheckmark /> : undefined}
-            />
-            <CheckSelectBox
-              label="VIP 전용 이벤트 응모권"
-              description={showDescription ? "매월 진행되는 프리미엄 경품 이벤트 자동 참가" : undefined}
+              label="주간 지정일 정산 (선택요일 정산)"
+              description={showDescription ? "매주 지정된 희망 요일에 정산 대금 일괄 지급" : undefined}
               checked={checkState.option3}
               onCheckedChange={() => toggleCheck("option3")}
               prefixIcon={showPrefix ? <IconFaceSmileCircleFill /> : undefined}
