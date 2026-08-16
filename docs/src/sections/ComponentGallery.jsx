@@ -2516,7 +2516,7 @@ function TagGroupDemo() {
   const [size, setSize] = useState("t3"); // "t2" | "t3" | "t4"
   const [weight, setWeight] = useState("regular"); // "regular" | "bold"
   const [tone, setTone] = useState("neutral"); // "neutralSubtle" | "neutral" | "brand"
-  const [separator, setSeparator] = useState("•");
+  const [separator, setSeparator] = useState(" · ");
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 460, margin: "0 auto", alignItems: "center" }}>
@@ -2567,9 +2567,9 @@ function TagGroupDemo() {
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
           <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Tone:</span>
           {[
-            { label: "Subtle", value: "neutralSubtle" },
-            { label: "Neutral", value: "neutral" },
-            { label: "Brand", value: "brand" },
+            { label: "Subtle (은은함)", value: "neutralSubtle" },
+            { label: "Neutral (기본)", value: "neutral" },
+            { label: "Brand (브랜드)", value: "brand" },
           ].map((t) => (
             <ActionButton
               key={t.value}
@@ -2585,14 +2585,19 @@ function TagGroupDemo() {
         {/* Separator Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
           <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Separator:</span>
-          {["•", "|", "/", " "].map((sep) => (
+          {[
+            { label: "Default ( · )", value: " · " },
+            { label: "Pipe ( | )", value: " | " },
+            { label: "Slash ( / )", value: " / " },
+            { label: "Space (공백)", value: " " },
+          ].map((sep) => (
             <ActionButton
-              key={sep}
+              key={sep.value}
               size="small"
-              variant={separator === sep ? "brandSolid" : "neutralOutline"}
-              onClick={() => setSeparator(sep)}
+              variant={separator === sep.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setSeparator(sep.value)}
             >
-              {sep === " " ? "Space (공백)" : sep}
+              {sep.label}
             </ActionButton>
           ))}
         </div>
@@ -2616,7 +2621,7 @@ function TagGroupDemo() {
         {/* 2. Mixed Tones & Custom Item Combination */}
         <VStack gap="x2" align="center">
           <Text textStyle="t2Bold" color="fg.neutralSubtle">혼합 속성 (Item별 커스텀 톤 & 아이콘)</Text>
-          <TagGroupRoot size="t3" separator="•">
+          <TagGroupRoot size="t3" separator=" · ">
             <TagGroupItem tone="brand" weight="bold" prefixIcon={<IconCheckmarkCircleFill />} label="우대가맹점" />
             <TagGroupItem tone="neutral" label="통합 PG 정산" />
             <TagGroupItem tone="neutralSubtle" label="3분 전 입금" />
