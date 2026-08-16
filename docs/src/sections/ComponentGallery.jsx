@@ -3480,12 +3480,14 @@ function ResponsiveDialogDemo() {
             </VStack>
           </ResponsiveDialogBody>
           <ResponsiveDialogFooter>
-            <ResponsiveDialogAction variant="neutralOutline" onClick={() => setOpen(false)}>
-              취소
-            </ResponsiveDialogAction>
-            <ResponsiveDialogAction variant="brandSolid" onClick={() => { alert("정산 계좌 변경 신청이 완료되었습니다."); setOpen(false); }}>
-              신청 완료
-            </ResponsiveDialogAction>
+            <VStack width="full" gap="x2">
+              <ResponsiveDialogAction variant="neutralOutline" onClick={() => setOpen(false)}>
+                취소
+              </ResponsiveDialogAction>
+              <ResponsiveDialogAction variant="brandSolid" onClick={() => { alert("정산 계좌 변경 신청이 완료되었습니다."); setOpen(false); }}>
+                신청 완료
+              </ResponsiveDialogAction>
+            </VStack>
           </ResponsiveDialogFooter>
         </ResponsiveDialogContent>
       </ResponsiveDialogRoot>
