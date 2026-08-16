@@ -34,7 +34,6 @@
 - List Header (ui:list-header): /#components-list-header
 - Loading Indicator (ui:loading-indicator): /#components-loading-indicator
 - Menu (ui:menu): /#components-menu
-- Navigation Menu (ui:navigation-menu): /#components-navigation-menu
 - Notification Badge (ui:notification-badge): /#components-notification-badge
 - Page Banner (ui:page-banner): /#components-page-banner
 - Progress Circle (ui:progress-circle): /#components-progress-circle

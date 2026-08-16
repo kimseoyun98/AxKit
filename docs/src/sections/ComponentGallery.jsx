@@ -3416,29 +3416,6 @@ function LoadingIndicatorDemo() {
   );
 }
 
-function NavigationMenuDemo() {
-  return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 560, margin: "0 auto", alignItems: "center" }}>
-      <NavigationMenuProvider>
-        <NavigationMenuRoot>
-          <NavigationMenuTrigger asChild>
-            <ActionButton variant="neutralSolid" size="medium">
-              Payverse 가맹점 메뉴 <SuffixIcon svg={<IconChevronRightLine />} />
-            </ActionButton>
-          </NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <NavigationMenuGroup>
-              <NavigationMenuGroupLabel>정산 관리</NavigationMenuGroupLabel>
-              <NavigationMenuItem label="통합 정산 내역" description="일별 결제 승인 및 차액 입금 현황" prefixIcon={<IconStoreFill />} />
-              <NavigationMenuItem label="우대 수수료 환급" description="국세청 우대 수수료율 자동 환급" prefixIcon={<IconBuilding2Fill />} />
-            </NavigationMenuGroup>
-          </NavigationMenuContent>
-        </NavigationMenuRoot>
-      </NavigationMenuProvider>
-    </div>
-  );
-}
-
 function ResponsiveDialogDemo() {
   const [open, setOpen] = useState(false);
 
@@ -3560,11 +3537,6 @@ const COMPONENTS = [
     name: 'Loading Indicator',
     slug: 'ui:loading-indicator',
     demo: <LoadingIndicatorDemo />,
-  },
-  {
-    name: 'Navigation Menu',
-    slug: 'ui:navigation-menu',
-    demo: <NavigationMenuDemo />,
   },
   {
     name: 'Responsive Dialog',
