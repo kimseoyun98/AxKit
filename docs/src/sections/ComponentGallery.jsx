@@ -236,7 +236,7 @@ function AvatarDemo() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x7)', width: '100%', alignItems: 'center' }}>
       {/* 1. Sizes */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
           Sizes (24px ~ 96px)
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x3)', alignItems: 'center', justifyContent: 'center' }}>
@@ -251,7 +251,7 @@ function AvatarDemo() {
 
       {/* 2. Badge & Mask */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
           Badge & Mask (Circle, Flower, Shield)
         </div>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x5)', alignItems: 'center', justifyContent: 'center' }}>
@@ -286,7 +286,7 @@ function AvatarDemo() {
 
       {/* 3. Avatar Stack */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
           Avatar Stack
         </div>
         <AvatarStack size="48">
@@ -298,7 +298,7 @@ function AvatarDemo() {
 
       {/* 4. Fallback */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
           Fallback Placeholders (IdentityPlaceholder)
         </div>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x5)', alignItems: 'center', justifyContent: 'center' }}>
@@ -337,7 +337,7 @@ function AccordionDemo() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 360, margin: '0 auto' }}>
       {/* 1. Inline Variant */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
           Variant: Inline
         </div>
         <Accordion defaultValue={["1"]} variant="inline" style={{ width: '100%' }}>
@@ -358,7 +358,7 @@ function AccordionDemo() {
 
       {/* 2. Separated Variant */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
           Variant: Separated
         </div>
         <Accordion defaultValue={["1"]} variant="separated" style={{ width: '100%' }}>
@@ -420,7 +420,7 @@ function ActionButtonDemo() {
 
       {/* 2. Sizes & Layouts */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%', alignItems: 'center' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
           Sizes & Layouts
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', alignItems: 'center' }}>
@@ -465,7 +465,7 @@ function AttachmentDemo() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x7)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
       {/* 1. Attachment Field (Standard File Upload) */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
           1. Attachment Field (Local File Upload)
         </div>
         <AttachmentField label="증빙 파일 업로드" description="최대 5개까지 업로드할 수 있습니다." maxFiles={5}>
@@ -475,7 +475,7 @@ function AttachmentDemo() {
 
       {/* 2. Dropzone Variant */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
           2. Dropzone Variant
         </div>
         <AttachmentField label="드래그 앤 드롭 업로드" maxFiles={5}>
@@ -485,7 +485,7 @@ function AttachmentDemo() {
 
       {/* 3. Attachment Display Field (URL Thumbnail Display) */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
           3. Attachment Display Field (URL Thumbnail Preview)
         </div>
         <AttachmentDisplayField label="첨부 미디어 썸네일 (URL)" description="서버에 업로드된 미디어 리소스 썸네일 미리보기" defaultEntries={sampleEntries} maxEntries={5}>
@@ -546,7 +546,7 @@ function BadgeDemo() {
 
       {/* Sizes Comparison */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%', alignItems: 'center' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
           Sizes (Medium / Large)
         </div>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x4)', alignItems: 'center' }}>
