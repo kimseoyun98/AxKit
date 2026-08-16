@@ -2659,19 +2659,47 @@ function TextFieldDemo() {
   const [size, setSize] = useState("large"); // "large" | "medium"
   const [state, setState] = useState("normal"); // "normal" | "disabled" | "readOnly" | "invalid"
 
+  // Basic Form States
   const [bizName, setBizName] = useState("이롬넷 가맹점 (강남본점)");
   const [amount, setAmount] = useState("15,000,000");
   const [website, setWebsite] = useState("payverse.eromnet.com");
   const [memo, setMemo] = useState("PG 정산 대금 D+1 입금 신청 및 FDS 이상 거래 자동 차단 알림 수신 설정 완료.");
 
+  // Custom Input & Formatting States
+  const [bizNo, setBizNo] = useState("123-45-67890");
+  const [phoneNo, setPhoneNo] = useState("010-1234-5678");
+  const [ownerName, setOwnerName] = useState("김이롬");
+  const [birthDate, setBirthDate] = useState("900101");
+
   const isDisabled = state === "disabled";
   const isReadOnly = state === "readOnly";
   const isInvalid = state === "invalid";
 
+  // Formatter utilities for Custom Input
+  const handleBizNoChange = (rawVal) => {
+    const nums = rawVal.replace(/\D/g, "").slice(0, 10);
+    if (nums.length <= 3) setBizNo(nums);
+    else if (nums.length <= 5) setBizNo(`${nums.slice(0, 3)}-${nums.slice(3)}`);
+    else setBizNo(`${nums.slice(0, 3)}-${nums.slice(3, 5)}-${nums.slice(5)}`);
+  };
+
+  const handlePhoneChange = (rawVal) => {
+    const nums = rawVal.replace(/\D/g, "").slice(0, 11);
+    if (nums.length <= 3) setPhoneNo(nums);
+    else if (nums.length <= 7) setPhoneNo(`${nums.slice(0, 3)}-${nums.slice(3)}`);
+    else setPhoneNo(`${nums.slice(0, 3)}-${nums.slice(3, 7)}-${nums.slice(7)}`);
+  };
+
+  const handleAmountChange = (rawVal) => {
+    const nums = rawVal.replace(/\D/g, "");
+    if (!nums) setAmount("");
+    else setAmount(Number(nums).toLocaleString());
+  };
+
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 460, margin: "0 auto", alignItems: "center" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 480, margin: "0 auto", alignItems: "center" }}>
       <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
-        Text Field Input & Textarea · Outline / Underline · Affixes & Grapheme Counter
+        Text Field Input & Textarea · Custom Input Formatting · 2-Column Grid Layout
       </div>
 
       {/* Controls */}
@@ -2735,7 +2763,7 @@ function TextFieldDemo() {
 
       {/* Interactive TextField Showcase */}
       <VStack gap="x5" width="full">
-        {/* 1. Basic TextFieldInput with Grapheme Counter & Indicator */}
+        {/* 1. Standard Input with Character Count */}
         <TextField
           variant={variant}
           size={size}
@@ -2753,42 +2781,99 @@ function TextFieldDemo() {
           <TextFieldInput placeholder="예: 이롬넷 주식회사" />
         </TextField>
 
-        {/* 2. Affixes & Icons (Prefix / Suffix) */}
-        <TextField
-          variant={variant}
-          size={size}
-          disabled={isDisabled}
-          readOnly={isReadOnly}
-          invalid={isInvalid}
-          label="월 정산 예상 금액"
-          description="월 단위 예상 PG 거래 매출액을 정수로 입력해 주세요."
-          errorMessage={isInvalid ? "정산 예상 금액 입력을 완료해 주세요." : undefined}
-          prefix="₩"
-          suffix="원"
-          prefixIcon={<IconStoreFill />}
-          value={amount}
-          onValueChange={({ value }) => setAmount(value)}
-        >
-          <TextFieldInput placeholder="10,000,000" />
-        </TextField>
+        <Divider inset />
 
-        {/* 3. URL Prefix Input */}
-        <TextField
-          variant={variant}
-          size={size}
-          disabled={isDisabled}
-          readOnly={isReadOnly}
-          invalid={isInvalid}
-          label="가맹점 공식 웹사이트"
-          description="PG 심사에 필요한 온라인 쇼핑몰 URL을 입력하세요."
-          errorMessage={isInvalid ? "유효한 웹사이트 URL 주소를 입력하세요." : undefined}
-          prefix="https://"
-          indicator="선택"
-          value={website}
-          onValueChange={({ value }) => setWebsite(value)}
-        >
-          <TextFieldInput placeholder="example.com" />
-        </TextField>
+        {/* 2. Custom Input: Auto-Formatting (Business Reg No, Phone, Currency) */}
+        <VStack gap="x3" width="full">
+          <Text textStyle="t2Bold" color="fg.brand">Custom Input (자동 마스킹 & 포맷팅 적용)</Text>
+          
+          {/* 사업자등록번호 (자동 하이픈 XXX-XX-XXXXX) */}
+          <TextField
+            variant={variant}
+            size={size}
+            disabled={isDisabled}
+            readOnly={isReadOnly}
+            invalid={isInvalid}
+            label="사업자등록번호 (자동 하이픈)"
+            description="숫자 10자리 입력 시 자동 하이픈(XXX-XX-XXXXX) 포맷팅"
+            errorMessage={isInvalid ? "올바른 사업자등록번호 10자리를 입력해 주세요." : undefined}
+            showRequiredIndicator
+            value={bizNo}
+            onValueChange={({ value }) => handleBizNoChange(value)}
+          >
+            <TextFieldInput placeholder="123-45-67890" inputMode="numeric" />
+          </TextField>
+
+          {/* 연락처 (자동 하이픈 010-XXXX-XXXX) */}
+          <TextField
+            variant={variant}
+            size={size}
+            disabled={isDisabled}
+            readOnly={isReadOnly}
+            invalid={isInvalid}
+            label="대표자 연락처 (자동 하이픈)"
+            description="숫자 11자리 입력 시 자동 하이픈(010-XXXX-XXXX) 포맷팅"
+            errorMessage={isInvalid ? "유효한 휴대폰 번호를 입력해 주세요." : undefined}
+            value={phoneNo}
+            onValueChange={({ value }) => handlePhoneChange(value)}
+          >
+            <TextFieldInput placeholder="010-1234-5678" inputMode="tel" />
+          </TextField>
+
+          {/* 금액 콤마 포맷팅 */}
+          <TextField
+            variant={variant}
+            size={size}
+            disabled={isDisabled}
+            readOnly={isReadOnly}
+            invalid={isInvalid}
+            label="월 정산 예상 금액 (3자리 콤마)"
+            description="숫자 입력 시 천 단위 3자리 콤마 자동 포맷팅"
+            errorMessage={isInvalid ? "정산 예상 금액 입력을 완료해 주세요." : undefined}
+            prefix="₩"
+            suffix="원"
+            prefixIcon={<IconStoreFill />}
+            value={amount}
+            onValueChange={({ value }) => handleAmountChange(value)}
+          >
+            <TextFieldInput placeholder="10,000,000" inputMode="numeric" />
+          </TextField>
+        </VStack>
+
+        <Divider inset />
+
+        {/* 3. 2-Column Grid Layout */}
+        <VStack gap="x3" width="full">
+          <Text textStyle="t2Bold" color="fg.neutralSubtle">Text Input 2열 레이아웃 구성</Text>
+          <HStack gap="x3" width="full">
+            <TextField
+              variant={variant}
+              size={size}
+              disabled={isDisabled}
+              readOnly={isReadOnly}
+              invalid={isInvalid}
+              label="대표자 성명"
+              value={ownerName}
+              onValueChange={({ value }) => setOwnerName(value)}
+              style={{ flex: 1 }}
+            >
+              <TextFieldInput placeholder="홍길동" />
+            </TextField>
+            <TextField
+              variant={variant}
+              size={size}
+              disabled={isDisabled}
+              readOnly={isReadOnly}
+              invalid={isInvalid}
+              label="생년월일 (YYMMDD)"
+              value={birthDate}
+              onValueChange={({ value }) => setBirthDate(value.replace(/\D/g, "").slice(0, 6))}
+              style={{ flex: 1 }}
+            >
+              <TextFieldInput placeholder="900101" maxLength={6} inputMode="numeric" />
+            </TextField>
+          </HStack>
+        </VStack>
 
         <Divider inset />
 
