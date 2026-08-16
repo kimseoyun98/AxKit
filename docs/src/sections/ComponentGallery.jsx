@@ -110,6 +110,7 @@ import {
   SwipeableMenuSheetGroup,
   SwipeableMenuSheetItem,
 } from '../components/ui/swipeable-menu-sheet';
+import { TimePicker } from '../components/ui/time-picker';
 
 import { Count, Box, ScrollFog, HStack, VStack, Text, Skeleton } from '@seed-design/react';
 import IconFaceSmileCircleFill from "@karrotmarket/react-monochrome-icon/IconFaceSmileCircleFill";
@@ -3553,6 +3554,21 @@ function ListHeaderDemo() {
   );
 }
 
+function TimePickerDemo() {
+  const [time, setTime] = useState({ hour: 10, minute: 30 });
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
+      <Box width="100%" maxWidth="360px">
+        <TimePicker value={time} onValueChange={setTime} />
+      </Box>
+      <Text textStyle="t3Medium" color="fg.neutralSubtle">
+        선택된 시간: {time.hour < 12 ? "오전" : "오후"} {time.hour % 12 || 12}:{String(time.minute).padStart(2, "0")}
+      </Text>
+    </div>
+  );
+}
+
 function SideNavigationDemo() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 760, margin: "0 auto", alignItems: "center" }}>
@@ -3589,6 +3605,11 @@ const COMPONENTS = [
     name: 'Swipeable Menu Sheet',
     slug: 'ui:swipeable-menu-sheet',
     demo: <SwipeableMenuSheetDemo />,
+  },
+  {
+    name: 'Time Picker',
+    slug: 'ui:time-picker',
+    demo: <TimePickerDemo />,
   },
   {
     name: 'List Header',

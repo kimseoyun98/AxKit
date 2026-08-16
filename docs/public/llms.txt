@@ -56,3 +56,5 @@
 - Tabs (ui:tabs): /#components-tabs
 - Tag Group (ui:tag-group): /#components-tag-group
 - Text Field (ui:text-field): /#components-text-field
+- Time Picker (ui:time-picker): /#components-time-picker
+- Toggle Button (ui:toggle-button): /#components-toggle-button
