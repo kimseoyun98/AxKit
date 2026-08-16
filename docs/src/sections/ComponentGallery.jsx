@@ -121,6 +121,8 @@ import IconMapLocationpinFill from "@karrotmarket/react-monochrome-icon/IconMapL
 import IconChevronRightLine from "@karrotmarket/react-monochrome-icon/IconChevronRightLine";
 import IconPencilLine from "@karrotmarket/react-monochrome-icon/IconPencilLine";
 import IconTrashcanLine from "@karrotmarket/react-monochrome-icon/IconTrashcanLine";
+import IconStoreLine from "@karrotmarket/react-monochrome-icon/IconStoreLine";
+import IconBellLine from "@karrotmarket/react-monochrome-icon/IconBellLine";
 import IconGearFill from "@karrotmarket/react-monochrome-icon/IconGearFill";
 import { RadioGroup as RadioGroupPrimitive } from "@seed-design/react/primitive";
 import IconLockFill from "@karrotmarket/react-monochrome-icon/IconLockFill";
@@ -3571,13 +3573,13 @@ function SwipeableMenuSheetDemo() {
             <SwipeableMenuSheetItem
               label="팩스 전송 신청"
               description="등록된 사업장 팩스 번호로 명세서를 전송합니다."
-              prefixIcon={<IconStoreFill />}
+              prefixIcon={<IconStoreLine />}
               onClick={() => { alert("팩스 전송 완료"); setOpen(false); }}
             />
             <SwipeableMenuSheetItem
               label="정산 담당자 전화 연결"
               description="이롬넷 PG 정산 전담 센터로 연결합니다."
-              prefixIcon={<IconBellFill />}
+              prefixIcon={<IconBellLine />}
               onClick={() => { alert("전화 연결 실행"); setOpen(false); }}
             />
           </SwipeableMenuSheetGroup>
