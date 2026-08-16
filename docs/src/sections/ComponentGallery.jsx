@@ -3008,14 +3008,14 @@ function SidePanelDemo() {
               </VStack>
             </SidePanelBody>
             <SidePanelFooter>
-              <VStack width="full" gap="x2">
-                <ActionButton variant="neutralSolid" size="medium" style={{ width: "100%" }}>
-                  저장하기
-                </ActionButton>
-                <ActionButton variant="neutralWeak" size="medium" style={{ width: "100%" }}>
+              <HStack width="full" gap="x2">
+                <ActionButton variant="neutralWeak" size="medium" style={{ flex: 1 }}>
                   취소
                 </ActionButton>
-              </VStack>
+                <ActionButton variant="neutralSolid" size="medium" style={{ flex: 1 }}>
+                  저장하기
+                </ActionButton>
+              </HStack>
             </SidePanelFooter>
           </SidePanelContent>
         </SidePanelRoot>
@@ -3530,14 +3530,14 @@ function ResponsiveSidePanelDemo() {
             </VStack>
           </ResponsiveSidePanelBody>
           <ResponsiveSidePanelFooter>
-            <VStack width="full" gap="x2">
-              <ActionButton variant="neutralSolid" size="medium" style={{ width: "100%" }} onClick={() => setOpen(false)}>
-                저장하기
-              </ActionButton>
-              <ActionButton variant="neutralWeak" size="medium" style={{ width: "100%" }} onClick={() => setOpen(false)}>
+            <HStack width="full" gap="x2">
+              <ActionButton variant="neutralWeak" size="medium" style={{ flex: 1 }} onClick={() => setOpen(false)}>
                 취소
               </ActionButton>
-            </VStack>
+              <ActionButton variant="neutralSolid" size="medium" style={{ flex: 1 }} onClick={() => setOpen(false)}>
+                저장하기
+              </ActionButton>
+            </HStack>
           </ResponsiveSidePanelFooter>
         </ResponsiveSidePanelContent>
       </ResponsiveSidePanelRoot>
