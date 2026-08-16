@@ -236,9 +236,9 @@ function AvatarDemo() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x7)', width: '100%', alignItems: 'center' }}>
       {/* 1. Sizes */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          Avatar Size · 24px ~ 96px 규격 비교
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle">
+            Avatar Size · 24px ~ 96px 규격 비교
+          </Text>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x3)', alignItems: 'center', justifyContent: 'center' }}>
           {['24', '36', '48', '64', '80', '96'].map((sz) => (
             <div key={sz} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1)' }}>
@@ -251,9 +251,9 @@ function AvatarDemo() {
 
       {/* 2. Badge & Mask */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          AvatarBadge · 뱃지 및 마스크 (Circle, Flower, Shield)
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle">
+            AvatarBadge · 뱃지 및 마스크 (Circle, Flower, Shield)
+          </Text>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x5)', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
             <Avatar size="64" badgeMask="circle" fallback={<IconPersonFill style={{ width: '60%', height: '60%', color: 'var(--seed-color-fg-neutral-subtle)' }} />} alt="Avatar">
@@ -286,9 +286,9 @@ function AvatarDemo() {
 
       {/* 3. Avatar Stack */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          AvatarStack · 아바타 중첩 리스트
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle">
+            AvatarStack · 아바타 중첩 리스트
+          </Text>
         <AvatarStack size="48">
           {[0, 1, 2, 3].map((idx) => (
             <Avatar key={idx} size="48" fallback={<IconPersonFill style={{ width: '60%', height: '60%', color: 'var(--seed-color-fg-neutral-subtle)' }} />} alt={`User ${idx}`} />
@@ -298,9 +298,9 @@ function AvatarDemo() {
 
       {/* 4. Fallback */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          Avatar Fallback · 아이콘 및 대체 플래스홀더
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle">
+            Avatar Fallback · 아이콘 및 대체 플래스홀더
+          </Text>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x5)', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
             <Avatar size="64" fallback={<IdentityPlaceholder identity="person" />} />
@@ -337,9 +337,9 @@ function AccordionDemo() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 360, margin: '0 auto' }}>
       {/* 1. Inline Variant */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          Accordion Inline · 기본 인라인 아코디언
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle">
+            Accordion Inline · 기본 인라인 아코디언
+          </Text>
         <Accordion defaultValue={["1"]} variant="inline" style={{ width: '100%' }}>
           <AccordionItem value="0">
             <AccordionTrigger title="PG 결제 정산 주기 안내" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
@@ -358,9 +358,9 @@ function AccordionDemo() {
 
       {/* 2. Separated Variant */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          Accordion Separated · 카드 분리형 아코디언
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle">
+            Accordion Separated · 카드 분리형 아코디언
+          </Text>
         <Accordion defaultValue={["1"]} variant="separated" style={{ width: '100%' }}>
           <AccordionItem value="0">
             <AccordionTrigger title="PG 결제 정산 주기 안내" prefix={<IconDeliveryRegular style={{ width: 20, height: 20 }} />} />
@@ -394,9 +394,9 @@ function ActionButtonDemo() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x7)', width: '100%', maxWidth: 480, margin: '0 auto' }}>
       {/* 1. Hierarchy & State Matrix */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textAlign: 'center' }}>
-          ActionButton State · 계층 및 상태 매트릭스
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle" align="center">
+            ActionButton State · 계층 및 상태 매트릭스
+          </Text>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--seed-dimension-x2_5)', width: '100%', textAlign: 'center', fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
           <span>Enabled</span>
@@ -423,9 +423,9 @@ function ActionButtonDemo() {
 
       {/* 2. Sizes & Layouts */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%', alignItems: 'center' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          ActionButton Layout · 크기 및 아이콘 레이아웃
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle">
+            ActionButton Layout · 크기 및 아이콘 레이아웃
+          </Text>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', alignItems: 'center' }}>
           <ActionButton variant="brandSolid" size="medium">
             <PrefixIcon svg={<IconAddRegular />} />
@@ -468,9 +468,9 @@ function AttachmentDemo() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x7)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
       {/* 1. Attachment Field (Standard File Upload) */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          AttachmentField · 로컬 파일 업로드 및 진행률
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle">
+            AttachmentField · 로컬 파일 업로드 및 진행률
+          </Text>
         <AttachmentField label="증빙 파일 업로드" description="최대 5개까지 업로드할 수 있습니다." maxFiles={5}>
           <AttachmentInput />
         </AttachmentField>
@@ -478,9 +478,9 @@ function AttachmentDemo() {
 
       {/* 2. Dropzone Variant */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          AttachmentDropzone · 드래그 앤 드롭 업로드 영역
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle">
+            AttachmentDropzone · 드래그 앤 드롭 업로드 영역
+          </Text>
         <AttachmentField label="드래그 앤 드롭 업로드" maxFiles={5}>
           <AttachmentDropzone />
         </AttachmentField>
@@ -488,9 +488,9 @@ function AttachmentDemo() {
 
       {/* 3. Attachment Display Field (URL Thumbnail Display) */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          AttachmentDisplayField · 썸네일 미리보기 리스트
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle">
+            AttachmentDisplayField · 썸네일 미리보기 리스트
+          </Text>
         <AttachmentDisplayField label="첨부 미디어 썸네일 (URL)" description="서버에 업로드된 미디어 리소스 썸네일 미리보기" defaultEntries={sampleEntries} maxEntries={5}>
           <AttachmentDisplay
             onTriggerClick={({ addEntries }) => {
@@ -525,9 +525,9 @@ function BadgeDemo() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 420, margin: '0 auto' }}>
       {/* Tone & Variant Matrix */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textAlign: 'center' }}>
-          <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>tone</code> & <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant</code>
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle" align="center">
+            <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>tone</code> & <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant</code>
+          </Text>
 
         <div style={{ display: 'grid', gridTemplateColumns: '80px repeat(3, 1fr)', gap: 'var(--seed-dimension-x2)', alignItems: 'center', textAlign: 'center' }}>
           <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-subtle)', textAlign: 'left' }}>Tone</span>
@@ -552,9 +552,9 @@ function BadgeDemo() {
 
       {/* Sizes Comparison */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%', alignItems: 'center' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle">
+            <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>
+          </Text>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x4)', alignItems: 'center' }}>
           <Badge tone="brand" variant="solid" size="medium">
             Medium
@@ -604,9 +604,9 @@ function CalloutDemo() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 460, margin: '0 auto' }}>
       {/* 1. Static Display Callouts */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
-          Callout · 정보 안내 카드 뷰 (6 Tones)
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
+            Callout · 정보 안내 카드 뷰 (6 Tones)
+          </Text>
         <Callout
           tone="informative"
           title="우대수수료 안내"
@@ -627,9 +627,9 @@ function CalloutDemo() {
 
       {/* 2. Actionable & Dismissible */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
-          Actionable & Dismissible · 클릭 액션 및 닫기 버튼
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
+            Actionable & Dismissible · 클릭 액션 및 닫기 버튼
+          </Text>
         <ActionableCallout
           tone="neutral"
           title="정산 명세서 조회"
@@ -655,9 +655,9 @@ function CheckboxDemo() {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x6)', width: '100%', maxWidth: 420, margin: '0 auto' }}>
       {/* 1. Shapes & Sizes */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
-          Square & Ghost · 모양 및 크기 변형
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
+            Square & Ghost · 모양 및 크기 변형
+          </Text>
         <CheckboxGroup label="Payverse 가맹점 정산 수신 동의 (Square)" indicator="필수">
           <Checkbox label="전자금융거래법 가맹점 약관 동의 (Large, Bold)" size="large" weight="bold" defaultChecked tone="neutral" />
           <Checkbox label="정산 대금 입금 및 명세서 수신 동의 (Medium)" size="medium" defaultChecked tone="neutral" />
@@ -671,9 +671,9 @@ function CheckboxDemo() {
 
       {/* 2. Parent-Child Indeterminate Group */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
-          Parent-Child Group · 상위/하위 전체 동의 그룹
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
+            Parent-Child Group · 상위/하위 전체 동의 그룹
+          </Text>
         <CheckboxGroup label="약관 전체 동의 그룹 (Parent/Child)">
           <Checkbox
             label="가맹점 서비스 약관 전체 동의"
@@ -718,9 +718,9 @@ function ChipDemo() {
 
       {/* 1. Chip Button & Toggle */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
-          Chip.Button & Chip.Toggle · 단일 액션 및 토글 칩
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
+            Chip.Button & Chip.Toggle · 단일 액션 및 토글 칩
+          </Text>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)', alignItems: 'center' }}>
           <Chip.Button size="medium" variant="solid">
             <Chip.Label>Solid Button</Chip.Label>
@@ -739,9 +739,9 @@ function ChipDemo() {
 
       {/* 2. Chip Radio Selection */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
-          Chip.RadioGroup · 단일 선택 라디오 칩
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
+            Chip.RadioGroup · 단일 선택 라디오 칩
+          </Text>
         <Chip.RadioRoot value={radioVal} onValueChange={setRadioVal} aria-label="필터 선택">
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)' }}>
             <Chip.RadioItem value="all" size="medium">
@@ -762,9 +762,9 @@ function ChipDemo() {
 
       {/* 3. Chip Tabs Navigation */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
-          ChipTabsRoot · 카테고리 네비게이션 탭
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
+            ChipTabsRoot · 카테고리 네비게이션 탭
+          </Text>
         <ChipTabsRoot variant="neutralSolid" size="medium" value={tabVal} onValueChange={setTabVal}>
           <ChipTabsList>
             <ChipTabsTrigger value="1" notification>정산알림</ChipTabsTrigger>
@@ -1634,9 +1634,9 @@ function PageBannerDemo() {
 
       {/* Tone & Variant Preset Overview Matrix */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textAlign: 'center' }}>
-          전체 톤(Tones) 프리뷰 일괄 보기
-        </div>
+        <Text textStyle="t2Medium" color="fg.neutralSubtle" align="center">
+            전체 톤(Tones) 프리뷰 일괄 보기
+          </Text>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', width: '100%' }}>
           <PageBanner
@@ -3018,9 +3018,9 @@ function SkeletonDemo() {
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x5)", width: "100%" }}>
         {/* Radius Comparison */}
         <VStack gap="x3">
-          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+          <Text textStyle="t2Medium" color="fg.neutralSubtle">
             Skeleton Radius · 반경 (Radius) 프리셋 비교
-          </div>
+          </Text>
           <HStack gap="x4" align="center">
             <Skeleton tone={tone} radius={radius} width="x12" height="x12" />
             <VStack gap="x2" flex={1}>
@@ -3035,9 +3035,9 @@ function SkeletonDemo() {
 
         {/* Card Pattern Loading Skeleton */}
         <VStack gap="x3">
-          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+          <Text textStyle="t2Medium" color="fg.neutralSubtle">
             Skeleton Layout · 피드 / 카드 로딩 스켈레톤 레이아웃 패턴
-          </div>
+          </Text>
           <Box p="x4" borderRadius="r3" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
             <VStack gap="x4">
               <HStack gap="x3" align="center">
@@ -3071,9 +3071,9 @@ function SliderDemo() {
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%" }}>
         {/* 1. Single Thumb Slider */}
         <VStack gap="x3" width="full">
-          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+          <Text textStyle="t2Medium" color="fg.neutralSubtle">
             Single Thumb Slider · 단일 조절 슬라이더
-          </div>
+          </Text>
           <Slider
             label="볼륨 조절"
             description={`현재 값: ${singleValue[0]}%`}
@@ -3089,9 +3089,9 @@ function SliderDemo() {
 
         {/* 2. Dual Thumb Range Slider */}
         <VStack gap="x3" width="full">
-          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+          <Text textStyle="t2Medium" color="fg.neutralSubtle">
             Range Slider · 범위 선택 슬라이더 (Dual Thumb)
-          </div>
+          </Text>
           <Slider
             label="가격 범위 선택"
             description={`선택된 범위: ₩${rangeValues[0] * 1000} ~ ₩${rangeValues[1] * 1000}`}
@@ -3120,9 +3120,9 @@ function SnackbarDemo() {
       <VStack gap="x4" width="full">
         {/* 1. Default Variant */}
         <VStack gap="x1_5" width="full">
-          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+          <Text textStyle="t2Medium" color="fg.neutralSubtle">
             Snackbar Default · 기본 스낵바 알림
-          </div>
+          </Text>
           <StaticSnackbar
             variant="default"
             message="설정이 성공적으로 저장되었습니다."
@@ -3133,9 +3133,9 @@ function SnackbarDemo() {
 
         {/* 2. Positive Variant */}
         <VStack gap="x1_5" width="full">
-          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+          <Text textStyle="t2Medium" color="fg.neutralSubtle">
             Snackbar Positive · 성공/긍정 스낵바 알림
-          </div>
+          </Text>
           <StaticSnackbar
             variant="positive"
             message="프로필 정보가 안전하게 업데이트되었습니다."
@@ -3146,9 +3146,9 @@ function SnackbarDemo() {
 
         {/* 3. Critical Variant */}
         <VStack gap="x1_5" width="full">
-          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+          <Text textStyle="t2Medium" color="fg.neutralSubtle">
             Snackbar Critical · 오류/위험 스낵바 알림
-          </div>
+          </Text>
           <StaticSnackbar
             variant="critical"
             message="네트워크 연결이 끊어졌습니다. 다시 시도해 주세요."
@@ -3235,9 +3235,9 @@ function SwitchDemo() {
         <Divider style={{ width: "100%" }} />
 
         <VStack gap="x3" width="full">
-          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+          <Text textStyle="t2Medium" color="fg.neutralSubtle">
             Switch Sizes · 크기별 규격 비교 (32, 24, 16)
-          </div>
+          </Text>
           <VStack gap="x3" align="flex-start">
             <Switch size="32" tone={tone} defaultChecked label="32 size (Default)" />
             <Switch size="24" tone={tone} defaultChecked label="24 size" />
