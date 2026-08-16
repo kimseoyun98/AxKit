@@ -8,6 +8,16 @@ import {
 } from "@karrotmarket/react-monochrome-icon";
 import { NotificationBadge, NotificationBadgePositioner } from "./notification-badge";
 
+interface TopNavigationContextValue {
+  theme: "cupertino" | "android";
+  tone: "layer" | "transparent";
+}
+
+const TopNavigationContext = React.createContext<TopNavigationContextValue>({
+  theme: "cupertino",
+  tone: "layer",
+});
+
 export interface TopNavigationProps extends React.HTMLAttributes<HTMLElement> {
   variant?: "root" | "standard";
   theme?: "cupertino" | "android";
@@ -26,26 +36,28 @@ export function TopNavigation({
   const styles = appBar({ theme, tone });
 
   return (
-    <header
-      className={`${styles.root} ${className || ""}`}
-      style={{
-        position: "relative",
-        top: "auto",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        width: "100%",
-        height: theme === "android" ? 56 : 44,
-        paddingInline: "var(--seed-dimension-x4)",
-        backgroundColor: tone === "transparent" ? "transparent" : "var(--seed-color-bg-layer-default)",
-        borderBottom: tone === "transparent" ? "none" : "1px solid var(--seed-color-stroke-neutral-weak)",
-        boxSizing: "border-box",
-        ...style,
-      }}
-      {...props}
-    >
-      {children}
-    </header>
+    <TopNavigationContext.Provider value={{ theme, tone }}>
+      <header
+        className={`${styles.root} ${className || ""}`}
+        style={{
+          position: "relative",
+          top: "auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          width: "100%",
+          height: theme === "android" ? 56 : 44,
+          paddingInline: "var(--seed-dimension-x4)",
+          backgroundColor: tone === "transparent" ? "transparent" : "var(--seed-color-bg-layer-default)",
+          borderBottom: tone === "transparent" ? "none" : "1px solid var(--seed-color-stroke-neutral-weak)",
+          boxSizing: "border-box",
+          ...style,
+        }}
+        {...props}
+      >
+        {children}
+      </header>
+    </TopNavigationContext.Provider>
   );
 }
 
@@ -55,14 +67,17 @@ export interface TopNavigationLeftProps extends React.HTMLAttributes<HTMLDivElem
 }
 
 export function TopNavigationLeft({
-  theme = "cupertino",
-  tone = "layer",
+  theme,
+  tone,
   className,
   style,
   children,
   ...props
 }: TopNavigationLeftProps) {
-  const styles = appBar({ theme, tone });
+  const ctx = React.useContext(TopNavigationContext);
+  const currentTheme = theme || ctx.theme;
+  const currentTone = tone || ctx.tone;
+  const styles = appBar({ theme: currentTheme, tone: currentTone });
 
   return (
     <div
@@ -95,18 +110,22 @@ export function TopNavigationTitle({
   title,
   subtitle,
   align = "center",
-  theme = "cupertino",
-  tone = "layer",
+  theme,
+  tone,
   onClickTitle,
   className,
   style,
   children,
   ...props
 }: TopNavigationTitleProps) {
+  const ctx = React.useContext(TopNavigationContext);
+  const currentTheme = theme || ctx.theme;
+  const currentTone = tone || ctx.tone;
+
   const mainStyles = appBarMain({
     layout: subtitle ? "withSubtitle" : "titleOnly",
-    theme,
-    tone,
+    theme: currentTheme,
+    tone: currentTone,
   });
 
   return (
@@ -174,14 +193,17 @@ export interface TopNavigationRightProps extends React.HTMLAttributes<HTMLDivEle
 }
 
 export function TopNavigationRight({
-  theme = "cupertino",
-  tone = "layer",
+  theme,
+  tone,
   className,
   style,
   children,
   ...props
 }: TopNavigationRightProps) {
-  const styles = appBar({ theme, tone });
+  const ctx = React.useContext(TopNavigationContext);
+  const currentTheme = theme || ctx.theme;
+  const currentTone = tone || ctx.tone;
+  const styles = appBar({ theme: currentTheme, tone: currentTone });
 
   return (
     <div
@@ -211,14 +233,17 @@ export interface TopNavigationIconButtonProps extends React.ButtonHTMLAttributes
 export function TopNavigationIconButton({
   badge,
   badgeSize = "large",
-  theme = "cupertino",
-  tone = "layer",
+  theme,
+  tone,
   children,
   className,
   style,
   ...props
 }: TopNavigationIconButtonProps) {
-  const styles = appBar({ theme, tone });
+  const ctx = React.useContext(TopNavigationContext);
+  const currentTheme = theme || ctx.theme;
+  const currentTone = tone || ctx.tone;
+  const styles = appBar({ theme: currentTheme, tone: currentTone });
 
   return (
     <button
@@ -256,13 +281,16 @@ export interface TopNavigationBackButtonProps extends React.ButtonHTMLAttributes
 }
 
 export function TopNavigationBackButton({
-  theme = "cupertino",
-  tone = "layer",
+  theme,
+  tone,
   className,
   style,
   ...props
 }: TopNavigationBackButtonProps) {
-  const styles = appBar({ theme, tone });
+  const ctx = React.useContext(TopNavigationContext);
+  const currentTheme = theme || ctx.theme;
+  const currentTone = tone || ctx.tone;
+  const styles = appBar({ theme: currentTheme, tone: currentTone });
 
   return (
     <button
@@ -295,13 +323,16 @@ export interface TopNavigationCloseButtonProps extends React.ButtonHTMLAttribute
 }
 
 export function TopNavigationCloseButton({
-  theme = "cupertino",
-  tone = "layer",
+  theme,
+  tone,
   className,
   style,
   ...props
 }: TopNavigationCloseButtonProps) {
-  const styles = appBar({ theme, tone });
+  const ctx = React.useContext(TopNavigationContext);
+  const currentTheme = theme || ctx.theme;
+  const currentTone = tone || ctx.tone;
+  const styles = appBar({ theme: currentTheme, tone: currentTone });
 
   return (
     <button
