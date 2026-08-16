@@ -1127,7 +1127,7 @@ function HelpBubbleDemo() {
         
         {/* 1. Click Trigger Popover Help Bubble */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--seed-dimension-x3)' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t3)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral)' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t3)', fontWeight: 'var(--seed-font-weight-medium)', color: 'var(--seed-color-fg-neutral-muted)' }}>
             클릭하여 팝오버 도움말 열기:
           </span>
           <HelpBubbleTrigger
@@ -1146,7 +1146,7 @@ function HelpBubbleDemo() {
 
         {/* 2. Hover / Focus Trigger Tooltip Help Bubble */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--seed-dimension-x3)' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t3)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
+          <span style={{ fontSize: 'var(--seed-font-size-t3)', fontWeight: 'var(--seed-font-weight-medium)', color: 'var(--seed-color-fg-neutral-muted)' }}>
             마우스를 올리거나 포커스하면 노출:
           </span>
           <HelpBubbleTooltipTrigger
