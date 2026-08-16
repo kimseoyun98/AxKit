@@ -3556,11 +3556,39 @@ function SwipeableMenuSheetDemo() {
             빠른 작업 메뉴 (스와이프 시트)
           </ActionButton>
         </SwipeableMenuSheetTrigger>
-        <SwipeableMenuSheetContent title="거래 내역 빠른 제어 메뉴" description="손가락이나 마우스로 아래로 끌어내려 닫을 수 있습니다." showCloseButton>
+        <SwipeableMenuSheetContent
+          title="거래 내역 빠른 제어 메뉴"
+          description="손가락이나 마우스로 아래로 끌어내려 닫을 수 있습니다."
+          showCloseButton
+        >
           <SwipeableMenuSheetGroup>
-            <SwipeableMenuSheetItem label="거래 명세서 PDF 다운로드" prefixIcon={<IconPencilLine />} onClick={() => { alert("PDF 다운로드가 시작되었습니다."); setOpen(false); }} />
-            <SwipeableMenuSheetItem label="팩스 전송 신청" prefixIcon={<IconStoreFill />} onClick={() => { alert("팩스 전송 완료"); setOpen(false); }} />
-            <SwipeableMenuSheetItem label="정산 담당자 전화 연결" prefixIcon={<IconBellFill />} onClick={() => { alert("전화 연결 실행"); setOpen(false); }} />
+            <SwipeableMenuSheetItem
+              label="거래 명세서 PDF 다운로드"
+              description="공식 인감이 날인된 PDF 서식을 발급합니다."
+              prefixIcon={<IconPencilLine />}
+              onClick={() => { alert("PDF 다운로드가 시작되었습니다."); setOpen(false); }}
+            />
+            <SwipeableMenuSheetItem
+              label="팩스 전송 신청"
+              description="등록된 사업장 팩스 번호로 명세서를 전송합니다."
+              prefixIcon={<IconStoreFill />}
+              onClick={() => { alert("팩스 전송 완료"); setOpen(false); }}
+            />
+            <SwipeableMenuSheetItem
+              label="정산 담당자 전화 연결"
+              description="이롬넷 PG 정산 전담 센터로 연결합니다."
+              prefixIcon={<IconBellFill />}
+              onClick={() => { alert("전화 연결 실행"); setOpen(false); }}
+            />
+          </SwipeableMenuSheetGroup>
+          <SwipeableMenuSheetGroup>
+            <SwipeableMenuSheetItem
+              tone="critical"
+              label="거래 내역 삭제 및 정산 중지"
+              description="되돌릴 수 없으며 당일 정산이 즉시 중지됩니다."
+              prefixIcon={<IconPencilLine />}
+              onClick={() => { alert("정산 중지 신청이 접수되었습니다."); setOpen(false); }}
+            />
           </SwipeableMenuSheetGroup>
         </SwipeableMenuSheetContent>
       </SwipeableMenuSheetRoot>
