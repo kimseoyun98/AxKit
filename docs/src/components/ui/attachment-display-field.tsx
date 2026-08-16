@@ -72,7 +72,7 @@ export const AttachmentDisplayField = React.forwardRef<HTMLDivElement, Attachmen
       <SeedAttachmentDisplay.Root ref={ref} {...props}>
         {renderHeader && (
           <SeedAttachmentDisplay.Header>
-            <SeedAttachmentDisplay.Label weight={labelWeight}>
+            <SeedAttachmentDisplay.Label as="span" weight={labelWeight}>
               {label}
               {showRequiredIndicator && <SeedAttachmentDisplay.RequiredIndicator />}
               {indicator && (

@@ -104,7 +104,7 @@ export const AttachmentField = React.forwardRef<HTMLInputElement, AttachmentFiel
       >
         {renderHeader && (
           <SeedField.Header>
-            <SeedField.Label weight={labelWeight}>
+            <SeedField.Label as="span" weight={labelWeight}>
               {label}
               {showRequiredIndicator && <SeedField.RequiredIndicator />}
               {indicator && <SeedField.IndicatorText>{indicator}</SeedField.IndicatorText>}
