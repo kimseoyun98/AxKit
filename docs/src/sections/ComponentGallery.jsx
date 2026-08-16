@@ -107,6 +107,7 @@ import {
   SwipeableMenuSheetRoot,
   SwipeableMenuSheetTrigger,
   SwipeableMenuSheetContent,
+  SwipeableMenuSheetGroup,
   SwipeableMenuSheetItem,
 } from '../components/ui/swipeable-menu-sheet';
 
@@ -3491,9 +3492,11 @@ function SwipeableMenuSheetDemo() {
           </ActionButton>
         </SwipeableMenuSheetTrigger>
         <SwipeableMenuSheetContent title="거래 내역 빠른 제어 메뉴" description="손가락이나 마우스로 아래로 끌어내려 닫을 수 있습니다." showCloseButton>
-          <SwipeableMenuSheetItem label="거래 명세서 PDF 다운로드" prefixIcon={<IconPencilLine />} onClick={() => { alert("PDF 다운로드가 시작되었습니다."); setOpen(false); }} />
-          <SwipeableMenuSheetItem label="팩스 전송 신청" prefixIcon={<IconStoreFill />} onClick={() => { alert("팩스 전송 완료"); setOpen(false); }} />
-          <SwipeableMenuSheetItem label="정산 담당자 전화 연결" prefixIcon={<IconBellFill />} onClick={() => { alert("전화 연결 실행"); setOpen(false); }} />
+          <SwipeableMenuSheetGroup>
+            <SwipeableMenuSheetItem label="거래 명세서 PDF 다운로드" prefixIcon={<IconPencilLine />} onClick={() => { alert("PDF 다운로드가 시작되었습니다."); setOpen(false); }} />
+            <SwipeableMenuSheetItem label="팩스 전송 신청" prefixIcon={<IconStoreFill />} onClick={() => { alert("팩스 전송 완료"); setOpen(false); }} />
+            <SwipeableMenuSheetItem label="정산 담당자 전화 연결" prefixIcon={<IconBellFill />} onClick={() => { alert("전화 연결 실행"); setOpen(false); }} />
+          </SwipeableMenuSheetGroup>
         </SwipeableMenuSheetContent>
       </SwipeableMenuSheetRoot>
     </div>
