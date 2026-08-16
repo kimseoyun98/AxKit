@@ -1,6 +1,6 @@
 # AX Design System LLMs Index
 
-> AX Design System의 모든 49개 컴포넌트, 파운데이션 토큰, UI 스니펫 명세 목차입니다.
+> AX Design System의 모든 50개 컴포넌트, 파운데이션 토큰, UI 스니펫 명세 목차입니다.
 
 ## Foundations
 - Color & Palette: /#color
@@ -8,7 +8,7 @@
 - Typography: /#typography
 - Spacing & Radius: /#spacing
 
-## Showcase Components (49 Items)
+## Showcase Components (50 Items)
 - Accordion (ui:accordion): /#components-accordion
 - Action Button (ui:action-button): /#components-action-button
 - Alert Dialog (ui:alert-dialog): /#components-alert-dialog
@@ -27,6 +27,7 @@
 - Divider (ui:layout): /#components-divider
 - Field Button (ui:field-button): /#components-field-button
 - Floating Action Button (ui:floating-action-button): /#components-floating-action-button
+- Footer (block:footer): /#components-footer
 - Help Bubble (ui:help-bubble): /#components-help-bubble
 - Identity Placeholder (ui:identity-placeholder): /#components-identity-placeholder
 - Image Frame (ui:layout): /#components-image-frame

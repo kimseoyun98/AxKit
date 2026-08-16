@@ -43,6 +43,10 @@ import { ResponsiveDialogRoot, ResponsiveDialogTrigger, ResponsiveDialogContent,
 import { Float, Divider, ImageFrame } from '../components/ui/layout';
 import { FieldButton, FieldButtonValue, FieldButtonPlaceholder } from '../components/ui/field-button';
 import { FloatingActionButton } from '../components/ui/floating-action-button';
+import Footer01 from '../components/ui/block/footer-01';
+import Footer02 from '../components/ui/block/footer-02';
+import Footer03 from '../components/ui/block/footer-03';
+import Footer04 from '../components/ui/block/footer-04';
 import { HelpBubbleTrigger, HelpBubbleAnchor } from '../components/ui/help-bubble';
 import { HelpBubbleTooltipTrigger } from '../components/ui/help-bubble-tooltip';
 import { IdentityPlaceholder } from '../components/ui/identity-placeholder';
@@ -1159,6 +1163,30 @@ function FloatingActionButtonDemo() {
           />
         </Float>
       </div>
+    </div>
+  );
+}
+
+function FooterDemo() {
+  const [preset, setPreset] = useState("01");
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 840, margin: "0 auto" }}>
+      <VStack gap="x3" align="center" width="full">
+        <SegmentedControl value={preset} onValueChange={setPreset}>
+          <SegmentedControlItem value="01">비즈프로필 (최소)</SegmentedControlItem>
+          <SegmentedControlItem value="02">당근비즈니스 (안내)</SegmentedControlItem>
+          <SegmentedControlItem value="03">어바웃당근 (소개)</SegmentedControlItem>
+          <SegmentedControlItem value="04">당근닷컴 (풀스펙)</SegmentedControlItem>
+        </SegmentedControl>
+
+        <div style={{ width: "100%", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x3)", overflow: "hidden", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
+          {preset === "01" && <Footer01 />}
+          {preset === "02" && <Footer02 />}
+          {preset === "03" && <Footer03 />}
+          {preset === "04" && <Footer04 />}
+        </div>
+      </VStack>
     </div>
   );
 }
@@ -3800,6 +3828,11 @@ const COMPONENTS = [
     name: 'Floating Action Button',
     slug: 'ui:floating-action-button',
     demo: <FloatingActionButtonDemo />,
+  },
+{
+    name: 'Footer',
+    slug: 'block:footer',
+    demo: <FooterDemo />,
   },
 {
     name: 'Help Bubble',
