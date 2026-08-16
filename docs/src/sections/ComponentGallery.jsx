@@ -3670,34 +3670,30 @@ function TopNavigationDemo() {
       {/* Root Type */}
       <VStack gap="x2" width="full">
         <Text textStyle="t3Bold">Root 타입 (최상위 탭)</Text>
-        <div style={{ width: "100%", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x3)", overflow: "hidden" }}>
-          <TopNavigation
-            variant="root"
-            title="홈 피드"
-            right={
-              <HStack gap="x1">
-                <ActionButton variant="neutralWeak" size="small">검색</ActionButton>
-                <ActionButton variant="brandSolid" size="small">글쓰기</ActionButton>
-              </HStack>
-            }
-          />
-        </div>
+        <TopNavigation
+          variant="root"
+          title="홈 피드"
+          right={
+            <HStack gap="x1">
+              <ActionButton variant="neutralWeak" size="small">검색</ActionButton>
+              <ActionButton variant="brandSolid" size="small">글쓰기</ActionButton>
+            </HStack>
+          }
+        />
       </VStack>
 
       {/* Standard Type */}
       <VStack gap="x2" width="full">
         <Text textStyle="t3Bold">Standard 타입 (2-Depth 상세 화면)</Text>
-        <div style={{ width: "100%", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x3)", overflow: "hidden" }}>
-          <TopNavigation
-            variant="standard"
-            title="상품 상세 보기"
-            subtitle="당근 마켓 플레이스"
-            onBack={() => alert("뒤로가기 클릭")}
-            right={
-              <ActionButton variant="neutralWeak" size="small">공유</ActionButton>
-            }
-          />
-        </div>
+        <TopNavigation
+          variant="standard"
+          title="상품 상세 보기"
+          subtitle="당근 마켓 플레이스"
+          onBack={() => alert("뒤로가기 클릭")}
+          right={
+            <ActionButton variant="neutralWeak" size="small">공유</ActionButton>
+          }
+        />
       </VStack>
     </div>
   );

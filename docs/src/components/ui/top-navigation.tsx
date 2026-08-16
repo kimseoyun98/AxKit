@@ -40,7 +40,6 @@ export function TopNavigation({
         height: "56px",
         padding: "0 var(--seed-dimension-x3)",
         backgroundColor: "var(--seed-color-bg-layer-default)",
-        borderBottom: "1px solid var(--seed-color-stroke-neutral-weak)",
         boxSizing: "border-box",
         ...style,
       }}
