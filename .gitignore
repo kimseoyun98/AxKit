@@ -1,7 +1,39 @@
-node_modules/
+# OS & System Junk
 .DS_Store
-*.tgz
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Dependencies & Build Output
+node_modules/
+dist/
+build/
+.cache/
+.vite/
 *.log
-.npm/
-docs/node_modules/
-docs/dist/
+
+# Private AI Agent Workspace & Scratch Files (Never push to Git)
+.antigravity/
+.gemini/
+scratch/
+*.tmp
+doctor_report.yaml
+
+# Secrets & Environment Variables
+.env
+.env.*
+!.env.example
+
+# Editor Configs
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
