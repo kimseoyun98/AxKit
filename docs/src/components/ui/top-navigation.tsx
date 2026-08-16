@@ -31,15 +31,10 @@ export function TopNavigation({
       style={{
         position: "relative",
         top: "auto",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
         width: "100%",
-        height: theme === "android" ? "var(--seed-dimension-x14)" : "var(--seed-dimension-x11)",
-        padding: "0 var(--seed-dimension-x3)",
+        boxSizing: "border-box",
         backgroundColor: tone === "transparent" ? "transparent" : "var(--seed-color-bg-layer-default)",
         borderBottom: tone === "transparent" ? "none" : "1px solid var(--seed-color-stroke-neutral-weak)",
-        boxSizing: "border-box",
         ...style,
       }}
       {...props}
@@ -68,11 +63,8 @@ export function TopNavigationLeft({
     <div
       className={`${styles.left} ${className || ""}`}
       style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "var(--seed-dimension-x1)",
-        minWidth: "var(--seed-dimension-x9)",
         flexShrink: 0,
+        zIndex: 1,
         ...style,
       }}
       {...props}
@@ -113,16 +105,7 @@ export function TopNavigationTitle({
     <div
       className={`${mainStyles.root} ${className || ""}`}
       style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: align === "center" ? "center" : "flex-start",
-        justifyContent: "center",
-        flex: 1,
-        minWidth: 0,
-        textAlign: align === "center" ? "center" : "left",
-        padding: "0 var(--seed-dimension-x2)",
-        overflow: "hidden",
-        pointerEvents: "auto",
+        pointerEvents: onClickTitle ? "auto" : undefined,
         ...style,
       }}
       {...props}
@@ -143,6 +126,7 @@ export function TopNavigationTitle({
             padding: "var(--seed-dimension-x1) var(--seed-dimension-x2)",
             borderRadius: "var(--seed-dimension-x2)",
             color: "var(--seed-color-fg-neutral)",
+            pointerEvents: "auto",
           }}
         >
           <span className={mainStyles.title}>
@@ -187,12 +171,8 @@ export function TopNavigationRight({
     <div
       className={`${styles.right} ${className || ""}`}
       style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "var(--seed-dimension-x1)",
-        minWidth: "var(--seed-dimension-x9)",
-        justifyContent: "flex-end",
         flexShrink: 0,
+        zIndex: 1,
         ...style,
       }}
       {...props}
@@ -227,9 +207,6 @@ export function TopNavigationIconButton({
         type="button"
         className={`${styles.iconButton} ${className || ""}`}
         style={{
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
           cursor: "pointer",
           ...style,
         }}
@@ -266,9 +243,6 @@ export function TopNavigationBackButton({
       aria-label="뒤로가기"
       className={`${styles.iconButton} ${className || ""}`}
       style={{
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
         cursor: "pointer",
         ...style,
       }}
@@ -299,9 +273,6 @@ export function TopNavigationCloseButton({
       aria-label="닫기"
       className={`${styles.iconButton} ${className || ""}`}
       style={{
-        display: "inline-flex",
-        alignItems: "center",
-        justifyContent: "center",
         cursor: "pointer",
         ...style,
       }}
