@@ -32,7 +32,7 @@ docs/
 ├── public/
 │   ├── ai-integration/       # AI 에이전트 연동 명세 (skill.txt, doctor.txt, docs-mcp.txt)
 │   ├── icons/                # static SVG 아이콘 자산
-│   └── llms.txt              # LLM 모델 파싱용 49개 컴포넌트 A-Z 인덱스
+│   └── llms.txt              # LLM 모델 파싱용 48개 컴포넌트 A-Z 인덱스
 ├── src/
 │   ├── components/
 │   │   └── ui/               # 49개 UI 컴포넌트 스니펫 (time-picker, responsive-side-panel 등)
@@ -64,7 +64,7 @@ npx @seed-design/cli@latest compat
 
 ---
 
-## 🛠️ 주요 컴포넌트 목록 (Showcase 49 Items A-Z)
+## 🛠️ 주요 컴포넌트 목록 (Showcase 48 Items A-Z)
 
 1. **Accordion** (`ui:accordion`)
 2. **Action Button** (`ui:action-button`)
@@ -114,4 +114,3 @@ npx @seed-design/cli@latest compat
 46. **Tag Group** (`ui:tag-group`)
 47. **Text Field** (`ui:text-field`)
 48. **Time Picker** (`ui:time-picker`)
-49. **Toggle Button** (`ui:toggle-button`)
