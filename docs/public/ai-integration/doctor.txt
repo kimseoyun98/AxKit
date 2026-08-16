@@ -1,0 +1,871 @@
+# Doctor
+URL: /ai-integration/skill/doctor
+Source: https://github.com/daangn/seed-design/blob/dev/docs/content/ai-integration/skill/doctor.mdx
+
+React 프로젝트의 구버전 스니펫, deprecated 사용, 가이드라인 준수를 문서 기준으로 진단합니다.
+
+Doctor는 SEED를 쓰는 프로젝트를 진단합니다. **린터가 아니라 가이드입니다** — 각 항목에 왜 문제인지, 무엇을 읽어야 하는지, 어떻게 고치는지가 함께 나옵니다.
+
+진단은 **읽기 전용**입니다. 코드를 고치지 않고, 무엇을 고쳐야 하는지 알려주기만 합니다. 실제 수정은 사용자가 별도로 지시할 때만 합니다.
+
+지원 범위 \[#지원-범위]
+
+| 플랫폼   | 상태  |
+| ----- | --- |
+| React | 지원  |
+| Lynx  | 미지원 |
+
+Doctor를 실행하기 전에 에이전트는 **사용자 명시 → 대상 워크스페이스의 `seed-design.json.framework` → 직접 의존성** 순으로 플랫폼을 판별합니다. 모노레포에서 React와 Lynx 워크스페이스가 함께 발견되거나 단서가 없으면 대상을 먼저 확인합니다.
+
+현재 Lynx Doctor 프로필은 없습니다. Lynx 프로젝트에서 Doctor를 요청하면 React 규칙을 대신 실행하거나 React 판정을 Lynx 리포트로 만들지 않고, 현재 지원되지 않는다고 안내합니다. 일반 Lynx 컴포넌트 문서와 registry 조회는 계속 지원합니다.
+
+사용법 \[#사용법]
+
+스킬을 로드한 상태에서 진단을 요청하면 됩니다.
+
+```text
+SEED 잘 쓰고 있나 봐줘
+뭘 고쳐야 하는지 진단해줘
+```
+
+에이전트는 이 순서로 동작합니다.
+
+1. **대상과 플랫폼 확정** — 모노레포면 SEED를 쓰는 워크스페이스를 먼저 찾고, 플랫폼 단서가 여러 개면 사용자에게 확인합니다.
+2. **Doctor 프로필 로드** — React 패키지, 구현 API, registry, 업그레이드 문서, 적용 룰 목록을 불러옵니다.
+3. **프로젝트 사실 수집** — `seed-design.json`, 설치된 패키지 버전, 스니펫 디렉토리를 확인합니다.
+4. **룰 순회** — React 프로필이 활성화한 룰만 읽고 대상을 모아 항목별로 판정합니다.
+5. **결과 출력** — YAML 파일로 쓰고, 채팅에는 요약과 "먼저 할 것"만 냅니다.
+
+결과를 보기 좋게 정리한 HTML 리포트도 요청할 수 있습니다.
+
+Rules \[#rules]
+
+룰 하나가 **코드를 작성할 때의 가이드이자 진단의 판정 기준**입니다. 룰 파일 자체는 플랫폼 공통 표현을 사용하고, 패키지·API·registry 같은 값은 선택된 Doctor 프로필에서 받습니다. 현재 React 프로필은 아래 네 룰을 모두 활성화합니다.
+
+| 룰                         | 판단하는 것                                   | severity                             |
+| ------------------------- | ---------------------------------------- | ------------------------------------ |
+| `outdated-version`        | 설치된 `@seed-design/*`가 npm 최신에서 얼마나 뒤졌는지  | major 뒤짐 `warn` · minor/patch `info` |
+| `snippet-generation`      | 설치 스니펫의 `@requires`가 registry 최신 세대와 같은지 | `info`                               |
+| `no-deprecated-component` | deprecated 컴포넌트·스니펫·토큰·옵션을 쓰는지           | `warn`                               |
+| `component-guidelines`    | 컴포넌트 사용이 디자인 가이드라인에 맞는지                  | 기본 `warn` · 동작이 깨지면 `error`          |
+
+`component-guidelines`에는 \**판정 기준이 들어 있지 않습니다.*\* 기준은 각 컴포넌트의 가이드라인 문서에서 그때그때 도출합니다. 그래서 [가이드라인 문서](/components)에 Do/Don't를 하나 추가하면 \**그 컴포넌트의 판정 기준이 하나 늘어납니다.*\* 룰 파일은 그대로입니다.
+
+outdated-version.md \[#outdated-versionmd]
+
+````md
+# Outdated Version
+
+설치된 `@seed-design/*` 패키지가 npm 최신 버전에서 얼마나 뒤졌는지 판정합니다. **major가 뒤지면 `warn`, minor/patch만 뒤지면 `info`.**
+
+## 왜
+
+SEED는 **2.0.0부터 strict SemVer를 따릅니다.** 그 이전(1.x)에는 **마이너 버전에** breaking이 섞여 있어 버전 격차가 클수록 마이그레이션 비용이 비선형으로 커집니다. major가 뒤진 상태는 버그 수정과 신규 컴포넌트를 받지 못하는 상태이기도 합니다.
+
+## 판정 방법
+
+1. **SEED를 쓰는 워크스페이스의** `package.json`에서 선택된 Doctor 프로필에 속하는 패키지를 수집합니다. 모노레포면 루트가 아니라 그 워크스페이스에 선언이 있습니다(어느 워크스페이스인지는 `references/doctor.md`의 Step 1에서 이미 찾습니다). **직접 선언된 것만** 대상입니다 — 전이 의존성으로 딸려온 패키지는 상위 패키지가 범위를 고정하므로 판정하지 않습니다.
+2. 각 패키지의 **실제 설치본** 버전을 읽습니다. 선언 범위(`^1.2.0`)가 아니라 설치본이 기준입니다.
+
+   **파일을 직접 읽는 쪽이 안전합니다** — `node_modules/@seed-design/{pkg}/package.json`을 찾아 `version`을 봅니다. `require('{pkg}/package.json')`은 패키지가 `exports`에 `"./package.json"`을 넣어둔 경우에만 되고, 안 넣은 것도 있어(`vite-plugin` 등) `ERR_PACKAGE_PATH_NOT_EXPORTED`로 던집니다.
+
+   모노레포에서는 선언이 워크스페이스에 있어도 **설치본은 저장소 루트로 hoist**됩니다. 워크스페이스에서 못 찾으면 루트까지 올라가며 찾습니다.
+
+3. npm 최신 버전과 비교합니다.
+
+   ```bash
+   npm view @seed-design/react version
+   ```
+
+   `npm` 실행이 막힌 환경(bun 전용 훅 등)이면 registry를 직접 조회합니다: `curl -s https://registry.npmjs.org/@seed-design%2freact/latest` 응답의 `version`.
+
+4. major 차이 → `warn`, minor/patch 차이 → `info`. 네트워크가 막혀 조회에 실패하면 이 룰은 **판정하지 않고 건너뜁니다**(진단 전체를 중단하지 않습니다).
+
+   `0.x` 패키지는 SemVer상 minor가 breaking 자리이므로, **`0.x` 안에서의 minor 차이도 `warn`으로 봅니다**(`0.0.15` → `0.1.0`). `1.0.0` 이상으로 넘어간 경우는 당연히 major 차이입니다.
+
+패키지가 여러 개면 하나로 묶어 보고합니다 — 원인이 같고 조치도 한 번이라, 패키지마다 한 건씩 내면 읽기만 어려워집니다.
+
+## 수정 방법
+
+"업그레이드하세요"로 끝내지 않습니다. 격차에 따라 읽을 문서 순서까지 안내합니다.
+
+**어느 가이드를 볼지는 선택된 Doctor 프로필의 버전 기준 패키지와 업그레이드 정책으로 정합니다.** 보조 패키지의 버전 번호로 가이드를 선택하면 엉뚱한 안내가 나갑니다.
+
+- 프로필이 정의한 경계와 순서대로 업그레이드·호환 문서를 읽습니다.
+- 스니펫도 세대가 함께 뒤졌을 가능성이 높으므로 [snippet-generation](./snippet-generation.md) 판정을 같이 봅니다.
+- 특정 버전 이후의 변경사항은 프로필의 changelog 경로를 `docs ... --raw`로 조회합니다.
+
+## 읽어야 할 문서
+
+- 선택된 Doctor 프로필의 업그레이드·호환 문서
+````
+
+snippet-generation.md \[#snippet-generationmd]
+
+````md
+# Snippet Generation
+
+프로젝트에 설치된 스니펫이 어느 세대에서 왔는지 판정합니다. 설치 파일 헤더의 `@requires` 범위가 최신 registry의 범위와 다르면 **구세대 스니펫**입니다. severity: `info`.
+
+## 왜
+
+스니펫은 프로젝트로 복사되는 코드라서 패키지를 업그레이드해도 자동으로 갱신되지 않습니다. 설치 당시 버전에 맞춰진 구현이 그대로 남아 있으면, 최신 패키지와 조합했을 때 의도한 동작이나 스타일이 나오지 않을 수 있습니다.
+
+## 판정 방법
+
+1. `seed-design.json`의 `path`가 가리키는 스니펫 디렉토리에서 파일 헤더의 `@requires` 선언을 수집합니다. 헤더는 파일 상단 JSDoc에 있습니다.
+
+   ```bash
+   grep -r "@requires" {snippetRoot} --include="*.tsx" --include="*.ts"
+   ```
+
+2. 선택된 Doctor 프로필이 가리키는 최신 registry에서 canonical 범위를 가져옵니다. registry별 인덱스의 `items[].snippets[].dependencies`가 각 스니펫 파일의 현재 `@requires`입니다.
+
+   ```text
+   https://seed-design.io/__registry__/{framework}/{registryId}/index.json
+   (예: https://seed-design.io/__registry__/react/ui/index.json)
+   ```
+
+   registry 목록 자체는 `__registry__/{framework}/index.json`에 있습니다 — 이 파일에는 dependencies가 없습니다.
+
+3. **`(registryId, itemId, snippetPath)` 세 값이 모두 같은 것끼리** 비교해, 범위가 다르면 구세대로 판정합니다. 셋 다 파일 헤더의 `@file ui:action-button`과 파일 위치에서 나옵니다 — 디렉토리 이름으로 추측하지 마세요.
+
+   **itemId를 빼면 안 됩니다.** 한 스니펫 파일이 여러 item에 속할 수 있어서(`attachment-field.tsx`는 `attachment-field`와 `attachment-field-reorderable` 양쪽에 있습니다) 경로만으로는 어느 canonical과 대조할지 정해지지 않고, 엉뚱한 쪽과 비교해 통과나 오탐이 납니다.
+
+   `@file` 헤더가 없는 파일은 어느 item에서 왔는지 알 방법이 없으므로 **`not-verified`로 적고 파일명을 남깁니다.** 손으로 만들었거나 헤더를 지운 파일이니, 경로로 추측해 판정하지 않습니다.
+
+   해시 비교가 아니므로 **로컬 수정 여부는 이 룰이 판정하지 않습니다** — rsc/tsx 변환 때문에 단순 비교는 전부 오탐입니다.
+
+패키지 자체가 major 뒤진 상태면 설치 스니펫이 **전건 구세대로 나오는 게 정상**입니다(원인이 하나이므로). 이때는 파일마다 한 건씩 내지 말고 **요약 한 건 + `files[]`**로 묶습니다. 재설치가 필요한 특별한 이유가 있는 파일(업그레이드 가이드가 콕 집어 지목한 것 등)만 따로 적되, **그 파일도 묶음의 `files[]`에는 남깁니다** — 세대가 뒤진 것은 사실이고, 목록에서 빠지면 재설치 대상에서 누락됩니다. 별건은 "추가로 확인할 것"이지 대체가 아닙니다.
+
+메시지 형식에 주의하세요: "현재 X"라고 쓰면 프로젝트에 설치된 패키지 버전으로 오해됩니다. 비교 대상은 **스니펫 세대**(설치 시점 registry 기준 vs 최신 registry 기준)이지 프로젝트 패키지 버전이 아닙니다.
+
+> 예: `src/seed-design/ui/action-button.tsx:1` — 구버전 스니펫 (설치 세대의 구현 패키지 범위와 최신 스니펫 범위가 다름)
+
+## 수정 방법
+
+```bash
+npx @seed-design/cli@latest add --on-diff backup {registryId}:{itemId}
+```
+
+`backup`을 쓰면 기존 파일이 `legacy-<파일명>-<timestamp>`로 남아 커스터마이징을 옮길 수 있습니다. 재설치 후 `compat`으로 패키지 버전과 맞는지 확인합니다. 패키지 자체가 구버전이라 최신 스니펫을 받을 수 없는 상황이면 [outdated-version](./outdated-version.md)의 업그레이드 절차가 선행입니다.
+
+## 읽어야 할 문서
+
+- [CLI 명령어 (add · compat)](https://seed-design.io/llms/react/getting-started/cli/commands.txt) — 문서 위치와 무관하게 React·Lynx를 지원합니다
+- 선택된 Doctor 프로필의 registry·업그레이드 문서
+````
+
+no-deprecated-component.md \[#no-deprecated-componentmd]
+
+````md
+# No Deprecated Component
+
+deprecated 컴포넌트의 import·설치된 deprecated 스니펫·deprecated 토큰과 옵션 사용을 판정합니다. severity: `warn`.
+
+## 왜
+
+deprecated 항목은 다음 메이저에서 제거됩니다. 지금 당장 동작이 깨지진 않지만, 업그레이드하려면 먼저 정리해야 합니다. 어떤 버전에서 제거되는지와 대체안은 문서가 출처입니다 — **기억으로 판정하지 말고 문서를 읽고 대조합니다.**
+
+## 판정 방법
+
+1. 출처 문서를 읽어 deprecated 목록과 대체안을 확보합니다. 출처는 둘이고, 담는 것이 다릅니다:
+   - **컴포넌트 옵션·토큰**: deprecation 현황 문서 (아래 "읽어야 할 문서")
+   - **컴포넌트 자체**: registry 인덱스(`https://seed-design.io/__registry__/{framework}/{registryId}/index.json`)의 **`deprecated: true` 플래그**. 현황 문서에는 컴포넌트가 한 줄도 없습니다.
+
+   대체안은 registry에 없으므로 rootage(`packages/rootage/components/{id}.yaml`의 `metadata.deprecated` 문자열)나 업그레이드 가이드에서 찾습니다.
+
+   현황 문서에는 **"제거 완료 히스토리"** 표도 있습니다. **설치본이 그 제거 버전보다 낮으면 이 표도 검사 대상입니다** — 지금은 정상 동작하지만 업그레이드하는 순간 깨지는 것들이고, 그게 정확히 이 진단이 미리 알려줘야 할 내용입니다. 설치본이 제거 버전 이상이면 이미 지나간 일이니 건너뜁니다.
+
+   **어느 패키지의 설치본과 비교할지는 항목마다 다릅니다.** 토큰과 스타일 API는 선택된 Doctor 프로필의 스타일링 패키지, 컴포넌트와 옵션은 구현 패키지 기준입니다. 두 패키지 버전이 갈린 프로젝트에서는 이걸 섞으면 판정이 틀립니다.
+2. **패키지 import 검사**: 선택된 Doctor 프로필의 구현 패키지에서 import하는 이름을 deprecated 컴포넌트 이름과 대조합니다. 매칭은 이름의 공백을 뺀 **prefix 매칭 + 최장 일치 우선**입니다 — `ActionSheetItem`은 `action-sheet`가 아니라 `action-sheet-item`으로 매칭돼야 합니다.
+3. **설치 스니펫 검사**: 스니펫 디렉토리에 deprecated 항목의 파일이 설치돼 있는지 경로로 판정합니다. 스니펫 디렉토리 **내부** 파일이 패키지에서 deprecated 컴포넌트를 import하거나 deprecated 옵션을 구현하는 건 검사하지 않습니다 — 스니펫이 패키지를 감싸는 건 정당한 사용이고, 스니펫 내부 문제는 재설치([snippet-generation](./snippet-generation.md))로 해소됩니다.
+4. **토큰·옵션 검사**: 현황 문서의 deprecated 토큰과 컴포넌트 옵션을 **앱 코드**에서 사용하는지 검사합니다.
+
+   토큰은 **문서 표기 그대로 찾으면 안 됩니다.** 같은 토큰이 코드에서 세 가지 형태로 나타나므로 전부 확인합니다.
+
+   | 표기 | 예 | 나타나는 곳 |
+   |------|-----|------------|
+   | 문서(kebab) | `$color.bg.layer-fill` | 문서·rootage |
+   | 코드(camelCase) | `vars.$color.bg.layerFill` | 선택된 프로필의 스타일링 패키지 vars import |
+   | CSS 변수 | `--seed-color-bg-layer-fill` | 직접 작성한 CSS·인라인 스타일 |
+
+   문서 표기만 grep하면 실제로 쓰고 있어도 0건이 나와 **조용히 통과합니다.**
+
+## 수정 방법
+
+**문서의 "대체안" 열을 먼저 보고 갈라집니다.** 대체안이 `-`인 항목(토큰·옵션에 흔합니다)에 "대체 컴포넌트로 교체하세요"라고 안내하면 존재하지 않는 것을 가리키게 됩니다.
+
+**대체안이 있으면** 그것으로 교체합니다. 스니펫이 deprecated인 경우 대체 스니펫을 설치하고 기존 파일의 커스터마이징을 옮깁니다.
+
+```bash
+npx @seed-design/cli@latest add --on-diff backup {registryId}:{대체 itemId}
+```
+
+**대체안 칸이 컴포넌트 이름이 아닐 때**는 그 칸이 시키는 대로 안내합니다.
+
+- **"제거 (…)"** — 제거된 prop이 하던 일을 라이브러리가 이미 표준 동작으로 합니다. 괄호 안이 그 설명입니다(예: Snackbar `shouldCloseOnAction`의 대체안 칸은 `제거 (자동 닫힘이 표준 동작)`). 옵션만 지우면 됩니다.
+- **수동 마이그레이션** — 문서의 비고란에 절차가 적혀 있으면 그것을 인용합니다.
+- **`-` (아직 대체안이 없음)** — 지금 할 수 있는 게 없다는 사실과 **제거 예정 버전**을 알리고, 문서를 추적하라고 안내합니다. 실제로 `-`인 것은 AppBar `divider`, BottomSheet `direction`, Drawer의 두 옵션, `$color.bg.layer-fill`입니다. 대안 없이 "고치세요"라고만 하면 사용자가 할 수 있는 게 없습니다. 이 경우 **업그레이드 경로의 함정을 함께 확인합니다** — 제거됐다가 되살아난 항목이 있어(`$color.bg.layer-fill`은 css 2.0.0에서 제거·2.1.0에서 복구) 중간 버전을 건너뛰어야 할 수 있습니다.
+
+## 읽어야 할 문서
+
+- [Deprecated 현황](https://seed-design.io/llms/docs/migration/deprecations.txt)
+- 선택된 Doctor 프로필의 업그레이드·호환 문서
+````
+
+component-guidelines.md \[#component-guidelinesmd]
+
+````md
+# Component Guidelines
+
+컴포넌트 사용이 디자인 가이드라인 문서에 맞는지 판정합니다. severity는 기본 `warn`(디자인 시스템 이탈)이고, **동작이 실제로 깨지는 위반은 `error`, 알고만 있으면 되는 것은 `info`** 입니다.
+
+**판정 기준은 이 파일에 없습니다 — 컴포넌트별 가이드라인 문서에서 도출합니다.** 그래서 문서에 Do/Dont를 하나 추가하면 판정 기준이 하나 늘어납니다. 이 파일은 그대로입니다.
+
+## 왜
+
+prop 조합이 적절한지, 가이드라인의 Do/Don't에 어긋나지 않는지는 정적 분석으로 판정할 수 없습니다. 문서를 읽고 코드 맥락을 봐야 합니다. 사용자는 어떤 문서를 읽어야 하는지조차 모르는 경우가 많으므로, 판정 결과에는 항상 근거 문서 링크가 따라가야 합니다.
+
+## 대상 선정
+
+1. 코드에 컴포넌트 식별자가 등장하는 파일을 찾습니다. 식별자는 컴포넌트 이름에서 공백을 뺀 문자열이 **식별자 안에 포함되는지**로 찾습니다(앞이 아니라 어디에 있어도 됩니다) — `BottomSheet`가 `BottomSheetRoot`뿐 아니라 `FlexibleBottomSheet`도, `List`가 `RegionListItem`도 잡아야 자체 구현을 놓치지 않습니다. 공통 문서 id와 코드 식별자가 다른 예외는 **선택된 Doctor 프로필의 컴포넌트 매핑**을 사용합니다.
+
+   스니펫 파일명이 문서 id와 다를 수 있습니다(`text-field.tsx`는 `text-input` 문서, `radio-group.tsx`는 `radio` 문서). 파일 상단의 **`@file ui:{name}` 주석**이 registry id이고, 거기서 문서 id를 찾는 게 파일명 추측보다 정확합니다.
+
+   포함 매칭이라 **오탐이 따라옵니다.**
+
+   - **한 식별자가 여러 컴포넌트에 걸리면 가장 긴 이름이 이깁니다.** `RadioSelectBoxItem`은 `radio`가 아니라 `select-box`로 판정합니다. 짧은 쪽으로 판정하면 **다른 문서의 기준을 잘못 적용하게 되고**, 두 문서가 충돌하기도 합니다(Radio는 "가로로 나열하지 않기", Select Box는 "한 줄에 2~3열").
+   - 걸린 식별자가 다른 컴포넌트의 **하위 파츠**면(`AlertDialogFooter`·`Field.Footer`는 Footer가 아니라 Alert Dialog·Field의 일부) 소유 컴포넌트 기준으로 판단해 대상에서 뺍니다.
+
+   이렇게 뺀 것은 조용히 넘기지 말고 **"대상 아님"과 그 이유를 결과에 남깁니다** — 검토를 안 한 것과 검토해서 해당 없음은 다릅니다.
+
+2. 대상에는 SEED 컴포넌트를 쓰는 파일(패키지 import·스니펫 import 모두)뿐 아니라 **같은 UI를 직접 구현한 파일도 포함**됩니다. 후자라면 기준을 "이 자체 구현이 가이드라인을 지키는가"로 읽고, 특히 SEED가 이미 제공하는 것을 다시 만들지 않았는지 확인합니다.
+
+   자체 구현인지는 **이름이 아니라 렌더되는 UI의 역할**로 판단합니다 — 이름이 `NoResultCallout`이어도 실제로 텍스트만 그리면 Callout이 아니고, 이름에 Sheet가 없어도 하단에서 올라오는 모달이면 Bottom Sheet입니다. 한 자체 구현이 여러 문서에 걸치면 **주 역할 문서로 판정하고** 나머지는 근거에 병기합니다.
+
+   **역할로 판단한다는 건 식별자 검색으로는 못 찾는다는 뜻입니다.** `<Flex height="1px" />`는 Divider이고 `<img>` 한 줄은 Image Frame인데 이름에 아무 단서가 없습니다. 식별자로 후보를 모은 뒤, **SEED를 쓰는 파일들이 무엇을 그리는지 훑어** 이런 것들을 찾습니다. 프로젝트가 커서 전수로 못 보면 **어디까지 봤는지를 결과에 밝힙니다** — 안 본 곳을 본 것처럼 쓰지 않습니다.
+
+   **"다시 만들었다"는 판정 전에 설치된 패키지가 그 컴포넌트를 실제로 export하는지 확인합니다.** 설치 버전에 없으면 자체 구현은 불가피한 선택이었으므로 재구현 위반이 아닙니다. 다만 **거기서 멈추면 안 됩니다** — 최신 버전에는 있을 수 있고, 그게 업그레이드해야 할 이유 중 하나입니다.
+
+   이 판정에는 **설치 버전을 알아야 하므로 Step 1의 사실 수집이 선행입니다.**
+
+   | 설치 버전에 | 최신에 | 판정 |
+   |---|---|---|
+   | 없음 | 없음 | 침묵 — 진짜로 만들 수밖에 없었습니다 |
+   | 없음 | **있음** | **`info`** — "업그레이드하면 {스니펫/컴포넌트}로 대체할 수 있습니다". remediation에서 [outdated-version](./outdated-version.md) 항목과 연결합니다 |
+   | 있음 | — | 재구현 `warn` |
+
+   **표를 타기 전에 역할이 정말 같은지부터 봅니다.** 이름이나 겉모습이 비슷해도 하는 일이 다르면 재구현이 아니고, 그런 것은 판정하지 말고 기각 목록에 사유와 함께 남깁니다(서버 페이지네이션 자동완성을 Select로 보지 않는 것처럼).
+
+   **"없음"은 두 가지를 다 확인해야 성립합니다.** 패키지 export만 보면 스니펫으로 배포되는 컴포넌트를 놓칩니다 — 스니펫은 애초에 export에 나타나지 않습니다.
+
+   - **없음** = 패키지에 export 없음 **그리고** 그 세대 registry에 아이템 없음
+   - **있음** = 둘 중 **하나라도** 있으면. 한쪽에서 찾았으면 다른 쪽은 조회하지 않아도 됩니다
+
+   세대 registry는 **`v1-0`·`v1-1`·`v1-2` 세 개만 존재합니다**(`https://v1-2.seed-design.io/__registry__/{framework}/{registryId}/index.json`). 아카이브된 버전만 서브도메인이 있어서, `v2-0` 같은 주소는 404가 아니라 **도메인이 없어 연결 자체가 실패합니다.** 이걸 "registry에 없음"으로 읽으면 안 됩니다 — 설치본이 2.x 이상이면 세대 registry를 조회할 방법이 없으므로 **패키지 export만으로 판정하고**, 그 사실을 근거에 밝힙니다. 조회 실패와 아이템 부재는 다릅니다.
+
+   **export를 찾을 때 진입점 `lib/index.d.ts`를 grep하면 안 됩니다 — barrel이라 모든 컴포넌트가 0건입니다.** `export * from './components'` 두어 줄이 전부라, 이걸 "없음"으로 읽으면 **설치본에 멀쩡히 있는 컴포넌트까지 면책되어** 재구현 위반이 통째로 사라집니다. `lib/components/index.d.ts`까지 따라가거나, 재export를 따라가는 방식으로 확인합니다.
+
+   조회 URL은 두 가지이고 형태가 다릅니다. 인덱스는 `.../{registryId}/index.json`이지만 **개별 아이템은 `.../{registryId}/{itemId}.json`입니다** — `.../{itemId}/index.json`은 404입니다. 아이템 본문(스니펫 코드)까지 봐야 하는 경우에만 개별 조회를 씁니다.
+
+   **문서 id로 registry를 조회하면 안 됩니다 — 이름이 다를 수 있습니다.** 문서 id를 그대로 넣어 생긴 404를 "최신에도 없음"으로 읽으면 **침묵으로 빠져 안내가 사라집니다.** 공통 가이드라인 문서의 Platform 표를 먼저 보고, 선택된 Doctor 프로필의 컴포넌트 id 매핑과 구현 인덱스로 실제 이름을 찾습니다.
+
+   매핑에 없는 이름이 404면 **없다고 결론내지 말고** registry 전체 인덱스에서 후보를 확인합니다. 부분 문자열 후보만으로 확정하지 말고 Platform 표와 구현 인덱스로 검증합니다.
+
+   그래도 없으면 스니펫이 아니라 **선택된 플랫폼 패키지의 export로 제공되는 컴포넌트**일 수 있습니다 — registry에 없다는 것이 곧 없다는 뜻은 아닙니다. 공통 문서, 플랫폼 구현 인덱스, registry, 패키지 export를 모두 확인한 뒤에만 해당 플랫폼 구현이 없다고 판정합니다.
+
+   대체 수단이 스니펫이면 `add`로 설치하는 것이고 패키지 export면 import하면 되므로, 어느 쪽인지 remediation에 밝힙니다. 스니펫이면 canonical `@requires`를 함께 확인해 업그레이드가 선행인지도 적습니다.
+
+3. 가이드라인 문서가 존재하는 컴포넌트만 검토합니다. `https://seed-design.io/llms/components/{id}.txt`가 404면 **조용히 건너뜁니다** — 읽을 기준이 없으면 판정할 것도 없습니다. 문서 목록은 `https://seed-design.io/components/llms.txt`에서 확인할 수 있습니다. 목록에서 `(Deprecated)`로 표기된 컴포넌트를 쓰고 있다면 가이드라인 준수를 따지기 전에 [no-deprecated-component](./no-deprecated-component.md)의 대상입니다 — 어차피 걷어낼 것의 사용법을 교정할 이유가 없습니다.
+
+## 판정 기준 도출 — 2단계
+
+기준 도출이 실행마다 갈리는 것을 막기 위해 **기계 단계와 판단 단계를 분리합니다.** 1단계는 명령의 출력이 곧 목록이라 누가 돌려도 같고, 2단계만 판단입니다.
+
+### 1단계: 기계 수집 (판단 금지)
+
+가이드라인 문서를 **원문(raw)으로** 받습니다 — 요약을 거치면 `body` 속성이 사라집니다.
+
+```bash
+curl -s https://seed-design.io/llms/components/{id}.txt -o /tmp/{id}.txt
+```
+
+두 종류를 **기계적으로** 수집합니다. 문장의 내용을 읽고 고르는 게 아니라, 패턴에 걸리는 것 전부입니다.
+
+1. **Do/Dont 기준** — **문서 전체**의 `body="…"` 속성 전부. 하나가 기준 하나입니다. Properties 절에도 있고(`callout`이 그렇습니다) 거기 것도 규범이라 범위를 좁히지 않습니다.
+   ```bash
+   grep -o 'body="[^"]*"' /tmp/{id}.txt
+   ```
+   **`{/* … */}`로 주석 처리된 블록 안의 것은 뺍니다.** 문서에 안 보이는 내용이라 판정할 수 없습니다(`text-input`에 실제로 있습니다). 이것도 눈으로 고르는 게 아니라 주석 범위를 보고 자르는 기계 작업입니다.
+2. **볼드 규칙** — **Guidelines 절**(문서에 따라 `Usage`) **안에서만**. 그 안의 `**…**` 중 **마침표로 끝나는 문장형만**(`…다.` / `…요.`). 소제목(`**High emphasis**`, `**Small (480px)**`)은 문장형이 아니라 자동으로 탈락합니다. 절 이름을 하나로만 보면 `Usage`만 있는 문서(`result-section`)에서 바닥이 실행마다 갈립니다 — 2단계와 같은 범위를 봅니다. **Guidelines도 Usage도 없는 문서는 이 항목이 0건입니다**(문서 전체로 넓히지 않습니다).
+
+**두 수집의 범위가 다릅니다** — `body`는 문서 전체, 볼드는 Guidelines/Usage 절 안. 일부러 그렇습니다: `body`는 어디에 있든 Do/Dont 규범이지만, 볼드는 절 밖에서 강조·라벨로 널리 쓰여 규범과 구별되지 않습니다.
+
+수집한 항목에 **문서 등장 순서로 id를 붙입니다**: `{docId}.dont-1`, `{docId}.do-1`, `{docId}.rule-1`. 같은 문서에 같은 규칙이므로 누가 돌려도 같은 id가 나옵니다. 이 id를 verdicts의 `criterionId`에 답니다.
+
+**이 목록이 바닥(floor)입니다 — 전부 verdicts에 나와야 하고, 하나라도 건너뛰면 그 실행은 불완전합니다.** 개수가 `coverage.expected`가 됩니다. 내용이 겹쳐 보여도 합치지 않습니다 — 판단이 끼는 순간 id가 흔들립니다. 중복이면 둘 다에 같은 판정을 적으면 됩니다.
+
+`expected`는 **"수집된 후보 수"이지 "위반이 될 수 있는 기준 수"가 아닙니다.** 문서마다 `body`를 쓰는 방식이 달라서, 규칙 문장인 것도 있고("두 문장 이상이면 모든 문장에 마침표를 붙입니다.") 이미지 라벨이거나("박스 전체를 터치 영역으로 사용") 나쁜 예 해설인 것도 있습니다("길고 시스템 관점의 표현이라 한눈에 들어오지 않습니다."). **후보를 고르지 말고 전부 담되, 판정에서 가릅니다** — 고르는 순간 실행마다 개수가 달라져 바닥이 무너집니다.
+
+목록에 들어왔다고 판정 규칙이 달라지지 않습니다 — **아래 "판정 규칙"이 1단계 항목에도 그대로 적용됩니다.**
+
+- 허용문(`~할 수 있습니다`) → `pass`, 근거에 "허용문 — 위반 불성립"
+- 라벨·예시 해설처럼 **규범이 아닌 것** → `pass`, 근거에 "규칙 문장 아님"
+- 임계값 없는 문장("글이 너무 길어지지 않도록") → `pass`가 아니라 **`unknown`(`no-threshold`)**
+
+**바닥이 0건인 문서가 절반쯤 됩니다**(56개 중 27개 — Guidelines 절이 없거나 Do/Dont·볼드를 안 쓰는 문서). 그때는 `expected: 0`을 그대로 적고 2단계로만 판정합니다. 정상이지 결함이 아닙니다.
+
+### 2단계: 판단 보충
+
+1단계가 못 잡는 규범을 문서에서 도출해 **얹습니다**(1단계를 대체하지 않습니다).
+
+- **Guidelines**(문서에 따라 `Usage`) 절이 주 출처입니다. 다른 절(Properties 등)에도 규범 문장이 있으면 함께 뽑고, 어느 절에서 왔는지 표시합니다.
+- 규범 문장은 **위반이 성립하는 모든 문장**입니다 — "~해야 합니다"·"~하지 않습니다"·"~을 권장합니다"뿐 아니라 **볼드가 아닌 제약 평서문**("최대 480px까지 보여집니다", "스크롤은 content area 내에서 발생합니다")도 포함합니다. 허용문("~할 수 있습니다")과 Figma 전용 팁은 제외합니다.
+- 도출분은 `criterionId` 없이 번호를 매기고, 개수가 `coverage.derived`가 됩니다.
+
+### 판정 규칙 (두 단계 공통)
+
+- **문서에 임계값이 없는 문장은 기준으로 세지 않습니다.** "본문은 간결하게 작성하고"처럼 무엇이 위반인지 문서가 정하지 않은 것은, 정보가 부족한 게 아니라 판정 자체가 불가능합니다. 굳이 표에 올린다면 `unknown`으로 두고 **"문서에 임계값 없음"**을 사유로 밝혀, 코드를 못 본 `unknown`과 구별합니다. 문서 문장끼리 모순되거나 뜻이 갈리는 경우도 같습니다 — 관대하게 `pass`로 넘기지 말고 `unknown` + **어느 문장이 어떻게 충돌하는지**를 적습니다. 그게 문서를 고칠 근거가 됩니다.
+- 조건이 **런타임 데이터로 결정돼** 판정할 수 없을 때(선택지 개수가 서버 응답에서 온다 등)는 `unknown`이되, **코드에 상한이나 분기가 아예 없다는 사실은 근거에 적습니다.** "확정 불가"와 "확정 불가인데 가드도 없음"은 읽는 사람에게 전혀 다른 정보입니다.
+- 조건절이 붙은 기준("~하는 경우 …")은, **조건이 성립하지 않음을 코드로 확인했으면 `pass`**, 조건 성립 여부 자체를 알 수 없으면 `unknown`입니다.
+- 다만 조건이 성립하는 순간 **구조적으로 충족이 불가능한 기준**(예: 스크롤 영역 자체가 없어 "스크롤은 content area 내에서"를 만족할 방법이 없음)은 조건 불성립이어도 **`fail`로 내고 위반 목록에 올립니다.** 지금 안 터졌을 뿐 고칠 것이 있는 상태이고, `pass` 밑의 각주로 두면 결과에서 사라집니다. message에 "지금은 조건이 성립하지 않지만"을 밝혀 시급성을 구별합니다. 조건절이 없는 기준도 같습니다 — 사용처가 0개여도 구조적으로 못 지키면 `fail`입니다.
+- **`unknown`과 가르는 기준은 "가드가 없다"가 아니라 "충족할 방법이 없다"입니다.** 문구를 짧게 쓰면 지킬 수 있는 기준은 상한 코드가 없어도 `unknown`(+가드 없음을 근거에 병기)이고, 분기 자체가 없어 어떻게 해도 못 지키는 기준은 `fail`입니다.
+- 자체 구현에 **사용처가 0개**면 그 사실을 표 앞에 한 번 밝히고, 그 때문에 조건 불성립이 되는 기준들은 **한 행으로 묶습니다.** 같은 이유의 `pass`가 표의 절반을 채우면 읽을 수 없습니다.
+- 동작 기준(드래그 닫기처럼 무조건 성립해야 하는 것)은 핸들러의 **존재**가 아니라 **실제로 발화하는지**까지 확인합니다 — 마운트 시점이나 조건부 렌더 때문에 리스너가 영영 부착되지 않는 경우가 실제로 있습니다(effect deps가 `[]`인데 대상이 조건 렌더되는 조합).
+- 뽑은 기준에 번호를 매겨 항목별로 판정하고, 판정 표에 그 문장을 그대로 인용합니다.
+- **문서에 없는 규칙을 만들지 않습니다.** 일반적인 모범 사례라도 문서에 근거가 없으면 판정하지 않습니다.
+- 위반이 **공유된 구현 한 곳**에서 비롯되면(공통 컴포넌트가 잘못 만들어져 여러 화면이 그걸 쓰는 경우) 공유 지점 1건으로 묶고, 소비처는 remediation에 나열합니다. 소비처마다 한 건씩 내면 고칠 곳은 하나인데 목록만 길어집니다.
+
+## 수정 방법
+
+위반의 성격에 따라 안내가 달라집니다.
+
+- **자체 구현이 SEED와 겹칠 때** — 가이드라인 문서의 Guidelines 절과 선택된 플랫폼 구현 API를 대조해, 직접 구현한 동작 중 제공되는 prop으로 대체할 수 있는 것부터 정리합니다. 한 컴포넌트를 교체하면 그 파일의 위반이 한꺼번에 사라지는 경우가 많으므로, 개별 위반을 하나씩 고치라고 안내하기 전에 교체부터 제안합니다.
+- **prop·값이 문서와 다를 때** — 문서가 규정한 값과 현재 값을 나란히 보여줍니다.
+- **문구·타이밍·에셋처럼 코드 밖 결정일 때** — 어느 문장이 근거인지 인용하고, 바꿔야 할 상수나 리소스의 위치를 짚습니다. prop으로 풀리지 않습니다.
+- **의도적 이탈로 보일 때** — 도메인 요구와 문서 권장이 충돌할 수 있습니다(설문에서 기본 선택을 주면 응답이 편향되는 등). 위반으로 적되 그 가능성을 함께 밝히고, 유지한다면 판단 근거를 코드에 남기라고 안내합니다.
+
+SEED 내부 구현이 충족해주는 기준은 근거를 두 개 답니다 — **소비자가 override하지 않았다는 라인**과 **패키지 안의 근거**. 소비자 코드만 적으면 왜 통과인지 읽는 사람이 확인할 수 없습니다.
+
+## 읽어야 할 문서 (컴포넌트별)
+
+- 디자인 가이드라인 (판정 기준의 출처): `https://seed-design.io/llms/components/{id}.txt`
+- 선택된 플랫폼 구현 API: **가이드라인 문서 안의 Platform 표에서 선택된 플랫폼 링크를 우선합니다.** 공통 문서 id로 플랫폼 URL을 만들면 이름이나 중첩 경로가 달라 404가 날 수 있습니다. 링크가 없으면 선택된 Doctor 프로필의 구현 인덱스와 id 매핑에서 찾습니다. Platform 표가 선택된 플랫폼에 `Not Planned`라고 명시하면 구현이 없는 것이니 재구현을 지적하지 않습니다.
+
+  Platform 표의 링크는 CMS에 손으로 적는 값이라 **가끔 낡습니다.** 열었는데 본문이 비어 있으면(상태 코드가 200이어도 그럴 수 있습니다 — 제목도 본문도 없는 껍데기가 옵니다) 그 링크를 믿지 말고 프로필의 구현 인덱스에서 실제 이름을 찾습니다. 링크가 낡았다는 사실 자체는 `doc-conflict`로 남겨 SEED 쪽이 고치게 합니다.
+
+  **표가 없거나 선택된 플랫폼 칸이 링크가 아닌 문서도 있습니다.** 그때도 프로필의 구현 인덱스에서 이름을 찾습니다 — 링크가 없다고 구현이 없는 게 아닙니다. 구현이 없다는 판단은 `Not Planned` 명시 또는 프로필이 정한 전체 가용성 확인 뒤에만 합니다.
+````
+
+결과 형식 \[#결과-형식]
+
+진단 결과는 **YAML 파일 하나**로 나옵니다. 채팅 요약과 HTML 리포트는 이 파일에서 파생되므로, 형태가 여러 갈래로 갈리지 않고 하나가 원본입니다. 파일은 임시 디렉토리에 쓰이며 \**진단 대상 프로젝트에는 아무것도 쓰지 않습니다.*\*
+
+```yaml
+schemaVersion: 1
+meta:
+  target: /path/to/project
+  workspace: services/webview # 모노레포일 때만
+  framework: react
+  date: "2026-08-02"
+  seed:
+    installed: { "@seed-design/react": 1.2.0, "@seed-design/css": 1.2.0 }
+    latest: { "@seed-design/react": 2.1.0, "@seed-design/css": 2.3.0 }
+summary: { error: 1, warn: 30, info: 21 }
+findings:
+  - rule: seed/component-guidelines/bottom-sheet
+    severity: warn
+    message: 시트 너비에 480px 상한이 없습니다.
+    file: src/components/bottom-sheet/FlexibleBottomSheet.css.ts
+    line: 14
+    criterion: "6"
+    references: [https://seed-design.io/llms/components/bottom-sheet.txt]
+    remediation: |
+      문서 근거와 수정 방법. 안내일 뿐 실행하지 않습니다.
+verdicts:
+  - rule: seed/component-guidelines/bottom-sheet
+    criterion: "6"
+    text: Bottom Sheet는 화면 너비 최대 480px까지 보여집니다.
+    verdict: fail
+    evidence: FlexibleBottomSheet.css.ts:16 — maxWidth 없음
+rejected:
+  - candidate: aria-labelledby 미해결 참조
+    reason: 문서에 접근성 문장이 없어 "문서에 없는 규칙을 만들지 않는다"로 기각
+```
+
+필드 \[#필드]
+
+| 키           | 무엇             | 왜                                                               |
+| ----------- | -------------- | --------------------------------------------------------------- |
+| `meta.seed` | 설치본과 최신 버전     | 판정의 근거이자, 나중에 같은 진단을 재현할 때 필요한 상태입니다                            |
+| `summary`   | severity별 개수   | 점수나 등급은 매기지 않습니다                                                |
+| `findings`  | 고칠 것 (`fail`만) | `criterion`으로 `verdicts`의 같은 항목과 이어져 근거를 찾아갈 수 있습니다             |
+| `verdicts`  | 판정 표 **전체**    | 통과한 것과 판정하지 못한 것을 숨기지 않습니다. 통과했다는 사실보다 **무엇을 근거로 통과했는지**가 중요합니다 |
+| `rejected`  | 검토했지만 뺀 후보     | 이게 없으면 "이건 왜 지적 안 했지?"에 답할 수 없습니다                               |
+
+`verdict`는 네 가지입니다. `pass`와 `fail` 외에, 판정할 정보가 없으면 `unknown`, 도구에 접근하지 못했으면 `not-verified`입니다. \**확인하지 못한 것을 위반으로 바꾸지 않습니다.*\*
+
+스키마 \[#스키마]
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://seed-design.io/schemas/doctor-report.json",
+  "title": "SEED Doctor Report",
+  "description": "SEED 사용 상태 진단의 결과. 채팅 요약과 HTML 리포트는 이 파일에서 파생되므로, 이것이 단일 소스다.",
+  "type": "object",
+  "required": ["schemaVersion", "meta", "summary", "findings", "verdicts", "rejected"],
+  "additionalProperties": true,
+  "properties": {
+    "schemaVersion": {
+      "description": "필드가 깨지는 변경에만 올린다.",
+      "const": 1
+    },
+    "meta": {
+      "type": "object",
+      "required": ["target", "framework", "date"],
+      "additionalProperties": true,
+      "properties": {
+        "target": { "type": "string", "description": "진단 대상 프로젝트 경로" },
+        "workspace": {
+          "type": "string",
+          "description": "모노레포일 때 SEED를 쓰는 워크스페이스. 단일 패키지면 생략."
+        },
+        "framework": { "enum": ["react", "lynx"] },
+        "date": { "type": "string", "description": "YYYY-MM-DD" },
+        "seed": {
+          "type": "object",
+          "description": "사실 수집 결과. 판정의 근거이자 재현에 필요한 상태.",
+          "additionalProperties": true,
+          "properties": {
+            "installed": {
+              "type": "object",
+              "description": "선언 범위가 아니라 실제 설치본",
+              "additionalProperties": { "type": "string" }
+            },
+            "latest": {
+              "type": "object",
+              "additionalProperties": { "type": "string" }
+            },
+            "snippetRoot": { "type": "string" }
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "description": "findings의 severity별 개수. 손으로 세지 말고 findings에서 계산한다. 점수나 등급은 두지 않는다.",
+      "required": ["error", "warn", "info"],
+      "additionalProperties": false,
+      "properties": {
+        "error": { "type": "integer", "minimum": 0 },
+        "warn": { "type": "integer", "minimum": 0 },
+        "info": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "description": "고칠 것. verdict가 fail인 항목만 들어온다.",
+      "items": {
+        "type": "object",
+        "required": ["rule", "severity", "message", "file", "references", "remediation"],
+        "additionalProperties": true,
+        "properties": {
+          "rule": {
+            "type": "string",
+            "description": "네임스페이스 포함 룰 id. 예: seed/component-guidelines/bottom-sheet"
+          },
+          "severity": { "enum": ["error", "warn", "info"] },
+          "message": { "type": "string", "description": "위반 내용 한 문장" },
+          "file": {
+            "type": "string",
+            "description": "target 기준 상대 경로. 대상 파일이 아니라 실제로 고쳐야 할 위치. 원인이 하나여서 여러 파일을 한 건으로 묶었으면 대표 파일이나 그 파일들을 담은 디렉토리를 적고, 전체 목록은 files에 둔다."
+          },
+          "files": {
+            "type": "array",
+            "description": "한 건으로 묶인 파일 전체. 원인이 하나이고 조치도 한 번일 때만 쓴다(패키지가 뒤져 스니펫이 전건 구세대인 경우 등).",
+            "items": { "type": "string" }
+          },
+          "line": { "type": "integer", "minimum": 1 },
+          "criterion": {
+            "type": "string",
+            "description": "2단계(판단 보충) 기준 번호. verdicts의 같은 값과 이어진다. 여러 기준을 묶었으면 콤마로 나열한다. 예: \"1,4,8\""
+          },
+          "criterionIds": {
+            "type": "array",
+            "description": "1단계(기계 수집) 기준에서 나온 finding이면 그 id들. verdicts의 criterionId와 이어진다. criterion에 id 문자열을 섞어 넣지 않는다 — 그쪽은 번호용이다.",
+            "items": { "type": "string" }
+          },
+          "references": {
+            "type": "array",
+            "description": "판정 근거가 된 문서 URL. 필수다 — 무엇을 읽어야 하는지가 빠지면 사용자는 고칠 방법을 찾지 못한다. 리포트에도 접지 않고 노출한다.",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
+          "remediation": {
+            "type": "string",
+            "description": "수정 방법 안내. 실행이 아니라 안내다."
+          }
+        }
+      }
+    },
+    "verdicts": {
+      "type": "array",
+      "description": "판정 표 전체. 통과한 것과 판정하지 못한 것을 숨기지 않는다 — 무엇을 근거로 통과했는지가 결과의 신뢰도다.",
+      "items": {
+        "type": "object",
+        "required": ["rule", "verdict"],
+        "additionalProperties": true,
+        "properties": {
+          "rule": { "type": "string" },
+          "criterionId": {
+            "type": "string",
+            "description": "1단계(기계 수집) 기준이면 그 id. 예: bottom-sheet.dont-1. 문서 등장 순서로 붙으므로 실행이 달라도 같은 기준은 같은 id다 — 실행 간 비교가 이것으로 된다. 2단계(판단 보충) 기준에는 없다."
+          },
+          "criterion": {
+            "type": "string",
+            "description": "기준 번호. 같은 이유로 묶인 항목들은 콤마로 나열한다. 예: \"1,4,8\""
+          },
+          "text": {
+            "type": "string",
+            "description": "문서에서 도출한 기준 문장 그대로. 도출한 절도 함께."
+          },
+          "verdict": {
+            "description": "not-verified는 도구에 접근하지 못한 것(네트워크 차단 등)이고, unknown은 접근은 됐으나 판정할 수 없는 것이다. 코드 경로를 끝까지 추적했으면 확인한 것이며, 앱을 실행해볼 것을 요구하지 않는다.",
+            "enum": ["pass", "fail", "unknown", "not-verified"]
+          },
+          "unknownReason": {
+            "description": "verdict가 unknown일 때 왜인지. doc-conflict는 SEED 문서 자체의 결함이라 조치 주체가 다르다 — 나머지 셋은 진단 대상 프로젝트의 사정이지만 이것은 SEED가 문서를 고쳐야 한다.",
+            "enum": ["no-threshold", "runtime-dependent", "not-in-code", "doc-conflict"]
+          },
+          "scope": {
+            "type": "string",
+            "description": "여러 기준을 한 행으로 묶었을 때 그 묶음이 성립하는 이유. 예: \"자체 구현에 사용처가 0개라 조건이 성립하지 않음\". 표를 읽는 사람이 왜 한 줄로 뭉쳐 있는지 알 수 있어야 한다."
+          },
+          "evidence": {
+            "type": "string",
+            "description": "파일:줄, 또는 판정하지 못한 이유. 대상이 0개여서 통과했으면 그 사실."
+          }
+        }
+      }
+    },
+    "coverage": {
+      "type": "array",
+      "description": "component-guidelines를 판정한 컴포넌트마다 한 항목. expected(1단계 기계 수집 개수) ≠ judged(verdicts에 실제 나온 1단계 기준 수)면 기준을 건너뛴 실행이다 — 그 자체가 결함이다.",
+      "items": {
+        "type": "object",
+        "required": ["rule", "expected", "judged"],
+        "additionalProperties": true,
+        "properties": {
+          "rule": { "type": "string" },
+          "expected": { "type": "integer", "minimum": 0 },
+          "judged": { "type": "integer", "minimum": 0 },
+          "derived": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "2단계(판단 보충)로 얹은 기준 수"
+          }
+        }
+      }
+    },
+    "rejected": {
+      "type": "array",
+      "description": "위반으로 올릴까 하다 뺀 후보. 실제로 살펴본 것만 적고 칸을 채우려고 지어내지 않는다.",
+      "items": {
+        "type": "object",
+        "required": ["candidate", "reason"],
+        "additionalProperties": true,
+        "properties": {
+          "candidate": { "type": "string" },
+          "reason": { "type": "string" },
+          "file": { "type": "string" }
+        }
+      }
+    }
+  }
+}
+```
+
+doctor.md \[#doctormd]
+
+````md
+# 사용 상태 진단 (doctor)
+
+프로젝트가 SEED를 어떻게 쓰고 있는지 진단하고, **무엇을 읽고 어떻게 고쳐야 하는지**까지 알려주는 공통 절차입니다. 플랫폼별 패키지·API·registry·룰 목록은 별도 Doctor 프로필에서 받습니다.
+
+`compat`(스니펫 버전 호환성 검사)·`upgrade.md`(changelog 기반 업그레이드 진단)와 역할이 다릅니다. doctor는 **코드 사용 상태**를 봅니다.
+
+## 목차
+
+- [지원 범위](#지원-범위)
+- [원칙](#원칙)
+- [공통 지식 지도](#공통-지식-지도)
+- [Step 1: 대상과 플랫폼 확정](#step-1-대상과-플랫폼-확정)
+- [Step 2: 프로필 로드와 사실 수집](#step-2-프로필-로드와-사실-수집)
+- [Step 3: 룰 순회](#step-3-룰-순회)
+- [Step 4: 출력](#step-4-출력)
+- [HTML 리포트](#html-리포트)
+
+## 지원 범위
+
+| 플랫폼 | Doctor 프로필 | 상태 |
+|---|---|---|
+| React | [doctor-react.md](doctor-react.md) | 지원 |
+| Lynx | `doctor-lynx.md` | 미지원 |
+
+Lynx Doctor를 요청하면 현재 지원되지 않는다고 알리고 중단합니다. **React 프로필·React 룰을 대신 실행하거나 React 판정을 Lynx 결과로 내지 않습니다.** 리포트 스키마가 `framework: lynx`를 허용하는 것은 향후 확장을 위한 계약이지 현재 지원을 뜻하지 않습니다.
+
+Lynx Doctor는 향후 `doctor-lynx.md`에 패키지·API·registry와 적용 룰 목록을 정의하고 위 표를 활성화하면 같은 공통 절차를 사용할 수 있습니다.
+
+## 원칙
+
+- **진단은 read-only입니다.** "수정 방법"은 사용자에게 전달할 안내이지 지금 실행할 명령이 아닙니다. 코드 변경·재설치는 사용자가 별도로 지시할 때만 합니다.
+- **판단 근거는 문서이지 기억이 아닙니다.** 각 룰이 가리키는 참조 문서를 실제로 읽고 대조합니다.
+- **확신이 없으면 보고하지 않습니다.** 모든 판정에는 코드 증거(파일:라인)가 있어야 합니다.
+- **지원되는 플랫폼 프로필 없이는 실행하지 않습니다.** 다른 플랫폼 프로필을 대체재로 쓰지 않습니다.
+- **이 진단은 상위 모델을 전제합니다.** 경량 모델이 기준 수집과 기각 목록을 통째로 건너뛰는 것이 실측됐습니다 — 형식은 통과하므로 결과만 봐서는 모릅니다. 아래 `coverage`가 그걸 드러내는 장치입니다.
+
+## 공통 지식 지도
+
+| 지식 | 위치 |
+|------|------|
+| 컴포넌트 디자인 가이드라인 (판정 기준의 출처) | `https://seed-design.io/llms/components/{id}.txt` — **원문(raw)으로 읽기** |
+| 가이드라인 문서 목록 | `https://seed-design.io/components/llms.txt` |
+| Deprecated 현황 | `https://seed-design.io/llms/docs/migration/deprecations.txt` |
+| 패키지 최신 버전 | `npm view {pkg} version` — 막힌 환경이면 `curl -s https://registry.npmjs.org/{pkg}/latest`에서 `version` 필드를 뽑습니다(`jq`가 없으면 다른 수단으로). `/latest` 없이 받으면 400KB가 넘으니 반드시 붙입니다 |
+
+## Step 1: 대상과 플랫폼 확정
+
+사용자가 지정한 경로만 대상으로 삼습니다. 경로를 지정하지 않은 모노레포라면 먼저 SEED를 쓰는 워크스페이스를 찾습니다. `seed-design.json`과 `@seed-design/*` 직접 의존성이 워크스페이스마다 따로 있을 수 있고, SEED를 쓰지 않는 워크스페이스는 대상이 아닙니다.
+
+파일을 찾을 때 `node_modules`와 `.claude/worktrees`는 **반드시 제외합니다** — 워크트리 사본의 `seed-design.json`이 잡히면 같은 프로젝트를 중복 진단하게 됩니다.
+
+대상 워크스페이스마다 `SKILL.md`의 플랫폼 판별 순서(사용자 명시 → `seed-design.json.framework` → 직접 의존성)를 적용합니다. 여러 플랫폼이나 여러 대상 워크스페이스가 잡히면 사용자에게 진단 대상을 확인합니다. 단서가 없을 때 React로 간주하지 않습니다.
+
+플랫폼이 정해지면 위 지원표를 확인합니다. 활성화된 프로필이 없으면 여기서 중단합니다.
+
+## Step 2: 프로필 로드와 사실 수집
+
+선택된 Doctor 프로필을 읽고 다음 값을 받습니다.
+
+- 구현·스타일링 패키지와 버전 기준 패키지
+- 구현 API 인덱스와 업그레이드 문서
+- canonical·설치 세대 registry
+- 컴포넌트 문서 id와 구현·registry id 매핑
+- 이 플랫폼에 적용할 룰 파일 목록
+
+그다음 프로젝트 상태를 파악합니다.
+
+1. `seed-design.json` — `framework`와 `path`(스니펫 디렉토리) 확인
+2. `package.json` — 프로필에 속하는 직접 설치 `@seed-design/*` 패키지와 버전
+3. `path`가 가리키는 디렉토리 — `@file` 헤더가 있는 설치 스니펫 목록
+
+## Step 3: 룰 순회
+
+**프로필의 "적용 룰" 목록에 있는 파일만 읽고 검사합니다.** `rules/` 디렉토리의 모든 파일을 자동으로 실행하지 않습니다. 룰이 존재해도 선택된 플랫폼 프로필이 활성화하지 않았다면 그 Doctor의 판정 기준이 아닙니다.
+
+각 룰은 공통 형식을 따릅니다: 무엇을 판정하는지(severity) → 왜 → 판정 방법 → 수정 방법 → 읽어야 할 문서. 룰 안의 "선택된 플랫폼 프로필"은 Step 2에서 읽은 값입니다. 판정이 나오면 룰의 수정 방법과 근거 문서를 결과에 함께 싣습니다.
+
+[component-guidelines](../rules/component-guidelines.md)는 컴포넌트별로 반복 적용합니다 — 코드에 등장하는 컴포넌트마다 가이드라인 문서를 읽고 기준을 도출해 판정합니다.
+
+## Step 4: 출력
+
+**결과는 YAML 파일 하나로 씁니다.** 채팅 요약과 HTML 리포트는 이 파일에서 파생되므로, 형태가 셋으로 갈리지 않고 하나가 원본입니다. 스키마는 `assets/doctor-report.schema.json`이고, 필드 설명이 거기 들어 있습니다.
+
+```yaml
+schemaVersion: 1
+meta:
+  target: /path/to/project
+  workspace: services/webview      # 모노레포일 때만. 단일 패키지면 생략
+  framework: react        # 선택된 Doctor 프로필
+  date: "2026-08-02"   # 따옴표 필수 — 없으면 파서에 따라 날짜 객체가 되어 스키마(string)를 어깁니다
+  seed:
+    installed: { "@seed-design/react": 1.2.0, "@seed-design/css": 1.2.0 }
+    latest: { "@seed-design/react": 2.1.0, "@seed-design/css": 2.3.0 }
+    snippetRoot: ./src/seed-design
+summary: { error: 0, warn: 1, info: 0 }   # findings에서 계산한 값 (아래는 축약 예시라 1건만 실었습니다)
+findings:
+  - rule: seed/component-guidelines/bottom-sheet
+    severity: warn
+    message: 시트 너비에 480px 상한이 없습니다.
+    file: services/webview/src/components/bottom-sheet/FlexibleBottomSheet.css.ts
+    line: 16
+    criterion: "6"
+    references: [https://seed-design.io/llms/components/bottom-sheet.txt]
+    remediation: |
+      문서 근거와 수정 방법. 지금 실행하지 말고 안내만 합니다.
+coverage:
+  - rule: seed/component-guidelines/bottom-sheet
+    expected: 2    # 1단계 기계 수집 개수 (bottom-sheet 문서 기준 실제 값)
+    judged: 2      # verdicts에 나온 1단계 기준 수 — expected와 다르면 그 자체가 결함
+    derived: 6     # 2단계 판단 보충 개수
+verdicts:
+  - rule: seed/component-guidelines/bottom-sheet
+    criterionId: bottom-sheet.rule-1   # 1단계 기준이면 고정 id
+    text: Snap Point를 추가하는 경우 Handle을 반드시 표시해야 합니다.
+    verdict: pass
+    evidence: 스냅 포인트 미구현 — 조건 불성립
+  - rule: seed/component-guidelines/bottom-sheet
+    criterion: "6"                      # 2단계 도출분은 번호만
+    text: Bottom Sheet는 화면 너비 최대 480px까지 보여집니다.
+    verdict: fail
+    evidence: FlexibleBottomSheet.css.ts:16 — maxWidth 없음
+rejected:
+  - candidate: aria-labelledby 미해결 참조
+    reason: 문서에 접근성 문장이 없어 "문서에 없는 규칙을 만들지 않는다"로 기각
+```
+
+**대상 프로젝트에 쓰지 않습니다.** 진단은 read-only입니다. 기본은 임시 디렉토리에 쓰고 경로를 알려주며, 저장 위치는 사용자가 정합니다.
+
+**채팅에는 요약과 "먼저 할 것"만 냅니다.** 파일에 전문이 있으므로 같은 내용을 반복하지 않습니다.
+
+**`summary`는 손으로 세지 말고 `findings`에서 계산합니다.** 스무 건이 넘어가면 사람이 틀립니다.
+
+범위를 나눠 여러 번 돌렸으면 조각들을 하나로 합칩니다. `findings`·`verdicts`·`rejected`는 이어 붙이고, **`summary`는 합친 뒤 다시 셉니다**(조각별 카운트를 더하면 안 됩니다). `meta`는 어느 조각 것이든 같아야 하며, 다르면 서로 다른 대상을 진단한 것이니 합치지 않습니다.
+
+### coverage — 건너뛰기를 드러내는 장치
+
+component-guidelines를 판정했으면 **컴포넌트마다 `coverage`를 채웁니다.**
+
+- `expected` — 룰의 1단계(기계 수집)가 낸 기준 수. 같은 문서에 같은 명령이므로 누가 세도 같아야 합니다.
+- `judged` — verdicts에 실제로 나온 1단계 기준 수(`criterionId` 있는 것).
+- `derived` — 2단계(판단 보충)로 얹은 기준 수.
+
+**`expected ≠ judged`면 그 자체가 보고할 결함입니다** — 기준을 건너뛴 실행입니다. 채팅 요약에도 커버리지를 한 줄 남깁니다: "bottom-sheet: 기준 2+6개 판정".
+
+### verdicts — 판정 표
+
+도출한 기준 전 항목이 들어갑니다. 통과한 것도 판정하지 못한 것도 숨기지 않습니다. 1단계 기준에는 `criterionId`를 답니다.
+
+`unknown`은 정보가 부족해 판정할 수 없을 때 씁니다. **확인해서 통과한 것(`pass`)과 확인하지 못한 것을 같은 칸에 넣지 않습니다.** 왜 판정하지 못했는지는 `unknownReason`으로 구분합니다.
+
+| 값 | 뜻 | 조치 주체 |
+|---|---|---|
+| `no-threshold` | 문서가 임계값을 정하지 않음 | — |
+| `runtime-dependent` | 조건이 런타임 데이터로 결정됨 | 프로젝트 |
+| `not-in-code` | 코드에서 확인할 수 없음 | 프로젝트 |
+| `doc-conflict` | **문서 문장끼리 모순되거나 두 가지로 읽힘** | **SEED** — 문서를 고쳐야 합니다 |
+
+`doc-conflict`만 조치 주체가 다릅니다. 나머지는 진단 대상 프로젝트의 사정이지만 이건 우리 문서의 결함이라, 같은 칸에 섞이면 고칠 사람에게 안 갑니다. 어느 문장이 어떻게 충돌하는지를 `evidence`에 적습니다.
+
+검사는 했는데 **대상이 0개**여서 통과한 경우(조건절 기준의 조건 불성립, 해당 패키지 없음 등)도 `pass`이되, 근거에 "대상 없음"이라고 밝힙니다. 통과했다는 사실보다 **무엇을 근거로 통과했는지**가 읽는 사람에게 중요합니다.
+
+**확인 자체를 못 했으면 `not-verified`로 적고, 무엇이 남았는지 씁니다.** 네트워크가 막혀 문서를 못 읽었거나 명령을 실행할 수 없었던 경우입니다. **검증 공백을 위반으로 바꾸지 않습니다** — 확인하지 못한 것은 "확인하지 못했다"이지 "잘못됐다"가 아닙니다. 진단을 못 돌린 영역이 있으면 그 사실을 밝히고, 안 본 곳을 본 것처럼 쓰지 않습니다.
+
+`not-verified`는 **도구에 접근하지 못한 경우**입니다. 코드를 읽어 경로를 끝까지 추적했으면 확인한 것입니다 — 진단은 정적으로 수행하며 앱을 실행해볼 것을 요구하지 않습니다.
+
+### findings — 고칠 것
+
+`fail`인 항목만 들어갑니다. verdicts와 이어지는 필드가 둘입니다 — 2단계 기준에서 나왔으면 `criterion`(번호), **1단계 기준에서 나왔으면 `criterionIds`**(id 배열). 섞지 않습니다. 읽는 사람이 근거 기준을 찾아갈 수 있어야 합니다.
+
+**severity 기준**:
+
+- `error` — 지금 사용자에게 실제 문제가 되는 것 (동작 오류, 깨진 접근성 참조, 잘못된 값)
+- `warn` — 지금 동작하지만 고쳐야 하는 것 (디자인 시스템 이탈, 제공되는 기능의 중복 구현, 다음 메이저에서 깨질 것)
+- `info` — 알고만 있으면 되는 것
+
+한 기준에 위반 근거가 여러 개면 **파일마다 한 건씩** 냅니다(한 파일 안의 여러 줄은 한 건으로 묶고 remediation에 각각을 적습니다). 단 원인이 하나이고 조치도 한 번이면 **전체를 한 건으로 묶습니다** — 패키지가 뒤져서 스니펫이 전건 구세대인 경우가 그렇습니다. 묶을 때는 `file`에 대표 파일이나 그것들을 담은 디렉토리를 적고 **전체 목록은 `files`에** 둡니다. 여러 기준을 함께 묶었으면 `criterion`에 콤마로 나열합니다(`"1,4,8"`).
+
+### rejected — 검토했지만 기각한 것
+
+위반으로 올릴까 하다가 뺀 후보를 짧게 남깁니다. 다음 중 하나면 기각입니다.
+
+- 문서나 룰이 현재 구현을 **허용**한다
+- 증거가 부족하다
+- 프로젝트의 **의도적인 선택**으로 보인다(설문에서 기본 선택을 주지 않는 것처럼, 도메인 요구가 문서 권장과 충돌하는 경우)
+- 고쳐도 사용자에게 이득 없이 복잡도만 는다
+
+**실제로 살펴본 후보만 적습니다.** 칸을 채우려고 지어내지 않습니다. 이 목록이 있어야 읽는 사람이 "이건 왜 지적 안 했지?"를 묻지 않습니다.
+
+### summary
+
+severity별 카운트(error N · warn N · info N)입니다. 점수나 등급은 매기지 않습니다. **개수를 늘리려고 지적을 만들지 않습니다** — 짧은 결과나 위반 0건도 정상입니다.
+
+## HTML 리포트
+
+진단 결과가 수십 건이 되면 텍스트로는 읽히지 않습니다. 판정 표가 길고, 원인이 하나인데 위반이 여러 건이고, remediation이 각각 한 문단이라 어디부터 봐야 할지 알기 어렵습니다. 사용자가 리포트를 원하면 **위 YAML을 입력으로 삼아** `assets/report-template.html`의 구조를 그대로 쓰고 데이터만 채웁니다.
+
+- **한 파일로 완결시킵니다.** CDN·외부 폰트·스크립트를 쓰지 않습니다. 진단 대상 프로젝트에 SEED가 설치돼 있지 않아도, 인터넷이 없어도 열려야 합니다. 접기는 `<details>`로 하고 JS를 넣지 않습니다.
+- YAML과 같은 디렉토리에 씁니다(대상 프로젝트에는 쓰지 않습니다).
+- **"먼저 할 것"을 맨 위에 둡니다.** finding 목록을 severity 순으로 늘어놓는 것으로는 부족합니다 — 원인이 같은 것끼리 묶어 순서를 제시해야 유저가 다음에 뭘 할지 압니다. 패키지가 뒤져서 스니펫이 전건 구세대인 경우처럼, 조치 하나가 여러 finding을 한꺼번에 지웁니다.
+- 텍스트 보고에 있던 것을 빼지 않습니다 — 판정 표(통과·판정 불가 포함), 기각한 후보, 카운트가 그대로 들어갑니다.
+````
+
+doctor-react.md \[#doctor-reactmd]
+
+```md
+# React Doctor 프로필
+
+`references/doctor.md`가 `framework: react` 프로젝트를 진단할 때 사용하는 플랫폼 입력입니다. 이 파일을 읽은 뒤 아래 적용 룰만 실행합니다.
+
+## 패키지
+
+| 역할 | 패키지 |
+|---|---|
+| 구현 | `@seed-design/react` |
+| 스타일·토큰 | `@seed-design/css` |
+| 선택적 화면 전환 | `@seed-design/stackflow` |
+
+React 패키지 조합의 호환 기준은 `@seed-design/react` 버전 라인을 기준으로 정합니다. 직접 선언한 다른 `@seed-design/*` 패키지는 `outdated-version`의 최신 버전 비교 대상에 포함하되, React 업그레이드 가이드를 그 패키지의 버전 번호로 선택하지 않습니다.
+
+## 문서와 registry
+
+| 지식 | 위치 |
+|---|---|
+| React 구현 인덱스 | `https://seed-design.io/react/llms.txt` |
+| React 구현 API | 공통 컴포넌트 문서의 Platform 표에 있는 React 링크를 우선하고, 없거나 비어 있으면 React 구현 인덱스에서 찾기 |
+| canonical registry | `https://seed-design.io/__registry__/react/{registryId}/index.json` |
+| 개별 스니펫 | `https://seed-design.io/__registry__/react/{registryId}/{itemId}.json` |
+| 설치 세대 registry | `https://v1-0.seed-design.io`, `https://v1-1.seed-design.io`, `https://v1-2.seed-design.io` |
+| React 1 업그레이드·호환표 | `https://seed-design.io/llms/react/updates/upgrade/v1.txt` |
+| React 2 업그레이드 | `https://seed-design.io/llms/react/updates/upgrade/v2.txt` |
+| changelog | `react/updates/changelog/{packageSlug}/{version}` |
+
+아카이브 registry는 `v1-0`, `v1-1`, `v1-2` 세 개만 존재합니다. `v2-0` 같은 주소는 아이템 부재가 아니라 도메인 조회 실패이므로 "registry에 없음"의 근거로 사용하지 않습니다. 설치본이 2.x 이상이면 패키지 export와 현재 registry만으로 판정하고 그 한계를 근거에 밝힙니다.
+
+registry 인덱스와 개별 아이템의 URL 형태가 다릅니다. 개별 아이템은 `{itemId}/index.json`이 아니라 `{itemId}.json`입니다.
+
+## 컴포넌트 id 매핑
+
+공통 컴포넌트 문서의 Platform 표를 먼저 사용합니다. 다음 불일치는 Doctor에서 자주 쓰이는 알려진 매핑입니다.
+
+| 공통 문서 id | React registry·구현 id |
+|---|---|
+| `attachment-input` | `attachment-field`, `attachment-display-field` 및 각 `-reorderable` 변형 |
+| `text-input` | registry `text-field`; API `text-field-input`, `text-field-textarea` |
+| `radio` | `radio-group` |
+| `input-button` | `field-button` |
+| `top-navigation` | `app-screen` |
+
+코드 식별자 검색에서 사용할 추가 매핑:
+
+| 공통 문서 id | React 식별자 |
+|---|---|
+| `floating-action-button` | `Fab`, `ExtendedFab`, `FloatingActionButton` |
+| `text-input` | `TextField`, `TextInput`, `Textarea` |
+
+표에 없는 이름이 없다고 바로 결론내리지 않습니다. 공통 문서의 Platform 표 → React 구현 인덱스 → registry 전체 인덱스 → 패키지 export 순으로 확인합니다. Platform 표가 `Not Planned`라면 React 구현이 없는 것입니다.
+
+패키지 export는 `lib/index.d.ts` 한 파일만 grep하지 말고 재export를 따라 `lib/components/index.d.ts`까지 확인합니다. 진입점 barrel만 보고 export가 없다고 판정하면 안 됩니다.
+
+## 업그레이드 정책
+
+버전 기준 패키지는 `@seed-design/react`입니다.
+
+- 설치본이 1.2 미만이면 React 1 가이드로 1.2까지 올린 뒤 React 2 가이드를 따릅니다. 1.x 패키지 조합은 React 1 호환표를 실제로 확인합니다.
+- 설치본이 1.2 이상 2.0 미만이면 React 2 가이드를 따릅니다.
+- changelog 카테고리는 항상 `react`이고, 패키지 slug는 `@seed-design/`을 제거한 값입니다.
+- 특정 버전 이후 변경사항은 `npx @seed-design/cli@latest docs react/updates/changelog/{packageSlug}/{version} --raw`로 조회합니다.
+
+## 적용 룰
+
+다음 네 파일만 React Doctor에서 실행합니다.
+
+1. `../rules/outdated-version.md`
+2. `../rules/snippet-generation.md`
+3. `../rules/no-deprecated-component.md`
+4. `../rules/component-guidelines.md`
+
+각 룰에서 말하는 "선택된 플랫폼 프로필"은 이 파일의 패키지·문서·registry·id 매핑을 뜻합니다.
+```
