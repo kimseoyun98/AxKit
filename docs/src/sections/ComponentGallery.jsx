@@ -80,7 +80,7 @@ import {
   SidePanelFooter,
 } from '../components/ui/side-panel';
 import SideNavigation1 from '../components/ui/blocks/side-navigation-01';
-import { TextField, TextFieldInput } from '../components/ui/text-field';
+import { TextField, TextFieldInput, TextFieldTextarea } from '../components/ui/text-field';
 import { Slider } from '../components/ui/slider';
 import { Snackbar, SnackbarProvider, useSnackbarAdapter, StaticSnackbar } from '../components/ui/snackbar';
 import { Switch } from '../components/ui/switch';
