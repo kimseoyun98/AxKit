@@ -4,7 +4,7 @@
  * @requires @seed-design/css@^2.0.0
  **/
 
-import { NavigationMenu as SeedNavigationMenu, PrefixIcon, SuffixIcon } from "@seed-design/react";
+import { NavigationMenu as SeedNavigationMenu, PrefixIcon, SuffixIcon, Portal } from "@seed-design/react";
 import * as React from "react";
 
 export interface NavigationMenuProviderProps extends SeedNavigationMenu.ProviderProps {}
@@ -26,11 +26,13 @@ export interface NavigationMenuContentProps extends SeedNavigationMenu.ContentPr
 export const NavigationMenuContent = React.forwardRef<HTMLDivElement, NavigationMenuContentProps>(
   ({ children, positionerContainer, ...props }, ref) => {
     return (
-      <SeedNavigationMenu.Positioner container={positionerContainer}>
-        <SeedNavigationMenu.Content ref={ref} {...props}>
-          <SeedNavigationMenu.ScrollArea>{children}</SeedNavigationMenu.ScrollArea>
-        </SeedNavigationMenu.Content>
-      </SeedNavigationMenu.Positioner>
+      <Portal>
+        <SeedNavigationMenu.Positioner container={positionerContainer}>
+          <SeedNavigationMenu.Content ref={ref} {...props}>
+            <SeedNavigationMenu.ScrollArea>{children}</SeedNavigationMenu.ScrollArea>
+          </SeedNavigationMenu.Content>
+        </SeedNavigationMenu.Positioner>
+      </Portal>
     );
   },
 );
