@@ -1358,20 +1358,22 @@ function ProgressCircleDemo() {
           </div>
         </div>
 
-        {/* Determinate Progress Control Slider */}
+        {/* Determinate Progress Control Slider (Official SEED Slider) */}
         {!isIndeterminate && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--seed-dimension-x3)', width: '100%', paddingTop: 'var(--seed-dimension-x2)' }}>
             <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: tone === "staticWhite" ? 'var(--seed-color-palette-static-white)' : 'var(--seed-color-fg-neutral-muted)', minWidth: 44, textAlign: 'right' }}>
               {progress}%
             </span>
-            <input
-              type="range"
-              min="0"
-              max="100"
-              value={progress}
-              onChange={(e) => setProgress(Number(e.target.value))}
-              style={{ flexGrow: 1, cursor: 'pointer' }}
-            />
+            <div style={{ flexGrow: 1 }}>
+              <Slider
+                min={0}
+                max={100}
+                values={[progress]}
+                onValuesChange={(vals) => setProgress(vals[0])}
+                getAriaLabel={() => "진행률 조절 슬라이더"}
+                hideValueIndicator
+              />
+            </div>
           </div>
         )}
       </div>
