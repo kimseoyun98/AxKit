@@ -1,33 +1,29 @@
 import * as React from "react";
 import { appBar } from "@seed-design/css/recipes/app-bar";
 import { appBarMain } from "@seed-design/css/recipes/app-bar-main";
-import { IconChevronLeftLine, IconXmarkLine } from "@karrotmarket/react-monochrome-icon";
-import { ActionButton } from "./action-button";
+import {
+  IconChevronLeftLine,
+  IconXmarkLine,
+  IconChevronDownLine,
+} from "@karrotmarket/react-monochrome-icon";
+import { NotificationBadge, NotificationBadgePositioner } from "./notification-badge";
 
 export interface TopNavigationProps extends React.HTMLAttributes<HTMLElement> {
   variant?: "root" | "standard";
-  title?: string;
-  subtitle?: string;
-  left?: React.ReactNode;
-  right?: React.ReactNode;
-  onBack?: () => void;
-  onClose?: () => void;
+  theme?: "cupertino" | "android";
+  tone?: "layer" | "transparent";
 }
 
 export function TopNavigation({
   variant = "standard",
-  title,
-  subtitle,
-  left,
-  right,
-  onBack,
-  onClose,
+  theme = "cupertino",
+  tone = "layer",
   className,
   style,
+  children,
   ...props
 }: TopNavigationProps) {
-  const styles = appBar({ theme: "cupertino", tone: "layer" });
-  const mainStyles = appBarMain({ layout: subtitle ? "withSubtitle" : "titleOnly", theme: "cupertino" });
+  const styles = appBar({ theme, tone });
 
   return (
     <header
@@ -39,115 +35,252 @@ export function TopNavigation({
         alignItems: "center",
         justifyContent: "space-between",
         width: "100%",
-        height: "56px",
+        height: theme === "android" ? "56px" : "44px",
         padding: "0 var(--seed-dimension-x3)",
-        backgroundColor: "var(--seed-color-bg-layer-default)",
-        border: "1px solid var(--seed-color-stroke-neutral-weak)",
-        borderRadius: "var(--seed-dimension-x3)",
+        backgroundColor: tone === "transparent" ? "transparent" : "var(--seed-color-bg-layer-default)",
+        borderBottom: tone === "transparent" ? "none" : "1px solid var(--seed-color-stroke-neutral-weak)",
         boxSizing: "border-box",
         ...style,
       }}
       {...props}
     >
-      {/* Left Area */}
-      <div style={{ display: "flex", alignItems: "center", gap: "var(--seed-dimension-x2)", minWidth: 40, flexShrink: 0 }}>
-        {left ? (
-          left
-        ) : onBack ? (
-          <button
-            type="button"
-            onClick={onBack}
-            aria-label="뒤로가기"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 40,
-              height: 40,
-              border: "none",
-              background: "transparent",
-              cursor: "pointer",
-              borderRadius: "var(--seed-dimension-x2)",
-              color: "var(--seed-color-fg-neutral)",
-            }}
-          >
-            <IconChevronLeftLine style={{ width: 24, height: 24 }} />
-          </button>
-        ) : onClose ? (
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="닫기"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 40,
-              height: 40,
-              border: "none",
-              background: "transparent",
-              cursor: "pointer",
-              borderRadius: "var(--seed-dimension-x2)",
-              color: "var(--seed-color-fg-neutral)",
-            }}
-          >
-            <IconXmarkLine style={{ width: 24, height: 24 }} />
-          </button>
-        ) : null}
-      </div>
+      {children}
+    </header>
+  );
+}
 
-      {/* Main Title Area */}
-      <div
-        className={mainStyles.root}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: variant === "standard" ? "center" : "flex-start",
-          justifyContent: "center",
-          flex: 1,
-          minWidth: 0,
-          textAlign: variant === "standard" ? "center" : "left",
-          padding: "0 var(--seed-dimension-x2)",
-          overflow: "hidden",
-        }}
-      >
-        {title && (
-          <span
-            className={mainStyles.title}
-            style={{
-              fontSize: "var(--seed-font-size-t4)",
-              fontWeight: "var(--seed-font-weight-bold)",
-              color: "var(--seed-color-fg-neutral)",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              width: "100%",
-            }}
-          >
+export interface TopNavigationLeftProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+export function TopNavigationLeft({ className, style, children, ...props }: TopNavigationLeftProps) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--seed-dimension-x1)",
+        minWidth: 40,
+        flexShrink: 0,
+        ...style,
+      }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
+export interface TopNavigationTitleProps extends React.HTMLAttributes<HTMLDivElement> {
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
+  align?: "left" | "center";
+  onClickTitle?: () => void;
+}
+
+export function TopNavigationTitle({
+  title,
+  subtitle,
+  align = "center",
+  onClickTitle,
+  className,
+  style,
+  children,
+  ...props
+}: TopNavigationTitleProps) {
+  const mainStyles = appBarMain({ layout: subtitle ? "withSubtitle" : "titleOnly", theme: "cupertino" });
+
+  return (
+    <div
+      className={mainStyles.root}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: align === "center" ? "center" : "flex-start",
+        justifyContent: "center",
+        flex: 1,
+        minWidth: 0,
+        textAlign: align === "center" ? "center" : "left",
+        padding: "0 var(--seed-dimension-x2)",
+        overflow: "hidden",
+        ...style,
+      }}
+      {...props}
+    >
+      {children ? (
+        children
+      ) : onClickTitle ? (
+        <button
+          type="button"
+          onClick={onClickTitle}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "var(--seed-dimension-x1)",
+            border: "none",
+            background: "transparent",
+            cursor: "pointer",
+            padding: "var(--seed-dimension-x1) var(--seed-dimension-x2)",
+            borderRadius: "var(--seed-dimension-x2)",
+            color: "var(--seed-color-fg-neutral)",
+          }}
+        >
+          <span style={{ fontSize: "var(--seed-font-size-t4)", fontWeight: "var(--seed-font-weight-bold)" }}>
             {title}
           </span>
-        )}
-        {subtitle && (
-          <span
-            className={mainStyles.subtitle}
-            style={{
-              fontSize: "var(--seed-font-size-t2)",
-              color: "var(--seed-color-fg-neutral-subtle)",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              width: "100%",
-            }}
-          >
-            {subtitle}
-          </span>
-        )}
-      </div>
+          <IconChevronDownLine style={{ width: 16, height: 16 }} />
+        </button>
+      ) : (
+        <>
+          {title && (
+            <span
+              className={mainStyles.title}
+              style={{
+                fontSize: "var(--seed-font-size-t4)",
+                fontWeight: "var(--seed-font-weight-bold)",
+                color: "var(--seed-color-fg-neutral)",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                width: "100%",
+              }}
+            >
+              {title}
+            </span>
+          )}
+          {subtitle && (
+            <span
+              className={mainStyles.subtitle}
+              style={{
+                fontSize: "var(--seed-font-size-t2)",
+                color: "var(--seed-color-fg-neutral-subtle)",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                width: "100%",
+              }}
+            >
+              {subtitle}
+            </span>
+          )}
+        </>
+      )}
+    </div>
+  );
+}
 
-      {/* Right Area */}
-      <div style={{ display: "flex", alignItems: "center", gap: "var(--seed-dimension-x2)", minWidth: 40, justifyContent: "flex-end", flexShrink: 0 }}>
-        {right}
-      </div>
-    </header>
+export interface TopNavigationRightProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+export function TopNavigationRight({ className, style, children, ...props }: TopNavigationRightProps) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "var(--seed-dimension-x1)",
+        minWidth: 40,
+        justifyContent: "flex-end",
+        flexShrink: 0,
+        ...style,
+      }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
+export interface TopNavigationIconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  badge?: React.ReactNode | number;
+  badgeSize?: "small" | "large";
+}
+
+export function TopNavigationIconButton({
+  badge,
+  badgeSize = "large",
+  ariaLabel,
+  children,
+  className,
+  style,
+  ...props
+}: TopNavigationIconButtonProps & { "aria-label"?: string }) {
+  return (
+    <div style={{ position: "relative", display: "inline-flex" }}>
+      <button
+        type="button"
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: 36,
+          height: 36,
+          border: "none",
+          background: "transparent",
+          cursor: "pointer",
+          borderRadius: "var(--seed-dimension-x2)",
+          color: "var(--seed-color-fg-neutral)",
+          transition: "background 0.15s ease",
+          ...style,
+        }}
+        {...props}
+      >
+        {children}
+      </button>
+      {badge !== undefined && badge !== null && (
+        <NotificationBadgePositioner attach="icon" size={badgeSize}>
+          <NotificationBadge size={badgeSize}>{badgeSize === "large" ? badge : null}</NotificationBadge>
+        </NotificationBadgePositioner>
+      )}
+    </div>
+  );
+}
+
+export interface TopNavigationBackButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+
+export function TopNavigationBackButton(props: TopNavigationBackButtonProps) {
+  return (
+    <button
+      type="button"
+      aria-label="뒤로가기"
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: 36,
+        height: 36,
+        border: "none",
+        background: "transparent",
+        cursor: "pointer",
+        borderRadius: "var(--seed-dimension-x2)",
+        color: "var(--seed-color-fg-neutral)",
+      }}
+      {...props}
+    >
+      <IconChevronLeftLine style={{ width: 24, height: 24 }} />
+    </button>
+  );
+}
+
+export interface TopNavigationCloseButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+
+export function TopNavigationCloseButton(props: TopNavigationCloseButtonProps) {
+  return (
+    <button
+      type="button"
+      aria-label="닫기"
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: 36,
+        height: 36,
+        border: "none",
+        background: "transparent",
+        cursor: "pointer",
+        borderRadius: "var(--seed-dimension-x2)",
+        color: "var(--seed-color-fg-neutral)",
+      }}
+      {...props}
+    >
+      <IconXmarkLine style={{ width: 24, height: 24 }} />
+    </button>
   );
 }

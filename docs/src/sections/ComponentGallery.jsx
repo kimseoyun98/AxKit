@@ -22,6 +22,9 @@ import {
   IconLocationpinFill,
   IconDot3HorizontalChatbubbleLeftFill,
   IconBellFill,
+  IconBellLine,
+  IconMagnifyingglassLine,
+  IconAndroidshareLine,
   IconPlusLine,
 } from "@karrotmarket/react-monochrome-icon";
 
@@ -98,7 +101,15 @@ import {
 } from '../components/ui/responsive-side-panel';
 import { TagGroupRoot, TagGroupItem } from '../components/ui/tag-group';
 import { LoadingIndicator } from '../components/ui/loading-indicator';
-import { TopNavigation } from '../components/ui/top-navigation';
+import {
+  TopNavigation,
+  TopNavigationLeft,
+  TopNavigationTitle,
+  TopNavigationRight,
+  TopNavigationIconButton,
+  TopNavigationBackButton,
+  TopNavigationCloseButton,
+} from '../components/ui/top-navigation';
 import {
   NavigationMenuProvider,
   NavigationMenuRoot,
@@ -127,7 +138,6 @@ import IconChevronRightLine from "@karrotmarket/react-monochrome-icon/IconChevro
 import IconPencilLine from "@karrotmarket/react-monochrome-icon/IconPencilLine";
 import IconTrashcanLine from "@karrotmarket/react-monochrome-icon/IconTrashcanLine";
 import IconStoreLine from "@karrotmarket/react-monochrome-icon/IconStoreLine";
-import IconBellLine from "@karrotmarket/react-monochrome-icon/IconBellLine";
 import IconGearFill from "@karrotmarket/react-monochrome-icon/IconGearFill";
 import { RadioGroup as RadioGroupPrimitive } from "@seed-design/react/primitive";
 import IconLockFill from "@karrotmarket/react-monochrome-icon/IconLockFill";
@@ -3694,34 +3704,63 @@ function TimePickerDemo() {
 
 function TopNavigationDemo() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 520, margin: "0 auto" }}>
-      {/* Root Type */}
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 540, margin: "0 auto" }}>
+      {/* 1. Root Type (최상위 탭: 동네 선택 드롭다운 + 검색/알림 버튼) */}
       <VStack gap="x2" width="full">
-        <Text textStyle="t3Bold">Root 타입 (최상위 탭)</Text>
-        <TopNavigation
-          variant="root"
-          title="홈 피드"
-          right={
-            <HStack gap="x1">
-              <ActionButton variant="neutralWeak" size="small">검색</ActionButton>
-              <ActionButton variant="brandSolid" size="small">글쓰기</ActionButton>
-            </HStack>
-          }
-        />
+        <Text textStyle="t3Bold">1. Root 타입 (최상위 탭 - Clickable Title + Notification Badge)</Text>
+        <TopNavigation variant="root">
+          <TopNavigationLeft>
+            <TopNavigationTitle
+              align="left"
+              title="역삼1동"
+              onClickTitle={() => alert("동네 선택 시트 열기")}
+            />
+          </TopNavigationLeft>
+          <TopNavigationRight>
+            <TopNavigationIconButton aria-label="검색" onClick={() => alert("검색 클릭")}>
+              <IconMagnifyingglassLine style={{ width: 22, height: 22 }} />
+            </TopNavigationIconButton>
+            <TopNavigationIconButton badge={3} badgeSize="large" aria-label="알림" onClick={() => alert("알림 목록 열기")}>
+              <IconBellLine style={{ width: 22, height: 22 }} />
+            </TopNavigationIconButton>
+          </TopNavigationRight>
+        </TopNavigation>
       </VStack>
 
-      {/* Standard Type */}
+      {/* 2. Standard Type (2-Depth 상세 화면: 뒤로가기 + 타이틀/서브타이틀 + 공유 버튼) */}
       <VStack gap="x2" width="full">
-        <Text textStyle="t3Bold">Standard 타입 (2-Depth 상세 화면)</Text>
-        <TopNavigation
-          variant="standard"
-          title="상품 상세 보기"
-          subtitle="당근 마켓 플레이스"
-          onBack={() => alert("뒤로가기 클릭")}
-          right={
-            <ActionButton variant="neutralWeak" size="small">공유</ActionButton>
-          }
-        />
+        <Text textStyle="t3Bold">2. Standard 타입 (2-Depth 상세 - Back Button)</Text>
+        <TopNavigation variant="standard">
+          <TopNavigationLeft>
+            <TopNavigationBackButton onClick={() => alert("이전 화면으로 뒤로가기")} />
+          </TopNavigationLeft>
+          <TopNavigationTitle
+            align="center"
+            title="중고거래 상품 상세"
+            subtitle="당근 마켓 플레이스"
+          />
+          <TopNavigationRight>
+            <TopNavigationIconButton aria-label="공유하기" onClick={() => alert("공유하기 클릭")}>
+              <IconAndroidshareLine style={{ width: 22, height: 22 }} />
+            </TopNavigationIconButton>
+          </TopNavigationRight>
+        </TopNavigation>
+      </VStack>
+
+      {/* 3. Standard Type (Modal / Flow: 닫기 X 버튼 + 완료 액션 버튼) */}
+      <VStack gap="x2" width="full">
+        <Text textStyle="t3Bold">3. Standard 타입 (모달/독립 플로우 - Close Button)</Text>
+        <TopNavigation variant="standard">
+          <TopNavigationLeft>
+            <TopNavigationCloseButton onClick={() => alert("모달 플로우 종료 (닫기)")} />
+          </TopNavigationLeft>
+          <TopNavigationTitle align="center" title="중고거래 글쓰기" />
+          <TopNavigationRight>
+            <ActionButton variant="brandSolid" size="small" onClick={() => alert("등록 완료")}>
+              완료
+            </ActionButton>
+          </TopNavigationRight>
+        </TopNavigation>
       </VStack>
     </div>
   );
