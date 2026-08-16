@@ -19,17 +19,18 @@ export interface LoadingIndicatorProps extends Omit<SeedLoadingIndicatorProps, "
  * @see https://seed-design.io/react/components/loading-indicator
  */
 export const LoadingIndicator = React.forwardRef<
-  React.ElementRef<typeof SeedLoadingIndicator>,
+  SVGSVGElement,
   LoadingIndicatorProps
 >(
   (
-    { children, indicator = <ProgressCircle size="inherit" tone="inherit" />, ...otherProps },
+    { children, size = "24", tone = "neutral", ...otherProps },
     ref,
   ) => {
     return (
-      <SeedLoadingIndicator ref={ref} indicator={indicator} {...otherProps}>
+      <span style={{ display: "inline-flex", alignItems: "center", gap: "var(--seed-dimension-x2)" }}>
+        <ProgressCircle ref={ref} size={size as any} tone={tone as any} isIndeterminate {...otherProps} />
         {children}
-      </SeedLoadingIndicator>
+      </span>
     );
   },
 );
