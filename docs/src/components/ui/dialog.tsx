@@ -96,11 +96,7 @@ export interface DialogActionProps
     ActionButtonProps {}
 
 export const DialogAction = forwardRef<HTMLButtonElement, DialogActionProps>((props, ref) => {
-  return (
-    <ContentDialog.Action asChild>
-      <ActionButton {...props} ref={ref} />
-    </ContentDialog.Action>
-  );
+  return <ActionButton {...props} ref={ref} />;
 });
 
 DialogAction.displayName = "DialogAction";

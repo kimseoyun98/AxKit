@@ -77,11 +77,7 @@ export interface AlertDialogActionProps
 
 export const AlertDialogAction = forwardRef<HTMLButtonElement, AlertDialogActionProps>(
   (props, ref) => {
-    return (
-      <Dialog.Action asChild>
-        <ActionButton {...props} ref={ref} />
-      </Dialog.Action>
-    );
+    return <ActionButton {...props} ref={ref} />;
   },
 );
 
