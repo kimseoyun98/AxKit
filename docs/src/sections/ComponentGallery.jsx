@@ -1322,8 +1322,7 @@ function ProgressCircleDemo() {
               tone={tone}
               minValue={0}
               maxValue={100}
-              isIndeterminate={isIndeterminate}
-              value={isIndeterminate ? 0 : progress}
+              value={isIndeterminate ? null : progress}
             />
             <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-medium)', color: tone === "staticWhite" ? 'var(--seed-color-palette-static-white)' : 'var(--seed-color-fg-neutral-subtle)' }}>
               Size 40 (전체 페이지)
@@ -1337,8 +1336,7 @@ function ProgressCircleDemo() {
               tone={tone}
               minValue={0}
               maxValue={100}
-              isIndeterminate={isIndeterminate}
-              value={isIndeterminate ? 0 : progress}
+              value={isIndeterminate ? null : progress}
             />
             <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-medium)', color: tone === "staticWhite" ? 'var(--seed-color-palette-static-white)' : 'var(--seed-color-fg-neutral-subtle)' }}>
               Size 24 (컴포넌트 수준)
@@ -3424,8 +3422,8 @@ function NavigationMenuDemo() {
       <NavigationMenuProvider>
         <NavigationMenuRoot>
           <NavigationMenuTrigger asChild>
-            <ActionButton variant="neutralSolid" size="medium" suffixIcon={<Icon svg={<IconChevronRightLine />} />}>
-              Payverse 가맹점 메뉴
+            <ActionButton variant="neutralSolid" size="medium">
+              Payverse 가맹점 메뉴 <SuffixIcon svg={<IconChevronRightLine />} />
             </ActionButton>
           </NavigationMenuTrigger>
           <NavigationMenuContent>
