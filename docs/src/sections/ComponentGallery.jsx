@@ -3465,7 +3465,7 @@ function ResponsiveSidePanelDemo() {
           <ResponsiveSidePanelBody>
             <VStack gap="x4" padding="x4">
               <Text textStyle="t2Medium" color="fg.neutralSubtle">조회 기간 설정</Text>
-              <DatePicker defaultValue={new Date()} />
+              <DatePicker defaultValue={{ year: 2026, month: 8, day: 17 }} />
             </VStack>
           </ResponsiveSidePanelBody>
           <ResponsiveSidePanelFooter>
