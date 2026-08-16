@@ -23,7 +23,7 @@ export default function FooterBlock() {
     >
       <VStack gap="x4" align="flex-start">
         <HStack gap="x6" wrap align="center">
-          <Footer.LinkText size="medium" href="#">
+          <Footer.LinkText size="medium" href="#" style={{ fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral)" }}>
             개인정보처리방침
           </Footer.LinkText>
           <Footer.LinkText size="medium" href="#">

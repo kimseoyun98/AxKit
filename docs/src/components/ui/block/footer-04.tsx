@@ -128,13 +128,13 @@ export default function FooterBlock() {
         {/* Divider */}
         <Box
           width="100%"
-          style={{ height: "1px", backgroundColor: "var(--seed-v3-color-stroke-neutral)" }}
+          style={{ height: "1px", backgroundColor: "var(--seed-color-stroke-neutral-weak)" }}
         />
 
         {/* Lower: Links + Company Info + Copyright + SNS */}
         <VStack gap="x4" align="flex-start" width="100%">
           <HStack gap="x6" wrap align="center">
-            <Footer.LinkText size="medium" href="#">
+            <Footer.LinkText size="medium" href="#" style={{ fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral)" }}>
               개인정보처리방침
             </Footer.LinkText>
             <Footer.LinkText size="medium" href="#">
