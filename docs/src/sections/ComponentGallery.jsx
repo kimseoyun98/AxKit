@@ -1185,10 +1185,10 @@ function IdentityPlaceholderDemo() {
         <div style={{ width: 80, height: 80, borderRadius: '50%', overflow: 'hidden' }}>
           <IdentityPlaceholder identity={identity} />
         </div>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)', textAlign: 'center', lineHeight: 1.6 }}>
+        <Text color="fg.neutralSubtle" fontSize="t2" align="center" style={{ lineHeight: 1.6 }}>
           Avatar 이미지가 없거나 표시할 수 없는 상태일 때 쓰이는 대체 이미지입니다.<br />
           <b>identity="{identity}"</b>
-        </div>
+        </Text>
       </div>
     </div>
   );
@@ -1239,10 +1239,10 @@ function ImageFrameDemo() {
           alt="상품 피드 이미지"
           fallback={<ContentPlaceholder type="commerce" />}
         />
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)', textAlign: 'center', lineHeight: 1.5 }}>
+        <Text color="fg.neutralSubtle" fontSize="t2" align="center" style={{ lineHeight: 1.5 }}>
           상품/피드 업로드 이미지 전용 프레임입니다.<br />
           이미지 로드 실패 시 <b>ContentPlaceholder (commerce/image/article)</b>가 대체 노출됩니다.
-        </div>
+        </Text>
       </div>
     </div>
   );
@@ -1921,7 +1921,7 @@ function ReactionButtonDemo() {
 
       {/* Interactive ReactionButton Showcase */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', width: '100%', alignItems: 'center' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-subtle)' }}>클릭하여 리액션 피드백을 전달해 보세요</div>
+        <Text color="fg.neutralSubtle" fontSize="t2">클릭하여 리액션 피드백을 전달해 보세요</Text>
 
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x3)', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}>
           {/* Reaction 1: 도움돼요 */}
