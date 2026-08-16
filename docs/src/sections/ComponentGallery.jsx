@@ -3707,7 +3707,9 @@ function TopNavigationDemo() {
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 540, margin: "0 auto" }}>
       {/* 1. Root Type (최상위 탭: 동네 선택 드롭다운 + 검색/알림 버튼) */}
       <VStack gap="x2" width="full">
-        <Text textStyle="t3Bold">1. Root 타입 (최상위 탭 - Clickable Title + Notification Badge)</Text>
+        <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
+          <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant="root"</code> (최상위 메인 탭 - 드롭다운 타이틀 & 뱃지)
+        </span>
         <TopNavigation variant="root">
           <TopNavigationLeft>
             <TopNavigationTitle
@@ -3729,7 +3731,9 @@ function TopNavigationDemo() {
 
       {/* 2. Standard Type (2-Depth 상세 화면: 뒤로가기 + 타이틀/서브타이틀 + 공유 버튼) */}
       <VStack gap="x2" width="full">
-        <Text textStyle="t3Bold">2. Standard 타입 (2-Depth 상세 - Back Button)</Text>
+        <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
+          <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant="standard"</code> (2-Depth 상세 화면 - 뒤로가기 & 서브타이틀)
+        </span>
         <TopNavigation variant="standard">
           <TopNavigationLeft>
             <TopNavigationBackButton onClick={() => alert("이전 화면으로 뒤로가기")} />
@@ -3749,7 +3753,9 @@ function TopNavigationDemo() {
 
       {/* 3. Standard Type (Modal / Flow: 닫기 X 버튼 + 완료 액션 버튼) */}
       <VStack gap="x2" width="full">
-        <Text textStyle="t3Bold">3. Standard 타입 (모달/독립 플로우 - Close Button)</Text>
+        <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
+          <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant="standard"</code> (모달 / 독립 플로우 - 닫기 버튼 & 완료)
+        </span>
         <TopNavigation variant="standard">
           <TopNavigationLeft>
             <TopNavigationCloseButton onClick={() => alert("모달 플로우 종료 (닫기)")} />
