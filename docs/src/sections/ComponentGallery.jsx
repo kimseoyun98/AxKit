@@ -2533,7 +2533,7 @@ function TagGroupDemo() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 460, margin: "0 auto", alignItems: "center" }}>
       <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
-        Tag Group · Metadata Summary · Size t2/t3/t4 · Tone & Weight · Custom Separator
+        <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Tag Group</code> · Metadata Summary · Size <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>t2/t3/t4</code> · Tone & Weight · Custom Separator
       </div>
 
       {/* Controls */}
@@ -2717,7 +2717,7 @@ function TextFieldDemo() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 480, margin: "0 auto", alignItems: "center" }}>
       <div style={{ fontSize: "var(--seed-font-size-t2)", fontWeight: "var(--seed-font-weight-bold)", color: "var(--seed-color-fg-neutral-muted)", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "center" }}>
-        Text Field Input & Textarea · Custom Input Formatting · 2-Column Grid Layout
+        <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Text Field Input & Textarea</code> · Custom Input Formatting · 2-Column Grid Layout
       </div>
 
       {/* Controls */}
