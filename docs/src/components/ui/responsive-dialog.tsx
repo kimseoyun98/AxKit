@@ -168,11 +168,7 @@ export interface ResponsiveDialogActionProps
 
 export const ResponsiveDialogAction = forwardRef<HTMLButtonElement, ResponsiveDialogActionProps>(
   (props, ref) => {
-    return (
-      <SeedResponsiveDialog.Action asChild>
-        <ActionButton {...props} ref={ref} />
-      </SeedResponsiveDialog.Action>
-    );
+    return <ActionButton {...props} ref={ref} />;
   },
 );
 

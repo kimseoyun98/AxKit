@@ -1322,7 +1322,8 @@ function ProgressCircleDemo() {
               tone={tone}
               minValue={0}
               maxValue={100}
-              value={isIndeterminate ? undefined : progress}
+              isIndeterminate={isIndeterminate}
+              value={isIndeterminate ? 0 : progress}
             />
             <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-medium)', color: tone === "staticWhite" ? 'var(--seed-color-palette-static-white)' : 'var(--seed-color-fg-neutral-subtle)' }}>
               Size 40 (전체 페이지)
@@ -1336,7 +1337,8 @@ function ProgressCircleDemo() {
               tone={tone}
               minValue={0}
               maxValue={100}
-              value={isIndeterminate ? undefined : progress}
+              isIndeterminate={isIndeterminate}
+              value={isIndeterminate ? 0 : progress}
             />
             <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-medium)', color: tone === "staticWhite" ? 'var(--seed-color-palette-static-white)' : 'var(--seed-color-fg-neutral-subtle)' }}>
               Size 24 (컴포넌트 수준)
