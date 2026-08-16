@@ -1039,6 +1039,13 @@ function FieldButtonDemo() {
   const [isDisabled, setIsDisabled] = useState(false);
   const [hasPrefix, setHasPrefix] = useState(true);
 
+  // TimePicker + FieldButton + BottomSheet integration
+  const [openTimeSheet, setOpenTimeSheet] = useState(false);
+  const [time, setTime] = useState({ hour: 9, minute: 30 });
+  const [draftTime, setDraftTime] = useState(time);
+
+  const formattedTime = `${time.hour < 12 ? "오전" : "오후"} ${time.hour % 12 || 12}:${String(time.minute).padStart(2, "0")}`;
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
 
@@ -1083,6 +1090,38 @@ function FieldButtonDemo() {
             <FieldButtonPlaceholder>클릭하여 정산 입금 계좌를 선택해 주세요</FieldButtonPlaceholder>
           )}
         </FieldButton>
+
+        {/* TimePicker + FieldButton + BottomSheet 연동 */}
+        <BottomSheetRoot open={openTimeSheet} onOpenChange={(next) => { if (next) setDraftTime(time); setOpenTimeSheet(next); }}>
+          <FieldButton
+            label="영업 시작 시간 (TimePicker + BottomSheet 연동)"
+            showRequiredIndicator
+            disabled={isDisabled}
+            values={[formattedTime]}
+            description="클릭 시 하단 시트에서 12시간제 스크롤 피커로 시간을 설정합니다."
+            buttonProps={{
+              onClick: () => setOpenTimeSheet(true),
+              "aria-label": `영업 시작 시간 현재 설정: ${formattedTime}`,
+            }}
+          >
+            <FieldButtonValue>{formattedTime}</FieldButtonValue>
+          </FieldButton>
+
+          <BottomSheetContent title="영업 시작 시간 선택" showHandle showCloseButton={false}>
+            <BottomSheetBody paddingX="x4">
+              <VStack align="center" paddingY="x2">
+                <Box width="100%" maxWidth="360px">
+                  <TimePicker value={draftTime} onValueChange={setDraftTime} />
+                </Box>
+              </VStack>
+            </BottomSheetBody>
+            <BottomSheetFooter>
+              <ActionButton variant="brandSolid" size="large" style={{ width: "100%" }} onClick={() => { setTime(draftTime); setOpenTimeSheet(false); }}>
+                선택 완료 ({draftTime.hour < 12 ? "오전" : "오후"} {draftTime.hour % 12 || 12}:{String(draftTime.minute).padStart(2, "0")})
+              </ActionButton>
+            </BottomSheetFooter>
+          </BottomSheetContent>
+        </BottomSheetRoot>
       </div>
     </div>
   );
@@ -3456,6 +3495,9 @@ function ResponsiveDialogDemo() {
 
 function ResponsiveSidePanelDemo() {
   const [open, setOpen] = useState(false);
+  const [cutoffTime, setCutoffTime] = useState({ hour: 18, minute: 0 });
+
+  const formattedTime = `${cutoffTime.hour < 12 ? "오전" : "오후"} ${cutoffTime.hour % 12 || 12}:${String(cutoffTime.minute).padStart(2, "0")}`;
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
@@ -3465,14 +3507,23 @@ function ResponsiveSidePanelDemo() {
       <ResponsiveSidePanelRoot open={open} onOpenChange={setOpen}>
         <ResponsiveSidePanelContent title="정산 내역 상세 검색 필터" description="화면 크기에 따라 우측 사이드 패널 또는 모바일 하단 시트로 유연하게 전환됩니다.">
           <ResponsiveSidePanelBody>
-            <VStack gap="x4" padding="x4">
-              <Text textStyle="t2Medium" color="fg.neutralSubtle">조회 기간 설정</Text>
-              <DatePicker defaultValue={{ year: 2026, month: 8, day: 17 }} />
+            <VStack gap="x5" padding="x4">
+              <VStack gap="x2">
+                <Text textStyle="t2Medium" color="fg.neutralSubtle">조회 일자 선택</Text>
+                <DatePicker defaultValue={{ year: 2026, month: 8, day: 17 }} />
+              </VStack>
+
+              <VStack gap="x2">
+                <Text textStyle="t2Medium" color="fg.neutralSubtle">마감 정산 시간 설정 ({formattedTime})</Text>
+                <Box width="100%" maxWidth="360px">
+                  <TimePicker value={cutoffTime} onValueChange={setCutoffTime} />
+                </Box>
+              </VStack>
             </VStack>
           </ResponsiveSidePanelBody>
           <ResponsiveSidePanelFooter>
             <ActionButton variant="brandSolid" size="medium" style={{ width: "100%" }} onClick={() => setOpen(false)}>
-              필터 적용하기
+              필터 적용하기 ({formattedTime})
             </ActionButton>
           </ResponsiveSidePanelFooter>
         </ResponsiveSidePanelContent>
