@@ -3722,7 +3722,7 @@ function TopNavigationDemo() {
             <TopNavigationIconButton aria-label="검색" onClick={() => alert("검색 클릭")}>
               <IconMagnifyingglassLine style={{ width: 22, height: 22 }} />
             </TopNavigationIconButton>
-            <TopNavigationIconButton badge={3} badgeSize="large" aria-label="알림" onClick={() => alert("알림 목록 열기")}>
+            <TopNavigationIconButton badge={true} badgeSize="small" aria-label="알림" onClick={() => alert("알림 목록 열기")}>
               <IconBellLine style={{ width: 22, height: 22 }} />
             </TopNavigationIconButton>
           </TopNavigationRight>

@@ -224,7 +224,7 @@ export function TopNavigationRight({
 }
 
 export interface TopNavigationIconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  badge?: React.ReactNode | number;
+  badge?: React.ReactNode | number | boolean;
   badgeSize?: "small" | "large";
   theme?: "cupertino" | "android";
   tone?: "layer" | "transparent";
@@ -232,7 +232,7 @@ export interface TopNavigationIconButtonProps extends React.ButtonHTMLAttributes
 
 export function TopNavigationIconButton({
   badge,
-  badgeSize = "large",
+  badgeSize = "small",
   theme,
   tone,
   children,
@@ -244,6 +244,9 @@ export function TopNavigationIconButton({
   const currentTheme = theme || ctx.theme;
   const currentTone = tone || ctx.tone;
   const styles = appBar({ theme: currentTheme, tone: currentTone });
+
+  const hasBadge = badge !== undefined && badge !== null && badge !== false;
+  const isSmallBadge = badgeSize === "small" || badge === true;
 
   return (
     <button
@@ -266,9 +269,11 @@ export function TopNavigationIconButton({
     >
       <span style={{ position: "relative", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
         {children}
-        {badge !== undefined && badge !== null && (
-          <NotificationBadgePositioner attach="icon" size={badgeSize}>
-            <NotificationBadge size={badgeSize}>{badgeSize === "large" ? badge : null}</NotificationBadge>
+        {hasBadge && (
+          <NotificationBadgePositioner attach="icon" size={isSmallBadge ? "small" : "large"}>
+            <NotificationBadge size={isSmallBadge ? "small" : "large"}>
+              {!isSmallBadge && typeof badge !== "boolean" ? badge : null}
+            </NotificationBadge>
           </NotificationBadgePositioner>
         )}
       </span>
