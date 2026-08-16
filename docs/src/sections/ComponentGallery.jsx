@@ -1184,10 +1184,10 @@ function FooterDemo() {
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 840, margin: "0 auto" }}>
       <VStack gap="x3" align="center" width="full">
         <SegmentedControl value={preset} onValueChange={setPreset}>
-          <SegmentedControlItem value="01">01. Minimal (최소 구성)</SegmentedControlItem>
-          <SegmentedControlItem value="02">02. Standard (기본 서비스)</SegmentedControlItem>
-          <SegmentedControlItem value="03">03. Brand Info (브랜드 소개)</SegmentedControlItem>
-          <SegmentedControlItem value="04">04. Full Specs (풀스펙 허브)</SegmentedControlItem>
+          <SegmentedControlItem value="01">Minimal</SegmentedControlItem>
+          <SegmentedControlItem value="02">Standard</SegmentedControlItem>
+          <SegmentedControlItem value="03">Brand Info</SegmentedControlItem>
+          <SegmentedControlItem value="04">Full Specs</SegmentedControlItem>
         </SegmentedControl>
 
         <div style={{ width: "100%", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x3)", overflow: "hidden", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
