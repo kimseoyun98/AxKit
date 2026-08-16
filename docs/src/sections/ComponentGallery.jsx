@@ -2246,8 +2246,8 @@ function SelectBoxDemo() {
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
           <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Control:</span>
           {[
-            { label: "마크 표시 (Mark)", value: "mark" },
-            { label: "마크 없음 (None)", value: "none" },
+            { label: "Mark (마크 표시)", value: "mark" },
+            { label: "None (마크 없음)", value: "none" },
           ].map((c) => (
             <ActionButton
               key={c.value}
@@ -2263,14 +2263,18 @@ function SelectBoxDemo() {
         {/* Grid Columns */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
           <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Columns:</span>
-          {[1, 2, 3].map((col) => (
+          {[
+            { label: "1 Col (1열)", value: 1 },
+            { label: "2 Col (2열)", value: 2 },
+            { label: "3 Col (3열)", value: 3 },
+          ].map((col) => (
             <ActionButton
-              key={col}
+              key={col.value}
               size="small"
-              variant={columns === col ? "brandSolid" : "neutralOutline"}
-              onClick={() => setColumns(col)}
+              variant={columns === col.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setColumns(col.value)}
             >
-              {col}열 ({col} Col)
+              {col.label}
             </ActionButton>
           ))}
         </div>
@@ -2383,14 +2387,17 @@ function SelectDemo() {
         {/* Size Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
           <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Size:</span>
-          {["large", "medium"].map((s) => (
+          {[
+            { label: "Large (대형)", value: "large" },
+            { label: "Medium (중형)", value: "medium" },
+          ].map((s) => (
             <ActionButton
-              key={s}
+              key={s.value}
               size="small"
-              variant={size === s ? "brandSolid" : "neutralOutline"}
-              onClick={() => setSize(s)}
+              variant={size === s.value ? "brandSolid" : "neutralOutline"}
+              onClick={() => setSize(s.value)}
             >
-              {s}
+              {s.label}
             </ActionButton>
           ))}
         </div>
