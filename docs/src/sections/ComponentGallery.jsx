@@ -3468,7 +3468,7 @@ function ResponsiveDialogDemo() {
             정산 계좌 변경 (반응형 다이얼로그)
           </ActionButton>
         </ResponsiveDialogTrigger>
-        <ResponsiveDialogContent title="정산 계좌 정보 변경 신청" description="데스크탑에서는 중앙 모달, 모바일에서는 하단 팝업 시트로 자동 전환됩니다.">
+        <ResponsiveDialogContent title="정산 계좌 정보 변경 신청" description="데스크탑은 중앙 모달, 모바일은 하단 시트로 자동 전환됩니다.">
           <ResponsiveDialogBody>
             <VStack gap="x3">
               <TextField label="새 입금 은행" defaultValue="신한은행" readOnly>
@@ -3508,7 +3508,7 @@ function ResponsiveSidePanelDemo() {
       <ResponsiveSidePanelRoot open={open} onOpenChange={setOpen}>
         <ResponsiveSidePanelContent
           title="가맹점 정산 정보 관리 (반응형)"
-          description="데스크탑에서는 우측 사이드 패널, 모바일에서는 하단 바텀 시트로 자동 전환됩니다."
+          description="데스크탑은 우측 사이드 패널, 모바일은 하단 시트로 자동 전환됩니다."
         >
           <ResponsiveSidePanelBody px="x6" py="x4">
             <VStack gap="x5">
