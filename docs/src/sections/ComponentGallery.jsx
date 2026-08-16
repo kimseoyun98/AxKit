@@ -1184,10 +1184,10 @@ function FooterDemo() {
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 840, margin: "0 auto" }}>
       <VStack gap="x3" align="center" width="full">
         <SegmentedControl value={preset} onValueChange={setPreset}>
-          <SegmentedControlItem value="01">비즈프로필 (최소)</SegmentedControlItem>
-          <SegmentedControlItem value="02">당근비즈니스 (안내)</SegmentedControlItem>
-          <SegmentedControlItem value="03">어바웃당근 (소개)</SegmentedControlItem>
-          <SegmentedControlItem value="04">당근닷컴 (풀스펙)</SegmentedControlItem>
+          <SegmentedControlItem value="01">01. Minimal (최소 구성)</SegmentedControlItem>
+          <SegmentedControlItem value="02">02. Standard (기본 서비스)</SegmentedControlItem>
+          <SegmentedControlItem value="03">03. Brand Info (브랜드 소개)</SegmentedControlItem>
+          <SegmentedControlItem value="04">04. Full Specs (풀스펙 허브)</SegmentedControlItem>
         </SegmentedControl>
 
         <div style={{ width: "100%", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x3)", overflow: "hidden", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
@@ -3714,8 +3714,8 @@ function TopNavigationDemo() {
           <TopNavigationLeft>
             <TopNavigationTitle
               align="left"
-              title="역삼1동"
-              onClickTitle={() => alert("동네 선택 시트 열기")}
+              title="전체 카테고리"
+              onClickTitle={() => alert("카테고리 선택 시트 열기")}
             />
           </TopNavigationLeft>
           <TopNavigationRight>
@@ -3740,8 +3740,8 @@ function TopNavigationDemo() {
           </TopNavigationLeft>
           <TopNavigationTitle
             align="center"
-            title="중고거래 상품 상세"
-            subtitle="당근 마켓 플레이스"
+            title="상품 상세 정보"
+            subtitle="서비스 세부 플랫폼"
           />
           <TopNavigationRight>
             <TopNavigationIconButton aria-label="공유하기" onClick={() => alert("공유하기 클릭")}>
@@ -3760,7 +3760,7 @@ function TopNavigationDemo() {
           <TopNavigationLeft>
             <TopNavigationCloseButton onClick={() => alert("모달 플로우 종료 (닫기)")} />
           </TopNavigationLeft>
-          <TopNavigationTitle align="center" title="중고거래 글쓰기" />
+          <TopNavigationTitle align="center" title="신규 데이터 작성" />
           <TopNavigationRight>
             <ActionButton variant="brandSolid" size="small" onClick={() => alert("등록 완료")}>
               완료
