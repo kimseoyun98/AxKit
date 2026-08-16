@@ -3012,7 +3012,9 @@ function SkeletonDemo() {
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x5)", width: "100%" }}>
         {/* Radius Comparison */}
         <VStack gap="x3">
-          <Text fontWeight="bold" textStyle="t3">반경 (Radius) 프리셋 비교</Text>
+          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Skeleton Radius</code> · 반경 (Radius) 프리셋 비교
+          </div>
           <HStack gap="x4" align="center">
             <Skeleton tone={tone} radius={radius} width="x12" height="x12" />
             <VStack gap="x2" flex={1}>
@@ -3027,7 +3029,9 @@ function SkeletonDemo() {
 
         {/* Card Pattern Loading Skeleton */}
         <VStack gap="x3">
-          <Text fontWeight="bold" textStyle="t3">피드 / 카드 로딩 스켈레톤 레이아웃 패턴</Text>
+          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Skeleton Layout</code> · 피드 / 카드 로딩 스켈레톤 레이아웃 패턴
+          </div>
           <Box p="x4" borderRadius="r3" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
             <VStack gap="x4">
               <HStack gap="x3" align="center">
@@ -3061,7 +3065,9 @@ function SliderDemo() {
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%" }}>
         {/* 1. Single Thumb Slider */}
         <VStack gap="x3" width="full">
-          <Text fontWeight="bold" textStyle="t3">단일 조절 슬라이더 (Single Thumb)</Text>
+          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Single Thumb Slider</code> · 단일 조절 슬라이더
+          </div>
           <Slider
             label="볼륨 조절"
             description={`현재 값: ${singleValue[0]}%`}
@@ -3077,7 +3083,9 @@ function SliderDemo() {
 
         {/* 2. Dual Thumb Range Slider */}
         <VStack gap="x3" width="full">
-          <Text fontWeight="bold" textStyle="t3">범위 선택 슬라이더 (Dual Thumb Range)</Text>
+          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Range Slider</code> · 범위 선택 슬라이더 (Dual Thumb)
+          </div>
           <Slider
             label="가격 범위 선택"
             description={`선택된 범위: ₩${rangeValues[0] * 1000} ~ ₩${rangeValues[1] * 1000}`}
@@ -3106,7 +3114,9 @@ function SnackbarDemo() {
       <VStack gap="x4" width="full">
         {/* 1. Default Variant */}
         <VStack gap="x1_5" width="full">
-          <Text fontWeight="bold" textStyle="t2" color="fg.neutralMuted">Default Variant (기본)</Text>
+          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Snackbar Default</code> · 기본 스낵바 알림
+          </div>
           <StaticSnackbar
             variant="default"
             message="설정이 성공적으로 저장되었습니다."
@@ -3117,7 +3127,9 @@ function SnackbarDemo() {
 
         {/* 2. Positive Variant */}
         <VStack gap="x1_5" width="full">
-          <Text fontWeight="bold" textStyle="t2" color="fg.neutralMuted">Positive Variant (긍정/성공)</Text>
+          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Snackbar Positive</code> · 성공/긍정 스낵바 알림
+          </div>
           <StaticSnackbar
             variant="positive"
             message="프로필 정보가 안전하게 업데이트되었습니다."
@@ -3128,7 +3140,9 @@ function SnackbarDemo() {
 
         {/* 3. Critical Variant */}
         <VStack gap="x1_5" width="full">
-          <Text fontWeight="bold" textStyle="t2" color="fg.neutralMuted">Critical Variant (경고/오류)</Text>
+          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Snackbar Critical</code> · 오류/위험 스낵바 알림
+          </div>
           <StaticSnackbar
             variant="critical"
             message="네트워크 연결이 끊어졌습니다. 다시 시도해 주세요."
@@ -3215,7 +3229,9 @@ function SwitchDemo() {
         <Divider style={{ width: "100%" }} />
 
         <VStack gap="x3" width="full">
-          <Text fontWeight="bold" textStyle="t3">크기별 (Sizes) 비교</Text>
+          <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
+            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Switch Sizes</code> · 크기별 규격 비교 (32, 24, 16)
+          </div>
           <VStack gap="x3" align="flex-start">
             <Switch size="32" tone={tone} defaultChecked label="32 size (Default)" />
             <Switch size="24" tone={tone} defaultChecked label="24 size" />
