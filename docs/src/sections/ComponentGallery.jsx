@@ -3521,41 +3521,31 @@ function ListHeaderDemo() {
         ))}
       </div>
 
-      <VStack width="100%" gap="x4">
-        <VStack width="100%">
-          <ListHeader as="h3" variant={variant}>
-            2026년 8월 17일 입금 내역
-          </ListHeader>
-          <List width="full">
-            <ListItem
-              title="카드사 통합 승인 입금"
-              detail="신한·삼성·KB 국민카드 승인분"
-              suffix="₩ 1,250,000"
-            />
-            <ListDivider />
-            <ListItem
-              title="영세/중소 우대 환급금"
-              detail="국세청 우대 환급 차액"
-              suffix="₩ 45,000"
-            />
-          </List>
-        </VStack>
+      <List as="div" width="full">
+        <ListHeader as="h3" variant={variant}>
+          2026년 8월 17일 입금 내역
+        </ListHeader>
+        <ListItem
+          title="카드사 통합 승인 입금"
+          detail="신한·삼성·KB 국민카드 승인분"
+          suffix="₩ 1,250,000"
+        />
+        <ListDivider as="div" />
+        <ListItem
+          title="영세/중소 우대 환급금"
+          detail="국세청 우대 환급 차액"
+          suffix="₩ 45,000"
+        />
 
-        <Divider />
-
-        <VStack width="100%">
-          <ListHeader as="h3" variant={variant}>
-            2026년 8월 16일 입금 내역
-          </ListHeader>
-          <List width="full">
-            <ListItem
-              title="PG 일별 통합 입금"
-              detail="카카오페이·네이버페이 수수료 차감"
-              suffix="₩ 890,000"
-            />
-          </List>
-        </VStack>
-      </VStack>
+        <ListHeader as="h3" variant={variant} style={{ marginTop: "var(--seed-dimension-x4)" }}>
+          2026년 8월 16일 입금 내역
+        </ListHeader>
+        <ListItem
+          title="PG 일별 통합 입금"
+          detail="카카오페이·네이버페이 수수료 차감"
+          suffix="₩ 890,000"
+        />
+      </List>
     </div>
   );
 }
