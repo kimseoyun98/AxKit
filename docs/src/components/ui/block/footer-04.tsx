@@ -15,16 +15,23 @@ import { IconYouTube } from "../icon/icon-youtube";
 function DefaultBrandLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      width="90"
-      height="28"
-      viewBox="0 0 90 28"
+      width="100"
+      height="24"
+      viewBox="0 0 100 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <rect width="90" height="28" rx="6" fill="var(--seed-color-bg-brand-solid)" />
-      <text x="45" y="18" textAnchor="middle" fill="#FFFFFF" fontSize="13" fontWeight="bold" fontFamily="sans-serif">
-        BRAND LOGO
+      <text
+        x="0"
+        y="18"
+        fill="var(--seed-color-fg-neutral)"
+        fontSize="18"
+        fontWeight="800"
+        fontFamily="system-ui, -apple-system, sans-serif"
+        letterSpacing="-0.5px"
+      >
+        LOGO
       </text>
     </svg>
   );
