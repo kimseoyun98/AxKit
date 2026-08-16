@@ -6,8 +6,8 @@
 
 ## 🎨 주요 특징 (Features)
 
-- **48개 UI 컴포넌트 스니펫 정식 구현**:
-  - `docs/src/components/ui/` 디렉토리에 UI 컴포넌트 스니펫 수록 (신규 `TimePicker` 포함).
+- **49개 UI 컴포넌트 스니펫 정식 구현**:
+  - `docs/src/components/ui/` 디렉토리에 UI 컴포넌트 스니펫 수록 (신규 `TopNavigation`, `TimePicker` 포함).
   - 컴포넌트 갤러리 A-Z 알파벳순 정렬 적용.
 - **반응형 패널 및 시트 오피셜 가이드 준수**:
   - `ResponsiveSidePanel` & `ResponsiveDialog`: 데스크탑 우측/중앙 모달 ↔ 모바일 하단 시트 스마트 자동 전환.
@@ -114,3 +114,4 @@ npx @seed-design/cli@latest compat
 46. **Tag Group** (`ui:tag-group`)
 47. **Text Field** (`ui:text-field`)
 48. **Time Picker** (`ui:time-picker`)
+49. **Top Navigation** (`ui:top-navigation`)

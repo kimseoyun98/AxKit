@@ -94,6 +94,7 @@ import {
 } from '../components/ui/responsive-side-panel';
 import { TagGroupRoot, TagGroupItem } from '../components/ui/tag-group';
 import { LoadingIndicator } from '../components/ui/loading-indicator';
+import { TopNavigation } from '../components/ui/top-navigation';
 import {
   NavigationMenuProvider,
   NavigationMenuRoot,
@@ -3663,6 +3664,41 @@ function TimePickerDemo() {
   );
 }
 
+function TopNavigationDemo() {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 600, margin: "0 auto" }}>
+      {/* Root Type */}
+      <VStack gap="x2">
+        <Text textStyle="t3Bold">Root 타입 (최상위 탭)</Text>
+        <TopNavigation
+          variant="root"
+          title="홈 피드"
+          right={
+            <HStack gap="x1">
+              <ActionButton variant="neutralWeak" size="small">검색</ActionButton>
+              <ActionButton variant="brandSolid" size="small">글쓰기</ActionButton>
+            </HStack>
+          }
+        />
+      </VStack>
+
+      {/* Standard Type */}
+      <VStack gap="x2">
+        <Text textStyle="t3Bold">Standard 타입 (2-Depth 상세 화면)</Text>
+        <TopNavigation
+          variant="standard"
+          title="상품 상세 보기"
+          subtitle="당근 마켓 플레이스"
+          onBack={() => alert("뒤로가기 클릭")}
+          right={
+            <ActionButton variant="neutralWeak" size="small">공유</ActionButton>
+          }
+        />
+      </VStack>
+    </div>
+  );
+}
+
 function SideNavigationDemo() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 760, margin: "0 auto", alignItems: "center" }}>
@@ -3914,6 +3950,11 @@ const COMPONENTS = [
     name: 'Time Picker',
     slug: 'ui:time-picker',
     demo: <TimePickerDemo />,
+  },
+{
+    name: 'Top Navigation',
+    slug: 'ui:top-navigation',
+    demo: <TopNavigationDemo />,
   },
 ];
 
