@@ -3423,7 +3423,7 @@ function NavigationMenuDemo() {
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 560, margin: "0 auto", alignItems: "center" }}>
       <NavigationMenuProvider>
         <NavigationMenuRoot>
-          <NavigationMenuTrigger>
+          <NavigationMenuTrigger asChild>
             <ActionButton variant="neutralSolid" size="medium" suffixIcon={<Icon svg={<IconChevronRightLine />} />}>
               Payverse 가맹점 메뉴
             </ActionButton>
