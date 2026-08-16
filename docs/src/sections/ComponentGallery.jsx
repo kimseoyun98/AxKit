@@ -2663,7 +2663,9 @@ function TextFieldDemo() {
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
         {/* Variant Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Variant:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
+            <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant</code>:
+          </span>
           {[
             { label: "Outline (기본)", value: "outline" },
             { label: "Underline (밑줄형)", value: "underline" },
@@ -2681,7 +2683,9 @@ function TextFieldDemo() {
 
         {/* Size Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Size:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
+            <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>:
+          </span>
           {[
             { label: "Large (대형)", value: "large" },
             { label: "Medium (중형)", value: "medium" },
@@ -2699,7 +2703,9 @@ function TextFieldDemo() {
 
         {/* State Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>State:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
+            <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>state</code>:
+          </span>
           {[
             { label: "Normal (정상)", value: "normal" },
             { label: "Disabled (비활성화)", value: "disabled" },
@@ -2722,8 +2728,8 @@ function TextFieldDemo() {
       <VStack gap="x6" width="full">
         {/* 1. Standard Input with Character Count */}
         <VStack gap="x4" width="full">
-          <Text textStyle="t2Bold" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
-            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Standard Input</code> · 기본 입력 필드 및 글자 수 카운터
+          <Text textStyle="t2Medium" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
+            Standard Input · 기본 입력 필드 및 글자 수 카운터
           </Text>
           <TextField
             variant={variant}
@@ -2747,8 +2753,8 @@ function TextFieldDemo() {
 
         {/* 2. Custom Input: Auto-Formatting (Business Reg No, Phone, Currency) */}
         <VStack gap="x4" width="full">
-          <Text textStyle="t2Bold" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
-            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Custom Input</code> · 자동 마스킹 & 포맷팅 패턴
+          <Text textStyle="t2Medium" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
+            Custom Input · 자동 마스킹 & 포맷팅 패턴
           </Text>
           
           {/* 사업자등록번호 (자동 하이픈 XXX-XX-XXXXX) */}
@@ -2845,8 +2851,8 @@ function TextFieldDemo() {
 
         {/* 4. Multi-line Auto-sizing TextFieldTextarea */}
         <VStack gap="x4" width="full">
-          <Text textStyle="t2Bold" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
-            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>TextFieldTextarea</code> · 자동 높이 조절 멀티라인
+          <Text textStyle="t2Medium" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
+            TextFieldTextarea · 자동 높이 조절 멀티라인
           </Text>
           <TextField
             variant={variant}
