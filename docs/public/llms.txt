@@ -1,6 +1,6 @@
 # AX Design System LLMs Index
 
-> AX Design System의 모든 컴포넌트, 파운데이션 토큰, UI 스니펫 명세 목차입니다.
+> AX Design System의 모든 48개 컴포넌트, 파운데이션 토큰, UI 스니펫 명세 목차입니다.
 
 ## Foundations
 - Color & Palette: /#color
@@ -8,7 +8,7 @@
 - Typography: /#typography
 - Spacing & Radius: /#spacing
 
-## Showcase Components (32 Items)
+## Showcase Components (48 Items)
 - Accordion (ui:accordion): /#components-accordion
 - Action Button (ui:action-button): /#components-action-button
 - Alert Dialog (ui:alert-dialog): /#components-alert-dialog
@@ -24,12 +24,14 @@
 - Contextual Floating Button (ui:contextual-floating-button): /#components-contextual-floating-button
 - Date Picker (ui:date-picker): /#components-date-picker
 - Dialog (ui:dialog): /#components-dialog
+- Divider (ui:layout): /#components-divider
 - Field Button (ui:field-button): /#components-field-button
 - Floating Action Button (ui:floating-action-button): /#components-floating-action-button
 - Help Bubble (ui:help-bubble): /#components-help-bubble
 - Identity Placeholder (ui:identity-placeholder): /#components-identity-placeholder
-- Layout (ui:layout): /#components-layout
+- Image Frame (ui:layout): /#components-image-frame
 - List (ui:list): /#components-list
+- List Header (ui:list-header): /#components-list-header
 - Loading Indicator (ui:loading-indicator): /#components-loading-indicator
 - Menu (ui:menu): /#components-menu
 - Navigation Menu (ui:navigation-menu): /#components-navigation-menu
@@ -40,14 +42,17 @@
 - Radio Group (ui:radio-group): /#components-radio-group
 - Reaction Button (ui:reaction-button): /#components-reaction-button
 - Responsive Dialog (ui:responsive-dialog): /#components-responsive-dialog
+- Responsive Side Panel (ui:responsive-side-panel): /#components-responsive-side-panel
 - Result Section (ui:result-section): /#components-result-section
 - Segmented Control (ui:segmented-control): /#components-segmented-control
 - Select (ui:select): /#components-select
 - Select Box (ui:select-box): /#components-select-box
 - Side Navigation (ui:side-navigation): /#components-side-navigation
 - Side Panel (ui:side-panel): /#components-side-panel
+- Skeleton (ui:skeleton): /#components-skeleton
 - Slider (ui:slider): /#components-slider
 - Snackbar (ui:snackbar): /#components-snackbar
+- Swipeable Menu Sheet (ui:swipeable-menu-sheet): /#components-swipeable-menu-sheet
 - Switch (ui:switch): /#components-switch
 - Tabs (ui:tabs): /#components-tabs
 - Tag Group (ui:tag-group): /#components-tag-group

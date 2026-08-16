@@ -93,6 +93,23 @@ import {
   ResponsiveSidePanelFooter,
 } from '../components/ui/responsive-side-panel';
 import { TagGroupRoot, TagGroupItem } from '../components/ui/tag-group';
+import { LoadingIndicator } from '../components/ui/loading-indicator';
+import {
+  NavigationMenuProvider,
+  NavigationMenuRoot,
+  NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuGroup,
+  NavigationMenuGroupLabel,
+  NavigationMenuItem,
+} from '../components/ui/navigation-menu';
+import {
+  SwipeableMenuSheetRoot,
+  SwipeableMenuSheetTrigger,
+  SwipeableMenuSheetContent,
+  SwipeableMenuSheetItem,
+} from '../components/ui/swipeable-menu-sheet';
+
 import { Count, Box, ScrollFog, HStack, VStack, Text, Skeleton } from '@seed-design/react';
 import IconFaceSmileCircleFill from "@karrotmarket/react-monochrome-icon/IconFaceSmileCircleFill";
 import IconHeartFill from "@karrotmarket/react-monochrome-icon/IconHeartFill";
@@ -3331,6 +3348,194 @@ function TabsDemo() {
   );
 }
 
+
+function ChipTabsDemo() {
+  const [value, setValue] = useState("1");
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 520, margin: "0 auto", alignItems: "center" }}>
+      <ChipTabsRoot value={value} onValueChange={setValue}>
+        <ChipTabsList>
+          <ChipTabsTrigger value="1" notification>전체</ChipTabsTrigger>
+          <ChipTabsTrigger value="2">입금완료</ChipTabsTrigger>
+          <ChipTabsTrigger value="3">미정산</ChipTabsTrigger>
+          <ChipTabsTrigger value="4">환급대상</ChipTabsTrigger>
+        </ChipTabsList>
+      </ChipTabsRoot>
+      <div style={{ padding: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "var(--seed-dimension-x3)", border: "1px solid var(--seed-color-stroke-neutral-weak)", width: "100%", textAlign: "center" }}>
+        <Text color="fg.neutral" fontSize="t3">
+          {value === "1" && "전체 1,280건의 통합 거래 정산 목록입니다."}
+          {value === "2" && "입금 완료 처리된 1,120건의 정산 목록입니다."}
+          {value === "3" && "익일 입금 예정인 미정산 건 150건 목록입니다."}
+          {value === "4" && "국세청 우대 수수료 차액 자동 환급 대상 10건 목록입니다."}
+        </Text>
+      </div>
+    </div>
+  );
+}
+
+function LoadingIndicatorDemo() {
+  const [size, setSize] = useState("36");
+  const [tone, setTone] = useState("brand");
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
+      <div style={{ display: "flex", gap: "var(--seed-dimension-x4)" }}>
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
+            <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>:
+          </span>
+          {["24", "36", "48"].map((s) => (
+            <ActionButton key={s} size="small" variant={size === s ? "brandSolid" : "neutralOutline"} onClick={() => setSize(s)}>
+              {s}
+            </ActionButton>
+          ))}
+        </div>
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
+            <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>tone</code>:
+          </span>
+          {["brand", "neutral"].map((t) => (
+            <ActionButton key={t} size="small" variant={tone === t ? "brandSolid" : "neutralOutline"} onClick={() => setTone(t)}>
+              {t}
+            </ActionButton>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ width: "100%", height: 160, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "var(--seed-dimension-x3)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
+        <LoadingIndicator size={size} tone={tone} />
+        <Text textStyle="t2Medium" color="fg.neutralSubtle">
+          실시간 정산 데이터를 불러오는 중입니다...
+        </Text>
+      </div>
+    </div>
+  );
+}
+
+function NavigationMenuDemo() {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 560, margin: "0 auto", alignItems: "center" }}>
+      <NavigationMenuProvider>
+        <NavigationMenuRoot>
+          <NavigationMenuTrigger>
+            <ActionButton variant="neutralSolid" size="medium" suffixIcon={<Icon svg={<IconChevronRightLine />} />}>
+              Payverse 가맹점 메뉴
+            </ActionButton>
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <NavigationMenuGroup>
+              <NavigationMenuGroupLabel>정산 관리</NavigationMenuGroupLabel>
+              <NavigationMenuItem label="통합 정산 내역" description="일별 결제 승인 및 차액 입금 현황" prefixIcon={<IconStoreFill />} />
+              <NavigationMenuItem label="우대 수수료 환급" description="국세청 우대 수수료율 자동 환급" prefixIcon={<IconBuilding2Fill />} />
+            </NavigationMenuGroup>
+          </NavigationMenuContent>
+        </NavigationMenuRoot>
+      </NavigationMenuProvider>
+    </div>
+  );
+}
+
+function ResponsiveDialogDemo() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
+      <ResponsiveDialogRoot open={open} onOpenChange={setOpen}>
+        <ResponsiveDialogTrigger asChild>
+          <ActionButton variant="brandSolid" size="medium">
+            정산 계좌 변경 (반응형 다이얼로그)
+          </ActionButton>
+        </ResponsiveDialogTrigger>
+        <ResponsiveDialogContent title="정산 계좌 정보 변경 신청" description="데스크탑에서는 중앙 모달, 모바일에서는 하단 팝업 시트로 자동 전환됩니다.">
+          <ResponsiveDialogBody>
+            <VStack gap="x3">
+              <TextField label="새 입금 은행" defaultValue="신한은행" readOnly>
+                <TextFieldInput />
+              </TextField>
+              <TextField label="예금주 성명" defaultValue="이롬넷 주식회사" readOnly>
+                <TextFieldInput />
+              </TextField>
+            </VStack>
+          </ResponsiveDialogBody>
+          <ResponsiveDialogFooter>
+            <ResponsiveDialogAction variant="neutralOutline" onClick={() => setOpen(false)}>
+              취소
+            </ResponsiveDialogAction>
+            <ResponsiveDialogAction variant="brandSolid" onClick={() => { alert("정산 계좌 변경 신청이 완료되었습니다."); setOpen(false); }}>
+              신청 완료
+            </ResponsiveDialogAction>
+          </ResponsiveDialogFooter>
+        </ResponsiveDialogContent>
+      </ResponsiveDialogRoot>
+    </div>
+  );
+}
+
+function ResponsiveSidePanelDemo() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
+      <ResponsiveSidePanelRoot open={open} onOpenChange={setOpen}>
+        <ResponsiveSidePanelTrigger asChild>
+          <ActionButton variant="neutralSolid" size="medium">
+            정산 상세 필터 (반응형 사이드 패널)
+          </ActionButton>
+        </ResponsiveSidePanelTrigger>
+        <ResponsiveSidePanelContent title="정산 내역 상세 검색 필터" description="화면 크기에 따라 부드럽게 우측/하단에서 슬라이드 연출됩니다.">
+          <ResponsiveSidePanelBody>
+            <VStack gap="x4" padding="x4">
+              <Text textStyle="t2Medium" color="fg.neutralSubtle">조회 기간 설정</Text>
+              <DatePicker defaultValue={new Date()} />
+            </VStack>
+          </ResponsiveSidePanelBody>
+          <ResponsiveSidePanelFooter>
+            <ActionButton variant="brandSolid" size="medium" onClick={() => setOpen(false)}>
+              필터 적용하기
+            </ActionButton>
+          </ResponsiveSidePanelFooter>
+        </ResponsiveSidePanelContent>
+      </ResponsiveSidePanelRoot>
+    </div>
+  );
+}
+
+function SwipeableMenuSheetDemo() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
+      <SwipeableMenuSheetRoot open={open} onOpenChange={setOpen}>
+        <SwipeableMenuSheetTrigger asChild>
+          <ActionButton variant="neutralOutline" size="medium">
+            빠른 작업 메뉴 (스와이프 시트)
+          </ActionButton>
+        </SwipeableMenuSheetTrigger>
+        <SwipeableMenuSheetContent title="거래 내역 빠른 제어 메뉴" description="손가락이나 마우스로 아래로 끌어내려 닫을 수 있습니다." showCloseButton>
+          <SwipeableMenuSheetItem label="거래 명세서 PDF 다운로드" prefixIcon={<IconPencilLine />} onClick={() => { alert("PDF 다운로드가 시작되었습니다."); setOpen(false); }} />
+          <SwipeableMenuSheetItem label="팩스 전송 신청" prefixIcon={<IconStoreFill />} onClick={() => { alert("팩스 전송 완료"); setOpen(false); }} />
+          <SwipeableMenuSheetItem label="정산 담당자 전화 연결" prefixIcon={<IconBellFill />} onClick={() => { alert("전화 연결 실행"); setOpen(false); }} />
+        </SwipeableMenuSheetContent>
+      </SwipeableMenuSheetRoot>
+    </div>
+  );
+}
+
+function ListHeaderDemo() {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x4)", width: "100%", maxWidth: 440, margin: "0 auto" }}>
+      <List>
+        <ListHeader title="2026년 8월 17일 입금 내역" />
+        <ListItem title="카드사 통합 승인 입금" description="신한·삼성·KB 국민카드 승인분" suffix="₩ 1,250,000" />
+        <ListItem title="영세/중소 우대 환급금" description="국세청 우대 환급 차액" suffix="₩ 45,000" />
+        <ListHeader title="2026년 8월 16일 입금 내역" />
+        <ListItem title="PG 일별 통합 입금" description="카카오페이·네이버페이 수수료 차감" suffix="₩ 890,000" />
+      </List>
+    </div>
+  );
+}
+
 function SideNavigationDemo() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 760, margin: "0 auto", alignItems: "center" }}>
@@ -3343,6 +3548,42 @@ function SideNavigationDemo() {
 }
 
 const COMPONENTS = [
+  {
+    name: 'Chip Tabs',
+    slug: 'ui:chip-tabs',
+    demo: <ChipTabsDemo />,
+  },
+  {
+    name: 'Loading Indicator',
+    slug: 'ui:loading-indicator',
+    demo: <LoadingIndicatorDemo />,
+  },
+  {
+    name: 'Navigation Menu',
+    slug: 'ui:navigation-menu',
+    demo: <NavigationMenuDemo />,
+  },
+  {
+    name: 'Responsive Dialog',
+    slug: 'ui:responsive-dialog',
+    demo: <ResponsiveDialogDemo />,
+  },
+  {
+    name: 'Responsive Side Panel',
+    slug: 'ui:responsive-side-panel',
+    demo: <ResponsiveSidePanelDemo />,
+  },
+  {
+    name: 'Swipeable Menu Sheet',
+    slug: 'ui:swipeable-menu-sheet',
+    demo: <SwipeableMenuSheetDemo />,
+  },
+  {
+    name: 'List Header',
+    slug: 'ui:list-header',
+    demo: <ListHeaderDemo />,
+  },
+
   {
     name: 'Accordion',
     slug: 'ui:accordion',
