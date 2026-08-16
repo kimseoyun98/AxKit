@@ -31,10 +31,15 @@ export function TopNavigation({
       style={{
         position: "relative",
         top: "auto",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
         width: "100%",
-        boxSizing: "border-box",
+        height: theme === "android" ? 56 : 44,
+        paddingInline: "var(--seed-dimension-x4)",
         backgroundColor: tone === "transparent" ? "transparent" : "var(--seed-color-bg-layer-default)",
         borderBottom: tone === "transparent" ? "none" : "1px solid var(--seed-color-stroke-neutral-weak)",
+        boxSizing: "border-box",
         ...style,
       }}
       {...props}
@@ -63,6 +68,9 @@ export function TopNavigationLeft({
     <div
       className={`${styles.left} ${className || ""}`}
       style={{
+        display: "flex",
+        alignItems: "center",
+        height: "100%",
         flexShrink: 0,
         zIndex: 1,
         ...style,
@@ -105,6 +113,14 @@ export function TopNavigationTitle({
     <div
       className={`${mainStyles.root} ${className || ""}`}
       style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: align === "center" ? "center" : "flex-start",
+        justifyContent: "center",
+        flex: 1,
+        minWidth: 0,
+        height: "100%",
+        textAlign: align === "center" ? "center" : "left",
         pointerEvents: onClickTitle ? "auto" : undefined,
         ...style,
       }}
@@ -132,7 +148,7 @@ export function TopNavigationTitle({
           <span className={mainStyles.title}>
             {title}
           </span>
-          <IconChevronDownLine style={{ width: "var(--seed-dimension-x4)", height: "var(--seed-dimension-x4)" }} />
+          <IconChevronDownLine style={{ width: 16, height: 16 }} />
         </button>
       ) : (
         <>
@@ -171,6 +187,9 @@ export function TopNavigationRight({
     <div
       className={`${styles.right} ${className || ""}`}
       style={{
+        display: "flex",
+        alignItems: "center",
+        height: "100%",
         flexShrink: 0,
         zIndex: 1,
         ...style,
@@ -202,24 +221,32 @@ export function TopNavigationIconButton({
   const styles = appBar({ theme, tone });
 
   return (
-    <div style={{ position: "relative", display: "inline-flex" }}>
-      <button
-        type="button"
-        className={`${styles.iconButton} ${className || ""}`}
-        style={{
-          cursor: "pointer",
-          ...style,
-        }}
-        {...props}
-      >
-        {children}
-      </button>
+    <button
+      type="button"
+      className={`${styles.iconButton} ${className || ""}`}
+      style={{
+        position: "relative",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: 44,
+        height: 44,
+        border: "none",
+        background: "transparent",
+        cursor: "pointer",
+        borderRadius: "var(--seed-dimension-x2)",
+        color: "var(--seed-color-fg-neutral)",
+        ...style,
+      }}
+      {...props}
+    >
+      {children}
       {badge !== undefined && badge !== null && (
         <NotificationBadgePositioner attach="icon" size={badgeSize}>
           <NotificationBadge size={badgeSize}>{badgeSize === "large" ? badge : null}</NotificationBadge>
         </NotificationBadgePositioner>
       )}
-    </div>
+    </button>
   );
 }
 
@@ -243,12 +270,21 @@ export function TopNavigationBackButton({
       aria-label="뒤로가기"
       className={`${styles.iconButton} ${className || ""}`}
       style={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: 44,
+        height: 44,
+        border: "none",
+        background: "transparent",
         cursor: "pointer",
+        borderRadius: "var(--seed-dimension-x2)",
+        color: "var(--seed-color-fg-neutral)",
         ...style,
       }}
       {...props}
     >
-      <IconChevronLeftLine className={styles.icon} />
+      <IconChevronLeftLine className={styles.icon} style={{ width: 24, height: 24 }} />
     </button>
   );
 }
@@ -273,12 +309,21 @@ export function TopNavigationCloseButton({
       aria-label="닫기"
       className={`${styles.iconButton} ${className || ""}`}
       style={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: 44,
+        height: 44,
+        border: "none",
+        background: "transparent",
         cursor: "pointer",
+        borderRadius: "var(--seed-dimension-x2)",
+        color: "var(--seed-color-fg-neutral)",
         ...style,
       }}
       {...props}
     >
-      <IconXmarkLine className={styles.icon} />
+      <IconXmarkLine className={styles.icon} style={{ width: 24, height: 24 }} />
     </button>
   );
 }
