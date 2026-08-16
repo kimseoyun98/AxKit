@@ -25,6 +25,21 @@
 
 ---
 
+## 📱 Stackflow & SEED Architecture Specs
+
+1. **Stackflow 모바일 팝업/시트 z-index 동기화 공식**:
+   - `layerIndex={useActivityZIndexBase()}` (`zIndex * 5` 자동 계산)
+   - Step 오버레이: `layerIndex={useActivityZIndexBase({ activityOffset: 1 })}`
+2. **Activity 생명주기(Lifecycle) 제어**:
+   - `open={useActivity().isActive}`, `onOpenChange={(open) => !open && pop()}`
+   - `keepMounted` 딥링킹 팝업: `open={transitionState === "enter-active" || transitionState === "enter-done"}`, `modal={isActive}`
+3. **Top Navigation 세부 subcomponent 체계**:
+   - `TopNavigationLeft`, `TopNavigationTitle` (Clickable / Standard), `TopNavigationRight`, `TopNavigationIconButton` (`NotificationBadge`), `TopNavigationBackButton`, `TopNavigationCloseButton`
+4. **Footer 4대 오피셜 프리셋 블록**:
+   - `footer-01` (비즈프로필 최소 구성), `footer-02` (당근비즈니스 서비스 안내), `footer-03` (어바웃당근 브랜드 소개), `footer-04` (당근닷컴 풀스펙 허브)
+
+---
+
 ## 📁 프로젝트 구조 (Project Structure)
 
 ```text
