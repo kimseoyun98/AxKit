@@ -33,6 +33,8 @@ export function TopNavigation({
     <header
       className={`${styles.root} ${className || ""}`}
       style={{
+        position: "relative",
+        top: "auto",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -40,6 +42,8 @@ export function TopNavigation({
         height: "56px",
         padding: "0 var(--seed-dimension-x3)",
         backgroundColor: "var(--seed-color-bg-layer-default)",
+        border: "1px solid var(--seed-color-stroke-neutral-weak)",
+        borderRadius: "var(--seed-dimension-x3)",
         boxSizing: "border-box",
         ...style,
       }}
