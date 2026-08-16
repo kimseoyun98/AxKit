@@ -1,0 +1,54 @@
+# AX Design System LLMs Index
+
+> AX Design System의 모든 컴포넌트, 파운데이션 토큰, UI 스니펫 명세 목차입니다.
+
+## Foundations
+- Color & Palette: /#color
+- Semantic Tokens: /#semantic
+- Typography: /#typography
+- Spacing & Radius: /#spacing
+
+## Showcase Components (32 Items)
+- Accordion (ui:accordion): /#components-accordion
+- Action Button (ui:action-button): /#components-action-button
+- Alert Dialog (ui:alert-dialog): /#components-alert-dialog
+- Attachment (ui:attachment-field): /#components-attachment
+- Avatar (ui:avatar): /#components-avatar
+- Badge (ui:badge): /#components-badge
+- Bottom Sheet (ui:bottom-sheet): /#components-bottom-sheet
+- Callout (ui:callout): /#components-callout
+- Checkbox (ui:checkbox): /#components-checkbox
+- Chip (ui:chip): /#components-chip
+- Chip Tabs (ui:chip-tabs): /#components-chip-tabs
+- Content Placeholder (ui:content-placeholder): /#components-content-placeholder
+- Contextual Floating Button (ui:contextual-floating-button): /#components-contextual-floating-button
+- Date Picker (ui:date-picker): /#components-date-picker
+- Dialog (ui:dialog): /#components-dialog
+- Field Button (ui:field-button): /#components-field-button
+- Floating Action Button (ui:floating-action-button): /#components-floating-action-button
+- Help Bubble (ui:help-bubble): /#components-help-bubble
+- Identity Placeholder (ui:identity-placeholder): /#components-identity-placeholder
+- Layout (ui:layout): /#components-layout
+- List (ui:list): /#components-list
+- Loading Indicator (ui:loading-indicator): /#components-loading-indicator
+- Menu (ui:menu): /#components-menu
+- Navigation Menu (ui:navigation-menu): /#components-navigation-menu
+- Notification Badge (ui:notification-badge): /#components-notification-badge
+- Page Banner (ui:page-banner): /#components-page-banner
+- Progress Circle (ui:progress-circle): /#components-progress-circle
+- Quantity Picker (ui:quantity-picker): /#components-quantity-picker
+- Radio Group (ui:radio-group): /#components-radio-group
+- Reaction Button (ui:reaction-button): /#components-reaction-button
+- Responsive Dialog (ui:responsive-dialog): /#components-responsive-dialog
+- Result Section (ui:result-section): /#components-result-section
+- Segmented Control (ui:segmented-control): /#components-segmented-control
+- Select (ui:select): /#components-select
+- Select Box (ui:select-box): /#components-select-box
+- Side Navigation (ui:side-navigation): /#components-side-navigation
+- Side Panel (ui:side-panel): /#components-side-panel
+- Slider (ui:slider): /#components-slider
+- Snackbar (ui:snackbar): /#components-snackbar
+- Switch (ui:switch): /#components-switch
+- Tabs (ui:tabs): /#components-tabs
+- Tag Group (ui:tag-group): /#components-tag-group
+- Text Field (ui:text-field): /#components-text-field
