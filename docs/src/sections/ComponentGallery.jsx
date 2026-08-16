@@ -237,7 +237,7 @@ function AvatarDemo() {
       {/* 1. Sizes */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Avatar Size</code> · 24px ~ 96px 규격 비교
+          Avatar Size · 24px ~ 96px 규격 비교
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x3)', alignItems: 'center', justifyContent: 'center' }}>
           {['24', '36', '48', '64', '80', '96'].map((sz) => (
@@ -252,7 +252,7 @@ function AvatarDemo() {
       {/* 2. Badge & Mask */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>AvatarBadge</code> · 뱃지 및 마스크 (Circle, Flower, Shield)
+          AvatarBadge · 뱃지 및 마스크 (Circle, Flower, Shield)
         </div>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x5)', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
@@ -287,7 +287,7 @@ function AvatarDemo() {
       {/* 3. Avatar Stack */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>AvatarStack</code> · 아바타 중첩 리스트
+          AvatarStack · 아바타 중첩 리스트
         </div>
         <AvatarStack size="48">
           {[0, 1, 2, 3].map((idx) => (
@@ -299,7 +299,7 @@ function AvatarDemo() {
       {/* 4. Fallback */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Avatar Fallback</code> · 아이콘 및 대체 플래스홀더
+          Avatar Fallback · 아이콘 및 대체 플래스홀더
         </div>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x5)', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 'var(--seed-dimension-x1_5)' }}>
@@ -338,7 +338,7 @@ function AccordionDemo() {
       {/* 1. Inline Variant */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Accordion Inline</code> · 기본 인라인 아코디언
+          Accordion Inline · 기본 인라인 아코디언
         </div>
         <Accordion defaultValue={["1"]} variant="inline" style={{ width: '100%' }}>
           <AccordionItem value="0">
@@ -359,7 +359,7 @@ function AccordionDemo() {
       {/* 2. Separated Variant */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Accordion Separated</code> · 카드 분리형 아코디언
+          Accordion Separated · 카드 분리형 아코디언
         </div>
         <Accordion defaultValue={["1"]} variant="separated" style={{ width: '100%' }}>
           <AccordionItem value="0">
@@ -395,7 +395,7 @@ function ActionButtonDemo() {
       {/* 1. Hierarchy & State Matrix */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textAlign: 'center' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>ActionButton State</code> · 계층 및 상태 매트릭스
+          ActionButton State · 계층 및 상태 매트릭스
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 'var(--seed-dimension-x2_5)', width: '100%', textAlign: 'center', fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-subtle)' }}>
@@ -424,7 +424,7 @@ function ActionButtonDemo() {
       {/* 2. Sizes & Layouts */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%', alignItems: 'center' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>ActionButton Layout</code> · 크기 및 아이콘 레이아웃
+          ActionButton Layout · 크기 및 아이콘 레이아웃
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', alignItems: 'center' }}>
           <ActionButton variant="brandSolid" size="medium">
@@ -469,7 +469,7 @@ function AttachmentDemo() {
       {/* 1. Attachment Field (Standard File Upload) */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>AttachmentField</code> · 로컬 파일 업로드 및 진행률
+          AttachmentField · 로컬 파일 업로드 및 진행률
         </div>
         <AttachmentField label="증빙 파일 업로드" description="최대 5개까지 업로드할 수 있습니다." maxFiles={5}>
           <AttachmentInput />
@@ -479,7 +479,7 @@ function AttachmentDemo() {
       {/* 2. Dropzone Variant */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>AttachmentDropzone</code> · 드래그 앤 드롭 업로드 영역
+          AttachmentDropzone · 드래그 앤 드롭 업로드 영역
         </div>
         <AttachmentField label="드래그 앤 드롭 업로드" maxFiles={5}>
           <AttachmentDropzone />
@@ -489,7 +489,7 @@ function AttachmentDemo() {
       {/* 3. Attachment Display Field (URL Thumbnail Display) */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>AttachmentDisplayField</code> · 썸네일 미리보기 리스트
+          AttachmentDisplayField · 썸네일 미리보기 리스트
         </div>
         <AttachmentDisplayField label="첨부 미디어 썸네일 (URL)" description="서버에 업로드된 미디어 리소스 썸네일 미리보기" defaultEntries={sampleEntries} maxEntries={5}>
           <AttachmentDisplay
@@ -526,7 +526,7 @@ function BadgeDemo() {
       {/* Tone & Variant Matrix */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textAlign: 'center' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Badge Tone</code> · 색상 톤 및 변형 매트릭스
+          Badge Tone · 색상 톤 및 변형 매트릭스
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '80px repeat(3, 1fr)', gap: 'var(--seed-dimension-x2)', alignItems: 'center', textAlign: 'center' }}>
@@ -553,7 +553,7 @@ function BadgeDemo() {
       {/* Sizes Comparison */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%', alignItems: 'center' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Badge Size</code> · Medium / Large 크기 비교
+          Badge Size · Medium / Large 크기 비교
         </div>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x4)', alignItems: 'center' }}>
           <Badge tone="brand" variant="solid" size="medium">
@@ -605,7 +605,7 @@ function CalloutDemo() {
       {/* 1. Static Display Callouts */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Callout</code> · 정보 안내 카드 뷰 (6 Tones)
+          Callout · 정보 안내 카드 뷰 (6 Tones)
         </div>
         <Callout
           tone="informative"
@@ -628,7 +628,7 @@ function CalloutDemo() {
       {/* 2. Actionable & Dismissible */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Actionable & Dismissible</code> · 클릭 액션 및 닫기 버튼
+          Actionable & Dismissible · 클릭 액션 및 닫기 버튼
         </div>
         <ActionableCallout
           tone="neutral"
@@ -656,7 +656,7 @@ function CheckboxDemo() {
       {/* 1. Shapes & Sizes */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Square & Ghost</code> · 모양 및 크기 변형
+          Square & Ghost · 모양 및 크기 변형
         </div>
         <CheckboxGroup label="Payverse 가맹점 정산 수신 동의 (Square)" indicator="필수">
           <Checkbox label="전자금융거래법 가맹점 약관 동의 (Large, Bold)" size="large" weight="bold" defaultChecked tone="neutral" />
@@ -672,7 +672,7 @@ function CheckboxDemo() {
       {/* 2. Parent-Child Indeterminate Group */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Parent-Child Group</code> · 상위/하위 전체 동의 그룹
+          Parent-Child Group · 상위/하위 전체 동의 그룹
         </div>
         <CheckboxGroup label="약관 전체 동의 그룹 (Parent/Child)">
           <Checkbox
@@ -719,7 +719,7 @@ function ChipDemo() {
       {/* 1. Chip Button & Toggle */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Chip.Button & Chip.Toggle</code> · 단일 액션 및 토글 칩
+          Chip.Button & Chip.Toggle · 단일 액션 및 토글 칩
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)', alignItems: 'center' }}>
           <Chip.Button size="medium" variant="solid">
@@ -740,7 +740,7 @@ function ChipDemo() {
       {/* 2. Chip Radio Selection */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Chip.RadioGroup</code> · 단일 선택 라디오 칩
+          Chip.RadioGroup · 단일 선택 라디오 칩
         </div>
         <Chip.RadioRoot value={radioVal} onValueChange={setRadioVal} aria-label="필터 선택">
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)' }}>
@@ -763,7 +763,7 @@ function ChipDemo() {
       {/* 3. Chip Tabs Navigation */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
-          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>ChipTabsRoot</code> · 카테고리 네비게이션 탭
+          ChipTabsRoot · 카테고리 네비게이션 탭
         </div>
         <ChipTabsRoot variant="neutralSolid" size="medium" value={tabVal} onValueChange={setTabVal}>
           <ChipTabsList>
@@ -902,14 +902,14 @@ function DialogDemo() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
         {/* Size Selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Size:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>:</span>
           <ActionButton size="small" variant={size === "medium" ? "brandSolid" : "neutralOutline"} onClick={() => setSize("medium")}>Medium (480px)</ActionButton>
           <ActionButton size="small" variant={size === "large" ? "brandSolid" : "neutralOutline"} onClick={() => setSize("large")}>Large (800px)</ActionButton>
         </div>
 
         {/* Footer Layout Selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Footer:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>footer</code>:</span>
           <ActionButton size="small" variant={footerLayout === "horizontal" ? "brandSolid" : "neutralOutline"} onClick={() => setFooterLayout("horizontal")}>가로 우측정렬 (HStack)</ActionButton>
           <ActionButton size="small" variant={footerLayout === "vertical" ? "brandSolid" : "neutralOutline"} onClick={() => setFooterLayout("vertical")}>세로 전체너비 (VStack)</ActionButton>
         </div>
@@ -1205,7 +1205,7 @@ function ImageFrameDemo() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
         {/* Ratio Prop Selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Ratio:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>ratio</code>:</span>
           <ActionButton size="small" variant={ratio === 4 / 3 ? "brandSolid" : "neutralOutline"} onClick={() => setRatio(4 / 3)}>
             4 : 3 (기본)
           </ActionButton>
@@ -1219,7 +1219,7 @@ function ImageFrameDemo() {
 
         {/* State Prop Selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>State:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>state</code>:</span>
           <ActionButton size="small" variant={!showFallback ? "brandSolid" : "neutralOutline"} onClick={() => setShowFallback(false)}>
             Normal (정상)
           </ActionButton>
@@ -1260,7 +1260,7 @@ function ProgressCircleDemo() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
         {/* Behavior Prop Selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Behavior:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>behavior</code>:</span>
           <ActionButton size="small" variant={!isIndeterminate ? "brandSolid" : "neutralOutline"} onClick={() => setIsIndeterminate(false)}>
             Determinate ({progress}%)
           </ActionButton>
@@ -1271,7 +1271,7 @@ function ProgressCircleDemo() {
 
         {/* Tone Prop Selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Tone:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>tone</code>:</span>
           <ActionButton size="small" variant={tone === "brand" ? "brandSolid" : "neutralOutline"} onClick={() => setTone("brand")}>
             Brand (브랜드)
           </ActionButton>
@@ -1518,7 +1518,7 @@ function PageBannerDemo() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
         {/* Tone selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Tone:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>tone</code>:</span>
           {["neutral", "informative", "positive", "warning", "critical", "magic"].map((t) => (
             <ActionButton
               key={t}
@@ -1533,7 +1533,7 @@ function PageBannerDemo() {
 
         {/* Variant selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Variant:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant</code>:</span>
           <ActionButton
             size="small"
             variant={effectiveVariant === "weak" ? "brandSolid" : "neutralOutline"}
@@ -1553,7 +1553,7 @@ function PageBannerDemo() {
 
         {/* Interaction Type selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Type:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>type</code>:</span>
           <ActionButton
             size="small"
             variant={type === "standard" ? "brandSolid" : "neutralOutline"}
@@ -1705,7 +1705,7 @@ function QuantityPickerDemo() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
         {/* Size Selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Size:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>:</span>
           {["small", "medium", "large"].map((s) => (
             <ActionButton
               key={s}
@@ -1787,7 +1787,7 @@ function RadioGroupDemo() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
         {/* Size Selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Size:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>:</span>
           {["medium", "large"].map((s) => (
             <ActionButton
               key={s}
@@ -1802,7 +1802,7 @@ function RadioGroupDemo() {
 
         {/* Weight Selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Weight:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>weight</code>:</span>
           {["regular", "bold"].map((w) => (
             <ActionButton
               key={w}
@@ -1887,7 +1887,7 @@ function ReactionButtonDemo() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
         {/* Size Selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Size:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>:</span>
           {["xsmall", "small"].map((s) => (
             <ActionButton
               key={s}
@@ -1986,7 +1986,7 @@ function ResultSectionDemo() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
         {/* Size Selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Size:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>:</span>
           {["large", "medium"].map((s) => (
             <ActionButton
               key={s}
@@ -2001,7 +2001,7 @@ function ResultSectionDemo() {
 
         {/* Asset Selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Asset:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>asset</code>:</span>
           {[
             { label: "완료 아이콘", value: "icon" },
             { label: "잠금 아이콘", value: "lock" },
@@ -2071,7 +2071,7 @@ function SegmentedControlDemo() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', alignItems: 'center' }}>
         {/* Control Count Selection */}
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x1_5)', alignItems: 'center', justifyContent: 'center' }}>
-          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}>Items:</span>
+          <span style={{ fontSize: 'var(--seed-font-size-t2)', color: 'var(--seed-color-fg-neutral-muted)' }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>items</code>:</span>
           {[2, 3, 4].map((n) => (
             <ActionButton
               key={n}
@@ -2189,7 +2189,7 @@ function SelectBoxDemo() {
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
         {/* Selection Mode */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Mode:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>mode</code>:</span>
           {[
             { label: "Radio (단일 선택)", value: "radio" },
             { label: "Check (다중 선택)", value: "check" },
@@ -2207,7 +2207,7 @@ function SelectBoxDemo() {
 
         {/* Control Mark */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Control:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>control</code>:</span>
           {[
             { label: "Mark (마크 표시)", value: "mark" },
             { label: "None (마크 없음)", value: "none" },
@@ -2225,7 +2225,7 @@ function SelectBoxDemo() {
 
         {/* Grid Columns */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Columns:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>columns</code>:</span>
           {[
             { label: "1 Col (1열)", value: 1 },
             { label: "2 Col (2열)", value: 2 },
@@ -2346,7 +2346,7 @@ function SelectDemo() {
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
         {/* Size Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Size:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>:</span>
           {[
             { label: "Large (대형)", value: "large" },
             { label: "Medium (중형)", value: "medium" },
@@ -2364,7 +2364,7 @@ function SelectDemo() {
 
         {/* Selection Mode */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Mode:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>mode</code>:</span>
           {[
             { label: "Single (단일 선택)", value: false },
             { label: "Multiple (다중 선택)", value: true },
@@ -2483,7 +2483,7 @@ function TagGroupDemo() {
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
         {/* Size Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Size:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>:</span>
           {[
             { label: "t2 (12pt)", value: "t2" },
             { label: "t3 (13pt)", value: "t3" },
@@ -2502,7 +2502,7 @@ function TagGroupDemo() {
 
         {/* Weight Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Weight:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>weight</code>:</span>
           {[
             { label: "Regular (일반)", value: "regular" },
             { label: "Bold (볼드)", value: "bold" },
@@ -2520,7 +2520,7 @@ function TagGroupDemo() {
 
         {/* Tone Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Tone:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>tone</code>:</span>
           {[
             { label: "Subtle (은은함)", value: "neutralSubtle" },
             { label: "Neutral (기본)", value: "neutral" },
@@ -2539,7 +2539,7 @@ function TagGroupDemo() {
 
         {/* Separator Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Separator:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>separator</code>:</span>
           {[
             { label: "Default ( · )", value: " · " },
             { label: "Pipe ( | )", value: " | " },
@@ -2563,7 +2563,7 @@ function TagGroupDemo() {
         {/* 1. Dynamic Configured TagGroup */}
         <VStack gap="x4" align="center">
           <Text textStyle="t2Bold" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
-            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>TagGroupRoot</code> · 설정 속성별 태그 그룹
+            TagGroupRoot · 설정 속성별 태그 그룹
           </Text>
           <TagGroupRoot size={size} weight={weight} tone={tone} separator={separator}>
             <TagGroupItem prefixIcon={<IconLocationpinFill />} label="서울 강남점" />
@@ -2578,7 +2578,7 @@ function TagGroupDemo() {
         {/* 2. Mixed Tones & Custom Item Combination */}
         <VStack gap="x4" align="center">
           <Text textStyle="t2Bold" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
-            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>TagGroupItem</code> · Item별 커스텀 톤 & 아이콘
+            TagGroupItem · Item별 커스텀 톤 & 아이콘
           </Text>
           <TagGroupRoot size="t3" separator=" · ">
             <TagGroupItem tone="brand" weight="bold" prefixIcon={<IconCheckmarkCircleFill />} label="우대가맹점" />
@@ -2592,7 +2592,7 @@ function TagGroupDemo() {
         {/* 3. Truncate & Shrink Behavior Showcase */}
         <VStack gap="x4" align="center" width="full">
           <Text textStyle="t2Bold" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
-            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Truncate & FlexShrink</code> · 말줄임 및 오버플로우 테스트
+            Truncate & FlexShrink · 말줄임 및 오버플로우 테스트
           </Text>
           <Box
             width="100%"
@@ -2889,7 +2889,7 @@ function SidePanelDemo() {
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center", width: "100%" }}>
         {/* Size Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Size:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>:</span>
           {[
             { label: "Small (480px)", value: "small" },
             { label: "Medium (720px)", value: "medium" },
@@ -2977,7 +2977,7 @@ function SkeletonDemo() {
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
         {/* Tone Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Tone:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>tone</code>:</span>
           {[
             { label: "Neutral (기본)", value: "neutral" },
             { label: "Magic (매직)", value: "magic" },
@@ -2995,7 +2995,7 @@ function SkeletonDemo() {
 
         {/* Radius Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Radius:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>radius</code>:</span>
           {[
             { label: "0 (직각)", value: "0" },
             { label: "8 (Small)", value: "8" },
@@ -3019,7 +3019,7 @@ function SkeletonDemo() {
         {/* Radius Comparison */}
         <VStack gap="x3">
           <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Skeleton Radius</code> · 반경 (Radius) 프리셋 비교
+            Skeleton Radius · 반경 (Radius) 프리셋 비교
           </div>
           <HStack gap="x4" align="center">
             <Skeleton tone={tone} radius={radius} width="x12" height="x12" />
@@ -3036,7 +3036,7 @@ function SkeletonDemo() {
         {/* Card Pattern Loading Skeleton */}
         <VStack gap="x3">
           <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Skeleton Layout</code> · 피드 / 카드 로딩 스켈레톤 레이아웃 패턴
+            Skeleton Layout · 피드 / 카드 로딩 스켈레톤 레이아웃 패턴
           </div>
           <Box p="x4" borderRadius="r3" style={{ border: "1px solid var(--seed-color-stroke-neutral-weak)", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
             <VStack gap="x4">
@@ -3072,7 +3072,7 @@ function SliderDemo() {
         {/* 1. Single Thumb Slider */}
         <VStack gap="x3" width="full">
           <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Single Thumb Slider</code> · 단일 조절 슬라이더
+            Single Thumb Slider · 단일 조절 슬라이더
           </div>
           <Slider
             label="볼륨 조절"
@@ -3090,7 +3090,7 @@ function SliderDemo() {
         {/* 2. Dual Thumb Range Slider */}
         <VStack gap="x3" width="full">
           <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Range Slider</code> · 범위 선택 슬라이더 (Dual Thumb)
+            Range Slider · 범위 선택 슬라이더 (Dual Thumb)
           </div>
           <Slider
             label="가격 범위 선택"
@@ -3121,7 +3121,7 @@ function SnackbarDemo() {
         {/* 1. Default Variant */}
         <VStack gap="x1_5" width="full">
           <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Snackbar Default</code> · 기본 스낵바 알림
+            Snackbar Default · 기본 스낵바 알림
           </div>
           <StaticSnackbar
             variant="default"
@@ -3134,7 +3134,7 @@ function SnackbarDemo() {
         {/* 2. Positive Variant */}
         <VStack gap="x1_5" width="full">
           <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Snackbar Positive</code> · 성공/긍정 스낵바 알림
+            Snackbar Positive · 성공/긍정 스낵바 알림
           </div>
           <StaticSnackbar
             variant="positive"
@@ -3147,7 +3147,7 @@ function SnackbarDemo() {
         {/* 3. Critical Variant */}
         <VStack gap="x1_5" width="full">
           <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Snackbar Critical</code> · 오류/위험 스낵바 알림
+            Snackbar Critical · 오류/위험 스낵바 알림
           </div>
           <StaticSnackbar
             variant="critical"
@@ -3174,7 +3174,7 @@ function SwitchDemo() {
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
         {/* Size Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Size:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>:</span>
           {["32", "24", "16"].map((s) => (
             <ActionButton
               key={s}
@@ -3189,7 +3189,7 @@ function SwitchDemo() {
 
         {/* Tone Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Tone:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>tone</code>:</span>
           {["brand", "neutral"].map((t) => (
             <ActionButton
               key={t}
@@ -3236,7 +3236,7 @@ function SwitchDemo() {
 
         <VStack gap="x3" width="full">
           <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Switch Sizes</code> · 크기별 규격 비교 (32, 24, 16)
+            Switch Sizes · 크기별 규격 비교 (32, 24, 16)
           </div>
           <VStack gap="x3" align="flex-start">
             <Switch size="32" tone={tone} defaultChecked label="32 size (Default)" />
@@ -3260,7 +3260,7 @@ function TabsDemo() {
       <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x3)", alignItems: "center" }}>
         {/* Layout Prop Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Layout:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>layout</code>:</span>
           {["fill", "fit"].map((l) => (
             <ActionButton
               key={l}
@@ -3275,7 +3275,7 @@ function TabsDemo() {
 
         {/* Badge Prop Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
-          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Badge:</span>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}><code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>badge</code>:</span>
           <ActionButton
             size="small"
             variant={hasNotification ? "brandSolid" : "neutralOutline"}
