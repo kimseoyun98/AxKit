@@ -47,7 +47,7 @@ export function TopNavigation({
       {...props}
     >
       {/* Left Area */}
-      <div style={{ display: "flex", alignItems: "center", gap: "var(--seed-dimension-x2)", minWidth: 40 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "var(--seed-dimension-x2)", minWidth: 40, flexShrink: 0 }}>
         {left ? (
           left
         ) : onBack ? (
@@ -102,8 +102,9 @@ export function TopNavigation({
           alignItems: variant === "standard" ? "center" : "flex-start",
           justifyContent: "center",
           flex: 1,
+          minWidth: 0,
           textAlign: variant === "standard" ? "center" : "left",
-          px: "var(--seed-dimension-x2)",
+          padding: "0 var(--seed-dimension-x2)",
           overflow: "hidden",
         }}
       >
@@ -117,6 +118,7 @@ export function TopNavigation({
               whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
+              width: "100%",
             }}
           >
             {title}
@@ -131,6 +133,7 @@ export function TopNavigation({
               whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
+              width: "100%",
             }}
           >
             {subtitle}
@@ -139,7 +142,7 @@ export function TopNavigation({
       </div>
 
       {/* Right Area */}
-      <div style={{ display: "flex", alignItems: "center", gap: "var(--seed-dimension-x2)", minWidth: 40, justifyContent: "flex-end" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "var(--seed-dimension-x2)", minWidth: 40, justifyContent: "flex-end", flexShrink: 0 }}>
         {right}
       </div>
     </header>
