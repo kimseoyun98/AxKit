@@ -616,6 +616,9 @@ function CalloutDemo() {
 
       {/* 1. Static Display Callouts */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Callout</code> · 정보 안내 카드 뷰 (6 Tones)
+        </div>
         <Callout
           tone="informative"
           title="우대수수료 안내"
@@ -636,6 +639,9 @@ function CalloutDemo() {
 
       {/* 2. Actionable & Dismissible */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Actionable & Dismissible</code> · 클릭 액션 및 닫기 버튼
+        </div>
         <ActionableCallout
           tone="neutral"
           title="정산 명세서 조회"
@@ -665,6 +671,9 @@ function CheckboxDemo() {
 
       {/* 1. Shapes & Sizes */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Square & Ghost</code> · 모양 및 크기 변형
+        </div>
         <CheckboxGroup label="Payverse 가맹점 정산 수신 동의 (Square)" indicator="필수">
           <Checkbox label="전자금융거래법 가맹점 약관 동의 (Large, Bold)" size="large" weight="bold" defaultChecked tone="neutral" />
           <Checkbox label="정산 대금 입금 및 명세서 수신 동의 (Medium)" size="medium" defaultChecked tone="neutral" />
@@ -678,6 +687,9 @@ function CheckboxDemo() {
 
       {/* 2. Parent-Child Indeterminate Group */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Parent-Child Group</code> · 상위/하위 전체 동의 그룹
+        </div>
         <CheckboxGroup label="약관 전체 동의 그룹 (Parent/Child)">
           <Checkbox
             label="가맹점 서비스 약관 전체 동의"
@@ -724,9 +736,9 @@ function ChipDemo() {
       </div>
 
       {/* 1. Chip Button & Toggle */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          1. Button & Toggle Chips
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Chip.Button & Chip.Toggle</code> · 단일 액션 및 토글 칩
         </div>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)', alignItems: 'center' }}>
           <Chip.Button size="medium" variant="solid">
@@ -745,9 +757,9 @@ function ChipDemo() {
       </div>
 
       {/* 2. Chip Radio Selection */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          2. Radio Single Selection (Chip.RadioGroup)
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Chip.RadioGroup</code> · 단일 선택 라디오 칩
         </div>
         <Chip.RadioRoot value={radioVal} onValueChange={setRadioVal} aria-label="필터 선택">
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--seed-dimension-x2)' }}>
@@ -768,9 +780,9 @@ function ChipDemo() {
       </div>
 
       {/* 3. Chip Tabs Navigation */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%' }}>
-        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-          3. Chip Tabs (Category Navigation)
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
+        <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', marginBottom: 'var(--seed-dimension-x1)' }}>
+          <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>ChipTabsRoot</code> · 카테고리 네비게이션 탭
         </div>
         <ChipTabsRoot variant="neutralSolid" size="medium" value={tabVal} onValueChange={setTabVal}>
           <ChipTabsList>
@@ -2606,8 +2618,10 @@ function TagGroupDemo() {
       {/* Interactive TagGroup Showcase */}
       <VStack gap="x6" width="full" align="center">
         {/* 1. Dynamic Configured TagGroup */}
-        <VStack gap="x2" align="center">
-          <Text textStyle="t2Bold" color="fg.neutralSubtle">설정된 속성별 태그 그룹</Text>
+        <VStack gap="x4" align="center">
+          <Text textStyle="t2Bold" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
+            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>TagGroupRoot</code> · 설정 속성별 태그 그룹
+          </Text>
           <TagGroupRoot size={size} weight={weight} tone={tone} separator={separator}>
             <TagGroupItem prefixIcon={<IconLocationpinFill />} label="서울 강남점" />
             <TagGroupItem label="D+1 정산" />
@@ -2616,11 +2630,13 @@ function TagGroupDemo() {
           </TagGroupRoot>
         </VStack>
 
-        <Divider inset />
+        <Divider style={{ marginBlock: "var(--seed-dimension-x3)" }} />
 
         {/* 2. Mixed Tones & Custom Item Combination */}
-        <VStack gap="x2" align="center">
-          <Text textStyle="t2Bold" color="fg.neutralSubtle">혼합 속성 (Item별 커스텀 톤 & 아이콘)</Text>
+        <VStack gap="x4" align="center">
+          <Text textStyle="t2Bold" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
+            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>TagGroupItem</code> · Item별 커스텀 톤 & 아이콘
+          </Text>
           <TagGroupRoot size="t3" separator=" · ">
             <TagGroupItem tone="brand" weight="bold" prefixIcon={<IconCheckmarkCircleFill />} label="우대가맹점" />
             <TagGroupItem tone="neutral" label="통합 PG 정산" />
@@ -2628,11 +2644,13 @@ function TagGroupDemo() {
           </TagGroupRoot>
         </VStack>
 
-        <Divider inset />
+        <Divider style={{ marginBlock: "var(--seed-dimension-x3)" }} />
 
         {/* 3. Truncate & Shrink Behavior Showcase */}
-        <VStack gap="x2" align="center" width="full">
-          <Text textStyle="t2Bold" color="fg.neutralSubtle">말줄임(Truncate) & FlexShrink 오버플로우 테스트</Text>
+        <VStack gap="x4" align="center" width="full">
+          <Text textStyle="t2Bold" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
+            <code style={{ fontSize: "0.9em", padding: "2px 6px", borderRadius: "4px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>Truncate & FlexShrink</code> · 말줄임 및 오버플로우 테스트
+          </Text>
           <Box
             width="100%"
             maxWidth="320px"
