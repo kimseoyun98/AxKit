@@ -250,7 +250,6 @@ export function TopNavigationIconButton({
       type="button"
       className={`${styles.iconButton} ${className || ""}`}
       style={{
-        position: "relative",
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
@@ -265,12 +264,14 @@ export function TopNavigationIconButton({
       }}
       {...props}
     >
-      {children}
-      {badge !== undefined && badge !== null && (
-        <NotificationBadgePositioner attach="icon" size={badgeSize}>
-          <NotificationBadge size={badgeSize}>{badgeSize === "large" ? badge : null}</NotificationBadge>
-        </NotificationBadgePositioner>
-      )}
+      <span style={{ position: "relative", display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
+        {children}
+        {badge !== undefined && badge !== null && (
+          <NotificationBadgePositioner attach="icon" size={badgeSize}>
+            <NotificationBadge size={badgeSize}>{badgeSize === "large" ? badge : null}</NotificationBadge>
+          </NotificationBadgePositioner>
+        )}
+      </span>
     </button>
   );
 }
