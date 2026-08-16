@@ -74,19 +74,6 @@ const LINK_COLUMNS = [
     ],
   },
   {
-    title: "탐색",
-    links: [
-      { label: "전체 메뉴", href: "#" },
-      { label: "인기 콘텐츠", href: "#" },
-      { label: "신규 업데이트", href: "#" },
-      { label: "이벤트/혜택", href: "#" },
-      { label: "커뮤니티", href: "#" },
-      { label: "모임/소모임", href: "#" },
-      { label: "실시간 메시지", href: "#" },
-      { label: "공지사항", href: "#" },
-    ],
-  },
-  {
     title: "비즈니스",
     links: [
       { label: "비즈니스 센터", href: "#" },
@@ -102,30 +89,6 @@ const LINK_COLUMNS = [
       { label: "1:1 문의하기", href: "#" },
       { label: "IR 공시", href: "#" },
       { label: "PR 뉴스룸", href: "#" },
-    ],
-  },
-  {
-    title: "서비스 지역",
-    links: [
-      { label: "서울/수도권", href: "#" },
-      { label: "경기/인천", href: "#" },
-      { label: "부산/경남", href: "#" },
-      { label: "대구/경북", href: "#" },
-      { label: "광주/전라", href: "#" },
-      { label: "대전/충청", href: "#" },
-      { label: "전국 주요 도시", href: "#" },
-    ],
-  },
-  {
-    title: "주요 토픽",
-    links: [
-      { label: "디지털 기기", href: "#" },
-      { label: "생활/가전", href: "#" },
-      { label: "패션/잡화", href: "#" },
-      { label: "도서/취미", href: "#" },
-      { label: "스포츠/레저", href: "#" },
-      { label: "뷰티/미용", href: "#" },
-      { label: "전체 카테고리", href: "#" },
     ],
   },
 ];
