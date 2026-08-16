@@ -526,7 +526,7 @@ function BadgeDemo() {
       {/* Tone & Variant Matrix */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)', textAlign: 'center' }}>
-          Badge Tone · 색상 톤 및 변형 매트릭스
+          <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>tone</code> & <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant</code>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: '80px repeat(3, 1fr)', gap: 'var(--seed-dimension-x2)', alignItems: 'center', textAlign: 'center' }}>
@@ -553,7 +553,7 @@ function BadgeDemo() {
       {/* Sizes Comparison */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2_5)', width: '100%', alignItems: 'center' }}>
         <div style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: 'var(--seed-color-fg-neutral-muted)' }}>
-          Badge Size · Medium / Large 크기 비교
+          <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>
         </div>
         <div style={{ display: 'flex', gap: 'var(--seed-dimension-x4)', alignItems: 'center' }}>
           <Badge tone="brand" variant="solid" size="medium">
