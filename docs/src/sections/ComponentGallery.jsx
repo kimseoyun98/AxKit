@@ -1323,7 +1323,7 @@ function ProgressCircleDemo() {
         width: '100%',
         padding: 'var(--seed-dimension-x5)',
         borderRadius: 'var(--seed-dimension-x3)',
-        backgroundColor: tone === "staticWhite" ? "var(--seed-color-bg-static-black)" : "transparent",
+        backgroundColor: tone === "staticWhite" ? "var(--seed-color-palette-static-black)" : "transparent",
         border: tone === "staticWhite" ? "none" : "1px dashed var(--seed-color-stroke-neutral-weak)",
         transition: "all 0.2s ease",
       }}>
@@ -1338,7 +1338,7 @@ function ProgressCircleDemo() {
               maxValue={100}
               value={isIndeterminate ? undefined : progress}
             />
-            <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-medium)', color: tone === "staticWhite" ? 'var(--seed-color-fg-static-white)' : 'var(--seed-color-fg-neutral-subtle)' }}>
+            <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-medium)', color: tone === "staticWhite" ? 'var(--seed-color-palette-static-white)' : 'var(--seed-color-fg-neutral-subtle)' }}>
               Size 40 (전체 페이지)
             </span>
           </div>
@@ -1352,7 +1352,7 @@ function ProgressCircleDemo() {
               maxValue={100}
               value={isIndeterminate ? undefined : progress}
             />
-            <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-medium)', color: tone === "staticWhite" ? 'var(--seed-color-fg-static-white)' : 'var(--seed-color-fg-neutral-subtle)' }}>
+            <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-medium)', color: tone === "staticWhite" ? 'var(--seed-color-palette-static-white)' : 'var(--seed-color-fg-neutral-subtle)' }}>
               Size 24 (컴포넌트 수준)
             </span>
           </div>
@@ -1361,7 +1361,7 @@ function ProgressCircleDemo() {
         {/* Determinate Progress Control Slider */}
         {!isIndeterminate && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--seed-dimension-x3)', width: '100%', paddingTop: 'var(--seed-dimension-x2)' }}>
-            <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: tone === "staticWhite" ? 'var(--seed-color-fg-static-white)' : 'var(--seed-color-fg-neutral-muted)', minWidth: 44, textAlign: 'right' }}>
+            <span style={{ fontSize: 'var(--seed-font-size-t2)', fontWeight: 'var(--seed-font-weight-bold)', color: tone === "staticWhite" ? 'var(--seed-color-palette-static-white)' : 'var(--seed-color-fg-neutral-muted)', minWidth: 44, textAlign: 'right' }}>
               {progress}%
             </span>
             <input
