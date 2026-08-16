@@ -2228,8 +2228,8 @@ function SelectBoxDemo() {
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
           <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Mode:</span>
           {[
-            { label: "정산수령 방식 (Radio)", value: "radio" },
-            { label: "알림서비스 신청 (Check)", value: "check" },
+            { label: "Radio (단일 선택)", value: "radio" },
+            { label: "Check (다중 선택)", value: "check" },
           ].map((m) => (
             <ActionButton
               key={m.value}
@@ -2399,8 +2399,8 @@ function SelectDemo() {
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center" }}>
           <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>Mode:</span>
           {[
-            { label: "단일 정산주기 (Single)", value: false },
-            { label: "복수 정산주기 (Multiple)", value: true },
+            { label: "Single (단일 선택)", value: false },
+            { label: "Multiple (다중 선택)", value: true },
           ].map((m) => (
             <ActionButton
               key={String(m.value)}
