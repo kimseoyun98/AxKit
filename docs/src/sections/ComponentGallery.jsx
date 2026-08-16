@@ -3377,17 +3377,18 @@ function ChipTabsDemo() {
 }
 
 function LoadingIndicatorDemo() {
-  const [size, setSize] = useState("36");
-  const [tone, setTone] = useState("brand");
+  const [size, setSize] = useState("medium");
+  const [variant, setVariant] = useState("brandSolid");
+  const [loading, setLoading] = useState(true);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
-      <div style={{ display: "flex", gap: "var(--seed-dimension-x4)" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 480, margin: "0 auto", alignItems: "center" }}>
+      <div style={{ display: "flex", gap: "var(--seed-dimension-x4)", flexWrap: "wrap", justifyContent: "center" }}>
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center" }}>
           <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
             <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>size</code>:
           </span>
-          {["24", "36", "40", "48"].map((s) => (
+          {["small", "medium", "large"].map((s) => (
             <ActionButton key={s} size="small" variant={size === s ? "brandSolid" : "neutralOutline"} onClick={() => setSize(s)}>
               {s}
             </ActionButton>
@@ -3395,20 +3396,22 @@ function LoadingIndicatorDemo() {
         </div>
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center" }}>
           <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
-            <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>tone</code>:
+            <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant</code>:
           </span>
-          {["brand", "neutral"].map((t) => (
-            <ActionButton key={t} size="small" variant={tone === t ? "brandSolid" : "neutralOutline"} onClick={() => setTone(t)}>
-              {t}
+          {["brandSolid", "neutralSolid", "neutralOutline"].map((v) => (
+            <ActionButton key={v} size="small" variant={variant === v ? "brandSolid" : "neutralOutline"} onClick={() => setVariant(v)}>
+              {v}
             </ActionButton>
           ))}
         </div>
       </div>
 
-      <div style={{ width: "100%", height: 160, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "var(--seed-dimension-x3)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
-        <LoadingIndicator size={size} tone={tone} />
-        <Text textStyle="t2Medium" color="fg.neutralSubtle">
-          실시간 정산 데이터를 불러오는 중입니다...
+      <div style={{ width: "100%", height: 160, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "var(--seed-dimension-x4)", backgroundColor: "var(--seed-color-bg-layer-default)", borderRadius: "var(--seed-dimension-x4)", border: "1px solid var(--seed-color-stroke-neutral-weak)" }}>
+        <ActionButton size={size} variant={variant} loading={loading} onClick={() => setLoading(!loading)}>
+          <LoadingIndicator>실시간 정산 데이터 처리 중</LoadingIndicator>
+        </ActionButton>
+        <Text color="fg.neutralSubtle" fontSize="t2">
+          버튼을 클릭하여 로딩 상태(LoadingIndicator)를 토글해 보세요.
         </Text>
       </div>
     </div>
