@@ -1,5 +1,5 @@
 /**
- * axpublish v2.0 — generate-seed-brand.js
+ * AxKit v2.0 — generate-seed-brand.js
  * Primary hex 하나로 Seed Primitive 94개 원본 스케일 중 가장 톤이 아름다운 10단계를 매칭하여
  * seed-seed-tokens.css 브랜드 override 섹션을 생성하는 도구.
  * 
@@ -73,7 +73,7 @@ for (const [name, steps] of Object.entries(SEED_PALETTES)) {
 const matchedScale = SEED_PALETTES[bestMatch];
 
 const cssContent = `/**
- * axpublish v2.0 — seed-seed-tokens.css (Brand Override)
+ * AxKit v2.0 — seed-seed-tokens.css (Brand Override)
  * Primary Hex (${primaryInput}) ➔ Seed Primitive [${bestMatch}] 10단계 스케일 자동 매칭
  */
 

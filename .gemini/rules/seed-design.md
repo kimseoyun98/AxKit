@@ -1,6 +1,6 @@
 # SEED Design System 2.0 Project Rules
 
-Any AI assistant working on this repository (`axpublish-init`) MUST follow these strict guidelines:
+Any AI assistant working on this repository (`AxKit`) MUST follow these strict guidelines:
 
 1. **CLI Component Ownership**:
    - All UI components are installed via `npx @seed-design/cli add ui:*` into `docs/src/components/ui/*.tsx`.

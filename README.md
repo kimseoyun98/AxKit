@@ -1,22 +1,22 @@
-# axpublish-init
+# AxKit
 
 > AI Design-to-Code Pipeline — Figma MCP + Seed Design + Tailwind CSS
 
-[![npm version](https://img.shields.io/npm/v/axpublish-init?color=0066FF&label=version)](https://www.npmjs.com/package/axpublish-init)
-[![npm downloads](https://img.shields.io/npm/dm/axpublish-init)](https://www.npmjs.com/package/axpublish-init)
-[![license](https://img.shields.io/npm/l/axpublish-init)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/AxKit?color=0066FF&label=version)](https://www.npmjs.com/package/AxKit)
+[![npm downloads](https://img.shields.io/npm/dm/AxKit)](https://www.npmjs.com/package/AxKit)
+[![license](https://img.shields.io/npm/l/AxKit)](LICENSE)
 [![node](https://img.shields.io/badge/node-%3E%3D16-brightgreen)](package.json)
 
 디자이너의 Figma 파일을 AI가 읽고, 디자인 토큰을 바인딩하고, 반응형 웹 코드로 퍼블리싱하는 오픈 파이프라인입니다.
 
-📖 **[Documentation](https://axpublish-init.github.io/axpublish-init)**
+📖 **[Documentation](https://AxKit.github.io/AxKit)**
 
 ---
 
 ## Quick Start
 
 ```bash
-npx axpublish-init
+npx AxKit
 ```
 
 실행하면 순서대로 물어봅니다:
@@ -34,7 +34,7 @@ npx axpublish-init
 ```
 my-project/
 ├── PROMPT.md                    ← Claude에 붙여넣을 시작 프롬프트 (자동 완성)
-├── axpublish-orchestrator.md    ← AI 워크플로우 지침서
+├── axkit-orchestrator.md    ← AI 워크플로우 지침서
 ├── responsive-rules.md          ← 반응형 변환 규칙
 ├── seed-tokens.css              ← Seed Design 시맨틱 토큰 (Tailwind v4 네이티브)
 ├── generate-seed-brand.js       ← 브랜드 컬러 스케일 생성기

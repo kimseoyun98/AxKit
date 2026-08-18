@@ -1,7 +1,7 @@
 # SEED Design 2.0 AI Development & Engineering Guidelines
 
 > **Notice for AI Coding Assistants (Antigravity, Claude Code, Cursor, Copilot, etc.)**
-> This repository (`axpublish-init`) strictly follows **SEED Design System 2.0** specifications and architecture.
+> This repository (`AxKit`) strictly follows **SEED Design System 2.0** specifications and architecture.
 > Any AI agent continuing development on this codebase MUST read and strictly adhere to the rules in this document.
 
 ---

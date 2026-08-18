@@ -1,5 +1,5 @@
 /**
- * axpublish v2.0 — seed-tokens.css
+ * AxKit v2.0 — seed-tokens.css
  * 당근마켓 @seed-design/css 2.3.0 원본 8대 Foundations (Color, Typography, Spacing, Radius, Motion, Shadow, Scale, Breakpoint) 반영
  * Color는 generate-seed-brand.js가 생성하는 브랜드 override 파일에서 다룬다 (여기엔 Color 제외 7개 Foundation).
  * 값 검증: node_modules/@seed-design/css/base.css 원본과 대조 완료.

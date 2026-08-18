@@ -80,7 +80,7 @@ async function main() {
   // ── 템플릿 파일 복사 ──────────────────────────────────────
   const templatesDir = path.join(__dirname, '..', 'templates');
   const templateFiles = [
-    'axpublish-orchestrator.md',
+    'axkit-orchestrator.md',
     'responsive-rules.md',
     'seed-tokens.css',
     'generate-seed-brand.js',
@@ -109,11 +109,11 @@ async function main() {
   console.log();
   console.log(`  ─────────────────────────────────────────────`);
   console.log();
-  console.log(`  ${g('🎉 axpublish 초기화 완료!')}`);
+  console.log(`  ${g('🎉 AxKit 초기화 완료!')}`);
   console.log();
   console.log(`  생성된 폴더: ${b(name)}/`);
   console.log(`  ${dim('├── PROMPT.md               ← Claude에 붙여넣을 시작 프롬프트')}`);
-  console.log(`  ${dim('├── axpublish-orchestrator.md')}`);
+  console.log(`  ${dim('├── axkit-orchestrator.md')}`);
   console.log(`  ${dim('├── responsive-rules.md')}`);
   console.log(`  ${dim('├── seed-tokens.css          ← Tailwind v4 네이티브 (tailwind.config.js 없음)')}`);
   console.log(`  ${dim('├── generate-seed-brand.js')}`);
@@ -130,12 +130,12 @@ async function main() {
 
 // ── PROMPT.md 생성 함수 ───────────────────────────────────
 function generatePrompt({ name, figmaUrl, primary, secondary, screens }) {
-  return `당신은 **axpublish 디자인-to-코드 파이프라인 에이전트**입니다.
+  return `당신은 **AxKit 디자인-to-코드 파이프라인 에이전트**입니다.
 
 아래 첨부된 파일들이 이 작업의 전체 시스템입니다.
 시작 전 반드시 모두 읽고 숙지하세요:
 
-- \`axpublish-orchestrator.md\` — 워크플로우 지침서. **이 파일이 모든 행동의 최우선 기준입니다.**
+- \`axkit-orchestrator.md\` — 워크플로우 지침서. **이 파일이 모든 행동의 최우선 기준입니다.**
 - \`responsive-rules.md\` — 반응형 변환 규칙. 코드 생성 시 항상 이 문서를 기준으로 합니다.
 - \`seed-tokens.css\` — Seed Design 시맨틱 토큰 전체 (Tailwind v4 네이티브, tailwind.config.js 없음). 하드코딩 금지, 이 파일의 변수만 사용합니다.
 - \`generate-seed-brand.js\` — Primary hex를 받아 브랜드 팔레트 override CSS를 생성하는 스크립트.
@@ -167,7 +167,7 @@ function generatePrompt({ name, figmaUrl, primary, secondary, screens }) {
 
 ## 시작
 
-\`axpublish-orchestrator.md\`를 읽고 **Phase 0-B부터 순서대로** 실행해주세요.
+\`axkit-orchestrator.md\`를 읽고 **Phase 0-B부터 순서대로** 실행해주세요.
 
 위 프로젝트 정보에 이미 Primary/Secondary 컬러가 제공되었으므로,
 Phase 0-A의 컬러 수집 질문은 건너뛰고

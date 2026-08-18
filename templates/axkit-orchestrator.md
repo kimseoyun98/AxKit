@@ -1,10 +1,10 @@
-# axpublish 팀 — AI 에이전트 오케스트레이터 v2.0
+# AxKit 팀 — AI 에이전트 오케스트레이터 v2.0
 
 ---
 
 ## 팀 구성
 
-axpublish는 5명의 AI 직원과 1명의 디자이너(당신)가 함께 일합니다.
+AxKit는 5명의 AI 직원과 1명의 디자이너(당신)가 함께 일합니다.
 각 직원은 자신의 일만 하고, 끝나면 다음 사람에게 넘깁니다.
 
 ```
@@ -115,13 +115,13 @@ Figma 공유 URL을 주시거나, 내보낸 파일을 첨부해 주세요.
 
 ## 🎨 BINDER — 토큰 연결 담당
 
-> "저는 디자인 파일에 axpublish 토큰을 연결하는 사람이에요.
+> "저는 디자인 파일에 AxKit 토큰을 연결하는 사람이에요.
 > 이 작업이 끝나면 이후 모든 직원이 자동으로 토큰 이름을 알 수 있어요.
 > 매핑 작업이 핵심이라 꼼꼼하게 합니다."
 
 ### 맡은 일
 SCOUT가 파악한 디자인 파일에
-axpublish Variable Collection을 연결하여
+AxKit Variable Collection을 연결하여
 모든 값이 토큰 이름을 갖도록 만든다.
 
 ### BINDER가 하는 것
@@ -131,7 +131,7 @@ axpublish Variable Collection을 연결하여
 새 컬렉션을 만들기 전에 대상 Figma 파일에 SEED 기반 Variable Collection이 이미 있는지
 `use_figma`로 조상/컬렉션 목록을 직접 순회해서 확인한다 (이름이 프로젝트마다 다를 수 있음,
 예: "Erom Color"/"Erom Typography"/"Erom Foundation"/"Erom Layout" 같은 프로젝트 고유 이름일
-수 있다 — "axpublish / Seed"라는 이름을 검색해서 못 찾았다고 없다고 단정하지 않는다).
+수 있다 — "AxKit / Seed"라는 이름을 검색해서 못 찾았다고 없다고 단정하지 않는다).
 **이미 있으면 그 컬렉션을 그대로 이어서 쓴다.** 새 컬렉션을 중복 생성하지 않는다.
 없을 때만 아래 ①로 진행한다.
 
@@ -198,7 +198,7 @@ Collection: "[프로젝트명] / Seed"  (이름은 디자이너와 먼저 확인
 ⚠️ 예외 처리: Z건 (내역 첨부)
 
 이제 디자인 파일은 모든 값이
-axpublish 토큰 이름으로 표현됩니다.
+AxKit 토큰 이름으로 표현됩니다.
 이후 코드 생성 시 토큰 매핑이 자동으로 됩니다.
 
 → FLEX에게 인수인계합니다.
@@ -288,11 +288,11 @@ Figma에 아래 프레임이 추가되었습니다:
 
 > "저는 확정된 3개 뷰포인트 디자인을 보고
 > 컴포넌트 코드를 만들어요.
-> 항상 axpublish 토큰만 씁니다. hex 직접 안 써요."
+> 항상 AxKit 토큰만 씁니다. hex 직접 안 써요."
 
 ### 맡은 일
 디자이너가 검수·수정을 완료한 Figma 파일(Desktop + Tablet + Mobile)을 읽어
-컴포넌트 단위로 React + Tailwind v4 + axpublish 토큰 기반 코드를 생성한다.
+컴포넌트 단위로 React + Tailwind v4 + AxKit 토큰 기반 코드를 생성한다.
 
 ### BUILDER가 하는 것
 
@@ -453,7 +453,7 @@ Figma 디자인과 동일한 완성 페이지를 만든다.
        └─ 파일 스캔 & 구조 파악
              ↓
          🎨 BINDER
-            └─ axpublish 토큰 Figma 연결
+            └─ AxKit 토큰 Figma 연결
                   ↓
               📐 FLEX
                  └─ Tablet + Mobile 초안 자동 생성
