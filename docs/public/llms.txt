@@ -1,61 +1,31 @@
-# AxKit UI LLMs Index
+# AxKit UI v2.0 · SEED Engine AI Rules & Guidelines
 
-> AxKit UI의 모든 50개 컴포넌트, 파운데이션 토큰, UI 스니펫 명세 목차입니다.
+> AxKit is a SEED-based React UI component & design token system built on `@seed-design/css` and `@seed-design/react`.
 
-## Foundations
-- Color & Palette: /#color
-- Semantic Tokens: /#semantic
-- Typography: /#typography
-- Spacing & Radius: /#spacing
+## Quick Rules for AI Code Generation
 
-## Showcase Components (50 Items)
-- Accordion (ui:accordion): /#components-accordion
-- Action Button (ui:action-button): /#components-action-button
-- Alert Dialog (ui:alert-dialog): /#components-alert-dialog
-- Attachment (ui:attachment-field): /#components-attachment
-- Avatar (ui:avatar): /#components-avatar
-- Badge (ui:badge): /#components-badge
-- Bottom Sheet (ui:bottom-sheet): /#components-bottom-sheet
-- Callout (ui:callout): /#components-callout
-- Checkbox (ui:checkbox): /#components-checkbox
-- Chip (ui:chip): /#components-chip
-- Chip Tabs (ui:chip-tabs): /#components-chip-tabs
-- Content Placeholder (ui:content-placeholder): /#components-content-placeholder
-- Contextual Floating Button (ui:contextual-floating-button): /#components-contextual-floating-button
-- Date Picker (ui:date-picker): /#components-date-picker
-- Dialog (ui:dialog): /#components-dialog
-- Divider (ui:layout): /#components-divider
-- Field Button (ui:field-button): /#components-field-button
-- Floating Action Button (ui:floating-action-button): /#components-floating-action-button
-- Footer (block:footer): /#components-footer
-- Help Bubble (ui:help-bubble): /#components-help-bubble
-- Identity Placeholder (ui:identity-placeholder): /#components-identity-placeholder
-- Image Frame (ui:layout): /#components-image-frame
-- List (ui:list): /#components-list
-- List Header (ui:list-header): /#components-list-header
-- Loading Indicator (ui:loading-indicator): /#components-loading-indicator
-- Menu (ui:menu): /#components-menu
-- Notification Badge (ui:notification-badge): /#components-notification-badge
-- Page Banner (ui:page-banner): /#components-page-banner
-- Progress Circle (ui:progress-circle): /#components-progress-circle
-- Quantity Picker (ui:quantity-picker): /#components-quantity-picker
-- Radio Group (ui:radio-group): /#components-radio-group
-- Reaction Button (ui:reaction-button): /#components-reaction-button
-- Responsive Dialog (ui:responsive-dialog): /#components-responsive-dialog
-- Responsive Side Panel (ui:responsive-side-panel): /#components-responsive-side-panel
-- Result Section (ui:result-section): /#components-result-section
-- Segmented Control (ui:segmented-control): /#components-segmented-control
-- Select (ui:select): /#components-select
-- Select Box (ui:select-box): /#components-select-box
-- Side Navigation (ui:side-navigation): /#components-side-navigation
-- Side Panel (ui:side-panel): /#components-side-panel
-- Skeleton (ui:skeleton): /#components-skeleton
-- Slider (ui:slider): /#components-slider
-- Snackbar (ui:snackbar): /#components-snackbar
-- Swipeable Menu Sheet (ui:swipeable-menu-sheet): /#components-swipeable-menu-sheet
-- Switch (ui:switch): /#components-switch
-- Tabs (ui:tabs): /#components-tabs
-- Tag Group (ui:tag-group): /#components-tag-group
-- Text Field (ui:text-field): /#components-text-field
-- Time Picker (ui:time-picker): /#components-time-picker
-- Top Navigation (ui:top-navigation): /#components-top-navigation
+1. **Imports**:
+   - Always import UI components from `src/components/ui`:
+     ```tsx
+     import { ActionButton, Badge, TextField, TopNavigation } from '@/components/ui';
+     ```
+   - Always import monochrome icons from `@karrotmarket/react-monochrome-icon`:
+     ```tsx
+     import { IconMagnifyingglassLine, IconBellLine } from '@karrotmarket/react-monochrome-icon';
+     ```
+
+2. **Design Tokens**:
+   - Use official 100% semantic CSS variables:
+     - Foreground: `var(--seed-color-fg-neutral)`, `var(--seed-color-fg-brand)`, `var(--seed-color-fg-neutral-muted)`
+     - Background: `var(--seed-color-bg-layer-default)`, `var(--seed-color-bg-layer-basement)`, `var(--seed-color-bg-brand-solid)`
+     - Spacing: `var(--seed-dimension-x1)` to `x16` (4px steps: x1=4px, x2=8px, x3=12px, x4=16px)
+     - Typography: `var(--seed-font-size-t1)` to `t14`
+
+3. **Component Specs**:
+   - `ActionButton`: `variant` = `"brandSolid"` | `"neutralWeak"` | `"neutralOutline"` | `"ghost"`, `size` = `"large"` | `"medium"` | `"small"` | `"xsmall"`
+   - `TopNavigation`: `variant` = `"root"` | `"standard"`, `theme` = `"cupertino"` (iOS 44px) | `"android"` (56px)
+   - `Badge`: `variant` = `"brandSolid"` | `"neutralWeak"` | `"positiveWeak"` | `"criticalWeak"`
+   - Overlay Popups (`AlertDialog`, `BottomSheet`, `Dialog`, `SidePanel`): Always manage `open` and `onOpenChange` state.
+
+4. **Repository**:
+   - https://github.com/kimseoyun98/AxKit

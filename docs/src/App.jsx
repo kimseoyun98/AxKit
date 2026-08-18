@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { DesignTokenSection } from './sections/DesignTokenSection'
 import { ColorSection } from './sections/ColorSection'
 import { SemanticSection } from './sections/SemanticSection'
@@ -51,10 +52,21 @@ const NAV = [
   },
 ]
 
-import { useState } from 'react';
-
 export default function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyLLMsTxt = async () => {
+    try {
+      const res = await fetch('/llms.txt');
+      const text = await res.text();
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2200);
+    } catch (err) {
+      alert('llms.txt 복사 중 오류가 발생했습니다.');
+    }
+  };
 
   return (
     <>
@@ -102,19 +114,29 @@ export default function App() {
               <code>@seed-design/css</code> npm import · 모노크롬 아이콘 588개 · SEED 2.0 CLI UI 컴포넌트 & 디자인 토큰 갤러리
             </p>
           </div>
-          <a
-            href="https://github.com/kimseoyun98/AxKit"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={handleCopyLLMsTxt}
             style={{
-              flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: '#2563EB', color: '#fff', fontSize: 13.5, fontWeight: 700,
-              padding: '10px 18px', borderRadius: 9999, textDecoration: 'none', whiteSpace: 'nowrap',
-              boxShadow: '0 2px 8px rgba(37, 99, 235, 0.25)', transition: 'all 0.15s ease',
+              flexShrink: 0,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              background: copied ? '#16A34A' : '#2563EB',
+              color: '#fff',
+              fontSize: 13.5,
+              fontWeight: 700,
+              padding: '10px 18px',
+              borderRadius: 9999,
+              border: 'none',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+              boxShadow: copied ? '0 2px 8px rgba(22, 163, 74, 0.25)' : '0 2px 8px rgba(37, 99, 235, 0.25)',
+              transition: 'all 0.2s ease',
             }}
           >
-            ↓ 템플릿 다운로드 (GitHub)
-          </a>
+            {copied ? '✓ llms.txt 클립보드 복사 완료!' : '📋 llms.txt 복사 (AI 프롬프트)'}
+          </button>
         </header>
 
         {/* Overview */}
