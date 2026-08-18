@@ -3705,7 +3705,14 @@ function TimePickerDemo() {
 function TopNavigationDemo() {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 540, margin: "0 auto" }}>
-      {/* 1. Root Type (최상위 탭: 동네 선택 드롭다운 + 검색/알림 버튼) */}
+      {/* Prop Spec Header */}
+      <div style={{ display: "flex", gap: "var(--seed-dimension-x3)", alignItems: "center", justifyContent: "center", flexWrap: "wrap", marginBottom: "var(--seed-dimension-x2)" }}>
+        <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
+          <code>variant</code> · <code>theme</code> · <code>tone</code> · <code>badgeSize</code>
+        </span>
+      </div>
+
+      {/* 1. Root Type (최상위 메인 탭: 드롭다운 타이틀 & 알림 뱃지) */}
       <VStack gap="x2" width="full">
         <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
           <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant</code>: "root" (최상위 메인 탭 - 드롭다운 타이틀 & 뱃지)
@@ -3729,7 +3736,7 @@ function TopNavigationDemo() {
         </TopNavigation>
       </VStack>
 
-      {/* 2. Standard Type (2-Depth 상세 화면: 뒤로가기 + 타이틀/서브타이틀 + 공유 버튼) */}
+      {/* 2. Standard Type (2-Depth 상세 화면: 뒤로가기 & 서브타이틀) */}
       <VStack gap="x2" width="full">
         <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
           <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant</code>: "standard" (2-Depth 상세 화면 - 뒤로가기 & 서브타이틀)
@@ -3751,10 +3758,10 @@ function TopNavigationDemo() {
         </TopNavigation>
       </VStack>
 
-      {/* 3. Standard Type (Modal / Flow: 닫기 X 버튼 + 완료 액션 버튼) */}
+      {/* 3. Standard Type (Modal / Flow: 닫기 X 버튼 & 텍스트 완료 링크 버튼) */}
       <VStack gap="x2" width="full">
         <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
-          <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant</code>: "standard" (모달 / 독립 플로우 - 닫기 버튼 & 완료)
+          <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant</code>: "standard" (모달 / 독립 플로우 - 닫기 버튼 & 텍스트 완료 링크)
         </span>
         <TopNavigation variant="standard">
           <TopNavigationLeft>
@@ -3762,9 +3769,84 @@ function TopNavigationDemo() {
           </TopNavigationLeft>
           <TopNavigationTitle align="center" title="신규 데이터 작성" />
           <TopNavigationRight>
-            <ActionButton variant="brandSolid" size="small" onClick={() => alert("등록 완료")}>
+            <button
+              type="button"
+              onClick={() => alert("등록 완료")}
+              style={{
+                background: "none",
+                border: "none",
+                fontSize: "var(--seed-font-size-t4)",
+                fontWeight: "var(--seed-font-weight-bold)",
+                color: "var(--seed-color-fg-brand)",
+                cursor: "pointer",
+                paddingInline: "var(--seed-dimension-x2)",
+                height: 44,
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               완료
-            </ActionButton>
+            </button>
+          </TopNavigationRight>
+        </TopNavigation>
+      </VStack>
+
+      {/* 4. Multi-Action Header (다중 우측 아이콘 버튼: 뒤로가기 + 타이틀 + 검색/공유) */}
+      <VStack gap="x2" width="full">
+        <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
+          <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant</code>: "standard" (다중 우측 액션 - 검색 & 공유)
+        </span>
+        <TopNavigation variant="standard">
+          <TopNavigationLeft>
+            <TopNavigationBackButton onClick={() => alert("뒤로가기")} />
+          </TopNavigationLeft>
+          <TopNavigationTitle align="left" title="가맹점 정산 내역" />
+          <TopNavigationRight>
+            <TopNavigationIconButton aria-label="검색" onClick={() => alert("검색")}>
+              <IconMagnifyingglassLine style={{ width: 22, height: 22 }} />
+            </TopNavigationIconButton>
+            <TopNavigationIconButton aria-label="공유" onClick={() => alert("공유")}>
+              <IconAndroidshareLine style={{ width: 22, height: 22 }} />
+            </TopNavigationIconButton>
+          </TopNavigationRight>
+        </TopNavigation>
+      </VStack>
+
+      {/* 5. Tone Transparent Header (투명 레이어 오버레이 - 배너/이미지 상단 배치) */}
+      <VStack gap="x2" width="full">
+        <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
+          <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>tone</code>: "transparent" (배너/이미지 투명 오버레이 헤더)
+        </span>
+        <div style={{ position: "relative", borderRadius: "var(--seed-dimension-x3)", overflow: "hidden", background: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)" }}>
+          <TopNavigation tone="transparent" style={{ color: "#FFFFFF" }}>
+            <TopNavigationLeft>
+              <TopNavigationBackButton style={{ color: "#FFFFFF" }} onClick={() => alert("뒤로가기")} />
+            </TopNavigationLeft>
+            <TopNavigationTitle align="center" title="미디어 투명 헤더" style={{ color: "#FFFFFF" }} />
+            <TopNavigationRight>
+              <TopNavigationIconButton style={{ color: "#FFFFFF" }} aria-label="공유" onClick={() => alert("공유")}>
+                <IconAndroidshareLine style={{ width: 22, height: 22 }} />
+              </TopNavigationIconButton>
+            </TopNavigationRight>
+          </TopNavigation>
+        </div>
+      </VStack>
+
+      {/* 6. Android Theme Header (안드로이드 56px 높이 헤더) */}
+      <VStack gap="x2" width="full">
+        <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
+          <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>theme</code>: "android" (안드로이드 56px 높이 메인 헤더)
+        </span>
+        <TopNavigation theme="android" variant="standard">
+          <TopNavigationLeft>
+            <TopNavigationBackButton onClick={() => alert("뒤로가기")} />
+          </TopNavigationLeft>
+          <TopNavigationTitle align="left" title="안드로이드 규격 (56px)" />
+          <TopNavigationRight>
+            <TopNavigationIconButton aria-label="검색" onClick={() => alert("검색")}>
+              <IconMagnifyingglassLine style={{ width: 22, height: 22 }} />
+            </TopNavigationIconButton>
           </TopNavigationRight>
         </TopNavigation>
       </VStack>
