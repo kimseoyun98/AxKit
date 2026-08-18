@@ -1,40 +1,34 @@
 import { useState } from 'react';
 import { Sec } from '../components/UI';
+import { IconChevronDownLine, IconChevronUpLine } from '@karrotmarket/react-monochrome-icon';
 
 export function DesignTokenSection() {
   const [expanded, setExpanded] = useState(false);
 
   return (
     <Sec id="f-design-token">
-      <h2>Design Token — Overview</h2>
+      <h2
+        onClick={() => setExpanded(!expanded)}
+        style={{
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 8,
+          userSelect: 'none',
+        }}
+      >
+        <span>Design Token — Overview</span>
+        {expanded ? (
+          <IconChevronUpLine style={{ width: 22, height: 22, color: 'var(--seed-color-fg-neutral-muted)' }} />
+        ) : (
+          <IconChevronDownLine style={{ width: 22, height: 22, color: 'var(--seed-color-fg-neutral-muted)' }} />
+        )}
+      </h2>
+
       <p>
         디자인 토큰은 디자인 결정을 데이터로 번역한 것입니다. UI의 세부 사항을 디자인과 엔지니어링
         간에 전달하는 커뮤니케이션 도구이자 공통 언어입니다.
       </p>
-
-      {/* 접기 / 펼치기 제어 토글 버튼 */}
-      <div style={{ marginTop: 14, marginBottom: expanded ? 20 : 0 }}>
-        <button
-          type="button"
-          onClick={() => setExpanded(!expanded)}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 6,
-            padding: '6px 14px',
-            borderRadius: 8,
-            fontSize: 12.5,
-            fontWeight: 600,
-            background: 'var(--seed-color-bg-layer-basement, #F1F5F9)',
-            color: 'var(--seed-color-fg-neutral, #334155)',
-            border: '1px solid var(--seed-color-stroke-neutral-weak, #E2E8F0)',
-            cursor: 'pointer',
-            transition: 'all 0.15s ease',
-          }}
-        >
-          {expanded ? '▲ 상세 개념 접기' : '▼ 2단계 계층 구조 및 세부 예시 보기'}
-        </button>
-      </div>
 
       {/* 접혀있는 세부 내용 영역 */}
       {expanded && (
