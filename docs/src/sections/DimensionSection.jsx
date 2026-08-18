@@ -1,4 +1,4 @@
-import { Sec, TokenTable } from '../components/UI'
+import { Sec, TokenTable , ChipInfo} from '../components/UI'
 
 export function DimensionSection() {
   const dimRows = [
@@ -62,7 +62,7 @@ export function DimensionSection() {
 
   return (
     <Sec id="f-dimension">
-      <h2>Dimensions, Radius, Shadows, Gradients</h2>
+      <h2>Dimensions, Radius, Shadows, Gradients <ChipInfo>@seed-design/css 파운데이션 스케일</ChipInfo></h2>
       
       <h3>Dimensions & Spacing</h3>
       <TokenTable>

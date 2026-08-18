@@ -1,4 +1,4 @@
-import { Sec, TokenTable } from '../components/UI'
+import { Sec, TokenTable , ChipInfo} from '../components/UI'
 
 export function MotionSection() {
   const durRows = [
@@ -21,7 +21,7 @@ export function MotionSection() {
 
   return (
     <Sec id="f-motion">
-      <h2>Motion Tokens</h2>
+      <h2>Motion Tokens <ChipInfo>@seed-design/css 트랜지션 & 이징</ChipInfo></h2>
       <p>
         <strong>매크로 모션</strong> — 전체 레이아웃/페이지 전환 같은 큰 규모의 모션 (페이지 전환, 모달
         팝업, 슬라이드 메뉴). 0.2초를 초과합니다.

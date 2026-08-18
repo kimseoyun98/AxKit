@@ -1,9 +1,9 @@
-import { Sec, TokenTable } from '../components/UI'
+import { Sec, TokenTable , ChipInfo} from '../components/UI'
 
 export function StateSection() {
   return (
     <Sec id="f-state">
-      <h2>State Tokens</h2>
+      <h2>State Tokens <ChipInfo>@seed-design/css 시맨틱 상태</ChipInfo></h2>
       <p>
         UI 상태는 <strong>상호작용 상태(Interactive State)</strong>와 <strong>옵션 상태(Option State)</strong>
         두 유형으로 나뉩니다. 한 상태가 다른 상태를 덮어쓸 수도, 함께 적용될 수도 있습니다.
