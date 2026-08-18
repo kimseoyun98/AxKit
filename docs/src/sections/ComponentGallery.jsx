@@ -1049,6 +1049,7 @@ function FieldButtonDemo() {
   const [openTimeSheet, setOpenTimeSheet] = useState(false);
   const [time, setTime] = useState({ hour: 9, minute: 30 });
   const [draftTime, setDraftTime] = useState(time);
+  const [selectedCategories, setSelectedCategories] = useState(["PG 정산대금", "FDS 이상검증"]);
 
   const formattedTime = `${time.hour < 12 ? "오전" : "오후"} ${time.hour % 12 || 12}:${String(time.minute).padStart(2, "0")}`;
 
@@ -1128,6 +1129,41 @@ function FieldButtonDemo() {
             </BottomSheetFooter>
           </BottomSheetContent>
         </BottomSheetRoot>
+
+        {/* 3. Chip Value Variant (태그/칩 다중 선택 변형) */}
+        <FieldButton
+          label="관심 서비스 카테고리 (Chip 다중 선택 변형)"
+          showRequiredIndicator
+          disabled={isDisabled}
+          invalid={isInvalid}
+          description="선택된 항목들이 태그/칩(Chip) 형태로 표시되는 공식 Value 변형입니다."
+          errorMessage="최소 하나 이상의 관심 카테고리를 선택해 주세요."
+          values={selectedCategories}
+          showClearButton={selectedCategories.length > 0}
+          onValuesChange={(vals) => setSelectedCategories(vals)}
+          buttonProps={{
+            onClick: () => {
+              if (selectedCategories.length === 0) {
+                setSelectedCategories(["PG 정산대금", "FDS 이상검증", "해외 간편결제"]);
+              }
+            },
+            "aria-label": `관심 카테고리 선택. 현재 ${selectedCategories.length}개 선택됨`,
+          }}
+        >
+          {selectedCategories.length > 0 ? (
+            <FieldButtonValue>
+              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+                {selectedCategories.map((cat) => (
+                  <TagGroupItem key={cat} value={cat} style={{ pointerEvents: 'none', height: 26, fontSize: 12 }}>
+                    {cat}
+                  </TagGroupItem>
+                ))}
+              </div>
+            </FieldButtonValue>
+          ) : (
+            <FieldButtonPlaceholder>클릭하여 관심 서비스 카테고리를 다중 선택하세요</FieldButtonPlaceholder>
+          )}
+        </FieldButton>
       </div>
     </div>
   );
