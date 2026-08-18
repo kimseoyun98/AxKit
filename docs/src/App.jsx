@@ -25,7 +25,7 @@ const NAV = [
       { href: '#f-color', label: 'Color Primitives (94)' },
       { href: '#f-semantic', label: 'Semantic Color (84)' },
       { href: '#f-elevation', label: 'Elevation' },
-      { href: '#f-typography', label: 'Typography Tokens (t1–t14)' },
+      { href: '#f-typography', label: 'Typography (t1–t14)' },
       { href: '#f-text', label: 'Semantic Text' },
       { href: '#f-dimension', label: 'Dimensions & Radius' },
       { href: '#f-motion', label: 'Motion' },

@@ -51,7 +51,7 @@ export function TypographySection() {
           userSelect: 'none',
         }}
       >
-        <span>Typography Tokens (t1–t14)</span>
+        <span>Typography (t1–t14)</span>
         <IconChevronDownLine
           style={{
             width: 16,
