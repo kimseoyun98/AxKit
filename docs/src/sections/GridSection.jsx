@@ -10,6 +10,45 @@ const officialBreakpoints = [
   { name: 'xl', minWidth: '1440px', desc: '대형 데스크톱' },
 ];
 
+const layoutPrimitives = [
+  {
+    name: 'Box',
+    role: '최하단 기본 레이아웃 블록',
+    desc: '디자인 토큰(bg, px, py, borderRadius 등)을 JSX Prop으로 직접 바인딩하며 그래디언트 지원',
+    example: '<Box bg="bg.neutralWeak" px="x3" py="x2" borderRadius="r2" />',
+  },
+  {
+    name: 'Flex',
+    role: 'CSS Flexbox 컨테이너',
+    desc: 'Flexbox 레이아웃 (direction, align, justify, flexGrow, gap) 제어',
+    example: '<Flex direction="row" gap="x2" align="center" flexGrow={1} />',
+  },
+  {
+    name: 'Float',
+    role: '고정 위치 배치 요소',
+    desc: '상대 위치 부모 안에서 placement와 offsetX, offsetY로 플로팅 버튼/뱃지 고정',
+    example: '<Float placement="bottom-end" offsetX="x4" offsetY="x4" />',
+  },
+  {
+    name: 'Grid / GridItem',
+    role: 'CSS Grid 기반 동적 레이아웃',
+    desc: 'repeat(12, 1fr) 기반 columns, rows, autoFlow 및 GridItem(colSpan="full", asChild) 제어',
+    example: '<Grid columns={3} gap="x2"><GridItem colSpan={2} /></Grid>',
+  },
+  {
+    name: 'HStack',
+    role: '가로 축 정렬 스택',
+    desc: 'flex-direction: row 기반으로 자식 요소들을 가로로 배치 (gap 자동 설정)',
+    example: '<HStack gap="x2" align="center"><Box /> <Box /></HStack>',
+  },
+  {
+    name: 'VStack',
+    role: '세로 축 정렬 스택',
+    desc: 'flex-direction: column 기반으로 자식 요소들을 세로로 쌓음 (gap 자동 설정)',
+    example: '<VStack gap="x3" width="full"><Box /> <Box /></VStack>',
+  },
+];
+
 const viewportMapping = [
   {
     device: 'Mobile',
@@ -109,7 +148,7 @@ export function GridSection() {
         />
       </h2>
       <p>
-        SEED는 Mobile-First 반응형 시스템을 제공합니다. 특정 Breakpoint에 값을 지정하면 더 넓은 Viewport에도 동일한 상위 값이 자동 적용됩니다.
+        SEED는 Mobile-First 반응형 시스템과 6대 코어 레이아웃 프리미티브(`Box`, `Flex`, `Float`, `Grid`, `HStack`, `VStack`)를 제공합니다.
       </p>
       {expanded && (
         <div style={{ marginTop: 16 }}>
@@ -118,8 +157,32 @@ export function GridSection() {
             <code>Box</code>, <code>Flex</code>, <code>Grid</code>, <code>VStack</code>, <code>HStack</code> 등의 컴포넌트에서 <code>padding={`{{ base: "x3", md: "x4", xl: "x6" }}`}</code>와 같이 Breakpoint 객체를 전달하여 유연하게 반응형 레이아웃을 작성합니다.
           </Notice>
 
-          {/* 1. SEED 오피셜 Breakpoint 규격표 */}
-          <h3 style={{ marginTop: 28 }}>SEED 2.0 Official Breakpoints</h3>
+          {/* 1. SEED 오피셜 6대 Layout Primitives 표 */}
+          <h3 style={{ marginTop: 28 }}>SEED 2.0 Core 6 Layout Primitives</h3>
+          <p>SEED React에서 레이아웃을 구성하는 6가지 기초 컴포넌트 명세입니다.</p>
+          <TokenTable>
+            <thead>
+              <tr>
+                <th>컴포넌트</th>
+                <th>역할 (Role)</th>
+                <th>핵심 기능 및 설명</th>
+                <th>React Code 사용 예시</th>
+              </tr>
+            </thead>
+            <tbody>
+              {layoutPrimitives.map(l => (
+                <tr key={l.name}>
+                  <td><code>{l.name}</code></td>
+                  <td><strong>{l.role}</strong></td>
+                  <td>{l.desc}</td>
+                  <td><code>{l.example}</code></td>
+                </tr>
+              ))}
+            </tbody>
+          </TokenTable>
+
+          {/* 2. SEED 오피셜 Breakpoint 규격표 */}
+          <h3 style={{ marginTop: 36 }}>SEED 2.0 Official Breakpoints</h3>
           <p>SEED에서 정의하는 5대 표준 Breakpoint 규격입니다.</p>
           <TokenTable>
             <thead>
@@ -140,7 +203,7 @@ export function GridSection() {
             </tbody>
           </TokenTable>
 
-          {/* 2. Figma ➔ Code 매핑 사양표 */}
+          {/* 3. Figma ➔ Code 매핑 사양표 */}
           <h3 style={{ marginTop: 36 }}>Figma Layout Grid ➔ React Code 매핑 사양표</h3>
           <p>디자이너의 피그마 프레임 규격과 개발자의 SEED Breakpoint &amp; React JSX 코드 매핑 사양입니다.</p>
           <TokenTable>
@@ -172,7 +235,7 @@ export function GridSection() {
             </tbody>
           </TokenTable>
 
-          {/* 3. Responsive Object Props & Hiding/Showing */}
+          {/* 4. Responsive Object Props & Hiding/Showing */}
           <h3 style={{ marginTop: 36 }}>Responsive Object Props &amp; Hiding/Showing</h3>
           <p>
             Box 기반 컴포넌트(`Box`, `Flex`, `Grid`, `VStack`, `HStack`)의 주요 반응형 속성 사용법입니다.
@@ -187,9 +250,18 @@ export function GridSection() {
             <li>
               <strong>Display Control</strong> — <code>display={`{{ base: "none", md: "block" }}`}</code> 로 디바이스별 노출 여부 직접 제어.
             </li>
+            <li>
+              <strong>Gradient Support (`Box`)</strong> — <code>backgroundGradient="highlightMagic"</code> 과 <code>backgroundGradientDirection="43deg" | "to bottom"</code> 속성 지원.
+            </li>
+            <li>
+              <strong>Floating Anchor (`Float`)</strong> — <code>placement="top-start" | "bottom-end"</code> 및 <code>offsetX="x4"</code>, <code>offsetY="x4"</code> 로 플로팅 요소 배치.
+            </li>
+            <li>
+              <strong>Grid Spanning &amp; Composition</strong> — <code>GridItem colSpan="full"</code>, <code>rowSpan={2}</code> 및 <code>asChild</code> 프로퍼티 합성 지원.
+            </li>
           </ul>
 
-          {/* 4. Responsive Hooks & SSR Provider */}
+          {/* 5. Responsive Hooks & SSR Provider */}
           <h3 style={{ marginTop: 28 }}>Responsive Hooks &amp; SSR Support</h3>
           <p>JavaScript 로직 내 반응형 조율이 필요한 경우 훅과 Provider를 제공합니다.</p>
           <ul style={{ marginLeft: 20, fontSize: 13.5, color: '#334155', lineHeight: 1.9 }}>
@@ -204,7 +276,7 @@ export function GridSection() {
             </li>
           </ul>
 
-          {/* 5. Layout Regions */}
+          {/* 6. Layout Regions */}
           <h3 style={{ marginTop: 28 }}>Layout Regions</h3>
           <p>
             <strong>Header (GNB)</strong> — 서비스 전체를 관통하는 최상위 탐색 영역.
