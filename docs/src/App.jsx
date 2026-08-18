@@ -155,7 +155,7 @@ export default function App() {
           <div>
             <h1>AxKit UI v2.0 · SEED Engine</h1>
             <p style={{ fontSize: 14.5, color: '#64748B', marginTop: 4 }}>
-              <code>@seed-design/css</code> npm import · 모노크롬 아이콘 588개 · SEED 2.0 CLI UI 컴포넌트 & 디자인 토큰 갤러리
+              SEED 2.0 시맨틱 토큰 · 588종 공식 모노크롬 아이콘 · UI 컴포넌트 라이브러리
             </p>
           </div>
           <button
@@ -204,7 +204,7 @@ export default function App() {
             />
           </h2>
           <p>
-            이롬넷이 채택한 Seed Design System의 Foundation 토큰 전수 + 공식 아이콘팩(모노크롬 588개) + UI 컴포넌트 갤러리.
+            SEED Design System 2.0 표준을 기반으로 구축된 이롬넷 AxKit의 디자인 토큰, 공식 아이콘 팩(588종), 그리고 React UI 컴포넌트를 탐색하고 검증할 수 있는 개발 문서입니다.
           </p>
           {overviewExpanded && (
             <div style={{ marginTop: 16 }}>
