@@ -10,7 +10,6 @@ import { MotionSection } from './sections/MotionSection'
 import { GridSection } from './sections/GridSection'
 import { InclusiveSection } from './sections/InclusiveSection'
 import { I18nSection } from './sections/I18nSection'
-import { StateSection } from './sections/StateSection'
 import { VoiceSection } from './sections/VoiceSection'
 import { WritingSection } from './sections/WritingSection'
 import { IconGallery } from './sections/IconGallery'
@@ -23,15 +22,14 @@ const NAV = [
     links: [
       { href: '#f-design-token', label: 'Design Token' },
       { href: '#f-color', label: 'Color Primitives (94)' },
-      { href: '#f-semantic', label: 'Semantic Color (84)' },
+      { href: '#f-semantic', label: 'Semantic Color & State (84)' },
       { href: '#f-elevation', label: 'Elevation' },
-      { href: '#f-typography', label: 'Typography (t1–t14)' },
+      { href: '#f-typography', label: 'Typography & Text' },
       { href: '#f-dimension', label: 'Dimensions & Radius' },
       { href: '#f-motion', label: 'Motion' },
       { href: '#f-grid', label: 'Grid / Layout' },
       { href: '#f-inclusive', label: 'Inclusive Design' },
       { href: '#f-international', label: 'International (i18n)' },
-      { href: '#f-state', label: 'State Tokens' },
       { href: '#f-voice', label: 'Voice and Tone' },
       { href: '#f-writing', label: 'Writing' },
     ],
@@ -240,7 +238,6 @@ export default function App() {
         <GridSection />
         <InclusiveSection />
         <I18nSection />
-        <StateSection />
         <VoiceSection />
         <WritingSection />
 

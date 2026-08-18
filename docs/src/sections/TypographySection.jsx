@@ -32,6 +32,7 @@ const textPropsList = [
 
 export function TypographySection() {
   const [expanded, setExpanded] = useState(false);
+  const [activeTab, setActiveTab] = useState('tokens'); // 'tokens' | 'semantic'
 
   useEffect(() => {
     const checkHash = () => {
@@ -62,8 +63,8 @@ export function TypographySection() {
           userSelect: 'none',
         }}
       >
-        <span>Typography Tokens &amp; Text Component</span>
-        <ChipInfo>14단계 &amp; textStyle</ChipInfo>
+        <span>Typography Tokens &amp; Semantic Text</span>
+        <ChipInfo>2-Tab 뷰</ChipInfo>
         <IconChevronDownLine
           style={{
             width: 16,
@@ -76,75 +77,130 @@ export function TypographySection() {
         />
       </h2>
       <p>
-        SEED 타이포그래피는 <code>t1</code>~<code>t14</code> 14단계로 구성되며, 피그마와 1:1 매핑되는 <code>textStyle</code> 속성을 통해 글꼴 크기, 줄 간격, 굵기를 한번에 적용합니다.
+        기초 폰트 수치 토큰(<code>t1</code>~<code>t14</code>) 탭과 시맨틱 텍스트 활용법(<code>textStyle</code>, <code>&lt;Text&gt;</code>) 탭으로 분리되어 있습니다.
       </p>
+
       {expanded && (
         <div style={{ marginTop: 16 }}>
-          <Notice>
-            <strong>Figma Text Style ↔ React textStyle 1:1 매핑 가이드</strong><br />
-            피그마 디자인의 Text Style 이름(예: <code>t5Regular</code>, <code>t6Bold</code>)은 React <code>&lt;Text textStyle="..."&gt;</code> 속성과 1:1 매핑됩니다.
-            고정 폰트 스케일이 필요한 경우 <code>t5StaticRegular</code>와 같이 <code>Static</code> 토큰을 사용합니다.
-          </Notice>
+          {/* 2-Tab Switcher */}
+          <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
+            <button
+              type="button"
+              onClick={() => setActiveTab('tokens')}
+              style={{
+                padding: '8px 18px',
+                borderRadius: 8,
+                border: activeTab === 'tokens' ? 'none' : '1px solid var(--seed-color-stroke-neutral-weak, #E2E8F0)',
+                background: activeTab === 'tokens' ? 'var(--seed-color-bg-brand-solid, #FF6F0F)' : 'var(--seed-color-bg-layer-default, #FFFFFF)',
+                color: activeTab === 'tokens' ? '#FFFFFF' : 'var(--seed-color-fg-neutral, #0F172A)',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                fontSize: 13,
+                transition: 'all 0.15s ease',
+              }}
+            >
+              1. Typography Tokens (t1 ~ t14 수치표)
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('semantic')}
+              style={{
+                padding: '8px 18px',
+                borderRadius: 8,
+                border: activeTab === 'semantic' ? 'none' : '1px solid var(--seed-color-stroke-neutral-weak, #E2E8F0)',
+                background: activeTab === 'semantic' ? 'var(--seed-color-bg-brand-solid, #FF6F0F)' : 'var(--seed-color-bg-layer-default, #FFFFFF)',
+                color: activeTab === 'semantic' ? '#FFFFFF' : 'var(--seed-color-fg-neutral, #0F172A)',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                fontSize: 13,
+                transition: 'all 0.15s ease',
+              }}
+            >
+              2. Semantic Text (&lt;Text&gt; &amp; textStyle 1:1)
+            </button>
+          </div>
 
-          {/* 1. textStyle 1:1 매핑 명세표 */}
-          <h3 style={{ marginTop: 28 }}>Figma Text Style ➔ React textStyle 1:1 매핑 사양표</h3>
-          <p>피그마 디자인 텍스트 스타일과 SEED React 코드 매핑 사양입니다.</p>
-          <TokenTable>
-            <thead>
-              <tr>
-                <th>Level</th>
-                <th>Figma / React textStyle</th>
-                <th>Static textStyle (고정)</th>
-                <th>Static Font Size</th>
-                <th>Static Line Height</th>
-                <th>Fluid (rem)</th>
-                <th>Default Weight</th>
-              </tr>
-            </thead>
-            <tbody>
-              {textStyleMapping.map(r => (
-                <tr key={r.level}>
-                  <td><strong>{r.level}</strong></td>
-                  <td><code>{r.fluidStyle}</code></td>
-                  <td><code>{r.staticStyle}</code></td>
-                  <td><code>{r.staticFs}</code></td>
-                  <td><code>{r.staticLh}</code></td>
-                  <td><code>{r.fluidRem}</code></td>
-                  <td>{r.defaultWeight}</td>
-                </tr>
-              ))}
-            </tbody>
-          </TokenTable>
+          {activeTab === 'tokens' ? (
+            <div>
+              <p style={{ fontSize: 13.5, color: '#475569', marginBottom: 12 }}>
+                SEED 2.0 타이포그래피의 기초 14단계 수치표입니다. 각 단계마다 정적 px 값과 뷰포트 가변 <code>clamp()</code> fluid 값이 동시에 정의되어 있습니다.
+              </p>
+              <TokenTable>
+                <thead>
+                  <tr>
+                    <th>Token Level</th>
+                    <th>Static Font Size</th>
+                    <th>Static Line Height</th>
+                    <th>Fluid Baseline (rem)</th>
+                    <th>Default Weight</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {textStyleMapping.map(r => (
+                    <tr key={r.level}>
+                      <td><strong>{r.level}</strong></td>
+                      <td><code>{r.staticFs}</code></td>
+                      <td><code>{r.staticLh}</code></td>
+                      <td><code>{r.fluidRem}</code></td>
+                      <td>{r.defaultWeight}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </TokenTable>
+            </div>
+          ) : (
+            <div>
+              <Notice>
+                <strong>Figma Text Style ↔ React textStyle 1:1 매핑 가이드</strong><br />
+                피그마 디자인의 Text Style 이름(예: <code>t5Regular</code>, <code>t6Bold</code>)은 React <code>&lt;Text textStyle="..."&gt;</code> 속성과 1:1 매핑됩니다.
+                고정 폰트 스케일이 필요한 경우 <code>t5StaticRegular</code>와 같이 <code>Static</code> 토큰을 사용합니다.
+              </Notice>
 
-          {/* 2. Text 컴포넌트 Extended Props 표 */}
-          <h3 style={{ marginTop: 36 }}>React &lt;Text&gt; Component Extended Props</h3>
-          <p><code>@seed-design/react</code>의 <code>&lt;Text&gt;</code> 컴포넌트 주요 속성입니다.</p>
-          <TokenTable>
-            <thead>
-              <tr>
-                <th>Prop</th>
-                <th>Type / Options</th>
-                <th>설명 및 가이드</th>
-                <th>React Code 사용 예시</th>
-              </tr>
-            </thead>
-            <tbody>
-              {textPropsList.map(p => (
-                <tr key={p.prop}>
-                  <td><code>{p.prop}</code></td>
-                  <td><code>{p.type || p.propType}</code></td>
-                  <td>{p.desc}</td>
-                  <td><code>{p.example}</code></td>
-                </tr>
-              ))}
-            </tbody>
-          </TokenTable>
+              <h3 style={{ marginTop: 20 }}>Figma Text Style ➔ React textStyle 1:1 매핑 사양표</h3>
+              <TokenTable>
+                <thead>
+                  <tr>
+                    <th>Level</th>
+                    <th>Figma / React textStyle</th>
+                    <th>Static textStyle (고정)</th>
+                    <th>Default Weight</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {textStyleMapping.map(r => (
+                    <tr key={r.level}>
+                      <td><strong>{r.level}</strong></td>
+                      <td><code>{r.fluidStyle}</code></td>
+                      <td><code>{r.staticStyle}</code></td>
+                      <td>{r.defaultWeight}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </TokenTable>
 
-          {/* 3. 주의사항 및 실무 팁 */}
-          <Notice style={{ marginTop: 28 }}>
-            <strong>t9~t14 Fluid Clamp 스케일링 안내</strong> — 실제 개발 구현에서는 SEED 공식 방식인 <code>clamp()</code> 기반 fluid 스케일링(뷰포트에 따라 매끄럽게 값이 변함)이 적용됩니다.
-            피그마의 t9~t14가 데스크톱/태블릿/모바일 3단계 정적 값으로 작성되어 있는 것은 피그마 표현 한계 때문이므로, 개발 시에는 SEED의 <code>textStyle</code>을 그대로 바인딩하세요.
-          </Notice>
+              <h3 style={{ marginTop: 28 }}>React &lt;Text&gt; Component Extended Props</h3>
+              <TokenTable>
+                <thead>
+                  <tr>
+                    <th>Prop</th>
+                    <th>Type / Options</th>
+                    <th>설명 및 가이드</th>
+                    <th>React Code 사용 예시</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {textPropsList.map(p => (
+                    <tr key={p.prop}>
+                      <td><code>{p.prop}</code></td>
+                      <td><code>{p.type || p.propType}</code></td>
+                      <td>{p.desc}</td>
+                      <td><code>{p.example}</code></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </TokenTable>
+            </div>
+          )}
         </div>
       )}
     </Sec>

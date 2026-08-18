@@ -164,8 +164,8 @@ export function SemanticSection() {
           userSelect: 'none',
         }}
       >
-        <span>Semantic Color Tokens</span>
-        <ChipInfo>84개</ChipInfo>
+        <span>Semantic Color &amp; State Tokens</span>
+        <ChipInfo>84개 &amp; State</ChipInfo>
         <IconChevronDownLine
           style={{
             width: 16,
@@ -177,6 +177,9 @@ export function SemanticSection() {
           }}
         />
       </h2>
+      <p>
+        의미(Role) 중심의 시맨틱 컬러 토큰과 UI 상호작용/옵션 상태(<code>pressed</code>, <code>hover</code>, <code>selected</code>, <code>disabled</code>) 토큰이 통합 구성되어 있습니다.
+      </p>
 
       <p>
         SEED의 역할 기반 색상 시스템은 <strong>Property(속성) → Role(역할) → Variant(변형) → State(상태)</strong> 체계로 구성됩니다.
