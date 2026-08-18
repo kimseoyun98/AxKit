@@ -2705,6 +2705,8 @@ function TextFieldDemo() {
   const [variant, setVariant] = useState("outline"); // "outline" | "underline"
   const [size, setSize] = useState("large"); // "large" | "medium"
   const [state, setState] = useState("normal"); // "normal" | "disabled" | "readOnly" | "invalid"
+  const [labelWeight, setLabelWeight] = useState("medium"); // "medium" | "bold"
+  const [requiredType, setRequiredType] = useState("required"); // "required" | "optional"
 
   // Basic Form States
   const [bizName, setBizName] = useState("이롬넷 가맹점 (강남본점)");
@@ -2786,6 +2788,31 @@ function TextFieldDemo() {
           ))}
         </div>
 
+        {/* Header Label Weight & Requirement Mark Controls */}
+        <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
+            <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>label</code>:
+          </span>
+          <ActionButton
+            size="small"
+            variant={labelWeight === "bold" ? "brandSolid" : "neutralOutline"}
+            onClick={() => setLabelWeight(labelWeight === "bold" ? "medium" : "bold")}
+          >
+            {labelWeight === "bold" ? "Bold 굵게" : "Medium 기본"}
+          </ActionButton>
+
+          <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)", marginLeft: 6 }}>
+            <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>mark</code>:
+          </span>
+          <ActionButton
+            size="small"
+            variant={requiredType === "required" ? "brandSolid" : "neutralOutline"}
+            onClick={() => setRequiredType(requiredType === "required" ? "optional" : "required")}
+          >
+            {requiredType === "required" ? "필수 (*)" : "선택 (텍스트)"}
+          </ActionButton>
+        </div>
+
         {/* State Selection */}
         <div style={{ display: "flex", gap: "var(--seed-dimension-x1_5)", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
           <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
@@ -2819,13 +2846,15 @@ function TextFieldDemo() {
           <TextField
             variant={variant}
             size={size}
+            labelWeight={labelWeight}
             disabled={isDisabled}
             readOnly={isReadOnly}
             invalid={isInvalid}
             label="가맹점 대표 상호명"
             description="사업자등록증상의 공식 법인/상호명을 입력해 주세요."
             errorMessage={isInvalid ? "가맹점 상호명 정보를 확인해 주세요." : undefined}
-            showRequiredIndicator
+            showRequiredIndicator={requiredType === "required"}
+            indicator={requiredType === "optional" ? "(선택)" : undefined}
             maxGraphemeCount={30}
             value={bizName}
             onValueChange={({ value }) => setBizName(value)}
