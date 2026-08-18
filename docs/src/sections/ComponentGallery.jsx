@@ -1047,11 +1047,15 @@ function FieldButtonDemo() {
 
   // TimePicker + FieldButton + BottomSheet integration
   const [openTimeSheet, setOpenTimeSheet] = useState(false);
-  const [time, setTime] = useState({ hour: 9, minute: 30 });
-  const [draftTime, setDraftTime] = useState(time);
-  const [selectedCategories, setSelectedCategories] = useState(["PG 정산대금", "FDS 이상검증"]);
+  const [time, setTime] = useState(() => ({ hour: 9, minute: 30 }));
+  const [draftTime, setDraftTime] = useState(() => ({ hour: 9, minute: 30 }));
+  const [selectedCategories, setSelectedCategories] = useState(() => ["PG 정산대금", "FDS 이상검증"]);
 
-  const formattedTime = `${time.hour < 12 ? "오전" : "오후"} ${time.hour % 12 || 12}:${String(time.minute).padStart(2, "0")}`;
+  const safeTime = time || { hour: 9, minute: 30 };
+  const safeDraftTime = draftTime || { hour: 9, minute: 30 };
+  const safeCategories = selectedCategories || [];
+
+  const formattedTime = `${safeTime.hour < 12 ? "오전" : "오후"} ${safeTime.hour % 12 || 12}:${String(safeTime.minute).padStart(2, "0")}`;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
@@ -1099,7 +1103,7 @@ function FieldButtonDemo() {
         </FieldButton>
 
         {/* TimePicker + FieldButton + BottomSheet 연동 */}
-        <BottomSheetRoot open={openTimeSheet} onOpenChange={(next) => { if (next) setDraftTime(time); setOpenTimeSheet(next); }}>
+        <BottomSheetRoot open={openTimeSheet} onOpenChange={(next) => { if (next) setDraftTime(safeTime); setOpenTimeSheet(next); }}>
           <FieldButton
             label="영업 시작 시간 (TimePicker + BottomSheet 연동)"
             showRequiredIndicator
@@ -1118,13 +1122,13 @@ function FieldButtonDemo() {
             <BottomSheetBody paddingX="x4">
               <VStack align="center" paddingY="x2">
                 <Box width="100%" maxWidth="360px">
-                  <TimePicker value={draftTime} onValueChange={setDraftTime} />
+                  <TimePicker value={safeDraftTime} onValueChange={setDraftTime} />
                 </Box>
               </VStack>
             </BottomSheetBody>
             <BottomSheetFooter>
-              <ActionButton variant="brandSolid" size="large" style={{ width: "100%" }} onClick={() => { setTime(draftTime); setOpenTimeSheet(false); }}>
-                선택 완료 ({draftTime.hour < 12 ? "오전" : "오후"} {draftTime.hour % 12 || 12}:{String(draftTime.minute).padStart(2, "0")})
+              <ActionButton variant="brandSolid" size="large" style={{ width: "100%" }} onClick={() => { setTime(safeDraftTime); setOpenTimeSheet(false); }}>
+                선택 완료 ({safeDraftTime.hour < 12 ? "오전" : "오후"} {safeDraftTime.hour % 12 || 12}:{String(safeDraftTime.minute).padStart(2, "0")})
               </ActionButton>
             </BottomSheetFooter>
           </BottomSheetContent>
@@ -1138,22 +1142,22 @@ function FieldButtonDemo() {
           invalid={isInvalid}
           description="선택된 항목들이 태그/칩(Chip) 형태로 표시되는 공식 Value 변형입니다."
           errorMessage="최소 하나 이상의 관심 카테고리를 선택해 주세요."
-          values={selectedCategories}
-          showClearButton={selectedCategories.length > 0}
+          values={safeCategories}
+          showClearButton={safeCategories.length > 0}
           onValuesChange={(vals) => setSelectedCategories(vals)}
           buttonProps={{
             onClick: () => {
-              if (selectedCategories.length === 0) {
+              if (safeCategories.length === 0) {
                 setSelectedCategories(["PG 정산대금", "FDS 이상검증", "해외 간편결제"]);
               }
             },
-            "aria-label": `관심 카테고리 선택. 현재 ${selectedCategories.length}개 선택됨`,
+            "aria-label": `관심 카테고리 선택. 현재 ${safeCategories.length}개 선택됨`,
           }}
         >
-          {selectedCategories.length > 0 ? (
+          {safeCategories.length > 0 ? (
             <FieldButtonValue>
               <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
-                {selectedCategories.map((cat) => (
+                {safeCategories.map((cat) => (
                   <TagGroupItem key={cat} value={cat} style={{ pointerEvents: 'none', height: 26, fontSize: 12 }}>
                     {cat}
                   </TagGroupItem>
