@@ -65,6 +65,7 @@ const viewportMapping = [
 
 export function GridSection() {
   const [expanded, setExpanded] = useState(false);
+
   useEffect(() => {
     const checkHash = () => {
       const hash = window.location.hash;
@@ -112,20 +113,110 @@ export function GridSection() {
       </p>
       {expanded && (
         <div style={{ marginTop: 16 }}>
+          <Notice>
+            <strong>SEED 2.0 반응형 시스템은 Mobile-First 기준의 반응형 객체 Prop으로 작동합니다.</strong>{' '}
+            <code>Box</code>, <code>Flex</code>, <code>Grid</code>, <code>VStack</code>, <code>HStack</code> 등의 컴포넌트에서 <code>padding={`{{ base: "x3", md: "x4", xl: "x6" }}`}</code>와 같이 Breakpoint 객체를 전달하여 유연하게 반응형 레이아웃을 작성합니다.
+          </Notice>
 
-      <h3>Layout Regions</h3>
-      <p>
-        <strong>Header (GNB)</strong> — 서비스 전체를 관통하는 최상위 탐색 영역.
-        <br />
-        <strong>Side Navigation</strong> — 특정 서비스/대시보드 내 하위 메뉴 탐색. md(768px) 미만에서는 GNB 내부로 통합·숨김.
-        <br />
-        <strong>Main Content</strong> — 실제 사용자가 상호작용하는 핵심 콘텐츠 영역. 레이아웃 유형에 따라 그리드가 적용됩니다.
-        <br />
-        <strong>Aside</strong> — 우측에서 나타나는 보조 영역. 선택 항목의 상세 정보나 설정 등 부가 작업에 사용합니다.
-      </p>
-    
+          {/* 1. SEED 오피셜 Breakpoint 규격표 */}
+          <h3 style={{ marginTop: 28 }}>SEED 2.0 Official Breakpoints</h3>
+          <p>SEED에서 정의하는 5대 표준 Breakpoint 규격입니다.</p>
+          <TokenTable>
+            <thead>
+              <tr>
+                <th>Breakpoint Name</th>
+                <th>min-width</th>
+                <th>타겟 디바이스 및 특징</th>
+              </tr>
+            </thead>
+            <tbody>
+              {officialBreakpoints.map(bp => (
+                <tr key={bp.name}>
+                  <td><code>{bp.name}</code></td>
+                  <td><code>{bp.minWidth}</code></td>
+                  <td>{bp.desc}</td>
+                </tr>
+              ))}
+            </tbody>
+          </TokenTable>
+
+          {/* 2. Figma ➔ Code 매핑 사양표 */}
+          <h3 style={{ marginTop: 36 }}>Figma Layout Grid ➔ React Code 매핑 사양표</h3>
+          <p>디자이너의 피그마 프레임 규격과 개발자의 SEED Breakpoint &amp; React JSX 코드 매핑 사양입니다.</p>
+          <TokenTable>
+            <thead>
+              <tr>
+                <th>디바이스</th>
+                <th>Figma Frame 너비</th>
+                <th>SEED Breakpoint</th>
+                <th>타겟 Viewport</th>
+                <th>Figma Grid Type</th>
+                <th>Gutter Token</th>
+                <th>Margin</th>
+                <th>React Code Prop 예시</th>
+              </tr>
+            </thead>
+            <tbody>
+              {viewportMapping.map(r => (
+                <tr key={r.device}>
+                  <td><strong>{r.device}</strong></td>
+                  <td><code>{r.figmaFrame}</code></td>
+                  <td><code>{r.bp}</code></td>
+                  <td>{r.range}</td>
+                  <td>{r.figmaGrid}</td>
+                  <td><code>{r.gutterToken}</code></td>
+                  <td>{r.margin}</td>
+                  <td><code>{r.codeProp}</code></td>
+                </tr>
+              ))}
+            </tbody>
+          </TokenTable>
+
+          {/* 3. Responsive Object Props & Hiding/Showing */}
+          <h3 style={{ marginTop: 36 }}>Responsive Object Props &amp; Hiding/Showing</h3>
+          <p>
+            Box 기반 컴포넌트(`Box`, `Flex`, `Grid`, `VStack`, `HStack`)의 주요 반응형 속성 사용법입니다.
+          </p>
+          <ul style={{ marginLeft: 20, fontSize: 13.5, color: '#334155', lineHeight: 1.9 }}>
+            <li>
+              <strong>Responsive Object Props</strong> — <code>padding={`{{ base: "x4", md: "x6", xl: "x8" }}`}</code> 와 같이 객체 형태로 전달.
+            </li>
+            <li>
+              <strong>Hiding Elements (`hideFrom`)</strong> — <code>hideFrom="md"</code> 속성으로 특정 Breakpoint 이상에서 요소를 숨김 (<code>display: none;</code>과 동일).
+            </li>
+            <li>
+              <strong>Display Control</strong> — <code>display={`{{ base: "none", md: "block" }}`}</code> 로 디바이스별 노출 여부 직접 제어.
+            </li>
+          </ul>
+
+          {/* 4. Responsive Hooks & SSR Provider */}
+          <h3 style={{ marginTop: 28 }}>Responsive Hooks &amp; SSR Support</h3>
+          <p>JavaScript 로직 내 반응형 조율이 필요한 경우 훅과 Provider를 제공합니다.</p>
+          <ul style={{ marginLeft: 20, fontSize: 13.5, color: '#334155', lineHeight: 1.9 }}>
+            <li>
+              <code>useBreakpoint()</code> — 현재 속한 Breakpoint 이름 (<code>'base' | 'sm' | 'md' | 'lg' | 'xl'</code>) 반환.
+            </li>
+            <li>
+              <code>useBreakpointValue(&#123; base: ..., lg: ... &#125;)</code> — Viewport에 맞는 값으로 동적 resolve.
+            </li>
+            <li>
+              <code>&lt;BreakpointProvider defaultBreakpoint="md"&gt;</code> — SSR 등 Viewport 정보가 없을 때의 기본값 지정.
+            </li>
+          </ul>
+
+          {/* 5. Layout Regions */}
+          <h3 style={{ marginTop: 28 }}>Layout Regions</h3>
+          <p>
+            <strong>Header (GNB)</strong> — 서비스 전체를 관통하는 최상위 탐색 영역.
+            <br />
+            <strong>Side Navigation</strong> — 특정 서비스/대시보드 내 하위 메뉴 탐색. md(768px) 미만에서는 GNB 내부로 통합·숨김.
+            <br />
+            <strong>Main Content</strong> — 실제 사용자가 상호작용하는 핵심 콘텐츠 영역. 레이아웃 유형에 따라 그리드가 적용됩니다.
+            <br />
+            <strong>Aside</strong> — 우측에서 나타나는 보조 영역. 선택 항목의 상세 정보나 설정 등 부가 작업에 사용합니다.
+          </p>
         </div>
       )}
-</Sec>
-  )
+    </Sec>
+  );
 }
