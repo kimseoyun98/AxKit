@@ -136,11 +136,13 @@ export function SemanticSection() {
   useEffect(() => {
     const checkHash = () => {
       const hash = window.location.hash;
-      if (hash) {
-        const targetEl = document.querySelector(hash);
-        if (targetEl && (targetEl.id === id || targetEl.closest('.sec')?.id === id || targetEl.closest('[id]')?.id === id)) {
-          setExpanded(true);
-        }
+      if (hash && hash.length > 1) {
+        try {
+          const targetEl = document.querySelector(hash);
+          if (targetEl) {
+            setExpanded(true);
+          }
+        } catch (e) {}
       }
     };
     checkHash();
