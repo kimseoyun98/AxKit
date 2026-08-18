@@ -1049,13 +1049,26 @@ function FieldButtonDemo() {
   const [openTimeSheet, setOpenTimeSheet] = useState(false);
   const [time, setTime] = useState(() => ({ hour: 9, minute: 30 }));
   const [draftTime, setDraftTime] = useState(() => ({ hour: 9, minute: 30 }));
+
+  // Category BottomSheet integration
+  const [openCategorySheet, setOpenCategorySheet] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState(() => ["PG 정산대금", "FDS 이상검증"]);
+
+  const ALL_CATEGORIES = ["PG 정산대금", "FDS 이상검증", "해외 간편결제", "에스크로 서비스", "현금영수증 발급"];
 
   const safeTime = time || { hour: 9, minute: 30 };
   const safeDraftTime = draftTime || { hour: 9, minute: 30 };
   const safeCategories = selectedCategories || [];
 
   const formattedTime = `${safeTime.hour < 12 ? "오전" : "오후"} ${safeTime.hour % 12 || 12}:${String(safeTime.minute).padStart(2, "0")}`;
+
+  const toggleCategory = (cat) => {
+    if (safeCategories.includes(cat)) {
+      setSelectedCategories(safeCategories.filter((c) => c !== cat));
+    } else {
+      setSelectedCategories([...safeCategories, cat]);
+    }
+  };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
@@ -1134,40 +1147,93 @@ function FieldButtonDemo() {
           </BottomSheetContent>
         </BottomSheetRoot>
 
-        {/* 3. Chip Value Variant (태그/칩 다중 선택 변형) */}
-        <FieldButton
-          label="관심 서비스 카테고리 (Chip 다중 선택 변형)"
-          showRequiredIndicator
-          disabled={isDisabled}
-          invalid={isInvalid}
-          description="선택된 항목들이 태그/칩(Chip) 형태로 표시되는 공식 Value 변형입니다."
-          errorMessage="최소 하나 이상의 관심 카테고리를 선택해 주세요."
-          values={safeCategories}
-          showClearButton={safeCategories.length > 0}
-          onValuesChange={(vals) => setSelectedCategories(vals)}
-          buttonProps={{
-            onClick: () => {
-              if (safeCategories.length === 0) {
-                setSelectedCategories(["PG 정산대금", "FDS 이상검증", "해외 간편결제"]);
-              }
-            },
-            "aria-label": `관심 카테고리 선택. 현재 ${safeCategories.length}개 선택됨`,
-          }}
-        >
-          {safeCategories.length > 0 ? (
-            <FieldButtonValue>
-              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
-                {safeCategories.map((cat) => (
-                  <TagGroupItem key={cat} value={cat} style={{ pointerEvents: 'none', height: 26, fontSize: 12 }}>
-                    {cat}
-                  </TagGroupItem>
-                ))}
-              </div>
-            </FieldButtonValue>
-          ) : (
-            <FieldButtonPlaceholder>클릭하여 관심 서비스 카테고리를 다중 선택하세요</FieldButtonPlaceholder>
-          )}
-        </FieldButton>
+        {/* 3. Chip Value Variant (태그/칩 다중 선택 + BottomSheet 연동) */}
+        <BottomSheetRoot open={openCategorySheet} onOpenChange={setOpenCategorySheet}>
+          <FieldButton
+            label="관심 서비스 카테고리 (Chip 다중 선택)"
+            showRequiredIndicator
+            disabled={isDisabled}
+            invalid={isInvalid}
+            description="클릭 시 하단 시트에서 칩(Chip) 항목을 자유롭게 선택/해제합니다."
+            errorMessage="최소 하나 이상의 관심 카테고리를 선택해 주세요."
+            values={safeCategories}
+            showClearButton={safeCategories.length > 0}
+            onValuesChange={(vals) => setSelectedCategories(vals)}
+            buttonProps={{
+              onClick: () => {
+                if (!isDisabled) setOpenCategorySheet(true);
+              },
+              "aria-label": `관심 카테고리 선택. 현재 ${safeCategories.length}개 선택됨`,
+            }}
+          >
+            {safeCategories.length > 0 ? (
+              <FieldButtonValue>
+                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+                  {safeCategories.map((cat) => (
+                    <span
+                      key={cat}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        padding: '2px 8px',
+                        borderRadius: 6,
+                        backgroundColor: 'var(--seed-color-bg-neutral-weak, #F1F5F9)',
+                        color: 'var(--seed-color-fg-neutral, #334155)',
+                        fontSize: 12,
+                        fontWeight: 600,
+                        height: 24,
+                      }}
+                    >
+                      {cat}
+                    </span>
+                  ))}
+                </div>
+              </FieldButtonValue>
+            ) : (
+              <FieldButtonPlaceholder>클릭하여 관심 서비스 카테고리를 다중 선택하세요</FieldButtonPlaceholder>
+            )}
+          </FieldButton>
+
+          <BottomSheetContent title="관심 서비스 카테고리 선택" showHandle showCloseButton={false}>
+            <BottomSheetBody paddingX="x4">
+              <VStack gap="x3" paddingY="x3" align="start" width="100%">
+                <Text textStyle="t2Regular" color="fg.neutralSubtle">
+                  원하는 업종 및 정산 서비스 카테고리를 다중 선택해 주세요:
+                </Text>
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 8 }}>
+                  {ALL_CATEGORIES.map((cat) => {
+                    const isSelected = safeCategories.includes(cat);
+                    return (
+                      <button
+                        key={cat}
+                        type="button"
+                        onClick={() => toggleCategory(cat)}
+                        style={{
+                          padding: '8px 14px',
+                          borderRadius: 20,
+                          border: isSelected ? '1px solid var(--seed-color-stroke-brand-default, #FF6E1D)' : '1px solid var(--seed-color-stroke-neutral-weak, #CBD5E1)',
+                          backgroundColor: isSelected ? 'var(--seed-color-bg-brand-solid, #FF6E1D)' : 'var(--seed-color-bg-layer-default, #FFFFFF)',
+                          color: isSelected ? '#FFFFFF' : 'var(--seed-color-fg-neutral, #334155)',
+                          fontSize: 13,
+                          fontWeight: 600,
+                          cursor: 'pointer',
+                          transition: 'all 0.15s ease',
+                        }}
+                      >
+                        {isSelected ? `✓ ${cat}` : `+ ${cat}`}
+                      </button>
+                    );
+                  })}
+                </div>
+              </VStack>
+            </BottomSheetBody>
+            <BottomSheetFooter>
+              <ActionButton variant="brandSolid" size="large" style={{ width: "100%" }} onClick={() => setOpenCategorySheet(false)}>
+                선택 완료 ({safeCategories.length}개 선택됨)
+              </ActionButton>
+            </BottomSheetFooter>
+          </BottomSheetContent>
+        </BottomSheetRoot>
       </div>
     </div>
   );
