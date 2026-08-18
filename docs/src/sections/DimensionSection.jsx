@@ -105,12 +105,12 @@ export function DimensionSection() {
       </h2>
       
       <p>
-        SEED의 여백 및 치수 시스템은 4px 스케일(x1~x16) 기반으로 모듈러 그리드와 일관된 시각적 리듬을 제공합니다.
+        SEED의 여백 치수(<code>x0.5</code>~<code>x16</code>) 및 모서리 둥글기(<code>r0.5</code>~<code>r6</code>, <code>full</code>) 시스템은 4px 스케일 기반으로 일관된 시각적 리듬을 제공합니다.
       </p>
 
       {expanded && (
         <div style={{ marginTop: 16 }}>
-          <h3>Dimensions & Spacing</h3>
+          <h3>Dimensions &amp; Spacing</h3>
           <TokenTable>
             <thead><tr><th>Token</th><th>Value</th></tr></thead>
             <tbody>
@@ -132,7 +132,7 @@ export function DimensionSection() {
             </tbody>
           </TokenTable>
 
-          <h3 id="f-radius">Radius</h3>
+          <h3 id="f-radius">Radius (r0.5–r6, full)</h3>
           <p>컴포넌트/콘텐츠 모서리의 둥글기. 부드럽고 현대적인 느낌을 주고, 다양한 화면·컨텍스트에서 시각적 일관성을 유지합니다.</p>
           <TokenTable>
             <thead><tr><th>Token</th><th>Value</th></tr></thead>
