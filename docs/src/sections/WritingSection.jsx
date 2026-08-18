@@ -7,15 +7,15 @@ const DoDontTable = ({ rows }) => (
     <table style={{ tableLayout: 'fixed', width: '100%', borderCollapse: 'collapse' }}>
       <thead>
         <tr>
-          <th style={{ width: '50%', background: '#F0FDF4', color: '#15803D', padding: '10px 14px', textAlign: 'left', borderBottom: '2px solid #BBF7D0' }}>✅ Do</th>
-          <th style={{ width: '50%', background: '#FEF2F2', color: '#B91C1C', padding: '10px 14px', textAlign: 'left', borderBottom: '2px solid #FECACA' }}>❌ Don't</th>
+          <th style={{ width: '50%', background: '#F8FAFC', color: '#0F172A', padding: '10px 14px', textAlign: 'left', borderBottom: '1px solid #E2E8F0', fontWeight: 600 }}>✅ Do</th>
+          <th style={{ width: '50%', background: '#F8FAFC', color: '#0F172A', padding: '10px 14px', textAlign: 'left', borderBottom: '1px solid #E2E8F0', fontWeight: 600 }}>❌ Don't</th>
         </tr>
       </thead>
       <tbody>
         {rows.map((r, i) => (
           <tr key={i}>
-            <td style={{ width: '50%', wordBreak: 'break-word', verticalAlign: 'top', padding: '12px 14px', background: '#FAFCFA', lineHeight: 1.6 }}>{r.do}</td>
-            <td style={{ width: '50%', wordBreak: 'break-word', verticalAlign: 'top', padding: '12px 14px', background: '#FFFDFD', lineHeight: 1.6 }}>{r.dont}</td>
+            <td style={{ width: '50%', wordBreak: 'break-word', verticalAlign: 'top', padding: '12px 14px', background: '#FFFFFF', lineHeight: 1.6, borderBottom: '1px solid #F1F5F9' }}>{r.do}</td>
+            <td style={{ width: '50%', wordBreak: 'break-word', verticalAlign: 'top', padding: '12px 14px', background: '#FFFFFF', lineHeight: 1.6, borderBottom: '1px solid #F1F5F9' }}>{r.dont}</td>
           </tr>
         ))}
       </tbody>
