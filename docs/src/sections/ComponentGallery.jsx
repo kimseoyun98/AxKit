@@ -5,6 +5,7 @@
  */
 
 import React, { useState, useRef, useEffect } from 'react';
+import { Sec } from '../components/UI';
 import {
   IconDeliveryRegular,
   IconAddRegular,
