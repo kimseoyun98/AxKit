@@ -523,11 +523,34 @@ export function CodeToFigmaSection() {
         />
       </h2>
       <p>
-        React SEED 2.0 50개 UI 컴포넌트 코드 속성을 읽어 피그마 Component Set 템플릿 노드를 자동 생성하는 스크립트 모음입니다. Component Gallery 50개 항목과 1:1 동일한 순서로 구성되어 있습니다.
+        React SEED 2.0 50개 UI 컴포넌트 코드 속성을 읽어 피그마 Component Set 템플릿 노드를 자동 생성하고 동기화하는 파이프라인 스크립트 모음입니다. Component Gallery 50개 항목과 1:1 동일한 순서로 구성되어 있습니다.
       </p>
 
+      <div style={{ marginTop: 12, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+        <a
+          href="https://www.figma.com"
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            padding: '8px 16px',
+            borderRadius: 8,
+            border: '1px solid var(--seed-color-stroke-neutral-weak, #CBD5E1)',
+            backgroundColor: 'var(--seed-color-bg-layer-default, #FFFFFF)',
+            color: 'var(--seed-color-fg-neutral, #0F172A)',
+            fontWeight: 700,
+            fontSize: 13,
+            textDecoration: 'none',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+          }}
+        >
+          <span>SEED 2.0 Official Figma Viewer ↗</span>
+        </a>
+      </div>
+
       {expanded && (
-        <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
           {prototypeList.map((item) => (
             <div
               key={item.id}
@@ -576,23 +599,25 @@ export function CodeToFigmaSection() {
                     준비 중
                   </span>
                 )}
-                <a
-                  href="https://www.figma.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{
-                    padding: '6px 12px',
-                    borderRadius: 6,
-                    border: '1px solid var(--seed-color-stroke-neutral-weak, #CBD5E1)',
-                    backgroundColor: 'var(--seed-color-bg-layer-default, #FFFFFF)',
-                    color: 'var(--seed-color-fg-neutral, #334155)',
-                    fontWeight: 600,
-                    fontSize: 12,
-                    textDecoration: 'none',
-                  }}
-                >
-                  Figma ↗
-                </a>
+                {item.figmaUrl && (
+                  <a
+                    href={item.figmaUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      padding: '6px 12px',
+                      borderRadius: 6,
+                      border: '1px solid var(--seed-color-stroke-neutral-weak, #CBD5E1)',
+                      backgroundColor: 'var(--seed-color-bg-layer-default, #FFFFFF)',
+                      color: 'var(--seed-color-fg-neutral, #334155)',
+                      fontWeight: 600,
+                      fontSize: 12,
+                      textDecoration: 'none',
+                    }}
+                  >
+                    Figma ↗
+                  </a>
+                )}
               </div>
             </div>
           ))}
