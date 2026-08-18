@@ -23,7 +23,7 @@ const NAV = [
     links: [
       { href: '#f-design-token', label: 'Design Token' },
       { href: '#f-color', label: 'Color Primitives (94)' },
-      { href: '#f-semantic', label: 'Semantic Color & State (84)' },
+      { href: '#f-semantic', label: 'Semantic Color (84)' },
       { href: '#f-elevation', label: 'Elevation' },
       { href: '#f-typography', label: 'Typography Tokens (t1–t14)' },
       { href: '#f-text', label: 'Semantic Text (<Text>)' },

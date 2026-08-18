@@ -164,8 +164,8 @@ export function SemanticSection() {
           userSelect: 'none',
         }}
       >
-        <span>Semantic Color &amp; State Tokens</span>
-        <ChipInfo>84개 &amp; State</ChipInfo>
+        <span>Semantic Color Tokens</span>
+        <ChipInfo>84개</ChipInfo>
         <IconChevronDownLine
           style={{
             width: 16,
