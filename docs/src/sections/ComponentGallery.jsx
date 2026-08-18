@@ -3718,13 +3718,11 @@ function TopNavigationDemo() {
           <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant</code>: "root" (최상위 메인 탭 - 드롭다운 타이틀 & 뱃지)
         </span>
         <TopNavigation variant="root">
-          <TopNavigationLeft>
-            <TopNavigationTitle
-              align="left"
-              title="전체 카테고리"
-              onClickTitle={() => alert("카테고리 선택 시트 열기")}
-            />
-          </TopNavigationLeft>
+          <TopNavigationTitle
+            align="left"
+            title="전체 카테고리"
+            onClickTitle={() => alert("카테고리 선택 시트 열기")}
+          />
           <TopNavigationRight>
             <TopNavigationIconButton aria-label="검색" onClick={() => alert("검색 클릭")}>
               <IconMagnifyingglassLine style={{ width: 22, height: 22 }} />
