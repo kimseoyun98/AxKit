@@ -1167,25 +1167,23 @@ function FloatingActionButtonDemo() {
 }
 
 function FooterDemo() {
-  const [preset, setPreset] = useState("01");
-
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 840, margin: "0 auto" }}>
-      <VStack gap="x3" align="center" width="full">
-        <SegmentedControl value={preset} onValueChange={setPreset}>
-          <SegmentedControlItem value="01">Minimal</SegmentedControlItem>
-          <SegmentedControlItem value="02">Standard</SegmentedControlItem>
-          <SegmentedControlItem value="03">Brand Info</SegmentedControlItem>
-          <SegmentedControlItem value="04">Full Specs</SegmentedControlItem>
-        </SegmentedControl>
-
-        <div style={{ width: "100%", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x3)", overflow: "hidden", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
-          {preset === "01" && <Footer01 />}
-          {preset === "02" && <Footer02 />}
-          {preset === "03" && <Footer03 />}
-          {preset === "04" && <Footer04 />}
+      {[
+        { title: "Footer 01 · Minimal", comp: <Footer01 /> },
+        { title: "Footer 02 · Standard", comp: <Footer02 /> },
+        { title: "Footer 03 · Brand Info", comp: <Footer03 /> },
+        { title: "Footer 04 · Full Specs", comp: <Footer04 /> },
+      ].map((item, idx) => (
+        <div key={idx} style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x2)" }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: "var(--seed-color-fg-neutral-muted)" }}>
+            {item.title}
+          </div>
+          <div style={{ width: "100%", border: "1px solid var(--seed-color-stroke-neutral-weak)", borderRadius: "var(--seed-dimension-x3)", overflow: "hidden", backgroundColor: "var(--seed-color-bg-layer-default)" }}>
+            {item.comp}
+          </div>
         </div>
-      </VStack>
+      ))}
     </div>
   );
 }
