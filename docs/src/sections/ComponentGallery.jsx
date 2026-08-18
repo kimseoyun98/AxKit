@@ -3035,12 +3035,12 @@ function TextFieldDemo() {
 
         <Divider style={{ marginBlock: "var(--seed-dimension-x3)" }} />
 
-        {/* 3. 2-Column Grid Layout */}
+        {/* 3. 2-Column Grid Layout (방식 A: alignItems="flex-end" 하단 입력 상자 일직선 정렬) */}
         <VStack gap="x4" width="full">
           <Text textStyle="t2Medium" color="fg.neutralSubtle" style={{ marginBottom: "var(--seed-dimension-x1)" }}>
-            2-Column Layout · 병렬 입력 레이아웃
+            2-Column Layout · 병렬 입력 레이아웃 (방식 A: alignItems="flex-end" 하단 정렬)
           </Text>
-          <HStack gap="x3" width="full">
+          <HStack gap="x3" width="full" style={{ alignItems: "flex-end" }}>
             <TextField
               variant={variant}
               size={size}
