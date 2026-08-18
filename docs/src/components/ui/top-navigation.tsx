@@ -142,7 +142,7 @@ export function TopNavigationTitle({
         flex: align === "center" ? "none" : 1,
         minWidth: 0,
         maxWidth: align === "center" ? "calc(100% - 130px)" : "100%",
-        marginLeft: align === "left" ? "var(--seed-dimension-x1)" : undefined,
+        marginLeft: align === "left" ? "var(--seed-dimension-x2)" : undefined,
         height: "100%",
         textAlign: align === "center" ? "center" : "left",
         pointerEvents: onClickTitle ? "auto" : undefined,
