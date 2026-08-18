@@ -67,7 +67,7 @@ export function DesignTokenSection() {
             특정 플랫폼에 불가지론적인 디자인을 가능하게 합니다.
           </p>
           <p>
-            <strong>Semantic Token</strong> — Scale Token의 조합(Composition)으로 디자인 의도를 표현한
+            <strong>Semantic Token</strong> — Scale Token의 조합으로 디자인 의도를 표현한
             단위. 실제 디자인·개발 과정의 주요 빌딩블록입니다. 뷰포트나 플랫폼 등 외부 환경에 맞게 Scale에
             적절한 값을 주입하는 것만으로, 스키마 변경 없이 유연하게 스킴을 재정의할 수 있습니다.
           </p>

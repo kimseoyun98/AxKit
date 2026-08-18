@@ -80,7 +80,7 @@ export function GridSection() {
       </h2>
       <p>
         레이아웃은 제품의 콘텐츠를 구조화하고 일관된 사용자 경험을 제공하기 위한 시각적 뼈대입니다. SEED는
-        다양한 화면 밀도와 디바이스 환경에 대응할 수 있도록 유연한 그리드 시스템과 중단점(Breakpoint)을 제공합니다.
+        다양한 화면 밀도와 디바이스 환경에 대응할 수 있도록 유연한 그리드 시스템과 Breakpoint를 제공합니다.
       </p>
       {expanded && (
         <div style={{ marginTop: 16 }}>
@@ -124,9 +124,9 @@ export function GridSection() {
 
       <h3 style={{ marginTop: 36 }}>Responsive Behavior</h3>
       <p>
-        <strong>Fluid (가변형)</strong> — 중단점 사이 구간에서 컬럼 너비가 브라우저 너비에 따라 비율(%)로 변합니다.
+        <strong>Fluid (가변형)</strong> — Breakpoint 구간에서 컬럼 너비가 브라우저 너비에 따라 비율(%)로 변합니다.
         <br />
-        <strong>Fixed &amp; Centered (고정 및 중앙 정렬)</strong> — 특정 중단점(예: max-width 1040px)에 도달하면
+        <strong>Fixed &amp; Centered (고정 및 중앙 정렬)</strong> — 특정 Breakpoint(예: max-width 1040px)에 도달하면
         너비가 더 늘어나지 않고 화면 중앙에 고정됩니다.
         <br />
         하나의 화면에 두 형태를 혼합해서 쓸 수 있습니다.

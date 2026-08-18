@@ -1725,7 +1725,7 @@ function PageBannerDemo() {
             variant={effectiveVariant}
             prefixIcon={showPrefix ? <IconExclamationmarkCircleFill /> : undefined}
             title={showTitle ? "미노출 상태" : undefined}
-            description="배너 닫기 버튼(X)을 누르면 배너를 닫을 수 있습니다."
+            description="배너 닫기 버튼을 누르면 배너를 닫을 수 있습니다."
             onDismiss={() => alert("배너 닫기 클릭!")}
           />
         )}
@@ -1734,7 +1734,7 @@ function PageBannerDemo() {
       {/* Tone & Variant Preset Overview Matrix */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x3)', width: '100%' }}>
         <Text textStyle="t2Medium" color="fg.neutralSubtle" align="center">
-            전체 톤(Tones) 프리뷰 일괄 보기
+            전체 Tones 프리뷰 일괄 보기
           </Text>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x2)', width: '100%' }}>

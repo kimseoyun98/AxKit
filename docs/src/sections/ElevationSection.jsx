@@ -5,7 +5,7 @@ import { Sec, TokenTable, Notice , ChipInfo} from '../components/UI'
 const globalLevels = [
   { level: 'Level 0', name: 'layer-basement', desc: '화면 최하단 배경 레이어. 스크롤되는 모든 콘텐츠 뒤에 깔림' },
   { level: 'Level 1', name: 'layer-default', desc: '페이지 기본 레이아웃. Card/List/TextField/Top Navigation 등' },
-  { level: 'Level 2', name: 'Bottom Sheet, Menu Sheet', desc: '화면을 덮으며 독립적인 쌓임 맥락(Stacking Context)을 생성' },
+  { level: 'Level 2', name: 'Bottom Sheet, Menu Sheet', desc: '화면을 덮으며 독립적인 Stacking Context를 생성' },
   { level: 'Level 3', name: 'Alert Dialog', desc: '가장 긴급한 정보를 처리하는 최상위 모달, 모든 UI 중 최상단' },
 ]
 
@@ -76,7 +76,7 @@ export function ElevationSection() {
 
       <h3>Stacking Context — Global / Local</h3>
       <p>
-        <strong>Global</strong> — 애플리케이션의 구조적 층위. 화면 전체(Viewport) 또는 컨테이너 역할의
+        <strong>Global</strong> — 애플리케이션의 구조적 층위. Viewport 또는 컨테이너 역할의
         컴포넌트/레이어.
         <br />
         <strong>Local</strong> — 특정 컨텍스트 내 시각적 깊이. 화면 내 콘텐츠를 표현하는 컴포넌트이며
