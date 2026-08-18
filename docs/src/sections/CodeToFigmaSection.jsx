@@ -572,7 +572,7 @@ export function CodeToFigmaSection() {
                       cursor: 'pointer',
                     }}
                   >
-                    {copied ? '✓ 코드 복사됨' : '피그마 코드 복사'}
+                    {copied ? '✓ Copied' : 'Copy Code'}
                   </button>
                 ) : (
                   <span style={{ fontSize: 12, color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)', padding: '6px 0' }}>

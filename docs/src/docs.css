@@ -416,64 +416,62 @@ tr:last-child td { border-bottom: none; }
 
 @media (max-width: 640px) {
   .comp-carousel-slide {
-    padding: 24px 16px !important;
+    padding: 24px 16px;
   }
 }
 
-/* ─── FieldButton Single-line Horizontal Scroll & Mobile Bounds Fix ───── */
+/* ─── FieldButton Single-line Horizontal Scroll & Mobile Bounds ───── */
 [data-seed-field-button-root],
 [data-seed-text-field-root],
 [data-seed-field-root],
 .seed-field-button,
 .seed-text-field {
-  width: 100% !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-  box-sizing: border-box !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 [data-seed-field-button-button],
 [data-seed-field-button-control] {
-  height: 48px !important;
-  min-height: 48px !important;
-  max-height: 48px !important;
-  display: flex !important;
-  align-items: center !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-  box-sizing: border-box !important;
-  overflow: hidden !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+  height: 48px;
+  min-height: 48px;
+  max-height: 48px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 [data-seed-field-button-value] {
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  gap: 6px !important;
-  align-items: center !important;
-  overflow-x: auto !important;
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
-  padding-right: 4px !important;
-  flex: 1 1 0% !important;
-  min-width: 0 !important;
-  max-width: 100% !important;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-right: 4px;
+  flex: 1 1 0%;
+  min-width: 0;
+  max-width: 100%;
 }
 
 [data-seed-field-button-value]::-webkit-scrollbar {
-  display: none !important;
+  display: none;
 }
 
 [data-seed-field-button-placeholder] {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-  display: block !important;
-  flex: 1 1 0% !important;
-  min-width: 0 !important;
-  max-width: 100% !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  flex: 1 1 0%;
+  min-width: 0;
+  max-width: 100%;
 }
