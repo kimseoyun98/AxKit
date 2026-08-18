@@ -544,9 +544,6 @@ export function CodeToFigmaSection() {
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, minWidth: 280 }}>
-                <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)', minWidth: 24 }}>
-                  #{item.index}
-                </span>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                   <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--seed-color-fg-neutral, #0F172A)' }}>
                     {item.name}
