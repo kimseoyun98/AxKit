@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Sec } from '../components/UI';
-import { IconChevronDownLine, IconChevronUpLine } from '@karrotmarket/react-monochrome-icon';
+import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
 
 export function DesignTokenSection() {
   const [expanded, setExpanded] = useState(false);
@@ -13,16 +13,21 @@ export function DesignTokenSection() {
           cursor: 'pointer',
           display: 'inline-flex',
           alignItems: 'center',
-          gap: 8,
+          gap: 6,
           userSelect: 'none',
         }}
       >
         <span>Design Token — Overview</span>
-        {expanded ? (
-          <IconChevronUpLine style={{ width: 22, height: 22, color: 'var(--seed-color-fg-neutral-muted)' }} />
-        ) : (
-          <IconChevronDownLine style={{ width: 22, height: 22, color: 'var(--seed-color-fg-neutral-muted)' }} />
-        )}
+        <IconChevronDownLine
+          style={{
+            width: 16,
+            height: 16,
+            color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)',
+            transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease',
+            flexShrink: 0,
+          }}
+        />
       </h2>
 
       <p>
