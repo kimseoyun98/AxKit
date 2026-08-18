@@ -409,9 +409,9 @@ tr:last-child td { border-bottom: none; }
   color: var(--seed-color-fg-neutral, #0F172A);
 }
 .icon-btn-ghost.copied {
-  background: #16A34A !important;
-  color: #FFFFFF !important;
-  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.25);
+  background: var(--seed-color-bg-neutral-solid, #0F172A);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.25);
 }
 
 @keyframes shimmer { 0% { background-position: 200% center } 100% { background-position: -200% center } }
