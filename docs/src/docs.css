@@ -263,6 +263,9 @@ tr:last-child td { border-bottom: none; }
 }
 .comp-carousel-slide {
   flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1072,7 +1072,7 @@ function FieldButtonDemo() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto', boxSizing: 'border-box' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, minWidth: 0, margin: '0 auto', boxSizing: 'border-box' }}>
 
       {/* Control Buttons */}
       <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', flexWrap: 'wrap' }}>
