@@ -15,6 +15,7 @@ import { VoiceSection } from './sections/VoiceSection'
 import { WritingSection } from './sections/WritingSection'
 import { IconGallery } from './sections/IconGallery'
 import { ComponentGallery } from './sections/ComponentGallery'
+import { CodeToFigmaSection } from './sections/CodeToFigmaSection'
 
 const NAV = [
   { sec: 'Overview', links: [{ href: '#overview', label: '개요' }] },
@@ -46,6 +47,7 @@ const NAV = [
     sec: 'Components',
     links: [
       { href: '#showcase', label: 'Component Gallery' },
+      { href: '#a-code-to-figma', label: 'Code-to-Figma Auto Generator' },
     ],
   },
 ]
@@ -251,6 +253,7 @@ export default function App() {
         <div className="sec">
           <ComponentGallery />
         </div>
+        <CodeToFigmaSection />
       </main>
     </>
   )
