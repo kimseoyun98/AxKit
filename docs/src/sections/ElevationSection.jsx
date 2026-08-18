@@ -1,3 +1,5 @@
+import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
+import { useState } from 'react';
 import { Sec, TokenTable, Notice , ChipInfo} from '../components/UI'
 
 const globalLevels = [
@@ -23,13 +25,38 @@ const layerRows = [
 ]
 
 export function ElevationSection() {
+  const [expanded, setExpanded] = useState(false);
   return (
     <Sec id="f-elevation">
-      <h2>Elevation & Shadows <ChipInfo>그림자</ChipInfo></h2>
+      <h2
+        onClick={() => setExpanded(!expanded)}
+        style={{
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+          userSelect: 'none',
+        }}
+      >
+        <span>Elevation & Shadows</span>
+        <ChipInfo>그림자</ChipInfo>
+        <IconChevronDownLine
+          style={{
+            width: 16,
+            height: 16,
+            color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)',
+            transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease',
+            flexShrink: 0,
+          }}
+        />
+      </h2>
       <p>
         UI 요소 간의 상대적인 깊이와 계층 구조를 시각적으로 표현하는 디자인 원칙입니다. 물리적 세계의
         '높낮이' 개념을 차용해 사용자가 인터페이스를 더 직관적으로 이해하도록 돕습니다.
       </p>
+      {expanded && (
+        <div style={{ marginTop: 16 }}>
 
       <h3>Stacking Context — Global / Local</h3>
       <p>
@@ -104,6 +131,9 @@ export function ElevationSection() {
         라이트 모드 밝기 톤에 맞춰 다크 모드에서도 대응되는 톤으로 보여지므로, 배경이 다양한 고도에 맞춰
         조정되어야 할 때 씁니다.
       </p>
-    </Sec>
+    
+        </div>
+      )}
+</Sec>
   )
 }

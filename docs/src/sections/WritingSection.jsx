@@ -1,3 +1,5 @@
+import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
+import { useState } from 'react';
 import { Sec, TokenTable } from '../components/UI'
 
 const DoDontTable = ({ rows }) => (
@@ -12,10 +14,35 @@ const DoDontTable = ({ rows }) => (
 )
 
 export function WritingSection() {
+  const [expanded, setExpanded] = useState(false);
   return (
     <Sec id="f-writing">
-      <h2>Writing</h2>
+      <h2
+        onClick={() => setExpanded(!expanded)}
+        style={{
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+          userSelect: 'none',
+        }}
+      >
+        <span>Writing</span>
+        
+        <IconChevronDownLine
+          style={{
+            width: 16,
+            height: 16,
+            color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)',
+            transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease',
+            flexShrink: 0,
+          }}
+        />
+      </h2>
       <p>이롬넷에서 일관되게 글쓰는 방법입니다.</p>
+      {expanded && (
+        <div style={{ marginTop: 16 }}>
 
       <h3>Familiar — 익숙한 단어 사용</h3>
       <p>기술적인 용어나 한자어는 지양해요. 에러 메시지에는 직접 해결할 수 있는 방법을 함께 알려주세요.</p>
@@ -100,6 +127,9 @@ export function WritingSection() {
         <li>버튼, 메뉴, 라벨에 들어간 문구</li>
         <li>버튼에서 문장을 사용하고 긍정/부정 감탄사(네, 아니요)가 있다면 쉼표를 넣어요</li>
       </ul>
-    </Sec>
+    
+        </div>
+      )}
+</Sec>
   )
 }

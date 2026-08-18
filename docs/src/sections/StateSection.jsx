@@ -1,13 +1,40 @@
+import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
+import { useState } from 'react';
 import { Sec, TokenTable , ChipInfo} from '../components/UI'
 
 export function StateSection() {
+  const [expanded, setExpanded] = useState(false);
   return (
     <Sec id="f-state">
-      <h2>State Tokens <ChipInfo>시맨틱</ChipInfo></h2>
+      <h2
+        onClick={() => setExpanded(!expanded)}
+        style={{
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+          userSelect: 'none',
+        }}
+      >
+        <span>State Tokens</span>
+        <ChipInfo>시맨틱</ChipInfo>
+        <IconChevronDownLine
+          style={{
+            width: 16,
+            height: 16,
+            color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)',
+            transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease',
+            flexShrink: 0,
+          }}
+        />
+      </h2>
       <p>
         UI 상태는 <strong>상호작용 상태(Interactive State)</strong>와 <strong>옵션 상태(Option State)</strong>
         두 유형으로 나뉩니다. 한 상태가 다른 상태를 덮어쓸 수도, 함께 적용될 수도 있습니다.
       </p>
+      {expanded && (
+        <div style={{ marginTop: 16 }}>
       <TokenTable>
         <thead>
           <tr><th>State</th><th>유형</th><th>정의</th></tr>
@@ -53,6 +80,9 @@ export function StateSection() {
           </tr>
         </tbody>
       </TokenTable>
-    </Sec>
+    
+        </div>
+      )}
+</Sec>
   )
 }

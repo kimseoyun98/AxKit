@@ -1,6 +1,9 @@
+import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
+import { useState } from 'react';
 import { Sec, TokenTable, Notice , ChipInfo} from '../components/UI'
 
 export function TypographySection() {
+  const [expanded, setExpanded] = useState(false);
   // 실제 @seed-design/css: t1~t14 14단계, 각 단계마다 static px 값과 fluid(clamp) 값이 동시에 존재
   const rows = [
     { t: 't1', staticFs: 11, staticLh: 15, fluidRem: 0.6875 },
@@ -21,11 +24,35 @@ export function TypographySection() {
 
   return (
     <Sec id="f-typography">
-      <h2>Typography Tokens <ChipInfo>14단계</ChipInfo></h2>
+      <h2
+        onClick={() => setExpanded(!expanded)}
+        style={{
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+          userSelect: 'none',
+        }}
+      >
+        <span>Typography Tokens</span>
+        <ChipInfo>14단계</ChipInfo>
+        <IconChevronDownLine
+          style={{
+            width: 16,
+            height: 16,
+            color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)',
+            transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease',
+            flexShrink: 0,
+          }}
+        />
+      </h2>
       <p>
         SEED은 fluid/static을 별개 단계로 나누지 않고, <code>t1</code>~<code>t14</code> 14단계 각각에
         static px 값과 fluid(<code>clamp()</code> 기반, 뷰포트에 따라 0.8~1.5배 스케일) 값을 동시에 정의합니다.
       </p>
+      {expanded && (
+        <div style={{ marginTop: 16 }}>
       <TokenTable>
         <thead>
           <tr>
@@ -62,6 +89,9 @@ export function TypographySection() {
         <div>• <strong>말줄임(Ellipsis)</strong>: <code>&lt;Text maxLines={2}&gt;긴 텍스트...&lt;/Text&gt;</code> (지정한 줄 수 초과 시 <code>…</code> 자동 처리)</div>
         <div>• <strong>고정 스케일(Static)</strong>: <code>&lt;Text textStyle="t3StaticRegular"&gt;고정 텍스트&lt;/Text&gt;</code></div>
       </div>
-    </Sec>
+    
+        </div>
+      )}
+</Sec>
   )
 }

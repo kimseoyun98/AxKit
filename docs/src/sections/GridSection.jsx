@@ -1,3 +1,5 @@
+import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
+import { useState } from 'react';
 import { Sec, TokenTable, Notice , ChipInfo} from '../components/UI'
 
 const viewportMapping = [
@@ -34,13 +36,38 @@ const viewportMapping = [
 ]
 
 export function GridSection() {
+  const [expanded, setExpanded] = useState(false);
   return (
     <Sec id="f-grid">
-      <h2>Grid & Layout Tokens <ChipInfo>반응형</ChipInfo></h2>
+      <h2
+        onClick={() => setExpanded(!expanded)}
+        style={{
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+          userSelect: 'none',
+        }}
+      >
+        <span>Grid & Layout Tokens</span>
+        <ChipInfo>반응형</ChipInfo>
+        <IconChevronDownLine
+          style={{
+            width: 16,
+            height: 16,
+            color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)',
+            transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease',
+            flexShrink: 0,
+          }}
+        />
+      </h2>
       <p>
         레이아웃은 제품의 콘텐츠를 구조화하고 일관된 사용자 경험을 제공하기 위한 시각적 뼈대입니다. SEED는
         다양한 화면 밀도와 디바이스 환경에 대응할 수 있도록 유연한 그리드 시스템과 중단점(Breakpoint)을 제공합니다.
       </p>
+      {expanded && (
+        <div style={{ marginTop: 16 }}>
 
       <Notice>
         <strong>SEED 2.0 그리드는 CSS 고정값 대신 JSX 반응형 Prop과 1fr 비율로 작동합니다.</strong>{' '}
@@ -107,6 +134,9 @@ export function GridSection() {
         <br />
         <strong>Aside</strong> — 우측에서 나타나는 보조 영역. 선택 항목의 상세 정보나 설정 등 부가 작업에 사용합니다.
       </p>
-    </Sec>
+    
+        </div>
+      )}
+</Sec>
   )
 }

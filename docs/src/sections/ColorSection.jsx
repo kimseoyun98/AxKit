@@ -1,3 +1,5 @@
+import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
+import { useState } from 'react';
 import { Sec, ChipInfo } from '../components/UI'
 
 const STEPS = ['100', '200', '300', '400', '500', '600', '700', '800', '900', '1000']
@@ -7,6 +9,7 @@ function huePalette(hue, hexes) {
 }
 
 export function ColorSection() {
+  const [expanded, setExpanded] = useState(false);
   const carrot = huePalette('carrot', ['#FFF2EC', '#FFE8DB', '#FFD5C0', '#FFB999', '#FF9364', '#FF6600', '#E14D00', '#B93901', '#862B00', '#471601'])
   const gray = [
     { name: 'gray-00', hex: '#FFFFFF', border: true },
@@ -58,12 +61,36 @@ export function ColorSection() {
   )
   return (
     <Sec id="f-color">
-      <h2>Color — Primitive Palette <ChipInfo>94개</ChipInfo></h2>
+      <h2
+        onClick={() => setExpanded(!expanded)}
+        style={{
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+          userSelect: 'none',
+        }}
+      >
+        <span>Color — Primitive Palette</span>
+        <ChipInfo>94개</ChipInfo>
+        <IconChevronDownLine
+          style={{
+            width: 16,
+            height: 16,
+            color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)',
+            transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease',
+            flexShrink: 0,
+          }}
+        />
+      </h2>
       <p>
         팔레트 색상은 역할 기반 색상(Semantic Color Tokens)으로 표현하기 어려운 예외적인 경우에 사용합니다.
         적응형 팔레트로 구성되어 있어, 특정 화면 모드(라이트/다크)를 기준으로 디자인하더라도 다른 모드에서도
         충분히 인지하기 쉬운 명도가 자동으로 배정됩니다.
       </p>
+      {expanded && (
+        <div style={{ marginTop: 16 }}>
       <div className="pal-group"><div className="pal-label">Carrot</div><Swatch items={carrot} /></div>
       <div className="pal-group"><div className="pal-label">Gray</div><Swatch items={gray} /></div>
       <div className="pal-group"><div className="pal-label">Blue</div><Swatch items={blue} /></div>
@@ -73,6 +100,9 @@ export function ColorSection() {
       <div className="pal-group"><div className="pal-label">Purple</div><Swatch items={purple} /></div>
       <div className="pal-group"><div className="pal-label">Static Black</div><Swatch items={staticBlack} /></div>
       <div className="pal-group"><div className="pal-label">Static White</div><Swatch items={staticWhite} /></div>
-    </Sec>
+    
+        </div>
+      )}
+</Sec>
   )
 }

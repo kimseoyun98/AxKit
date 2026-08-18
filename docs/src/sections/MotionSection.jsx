@@ -1,6 +1,9 @@
+import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
+import { useState } from 'react';
 import { Sec, TokenTable , ChipInfo} from '../components/UI'
 
 export function MotionSection() {
+  const [expanded, setExpanded] = useState(false);
   const durRows = [
     { t: 'd1', val: '50ms' },
     { t: 'd2', val: '100ms' },
@@ -21,7 +24,29 @@ export function MotionSection() {
 
   return (
     <Sec id="f-motion">
-      <h2>Motion Tokens <ChipInfo>이징</ChipInfo></h2>
+      <h2
+        onClick={() => setExpanded(!expanded)}
+        style={{
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+          userSelect: 'none',
+        }}
+      >
+        <span>Motion Tokens</span>
+        <ChipInfo>이징</ChipInfo>
+        <IconChevronDownLine
+          style={{
+            width: 16,
+            height: 16,
+            color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)',
+            transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease',
+            flexShrink: 0,
+          }}
+        />
+      </h2>
       <p>
         <strong>매크로 모션</strong> — 전체 레이아웃/페이지 전환 같은 큰 규모의 모션 (페이지 전환, 모달
         팝업, 슬라이드 메뉴). 0.2초를 초과합니다.
@@ -29,6 +54,8 @@ export function MotionSection() {
         <strong>마이크로 모션</strong> — 버튼 클릭, 입력창 포커스, 스크롤 같은 작은 규모의 모션. 0.2초
         이하입니다.
       </p>
+      {expanded && (
+        <div style={{ marginTop: 16 }}>
 
       <h3>Duration</h3>
       <TokenTable>
@@ -45,6 +72,9 @@ export function MotionSection() {
           {easeRows.map(r => <tr key={r.t}><td>{r.t}</td><td><code>{r.val}</code></td><td>{r.usage}</td></tr>)}
         </tbody>
       </TokenTable>
-    </Sec>
+    
+        </div>
+      )}
+</Sec>
   )
 }

@@ -1,13 +1,40 @@
+import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
+import { useState } from 'react';
 import { Sec, TokenTable, Notice } from '../components/UI'
 
 export function InclusiveSection() {
+  const [expanded, setExpanded] = useState(false);
   return (
     <Sec id="f-inclusive">
-      <h2>Inclusive Design</h2>
+      <h2
+        onClick={() => setExpanded(!expanded)}
+        style={{
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+          userSelect: 'none',
+        }}
+      >
+        <span>Inclusive Design</span>
+        
+        <IconChevronDownLine
+          style={{
+            width: 16,
+            height: 16,
+            color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)',
+            transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease',
+            flexShrink: 0,
+          }}
+        />
+      </h2>
       <p>
         시각, 청각, 운동 능력, 인지 능력 등 다양한 능력과 상황을 가진 모든 사용자가 제품을 쉽게 접근하고
         사용할 수 있도록 하는 지침입니다.
       </p>
+      {expanded && (
+        <div style={{ marginTop: 16 }}>
 
       <h3>Visual Clarity — Color and Contrast</h3>
       <p>
@@ -77,6 +104,9 @@ export function InclusiveSection() {
         위 기준값은 SEED가 정의한 목표치입니다. 실제 화면에 적용된 색상 조합의 Lc 값과 컴포넌트 터치
         영역 실측치가 기준을 충족하는지는 이 문서의 범위가 아니며, 화면 단위로 별도 검증이 필요합니다.
       </Notice>
-    </Sec>
+    
+        </div>
+      )}
+</Sec>
   )
 }

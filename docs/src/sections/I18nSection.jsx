@@ -1,3 +1,5 @@
+import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
+import { useState } from 'react';
 import { Sec, TokenTable } from '../components/UI'
 
 const relativeTimeRows = [
@@ -70,13 +72,38 @@ const expansionRows = [
 ]
 
 export function I18nSection() {
+  const [expanded, setExpanded] = useState(false);
   return (
     <Sec id="f-international">
-      <h2>International Design</h2>
+      <h2
+        onClick={() => setExpanded(!expanded)}
+        style={{
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+          userSelect: 'none',
+        }}
+      >
+        <span>International Design</span>
+        
+        <IconChevronDownLine
+          style={{
+            width: 16,
+            height: 16,
+            color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)',
+            transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease',
+            flexShrink: 0,
+          }}
+        />
+      </h2>
       <p>
         국제화는 단순 번역을 넘어, 톤·용어·표현이 언어별로 일관되게 전달되어 브랜드 아이덴티티와
         사용자 경험이 유지되도록 하는 작업입니다.
       </p>
+      {expanded && (
+        <div style={{ marginTop: 16 }}>
 
       <h3>상대적 시간 표기</h3>
       <TokenTable>
@@ -162,6 +189,9 @@ export function I18nSection() {
         </tbody>
       </TokenTable>
       <p>버튼/레이블 등 폭 고정 요소는 긴 번역문 삽입을 고려해 여유 공간과 줄바꿈(wrap) 처리를 미리 확보해야 합니다.</p>
-    </Sec>
+    
+        </div>
+      )}
+</Sec>
   )
 }

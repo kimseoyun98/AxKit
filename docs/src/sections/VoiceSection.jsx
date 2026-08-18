@@ -1,10 +1,37 @@
+import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
+import { useState } from 'react';
 import { Sec } from '../components/UI'
 
 export function VoiceSection() {
+  const [expanded, setExpanded] = useState(false);
   return (
     <Sec id="f-voice">
-      <h2>Voice and Tone</h2>
+      <h2
+        onClick={() => setExpanded(!expanded)}
+        style={{
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+          userSelect: 'none',
+        }}
+      >
+        <span>Voice and Tone</span>
+        
+        <IconChevronDownLine
+          style={{
+            width: 16,
+            height: 16,
+            color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)',
+            transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease',
+            flexShrink: 0,
+          }}
+        />
+      </h2>
       <p>이롬넷에서 일관되게 말하는 방법입니다.</p>
+      {expanded && (
+        <div style={{ marginTop: 16 }}>
 
       <h3>Role — Service Usability</h3>
       <ul style={{ marginLeft: 20, fontSize: 13.5, color: '#4B5563', lineHeight: 1.9 }}>
@@ -38,6 +65,9 @@ export function VoiceSection() {
       <p>
         이야기하듯 친근하게 말하고, 활기차고 자신감 있는 언어를 사용해요.
       </p>
-    </Sec>
+    
+        </div>
+      )}
+</Sec>
   )
 }

@@ -1,6 +1,9 @@
+import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
+import { useState } from 'react';
 import { Sec, TokenTable , ChipInfo} from '../components/UI'
 
 export function DimensionSection() {
+  const [expanded, setExpanded] = useState(false);
   const dimRows = [
     { token: 'x0_5', val: '2px' },
     { token: 'x1', val: '4px' },
@@ -62,7 +65,29 @@ export function DimensionSection() {
 
   return (
     <Sec id="f-dimension">
-      <h2>Dimensions & Radius <ChipInfo>파운데이션</ChipInfo></h2>
+      <h2
+        onClick={() => setExpanded(!expanded)}
+        style={{
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+          userSelect: 'none',
+        }}
+      >
+        <span>Dimensions & Radius</span>
+        <ChipInfo>파운데이션</ChipInfo>
+        <IconChevronDownLine
+          style={{
+            width: 16,
+            height: 16,
+            color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)',
+            transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease',
+            flexShrink: 0,
+          }}
+        />
+      </h2>
       
       <h3>Dimensions & Spacing</h3>
       <TokenTable>
@@ -79,6 +104,8 @@ export function DimensionSection() {
         <strong>Vertical</strong> — <code>nav-to-title</code>는 네비게이션 바와 타이틀 간격, <code>component-default</code>는 컴포넌트 기본 내부/간 간격,{' '}
         <code>screen-bottom</code>은 화면 하단 여백, <code>between-text</code>는 텍스트 줄 사이 간격.
       </p>
+      {expanded && (
+        <div style={{ marginTop: 16 }}>
       <TokenTable>
         <thead><tr><th>Token</th><th>Value</th></tr></thead>
         <tbody>
@@ -111,6 +138,9 @@ export function DimensionSection() {
           {gradientRows.map(r => <tr key={r.token}><td>{r.token}</td><td><code>{r.val}</code></td></tr>)}
         </tbody>
       </TokenTable>
-    </Sec>
+    
+        </div>
+      )}
+</Sec>
   )
 }

@@ -1,3 +1,5 @@
+import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
+import { useState } from 'react';
 import { Sec, TokenTable, ChipInfo } from '../components/UI'
 
 const fgRows = [
@@ -130,12 +132,35 @@ const Table = ({ rows }) => (
 )
 
 export function SemanticSection() {
+  const [expanded, setExpanded] = useState(false);
   const total = fgRows.length + bgLayerRows.length + bgBrandRows.length + bgNeutralRows.length
     + bgStatusRows.length + bgEtcRows.length + strokeRows.length + bannerRows.length
 
   return (
     <Sec id="f-semantic">
-      <h2>Semantic Color Tokens <ChipInfo>84개</ChipInfo></h2>
+      <h2
+        onClick={() => setExpanded(!expanded)}
+        style={{
+          cursor: 'pointer',
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: 6,
+          userSelect: 'none',
+        }}
+      >
+        <span>Semantic Color Tokens</span>
+        <ChipInfo>84개</ChipInfo>
+        <IconChevronDownLine
+          style={{
+            width: 16,
+            height: 16,
+            color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)',
+            transform: expanded ? 'rotate(180deg)' : 'rotate(0deg)',
+            transition: 'transform 0.2s ease',
+            flexShrink: 0,
+          }}
+        />
+      </h2>
 
       <p>
         SEED의 역할 기반 색상 시스템은 <strong>Property(속성) → Role(역할) → Variant(변형) → State(상태)</strong> 체계로 구성됩니다.
@@ -149,6 +174,8 @@ export function SemanticSection() {
         <br />
         <strong>State</strong> — 버튼을 눌렀을 때처럼 상호작용에 따라 색상이 변하는 것(<code>-pressed</code> 등).
       </p>
+      {expanded && (
+        <div style={{ marginTop: 16 }}>
       <p style={{ fontSize: 12.5, color: '#9CA3AF' }}>
         접근성: 모든 역할 기반 색상은 의도된 전경/배경 조합에 대해 APCA 기준(Inclusive Design 참고)을
         충족하도록 설계됩니다. Layer 색상(깊이·계층 표현)은 Elevation 문서를 참고하세요.
@@ -177,6 +204,9 @@ export function SemanticSection() {
 
       <h3>Banner</h3>
       <Table rows={bannerRows} />
-    </Sec>
+    
+        </div>
+      )}
+</Sec>
   )
 }
