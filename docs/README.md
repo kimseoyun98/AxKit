@@ -1,6 +1,6 @@
-# AX Design System (SEED Engine Based)
+# AxKit UI (SEED Engine Based v2.0)
 
-> 100% SEED CLI 컴포넌트(`npx @seed-design/cli add ui:*`) 및 시맨틱 디자인 토큰(`var(--seed-*)`) 기반의 프론트엔드 UI 브랜드 디자인 시스템 쇼케이스 웹 프로젝트입니다.
+> 100% SEED CLI 컴포넌트(`npx @seed-design/cli add ui:*`) 및 시맨틱 디자인 토큰(`var(--seed-*)`) 기반의 프론트엔드 UI 브랜드 컴포넌트 갤러리 웹 프로젝트입니다.
 
 ---
 
