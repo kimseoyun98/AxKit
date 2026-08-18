@@ -1,6 +1,6 @@
 import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
 import { useState, useEffect } from 'react';
-import { Sec , ChipInfo} from '../components/UI'
+import { Sec } from '../components/UI'
 
 export function IconGallery() {
   const [expanded, setExpanded] = useState(false);
@@ -32,8 +32,7 @@ export function IconGallery() {
           userSelect: 'none',
         }}
       >
-        <span>Icon Pack</span>
-        <ChipInfo>588개</ChipInfo>
+        <span>Icon Pack · Monochrome (588)</span>
         <IconChevronDownLine
           style={{
             width: 16,
