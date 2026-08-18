@@ -223,7 +223,47 @@ export function SemanticSection() {
 
       <h3>Banner</h3>
       <Table rows={bannerRows} />
-    
+
+      <h3 style={{ marginTop: 36 }}>UI State &amp; State Tokens Mapping</h3>
+      <p>
+        UI 상태는 <strong>Interactive State (pressed, hover)</strong>와 <strong>Option State (selected, disabled, invalid, readOnly)</strong>로 구분됩니다.
+      </p>
+      <TokenTable>
+        <thead>
+          <tr>
+            <th>State</th>
+            <th>Type</th>
+            <th>SEED 오피셜 토큰 스왑 및 처리 방식</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Hover</strong></td>
+            <td>Interactive</td>
+            <td>데스크톱 마우스 커서를 올릴 때 <code>-pressed</code> 토큰으로 스왑 (예: <code>bg-brand-solid</code> → <code>bg-brand-solid-pressed</code>)</td>
+          </tr>
+          <tr>
+            <td><strong>Pressed</strong></td>
+            <td>Interactive</td>
+            <td>모바일 터치 및 누름 상태에서 <code>-pressed</code> 토큰 스왑 + <code>--seed-timing-function-pressed-scale</code> (<code>cubic-bezier(0,0,.15,1)</code>) 스케일 반응</td>
+          </tr>
+          <tr>
+            <td><strong>Selected</strong></td>
+            <td>Option</td>
+            <td><code>bg-transparent-selected</code> / <code>bg-transparent-selected-pressed</code> (선택+눌림 동시 표현)</td>
+          </tr>
+          <tr>
+            <td><strong>Disabled</strong></td>
+            <td>Option</td>
+            <td>opacity 감소 대신 <code>fg-disabled</code> (gray-500) 및 <code>bg-disabled</code> (gray-200) 전용 시맨틱 색상 토큰 적용</td>
+          </tr>
+          <tr>
+            <td><strong>Focus Ring</strong></td>
+            <td>Interactive</td>
+            <td>키보드 탐색 포커스 시 <code>--seed-color-stroke-focus-ring</code> (blue-600) 테두리 적용</td>
+          </tr>
+        </tbody>
+      </TokenTable>
         </div>
       )}
 </Sec>
