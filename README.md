@@ -97,6 +97,13 @@ AI + Figma MCP 연결
 - Node.js >= 16
 - Claude with Figma MCP connected
 
+## 🗺️ Roadmap (향후 개발 예정 기능)
+
+- [ ] **Figma Design Token Auto-Converter CLI (`templates/` & `bin/`)**:
+  - Figma의 Variable JSON 데이터를 SEED CSS 토큰 (`var(--seed-*)`) 및 React 브랜드 구성요소로 자동 추출/변환하는 CLI 스크립트 도구 구축 예정.
+
+---
+
 ## License
 
 MIT
