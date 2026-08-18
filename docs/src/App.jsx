@@ -47,7 +47,7 @@ const NAV = [
     sec: 'Components',
     links: [
       { href: '#showcase', label: 'Component Gallery' },
-      { href: '#a-code-to-figma', label: 'Code-to-Figma Auto Generator' },
+      { href: '#a-code-to-figma', label: 'Code-to-Figma' },
     ],
   },
 ]
