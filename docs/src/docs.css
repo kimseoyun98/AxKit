@@ -82,11 +82,12 @@ main {
     justify-content: space-between;
     position: sticky;
     top: 0;
-    z-index: 150;
+    z-index: 200;
     height: 56px;
     padding: 0 16px;
     background: #FFFFFF;
     border-bottom: 1px solid #F1F5F9;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   }
   .mobile-gnb .logo {
     margin-bottom: 0;
@@ -118,7 +119,7 @@ main {
     height: 100dvh;
     background: #FFFFFF;
     transform: translateX(-100%);
-    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: none; /* 창 크기 조절 시 커튼 걷힘 애니메이션 방지 */
     z-index: 300;
     padding: 0 16px 40px;
     box-sizing: border-box;
@@ -126,6 +127,7 @@ main {
   }
   aside.mobile-open {
     transform: translateX(0);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .sidebar-header {
     display: flex;
@@ -157,6 +159,9 @@ main {
     margin-left: 0;
     width: 100%;
     padding: 24px 16px 64px;
+  }
+  .sec {
+    scroll-margin-top: 72px; /* 상단 56px 스티키 헤더 + 16px 여백 고려 */
   }
 }
 
