@@ -414,23 +414,29 @@ tr:last-child td { border-bottom: none; }
 @keyframes shimmer { 0% { background-position: 200% center } 100% { background-position: -200% center } }
 @keyframes seed-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-/* ─── FieldButton Dynamic Height & Overflow Fix ───────────────────────── */
+/* ─── FieldButton Single-line Horizontal Scroll & Alignment Fix ───────── */
 [data-seed-field-button-button],
-[data-seed-field-button-control],
-button:has([data-seed-field-button-value]),
-button:has([data-seed-field-button-placeholder]) {
-  height: auto !important;
+[data-seed-field-button-control] {
+  height: 48px !important;
   min-height: 48px !important;
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
+  max-height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
 [data-seed-field-button-value] {
   display: flex !important;
-  flex-wrap: wrap !important;
+  flex-wrap: nowrap !important;
   gap: 6px !important;
   align-items: center !important;
-  width: 100% !important;
+  overflow-x: auto !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  padding-right: 4px !important;
+}
+
+[data-seed-field-button-value]::-webkit-scrollbar {
+  display: none !important;
 }
 
 [data-seed-field-button-placeholder] {

@@ -1169,7 +1169,7 @@ function FieldButtonDemo() {
           >
             {safeCategories.length > 0 ? (
               <FieldButtonValue>
-                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
+                <div style={{ display: 'flex', gap: 6, flexWrap: 'nowrap', overflowX: 'auto', alignItems: 'center', scrollbarWidth: 'none' }}>
                   {safeCategories.map((cat) => (
                     <span
                       key={cat}
@@ -1183,6 +1183,8 @@ function FieldButtonDemo() {
                         fontSize: 12,
                         fontWeight: 600,
                         height: 24,
+                        whiteSpace: 'nowrap',
+                        flexShrink: 0,
                       }}
                     >
                       {cat}
