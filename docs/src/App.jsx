@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon'
 import { DesignTokenSection } from './sections/DesignTokenSection'
 import { ColorSection } from './sections/ColorSection'
 import { SemanticSection } from './sections/SemanticSection'
@@ -52,6 +53,24 @@ const NAV = [
 export default function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [overviewExpanded, setOverviewExpanded] = useState(false);
+
+  useEffect(() => {
+    const checkHash = () => {
+      const hash = window.location.hash;
+      if (hash && hash.length > 1) {
+        try {
+          const targetEl = document.querySelector(hash);
+          if (targetEl && (targetEl.id === 'overview' || targetEl.closest('#overview'))) {
+            setOverviewExpanded(true);
+          }
+        } catch (e) {}
+      }
+    };
+    checkHash();
+    window.addEventListener('hashchange', checkHash);
+    return () => window.removeEventListener('hashchange', checkHash);
+  }, []);
 
   const handleCopyLLMsTxt = async () => {
     try {
@@ -162,26 +181,52 @@ export default function App() {
 
         {/* Overview */}
         <div className="sec" id="overview">
-          <h2>Overview</h2>
+          <h2
+            onClick={() => setOverviewExpanded(!overviewExpanded)}
+            style={{
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              userSelect: 'none',
+            }}
+          >
+            <span>Overview</span>
+            <IconChevronDownLine
+              style={{
+                width: 16,
+                height: 16,
+                color: 'var(--seed-color-fg-neutral-subtle, #94A3B8)',
+                transform: overviewExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                transition: 'transform 0.2s ease',
+                flexShrink: 0,
+              }}
+            />
+          </h2>
           <p>
             이롬넷이 채택한 Seed Design System의 Foundation 토큰 전수 + 공식 아이콘팩(모노크롬 588개) + UI 컴포넌트 갤러리.
-            <br />
-            컴포넌트는 <code>npx @seed-design/cli add ui:*</code>로 설치된 공식 SEED React UI 컴포넌트와{' '}
-            <code>@seed-design/css/vars</code>의 100% 시맨틱 디자인 토큰(<code>var(--seed-*)</code>)을 사용합니다.
           </p>
-          <div style={{ display: 'flex', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
-            {[
-              ['@seed-design/css', 'npm install @seed-design/css'],
-              ['@seed-design/react', 'npm install @seed-design/react'],
-              ['@seed-design/icon', 'npm install @seed-design/icon'],
-              ['@seed-design/cli', 'npx @seed-design/cli add ui:*'],
-            ].map(([label, cmd]) => (
-              <div key={label} style={{ background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: 10, padding: '12px 16px' }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: '#334155', marginBottom: 4 }}>{label}</div>
-                <code style={{ fontSize: 11.5 }}>{cmd}</code>
+          {overviewExpanded && (
+            <div style={{ marginTop: 16 }}>
+              <p style={{ margin: 0 }}>
+                컴포넌트는 <code>npx @seed-design/cli add ui:*</code>로 설치된 공식 SEED React UI 컴포넌트와{' '}
+                <code>@seed-design/css/vars</code>의 100% 시맨틱 디자인 토큰(<code>var(--seed-*)</code>)을 사용합니다.
+              </p>
+              <div style={{ display: 'flex', gap: 12, marginTop: 18, flexWrap: 'wrap' }}>
+                {[
+                  ['@seed-design/css', 'npm install @seed-design/css'],
+                  ['@seed-design/react', 'npm install @seed-design/react'],
+                  ['@seed-design/icon', 'npm install @seed-design/icon'],
+                  ['@seed-design/cli', 'npx @seed-design/cli add ui:*'],
+                ].map(([label, cmd]) => (
+                  <div key={label} style={{ background: '#F8FAFC', border: '1px solid #E2E8F0', borderRadius: 10, padding: '12px 16px' }}>
+                    <div style={{ fontSize: 12, fontWeight: 700, color: '#334155', marginBottom: 4 }}>{label}</div>
+                    <code style={{ fontSize: 11.5 }}>{cmd}</code>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          )}
         </div>
 
         {/* Foundations */}
