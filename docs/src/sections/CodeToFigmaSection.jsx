@@ -562,7 +562,7 @@ export function CodeToFigmaSection() {
                       padding: '6px 12px',
                       borderRadius: 6,
                       border: 'none',
-                      backgroundColor: 'var(--seed-color-bg-brand-solid, #FF6E1D)',
+                      backgroundColor: 'var(--seed-color-bg-neutral-solid, #0F172A)',
                       color: '#FFFFFF',
                       fontWeight: 600,
                       fontSize: 12,
