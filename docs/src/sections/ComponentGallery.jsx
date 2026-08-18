@@ -1072,7 +1072,7 @@ function FieldButtonDemo() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x5)', width: '100%', maxWidth: 440, margin: '0 auto', boxSizing: 'border-box' }}>
 
       {/* Control Buttons */}
       <div style={{ display: 'flex', gap: 'var(--seed-dimension-x2)', justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -1088,7 +1088,7 @@ function FieldButtonDemo() {
       </div>
 
       {/* FieldButton Demo */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', width: '100%' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--seed-dimension-x4)', width: '100%', maxWidth: '100%', boxSizing: 'border-box' }}>
         <FieldButton
           label="정산 입금 지정 계좌"
           showRequiredIndicator

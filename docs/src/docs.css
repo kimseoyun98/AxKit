@@ -414,6 +414,12 @@ tr:last-child td { border-bottom: none; }
 @keyframes shimmer { 0% { background-position: 200% center } 100% { background-position: -200% center } }
 @keyframes seed-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
+@media (max-width: 640px) {
+  .comp-carousel-slide {
+    padding: 24px 16px !important;
+  }
+}
+
 /* ─── FieldButton Single-line Horizontal Scroll & Mobile Bounds Fix ───── */
 [data-seed-field-button-root],
 [data-seed-text-field-root],
@@ -422,7 +428,10 @@ tr:last-child td { border-bottom: none; }
 .seed-text-field {
   width: 100% !important;
   max-width: 100% !important;
+  min-width: 0 !important;
   box-sizing: border-box !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 [data-seed-field-button-button],
@@ -437,6 +446,8 @@ tr:last-child td { border-bottom: none; }
   min-width: 0 !important;
   box-sizing: border-box !important;
   overflow: hidden !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 [data-seed-field-button-value] {
