@@ -60,7 +60,7 @@ export default function App() {
     <>
       {/* Mobile GNB Header (< 768px) */}
       <div className="mobile-gnb">
-        <span className="logo">axpublish v2</span>
+        <span className="logo">AxKit UI v2</span>
         <button
           className="mobile-menu-btn"
           onClick={() => setMobileOpen(!mobileOpen)}
@@ -76,7 +76,7 @@ export default function App() {
 
       {/* Side Navigation Sidebar */}
       <aside className={mobileOpen ? 'mobile-open' : ''}>
-        <span className="logo">axpublish v2</span>
+        <span className="logo">AxKit UI v2</span>
         {NAV.map(group => (
           <div key={group.sec}>
             <div className="nav-sec">{group.sec}</div>
@@ -97,13 +97,13 @@ export default function App() {
       <main>
         <header style={{ marginBottom: 40, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16, paddingBottom: 28, borderBottom: '1px solid #F1F5F9' }}>
           <div>
-            <h1>axpublish v2.0 · Seed Design</h1>
+            <h1>AxKit UI v2.0 · SEED Engine</h1>
             <p style={{ fontSize: 14.5, color: '#64748B', marginTop: 4 }}>
               <code>@seed-design/css</code> npm import · 모노크롬 아이콘 588개 · SEED 2.0 CLI UI 컴포넌트 & 디자인 토큰 갤러리
             </p>
           </div>
           <a
-            href="https://github.com/kimseoyun98/axpublish-init"
+            href="https://github.com/kimseoyun98/AxKit"
             target="_blank"
             rel="noopener noreferrer"
             style={{
