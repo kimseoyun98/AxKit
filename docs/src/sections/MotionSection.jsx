@@ -63,16 +63,17 @@ export function MotionSection() {
         />
       </h2>
       <p>
-        <strong>매크로 모션</strong> — 전체 레이아웃/페이지 전환 같은 큰 규모의 모션 (페이지 전환, 모달
-        팝업, 슬라이드 메뉴). 0.2초를 초과합니다.
-        <br />
-        <strong>마이크로 모션</strong> — 버튼 클릭, 입력창 포커스, 스크롤 같은 작은 규모의 모션. 0.2초
-        이하입니다.
+        SEED Motion 시스템은 UI 상호작용의 듀레이션(Duration)과 이징(Timing Function) 규격을 정의합니다.
       </p>
       {expanded && (
         <div style={{ marginTop: 16 }}>
+          <p style={{ marginBottom: 16 }}>
+            <strong>매크로 모션</strong> — 레이아웃 및 페이지 전환 같은 대규모 모션 (0.2초 초과).
+            <br />
+            <strong>마이크로 모션</strong> — 버튼 클릭, 포커스 등 요소 단위의 정교한 모션 (0.2초 이하).
+          </p>
 
-      <h3>Duration</h3>
+          <h3>Duration</h3>
       <TokenTable>
         <thead><tr><th>Token</th><th>Value</th></tr></thead>
         <tbody>
