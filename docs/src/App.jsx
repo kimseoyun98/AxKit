@@ -5,6 +5,7 @@ import { ColorSection } from './sections/ColorSection'
 import { SemanticSection } from './sections/SemanticSection'
 import { ElevationSection } from './sections/ElevationSection'
 import { TypographySection } from './sections/TypographySection'
+import { TextSection } from './sections/TextSection'
 import { DimensionSection } from './sections/DimensionSection'
 import { MotionSection } from './sections/MotionSection'
 import { GridSection } from './sections/GridSection'
@@ -24,7 +25,8 @@ const NAV = [
       { href: '#f-color', label: 'Color Primitives (94)' },
       { href: '#f-semantic', label: 'Semantic Color & State (84)' },
       { href: '#f-elevation', label: 'Elevation' },
-      { href: '#f-typography', label: 'Typography & Text' },
+      { href: '#f-typography', label: 'Typography Tokens (t1–t14)' },
+      { href: '#f-text', label: 'Semantic Text (<Text>)' },
       { href: '#f-dimension', label: 'Dimensions & Radius' },
       { href: '#f-motion', label: 'Motion' },
       { href: '#f-grid', label: 'Grid / Layout' },
@@ -233,6 +235,7 @@ export default function App() {
         <SemanticSection />
         <ElevationSection />
         <TypographySection />
+        <TextSection />
         <DimensionSection />
         <MotionSection />
         <GridSection />
