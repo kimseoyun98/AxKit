@@ -4266,44 +4266,42 @@ export function ComponentGallery() {
   }, [cur]);
 
   return (
-    <Sec id="showcase">
-      <div className="comp-gallery-container">
-        {/* 토글 네비 */}
-        <div className="comp-nav" ref={navRef}>
-          {COMPONENTS.map((c, i) => (
-            <button
-              key={c.name}
-              className={`comp-nav-btn${i === cur ? ' active' : ''}`}
-              onClick={() => go(i)}
-            >
-              {c.name}
-            </button>
-          ))}
-        </div>
+    <section className="comp-gallery-container" id="showcase">
+      {/* 토글 네비 */}
+      <div className="comp-nav" ref={navRef}>
+        {COMPONENTS.map((c, i) => (
+          <button
+            key={c.name}
+            className={`comp-nav-btn${i === cur ? ' active' : ''}`}
+            onClick={() => go(i)}
+          >
+            {c.name}
+          </button>
+        ))}
+      </div>
 
-        {/* 상단 정보 바 (컴포넌트 이름/슬러그, 이전/다음 화살표) */}
-        <div className="comp-info-bar" style={{ marginBlock: 'var(--seed-dimension-x3_5)' }}>
-          <div>
-            <div className="comp-name">{COMPONENTS[cur].name}</div>
-            <div className="comp-slug">{COMPONENTS[cur].slug}</div>
-          </div>
-          <div className="comp-arrows">
-            <button className="comp-arrow-btn" onClick={() => go(cur - 1)} disabled={cur === 0}>‹</button>
-            <button className="comp-arrow-btn" onClick={() => go(cur + 1)} disabled={cur === total - 1}>›</button>
-          </div>
+      {/* 상단 정보 바 (컴포넌트 이름/슬러그, 이전/다음 화살표) */}
+      <div className="comp-info-bar" style={{ marginBlock: 'var(--seed-dimension-x3_5)' }}>
+        <div>
+          <div className="comp-name">{COMPONENTS[cur].name}</div>
+          <div className="comp-slug">{COMPONENTS[cur].slug}</div>
         </div>
-
-        {/* 캐러셀 */}
-        <div className="comp-carousel-wrap">
-          <div className="comp-carousel-track" style={{ transform: `translateX(-${cur * 100}%)` }}>
-            {COMPONENTS.map((c, i) => (
-              <div key={c.name} className={`comp-carousel-slide${i === cur ? ' active' : ''}`}>
-                {c.demo}
-              </div>
-            ))}
-          </div>
+        <div className="comp-arrows">
+          <button className="comp-arrow-btn" onClick={() => go(cur - 1)} disabled={cur === 0}>‹</button>
+          <button className="comp-arrow-btn" onClick={() => go(cur + 1)} disabled={cur === total - 1}>›</button>
         </div>
       </div>
-    </Sec>
+
+      {/* 캐러셀 */}
+      <div className="comp-carousel-wrap">
+        <div className="comp-carousel-track" style={{ transform: `translateX(-${cur * 100}%)` }}>
+          {COMPONENTS.map((c, i) => (
+            <div key={c.name} className={`comp-carousel-slide${i === cur ? ' active' : ''}`}>
+              {c.demo}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
