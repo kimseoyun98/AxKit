@@ -10,7 +10,7 @@ export function StateSection() {
       if (hash && hash.length > 1) {
         try {
           const targetEl = document.querySelector(hash);
-          if (targetEl) {
+          if (targetEl && (targetEl.id === 'f-state' || targetEl.closest('#f-state'))) {
             setExpanded(true);
           }
         } catch (e) {}

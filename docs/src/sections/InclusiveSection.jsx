@@ -10,7 +10,7 @@ export function InclusiveSection() {
       if (hash && hash.length > 1) {
         try {
           const targetEl = document.querySelector(hash);
-          if (targetEl) {
+          if (targetEl && (targetEl.id === 'f-inclusive' || targetEl.closest('#f-inclusive'))) {
             setExpanded(true);
           }
         } catch (e) {}

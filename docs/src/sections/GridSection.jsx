@@ -43,7 +43,7 @@ export function GridSection() {
       if (hash && hash.length > 1) {
         try {
           const targetEl = document.querySelector(hash);
-          if (targetEl) {
+          if (targetEl && (targetEl.id === 'f-grid' || targetEl.closest('#f-grid'))) {
             setExpanded(true);
           }
         } catch (e) {}

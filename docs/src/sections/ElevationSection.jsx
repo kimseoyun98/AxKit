@@ -32,7 +32,7 @@ export function ElevationSection() {
       if (hash && hash.length > 1) {
         try {
           const targetEl = document.querySelector(hash);
-          if (targetEl) {
+          if (targetEl && (targetEl.id === 'f-elevation' || targetEl.closest('#f-elevation'))) {
             setExpanded(true);
           }
         } catch (e) {}

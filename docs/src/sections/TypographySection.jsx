@@ -10,7 +10,7 @@ export function TypographySection() {
       if (hash && hash.length > 1) {
         try {
           const targetEl = document.querySelector(hash);
-          if (targetEl) {
+          if (targetEl && (targetEl.id === 'f-typography' || targetEl.closest('#f-typography'))) {
             setExpanded(true);
           }
         } catch (e) {}

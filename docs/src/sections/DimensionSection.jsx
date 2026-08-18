@@ -10,7 +10,7 @@ export function DimensionSection() {
       if (hash && hash.length > 1) {
         try {
           const targetEl = document.querySelector(hash);
-          if (targetEl) {
+          if (targetEl && (targetEl.id === 'f-dimension' || targetEl.closest('#f-dimension'))) {
             setExpanded(true);
           }
         } catch (e) {}

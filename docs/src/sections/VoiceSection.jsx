@@ -10,7 +10,7 @@ export function VoiceSection() {
       if (hash && hash.length > 1) {
         try {
           const targetEl = document.querySelector(hash);
-          if (targetEl) {
+          if (targetEl && (targetEl.id === 'f-voice' || targetEl.closest('#f-voice'))) {
             setExpanded(true);
           }
         } catch (e) {}

@@ -139,7 +139,7 @@ export function SemanticSection() {
       if (hash && hash.length > 1) {
         try {
           const targetEl = document.querySelector(hash);
-          if (targetEl) {
+          if (targetEl && (targetEl.id === 'f-semantic' || targetEl.closest('#f-semantic'))) {
             setExpanded(true);
           }
         } catch (e) {}

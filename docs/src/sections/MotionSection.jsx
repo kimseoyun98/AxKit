@@ -10,7 +10,7 @@ export function MotionSection() {
       if (hash && hash.length > 1) {
         try {
           const targetEl = document.querySelector(hash);
-          if (targetEl) {
+          if (targetEl && (targetEl.id === 'f-motion' || targetEl.closest('#f-motion'))) {
             setExpanded(true);
           }
         } catch (e) {}

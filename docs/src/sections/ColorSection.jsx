@@ -16,7 +16,7 @@ export function ColorSection() {
       if (hash && hash.length > 1) {
         try {
           const targetEl = document.querySelector(hash);
-          if (targetEl) {
+          if (targetEl && (targetEl.id === 'f-color' || targetEl.closest('#f-color'))) {
             setExpanded(true);
           }
         } catch (e) {}

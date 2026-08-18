@@ -10,7 +10,7 @@ export function DesignTokenSection() {
       if (hash && hash.length > 1) {
         try {
           const targetEl = document.querySelector(hash);
-          if (targetEl) {
+          if (targetEl && (targetEl.id === 'f-design-token' || targetEl.closest('#f-design-token'))) {
             setExpanded(true);
           }
         } catch (e) {}
