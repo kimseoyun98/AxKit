@@ -40,7 +40,7 @@ import { Chip } from '../components/ui/chip';
 import { ChipTabsRoot, ChipTabsList, ChipTabsTrigger } from '../components/ui/chip-tabs';
 import { ContentPlaceholder } from '../components/ui/content-placeholder';
 import { ContextualFloatingButton } from '../components/ui/contextual-floating-button';
-import { DatePicker, TwoMonthDatePicker, WeekDatePicker, ContinuousDatePicker } from '../components/ui/date-picker';
+import { DatePicker, TwoMonthDatePicker, WeekDatePicker } from '../components/ui/date-picker';
 import { DialogRoot, DialogTrigger, DialogContent, DialogBody, DialogFooter, DialogAction } from '../components/ui/dialog';
 import { ResponsiveDialogRoot, ResponsiveDialogTrigger, ResponsiveDialogContent, ResponsiveDialogBody, ResponsiveDialogFooter, ResponsiveDialogAction } from '../components/ui/responsive-dialog';
 import { Float, Divider, ImageFrame } from '../components/ui/layout';
@@ -50,7 +50,7 @@ import Footer01 from '../components/ui/block/footer-01';
 import Footer02 from '../components/ui/block/footer-02';
 import Footer03 from '../components/ui/block/footer-03';
 import Footer04 from '../components/ui/block/footer-04';
-import { HelpBubbleTrigger, HelpBubbleAnchor } from '../components/ui/help-bubble';
+import { HelpBubbleTrigger } from '../components/ui/help-bubble';
 import { HelpBubbleTooltipTrigger } from '../components/ui/help-bubble-tooltip';
 import { IdentityPlaceholder } from '../components/ui/identity-placeholder';
 import { ProgressCircle } from '../components/ui/progress-circle';
@@ -89,12 +89,11 @@ import {
 import SideNavigation1 from '../components/ui/blocks/side-navigation-01';
 import { TextField, TextFieldInput, TextFieldTextarea } from '../components/ui/text-field';
 import { Slider } from '../components/ui/slider';
-import { Snackbar, SnackbarProvider, useSnackbarAdapter, StaticSnackbar } from '../components/ui/snackbar';
+import { StaticSnackbar } from '../components/ui/snackbar';
 import { Switch } from '../components/ui/switch';
 import { TabsRoot, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
 import {
   ResponsiveSidePanelRoot,
-  ResponsiveSidePanelTrigger,
   ResponsiveSidePanelContent,
   ResponsiveSidePanelBody,
   ResponsiveSidePanelFooter,
@@ -111,15 +110,6 @@ import {
   TopNavigationCloseButton,
 } from '../components/ui/top-navigation';
 import {
-  NavigationMenuProvider,
-  NavigationMenuRoot,
-  NavigationMenuTrigger,
-  NavigationMenuContent,
-  NavigationMenuGroup,
-  NavigationMenuGroupLabel,
-  NavigationMenuItem,
-} from '../components/ui/navigation-menu';
-import {
   SwipeableMenuSheetRoot,
   SwipeableMenuSheetTrigger,
   SwipeableMenuSheetContent,
@@ -128,7 +118,7 @@ import {
 } from '../components/ui/swipeable-menu-sheet';
 import { TimePicker } from '../components/ui/time-picker';
 
-import { Count, Box, ScrollFog, HStack, VStack, Text, Skeleton } from '@seed-design/react';
+import { Count, Box, HStack, VStack, Text, Skeleton } from '@seed-design/react';
 import IconFaceSmileCircleFill from "@karrotmarket/react-monochrome-icon/IconFaceSmileCircleFill";
 import IconHeartFill from "@karrotmarket/react-monochrome-icon/IconHeartFill";
 import IconExclamationmarkCircleFill from "@karrotmarket/react-monochrome-icon/IconExclamationmarkCircleFill";
@@ -138,7 +128,6 @@ import IconChevronRightLine from "@karrotmarket/react-monochrome-icon/IconChevro
 import IconPencilLine from "@karrotmarket/react-monochrome-icon/IconPencilLine";
 import IconTrashcanLine from "@karrotmarket/react-monochrome-icon/IconTrashcanLine";
 import IconStoreLine from "@karrotmarket/react-monochrome-icon/IconStoreLine";
-import IconGearFill from "@karrotmarket/react-monochrome-icon/IconGearFill";
 import { RadioGroup as RadioGroupPrimitive } from "@seed-design/react/primitive";
 import IconLockFill from "@karrotmarket/react-monochrome-icon/IconLockFill";
 import {
@@ -2722,7 +2711,6 @@ function TextFieldDemo() {
   // Basic Form States
   const [bizName, setBizName] = useState("이롬넷 가맹점 (강남본점)");
   const [amount, setAmount] = useState("15,000,000");
-  const [website, setWebsite] = useState("payverse.eromnet.com");
   const [memo, setMemo] = useState("PG 정산 대금 D+1 입금 신청 및 FDS 이상 거래 자동 차단 알림 수신 설정 완료.");
 
   // Custom Input & Formatting States

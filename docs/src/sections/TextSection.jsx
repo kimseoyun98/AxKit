@@ -1,6 +1,6 @@
 import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
 import { useState, useEffect } from 'react';
-import { Sec, TokenTable, Notice, ChipInfo } from '../components/UI';
+import { Sec, TokenTable, Notice } from '../components/UI';
 
 const textStyleMapping = [
   { level: 't1', fluidStyle: 't1Regular', staticStyle: 't1StaticRegular', staticFs: '11px', staticLh: '15px', usage: '캡션 및 최소형 텍스트' },

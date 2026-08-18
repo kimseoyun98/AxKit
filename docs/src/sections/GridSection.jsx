@@ -1,6 +1,6 @@
 import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
 import { useState, useEffect } from 'react';
-import { Sec, TokenTable, Notice, ChipInfo } from '../components/UI';
+import { Sec, TokenTable, Notice } from '../components/UI';
 
 const officialBreakpoints = [
   { name: 'base', minWidth: '0px', desc: 'Mobile First 기본 (모든 화면)' },

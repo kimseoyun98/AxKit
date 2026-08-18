@@ -1,6 +1,6 @@
 import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
 import { useState, useEffect } from 'react';
-import { Sec, TokenTable , ChipInfo} from '../components/UI'
+import { Sec, TokenTable } from '../components/UI'
 
 export function MotionSection() {
   const [expanded, setExpanded] = useState(false);

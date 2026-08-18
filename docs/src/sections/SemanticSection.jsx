@@ -1,6 +1,6 @@
 import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
 import { useState, useEffect } from 'react';
-import { Sec, TokenTable, ChipInfo } from '../components/UI'
+import { Sec, TokenTable } from '../components/UI'
 
 const fgRows = [
   { css: '--seed-color-fg-neutral', prim: 'gray-1000', desc: '기본 본문 텍스트' },
