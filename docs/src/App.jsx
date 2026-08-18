@@ -46,8 +46,8 @@ const NAV = [
   {
     sec: 'Components',
     links: [
-      { href: '#showcase', label: 'Component Gallery' },
-      { href: '#a-code-to-figma', label: 'Code-to-Figma' },
+      { href: '#showcase', label: 'Component Gallery (50)' },
+      { href: '#a-code-to-figma', label: 'Code-to-Figma (50)' },
     ],
   },
 ]
