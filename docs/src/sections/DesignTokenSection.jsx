@@ -33,7 +33,7 @@ export function DesignTokenSection() {
           userSelect: 'none',
         }}
       >
-        <span>Design Token — Overview</span>
+        <span>Design Token</span>
         <IconChevronDownLine
           style={{
             width: 16,
