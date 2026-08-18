@@ -87,8 +87,7 @@ export function ColorSection() {
           userSelect: 'none',
         }}
       >
-        <span>Color — Primitive Palette</span>
-        <ChipInfo>94개</ChipInfo>
+        <span>Color Primitives (94)</span>
         <IconChevronDownLine
           style={{
             width: 16,
