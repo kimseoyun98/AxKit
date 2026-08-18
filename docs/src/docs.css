@@ -414,7 +414,17 @@ tr:last-child td { border-bottom: none; }
 @keyframes shimmer { 0% { background-position: 200% center } 100% { background-position: -200% center } }
 @keyframes seed-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-/* ─── FieldButton Single-line Horizontal Scroll & Alignment Fix ───────── */
+/* ─── FieldButton Single-line Horizontal Scroll & Mobile Bounds Fix ───── */
+[data-seed-field-button-root],
+[data-seed-text-field-root],
+[data-seed-field-root],
+.seed-field-button,
+.seed-text-field {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
 [data-seed-field-button-button],
 [data-seed-field-button-control] {
   height: 48px !important;
@@ -422,6 +432,11 @@ tr:last-child td { border-bottom: none; }
   max-height: 48px !important;
   display: flex !important;
   align-items: center !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
 }
 
 [data-seed-field-button-value] {
@@ -433,6 +448,9 @@ tr:last-child td { border-bottom: none; }
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
   padding-right: 4px !important;
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
 }
 
 [data-seed-field-button-value]::-webkit-scrollbar {
@@ -444,5 +462,7 @@ tr:last-child td { border-bottom: none; }
   text-overflow: ellipsis !important;
   white-space: nowrap !important;
   display: block !important;
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
   max-width: 100% !important;
 }
