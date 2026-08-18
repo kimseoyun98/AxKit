@@ -80,14 +80,17 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 200;
+    left: 0;
+    right: 0;
+    width: 100%;
     height: 56px;
+    z-index: 200;
     padding: 0 16px;
     background: #FFFFFF;
     border-bottom: 1px solid #F1F5F9;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    box-shadow: none; /* 사용자 요청: 그림자 제거 */
   }
   .mobile-gnb .logo {
     margin-bottom: 0;
@@ -158,10 +161,10 @@ main {
   main {
     margin-left: 0;
     width: 100%;
-    padding: 24px 16px 64px;
+    padding: 80px 16px 64px; /* 상단 56px 고정 헤더 영역 확보 */
   }
   .sec {
-    scroll-margin-top: 72px; /* 상단 56px 스티키 헤더 + 16px 여백 고려 */
+    scroll-margin-top: 72px; /* 상단 56px 고정 헤더 + 16px 여백 고려 */
   }
 }
 
