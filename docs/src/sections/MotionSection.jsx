@@ -50,8 +50,7 @@ export function MotionSection() {
           userSelect: 'none',
         }}
       >
-        <span>Motion Tokens</span>
-        <ChipInfo>이징</ChipInfo>
+        <span>Motion</span>
         <IconChevronDownLine
           style={{
             width: 16,

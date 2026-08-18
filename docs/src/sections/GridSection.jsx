@@ -134,8 +134,7 @@ export function GridSection() {
           userSelect: 'none',
         }}
       >
-        <span>Grid & Layout Tokens</span>
-        <ChipInfo>반응형</ChipInfo>
+        <span>Grid / Layout</span>
         <IconChevronDownLine
           style={{
             width: 16,

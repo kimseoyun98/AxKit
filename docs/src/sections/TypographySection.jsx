@@ -52,7 +52,6 @@ export function TypographySection() {
         }}
       >
         <span>Typography Tokens (t1–t14)</span>
-        <ChipInfo>14단계 수치표</ChipInfo>
         <IconChevronDownLine
           style={{
             width: 16,

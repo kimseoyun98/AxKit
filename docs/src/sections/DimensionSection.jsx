@@ -92,7 +92,6 @@ export function DimensionSection() {
         }}
       >
         <span>Dimensions & Radius</span>
-        <ChipInfo>파운데이션</ChipInfo>
         <IconChevronDownLine
           style={{
             width: 16,

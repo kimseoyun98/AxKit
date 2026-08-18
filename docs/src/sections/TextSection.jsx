@@ -63,7 +63,6 @@ export function TextSection() {
         }}
       >
         <span>Semantic Text</span>
-        <ChipInfo>Text</ChipInfo>
         <IconChevronDownLine
           style={{
             width: 16,

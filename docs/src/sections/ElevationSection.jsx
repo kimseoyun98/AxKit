@@ -54,8 +54,7 @@ export function ElevationSection() {
           userSelect: 'none',
         }}
       >
-        <span>Elevation & Shadows</span>
-        <ChipInfo>그림자</ChipInfo>
+        <span>Elevation</span>
         <IconChevronDownLine
           style={{
             width: 16,
