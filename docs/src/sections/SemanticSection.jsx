@@ -1,5 +1,5 @@
 import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Sec, TokenTable, ChipInfo } from '../components/UI'
 
 const fgRows = [
@@ -133,6 +133,20 @@ const Table = ({ rows }) => (
 
 export function SemanticSection() {
   const [expanded, setExpanded] = useState(false);
+  useEffect(() => {
+    const checkHash = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const targetEl = document.querySelector(hash);
+        if (targetEl && (targetEl.id === id || targetEl.closest('.sec')?.id === id || targetEl.closest('[id]')?.id === id)) {
+          setExpanded(true);
+        }
+      }
+    };
+    checkHash();
+    window.addEventListener('hashchange', checkHash);
+    return () => window.removeEventListener('hashchange', checkHash);
+  }, []);
   const total = fgRows.length + bgLayerRows.length + bgBrandRows.length + bgNeutralRows.length
     + bgStatusRows.length + bgEtcRows.length + strokeRows.length + bannerRows.length
 

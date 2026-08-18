@@ -1,5 +1,5 @@
 import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Sec, TokenTable } from '../components/UI'
 
 const DoDontTable = ({ rows }) => (
@@ -15,6 +15,20 @@ const DoDontTable = ({ rows }) => (
 
 export function WritingSection() {
   const [expanded, setExpanded] = useState(false);
+  useEffect(() => {
+    const checkHash = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const targetEl = document.querySelector(hash);
+        if (targetEl && (targetEl.id === id || targetEl.closest('.sec')?.id === id || targetEl.closest('[id]')?.id === id)) {
+          setExpanded(true);
+        }
+      }
+    };
+    checkHash();
+    window.addEventListener('hashchange', checkHash);
+    return () => window.removeEventListener('hashchange', checkHash);
+  }, []);
   return (
     <Sec id="f-writing">
       <h2

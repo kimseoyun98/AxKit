@@ -1,9 +1,23 @@
 import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Sec, TokenTable , ChipInfo} from '../components/UI'
 
 export function MotionSection() {
   const [expanded, setExpanded] = useState(false);
+  useEffect(() => {
+    const checkHash = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const targetEl = document.querySelector(hash);
+        if (targetEl && (targetEl.id === id || targetEl.closest('.sec')?.id === id || targetEl.closest('[id]')?.id === id)) {
+          setExpanded(true);
+        }
+      }
+    };
+    checkHash();
+    window.addEventListener('hashchange', checkHash);
+    return () => window.removeEventListener('hashchange', checkHash);
+  }, []);
   const durRows = [
     { t: 'd1', val: '50ms' },
     { t: 'd2', val: '100ms' },

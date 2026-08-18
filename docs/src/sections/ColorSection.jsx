@@ -1,5 +1,5 @@
 import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Sec, ChipInfo } from '../components/UI'
 
 const STEPS = ['100', '200', '300', '400', '500', '600', '700', '800', '900', '1000']
@@ -10,6 +10,20 @@ function huePalette(hue, hexes) {
 
 export function ColorSection() {
   const [expanded, setExpanded] = useState(false);
+  useEffect(() => {
+    const checkHash = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const targetEl = document.querySelector(hash);
+        if (targetEl && (targetEl.id === id || targetEl.closest('.sec')?.id === id || targetEl.closest('[id]')?.id === id)) {
+          setExpanded(true);
+        }
+      }
+    };
+    checkHash();
+    window.addEventListener('hashchange', checkHash);
+    return () => window.removeEventListener('hashchange', checkHash);
+  }, []);
   const carrot = huePalette('carrot', ['#FFF2EC', '#FFE8DB', '#FFD5C0', '#FFB999', '#FF9364', '#FF6600', '#E14D00', '#B93901', '#862B00', '#471601'])
   const gray = [
     { name: 'gray-00', hex: '#FFFFFF', border: true },

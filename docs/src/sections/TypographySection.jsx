@@ -1,9 +1,23 @@
 import { IconChevronDownLine } from '@karrotmarket/react-monochrome-icon';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Sec, TokenTable, Notice , ChipInfo} from '../components/UI'
 
 export function TypographySection() {
   const [expanded, setExpanded] = useState(false);
+  useEffect(() => {
+    const checkHash = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const targetEl = document.querySelector(hash);
+        if (targetEl && (targetEl.id === id || targetEl.closest('.sec')?.id === id || targetEl.closest('[id]')?.id === id)) {
+          setExpanded(true);
+        }
+      }
+    };
+    checkHash();
+    window.addEventListener('hashchange', checkHash);
+    return () => window.removeEventListener('hashchange', checkHash);
+  }, []);
   // 실제 @seed-design/css: t1~t14 14단계, 각 단계마다 static px 값과 fluid(clamp) 값이 동시에 존재
   const rows = [
     { t: 't1', staticFs: 11, staticLh: 15, fluidRem: 0.6875 },

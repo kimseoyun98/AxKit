@@ -4158,15 +4158,38 @@ export function ComponentGallery() {
         ))}
       </div>
 
-      {/* 상단 정보 바 (컴포넌트 이름/슬러그, 이전/다음 화살표) */}
-      <div className="comp-info-bar" style={{ marginBlock: 'var(--seed-dimension-x3_5)' }}>
+      {/* 상단 정보 바 (컴포넌트 이름/슬러그, Quick Select 드롭다운, 이전/다음 화살표) */}
+      <div className="comp-info-bar" style={{ marginBlock: 'var(--seed-dimension-x3_5)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
         <div>
           <div className="comp-name">{COMPONENTS[cur].name}</div>
           <div className="comp-slug">{COMPONENTS[cur].slug}</div>
         </div>
-        <div className="comp-arrows">
-          <button className="comp-arrow-btn" onClick={() => go(cur - 1)} disabled={cur === 0}>‹</button>
-          <button className="comp-arrow-btn" onClick={() => go(cur + 1)} disabled={cur === total - 1}>›</button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <select
+            value={cur}
+            onChange={(e) => go(Number(e.target.value))}
+            style={{
+              padding: '6px 12px',
+              borderRadius: 8,
+              border: '1px solid var(--seed-color-stroke-neutral-weak, #E2E8F0)',
+              fontSize: 13,
+              fontWeight: 600,
+              background: 'var(--seed-color-bg-layer-default, #FFFFFF)',
+              color: 'var(--seed-color-fg-neutral, #0F172A)',
+              cursor: 'pointer',
+              outline: 'none',
+            }}
+          >
+            {COMPONENTS.map((c, i) => (
+              <option key={c.name} value={i}>
+                {i + 1}. {c.name} ({c.slug})
+              </option>
+            ))}
+          </select>
+          <div className="comp-arrows">
+            <button className="comp-arrow-btn" onClick={() => go(cur - 1)} disabled={cur === 0}>‹</button>
+            <button className="comp-arrow-btn" onClick={() => go(cur + 1)} disabled={cur === total - 1}>›</button>
+          </div>
         </div>
       </div>
 
