@@ -117,25 +117,34 @@ export default function App() {
           <button
             type="button"
             onClick={handleCopyLLMsTxt}
+            title={copied ? "복사 완료!" : "llms.txt AI 프롬프트 복사"}
+            aria-label="llms.txt AI 프롬프트 복사"
             style={{
               flexShrink: 0,
               display: 'inline-flex',
               alignItems: 'center',
-              gap: 8,
-              background: copied ? '#16A34A' : '#2563EB',
-              color: '#fff',
-              fontSize: 13.5,
-              fontWeight: 700,
-              padding: '10px 18px',
-              borderRadius: 9999,
-              border: 'none',
+              justifyContent: 'center',
+              width: 36,
+              height: 36,
+              borderRadius: '50%',
+              background: copied ? '#16A34A' : '#F1F5F9',
+              color: copied ? '#FFFFFF' : '#475569',
+              border: copied ? 'none' : '1px solid #E2E8F0',
               cursor: 'pointer',
-              whiteSpace: 'nowrap',
-              boxShadow: copied ? '0 2px 8px rgba(22, 163, 74, 0.25)' : '0 2px 8px rgba(37, 99, 235, 0.25)',
+              boxShadow: copied ? '0 2px 8px rgba(22, 163, 74, 0.25)' : 'none',
               transition: 'all 0.2s ease',
             }}
           >
-            {copied ? '✓ llms.txt 클립보드 복사 완료!' : '📋 llms.txt 복사 (AI 프롬프트)'}
+            {copied ? (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            ) : (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            )}
           </button>
         </header>
 
