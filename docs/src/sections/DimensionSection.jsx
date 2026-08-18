@@ -105,58 +105,61 @@ export function DimensionSection() {
         />
       </h2>
       
-      <h3>Dimensions & Spacing</h3>
-      <TokenTable>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          {dimRows.map(r => <tr key={r.token}><td>{r.token}</td><td>{r.val}</td></tr>)}
-        </tbody>
-      </TokenTable>
-
-      <h3>Semantic Spacing</h3>
       <p>
-        <strong>Horizontal</strong> — <code>global-gutter</code>는 화면 가장자리와 콘텐츠 사이 간격, <code>between-chips</code>는 칩 사이 간격.
-        <br />
-        <strong>Vertical</strong> — <code>nav-to-title</code>는 네비게이션 바와 타이틀 간격, <code>component-default</code>는 컴포넌트 기본 내부/간 간격,{' '}
-        <code>screen-bottom</code>은 화면 하단 여백, <code>between-text</code>는 텍스트 줄 사이 간격.
+        SEED의 여백 및 치수 시스템은 4px 스케일(x1~x16) 기반으로 모듈러 그리드와 일관된 시각적 리듬을 제공합니다.
       </p>
+
       {expanded && (
         <div style={{ marginTop: 16 }}>
-      <TokenTable>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          {semanticSpacingRows.map(r => <tr key={r.token}><td>{r.token}</td><td>{r.val}</td></tr>)}
-        </tbody>
-      </TokenTable>
+          <h3>Dimensions & Spacing</h3>
+          <TokenTable>
+            <thead><tr><th>Token</th><th>Value</th></tr></thead>
+            <tbody>
+              {dimRows.map(r => <tr key={r.token}><td>{r.token}</td><td>{r.val}</td></tr>)}
+            </tbody>
+          </TokenTable>
 
-      <h3 id="f-radius">Radius</h3>
-      <p>컴포넌트/콘텐츠 모서리의 둥글기. 부드럽고 현대적인 느낌을 주고, 다양한 화면·컨텍스트에서 시각적 일관성을 유지합니다.</p>
-      <TokenTable>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          {radRows.map(r => <tr key={r.token}><td>{r.token}</td><td>{r.val}</td></tr>)}
-        </tbody>
-      </TokenTable>
+          <h3>Semantic Spacing</h3>
+          <p>
+            <strong>Horizontal</strong> — <code>global-gutter</code>는 화면 가장자리와 콘텐츠 사이 간격, <code>between-chips</code>는 칩 사이 간격.
+            <br />
+            <strong>Vertical</strong> — <code>nav-to-title</code>는 네비게이션 바와 타이틀 간격, <code>component-default</code>는 컴포넌트 기본 내부/간 간격,{' '}
+            <code>screen-bottom</code>은 화면 하단 여백, <code>between-text</code>는 텍스트 줄 사이 간격.
+          </p>
+          <TokenTable>
+            <thead><tr><th>Token</th><th>Value</th></tr></thead>
+            <tbody>
+              {semanticSpacingRows.map(r => <tr key={r.token}><td>{r.token}</td><td>{r.val}</td></tr>)}
+            </tbody>
+          </TokenTable>
 
-      <h3 id="f-shadow">Shadows</h3>
-      <TokenTable>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          {shadowRows.map(r => <tr key={r.token}><td>{r.token}</td><td><code>{r.val}</code></td></tr>)}
-        </tbody>
-      </TokenTable>
+          <h3 id="f-radius">Radius</h3>
+          <p>컴포넌트/콘텐츠 모서리의 둥글기. 부드럽고 현대적인 느낌을 주고, 다양한 화면·컨텍스트에서 시각적 일관성을 유지합니다.</p>
+          <TokenTable>
+            <thead><tr><th>Token</th><th>Value</th></tr></thead>
+            <tbody>
+              {radRows.map(r => <tr key={r.token}><td>{r.token}</td><td>{r.val}</td></tr>)}
+            </tbody>
+          </TokenTable>
 
-      <h3 id="f-gradient">Gradients</h3>
-      <p>배경과 아이콘 등에서 입체감이나 AI 기능을 표현할 때 사용하는 색상 토큰입니다.</p>
-      <TokenTable>
-        <thead><tr><th>Token</th><th>Value</th></tr></thead>
-        <tbody>
-          {gradientRows.map(r => <tr key={r.token}><td>{r.token}</td><td><code>{r.val}</code></td></tr>)}
-        </tbody>
-      </TokenTable>
-    
+          <h3 id="f-shadow">Shadows</h3>
+          <TokenTable>
+            <thead><tr><th>Token</th><th>Value</th></tr></thead>
+            <tbody>
+              {shadowRows.map(r => <tr key={r.token}><td>{r.token}</td><td><code>{r.val}</code></td></tr>)}
+            </tbody>
+          </TokenTable>
+
+          <h3 id="f-gradient">Gradients</h3>
+          <p>배경과 아이콘 등에서 입체감이나 AI 기능을 표현할 때 사용하는 색상 토큰입니다.</p>
+          <TokenTable>
+            <thead><tr><th>Token</th><th>Value</th></tr></thead>
+            <tbody>
+              {gradientRows.map(r => <tr key={r.token}><td>{r.token}</td><td><code>{r.val}</code></td></tr>)}
+            </tbody>
+          </TokenTable>
         </div>
       )}
-</Sec>
+    </Sec>
   )
 }
