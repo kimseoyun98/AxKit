@@ -31,7 +31,7 @@ const NAV = [
       { href: '#f-motion', label: 'Motion' },
       { href: '#f-grid', label: 'Grid / Layout' },
       { href: '#f-inclusive', label: 'Inclusive Design' },
-      { href: '#f-international', label: 'International (i18n)' },
+      { href: '#f-international', label: 'International Design' },
       { href: '#f-voice', label: 'Voice and Tone' },
       { href: '#f-writing', label: 'Writing' },
     ],
