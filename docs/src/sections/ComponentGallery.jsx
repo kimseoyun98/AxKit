@@ -4265,7 +4265,7 @@ export function ComponentGallery() {
   }, [cur]);
 
   return (
-    <section className="comp-gallery-container" id="showcase">
+    <section className="sec comp-gallery-container" id="showcase">
       {/* 토글 네비 */}
       <div className="comp-nav" ref={navRef}>
         {COMPONENTS.map((c, i) => (

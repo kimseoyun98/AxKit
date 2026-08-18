@@ -250,9 +250,7 @@ export default function App() {
         <IconGallery />
 
         {/* Components */}
-        <div className="sec">
-          <ComponentGallery />
-        </div>
+        <ComponentGallery />
         <CodeToFigmaSection />
       </main>
     </>
