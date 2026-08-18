@@ -253,6 +253,38 @@ export default function App() {
         <ComponentGallery />
         <CodeToFigmaSection />
       </main>
+
+      {/* Floating Action Button: Scroll to Top */}
+      <ScrollToTopFAB />
     </>
+  )
+}
+
+function ScrollToTopFAB() {
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setVisible(window.scrollY > 300)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  if (!visible) return null
+
+  return (
+    <button
+      onClick={scrollToTop}
+      aria-label="맨 위로 이동"
+      title="맨 위로 이동"
+      className="scroll-to-top-fab"
+    >
+      <IconChevronDownLine style={{ width: 20, height: 20, transform: 'rotate(180deg)' }} />
+    </button>
   )
 }
