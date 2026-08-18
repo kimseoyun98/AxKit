@@ -3593,7 +3593,7 @@ function SwipeableMenuSheetDemo() {
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--seed-dimension-x6)", width: "100%", maxWidth: 440, margin: "0 auto", alignItems: "center" }}>
       <SwipeableMenuSheetRoot open={open} onOpenChange={setOpen}>
         <SwipeableMenuSheetTrigger asChild>
-          <ActionButton variant="neutralOutline" size="medium">
+          <ActionButton variant="brandSolid" size="medium">
             빠른 작업 메뉴 (스와이프 시트)
           </ActionButton>
         </SwipeableMenuSheetTrigger>
