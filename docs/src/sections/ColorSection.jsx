@@ -58,7 +58,7 @@ export function ColorSection() {
   )
   return (
     <Sec id="f-color">
-      <h2>Color — Primitive Palette <ChipInfo>@seed-design/css 전체 {total}개</ChipInfo></h2>
+      <h2>Color — Primitive Palette <ChipInfo>94개</ChipInfo></h2>
       <p>
         팔레트 색상은 역할 기반 색상(Semantic Color Tokens)으로 표현하기 어려운 예외적인 경우에 사용합니다.
         적응형 팔레트로 구성되어 있어, 특정 화면 모드(라이트/다크)를 기준으로 디자인하더라도 다른 모드에서도

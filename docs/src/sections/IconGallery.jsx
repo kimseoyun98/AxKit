@@ -3,7 +3,7 @@ import { Sec , ChipInfo} from '../components/UI'
 export function IconGallery() {
   return (
     <Sec id="icons">
-      <h2>Icon Pack <ChipInfo>@seed-design/icon 588개</ChipInfo></h2>
+      <h2>Icon Pack <ChipInfo>588개</ChipInfo></h2>
       <p>
         기본 24px로 제공되며 비율을 유지하며 조정 가능합니다. 최소 크기는 12px, <strong>15px 이하</strong>에서는
         시각 복잡도를 줄이기 위해 Fill 사용을 권장합니다. 단독 버튼으로 쓸 때 터치 영역은 최소 40px 이상,

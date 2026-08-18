@@ -135,7 +135,7 @@ export function SemanticSection() {
 
   return (
     <Sec id="f-semantic">
-      <h2>Semantic Color Tokens <ChipInfo>@seed-design/css 전체 {total}개</ChipInfo></h2>
+      <h2>Semantic Color Tokens <ChipInfo>84개</ChipInfo></h2>
 
       <p>
         SEED의 역할 기반 색상 시스템은 <strong>Property(속성) → Role(역할) → Variant(변형) → State(상태)</strong> 체계로 구성됩니다.

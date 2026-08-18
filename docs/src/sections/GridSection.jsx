@@ -36,7 +36,7 @@ const viewportMapping = [
 export function GridSection() {
   return (
     <Sec id="f-grid">
-      <h2>Grid / Layout Tokens <ChipInfo>@seed-design/css 반응형 렌더링</ChipInfo></h2>
+      <h2>Grid & Layout Tokens <ChipInfo>반응형</ChipInfo></h2>
       <p>
         레이아웃은 제품의 콘텐츠를 구조화하고 일관된 사용자 경험을 제공하기 위한 시각적 뼈대입니다. SEED는
         다양한 화면 밀도와 디바이스 환경에 대응할 수 있도록 유연한 그리드 시스템과 중단점(Breakpoint)을 제공합니다.

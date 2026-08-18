@@ -21,7 +21,7 @@ export function TypographySection() {
 
   return (
     <Sec id="f-typography">
-      <h2>Typography Tokens <ChipInfo>@seed-design/css t1~t14 14단계</ChipInfo></h2>
+      <h2>Typography Tokens <ChipInfo>14단계</ChipInfo></h2>
       <p>
         SEED은 fluid/static을 별개 단계로 나누지 않고, <code>t1</code>~<code>t14</code> 14단계 각각에
         static px 값과 fluid(<code>clamp()</code> 기반, 뷰포트에 따라 0.8~1.5배 스케일) 값을 동시에 정의합니다.

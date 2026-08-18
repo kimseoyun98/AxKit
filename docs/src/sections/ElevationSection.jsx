@@ -25,7 +25,7 @@ const layerRows = [
 export function ElevationSection() {
   return (
     <Sec id="f-elevation">
-      <h2>Elevation & Shadows <ChipInfo>@seed-design/css z-index & 그림자</ChipInfo></h2>
+      <h2>Elevation & Shadows <ChipInfo>그림자</ChipInfo></h2>
       <p>
         UI 요소 간의 상대적인 깊이와 계층 구조를 시각적으로 표현하는 디자인 원칙입니다. 물리적 세계의
         '높낮이' 개념을 차용해 사용자가 인터페이스를 더 직관적으로 이해하도록 돕습니다.
