@@ -3736,12 +3736,12 @@ function TopNavigationDemo() {
         </TopNavigation>
       </VStack>
 
-      {/* 2. Standard Type (2-Depth 상세 화면: 뒤로가기 & 서브타이틀) */}
+      {/* 2. Standard Type (iOS Cupertino 44px: 2-Depth 상세 화면) */}
       <VStack gap="x2" width="full">
         <span style={{ fontSize: "var(--seed-font-size-t2)", color: "var(--seed-color-fg-neutral-muted)" }}>
-          <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>variant</code>: "standard" (2-Depth 상세 화면 - 뒤로가기 & 서브타이틀)
+          <code style={{ fontSize: "0.85em", padding: "1px 5px", borderRadius: "3px", backgroundColor: "var(--seed-color-bg-layer-basement)", color: "var(--seed-color-fg-neutral)" }}>theme</code>: "cupertino" (iOS 44px - 뒤로가기 & 타이틀 & 서브타이틀)
         </span>
-        <TopNavigation variant="standard">
+        <TopNavigation theme="cupertino" variant="standard">
           <TopNavigationLeft>
             <TopNavigationBackButton onClick={() => alert("이전 화면으로 뒤로가기")} />
           </TopNavigationLeft>

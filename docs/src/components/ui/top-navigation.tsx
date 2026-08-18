@@ -138,9 +138,11 @@ export function TopNavigationTitle({
         justifyContent: "center",
         flex: 1,
         minWidth: 0,
+        maxWidth: align === "center" ? "calc(100% - 130px)" : "100%",
         height: "100%",
         textAlign: align === "center" ? "center" : "left",
         pointerEvents: onClickTitle ? "auto" : undefined,
+        overflow: "hidden",
         ...style,
       }}
       {...props}
@@ -162,22 +164,24 @@ export function TopNavigationTitle({
             borderRadius: "var(--seed-dimension-x2)",
             color: "var(--seed-color-fg-neutral)",
             pointerEvents: "auto",
+            maxWidth: "100%",
+            overflow: "hidden",
           }}
         >
-          <span className={mainStyles.title}>
+          <span className={mainStyles.title} style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
             {title}
           </span>
-          <IconChevronDownLine style={{ width: 16, height: 16 }} />
+          <IconChevronDownLine style={{ width: 16, height: 16, flexShrink: 0 }} />
         </button>
       ) : (
         <>
           {title && (
-            <span className={mainStyles.title}>
+            <span className={mainStyles.title} style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: "100%" }}>
               {title}
             </span>
           )}
           {subtitle && (
-            <span className={mainStyles.subtitle}>
+            <span className={mainStyles.subtitle} style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", maxWidth: "100%" }}>
               {subtitle}
             </span>
           )}
