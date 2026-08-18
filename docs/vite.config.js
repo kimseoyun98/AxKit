@@ -6,5 +6,13 @@ export default defineConfig({
   base: './',
   build: {
     outDir: 'dist',
+    rollupOptions: {
+      external: [
+        /^@seed-design\//,
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+      ],
+    },
   },
 })
