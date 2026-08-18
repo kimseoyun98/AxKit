@@ -62,8 +62,8 @@ export function TextSection() {
           userSelect: 'none',
         }}
       >
-        <span>Semantic Text (&lt;Text&gt; &amp; textStyle)</span>
-        <ChipInfo>피그마 1:1</ChipInfo>
+        <span>Semantic Text</span>
+        <ChipInfo>Text</ChipInfo>
         <IconChevronDownLine
           style={{
             width: 16,
