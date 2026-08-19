@@ -164,7 +164,7 @@ export function SemanticSection() {
           userSelect: 'none',
         }}
       >
-        <span>Semantic Color (84)</span>
+        <span>Semantic Color ({total})</span>
         <IconChevronDownLine
           style={{
             width: 16,

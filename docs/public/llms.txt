@@ -1,31 +1,82 @@
-# AxKit UI v2.0 · SEED Engine AI Rules & Guidelines
+# AxKit UI LLMs Index
 
-> AxKit is a SEED-based React UI component & design token system built on `@seed-design/css` and `@seed-design/react`.
+> AxKit UI(SEED Engine 기반 v2.0)의 파운데이션 토큰, 아이콘팩, 50개 UI 컴포넌트 쇼케이스 목차입니다.
+> AI 코딩 에이전트용 행동 규칙은 이 파일이 아니라 저장소 루트의 `CLAUDE.md` / `.cursorrules` / `.geminirules`를 참고하세요.
 
-## Quick Rules for AI Code Generation
+## Foundations
+- Design Token: /#f-design-token
+- Color Primitives (94): /#f-color
+- Semantic Color (84): /#f-semantic
+- Elevation: /#f-elevation
+- Typography (t1–t14): /#f-typography
+- Semantic Text: /#f-text
+- Dimensions & Radius: /#f-dimension
+- Motion: /#f-motion
+- Grid / Layout: /#f-grid
+- Inclusive Design: /#f-inclusive
+- International Design: /#f-international
+- Voice and Tone: /#f-voice
+- Writing: /#f-writing
 
-1. **Imports**:
-   - Always import UI components from `src/components/ui`:
-     ```tsx
-     import { ActionButton, Badge, TextField, TopNavigation } from '@/components/ui';
-     ```
-   - Always import monochrome icons from `@karrotmarket/react-monochrome-icon`:
-     ```tsx
-     import { IconMagnifyingglassLine, IconBellLine } from '@karrotmarket/react-monochrome-icon';
-     ```
+## Assets
+- Icon Pack · Monochrome (588): /#icons
 
-2. **Design Tokens**:
-   - Use official 100% semantic CSS variables:
-     - Foreground: `var(--seed-color-fg-neutral)`, `var(--seed-color-fg-brand)`, `var(--seed-color-fg-neutral-muted)`
-     - Background: `var(--seed-color-bg-layer-default)`, `var(--seed-color-bg-layer-basement)`, `var(--seed-color-bg-brand-solid)`
-     - Spacing: `var(--seed-dimension-x1)` to `x16` (4px steps: x1=4px, x2=8px, x3=12px, x4=16px)
-     - Typography: `var(--seed-font-size-t1)` to `t14`
+## Showcase Components (50 Items)
+전체 인터랙티브 쇼케이스: /#showcase (개별 컴포넌트는 페이지 내 클릭으로 선택하는 방식이라 컴포넌트별 고정 앵커는 없습니다)
 
-3. **Component Specs**:
-   - `ActionButton`: `variant` = `"brandSolid"` | `"neutralWeak"` | `"neutralOutline"` | `"ghost"`, `size` = `"large"` | `"medium"` | `"small"` | `"xsmall"`
-   - `TopNavigation`: `variant` = `"root"` | `"standard"`, `theme` = `"cupertino"` (iOS 44px) | `"android"` (56px)
-   - `Badge`: `variant` = `"brandSolid"` | `"neutralWeak"` | `"positiveWeak"` | `"criticalWeak"`
-   - Overlay Popups (`AlertDialog`, `BottomSheet`, `Dialog`, `SidePanel`): Always manage `open` and `onOpenChange` state.
+- Accordion (ui:accordion)
+- Action Button (ui:action-button)
+- Alert Dialog (ui:alert-dialog)
+- Attachment (ui:attachment-field / ui:attachment-display-field)
+- Avatar (ui:avatar)
+- Badge (ui:badge)
+- Bottom Sheet (ui:bottom-sheet)
+- Callout (ui:callout)
+- Checkbox (ui:checkbox)
+- Chip (ui:chip / ui:chip-tabs)
+- Chip Tabs (ui:chip-tabs)
+- Content Placeholder (ui:content-placeholder)
+- Contextual Floating Button (ui:contextual-floating-button)
+- Date Picker (ui:date-picker)
+- Dialog (ui:dialog)
+- Divider (ui:divider)
+- Field Button / Input Button (ui:field-button)
+- Floating Action Button (ui:floating-action-button)
+- Footer (block:footer)
+- Help Bubble (ui:help-bubble / ui:help-bubble-tooltip)
+- Identity Placeholder (ui:identity-placeholder)
+- Image Frame (ui:image-frame)
+- List (ui:list)
+- List Header (ui:list-header)
+- Loading Indicator (ui:loading-indicator)
+- Menu (ui:menu)
+- Notification Badge (ui:notification-badge)
+- Page Banner (ui:page-banner)
+- Progress Circle (ui:progress-circle)
+- Quantity Picker (ui:quantity-picker)
+- Radio Group (ui:radio-group)
+- Reaction Button (ui:reaction-button)
+- Responsive Dialog (ui:responsive-dialog)
+- Responsive Side Panel (ui:responsive-side-panel)
+- Result Section (ui:result-section)
+- Segmented Control (ui:segmented-control)
+- Select (ui:select)
+- Select Box (ui:select-box)
+- Side Navigation (block:side-navigation-01)
+- Side Panel (ui:side-panel)
+- Skeleton (ui:skeleton)
+- Slider (ui:slider)
+- Snackbar (ui:snackbar)
+- Swipeable Menu Sheet (ui:swipeable-menu-sheet)
+- Switch (ui:switch)
+- Tabs (ui:tabs)
+- Tag Group (ui:tag-group)
+- Text Field (ui:text-field)
+- Time Picker (ui:time-picker)
+- Top Navigation (ui:top-navigation)
 
-4. **Repository**:
-   - https://github.com/kimseoyun98/AxKit
+## Code-to-Figma
+- Code-to-Figma Templates (50): /#a-code-to-figma
+
+## Repository
+- https://github.com/kimseoyun98/axpublish-init

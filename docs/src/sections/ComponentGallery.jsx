@@ -1214,9 +1214,9 @@ function FieldButtonDemo() {
                         style={{
                           padding: '8px 14px',
                           borderRadius: 20,
-                          border: isSelected ? '1px solid var(--seed-color-stroke-brand-default, #FF6E1D)' : '1px solid var(--seed-color-stroke-neutral-weak, #CBD5E1)',
+                          border: isSelected ? '1px solid var(--seed-color-stroke-brand-solid, #FF6E1D)' : '1px solid var(--seed-color-stroke-neutral-weak, #CBD5E1)',
                           backgroundColor: isSelected ? 'var(--seed-color-bg-brand-solid, #FF6E1D)' : 'var(--seed-color-bg-layer-default, #FFFFFF)',
-                          color: isSelected ? '#FFFFFF' : 'var(--seed-color-fg-neutral, #334155)',
+                          color: isSelected ? 'var(--seed-color-fg-neutral-inverted, #FFFFFF)' : 'var(--seed-color-fg-neutral, #334155)',
                           fontSize: 13,
                           fontWeight: 600,
                           cursor: 'pointer',
@@ -4070,7 +4070,7 @@ const COMPONENTS = [
   },
 {
     name: 'Field Button (Input Button)',
-    slug: 'ui:field-button (Input Button + Field)',
+    slug: 'ui:field-button',
     demo: <FieldButtonDemo />,
   },
 {

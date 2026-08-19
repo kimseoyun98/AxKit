@@ -87,7 +87,7 @@ export function ColorSection() {
           userSelect: 'none',
         }}
       >
-        <span>Color Primitives (94)</span>
+        <span>Color Primitives ({total})</span>
         <IconChevronDownLine
           style={{
             width: 16,

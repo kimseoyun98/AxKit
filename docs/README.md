@@ -47,12 +47,12 @@ docs/
 ├── public/
 │   ├── ai-integration/       # AI 에이전트 연동 명세 (skill.txt, doctor.txt, docs-mcp.txt)
 │   ├── icons/                # static SVG 아이콘 자산
-│   └── llms.txt              # LLM 모델 파싱용 48개 컴포넌트 A-Z 인덱스
+│   └── llms.txt              # 파운데이션/아이콘/50개 컴포넌트 목차 (LLM 색인용, AI 행동 규칙은 루트 CLAUDE.md 참고)
 ├── src/
 │   ├── components/
-│   │   └── ui/               # 49개 UI 컴포넌트 스니펫 (time-picker, responsive-side-panel 등)
+│   │   └── ui/               # 50개 UI 컴포넌트 스니펫 (time-picker, responsive-side-panel 등)
 │   ├── sections/
-│   │   └── ComponentGallery.jsx  # 48개 쇼케이스 카드가 A-Z 알파벳순으로 포함된 인터랙티브 쇼케이스
+│   │   └── ComponentGallery.jsx  # 50개 쇼케이스 카드가 A-Z 알파벳순으로 포함된 인터랙티브 쇼케이스
 │   ├── App.jsx               # 메인 앱 엔트리
 │   └── index.css             # SEED 시맨틱 토큰 및 글로벌 테마 스타일
 └── package.json
@@ -96,13 +96,13 @@ npx @seed-design/cli@latest compat
 13. **Contextual Floating Button** (`ui:contextual-floating-button`)
 14. **Date Picker** (`ui:date-picker`)
 15. **Dialog** (`ui:dialog`)
-16. **Divider** (`ui:layout`)
+16. **Divider** (`ui:divider`)
 17. **Field Button** (`ui:field-button`)
 18. **Floating Action Button** (`ui:floating-action-button`)
 19. **Footer** (`block:footer`)
 20. **Help Bubble** (`ui:help-bubble`)
 21. **Identity Placeholder** (`ui:identity-placeholder`)
-22. **Image Frame** (`ui:layout`)
+22. **Image Frame** (`ui:image-frame`)
 23. **List** (`ui:list`)
 24. **List Header** (`ui:list-header`)
 25. **Loading Indicator** (`ui:loading-indicator`)
@@ -119,7 +119,7 @@ npx @seed-design/cli@latest compat
 36. **Segmented Control** (`ui:segmented-control`)
 37. **Select** (`ui:select`)
 38. **Select Box** (`ui:select-box`)
-39. **Side Navigation** (`ui:side-navigation`)
+39. **Side Navigation** (`block:side-navigation-01`)
 40. **Side Panel** (`ui:side-panel`)
 41. **Skeleton** (`ui:skeleton`)
 42. **Slider** (`ui:slider`)

@@ -23,3 +23,15 @@ Always adhere strictly to the following engineering standards:
 - Built for React 19 and TypeScript.
 - No unused variables or silent error swallowing.
 - Keep `docs/src/sections/ComponentGallery.jsx` component demos ordered alphabetically.
+
+## 5. Imports & Component Reference
+- Always import UI components from `src/components/ui`:
+  ```tsx
+  import { ActionButton, Badge, TextField, TopNavigation } from '@/components/ui';
+  ```
+- Always import monochrome icons from `@karrotmarket/react-monochrome-icon`:
+  ```tsx
+  import { IconMagnifyingglassLine, IconBellLine } from '@karrotmarket/react-monochrome-icon';
+  ```
+- Never rely on a memorized prop/variant list for a component — it goes stale (e.g. `ActionButton` actually has 7 `variant` values: `brandSolid`, `neutralSolid`, `neutralWeak`, `criticalSolid`, `brandOutline`, `neutralOutline`, `ghost` — not 4). Before using an unfamiliar prop, check the real source in `docs/src/components/ui/*.tsx` and the compiled recipe in `node_modules/@seed-design/css/recipes/*.css`.
+- Repository: https://github.com/kimseoyun98/axpublish-init
